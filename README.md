@@ -1,25 +1,61 @@
-# ardmere.github.io
+# ardmere
+
+**Having a Safe CEX.**
 
 Decentralized. Verified. Visible.
 
-Public PoR transparency registry and Go verification toolkit.
+[Public registry](https://ardmere.github.io/) · [Methodology](docs/por-transparency-framework.html) · [Reports](docs/reports/exchange-comparison.html)
+
+---
+
+ardmere is an independent **Proof-of-Reserves transparency registry** and Go verification toolkit. It helps external observers determine whether an exchange PoR disclosure is genuinely verifiable, whether it meets the minimum **effective PoR** standard, and which artifacts or proof constraints are missing.
+
+Public ratings bind to artifacts, hashes, verifier outputs, timestamps, and explicit `UNVERIFIABLE` gaps — not exchange marketing claims.
+
+## Mission
+
+Make centralized exchange reserve transparency **evidence-bound and publicly auditable**.
+
+We publish exchange PoR Stage ratings, transparency reports, artifact indexes, and reproducible verifier results so regulators, institutional allocators, and independent reviewers can assess custody risk without trusting slogans like “100% backed”, “audited”, or “ZK verified” on their own.
+
+## Minimum standard
+
+1. **Stage 0 is not effective PoR.** Incomplete or unverifiable disclosures do not meet the minimum evidentiary bar.
+2. **Stage 1 is the minimum effective threshold.** Effective PoR requires public evidence for reserves, liabilities, and key proofs.
+3. **Missing evidence is `UNVERIFIABLE`, not PASS.** Absence of evidence is recorded as a material gap.
+
+Full framework: [PoR Stage Framework](docs/por-transparency-framework.html).
+
+## Who it is for
+
+| Audience | Use |
+| --- | --- |
+| Regulators & policy researchers | Define and apply an actionable minimum PoR standard |
+| Institutional allocators | Compare exchange transparency and integrate PoR signals into risk workflows |
+| Independent reviewers | Re-run verifiers, inspect artifacts, and audit evidence gaps |
+
+Retail users benefit indirectly; exchanges are assessed subjects, not the primary audience. See [service audience](docs/ardmere-service-audience.html).
 
 ## Public site
 
-- [Methodology](docs/por-transparency-framework.md) — PoR Stage transparency framework
-- [Exchange reports](docs/reports/exchange-comparison.md) — public comparison table
-- [Artifact archive](docs/reports/artifact-archive-index.md) — report artifact index
-- [OKX report](docs/reports/okx/506872725-transparency-report.md) — Stage 1 reference
-- [Binance report](docs/reports/binance/PR01JUN26-transparency-report.md) — Stage 0 blocked
-- [Bybit report](docs/reports/bybit/2025061709-transparency-report.md) — Stage 0 Merkle inclusion
-- [Audience](docs/ardmere-service-audience.md) — product positioning
-- [Deposit spot-check](verify/deposit/) — user spot-check page ([spec](docs/deposit-spot-check.md))
+| Resource | Description |
+| --- | --- |
+| [Homepage](index.html) | Public PoR transparency registry |
+| [Methodology](docs/por-transparency-framework.html) | PoR Stage framework and effective PoR standard |
+| [Exchange reports](docs/reports/exchange-comparison.html) | Comparison table and per-exchange reports |
+| [Artifact archive](docs/reports/artifact-archive-index.html) | Report artifact index |
+| [OKX report](docs/reports/okx/506872725-transparency-report.html) | Stage 1 reference |
+| [Binance report](docs/reports/binance/PR01JUN26-transparency-report.html) | Stage 0 blocked |
+| [Bybit report](docs/reports/bybit/2025061709-transparency-report.html) | Stage 0 Merkle inclusion |
+| [Deposit spot-check](verify/deposit/) | Independent deposit sample verification ([spec](docs/deposit-spot-check.md)) |
 
 Full doc map: [docs/README.md](docs/README.md).
 
-## Developer documentation (repository only)
+Public HTML pages are generated from markdown with `./scripts/build-public-html.sh` (requires `pandoc`). Edit the `.md` sources, rebuild, and commit both.
 
-Not linked from the public site navigation. See [docs/README.md](docs/README.md#repository-only-documentation).
+## Verification toolkit
+
+This repository also ships the Go CLI used to fetch PoR artifacts, run exchange adapters, produce verification bundles, and anchor report digests on-chain.
 
 ```bash
 go run ./cmd/por anchor -exchange okx
@@ -28,3 +64,11 @@ go run ./cmd/por verify -exchange htx -snapshot 20230910
 ```
 
 Or: `./scripts/por.sh anchor -exchange okx`
+
+Copy [`.env.example`](.env.example) to `.env` for local RPC and contract settings. Private keys stay outside the repo.
+
+## Developer documentation
+
+Contributor and operator docs are in-repo but not linked from the public site navigation. See [docs/README.md — Repository-only documentation](docs/README.md#repository-only-documentation).
+
+Product context: [PRODUCT.md](PRODUCT.md) · Architecture: [docs/verifier-architecture.md](docs/verifier-architecture.md)

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exchange PoR Transparency Comparison | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+        <a href="/docs/reports/exchange-comparison.html" aria-current="page">Reports</a>
+        <a href="/docs/reports/artifact-archive-index.html">Archive</a>
+        <a href="/#standard">Standard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="exchange-por-transparency-comparison">Exchange PoR Transparency
+Comparison</h1>
+<blockquote>
+<p>Methodology: <a
+href="../por-transparency-framework.html"><code>por-transparency-framework.md</code></a>
+Scope: first public report set for Binance, OKX, and Bybit.</p>
+</blockquote>
+<h2 id="summary">Summary</h2>
+<p>This page compares the first ardmere exchange transparency reports
+using the same Stage-centered methodology. <code>Stage 1</code> is the
+minimum threshold for effective PoR under the framework;
+<code>Stage 0</code> remains disclosure that still requires users to
+trust the exchange for key claims.</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr>
+<th>Exchange</th>
+<th>Snapshot</th>
+<th>PoR Stage</th>
+<th>Gen / Evidence</th>
+<th>Effective PoR</th>
+<th>Confidence</th>
+<th>Last Verified Snapshot</th>
+<th>Report</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OKX</td>
+<td><code>506872725</code></td>
+<td><code>Stage 1</code></td>
+<td><code>Gen 2 / E2</code></td>
+<td><code>true</code></td>
+<td><code>medium</code></td>
+<td><code>2026-05-06T16:00:00Z</code></td>
+<td><a
+href="./okx/506872725-transparency-report.html"><code>report</code></a></td>
+</tr>
+<tr>
+<td>Binance</td>
+<td><code>PR01JUN26</code></td>
+<td><code>Stage 0</code></td>
+<td><code>Gen 2 / E2</code></td>
+<td><code>false</code></td>
+<td><code>medium</code></td>
+<td><code>2026-06-01T00:00:00Z</code></td>
+<td><a
+href="./binance/PR01JUN26-transparency-report.html"><code>report</code></a></td>
+</tr>
+<tr>
+<td>Bybit</td>
+<td><code>2025061709</code></td>
+<td><code>Stage 0</code></td>
+<td><code>Gen 1 / E1</code></td>
+<td><code>false</code></td>
+<td><code>low</code></td>
+<td><code>2025-06-17T09:00:00Z</code></td>
+<td><a
+href="./bybit/2025061709-transparency-report.html"><code>report</code></a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="key-differences">Key Differences</h2>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Exchange</th>
+<th>Main Public Evidence</th>
+<th>Missing / Blocked Evidence</th>
+<th>Key Risk Flags</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OKX</td>
+<td>Public summary, <code>wallet_address_list</code>,
+<code>wallet_ownership_proof</code>, and <code>global_proof</code> are
+available; ardmere verifies address ownership and global zk
+binding.</td>
+<td>Stage 2 is blocked by missing official canonical anchor / DA,
+low-friction user inclusion proof, business-consistent constraints, and
+stronger publication cadence.</td>
+<td><code>NO_CANONICAL_ANCHOR</code>,
+<code>HIGH_FRICTION_INCLUSION_PROOF</code>,
+<code>BUSINESS_CONSTRAINT_GAP</code>, <code>HIGH_FREQUENCY_GAP</code>,
+<code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Binance</td>
+<td>Public reserve summary and <code>wallet_address_list</code> are
+available; ardmere can reproduce several reserve-side checks.</td>
+<td>Stage 1 is blocked by missing <code>wallet_ownership_proof</code>,
+opaque trusted setup evidence, and unavailable public
+<code>global_proof</code> / verifying key stack.</td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code>,
+<code>OPAQUE_TRUSTED_SETUP</code>, <code>UNVERIFIABLE</code>,
+<code>NO_CANONICAL_ANCHOR</code>,
+<code>BUSINESS_CONSTRAINT_GAP</code></td>
+</tr>
+<tr>
+<td>Bybit</td>
+<td>Summary plus optional user Merkle inclusion proof flow; ardmere can
+replay a supplied SHA-256 Merkle path.</td>
+<td>Stage 1 is blocked by missing <code>wallet_address_list</code>,
+<code>wallet_ownership_proof</code>, <code>global_proof</code>, and
+business-consistent proof constraints. Current archived sample uses
+fixture/test-vector evidence.</td>
+<td><code>UNVERIFIABLE</code>, <code>NO_WALLET_OWNERSHIP_PROOF</code>,
+<code>BUSINESS_CONSTRAINT_GAP</code>,
+<code>HIGH_FRICTION_INCLUSION_PROOF</code>,
+<code>NO_CANONICAL_ANCHOR</code>, <code>HIGH_FREQUENCY_GAP</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="interpretation">Interpretation</h2>
+<p>OKX is the current Stage 1 reference sample because the public
+artifacts are sufficient to verify the core reserve ownership and global
+liability proof path. Binance has stronger technology and evidence
+availability than a pure Merkle-only flow, but missing wallet ownership
+and trusted setup transparency keep it at Stage 0. Bybit demonstrates
+the boundary of Merkle inclusion proof: a valid user path can prove one
+account’s inclusion, but it does not prove exchange-wide solvency or
+reserve ownership.</p>
+<p>Missing data is marked as <code>UNVERIFIABLE</code>, not treated as
+<code>PASS</code>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

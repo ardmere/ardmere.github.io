@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PoR Stage Framework | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/por-transparency-framework.html" aria-current="page">Methodology</a>
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/reports/artifact-archive-index.html">Archive</a>
+        <a href="/#standard">Standard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="por-stage-framework">PoR Stage Framework</h1>
+<p>This document defines ardmere’s transparency evaluation framework for
+exchange Proof-of-Reserves (PoR). For exchanges with a minimally usable
+PoR, <strong>the final rating is PoR Stage (0 / 1 / 2)</strong>,
+measuring how mature the exchange’s PoR is in trust minimization.
+Exchanges without a minimally usable PoR are labeled <strong>Pre-Stage —
+No usable PoR</strong> and do not enter Stage 0.</p>
+<p>This framework draws on the design philosophy of the <a
+href="https://l2beat.com/stages">L2BEAT Stages Framework</a>: Stage is
+not a security certification, nor a ranking of technical sophistication.
+It answers a more fundamental question:</p>
+<blockquote>
+<p>Who must users ultimately trust?</p>
+</blockquote>
+<p><code>Technology Generation (Gen)</code> and
+<code>Evidence Level (E)</code> are not ratings on par with Stage. They
+are two auxiliary lenses for explaining Stage determinations:</p>
+<ul>
+<li><strong>Gen</strong>: Describes what proof technology the exchange
+uses.</li>
+<li><strong>E</strong>: Describes how much evidence external observers
+can obtain, reproduce, and cross-verify.</li>
+</ul>
+<hr />
+<h2 id="framework-objectives">1. Framework Objectives</h2>
+<h3 id="what-this-framework-evaluates">1.1 What This Framework
+Evaluates</h3>
+<p>PoR Stage evaluates the <strong>degree of trust minimization</strong>
+in an exchange’s PoR:</p>
+<table>
+<colgroup>
+<col style="width: 53%" />
+<col style="width: 46%" />
+</colgroup>
+<thead>
+<tr>
+<th>Question</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Is evidence public?</td>
+<td>Can third parties obtain artifacts such as summary,
+wallet_address_list, global_proof, wallet_ownership_proof, vk/config,
+etc.?</td>
+</tr>
+<tr>
+<td>Is evidence reproducible?</td>
+<td>Can third parties independently re-run core verification without
+exchange authorization?</td>
+</tr>
+<tr>
+<td>Is the proof system trust-minimized?</td>
+<td>Does the proof system rely on trusted setup, unverifiable
+parameters, proprietary implementations, or toxic waste held by the
+exchange? If trust assumptions exist, are they publicly verifiable?</td>
+</tr>
+<tr>
+<td>Are proof constraints sufficient?</td>
+<td>Can the proof system self-attest to key security properties—for
+example, no insertion of fake users with negative net worth, no
+offsetting real liabilities with negative balances, and consistency
+between user balance commitments and global liability aggregation?</td>
+</tr>
+<tr>
+<td>Is history rewriteable?</td>
+<td>Do root/proof/commitment have canonical records and a
+tamper-resistant publication layer?</td>
+</tr>
+<tr>
+<td>Are trust assumptions converging?</td>
+<td>Do users ultimately trust exchange narratives, review processes, or
+mathematics and public data?</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-this-framework-does-not-evaluate">1.2 What This Framework
+Does Not Evaluate</h3>
+<p>Stage does not directly evaluate:</p>
+<ul>
+<li>How many checks a given verifier tool currently implements.</li>
+<li>Engineering coverage for a specific RPC, chain, or token.</li>
+<li>Whether code is completely bug-free.</li>
+<li>Overall exchange financial health, corporate governance, or
+regulatory compliance.</li>
+</ul>
+<p>A higher Stage does not mean “no security risk”; a lower Stage does
+not mean “certainly malicious.” Stage only indicates: <strong>how many
+trust assumptions PoR disclosure frees users from.</strong></p>
+<hr />
+<h2 id="stage-overview">2. Stage Overview</h2>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 5%" />
+<col style="width: 27%" />
+<col style="width: 31%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Name</th>
+<th>One-line Definition</th>
+<th>Typical Evidence State</th>
+<th>Core Trust Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pre-Stage</strong></td>
+<td>No usable PoR</td>
+<td>No minimally usable PoR; does not enter Stage</td>
+<td>No snapshot / summary / proof, or PoR has stopped</td>
+<td>Can only trust exchange verbal claims, brand, financial reports, or
+regulatory disclosures</td>
+</tr>
+<tr>
+<td><strong>Stage 0</strong></td>
+<td>Trust the Exchange</td>
+<td>Has PoR, but third parties cannot independently reproduce global
+solvency</td>
+<td>Summary or user inclusion primarily</td>
+<td>Must still trust exchange asset ownership, liability completeness,
+or proof parameter claims</td>
+</tr>
+<tr>
+<td><strong>Stage 1</strong></td>
+<td>Verifiable Disclosure</td>
+<td>Key artifacts are public and reproducible, but proof semantics
+remain primarily bounded by disclosure scope</td>
+<td>wallet_address_list, wallet_ownership_proof, global_proof, and
+parameter sources all public; typically periodic snapshots</td>
+<td>No longer trust exchange unilateral claims over wallet_address_list
+control, global_proof availability, or trusted-setup honesty, but still
+trust that proof boundaries adequately reflect business risk</td>
+</tr>
+<tr>
+<td><strong>Stage 2</strong></td>
+<td>Trust-minimized PoR</td>
+<td>Proof and data are permissionless verifiable; proof constraints
+align with business risk; risk windows compressed by high-frequency
+anchoring</td>
+<td>Both sides public + low-barrier inclusion proof +
+business-consistent constraints + on-chain anchoring + DA +
+high-frequency/event-triggered updates</td>
+<td>Further freed from trusting exchange self-interpretation of business
+risk, maintenance of the sole historical version, continuous data
+provision, or arbitrary extension of unproven windows</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Current industry state</strong>: Mainstream CEXs peak at
+approximately <strong>Stage 1</strong>; no complete <strong>Stage
+2</strong> exists yet.</p>
+<p><strong>Core distinction between Stage 0 and Stage 1</strong>: Stage
+0 has PoR artifacts, but key assertions are still provided unilaterally
+by the exchange; Stage 1 requires the exchange to publish
+wallet_address_list, wallet_ownership_proof, global_proof, and trusted
+setup / parameter sources so third parties can independently re-verify
+these core assertions. In other words, the Stage 1 transition is not
+“more disclosure”—it is the exchange’s unilateral narrative being
+constrained by public evidence.</p>
+<p>“Key assertions” here include: the exchange actually controls
+addresses in wallet_address_list; published on-chain balances actually
+belong to the current period’s reserves; global_proof actually
+corresponds to the current period’s liability summary; vk/config used in
+the proof matches public parameters; and if trusted setup is used, the
+exchange does not unilaterally hold toxic waste.</p>
+<p><strong>Core distinction between Stage 1 and Stage 2</strong>: Stage
+1 addresses “whether this period’s artifacts are publicly reproducible”
+and requires clear proof boundaries; Stage 2 further requires proof
+constraints to align with the exchange’s actual business and to
+self-attest that no fake users with negative net worth were inserted and
+no negative balances were used to offset real liabilities. For example,
+exchanges involving lending, margin, portfolio margin, or collateral
+haircuts must constrain the corresponding risk-control logic in the
+circuit or equivalent proof. Stage 2 also requires low-barrier
+verification paths for user-side inclusion proof, high-frequency
+anchoring of root/proof/commitment, event-triggered supplementary
+issuance, or near-real-time proofs to reduce timing, substitution, and
+historical rewrite risk within snapshot intervals.</p>
+<hr />
+<h2 id="stage-determination-method">3. Stage Determination Method</h2>
+<h3 id="determination-principles">3.1 Determination Principles</h3>
+<table>
+<colgroup>
+<col style="width: 56%" />
+<col style="width: 43%" />
+</colgroup>
+<thead>
+<tr>
+<th>Principle</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stage-first</td>
+<td>External rating uses Stage as the primary label; Gen / E only
+explain Stage</td>
+</tr>
+<tr>
+<td>Threshold-based</td>
+<td>Determine Stage first via hard checklist; do not upgrade via average
+scores</td>
+</tr>
+<tr>
+<td>Shortest-board model</td>
+<td>PoR is a weakest-link system; critical shortcomings block Stage
+upgrades or reduce confidence</td>
+</tr>
+<tr>
+<td>Evidence-first</td>
+<td>Ratings must bind to obtainable raw artifacts, hashes, URLs,
+reports, or on-chain data</td>
+</tr>
+<tr>
+<td>Public-by-default</td>
+<td>Data without login, cookies, or manual application carries more
+weight than post-login user data</td>
+</tr>
+<tr>
+<td>Reserve and liability separation</td>
+<td>wallet_address_list, liability-side Merkle/ZK, and summary ratio are
+different data planes</td>
+</tr>
+<tr>
+<td>UNVERIFIABLE explicit</td>
+<td>Missing data is not PASS; dimensions that cannot be verified must be
+stated clearly</td>
+</tr>
+<tr>
+<td>Snapshot-scoped</td>
+<td>Each rating applies to a specific snapshot period; cannot be assumed
+to extend to all historical/future periods</td>
+</tr>
+<tr>
+<td>No overclaiming</td>
+<td>Merkle inclusion PASS cannot be stated as full-exchange solvency
+PASS</td>
+</tr>
+<tr>
+<td>Business-consistent constraints</td>
+<td>PoR proof constraints must align with the exchange’s actual
+business; risks such as fake users with negative net worth, negative
+balance offsetting, lending, margin, and collateral haircuts cannot rely
+on prose alone</td>
+</tr>
+<tr>
+<td>User-verification usability</td>
+<td>inclusion proof verification should be low-barrier, explainable, and
+exportable; ordinary users must not be required to run complex commands
+or understand underlying circuits</td>
+</tr>
+<tr>
+<td>Machine-readable first</td>
+<td>Machine-readable artifacts such as JSON/CSV/ZIP/schema/API take
+priority over unparseable PDFs or marketing pages</td>
+</tr>
+<tr>
+<td>Audit taxonomy</td>
+<td>Must distinguish technical verification, AUP/agreed-upon procedures,
+limited assurance, reasonable assurance/full financial audit</td>
+</tr>
+<tr>
+<td>Frequency-aware</td>
+<td>Transparency considers not only single-period snapshots but also
+publication frequency, event-triggered disclosure, historical version
+archivability, and anti-timing capability</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pre-stage-no-usable-por">3.2 Pre-Stage — No usable PoR</h3>
+<p><strong>Definition</strong>: The exchange has no minimally usable
+PoR, or historically had PoR but has currently stopped. Users may refer
+to other trust sources such as exchange brand, traditional financial
+reports, or regulatory disclosures, but cannot obtain the most basic PoR
+artifacts for review.</p>
+<p><strong>Any one of the following qualifies as Pre-Stage</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 28%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Situation</th>
+<th>Determination Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P-1</td>
+<td>No ongoing PoR</td>
+<td>No public PoR in the last 12 months</td>
+</tr>
+<tr>
+<td>P-2</td>
+<td>PoR stopped</td>
+<td>Had PoR historically, but no longer publishes</td>
+</tr>
+<tr>
+<td>P-3</td>
+<td>Marketing claims only</td>
+<td>Only vague statements such as “100% backed,” with no snapshot,
+summary, root, proof, or review report</td>
+</tr>
+<tr>
+<td>P-4</td>
+<td>Traditional financial reports only</td>
+<td>Has financial audit or public company disclosure, but no PoR
+artifacts mappable to user asset/liability side</td>
+</tr>
+<tr>
+<td>P-5</td>
+<td>On-chain balance display only</td>
+<td>Only wallet balance dashboard, with no user liability-side summary /
+inclusion / proof</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Distinction between Pre-Stage and Stage 0</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 39%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr>
+<th>State</th>
+<th>What Users Trust</th>
+<th>Minimum PoR Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Pre-Stage</strong></td>
+<td>Brand, financial reports, regulatory disclosures, or other non-PoR
+trust sources</td>
+<td>None</td>
+</tr>
+<tr>
+<td><strong>Stage 0</strong></td>
+<td>Exchange narrative + minimum PoR artifacts</td>
+<td>Has snapshot, summary, user inclusion, or basic verifier</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Examples</strong>:</p>
+<ul>
+<li>Coinbase (exchange-level): Pre-Stage (has public company financial
+disclosure, but no exchange-level PoR artifacts).</li>
+<li>KuCoin: Pre-Stage (PoR stopped).</li>
+</ul>
+<h3 id="stage-0-trust-the-exchange">3.3 Stage 0 — Trust the
+Exchange</h3>
+<p><strong>Definition</strong>: The exchange publishes PoR; users can at
+most verify their own inclusion or read summary, but independent third
+parties cannot reproduce the global asset–liability relationship.</p>
+<p><strong>Hard thresholds (all must be met)</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 32%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Requirement</th>
+<th>Determination Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S0-1</td>
+<td>Ongoing PoR</td>
+<td>Public PoR in the last 12 months, not stopped</td>
+</tr>
+<tr>
+<td>S0-2</td>
+<td>Snapshot boundary</td>
+<td>Clear snapshot time and asset coverage scope</td>
+</tr>
+<tr>
+<td>S0-3</td>
+<td>Minimum disclosure</td>
+<td>At least one of: self-reported summary (reserve ratio + covered
+assets); or user Merkle inclusion proof</td>
+</tr>
+<tr>
+<td>S0-4</td>
+<td>Reproducibility floor</td>
+<td>If user proof is provided: leaf/hash rules are public, proof is
+exportable, third parties can locally re-verify using user-provided
+proof</td>
+</tr>
+<tr>
+<td>S0-5</td>
+<td>Tool or specification</td>
+<td>Open-source verifier, or sufficiently detailed algorithm
+description</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Allowed gaps (therefore cannot reach Stage 1)</strong>:</p>
+<ul>
+<li>No public wallet_address_list.</li>
+<li>No public global_proof.</li>
+<li>No public wallet_ownership_proof.</li>
+<li>No independent third-party review, or review type/scope not
+disclosed.</li>
+<li>No on-chain anchoring.</li>
+</ul>
+<p><strong>Stage 0 trust assumption</strong>: Users trust “whatever
+reserves the exchange claims are the reserves.”</p>
+<p><strong>Examples</strong>:</p>
+<ul>
+<li>Bitget: weak Stage 0 (64-bit truncated hash, no independent
+attestation).</li>
+<li>Bybit: Stage 0 (user Merkle, but no public wallet_address_list /
+ZK).</li>
+<li>Gate.io production environment: Stage 0 (summary public, ZK package
+behind login, no wallet_address_list).</li>
+</ul>
+<h3 id="stage-1-verifiable-disclosure">3.4 Stage 1 — Verifiable
+Disclosure</h3>
+<p><strong>Definition</strong>: Asset-side wallet_address_list and
+wallet_ownership_proof, and liability-side global_proof are all publicly
+obtainable; proof parameters / trusted setup sources are verifiable; any
+third party can in principle independently re-verify. However, canonical
+records and historical versions of proof/root/vk still depend on the
+exchange or a small number of reviewers. “Public” here means obtainable
+without login, registration, cookies, API key, or manual
+application.</p>
+<p><strong>Hard thresholds (all must be met)</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 32%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Requirement</th>
+<th>Determination Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1-1</td>
+<td>Meets Stage 0</td>
+<td>All Stage 0 thresholds</td>
+</tr>
+<tr>
+<td>S1-2</td>
+<td>Asset side public</td>
+<td>Public wallet_address_list + block height, on-chain verifiable</td>
+</tr>
+<tr>
+<td>S1-3</td>
+<td>Address control proof</td>
+<td>Public wallet_ownership_proof or other verifiable control proof,
+batch-verifiable</td>
+</tr>
+<tr>
+<td>S1-4</td>
+<td>Liability side public</td>
+<td>Public global_proof + root/vk/config, locally re-runnable or
+structurally reproducible; must not require login, registration,
+cookies, API key, or manual application</td>
+</tr>
+<tr>
+<td>S1-5</td>
+<td>Permissionless core artifacts</td>
+<td>Core artifacts such as summary, wallet_address_list,
+wallet_ownership_proof, global_proof, vk/config downloadable without
+login, registration, cookies, API key, or manual application</td>
+</tr>
+<tr>
+<td>S1-6</td>
+<td>Independent review</td>
+<td>Independent third-party review with disclosed type (technical
+verification / AUP / limited assurance / reasonable assurance)</td>
+</tr>
+<tr>
+<td>S1-7</td>
+<td>Bidirectional cross-binding</td>
+<td>summary ↔︎ wallet_address_list aggregate, and summary ↔︎ proof root /
+commitment are both comparable</td>
+</tr>
+<tr>
+<td>S1-8</td>
+<td>Parameter transparency</td>
+<td>If trusted setup is used, must publish verifiable transcript / MPC
+ceremony; or use a proof system requiring no trusted setup</td>
+</tr>
+<tr>
+<td>S1-9</td>
+<td>Historically archivable</td>
+<td>Historical snapshot artifacts can be archived, not only
+current-period web display</td>
+</tr>
+<tr>
+<td>S1-10</td>
+<td>Proof boundary</td>
+<td>Clearly disclose which liabilities proof covers and which
+off-balance-sheet/off-chain items it does not</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stage 1 equivalent statement</strong>:</p>
+<blockquote>
+<p>Aside from implementation bugs, for an independent third party to
+<strong>long-term fail to detect</strong> forged solvency relationships,
+collusion between the exchange and reviewers, or the exchange’s
+unilateral ability to replace/delete server-hosted artifacts must be
+relied upon; it can no longer rely on unverifiable assumptions such as
+“the exchange actually controls addresses in wallet_address_list” or
+“the exchange does not hold toxic waste.”</p>
+</blockquote>
+<p><strong>Key gaps still allowed (therefore cannot reach Stage
+2)</strong>:</p>
+<ul>
+<li>proof / root / vk not on-chain anchored.</li>
+<li>global_proof requires login, registration, cookies, API key, or
+manual application; sample-only packages; or cannot bind to
+current-period wallet_address_list / summary.</li>
+<li>Monthly snapshots only, no event-triggered supplementary
+issuance.</li>
+<li>Undisclosed conflicts of interest between reviewer and technology
+provider.</li>
+</ul>
+<p><strong>Stage 1 trust assumption</strong>: Users no longer trust the
+exchange’s word alone, no longer trust that the exchange controls its
+wallet_address_list, and no longer trust that the exchange does not hold
+trusted-setup secrets; but still trust that the exchange will not
+replace current-period artifacts, split-view different observers, or
+conceal liability scope.</p>
+<p><strong>Examples</strong>:</p>
+<ul>
+<li>OKX: <strong>Stage 1</strong> (wallet_address_list +
+wallet_ownership_proof + global_proof; proof still distributed
+off-chain).</li>
+</ul>
+<h3 id="stage-2-trust-minimized-por">3.5 Stage 2 — Trust-minimized
+PoR</h3>
+<p><strong>Definition</strong>: Building on Stage 1 bilateral public
+disclosure, user-side inclusion proof has a low-barrier verification
+path; proof constraints align with the exchange’s actual business; root
+/ proof / commitment have canonical on-chain or DA records; any third
+party can permissionless re-verify without exchange authorization;
+anchored history cannot be unilaterally rewritten; and risk windows
+between full PoR cycles are compressed via high-frequency anchoring,
+event-triggered supplementary issuance, or near-real-time proofs.</p>
+<p><strong>Hard thresholds (all must be met)</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 2%" />
+<col style="width: 32%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr>
+<th>#</th>
+<th>Requirement</th>
+<th>Determination Criteria</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S2-1</td>
+<td>Meets Stage 1</td>
+<td>All Stage 1 thresholds</td>
+</tr>
+<tr>
+<td>S2-2</td>
+<td>Business-consistent constraints</td>
+<td>Proof constraints cover the exchange’s actual business risk and can
+self-attest no fake users with negative net worth were inserted and no
+negative balances offset real liabilities; businesses involving lending,
+margin, portfolio margin, collateral haircuts, price parameters, or risk
+limits must be constrained in the circuit or equivalent public
+proof</td>
+</tr>
+<tr>
+<td>S2-3</td>
+<td>On-chain anchoring</td>
+<td>root / proof root / commitment on-chain, with non-deletable
+historical commitment chain</td>
+</tr>
+<tr>
+<td>S2-4</td>
+<td>Data Availability</td>
+<td>proof packages, vk, config, wallet_address_list bundle long-term
+available on stable public layer (on-chain, IPFS, third-party
+mirror/DA)</td>
+</tr>
+<tr>
+<td>S2-5</td>
+<td>Low-barrier user verification</td>
+<td>inclusion proof exportable, locally reproducible, with Web/WASM/GUI
+one-click verification and clear error messages; verification results
+bound to public root / global_proof / summary</td>
+</tr>
+<tr>
+<td>S2-6</td>
+<td>Permissionless</td>
+<td>Third parties can re-run core verification without login or API key
+application; if ZK is used, prefer on-chain verifier or equivalent
+public verification path</td>
+</tr>
+<tr>
+<td>S2-7</td>
+<td>Parameter and version anchoring</td>
+<td>vk/config/verifier version hashes or commitments fixed on-chain/DA;
+changes have audit trail</td>
+</tr>
+<tr>
+<td>S2-8</td>
+<td>Anti-timing frequency</td>
+<td>For top CEXs: at least one of “weekly full PoR + daily
+root/commitment anchoring + event-triggered supplementary issuance”;
+long-term monthly snapshots alone insufficient to maintain Stage 2</td>
+</tr>
+<tr>
+<td>S2-9</td>
+<td>Review independence</td>
+<td>Conflicts of interest between reviewer and technology provider
+disclosed; no “athlete and referee” without explanation</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stage 2 equivalent statement</strong>:</p>
+<blockquote>
+<p>Any user can low-barrier verify their own inclusion proof; any
+external observer can independently verify “whether the proof for this
+period’s canonical root holds”; and that proof can self-attest key
+security properties and constrain the exchange’s actual business risk;
+the exchange cannot unilaterally rewrite anchored history or arbitrarily
+extend unproven risk windows.</p>
+</blockquote>
+<p><strong>Strong bonus items</strong>:</p>
+<ul>
+<li>On-chain verifier contract can directly verify ZK proof.</li>
+<li>proof generation / verifier versions are traceable.</li>
+<li>Supports continuous proof or high-frequency snapshots (daily or
+higher).</li>
+<li>Complete historical commitment chain; proof/vk/root changes have
+audit trail.</li>
+<li>Standardized proof schema for lending, margin, derivatives netting,
+collateral haircuts, and price parameters.</li>
+</ul>
+<p><strong>Current state</strong>: Mainstream exchanges have no complete
+Stage 2 yet. Third-party archivers can put roots of captured artifacts
+on-chain, but this only proves “this third party has seen and archived
+this artifact set”—it <strong>cannot</strong> substitute for the
+exchange’s official Stage 2.</p>
+<p><strong>Stage 2 trust assumption</strong>: Users primarily trust
+cryptographic proofs, public data, and on-chain canonical records.</p>
+<p>Stage 2 is <strong>trust-minimized</strong>, not trustless. It still
+relies on correct proof system implementation, truthful PoR coverage
+scope, honest disclosure of off-chain assets and off-balance-sheet
+liabilities, and review scope not being misread. If an exchange actually
+operates lending, margin, or derivatives business but PoR only proves
+spot balances or simple total liabilities, it cannot be considered Stage
+2.</p>
+<h3 id="stage-confidence-adjustments">3.6 Stage Confidence
+Adjustments</h3>
+<p>Stage is a maturity label, not a security score. Confidence markers
+can be appended without changing Stage:</p>
+<table>
+<colgroup>
+<col style="width: 46%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr>
+<th>Marker</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>high confidence</td>
+<td>Complete bilateral public disclosure, independent review, low
+implementation risk</td>
+</tr>
+<tr>
+<td>medium confidence</td>
+<td>Complete bilateral public disclosure, but off-chain distribution,
+user accessibility, or historical archiving insufficient</td>
+</tr>
+<tr>
+<td>low confidence</td>
+<td>sample-only, login walls, known HIGH defects, or extremely narrow
+attestation scope</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Shortcoming handling rules</strong>:</p>
+<table>
+<colgroup>
+<col style="width: 52%" />
+<col style="width: 47%" />
+</colgroup>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Handling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sample proof only, not current production</td>
+<td>No production Stage 1; mark sample-only</td>
+</tr>
+<tr>
+<td>Proof package requires login, registration, cookies, API key, or
+manual application</td>
+<td>If liability side cannot be publicly reproduced, max Stage 0</td>
+</tr>
+<tr>
+<td>inclusion proof not exportable, not locally reproducible, or only
+black-box verifiable</td>
+<td>Max Stage 0</td>
+</tr>
+<tr>
+<td>inclusion proof reproducible but high-friction verification
+flow</td>
+<td>Max Stage 1</td>
+</tr>
+<tr>
+<td>No wallet_ownership_proof</td>
+<td>Max Stage 0</td>
+</tr>
+<tr>
+<td>Trusted setup opaque, or no verifiable transcript</td>
+<td>Max Stage 0</td>
+</tr>
+<tr>
+<td>No independent third-party review</td>
+<td>Max Stage 0</td>
+</tr>
+<tr>
+<td>proof/root/vk server-hosted only, no archiving/anchoring</td>
+<td>Max Stage 1</td>
+</tr>
+<tr>
+<td>Major unfixed implementation defects affecting proof semantics</td>
+<td>Stage unchanged, confidence downgraded</td>
+</tr>
+<tr>
+<td>Undisclosed conflicts of interest between reviewer and technology
+provider</td>
+<td>Stage unchanged, confidence downgraded</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="auxiliary-lenses-for-explaining-stage">4. Auxiliary Lenses for
+Explaining Stage</h2>
+<h3 id="technology-lens-technology-generation-gen">4.1 Technology Lens:
+Technology Generation (Gen)</h3>
+<p>Gen describes what proof technology the exchange uses. It helps
+explain Stage but <strong>does not directly determine
+Stage</strong>.</p>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 11%" />
+<col style="width: 55%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr>
+<th>Gen</th>
+<th>Name</th>
+<th>Minimum Requirement</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gen 0</strong></td>
+<td>No PoR</td>
+<td>No ongoing PoR, or only traditional financial reports/marketing
+claims</td>
+<td>Coinbase (exchange-level), KuCoin (stopped)</td>
+</tr>
+<tr>
+<td><strong>Gen 1</strong></td>
+<td>Merkle inclusion</td>
+<td>Users can verify their own inclusion; no ZK solvency constraint</td>
+<td>Bitget, MEXC, Bybit, Kraken</td>
+</tr>
+<tr>
+<td><strong>Gen 2</strong></td>
+<td>Merkle + ZK</td>
+<td>Has global ZK / zk-SNARK / zk-STARK solvency proof</td>
+<td>Binance, OKX, Gate.io, HTX</td>
+</tr>
+<tr>
+<td><strong>Gen 3</strong></td>
+<td>ZK + onchain + DA</td>
+<td>Public proof verifiable on-chain; root/proof has tamper-resistant
+publication layer</td>
+<td>None in industry yet</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How Gen explains Stage</strong>:</p>
+<ul>
+<li>Gen 0 typically corresponds to Pre-Stage; does not enter PoR
+Stage.</li>
+<li>Gen 1 typically reaches only Stage 0, unless it also has public
+wallet_address_list, wallet_ownership_proof, global_proof, review, and
+cross-verification mechanisms.</li>
+<li>Gen 2 indicates potentially stronger liability-side proof; Stage 1
+foundation exists only when wallet_address_list, wallet_ownership_proof,
+global_proof, and trusted setup / parameter sources are all publicly
+verifiable.</li>
+<li>Gen 3 approaches Stage 2 technical form, but still must meet
+bilateral public disclosure, low-barrier inclusion proof, parameter
+transparency, DA, permissionless, frequency, and other thresholds.</li>
+</ul>
+<p><strong>Why Gen does not directly determine Stage</strong>:</p>
+<ul>
+<li>ZK proof can be advanced, but if proof packages are not public,
+trusted setup is not verifiable, or root is not anchored, users still
+must trust the exchange distribution layer or setup honesty.</li>
+<li>Merkle technology is more basic, but if asset side,
+wallet_ownership_proof, review, and historical records are more public,
+Stage may exceed some “off-chain ZK showcase.”</li>
+<li>Third-party review does not change Gen; it affects Stage thresholds
+and confidence.</li>
+</ul>
+<h3 id="evidence-disclosure-lens-evidence-level-e">4.2 Evidence
+Disclosure Lens: Evidence Level (E)</h3>
+<p>E describes how much evidence external observers can obtain and
+reproduce. It is evidence input for Stage determination, <strong>not the
+final transparency rating</strong>. E primarily describes “how far
+evidence is disclosed,” while also observing whether user-side
+verification paths are usable and low-barrier; but it does not
+automatically judge whether ownership, trusted setup,
+business-consistent constraints, or publication frequency meet Stage
+thresholds.</p>
+<table>
+<colgroup>
+<col style="width: 1%" />
+<col style="width: 7%" />
+<col style="width: 35%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr>
+<th>E</th>
+<th>Name</th>
+<th>One-line Definition</th>
+<th>Common Stage Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>E0</strong></td>
+<td>No usable evidence</td>
+<td>No usable PoR artifacts, or PoR has stopped</td>
+<td>Pre-Stage</td>
+</tr>
+<tr>
+<td><strong>E1</strong></td>
+<td>Limited disclosure</td>
+<td>Has summary, reserve ratio, user inclusion, or basic verifier, but
+cannot reproduce global relationship; verification path may still be
+complex</td>
+<td>Stage 0</td>
+</tr>
+<tr>
+<td><strong>E2</strong></td>
+<td>Public verifiable artifacts</td>
+<td>Has permissionless public artifacts; asset side, liability side, or
+key parts reproducible</td>
+<td>Stage 0 or Stage 1, depending on whether hard thresholds are
+complete</td>
+</tr>
+<tr>
+<td><strong>E3</strong></td>
+<td>Anchored permissionless evidence</td>
+<td>E2 + low-barrier inclusion proof + on-chain anchoring / DA /
+permissionless verification / high-frequency updates</td>
+<td>Stage 2 candidate</td>
+</tr>
+</tbody>
+</table>
+<p><strong>How E supports Stage determination</strong>:</p>
+<ul>
+<li>E0 corresponds to Pre-Stage; does not enter PoR Stage.</li>
+<li>E1 indicates the exchange has minimum PoR disclosure, but usually
+insufficient to exceed Stage 0; if inclusion proof verification requires
+complex CLI or manual parameter assembly, user verifiability score
+should be reduced.</li>
+<li>E2 indicates publicly reproducible artifacts exist, but
+wallet_address_list, wallet_ownership_proof, global_proof, parameter
+sources, business-consistent constraints, and review independence must
+still be checked to determine Stage 1.</li>
+<li>E3 is the evidence form for Stage 2, but must simultaneously meet
+Stage 2 low-barrier user verification, business-consistent constraints,
+permissionless, DA, parameter and version anchoring, frequency, and
+independence requirements.</li>
+</ul>
+<p><strong>E Level detailed determination points</strong>:</p>
+<ul>
+<li><strong>E0</strong>: No snapshot, summary, root, proof,
+wallet_address_list, verifier, or PoR has stopped.</li>
+<li><strong>E1</strong>: Has snapshot, summary, reserve ratio, user
+inclusion proof, or basic verifier; but third parties cannot reproduce
+global asset–liability relationship. If user verification requires
+complex commands, environment setup, or manual proof handling, mark as
+high-friction E1.</li>
+<li><strong>E2</strong>: Among core artifacts such as
+wallet_address_list, wallet_ownership_proof, global_proof,
+root/vk/config, proof schema, trusted setup transcript, some are
+publicly reproducible; if key items are missing, may still be only Stage
+0.</li>
+<li><strong>E3</strong>: On E2 basis, inclusion proof has low-barrier
+user verification path; root/proof/commitment has canonical anchoring;
+artifacts have stable DA; third parties can permissionless replay
+verification; and has higher-frequency or event-triggered updates.</li>
+</ul>
+<h3 id="gen-e-to-stage-explanation-mapping">4.3 Gen / E to Stage
+Explanation Mapping</h3>
+<table>
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr>
+<th>Combination</th>
+<th>Stage Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Gen 0 / E0</td>
+<td>Pre-Stage: no minimally usable PoR</td>
+</tr>
+<tr>
+<td>Gen 1 + E1</td>
+<td>Typically Stage 0: has summary or user self-verification, but cannot
+reproduce global solvency</td>
+</tr>
+<tr>
+<td>Gen 2 + E1</td>
+<td>Typically Stage 0: may have ZK technically, but production proof
+restricted from public or key artifacts incomplete</td>
+</tr>
+<tr>
+<td>Gen 2 + E2</td>
+<td>Stage 0 or Stage 1: depends on whether wallet_ownership_proof,
+global_proof, parameter sources are complete</td>
+</tr>
+<tr>
+<td>Gen 2/3 + E3</td>
+<td>Stage 2 candidate: still must check low-barrier inclusion proof,
+business-consistent constraints, permissionless, DA, frequency,
+parameter and version anchoring</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Counterexamples</strong>:</p>
+<ul>
+<li>Binance: Gen 2 + E2, wallet_address_list and global_proof both
+public, but missing wallet_ownership_proof and public trusted setup
+transcript; therefore does not enter Stage 1.</li>
+<li>OKX: Gen 2 + E2, wallet_address_list, wallet_ownership_proof, and
+global_proof all public; therefore can enter Stage 1; but proof still
+off-chain distributed, therefore not Stage 2.</li>
+<li>Bybit: Gen 1 + E1, has user Merkle and third-party institutional
+verification, but no public wallet_address_list / ZK; therefore still
+Stage 0.</li>
+</ul>
+<hr />
+<h2 id="within-stage-scoring">5. Within-Stage Scoring</h2>
+<p>Stage is threshold-based; within the same Stage, a 100-point scale
+can be used for horizontal ranking:</p>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 22%" />
+<col style="width: 48%" />
+</colgroup>
+<thead>
+<tr>
+<th>Category</th>
+<th>Weight</th>
+<th>Scoring Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public data availability</td>
+<td>15</td>
+<td>summary, history, wallet_address_list, global_proof, URL stability,
+machine readability</td>
+</tr>
+<tr>
+<td>Liability-side proof strength and scope</td>
+<td>20</td>
+<td>Merkle / Sum Tree / ZK / per-user solvency / fake negative-net-worth
+user defense / off-balance-sheet liability boundary</td>
+</tr>
+<tr>
+<td>Reserve-side verifiability and quality</td>
+<td>20</td>
+<td>wallet_address_list, block height, on-chain verifiability, clean
+assets, self-issued tokens, staking/custody classification</td>
+</tr>
+<tr>
+<td>Tamper resistance, time anchoring, and frequency</td>
+<td>15</td>
+<td>On-chain root, third-party mirrors, DA, historical commitment,
+weekly/daily/event-triggered disclosure</td>
+</tr>
+<tr>
+<td>Review independence and assurance level</td>
+<td>10</td>
+<td>Technical verification, AUP, limited assurance, reasonable
+assurance, reviewer qualifications and conflicts of interest</td>
+</tr>
+<tr>
+<td>User verifiability</td>
+<td>10</td>
+<td>User proof, export capability, Web/WASM/GUI one-click verification,
+open-source verifier, clear error messages, real participation threshold
+and verification rate</td>
+</tr>
+<tr>
+<td>Proof system and implementation risk</td>
+<td>10</td>
+<td>trusted setup, transparent setup, hash truncation, proof constraint
+sufficiency, parameter consistency, code maintenance, testing, audit
+finding remediation status</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Floor score rules</strong> (Stage unchanged, but total score
+capped):</p>
+<table>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 62%" />
+</colgroup>
+<thead>
+<tr>
+<th>Condition</th>
+<th>Total Score Cap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>No user liability-side data</td>
+<td>40</td>
+</tr>
+<tr>
+<td>No public asset-side data</td>
+<td>65</td>
+</tr>
+<tr>
+<td>No wallet_address_list and no ZK</td>
+<td>55</td>
+</tr>
+<tr>
+<td>Hash output &lt;128 bit</td>
+<td>45</td>
+</tr>
+<tr>
+<td>No recent PoR</td>
+<td>20</td>
+</tr>
+<tr>
+<td>proof/root/vk server-hosted only with no archiving/anchoring</td>
+<td>80</td>
+</tr>
+<tr>
+<td>No wallet_ownership_proof</td>
+<td>60</td>
+</tr>
+<tr>
+<td>Trusted setup opaque or no verifiable transcript</td>
+<td>60</td>
+</tr>
+<tr>
+<td>Major unfixed implementation defects affecting proof semantics</td>
+<td>70</td>
+</tr>
+<tr>
+<td>Undisclosed conflicts of interest between reviewer and technology
+provider</td>
+<td>75</td>
+</tr>
+<tr>
+<td>Has lending/margin business but proof does not constrain
+risk-control logic</td>
+<td>70</td>
+</tr>
+<tr>
+<td>Cannot prove no fake users with negative net worth or negative
+balance offsetting real liabilities</td>
+<td>70</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="exchange-mapping">6. Exchange Mapping</h2>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 28%" />
+<col style="width: 6%" />
+<col style="width: 15%" />
+<col style="width: 32%" />
+</colgroup>
+<thead>
+<tr>
+<th>Exchange</th>
+<th><strong>PoR Stage</strong></th>
+<th>Gen</th>
+<th>E Level</th>
+<th>Stage Rationale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coinbase (exchange-level)</td>
+<td>Pre-Stage</td>
+<td>Gen 0</td>
+<td>E0</td>
+<td>Has public company financial disclosure, but no exchange-level PoR
+artifacts</td>
+</tr>
+<tr>
+<td>KuCoin</td>
+<td>Pre-Stage</td>
+<td>Gen 0</td>
+<td>E0</td>
+<td>PoR stopped</td>
+</tr>
+<tr>
+<td>Binance</td>
+<td>Stage 0</td>
+<td>Gen 2</td>
+<td>E2</td>
+<td>wallet_address_list and global_proof public; but no
+wallet_ownership_proof, no public trusted setup transcript; Stage 1
+blocked</td>
+</tr>
+<tr>
+<td>OKX</td>
+<td><strong>Stage 1</strong></td>
+<td>Gen 2</td>
+<td>E2</td>
+<td>wallet_address_list, wallet_ownership_proof, and global_proof
+public; proof off-chain distributed</td>
+</tr>
+<tr>
+<td>Gate.io</td>
+<td>Stage 0</td>
+<td>Gen 2</td>
+<td>E1</td>
+<td>summary public; ZK package behind login; no wallet_address_list</td>
+</tr>
+<tr>
+<td>HTX</td>
+<td>Stage 0</td>
+<td>Gen 2</td>
+<td>E1</td>
+<td>Sample ZK package verifiable; production data and
+wallet_address_list gaps significant</td>
+</tr>
+<tr>
+<td>Bybit</td>
+<td>Stage 0</td>
+<td>Gen 1</td>
+<td>E1</td>
+<td>User Merkle + third-party institutional verification; no
+wallet_address_list / ZK</td>
+</tr>
+<tr>
+<td>Bitget</td>
+<td>Stage 0</td>
+<td>Gen 1</td>
+<td>weak E1</td>
+<td>64-bit truncated hash; no independent attestation</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="practical-assessment-checklist">7. Practical Assessment
+Checklist</h2>
+<p>Before rating an exchange’s Stage, answer in order:</p>
+<h3 id="pre-stage-checklist">7.1 Pre-Stage checklist</h3>
+<p>If any one is met, mark as
+<code>Pre-Stage — No usable PoR</code>:</p>
+<ol type="1">
+<li>No public PoR in the last 12 months?</li>
+<li>Has PoR stopped?</li>
+<li>Marketing claims only, with no snapshot, summary, root, proof, or
+review report?</li>
+<li>Traditional financial reports only, with no PoR artifacts mappable
+to user asset/liability side?</li>
+<li>On-chain balance display only, with no user liability-side summary /
+inclusion / proof?</li>
+</ol>
+<h3 id="stage-0-checklist">7.2 Stage 0 checklist</h3>
+<ol type="1">
+<li>Has PoR been published continuously in the last 12 months?</li>
+<li>Is there clear snapshot time and covered assets?</li>
+<li>Is there summary or user inclusion proof?</li>
+<li>If user proof is provided: are rules public, proof exportable, can
+third parties locally re-verify?</li>
+<li>Does inclusion proof provide a low-barrier verification path (e.g.,
+Web/WASM/GUI one-click verification), avoiding ordinary users having to
+run complex CLI, configure environments, or manually assemble
+parameters?</li>
+<li>Is there an open-source verifier or sufficient algorithm
+description?</li>
+</ol>
+<h3 id="stage-1-checklist">7.3 Stage 1 checklist</h3>
+<ol type="1">
+<li>Is asset-side wallet_address_list public, login-free, and on-chain
+verifiable?</li>
+<li>Is wallet_ownership_proof public and batch-verifiable?</li>
+<li>Is liability-side global_proof downloadable and independently
+reproducible without login, registration, cookies, API key, or manual
+application?</li>
+<li>Is there independent third-party review? Is the type disclosed
+(technical verification / AUP / limited assurance / reasonable
+assurance)?</li>
+<li>Can both summary ↔︎ wallet_address_list aggregate and summary ↔︎ proof
+root / commitment be bound?</li>
+<li>If trusted setup is used, is verifiable transcript / MPC ceremony
+public? If not using trusted setup, is the proof system transparent
+setup?</li>
+<li>Are historical snapshot artifacts archivable?</li>
+<li>Is user-side inclusion proof verification experience sufficiently
+low-barrier and bound to public global_proof / root / summary?</li>
+<li>Is proof boundary clear (which liabilities covered, which
+off-balance-sheet items not covered)?</li>
+</ol>
+<h3 id="stage-2-checklist">7.4 Stage 2 checklist</h3>
+<ol type="1">
+<li>Are Stage 1 wallet_address_list + wallet_ownership_proof +
+global_proof + parameter transparency thresholds met?</li>
+<li>Do proof constraints align with the exchange’s actual business?</li>
+<li>Can it self-attest no fake users with negative net worth were
+inserted, no negative balances offset real liabilities, and user balance
+commitments match global liability aggregation?</li>
+<li>If lending, margin, portfolio margin, collateral haircuts, negative
+balances, price parameters, or risk limits exist, are they constrained
+in the circuit or equivalent public proof?</li>
+<li>Is inclusion proof exportable, locally reproducible, with
+Web/WASM/GUI one-click verification, clear error messages, and bound to
+public global_proof / root / summary?</li>
+<li>Are root / proof / commitment on-chain anchored with a historical
+commitment chain?</li>
+<li>Are proof packages, vk, config long-term available on stable DA
+layer?</li>
+<li>Can third parties permissionless re-run core verification (no
+login/API key)?</li>
+<li>Are vk/config/verifier versions fixed on-chain/DA with audit trail
+for changes?</li>
+<li>Is publication frequency sufficient (weekly full PoR / daily
+anchoring / event-triggered supplementary issuance)?</li>
+<li>Are conflicts of interest between reviewer and technology provider
+disclosed?</li>
+</ol>
+<h3 id="general-risk-items">7.5 General risk items</h3>
+<ol type="1">
+<li>Is reserve quality classified (clean / staked / off-chain /
+self-issued tokens)?</li>
+<li>Are there major unfixed implementation defects?</li>
+<li>Does the report clearly state what cannot be proven?</li>
+</ol>
+<hr />
+<h2 id="recommendations-for-regulators">8. Recommendations for
+Regulators</h2>
+<p>PoR Stage can serve as tiered language for regulators setting
+exchange reserve transparency requirements, but it is a different
+dimension from traditional financial audit. Regulatory text should
+clarify: PoR proves asset–liability relationships under a specific
+snapshot and disclosure scope; traditional audit covers financial
+statements, internal controls, corporate governance, off-chain assets,
+and going concern at the company level. The two should be used
+complementarily.</p>
+<h3 id="minimum-effective-por-requirements">8.1 Minimum Effective PoR
+Requirements</h3>
+<p>Regulators should not accept <code>Pre-Stage</code> or <strong>Stage
+0</strong> as effective PoR. If an exchange custodies customer assets
+for the public, the minimum requirement for effective PoR should be at
+least <strong>Stage 1</strong>; Stage 0 can only serve as transitional
+disclosure, remediation observation, or risk notice—not as basis for
+meeting regulatory PoR requirements.</p>
+<table>
+<colgroup>
+<col style="width: 24%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Regulatory Handling Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-Stage</td>
+<td>Should not be stated as “has PoR”; can only be marked as no
+minimally usable PoR</td>
+</tr>
+<tr>
+<td>Stage 0</td>
+<td>Should not be recognized as effective PoR; can only serve as
+transitional disclosure or remediation status, and must be explicitly
+marked as still primarily relying on exchange self-reporting</td>
+</tr>
+<tr>
+<td>Stage 1</td>
+<td>Can serve as minimum regulatory standard for effective PoR:
+wallet_address_list, wallet_ownership_proof, global_proof, parameter
+sources all publicly verifiable</td>
+</tr>
+<tr>
+<td>Stage 2</td>
+<td>Can serve as long-term best practice: low-barrier inclusion proof,
+on-chain anchoring, DA, permissionless verification, continuous
+traceability</td>
+</tr>
+</tbody>
+</table>
+<h3 id="report-types-that-should-not-be-conflated">8.2 Report Types That
+Should Not Be Conflated</h3>
+<p>Regulators should require exchanges to clearly distinguish in
+external disclosure:</p>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr>
+<th>Type</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technical verification</td>
+<td>Checks whether technical artifacts such as
+Merkle/ZK/wallet_address_list/wallet_ownership_proof/global_proof are
+reproducible</td>
+</tr>
+<tr>
+<td>AUP / agreed-upon procedures</td>
+<td>Reviewer executes agreed check steps, but typically does not express
+overall assurance opinion</td>
+</tr>
+<tr>
+<td>Limited assurance</td>
+<td>Provides limited degree of assurance for specific scope</td>
+</tr>
+<tr>
+<td>Reasonable assurance / full financial audit</td>
+<td>Closer to traditional audit opinion, but must still state whether
+PoR liability scope is covered</td>
+</tr>
+</tbody>
+</table>
+<p>“Has audit” and “has PoR” answer different questions. Traditional
+financial audit provides company-level assurance; PoR provides publicly
+reproducible evidence for users and third parties. Regulatory and user
+disclosures should state each one’s coverage scope.</p>
+<h3
+id="differences-and-complementarity-of-traditional-audit-and-por">8.3
+Differences and Complementarity of Traditional Audit and PoR</h3>
+<p>Traditional audit and PoR answer different questions; regulatory
+requirements should retain both and state their respective
+boundaries.</p>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 58%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Traditional Audit</th>
+<th>PoR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Core question</td>
+<td>Whether company financial statements are fairly presented in all
+material respects</td>
+<td>Whether user liabilities under a snapshot are included in proof, and
+whether reserves suffice to cover disclosed scope</td>
+</tr>
+<tr>
+<td>Time semantics</td>
+<td>Typically quarterly, annual, or specific period</td>
+<td>Typically a snapshot; can extend to high-frequency or continuous
+proof</td>
+</tr>
+<tr>
+<td>Asset verification</td>
+<td>Covers cash, bank deposits, receivables, off-chain assets,
+investments, etc.</td>
+<td>Better suited for on-chain assets, wallet_ownership_proof, on-chain
+balances</td>
+</tr>
+<tr>
+<td>Liability verification</td>
+<td>Confirms liabilities per accounting scope, or via
+sampling/procedures</td>
+<td>Can make reproducible commitments on full user balance commitments,
+Merkle/ZK inclusion, global_proof</td>
+</tr>
+<tr>
+<td>Verification actors</td>
+<td>Auditors, regulators, investors</td>
+<td>Users, third-party researchers, regulators, automated verifiers</td>
+</tr>
+<tr>
+<td>Output form</td>
+<td>Audit opinion, AUP, assurance report, financial statement notes</td>
+<td>root, proof, wallet_address_list, wallet_ownership_proof, vk/config,
+verifier output</td>
+</tr>
+<tr>
+<td>Main blind spots</td>
+<td>Does not necessarily provide user-level reproducible evidence; may
+not cover real-time custody risk</td>
+<td>Cannot automatically prove off-chain assets, off-balance-sheet
+liabilities, internal controls, or operating capacity</td>
+</tr>
+</tbody>
+</table>
+<p>Complementary use:</p>
+<ol type="1">
+<li><strong>Traditional audit covers off-chain and company-level
+risk</strong>: Bank deposits, receivables, related-party transactions,
+off-balance-sheet arrangements, internal controls, going concern—areas
+traditional audit handles better.</li>
+<li><strong>PoR covers user-level and on-chain reproducible
+risk</strong>: User inclusion, global_proof, wallet_ownership_proof,
+on-chain balances, public reproducibility of proof/root/commitment—parts
+traditional audit typically does not give users direct verification
+of.</li>
+<li><strong>Accounting scope and PoR scope must align</strong>:
+Regulators should require disclosure of differences between “what PoR
+covers” and “what financial statements recognize,” especially lending,
+margin, derivatives, related parties, and off-balance-sheet items.</li>
+<li><strong>Auditors should not only verify exchange-generated
+conclusions</strong>: If review scope only covers exchange-provided
+summary without verifying wallet_address_list, wallet_ownership_proof,
+global_proof, parameter sources, and historical artifacts, it cannot be
+stated as PoR Stage 1-level review.</li>
+<li><strong>Regulators should adopt dual-track requirements</strong>:
+Traditional audit for financial integrity and off-chain risk; PoR Stage
+for publicly reproducible reserve transparency. Both together better
+address user concerns about “redeemability.”</li>
+</ol>
+<h3 id="fields-regulators-should-mandate-for-disclosure">8.4 Fields
+Regulators Should Mandate for Disclosure</h3>
+<p>Regulatory reports should at minimum require machine-readable
+disclosure of:</p>
+<ol type="1">
+<li>Snapshot time, covered assets, covered chains, covered user
+liability scope.</li>
+<li>reserve summary, liability summary, reserve ratio.</li>
+<li>wallet_address_list, block height, balances, networks, asset
+classification.</li>
+<li>wallet_ownership_proof and verification method.</li>
+<li>global_proof, root, vk/config, proof schema.</li>
+<li>Correspondence between proof constraints and business model and key
+security properties: whether it can self-attest no fake users with
+negative net worth, no negative balance offsetting real liabilities;
+whether lending, margin, portfolio margin, collateral haircuts, price
+parameters, and risk limits are constrained.</li>
+<li>trusted setup transcript / MPC ceremony, or transparent setup proof
+system description.</li>
+<li>Third-party review institution, review type, scope limitations,
+conflict-of-interest declarations.</li>
+<li>Archival location, hashes, historical versions, and anchoring
+records for proof/root/commitment.</li>
+<li>Publication frequency, event-triggered supplementary issuance rules,
+historical snapshot retention policy.</li>
+<li>Clear statement of assets, liabilities, and off-balance-sheet items
+PoR does not cover.</li>
+</ol>
+<h3 id="frequency-and-event-triggers">8.5 Frequency and Event
+Triggers</h3>
+<p>For large CEXs, monthly PoR can only serve as a transitional
+baseline. Regulators should consider tiered higher-frequency
+requirements by risk:</p>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr>
+<th>Scenario</th>
+<th>Recommendation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Normal ongoing disclosure</td>
+<td>At least monthly full PoR; historical artifacts archivable</td>
+</tr>
+<tr>
+<td>High-volume or high-leverage platforms</td>
+<td>Weekly full PoR, or at least weekly liability-side updates</td>
+</tr>
+<tr>
+<td>Extreme market volatility, bank runs, major security incidents</td>
+<td>Event-triggered supplementary PoR</td>
+</tr>
+<tr>
+<td>Stage 2 target</td>
+<td>Low-barrier inclusion proof + daily root/commitment anchoring,
+progressing toward daily full PoR or near-real-time proof</td>
+</tr>
+</tbody>
+</table>
+<h3 id="enforcement-and-user-presentation">8.6 Enforcement and User
+Presentation</h3>
+<p>Regulators should require exchanges to display in a unified
+format:</p>
+<pre class="text"><code>PoR Stage: Stage 1
+Technology Generation: Gen 2
+Evidence Level: E2
+Scope: spot + margin liabilities, excludes off-balance-sheet exposures
+Snapshot: 2026-06-01T00:00:00Z</code></pre>
+<p>If an exchange lacks wallet_address_list, wallet_ownership_proof,
+trusted setup transcript, public global_proof, key proof constraint
+documentation, or historical artifacts, the user interface should
+explicitly mark <code>UNVERIFIABLE</code>; marketing phrases such as
+“100% backed,” “audited,” or “ZK verified” must not cover critical
+gaps.</p>
+<hr />
+<h2 id="recommendations-for-the-industry">9. Recommendations for the
+Industry</h2>
+<p>The long-term goal of PoR is not for exchanges to publish more PDFs
+or marketing pages, but for users, third-party researchers, review
+institutions, and regulators to all be able to re-verify the same set of
+core facts: which assets the exchange controls, which liabilities it
+commits to, whether proof constraints cover real business risk, and
+whether this evidence can be traced long-term.</p>
+<h3 id="recommendations-for-exchanges">9.1 Recommendations for
+Exchanges</h3>
+<p>Exchanges should treat <strong>Stage 1</strong> as the near-term
+minimum target and <strong>Stage 2</strong> as the long-term build
+direction:</p>
+<ol type="1">
+<li><strong>Do not stop at Stage 0</strong>: summary, reserve ratio, or
+user Merkle proof only demonstrate minimum disclosure; they do not prove
+global solvency.</li>
+<li><strong>Publish bilateral core artifacts</strong>:
+wallet_address_list, wallet_ownership_proof, global_proof,
+root/vk/config, proof schema, and trusted setup transcript should be
+obtainable without login, registration, cookies, API key, or manual
+application.</li>
+<li><strong>Disclose proof coverage boundaries</strong>: Clearly state
+which assets, liabilities, product lines, and risk scenarios PoR covers,
+and which off-chain assets, off-balance-sheet liabilities, lending,
+margin, derivatives, or related-party items it does not.</li>
+<li><strong>Align proof constraints with business model</strong>: PoR
+should not only prove static balances; it should self-attest no fake
+users with negative net worth were inserted and no negative balances
+offset real liabilities. If the exchange has lending, margin, portfolio
+margin, collateral haircuts, or price parameters, explain how these
+risk-control logics are constrained or why they are not covered.</li>
+<li><strong>Lower user verification barriers</strong>: inclusion proof
+should not be CLI-only for developers; exchanges should provide
+Web/WASM/GUI one-click verification, clear error messages, proof export,
+and local re-verification paths, and disclose verification entry points
+and participation rate metrics.</li>
+<li><strong>Prioritize machine-readable and archivable</strong>:
+JSON/CSV/ZIP/schema/API, open-source verifiers, and historical artifacts
+should take priority over unparseable PDFs; each snapshot period should
+have stable URL, hash, and version records.</li>
+<li><strong>Increase publication frequency</strong>: Monthly PoR can
+only serve as a transitional baseline; high-volume or high-leverage
+platforms should progress toward weekly, daily anchoring, or
+event-triggered supplementary issuance.</li>
+</ol>
+<h3 id="recommendations-for-third-party-review-institutions">9.2
+Recommendations for Third-Party Review Institutions</h3>
+<p>Third-party institutions should not merely restate exchange-generated
+conclusions; they should clearly state which artifacts they verified and
+which boundaries they did not:</p>
+<ol type="1">
+<li>Distinguish technical verification, AUP / agreed-upon procedures,
+limited assurance, and reasonable assurance; do not use “audited” to
+blur scope differences.</li>
+<li>At minimum check consistency of wallet_address_list,
+wallet_ownership_proof, global_proof, parameter sources, proof schema,
+proof constraints, verifier output, and historical artifacts.</li>
+<li>Disclose review scope, sampling methods, limitations, conflicts of
+interest, and unresolved issues.</li>
+<li>If only summary or user inclusion is verified, conclusions cannot be
+stated as Stage 1-level PoR.</li>
+</ol>
+<h3 id="recommendations-for-tool-and-infrastructure-builders">9.3
+Recommendations for Tool and Infrastructure Builders</h3>
+<p>The industry needs shared verification tools and data infrastructure,
+not each exchange defining non-reusable formats:</p>
+<ol type="1">
+<li>Establish standardized PoR schema covering snapshot,
+wallet_address_list, wallet_ownership_proof, global_proof, vk/config,
+setup transcript, proof constraints, scope, and exclusion.</li>
+<li>Build open-source verifiers, batch signature verification tools,
+proof replay tools, Web/WASM one-click verification components, and
+reproducible test sets.</li>
+<li>Provide independent archiving and mirroring services so
+proof/root/commitment, wallet_address_list, and review reports do not
+depend on a single exchange server.</li>
+<li>Promote on-chain anchoring, DA, IPFS/Arweave/object storage hash
+indexing, and other long-term traceable publication layers.</li>
+<li>External display should show Stage, Gen, E Level, scope, snapshot,
+and key gaps—not reserve ratio alone.</li>
+</ol>
+<h3 id="industry-migration-path">9.4 Industry Migration Path</h3>
+<p>The industry can advance along the following path:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Goal</th>
+<th>Key Actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>From nothing to something</td>
+<td>Pre-Stage -&gt; Stage 0</td>
+<td>Establish ongoing snapshot, summary, user proof, and basic
+verifier</td>
+</tr>
+<tr>
+<td>From self-report to reproducible</td>
+<td>Stage 0 -&gt; Stage 1</td>
+<td>Publish wallet_address_list, wallet_ownership_proof, global_proof,
+parameter sources, and review scope</td>
+</tr>
+<tr>
+<td>From disclosure to trust minimization</td>
+<td>Stage 1 -&gt; Stage 2</td>
+<td>Introduce low-barrier inclusion proof, canonical anchoring, DA,
+permissionless verification, key security property self-attestation, and
+business-consistent constraints</td>
+</tr>
+<tr>
+<td>From single point to ecosystem collaboration</td>
+<td>Single exchange disclosure -&gt; industry public verification
+infrastructure</td>
+<td>Standard schema, open-source verifiers, independent archiving,
+cross-institution re-verification</td>
+</tr>
+</tbody>
+</table>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

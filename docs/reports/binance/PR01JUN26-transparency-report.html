@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binance PR01JUN26 PoR Transparency Report | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/reports/artifact-archive-index.html">Archive</a>
+        <a href="/#standard">Standard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="binance-pr01jun26-por-transparency-report">Binance PR01JUN26 PoR
+Transparency Report</h1>
+<blockquote>
+<p>Methodology: <a
+href="../../por-transparency-framework.html"><code>por-transparency-framework.md</code></a>
+Assessment JSON: <a
+href="./PR01JUN26-assessment.json"><code>PR01JUN26-assessment.json</code></a></p>
+</blockquote>
+<h2 id="summary">1. Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exchange</td>
+<td><code>binance</code></td>
+</tr>
+<tr>
+<td>Snapshot</td>
+<td><code>PR01JUN26</code></td>
+</tr>
+<tr>
+<td>Period</td>
+<td><code>43</code></td>
+</tr>
+<tr>
+<td>Wallet ZIP date</td>
+<td><code>2026-06-01</code></td>
+</tr>
+<tr>
+<td>BAPI snapshot time</td>
+<td><code>2026-01-06T00:00:00Z</code></td>
+</tr>
+<tr>
+<td>PoR Stage</td>
+<td><code>Stage 0 — Trust the Exchange</code></td>
+</tr>
+<tr>
+<td>Gen / Evidence</td>
+<td><code>Gen 2 / E2</code></td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>medium</code></td>
+</tr>
+<tr>
+<td>Effective PoR</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>Binance publishes a public reserve summary and
+<code>wallet_address_list</code> for <code>PR01JUN26</code>, and ardmere
+can reproduce several reserve-side checks. The available evidence
+supports <code>Gen 2 / E2</code>, but the snapshot remains <strong>Stage
+0</strong> because key Stage 1 artifacts are missing or unavailable to
+the public pipeline.</p>
+<p>Under the ardmere framework, this snapshot should
+<strong>not</strong> be described as <code>Stage 1</code>,
+<code>Stage 2</code>, or effective PoR.</p>
+<h2 id="stage-decision">2. Stage Decision</h2>
+<h3 id="stage-0-not-effective-por">Stage 0, Not Effective PoR</h3>
+<p>Binance has minimum PoR disclosure: the BAPI summary and wallet ZIP
+are public, artifact integrity passes, internal consistency passes, and
+solvency-claim checks pass.</p>
+<p>Stage 1 is blocked by the following gaps:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Missing / Blocked Evidence</th>
+<th>Risk Flag</th>
+<th>Stage Effect</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wallet_ownership_proof</code></td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+<td>max <code>Stage 0</code></td>
+<td>Users must trust that Binance controls the listed wallet
+addresses.</td>
+</tr>
+<tr>
+<td><code>trusted_setup_transcript</code> or transparent setup
+evidence</td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+<td>max <code>Stage 0</code></td>
+<td>Users must trust setup honesty and absence of toxic waste.</td>
+</tr>
+<tr>
+<td>Public <code>global_proof</code> / <code>vk</code> / proof
+schema</td>
+<td><code>UNVERIFIABLE</code></td>
+<td>max <code>Stage 0</code></td>
+<td>The full global ZK proof stack is not publicly reproducible by this
+pipeline.</td>
+</tr>
+<tr>
+<td>Machine-readable independent review</td>
+<td><code>UNVERIFIABLE</code></td>
+<td>confidence downgrade</td>
+<td>The review scope cannot be automatically checked against this
+snapshot.</td>
+</tr>
+</tbody>
+</table>
+<p>Additional Stage 2 blockers remain even if Stage 1 gaps are fixed:
+Binance would still need official canonical anchoring, data
+availability, low-friction inclusion proof, permissionless replay, and
+public business-consistent proof constraints.</p>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest Snapshot</td>
+<td><code>2026-06-01T00:00:00Z</code></td>
+</tr>
+<tr>
+<td>Previous Snapshot</td>
+<td><code>2026-05-01T00:00:00Z</code></td>
+</tr>
+<tr>
+<td>Observed Cadence</td>
+<td><code>monthly</code></td>
+</tr>
+<tr>
+<td>History Available</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>Event-triggered Updates</td>
+<td><code>unknown</code></td>
+</tr>
+<tr>
+<td>Daily Root / Commitment Anchor</td>
+<td><code>no</code></td>
+</tr>
+<tr>
+<td>Stage Impact</td>
+<td>Monthly PoR is a transitional baseline, but insufficient for Stage 2
+without daily root/commitment anchoring, event-triggered updates, or
+stronger cadence.</td>
+</tr>
+</tbody>
+</table>
+<p>Binance publishes recurring monthly PoR snapshots. This report does
+not establish event-triggered publication rules or official daily
+canonical anchoring.</p>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summary</code> / <code>bapiSnapshot</code></td>
+<td><code>7898c1147f470b08404618c7f485664a4cb91740be3415d469d52f23c64f4202</code></td>
+<td><code>https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot</code></td>
+</tr>
+<tr>
+<td><code>wallet_address_list</code> / <code>walletZip</code></td>
+<td><code>722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2</code></td>
+<td><code>https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20260601.zip</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact bundle root</td>
+<td><code>0xf452e47dd22ed63dc4a905fe79da6c6f7a6975cc0d775f50d01879e97616671f</code></td>
+</tr>
+<tr>
+<td>Verification bundle v2 root</td>
+<td><code>0x84e7f008460dcfa4ae4969c9a6e2a8b2585d5dcbe6a33cfead74b175782f6f42</code></td>
+</tr>
+<tr>
+<td>Artifact bundle SHA-256</td>
+<td><code>ffc546892f40613f04434624c3ae14e3d5bb9f23e38bc971731c071b656ade50</code></td>
+</tr>
+<tr>
+<td>Verification bundle v2 SHA-256</td>
+<td><code>b3b5a3dc2f08f198110131c787c52a666b3af5b5c3fbf4eddff4dff6e7c1e709</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="verifier-evidence">5. Verifier Evidence</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Version</th>
+<th>Verdict</th>
+<th>Coverage</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>artifact-integrity</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td>BAPI snapshot and wallet ZIP hashes match archived artifacts.</td>
+</tr>
+<tr>
+<td><code>internal-consistency</code></td>
+<td><code>1.1</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td><code>HotCold=1262</code>, <code>Deposit=1980326</code>, total
+<code>1981588</code>; BAPI reconciliation passed.</td>
+</tr>
+<tr>
+<td><code>solvency-claim</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td>51 solvency-claim findings passed.</td>
+</tr>
+<tr>
+<td><code>onchain-balance-hot</code></td>
+<td><code>2.1</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.0396</code></td>
+<td>1 FAIL, 4 WARN, 155 UNVERIFIABLE, 1 PASS.</td>
+</tr>
+<tr>
+<td><code>onchain-balance-token</code></td>
+<td><code>2.0</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.5357</code></td>
+<td>4 FAIL, 202 WARN, 38 UNVERIFIABLE, 1 PASS.</td>
+</tr>
+<tr>
+<td><code>onchain-balance-ledger</code></td>
+<td><code>1.4</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.1339</code></td>
+<td>9 FAIL, 151 WARN, 68 UNVERIFIABLE, 1 PASS.</td>
+</tr>
+<tr>
+<td><code>onchain-balance-deposit</code></td>
+<td><code>1.2</code></td>
+<td><code>WARN</code></td>
+<td><code>0.1331</code></td>
+<td>Value-weighted deposit sample warned due to RPC failures.</td>
+</tr>
+<tr>
+<td><code>address-ownership</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0</code></td>
+<td>No public wallet ownership signatures / proofs.</td>
+</tr>
+<tr>
+<td><code>global-zk-proof</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0</code></td>
+<td><code>global_proof</code> / verifying key not publicly
+distributed.</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0</code></td>
+<td>No public machine-readable attestation artifact.</td>
+</tr>
+</tbody>
+</table>
+<p>The reserve-side FAIL verdicts should not be read as direct evidence
+of Binance insolvency. The detailed ardmere audit report attributes many
+findings to RPC/archive availability, block-height boundary ambiguity,
+chain-specific accounting semantics, staking accounting differences, and
+wrapped/cross-chain reconciliation limits. The Stage decision is driven
+primarily by missing Stage 1 artifacts.</p>
+<h2 id="minimal-checklist">6. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public PoR summary</td>
+<td>pass</td>
+<td>BAPI summary is archived.</td>
+</tr>
+<tr>
+<td>Public <code>wallet_address_list</code></td>
+<td>pass</td>
+<td>Wallet ZIP is public and partially checked by ardmere.</td>
+</tr>
+<tr>
+<td>Public <code>wallet_ownership_proof</code></td>
+<td>fail</td>
+<td>Blocks Stage 1.</td>
+</tr>
+<tr>
+<td>Public <code>global_proof</code> + <code>vk/config</code></td>
+<td>fail</td>
+<td>Blocks Stage 1.</td>
+</tr>
+<tr>
+<td>Trusted setup transparency</td>
+<td>fail</td>
+<td>Blocks Stage 1.</td>
+</tr>
+<tr>
+<td>Low-friction inclusion proof bound to public root /
+<code>global_proof</code> / summary</td>
+<td>not evaluated</td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">7. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P0</code></td>
+<td>Publish batch-verifiable <code>wallet_ownership_proof</code> for the
+PR01JUN26 <code>wallet_address_list</code>.</td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+</tr>
+<tr>
+<td><code>P0</code></td>
+<td>Publish trusted setup transcript / MPC ceremony, or migrate to a
+transparent setup proof system.</td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+</tr>
+<tr>
+<td><code>P0</code></td>
+<td>Publish <code>global_proof</code>, verifying keys,
+<code>vk/config</code>, and proof schema without login or manual
+request.</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td><code>P1</code></td>
+<td>Add official canonical anchoring for proof/root/vk commitments and
+historical artifacts.</td>
+<td><code>NO_CANONICAL_ANCHOR</code></td>
+</tr>
+<tr>
+<td><code>P1</code></td>
+<td>Publish proof constraints that show coverage of lending, margin,
+collateral haircuts, negative balances, and dummy-user protections.</td>
+<td><code>BUSINESS_CONSTRAINT_GAP</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">8. Boundary</h2>
+<p>This report evaluates public PoR artifacts and reproducibility. It
+does not evaluate Binance’s overall financial health, corporate
+governance, internal controls, off-chain assets, legal compliance, or
+complete off-balance-sheet liabilities. Traditional audit and PoR should
+be treated as complementary evidence tracks.</p>
+<h2 id="references">9. References</h2>
+<ul>
+<li>Assessment JSON: <a
+href="./PR01JUN26-assessment.json"><code>PR01JUN26-assessment.json</code></a></li>
+<li>ardmere audit report: <a
+href="../../../artifacts/binance/PR01JUN26-20260601-period43/AUDIT-REPORT.html"><code>AUDIT-REPORT.md</code></a></li>
+<li>Artifact bundle: <a
+href="../../../artifacts/binance/PR01JUN26-20260601-period43/bundles/PR01JUN26.artifact-bundle.json"><code>PR01JUN26.artifact-bundle.json</code></a></li>
+<li>Verification bundle v2: <a
+href="../../../artifacts/binance/PR01JUN26-20260601-period43/bundles/PR01JUN26.verification-bundle.v2.json"><code>PR01JUN26.verification-bundle.v2.json</code></a></li>
+</ul>
+<p>Missing data must be marked as <code>UNVERIFIABLE</code>, not treated
+as <code>PASS</code>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

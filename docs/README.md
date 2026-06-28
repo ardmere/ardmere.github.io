@@ -4,14 +4,16 @@
 
 These pages are part of the ardmere public transparency registry. They are linked from [index.html](../index.html) and the site README.
 
+**Site URLs use `.html`** (styled pages for GitHub Pages). Markdown remains the editable source; regenerate with [`scripts/build-public-html.sh`](../scripts/build-public-html.sh).
+
 | Document | Purpose |
 | --- | --- |
-| [por-transparency-framework.md](./por-transparency-framework.md) | Methodology and effective PoR standard |
-| [reports/exchange-comparison.md](./reports/exchange-comparison.md) | Exchange comparison table |
-| [reports/artifact-archive-index.md](./reports/artifact-archive-index.md) | Artifact archive index |
-| [reports/*/transparency-report.md](./reports/) | Exchange transparency reports |
+| [por-transparency-framework.html](./por-transparency-framework.html) | Methodology and effective PoR standard |
+| [reports/exchange-comparison.html](./reports/exchange-comparison.html) | Exchange comparison table |
+| [reports/artifact-archive-index.html](./reports/artifact-archive-index.html) | Artifact archive index |
+| [reports/*/transparency-report.html](./reports/) | Exchange transparency reports |
 | [reports/*/*-assessment.json](./reports/) | Machine-readable assessments bound to each report |
-| [ardmere-service-audience.md](./ardmere-service-audience.md) | Product audience and positioning |
+| [ardmere-service-audience.html](./ardmere-service-audience.html) | Product audience and positioning |
 | [deposit-spot-check.md](./deposit-spot-check.md) | Deposit spot-check spec ([`/verify/deposit/`](../verify/deposit/)) |
 
 ## Repository-only documentation

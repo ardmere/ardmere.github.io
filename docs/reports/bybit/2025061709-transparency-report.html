@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bybit PoR Transparency Report | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/reports/artifact-archive-index.html">Archive</a>
+        <a href="/#standard">Standard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="bybit-por-transparency-report">Bybit PoR Transparency
+Report</h1>
+<blockquote>
+<p>Template version: <code>ardmere/exchange-transparency-report@1</code>
+Methodology: <code>docs/por-transparency-framework.md</code> Assessment
+JSON: <code>docs/reports/bybit/2025061709-assessment.json</code></p>
+</blockquote>
+<h2 id="summary">1. Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exchange</td>
+<td><code>bybit</code></td>
+</tr>
+<tr>
+<td>Snapshot</td>
+<td><code>2025061709</code></td>
+</tr>
+<tr>
+<td>Period</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Snapshot Time</td>
+<td><code>2025-06-17T09:00:00Z</code></td>
+</tr>
+<tr>
+<td>PoR Stage</td>
+<td><code>Stage 0 — Trust the Exchange</code></td>
+</tr>
+<tr>
+<td>Gen / Evidence</td>
+<td><code>Gen 1 / E1</code></td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>low</code></td>
+</tr>
+<tr>
+<td>Effective PoR</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>Bybit exposes a reserve ratio summary and a user Merkle proof flow,
+and ardmere can replay a supplied SHA-256 Merkle path. However, the
+available public evidence does not include
+<code>wallet_address_list</code>, <code>wallet_ownership_proof</code>,
+or a <code>global_proof</code>, so this snapshot remains Stage 0 and
+should not be treated as effective PoR.</p>
+<p>The current archived bundle supports limited Gen 1 / E1 evidence:
+summary plus optional user inclusion proof.
+<code>user-merkle-proof@bybit-1</code> passes for the supplied v5 test
+vector and binds to the summary Merkle root, but that proves only
+single-account inclusion for that JSON input. It does not prove
+exchange-wide liabilities, reserve ownership, on-chain balances, or
+business-consistent constraints.</p>
+<p>Under the ardmere framework, this snapshot should
+<strong>not</strong> be described as Stage 1, Stage 2, effective PoR, or
+trust-minimized PoR unless the corresponding evidence is public,
+reproducible, and listed in this report.</p>
+<h2 id="stage-decision">2. Stage Decision</h2>
+<h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
+<p>Bybit’s public design is closer to a Merkle inclusion disclosure than
+a full public PoR system. The user proof verifier can validate one path,
+but Stage 1 requires publicly verifiable reserve-side ownership evidence
+and global liability evidence.</p>
+<p>Stage 1 is blocked by the following evidence gaps:</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Missing / Blocked Evidence</th>
+<th>Risk Flag</th>
+<th>Stage Effect</th>
+<th>Why It Matters</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wallet_address_list</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td>Max Stage 0</td>
+<td>Without a public address list, reserve-side balances cannot be
+independently reconciled.</td>
+</tr>
+<tr>
+<td><code>wallet_ownership_proof</code></td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+<td>Max Stage 0</td>
+<td>Users must trust that Bybit controls the claimed reserve
+addresses.</td>
+</tr>
+<tr>
+<td><code>global_proof</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td>Max Stage 0</td>
+<td>A user Merkle path does not prove exchange-wide liability
+correctness.</td>
+</tr>
+<tr>
+<td>Business-consistent proof constraints</td>
+<td><code>BUSINESS_CONSTRAINT_GAP</code></td>
+<td>Max Stage 0</td>
+<td>The public proof path does not establish protections against
+negative-net-worth dummy users or incomplete liability modeling.</td>
+</tr>
+</tbody>
+</table>
+<p>Stage 2 is also blocked by the absence of an official canonical
+anchor, low-friction production inclusion proof verification, stronger
+publication cadence, and stable data availability.</p>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest Snapshot</td>
+<td><code>2025-06-17T09:00:00Z</code></td>
+</tr>
+<tr>
+<td>Previous Snapshot</td>
+<td><code>unknown</code></td>
+</tr>
+<tr>
+<td>Observed Cadence</td>
+<td><code>monthly</code></td>
+</tr>
+<tr>
+<td>History Available</td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td>Event-triggered Updates</td>
+<td><code>unknown</code></td>
+</tr>
+<tr>
+<td>Daily Root / Commitment Anchor</td>
+<td><code>no</code></td>
+</tr>
+<tr>
+<td>Stage Impact</td>
+<td>Monthly publication and login-gated user proof can support limited
+Stage 0 disclosure, but they do not satisfy Stage 1 or Stage 2 without
+public wallet/proof artifacts and stronger canonical anchoring.</td>
+</tr>
+</tbody>
+</table>
+<p>Bybit references monthly third-party PoR/PoL reporting. This ardmere
+snapshot uses a fixture summary and official Merkle proof test vector,
+so cadence is treated as contextual rather than independently verified
+from production artifacts.</p>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summary</code></td>
+<td><code>110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a</code></td>
+<td><code>https://www.bybit.com/x-api/por/public/v1/reserve-ratio/latest</code></td>
+</tr>
+<tr>
+<td><code>user_merkle_proof</code></td>
+<td><code>d095eed7e7dde2625c7311d24dbe307e9b12a25574e29ac4e1c073f14fdc2ab8</code></td>
+<td><code>file://./fixtures/bybit/mock_user_merkle_tree_path_40_v5.json</code></td>
+</tr>
+</tbody>
+</table>
+<p>The summary is an ardmere fixture imported from a Bybit-style
+response because datacenter access to the public x-api endpoint is
+WAF-gated. The user proof is the official
+<code>bybit-exchange/merkle-proof</code> v5 test vector, not a real
+production account proof.</p>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact bundle root</td>
+<td><code>0x7e2710dde862676f03cdde12e4590d451efca54b597049c5a732884c9fd9e69d</code></td>
+</tr>
+<tr>
+<td>Verification bundle root</td>
+<td><code>0xd9079261cfa47c44357e30119fdf95a9d077fda29a2a2026cc4a1bd067872c21</code></td>
+</tr>
+<tr>
+<td>Artifact bundle SHA-256</td>
+<td><code>c00cc424d1218befb358b0fecb6046499dc6175b79b013079f99b347df989550</code></td>
+</tr>
+<tr>
+<td>Verification bundle SHA-256</td>
+<td><code>7d7f949786a4c1d48be58b10858a32e51a7930b2bf71102de2c2d9b1291c83d6</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="verifier-evidence">5. Verifier Evidence</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Version</th>
+<th>Verdict</th>
+<th>Coverage</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>artifact-integrity</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.00</code></td>
+<td>Summary and user proof hashes match archived files.</td>
+</tr>
+<tr>
+<td><code>solvency-claim</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.00</code></td>
+<td>Self-reported total reserve rate 102.50%; BTC 105.20%, ETH 101.00%,
+USDT 100.50%.</td>
+</tr>
+<tr>
+<td><code>user-merkle-proof</code></td>
+<td><code>bybit-1</code></td>
+<td><code>PASS</code></td>
+<td><code>1.00</code></td>
+<td>Supplied v5 SHA-256 Merkle path is valid and binds to the summary
+root.</td>
+</tr>
+<tr>
+<td><code>internal-consistency</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.00</code></td>
+<td>No public wallet address CSV.</td>
+</tr>
+<tr>
+<td><code>btc-anchor</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.00</code></td>
+<td>Summary does not declare a BTC block height time anchor.</td>
+</tr>
+<tr>
+<td><code>onchain-balance-hot</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.00</code></td>
+<td>No public HotCold wallet address list.</td>
+</tr>
+<tr>
+<td><code>onchain-balance-token</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.00</code></td>
+<td>No public wallet address list for token audit.</td>
+</tr>
+<tr>
+<td><code>address-ownership</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.00</code></td>
+<td>No public wallet ownership signatures/proofs.</td>
+</tr>
+<tr>
+<td><code>global-zk-proof</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.00</code></td>
+<td>Pure Merkle flow; no public global ZK proof.</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.00</code></td>
+<td>Public third-party reports are not machine-readable in this
+pipeline.</td>
+</tr>
+</tbody>
+</table>
+<p><code>PASS</code> on <code>user-merkle-proof</code> means the
+supplied account path is internally consistent. It does
+<strong>not</strong> mean that the whole exchange is solvent, that the
+reserve addresses are controlled by Bybit, or that every liability and
+business constraint is covered.</p>
+<h2 id="minimal-checklist">6. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Public summary / reserve ratio snapshot</td>
+<td>Partial</td>
+<td>Archived summary fixture is available; production endpoint is
+WAF-gated for datacenter fetches.</td>
+</tr>
+<tr>
+<td>Public <code>wallet_address_list</code></td>
+<td>Missing</td>
+<td>No public wallet CSV/ZIP is available.</td>
+</tr>
+<tr>
+<td>Public <code>wallet_ownership_proof</code></td>
+<td>Missing</td>
+<td><code>address-ownership</code> is <code>UNVERIFIABLE</code>.</td>
+</tr>
+<tr>
+<td>Public <code>global_proof</code> or equivalent liability proof</td>
+<td>Missing</td>
+<td>Merkle inclusion proof only; no global ZK proof.</td>
+</tr>
+<tr>
+<td>Low-friction independently reproducible inclusion proof</td>
+<td>Partial</td>
+<td>Verifier exists, but production proof is login-gated and archived
+sample is a test vector.</td>
+</tr>
+<tr>
+<td>Official canonical anchor and high-frequency publication</td>
+<td>Missing</td>
+<td>No official on-chain/DA anchor or daily commitment cadence is
+established.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">7. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P0</code></td>
+<td>Publish a complete <code>wallet_address_list</code> and
+batch-verifiable <code>wallet_ownership_proof</code> for every PoR
+snapshot.</td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+</tr>
+<tr>
+<td><code>P0</code></td>
+<td>Publish a public <code>global_proof</code> or equivalent
+exchange-wide liability proof with documented constraints for negative
+balances, lending, margin, and collateral treatment.</td>
+<td><code>BUSINESS_CONSTRAINT_GAP</code></td>
+</tr>
+<tr>
+<td><code>P1</code></td>
+<td>Provide machine-readable third-party attestation artifacts and
+stable public download URLs for summary, wallet, and liability
+evidence.</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td><code>P1</code></td>
+<td>Move user inclusion proof verification into a low-friction web/WASM
+or one-click local verifier, and archive anonymized reproducible proof
+fixtures for each snapshot.</td>
+<td><code>HIGH_FRICTION_INCLUSION_PROOF</code></td>
+</tr>
+<tr>
+<td><code>P2</code></td>
+<td>Anchor each snapshot root/proof bundle to an official canonical
+on-chain or DA record and increase publication cadence beyond monthly
+snapshots.</td>
+<td><code>NO_CANONICAL_ANCHOR</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">8. Boundary</h2>
+<p>This report evaluates public PoR artifacts and reproducibility. It
+does not evaluate Bybit’s overall financial health, corporate
+governance, internal controls, off-chain assets, legal compliance, or
+complete off-balance-sheet liabilities. Traditional audit and PoR should
+be treated as complementary evidence tracks.</p>
+<h2 id="references">9. References</h2>
+<ul>
+<li>Assessment JSON:
+<code>docs/reports/bybit/2025061709-assessment.json</code></li>
+<li>Artifact bundle:
+<code>artifacts/bybit/2025061709/bundles/2025061709.artifact-bundle.json</code></li>
+<li>Verification bundle:
+<code>artifacts/bybit/2025061709/bundles/2025061709.verification-bundle.json</code></li>
+<li>Supporting report:
+<code>artifacts/bybit/2025061709/AUDIT-REPORT.md</code></li>
+<li>Bybit PoR page:
+<code>https://www.bybit.com/en/proof-of-reserves</code></li>
+<li>Bybit reserve ratio announcement:
+<code>https://www.bybit.com/en/announcement-info/reserve-ratio</code></li>
+<li>Bybit Merkle validator:
+<code>https://github.com/bybit-exchange/merkle-proof</code></li>
+</ul>
+<p>Missing data must be marked as <code>UNVERIFIABLE</code>, not treated
+as <code>PASS</code>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
