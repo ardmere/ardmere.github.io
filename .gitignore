@@ -3,6 +3,7 @@
 !.env.example
 
 .agents/
+.cursor/skills/
 assets/image.png
 
 contracts/cache/
