@@ -1,110 +1,110 @@
-# Gate.com Proof-of-Reserves — 数据可得性指南
+# Gate.com Proof-of-Reserves — Data Availability Guide
 
-> 配套 [`verifier-architecture.md`](./verifier-architecture.md) 与 [`gateio` adapter](../internal/exchanges/gateio/adapter.go)。
+> Companion to [`verifier-architecture.md`](./verifier-architecture.md) and the [`gateio` adapter](../internal/exchanges/gateio/adapter.go).
 
-## 与 Binance 的关键差异
+## Key differences from Binance
 
-| 维度 | Binance | Gate.com |
+| Dimension | Binance | Gate.com |
 |---|---|---|
-| 汇总数据 | BAPI JSON | Web API `getProofOfReservesInfo` + 币种列表 |
-| 钱包地址 CSV | 公开 ZIP（HotCold + Deposit） | **不公开** |
-| 全局 zk 证明包 | 仅登录用户下载 | 登录用户从 [我的审计](https://www.gate.com/myaccount/myavailableproof) 下载 `zkmerkle_cex_*.tar.gz` |
-| 用户 inclusion | 用户 zip + WASM | `user_config.json` + `./main verify user` |
-| 链上余额审计 | ardmere 可复用 wallet CSV | **无公开地址清单 → UNVERIFIABLE** |
+| Aggregate data | BAPI JSON | Web API `getProofOfReservesInfo` + coin list |
+| Wallet address CSV | Public ZIP (HotCold + Deposit) | **Not published** |
+| Global zk proof bundle | Logged-in user download only | Logged-in user download from [My Audit](https://www.gate.com/myaccount/myavailableproof) as `zkmerkle_cex_*.tar.gz` |
+| User inclusion | User zip + WASM | `user_config.json` + `./main verify user` |
+| On-chain balance audit | ardmere can reuse wallet CSV | **No public address list → UNVERIFIABLE** |
 
-Gate 的 PoR 页面：[https://www.gate.com/zh/proof-of-reserves](https://www.gate.com/zh/proof-of-reserves)
+Gate PoR page: [https://www.gate.com/zh/proof-of-reserves](https://www.gate.com/zh/proof-of-reserves)
 
-开源验证工具：[gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves)
+Open-source verifier: [gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves)
 
-## 数据平面
+## Data planes
 
-### 1. 公开汇总（Dashboard API）
+### 1. Public aggregate (dashboard API)
 
-页面展示的内容来自 Gate Web API（浏览器内请求，Akamai 可能拦截 datacenter IP）：
+Page content comes from Gate Web API (browser requests; Akamai may block datacenter IPs):
 
-| 端点 | 用途 |
+| Endpoint | Purpose |
 |---|---|
-| `GET /api/web/v1/proof-of-reserves/getProofOfReservesInfo` | 最新审计：Merkle root、总储备率、客户净余额、超额储备 |
-| `GET /api/web/v1/proof-of-reserves/getProofOfReservesCoinList` | 分币种储备率列表 |
-| `GET /api/web/v1/proof-of-reserves/getProofOfReservesList` | 历史批次分页 |
+| `GET /api/web/v1/proof-of-reserves/getProofOfReservesInfo` | Latest audit: Merkle root, total reserve ratio, customer net balance, excess reserves |
+| `GET /api/web/v1/proof-of-reserves/getProofOfReservesCoinList` | Per-coin reserve ratio list |
+| `GET /api/web/v1/proof-of-reserves/getProofOfReservesList` | Historical batch pagination |
 
-`gateio.Adapter` 将 info + coinList 合并落档为 `summarySnapshot` artifact，保存到：
+`gateio.Adapter` merges info + coinList into a `summarySnapshot` artifact stored at:
 
 ```text
 artifacts/gateio/<auditId>/
-  raw/<sha256>.json          # 原始 summary（API 合并 bundle 或 import 原样）
-  fetch.json                 # 抓取元数据
-  bundles/                   # por-run anchor / verify 写入
+  raw/<sha256>.json          # raw summary (API merge bundle or import as-is)
+  fetch.json                 # fetch metadata
+  bundles/                   # written by por-run anchor / verify
     <auditId>.artifact-bundle.json
     <auditId>.verification-bundle.json
     <auditId>.anchor.json
 ```
 
-### 抓取原始数据（仅落档，不跑验证）
+### Fetch raw data (archive only, no verification)
 
 ```bash
-# 推荐：先试 API，失败则自动导入 fixtures 到 artifacts/gateio/<auditId>/raw/
+# Recommended: try API first; on failure auto-import fixtures to artifacts/gateio/<auditId>/raw/
 ./scripts/gateio/gate-save-local.sh
 
-# 直拉 Gate 公开 API（Akamai 可能拦截 datacenter IP）
+# Direct Gate public API (Akamai may block datacenter IP)
 go run ./cmd/por fetch gateio
-# 或
+# or
 ./scripts/gateio/gate-fetch.sh
 
-# 浏览器 DevTools 复制 API 响应
+# Browser DevTools: copy API response
 go run ./cmd/por fetch gateio -info-file ./info.json -coins-file ./coinList.json
 ./scripts/gateio/gate-import-browser.sh ./info.json ./coinList.json
 ```
 
-### 抓取 + 验证 + 生成 bundle
+### Fetch + verify + generate bundle
 
 ```bash
-# API 或 -summary-path 均可；原始数据自动写入 artifacts/gateio/<auditId>/raw/
+# API or -summary-path; raw data auto-written to artifacts/gateio/<auditId>/raw/
 go run ./cmd/por anchor -exchange gateio -skip-zip
 
-# 手动 import
+# Manual import
 go run ./cmd/por anchor -exchange gateio -summary-path ./summary.json -skip-zip
 
-# 从已落档 snapshot 重跑验证
+# Re-run verification from archived snapshot
 go run ./cmd/por verify -exchange gateio -snapshot <auditId> \
   -artifacts ./artifacts/gateio/<auditId>
 ```
 
-**本地绕过 API 封锁（旧写法仍可用，现已默认写入 artifacts/gateio/）：**
+**Local workaround for API blocks (legacy pattern; now defaults to artifacts/gateio/):**
 
-### 2. zk 全局证明包（需登录）
+### 2. zk global proof bundle (login required)
 
-用户在 [我的审计](https://www.gate.com/myaccount/myavailableproof) 下载：
+Users download from [My Audit](https://www.gate.com/myaccount/myavailableproof):
 
 - **Download Merkle Tree** → `zkmerkle_cex_xxx.tar.gz`
-- **Download User Config** → `user_config.json`（放入 `config/`）
+- **Download User Config** → `user_config.json` (place in `config/`)
 
-解压后结构（来自 [Gate 官方文档](https://github.com/gateio/proof-of-reserves)）：
+Extracted structure (from [Gate official docs](https://github.com/gateio/proof-of-reserves)):
 
 ```text
 config/
-  cex_config.json    # CexAssetsInfo + proof.csv 路径 + vk 前缀
-  user_config.json   # 用户 inclusion（可选）
+  cex_config.json    # CexAssetsInfo + proof.csv path + vk prefix
+  user_config.json   # user inclusion (optional)
 proof.csv
 zkpor864.vk.save
-main                 # 验证二进制（GitHub Releases）
+main                 # verifier binary (GitHub Releases)
 ```
 
-**交易所资产验证（全局 zk）：**
+**Exchange asset verification (global zk):**
 
 ```bash
 ./main verify cex
-# 成功输出: All proofs verify passed!!!
+# success output: All proofs verify passed!!!
 ```
 
-**用户 inclusion 验证：**
+**User inclusion verification:**
 
 ```bash
 ./main verify user
-# 成功输出: verify pass!!!
+# success output: verify pass!!!
 ```
 
-将 tar.gz 手动导入 artifact bundle（会落档到 `artifacts/gateio/<auditId>/raw/`）：
+Import tar.gz manually into artifact bundle (archived to `artifacts/gateio/<auditId>/raw/`):
 
 ```bash
 go run ./cmd/por anchor -exchange gateio \
@@ -113,34 +113,34 @@ go run ./cmd/por anchor -exchange gateio \
   -skip-zip
 ```
 
-> ardmere 当前将 zk bundle 落档为 `globalProofBundle` artifact；`global-zk-proof@gateio-1` verifier 尚未实现（stub `@gateio-0`）。
+> ardmere currently archives zk bundle as `globalProofBundle` artifact; `global-zk-proof@gateio-1` verifier not yet implemented (stub `@gateio-0`).
 
-### 3. 无公开数据 → UNVERIFIABLE 的维度
+### 3. Missing public data → UNVERIFIABLE dimensions
 
-| Verifier | Gate 状态 | 原因 |
+| Verifier | Gate status | Reason |
 |---|---|---|
-| `internal-consistency` | UNVERIFIABLE | 无 wallet CSV 与汇总逐币对账 |
-| `onchain-balance-*` | UNVERIFIABLE | 无公开 HotCold 地址列表 |
-| `btc-anchor` | UNVERIFIABLE | Gate 摘要不绑 BTC block height |
-| `global-zk-proof@gateio` | UNVERIFIABLE（默认） | 需登录下载 tar.gz；公开 API 不提供 |
-| `solvency-claim` | 部分可验证 | 公开 `total_reserve_rate ≥ 100`（自报） |
+| `internal-consistency` | UNVERIFIABLE | No wallet CSV for per-coin reconciliation with summary |
+| `onchain-balance-*` | UNVERIFIABLE | No public HotCold address list |
+| `btc-anchor` | UNVERIFIABLE | Gate summary does not bind BTC block height |
+| `global-zk-proof@gateio` | UNVERIFIABLE (default) | tar.gz requires login; public API does not provide |
+| `solvency-claim` | Partially verifiable | Public `total_reserve_rate ≥ 100` (self-reported) |
 
-## ardmere 验证路径（当前）
+## ardmere verification path (current)
 
 ```text
-公开 API / 手动 summary.json
+Public API / manual summary.json
         ↓
 gateio.Adapter → por.Snapshot
         ↓
-solvency-claim@1（总储备率 ≥ 100%，标注 self-reported）
+solvency-claim@1 (total reserve ratio ≥ 100%, labeled self-reported)
         ↓
-stub verifiers（诚实标注 UNVERIFIABLE + 原因）
+stub verifiers (honestly labeled UNVERIFIABLE + reason)
 ```
 
-未来激活 `global-zk-proof@gateio-1`：解析 `cex_config.json` + `proof.csv` + vk，复用 [gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves) 的 Go verifier 或 exec `./main verify cex`。
+Future activation of `global-zk-proof@gateio-1`: parse `cex_config.json` + `proof.csv` + vk; reuse Go verifier from [gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves) or exec `./main verify cex`.
 
-## 参考
+## References
 
-- [Gate PoR 官网](https://www.gate.com/zh/proof-of-reserves)
-- [Gate Learn — 如何验证](https://www.gate.com/learn/articles/how-to-use-gate-io-proof-of-reserves-to-verify-your-assets-security/1017)
+- [Gate PoR site](https://www.gate.com/zh/proof-of-reserves)
+- [Gate Learn — how to verify](https://www.gate.com/learn/articles/how-to-use-gate-io-proof-of-reserves-to-verify-your-assets-security/1017)
 - [gateio/proof-of-reserves README](https://github.com/gateio/proof-of-reserves)

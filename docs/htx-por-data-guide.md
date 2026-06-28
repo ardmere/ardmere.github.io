@@ -1,7 +1,7 @@
 # HTX Proof-of-Reserves — data guide
 
 > HTX (Huobi) zk PoR v2 uses Groth16 (`zkpor500`, 174 assets, batch 500).  
-> Companion audit: see `PoR/htx-audit-report/HTX-zkPoR-设计审计报告.md` in the research repo.
+> Companion audit: see `PoR/htx-audit-report/HTX-zkPoR-design-audit-report.md` in the research repo.
 
 ## Public sources
 

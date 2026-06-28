@@ -1,210 +1,210 @@
-# ardmere 服务对象分析
+# ardmere Service Audience
 
-`ardmere` 的产品定位不应只是“给普通用户看的 PoR 验证工具”，而应是面向监管者、机构资金方、独立审查者和交易所的 PoR 透明度基础设施。
+`ardmere` is not just a PoR verification tool for retail users. It is PoR transparency infrastructure for regulators, institutional allocators, independent reviewers, and exchanges.
 
-一句话定位：
+One-line positioning:
 
-> ardmere 帮助外部观察者判断交易所 PoR 是否真实可验证、是否达到有效 PoR 标准，以及缺少哪些关键证据。
+> ardmere helps external observers determine whether an exchange PoR is genuinely verifiable, whether it meets an effective PoR standard, and which key evidence is missing.
 
 ---
 
-## 1. 核心服务对象
+## 1. Core audiences
 
-### 1.1 监管者 / 政策制定者
+### 1.1 Regulators / policymakers
 
-监管者是最重要的服务对象之一。
+Regulators are one of the most important audiences.
 
-他们需要的不是亲自运行 proof，而是回答：
+They do not need to run proofs themselves. They need answers to:
 
-1. 哪些交易所有有效 PoR？
-2. 哪些只是 Stage 0，不能被当作有效 PoR？
-3. 交易所缺少哪些关键 artifacts？
-4. 是否公开 `wallet_address_list`、`wallet_ownership_proof`、`global_proof`？
-5. 证明系统是否依赖不透明可信设置？
-6. 是否存在负净值虚假用户、负余额抵消真实负债、链下分发、历史可替换等风险？
-7. 如何把 PoR 要求写进监管规则或牌照条件？
+1. Which exchanges have effective PoR?
+2. Which are only Stage 0 and must not be treated as effective PoR?
+3. Which key artifacts are missing?
+4. Are `wallet_address_list`, `wallet_ownership_proof`, and `global_proof` published?
+5. Does the proof system rely on an opaque trusted setup?
+6. Are there risks such as negative-net-worth fake users, negative balances offsetting real liabilities, off-chain distribution, or replaceable history?
+7. How should PoR requirements be written into rules or licensing conditions?
 
-ardmere 对监管者的价值：
+Value for regulators:
 
-- 提供可执行的 PoR 最低标准。
-- 区分 `Pre-Stage`、`Stage 0`、`Stage 1`、`Stage 2`。
-- 明确指出 Stage 0 不应被接受为有效 PoR。
-- 将 PoR 与传统审计的边界拆清楚，帮助形成双轨监管要求。
+- An actionable minimum PoR standard.
+- Clear separation of `Pre-Stage`, `Stage 0`, `Stage 1`, and `Stage 2`.
+- Explicit guidance that Stage 0 must not be accepted as effective PoR.
+- A clear boundary between PoR and traditional audit, supporting a dual-track regulatory model.
 
-### 1.2 机构投资者 / 做市商 / 托管客户
+### 1.2 Institutional investors / market makers / custody clients
 
-机构资金方关心的是交易所透明度和托管风险。
+Institutional allocators care about exchange transparency and custody risk.
 
-他们需要：
+They need:
 
-1. 横向比较不同交易所 PoR 透明度。
-2. 识别“100% backed”“audited”“ZK verified”等表述是否过度营销。
-3. 判断某个交易所 PoR 是 Stage 0、Stage 1 还是 Stage 2 候选。
-4. 将 PoR 风险信号纳入交易所准入、额度管理、做市风险和托管风险模型。
-5. 追踪交易所 PoR 是否持续发布、是否历史可归档、是否发生退步。
+1. Cross-exchange comparison of PoR transparency.
+2. Fact-checking of claims such as “100% backed”, “audited”, or “ZK verified”.
+3. Judgment on whether an exchange is Stage 0, Stage 1, or a Stage 2 candidate.
+4. Integration of PoR risk signals into exchange onboarding, limits, market-making risk, and custody risk models.
+5. Tracking of whether PoR is published continuously, historically archived, and whether standards have regressed.
 
-ardmere 对机构的价值：
+Value for institutions:
 
-- 提供交易所 PoR risk rating / transparency intelligence。
-- 提供可追溯的证据链接、缺口清单和风险标记。
-- 将技术验证结果转化成机构风控可读的评级和报告。
+- Exchange PoR risk ratings and transparency intelligence.
+- Traceable evidence links, gap lists, and risk flags.
+- Translation of technical verification into institution-readable ratings and reports.
 
-### 1.3 独立审查机构 / 安全公司 / 会计师事务所
+### 1.3 Independent reviewers / security firms / accounting firms
 
-第三方审查机构可以把 ardmere 作为 PoR 审查基础设施。
+Third-party reviewers can use ardmere as PoR review infrastructure.
 
-他们需要：
+They need:
 
-1. 自动检查 PoR artifacts 是否完整。
-2. 重跑 proof / verifier。
-3. 检查 `wallet_ownership_proof`、`global_proof`、`vk/config`、trusted setup transcript。
-4. 生成 AUP / 技术核验 / 有限保证所需的 checklist。
-5. 标记无法验证的范围和证据缺口。
+1. Automated checks that PoR artifacts are complete.
+2. Re-run proof / verifier workflows.
+3. Review of `wallet_ownership_proof`, `global_proof`, `vk/config`, and trusted setup transcripts.
+4. Checklists for AUP / technical verification / limited assurance work.
+5. Explicit marking of unverifiable scope and evidence gaps.
 
-ardmere 对审查机构的价值：
+Value for reviewers:
 
-- 成为 PoR technical assessment 的 tooling layer。
-- 降低审查机构重复构建 verifier、抓取、归档、对账工具的成本。
-- 帮助审查机构避免只复述交易所 summary，而忽略关键 artifacts。
+- A tooling layer for PoR technical assessment.
+- Lower cost of rebuilding verifiers, fetchers, archives, and reconciliation tools.
+- Protection against repeating exchange summaries while ignoring key artifacts.
 
-### 1.4 交易所
+### 1.4 Exchanges
 
-交易所也是潜在服务对象，但需要特别注意独立性。
+Exchanges are also a potential audience, but independence must be preserved.
 
-他们需要：
+They need:
 
-1. 知道自己距离 Stage 1 / Stage 2 还差什么。
-2. 预审 PoR artifacts 是否完整。
-3. 检查 proof、verifier、披露格式、历史归档和用户验证体验是否达标。
-4. 生成面向监管、用户和机构客户的透明度改进路线图。
+1. A clear view of what is missing for Stage 1 / Stage 2.
+2. Pre-flight checks that PoR artifacts are complete.
+3. Validation of proof, verifier, disclosure format, historical archive, and user verification UX.
+4. A transparency improvement roadmap for regulators, users, and institutional clients.
 
-ardmere 对交易所的价值：
+Value for exchanges:
 
-- 提供 PoR readiness assessment。
-- 提供 Stage upgrade gap analysis。
-- 提供 artifacts schema、verifier 输出和 disclosure checklist。
+- PoR readiness assessment.
+- Stage upgrade gap analysis.
+- Artifact schemas, verifier output, and disclosure checklists.
 
-但如果服务交易所，应明确区分：
+If serving exchanges, clearly separate:
 
 - independent public rating
 - paid technical assessment
 - remediation consulting
 
-避免出现“自己审自己”的信任冲突。
+Avoid “grading your own homework” trust conflicts.
 
-### 1.5 高阶用户 / 研究者 / 媒体
+### 1.5 Advanced users / researchers / media
 
-这类用户通常不会每天运行 proof，但会引用评级和报告。
+These users rarely run proofs daily, but they cite ratings and reports.
 
-他们需要：
+They need:
 
-1. 简洁可信的交易所透明度排名。
-2. 可追溯的证据链接。
-3. 对交易所营销话术的事实核查。
-4. 对 PoR 技术差异、审查范围和风险缺口的可读解释。
+1. A concise, credible exchange transparency ranking.
+2. Traceable evidence links.
+3. Fact-checking of exchange marketing language.
+4. Readable explanations of PoR technical differences, review scope, and risk gaps.
 
-ardmere 对他们的价值：
+Value for them:
 
-- 提供公共透明度报告。
-- 提供交易所 PoR 证据索引。
-- 提供可引用的 Stage 结论和风险解释。
-
----
-
-## 2. 谁是第一阶段直接客户
-
-普通用户是最终受益者，但不一定是第一阶段的直接客户。
-
-第一阶段最适合优先服务：
-
-1. **监管者和政策研究者**：需要定义有效 PoR 的最低标准。
-2. **机构资金方**：需要把 PoR 透明度纳入风控。
-3. **独立审查者**：需要工具化、标准化 PoR 审查流程。
-
-交易所可以作为第二阶段服务对象，但必须建立独立性边界。
+- Public transparency reports.
+- Exchange PoR evidence indexes.
+- Citable Stage conclusions and risk explanations.
 
 ---
 
-## 3. 产品形态
+## 2. Who are the first-phase direct customers?
+
+Retail users are ultimate beneficiaries, but not necessarily first-phase direct customers.
+
+First-phase priority audiences:
+
+1. **Regulators and policy researchers**: need to define the minimum standard for effective PoR.
+2. **Institutional allocators**: need to integrate PoR transparency into risk controls.
+3. **Independent reviewers**: need a toolized, standardized PoR review workflow.
+
+Exchanges can be a second-phase audience, with clear independence boundaries.
+
+---
+
+## 3. Product surfaces
 
 ### 3.1 Public Transparency Dashboard
 
-面向公众、研究者、媒体和机构初筛。
+For the public, researchers, media, and institutional screening.
 
-核心内容：
+Core content:
 
-- 交易所 PoR Stage。
-- Technology Generation（Gen）。
-- Evidence Level（E）。
-- 缺失 artifacts。
-- 风险标记。
-- 历史快照。
-- 最后验证时间。
+- Exchange PoR Stage.
+- Technology Generation (Gen).
+- Evidence Level (E).
+- Missing artifacts.
+- Risk flags.
+- Historical snapshots.
+- Last verification time.
 
 ### 3.2 Regulator / Institution Report
 
-面向监管者和机构客户。
+For regulators and institutional clients.
 
-核心内容：
+Core content:
 
-- 每家交易所的 Stage 结论。
-- 是否达到有效 PoR 最低标准。
-- Stage 0 / Stage 1 / Stage 2 blocked reasons。
-- proof、wallet、setup、DA、frequency、audit taxonomy 的详细检查结果。
-- 与传统审计的互补关系说明。
+- Stage conclusion per exchange.
+- Whether the minimum effective PoR standard is met.
+- Stage 0 / Stage 1 / Stage 2 blocked reasons.
+- Detailed checks on proof, wallet, setup, DA, frequency, and audit taxonomy.
+- How PoR complements traditional audit.
 
 ### 3.3 Verification API
 
-面向审查机构、机构客户和内部系统。
+For reviewers, institutional clients, and internal systems.
 
-核心能力：
+Core capabilities:
 
-- 输入 PoR artifacts。
-- 输出 verifier result。
-- 输出 missing artifacts。
-- 输出 risk flags。
-- 输出 suggested Stage / E Level。
-- 输出 machine-readable report。
+- Input PoR artifacts.
+- Output verifier results.
+- Output missing artifacts.
+- Output risk flags.
+- Output suggested Stage / E Level.
+- Output machine-readable reports.
 
 ### 3.4 Exchange Readiness Assessment
 
-面向交易所，但需保持独立性。
+For exchanges, with independence preserved.
 
-核心内容：
+Core content:
 
-- 当前 Stage。
-- 升级到 Stage 1 / Stage 2 的缺口。
-- artifacts schema 建议。
-- inclusion proof 用户验证体验建议。
-- trusted setup、wallet ownership、DA、anchoring、frequency 改进路线。
-
----
-
-## 4. 独立性原则
-
-ardmere 如果要长期建立公信力，需要明确几条边界：
-
-1. 公共评级不能由交易所付费购买。
-2. 付费技术评估必须披露范围和利益关系。
-3. remediation consulting 不能直接等同于独立认证。
-4. 所有评级必须绑定 artifacts、hash、URL、验证输出和时间戳。
-5. 缺数据必须标记为 `UNVERIFIABLE`，不能默认通过。
+- Current Stage.
+- Gaps to reach Stage 1 / Stage 2.
+- Artifact schema recommendations.
+- Inclusion proof user verification UX recommendations.
+- Improvement roadmap for trusted setup, wallet ownership, DA, anchoring, and frequency.
 
 ---
 
-## 5. 推荐推进顺序
+## 4. Independence principles
+
+To build long-term credibility, ardmere should enforce these boundaries:
+
+1. Public ratings cannot be purchased by exchanges.
+2. Paid technical assessments must disclose scope and conflicts of interest.
+3. Remediation consulting must not be equated with independent certification.
+4. Every rating must bind to artifacts, hashes, URLs, verification output, and timestamps.
+5. Missing data must be marked `UNVERIFIABLE`; it must not default to pass.
+
+---
+
+## 5. Recommended rollout order
 
 ### Phase 1: Public Methodology + First Reports
 
-目标：建立可信方法论和样例报告。
+Goal: establish credible methodology and sample reports.
 
-建议对象：
+Suggested subjects:
 
-- OKX：Stage 1 代表样本。
-- Binance：Gen 2 / E2 但 Stage 1 blocked 的代表样本。
-- Bybit 或 Bitget：Stage 0 / Merkle inclusion 型样本。
+- OKX: Stage 1 reference sample.
+- Binance: Gen 2 / E2 but Stage 1 blocked reference sample.
+- Bybit or Bitget: Stage 0 / Merkle inclusion sample.
 
-输出：
+Outputs:
 
 - public dashboard v0
 - exchange transparency report v0
@@ -212,20 +212,20 @@ ardmere 如果要长期建立公信力，需要明确几条边界：
 
 ### Phase 2: Institution / Regulator Package
 
-目标：把评级转化为监管和机构风控语言。
+Goal: translate ratings into regulatory and institutional risk language.
 
-输出：
+Outputs:
 
-- 交易所 PoR 风险矩阵。
-- 有效 PoR 最低标准说明。
-- Stage 0 不应作为有效 PoR 的政策建议。
-- 传统审计与 PoR 互补说明。
+- exchange PoR risk matrix
+- minimum effective PoR standard brief
+- policy guidance that Stage 0 must not count as effective PoR
+- PoR and traditional audit complementarity brief
 
 ### Phase 3: API and Tooling
 
-目标：让验证服务产品化。
+Goal: productize verification services.
 
-输出：
+Outputs:
 
 - artifacts upload / fetch API
 - verification API
@@ -235,9 +235,9 @@ ardmere 如果要长期建立公信力，需要明确几条边界：
 
 ### Phase 4: Exchange Readiness / Remediation
 
-目标：帮助交易所改进 PoR，但不牺牲独立性。
+Goal: help exchanges improve PoR without sacrificing independence.
 
-输出：
+Outputs:
 
 - readiness assessment
 - Stage upgrade checklist
@@ -246,16 +246,16 @@ ardmere 如果要长期建立公信力，需要明确几条边界：
 
 ---
 
-## 6. 结论
+## 6. Conclusion
 
-ardmere 的直接客户不应首先定义为普通散户，而应定义为：
+ardmere’s direct customers should not be defined first as retail traders. They should be defined as:
 
-> 监管者、机构资金方和独立审查者。
+> regulators, institutional allocators, and independent reviewers.
 
-普通用户是最终受益者；交易所是潜在被评估对象和后续服务对象。
+Retail users are ultimate beneficiaries; exchanges are subjects of assessment and later service recipients.
 
-最稳健的产品路线是：
+The most robust product path is:
 
-1. 先建立公开、独立、可追溯的 PoR Stage 评级。
-2. 再服务监管者和机构客户。
-3. 最后在明确独立性边界的前提下服务交易所改进。
+1. Build public, independent, traceable PoR Stage ratings first.
+2. Serve regulators and institutional clients next.
+3. Serve exchange improvement last, under explicit independence boundaries.

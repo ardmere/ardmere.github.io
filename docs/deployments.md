@@ -93,4 +93,4 @@ forge verify-contract 0xFb55EEaAd312C2564B64002Bd3DC9D922Bb7eeF9 \
 
 ## Base mainnet (production)
 
-Not deployed yet. See [ADR-002](./decisions.md#adr-002-主锚定链base).
+Not deployed yet. See [ADR-002](./decisions.md#adr-002-primary-anchor-chain-base).
