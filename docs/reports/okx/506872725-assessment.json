@@ -1,0 +1,422 @@
+{
+  "schema": "ardmere/exchange-assessment@1",
+  "generatedAt": "2026-06-27T14:38:00Z",
+  "methodologyVersion": "por-transparency-framework@2026-06-27",
+  "exchange": "okx",
+  "snapshot": {
+    "id": "506872725",
+    "periodSeq": 0,
+    "snapshotTime": "2026-05-06T16:00:00Z",
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "dd32f9c29d1840dc444b0c0780782cd04f6840870b934a0a8f607fc61b3e8d6b"
+  },
+  "porStage": "Stage 1",
+  "gen": "Gen 2",
+  "evidenceLevel": "E2",
+  "confidence": "medium",
+  "effectivePoR": true,
+  "frequency": {
+    "latestSnapshot": "2026-05-06T16:00:00Z",
+    "previousSnapshot": "2026-04-06T16:00:00Z",
+    "observedCadence": "monthly",
+    "historyAvailable": true,
+    "eventTriggeredUpdates": "unknown",
+    "dailyRootOrCommitmentAnchor": "no",
+    "stageImpact": "Monthly PoR supports Stage 1 disclosure, but does not satisfy Stage 2 frequency expectations without daily root/commitment anchoring, event-triggered updates, or stronger cadence.",
+    "notes": "OKX publishes recurring PoR audits and historical public artifacts. This report does not establish event-triggered publication rules or official daily canonical anchoring."
+  },
+  "summary": {
+    "headline": "OKX publishes public summary, wallet_address_list with address signatures, and a public global zk proof bundle for audit 506872725. ardmere verifies address ownership and global zk binding, so the snapshot reaches Stage 1.",
+    "rationale": "Stage 1 is supported by public wallet_address_list, wallet_ownership_proof, global_proof, and parameter/proof artifacts. Stage 2 is not reached because canonical official anchoring, stable DA, low-friction user inclusion proof, stronger publication frequency, and full business-consistent constraints are not established in this report.",
+    "scope": "OKX audit 506872725, snapshotTime 2026-05-06T16:00:00Z. Local artifacts under artifacts/okx/506872725.",
+    "limitations": [
+      "Public liability bundle contains sum_proof_data.json and global zk evidence, but no user inclusion proof path.",
+      "Several on-chain balance checks are affected by live-vs-snapshot limitations, omnibus/internal allocation labels, RPC/archive gaps, and chain-specific accounting semantics.",
+      "No independent third-party attestation artifact is available to this pipeline."
+    ]
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_server_only_distribution",
+      "maxStage": "Stage 1",
+      "reason": "OKX artifacts are publicly downloadable, but this report does not establish an official exchange canonical on-chain/DA anchor for root/proof/vk history.",
+      "riskFlag": "NO_CANONICAL_ANCHOR"
+    },
+    {
+      "ruleId": "s2_low_friction_inclusion_proof",
+      "maxStage": "Stage 1",
+      "reason": "Public bundle provides global zk proof data, but no low-friction user inclusion proof path was available in the archived artifacts.",
+      "riskFlag": "HIGH_FRICTION_INCLUSION_PROOF"
+    },
+    {
+      "ruleId": "s2_business_consistent_constraints",
+      "maxStage": "Stage 1",
+      "reason": "The report verifies global zk proof binding, but does not establish public proof constraints covering all business risks such as lending, margin, collateral haircuts, or negative-balance protections.",
+      "riskFlag": "BUSINESS_CONSTRAINT_GAP"
+    },
+    {
+      "ruleId": "s2_frequency",
+      "maxStage": "Stage 1",
+      "reason": "Observed cadence is monthly, and this report does not establish daily root/commitment anchoring or event-triggered updates required for Stage 2.",
+      "riskFlag": "HIGH_FREQUENCY_GAP"
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "NO_CANONICAL_ANCHOR",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "No official exchange canonical anchor or DA record is established for root/proof/vk history in this report.",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "artifacts/okx/506872725/bundles/506872725.anchor.json"
+        }
+      ]
+    },
+    {
+      "id": "HIGH_FRICTION_INCLUSION_PROOF",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "No low-friction user inclusion proof path is available in the archived public artifacts.",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "OKX public liability zip contains sum_proof_data.json only; no user merkle path is included."
+        }
+      ]
+    },
+    {
+      "id": "BUSINESS_CONSTRAINT_GAP",
+      "severity": "high",
+      "stageEffect": "max_stage_1",
+      "message": "Public artifacts do not let ardmere establish full business-consistent constraints for all OKX products and risk controls.",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "global-zk-proof@okx-1: PASS for structure, merkle bind, and verify-global"
+        }
+      ]
+    },
+    {
+      "id": "HIGH_FREQUENCY_GAP",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "Monthly PoR cadence does not satisfy Stage 2 frequency expectations without daily root/commitment anchoring or event-triggered updates.",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "Observed cadence is monthly; daily root/commitment anchor is not established in this report."
+        }
+      ]
+    },
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "medium",
+      "stageEffect": "confidence_downgrade",
+      "message": "btc-anchor, third-party-attestation, and cross-chain-wrapped are UNVERIFIABLE in this pipeline.",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "third-party-attestation@0: UNVERIFIABLE"
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "present": [
+      {
+        "kind": "summary",
+        "sha256": "ee7f35e968ec97a38de84d4a60ad96b20379ef7a2c360a976473d36494dd196a",
+        "url": "https://www.okx.com/proof-of-reserves/detail",
+        "localPath": "artifacts/okx/506872725/raw/ee7f35e968ec97a38de84d4a60ad96b20379ef7a2c360a976473d36494dd196a.json",
+        "availability": "public",
+        "requiredFor": [
+          "Stage 0",
+          "Stage 1"
+        ]
+      },
+      {
+        "kind": "wallet_address_list",
+        "sha256": "f7fad2b96a64d92c9dff4a94f5a8ea2ae8afa10de0bed21c4e196b71e2132b3b",
+        "url": "https://static.okx.com/cdn/okx/por/chain/por_csv_2026050700_V2.zip",
+        "localPath": "artifacts/okx/506872725/raw/f7fad2b96a64d92c9dff4a94f5a8ea2ae8afa10de0bed21c4e196b71e2132b3b.zip",
+        "availability": "public",
+        "requiredFor": [
+          "Stage 1"
+        ]
+      },
+      {
+        "kind": "global_proof",
+        "sha256": "319a01e352db65d17c3a6fd32b89ef35501c50e9a6b8714608c65112c36eeaee",
+        "url": "https://www.okx.com/proof-of-reserves/download",
+        "localPath": "artifacts/okx/506872725/raw/319a01e352db65d17c3a6fd32b89ef35501c50e9a6b8714608c65112c36eeaee.zip",
+        "availability": "public",
+        "requiredFor": [
+          "Stage 1"
+        ]
+      }
+    ],
+    "missing": [
+      {
+        "kind": "canonical_anchor",
+        "impact": "stage_block",
+        "reason": "No official exchange canonical chain/DA anchor is established in this report.",
+        "riskFlag": "NO_CANONICAL_ANCHOR"
+      },
+      {
+        "kind": "low_friction_inclusion_proof",
+        "impact": "stage_block",
+        "reason": "No public low-friction user inclusion proof path is archived.",
+        "riskFlag": "HIGH_FRICTION_INCLUSION_PROOF"
+      },
+      {
+        "kind": "third_party_review",
+        "impact": "confidence_downgrade",
+        "reason": "No machine-readable independent third-party attestation artifact is available.",
+        "riskFlag": "UNVERIFIABLE"
+      }
+    ],
+    "artifactBundleRoot": "0x8c6ce11cf467a4c74a971c8008d487be586ec9988ab8dde910c5cf110c312921",
+    "verificationBundleRoot": "0x71a08d13032475f58b2c306cfe2807ca2483912bc16be298b0bf8626a07b15c4"
+  },
+  "verifierResults": [
+    {
+      "verifierId": "artifact-integrity",
+      "version": "1.0",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "Summary, wallet ZIP, and global proof bundle hashes match archived artifacts.",
+      "inputArtifacts": [
+        "ee7f35e968ec97a38de84d4a60ad96b20379ef7a2c360a976473d36494dd196a",
+        "f7fad2b96a64d92c9dff4a94f5a8ea2ae8afa10de0bed21c4e196b71e2132b3b",
+        "319a01e352db65d17c3a6fd32b89ef35501c50e9a6b8714608c65112c36eeaee"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "solvency-claim",
+      "version": "1.0",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "BTC, ETH, and USDT capitalRatio claims are >= 100%; self-reported summary only.",
+      "inputArtifacts": [
+        "ee7f35e968ec97a38de84d4a60ad96b20379ef7a2c360a976473d36494dd196a"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "internal-consistency",
+      "version": "1.0",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "Wallet ZIP exchangeReserve balances match summary for BTC/ETH/USDT; custody balances are summary-only WARN.",
+      "inputArtifacts": [
+        "ee7f35e968ec97a38de84d4a60ad96b20379ef7a2c360a976473d36494dd196a",
+        "f7fad2b96a64d92c9dff4a94f5a8ea2ae8afa10de0bed21c4e196b71e2132b3b"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "address-ownership",
+      "version": "okx-1",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "verified 320917/320917 address signatures",
+      "inputArtifacts": [
+        "f7fad2b96a64d92c9dff4a94f5a8ea2ae8afa10de0bed21c4e196b71e2132b3b"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "global-zk-proof",
+      "version": "okx-1",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "zkSTARKValidator verify-global succeeded; summary merkle root bound to zk proof.",
+      "inputArtifacts": [
+        "319a01e352db65d17c3a6fd32b89ef35501c50e9a6b8714608c65112c36eeaee"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "onchain-balance-hot",
+      "version": "2.1",
+      "verdict": "WARN",
+      "coverage": 0.001177680157024021,
+      "reason": "ETH hot rows include 6 WARN and 61 UNVERIFIABLE findings; no FAIL.",
+      "inputArtifacts": [
+        "f7fad2b96a64d92c9dff4a94f5a8ea2ae8afa10de0bed21c4e196b71e2132b3b"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "onchain-balance-token",
+      "version": "2.0",
+      "verdict": "FAIL",
+      "coverage": 0.0014051157429043214,
+      "reason": "800-row token sample includes 44 FAIL, 349 WARN, 5 UNVERIFIABLE, and 2 PASS findings.",
+      "inputArtifacts": [
+        "f7fad2b96a64d92c9dff4a94f5a8ea2ae8afa10de0bed21c4e196b71e2132b3b"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "onchain-balance-ledger",
+      "version": "1.2",
+      "verdict": "FAIL",
+      "coverage": 0.0007539645449730504,
+      "reason": "Ledger sample includes 76 FAIL, 299 WARN, 7 UNVERIFIABLE, and 2 PASS findings.",
+      "inputArtifacts": [
+        "f7fad2b96a64d92c9dff4a94f5a8ea2ae8afa10de0bed21c4e196b71e2132b3b"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "btc-anchor",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "BTC block time anchor verifier not implemented.",
+      "inputArtifacts": [],
+      "findings": []
+    },
+    {
+      "verifierId": "third-party-attestation",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "No public third-party attestation report available.",
+      "inputArtifacts": [],
+      "findings": []
+    },
+    {
+      "verifierId": "cross-chain-wrapped",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "Wrapped token reconciliation rules not finalized.",
+      "inputArtifacts": [],
+      "findings": []
+    }
+  ],
+  "checklist": [
+    {
+      "id": "S1-2",
+      "stage": "Stage 1",
+      "question": "Is wallet_address_list public and on-chain checkable?",
+      "status": "pass",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "walletZip"
+        }
+      ],
+      "notes": "Wallet ZIP is public and contains signed address rows."
+    },
+    {
+      "id": "S1-3",
+      "stage": "Stage 1",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "status": "pass",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "address-ownership@okx-1: PASS"
+        }
+      ],
+      "notes": "320917/320917 signatures verified."
+    },
+    {
+      "id": "S1-4",
+      "stage": "Stage 1",
+      "question": "Is global_proof plus root/vk/config public and locally reproducible?",
+      "status": "pass",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "global-zk-proof@okx-1: PASS"
+        }
+      ],
+      "notes": "verify-global succeeded and summary merkle root binds to zk proof."
+    },
+    {
+      "id": "S2-5",
+      "stage": "Stage 2",
+      "question": "Is inclusion proof low-friction and bound to public global_proof/root/summary?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "Public liability zip contains sum_proof_data.json only."
+        }
+      ],
+      "notes": "Blocks Stage 2."
+    },
+    {
+      "id": "S2-8",
+      "stage": "Stage 2",
+      "question": "Is frequency sufficient for Stage 2, such as weekly full PoR, daily root/commitment anchoring, event-triggered updates, or stronger cadence?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "Observed cadence is monthly; event-triggered updates and daily official anchoring are not established."
+        }
+      ],
+      "notes": "Blocks Stage 2."
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "P1",
+      "text": "Publish an official canonical root/proof/vk anchor and durable DA record for every snapshot.",
+      "relatedRiskFlags": [
+        "NO_CANONICAL_ANCHOR"
+      ]
+    },
+    {
+      "priority": "P1",
+      "text": "Provide low-friction user inclusion proof export and Web/WASM/GUI verification bound to public root/global_proof/summary.",
+      "relatedRiskFlags": [
+        "HIGH_FRICTION_INCLUSION_PROOF"
+      ]
+    },
+    {
+      "priority": "P1",
+      "text": "Publish proof constraint documentation covering business risks such as lending, margin, collateral haircuts, and negative-balance protections.",
+      "relatedRiskFlags": [
+        "BUSINESS_CONSTRAINT_GAP"
+      ]
+    },
+    {
+      "priority": "P1",
+      "text": "Add daily root/commitment anchoring and event-triggered updates, or otherwise demonstrate a stronger cadence than monthly snapshots.",
+      "relatedRiskFlags": [
+        "HIGH_FREQUENCY_GAP"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "report",
+      "value": "artifacts/okx/506872725/AUDIT-REPORT.md"
+    },
+    {
+      "type": "artifact",
+      "value": "artifacts/okx/506872725/bundles/506872725.artifact-bundle.json"
+    },
+    {
+      "type": "artifact",
+      "value": "artifacts/okx/506872725/bundles/506872725.verification-bundle.v2.json"
+    },
+    {
+      "type": "hash",
+      "value": "artifact-bundle sha256=0ba21485473840cbc1f25a6f4906f7cb9d15eeb645c608f526d05c3a3f971023"
+    },
+    {
+      "type": "hash",
+      "value": "verification-bundle.v2 sha256=a0d627a67e0e2497dd788a8f01da5bf3fdbb82edd51eb8bc990269b4c6773976"
+    }
+  ]
+}

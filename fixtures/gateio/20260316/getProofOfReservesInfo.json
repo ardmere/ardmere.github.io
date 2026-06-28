@@ -1,0 +1,13 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "audit_id": "20260316",
+    "audit_time": "2026-03-16 00:00:00",
+    "merkle_root_hash": "22299d113e6a4336509f35a9404025ba2a5a2274dc3414d69d37aa3198e843fe",
+    "total_reserve_rate": 122,
+    "total_reserve_amount": 7884494831,
+    "customer_net_balance": 6428489257,
+    "excess_reserve_value": 1456005573
+  }
+}

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ardmere // deposit spot-check</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --green: #00ff41;
+      --cyan: #00e5ff;
+      --amber: #ffcc00;
+      --red: #ff2d55;
+      --bg: #030a03;
+      --border: rgba(0,255,65,0.18);
+      --muted: rgba(255,255,255,0.45);
+      --mono: 'JetBrains Mono', monospace;
+    }
+    body {
+      font-family: var(--mono);
+      background: var(--bg);
+      color: var(--green);
+      min-height: 100dvh;
+      line-height: 1.5;
+    }
+    a { color: var(--cyan); }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+    header {
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 1rem; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border);
+      margin-bottom: 1.5rem;
+    }
+    .logo { font-weight: 700; letter-spacing: 0.2em; text-decoration: none; color: var(--green); }
+    .logo span { color: var(--cyan); }
+    .tag { font-size: 0.65rem; letter-spacing: 0.25em; color: var(--muted); text-transform: uppercase; }
+    h1 { font-size: 1.1rem; color: #fff; font-weight: 700; margin: 0.25rem 0; }
+    .lead { font-size: 0.75rem; color: var(--muted); max-width: 52ch; }
+
+    .toolbar {
+      display: grid; grid-template-columns: 1fr auto auto;
+      gap: 0.75rem; margin-bottom: 1.25rem;
+    }
+    @media (max-width: 720px) { .toolbar { grid-template-columns: 1fr; } }
+    select, input[type="search"], input[type="file"] {
+      font-family: var(--mono); font-size: 0.72rem;
+      background: #000; border: 1px solid var(--border); color: var(--green);
+      padding: 0.55rem 0.75rem; width: 100%;
+    }
+    .btn {
+      font-family: var(--mono); font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      border: 1px solid var(--border); background: transparent; color: var(--green);
+      padding: 0.55rem 1rem; cursor: pointer;
+    }
+    .btn:hover { border-color: var(--green); color: #fff; }
+    .btn-primary { background: var(--green); color: var(--bg); border-color: var(--green); }
+
+    .metrics {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+      background: var(--border); border: 1px solid var(--border); margin-bottom: 1.25rem;
+    }
+    @media (max-width: 900px) { .metrics { grid-template-columns: repeat(2, 1fr); } }
+    .metric { background: var(--bg); padding: 0.9rem 1rem; }
+    .metric-k { font-size: 0.58rem; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; }
+    .metric-v { font-size: 1.15rem; font-weight: 700; color: #fff; margin-top: 0.2rem; }
+    .metric-v.pass { color: var(--green); }
+    .metric-v.fail { color: var(--red); }
+    .metric-v.warn { color: var(--amber); }
+
+    .filters {
+      display: grid; grid-template-columns: 1fr 1fr 1fr 2fr; gap: 0.5rem; margin-bottom: 0.75rem;
+    }
+    @media (max-width: 720px) { .filters { grid-template-columns: 1fr 1fr; } }
+
+    .layout { display: grid; grid-template-columns: 1fr 340px; gap: 1rem; align-items: start; }
+    @media (max-width: 960px) { .layout { grid-template-columns: 1fr; } }
+
+    .table-wrap { border: 1px solid var(--border); overflow: auto; max-height: 52vh; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.68rem; }
+    th, td { padding: 0.5rem 0.6rem; text-align: left; border-bottom: 1px solid rgba(0,255,65,0.08); white-space: nowrap; }
+    th { position: sticky; top: 0; background: #051005; color: var(--muted); font-weight: 600; letter-spacing: 0.08em; }
+    tr { cursor: pointer; }
+    tr:hover td { background: rgba(0,255,65,0.04); }
+    tr.selected td { background: rgba(0,229,255,0.08); }
+    .v-pass { color: var(--green); }
+    .v-fail { color: var(--red); }
+    .v-warn { color: var(--amber); }
+    .v-unv { color: var(--muted); }
+    .addr { font-size: 0.62rem; color: rgba(255,255,255,0.75); }
+
+    .panel {
+      border: 1px solid var(--border); padding: 1rem;
+      background: rgba(0,255,65,0.02); min-height: 200px;
+    }
+    .panel h2 { font-size: 0.72rem; letter-spacing: 0.15em; color: var(--cyan); margin-bottom: 0.75rem; text-transform: uppercase; }
+    .panel-empty { font-size: 0.72rem; color: var(--muted); padding: 2rem 0; text-align: center; }
+    .kv { display: grid; grid-template-columns: 88px 1fr; gap: 0.35rem 0.5rem; font-size: 0.68rem; margin-bottom: 0.75rem; }
+    .kv dt { color: var(--muted); }
+    .kv dd { color: #fff; word-break: break-all; }
+    .steps { font-size: 0.68rem; color: var(--muted); margin: 0.75rem 0; padding-left: 1.1rem; }
+    .steps li { margin-bottom: 0.35rem; }
+    .limitation { font-size: 0.65rem; color: var(--amber); border-left: 2px solid var(--amber); padding: 0.5rem 0.75rem; margin-top: 0.75rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 0.75rem 0; }
+    pre.cli {
+      font-size: 0.62rem; background: #000; border: 1px solid var(--border);
+      padding: 0.75rem; overflow: auto; color: rgba(0,255,65,0.75); margin-top: 1rem;
+    }
+    .state-loading, .state-error { padding: 3rem 1rem; text-align: center; color: var(--muted); font-size: 0.8rem; }
+    .state-error { color: var(--red); }
+    footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: 0.62rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <a class="logo" href="/">ard<span>mere</span></a>
+        <p class="tag">// deposit spot-check</p>
+        <h1 id="snapshot-title">Loading manifest…</h1>
+        <p class="lead">Independently verify ardmere's value-weighted Deposit sample. Data stays in your browser — no uploads.</p>
+      </div>
+      <a class="btn" href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/deposit-spot-check.md">Spec</a>
+    </header>
+
+    <div class="toolbar">
+      <select id="snapshot-select" aria-label="Snapshot">
+        <option value="">Select snapshot…</option>
+      </select>
+      <label class="btn">
+        Load JSON file
+        <input type="file" id="file-input" accept=".json,application/json" hidden />
+      </label>
+      <button class="btn btn-primary" id="reload-btn" type="button">Reload</button>
+    </div>
+
+    <div id="content">
+      <p class="state-loading">Fetching deposit-sample-manifest…</p>
+    </div>
+
+    <footer>
+      Schema <code>ardmere/deposit-sample-manifest@1</code> ·
+      <a href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/deposit-spot-check.md">Design doc</a>
+    </footer>
+  </div>
+
+  <script>
+    const DEFAULT_MANIFEST = '/fixtures/binance/PR01JUN26-deposit-manifest.example.json';
+    const INDEX_URL = '/fixtures/deposit-manifest-index.json';
+
+    const $ = (s, r = document) => r.querySelector(s);
+    let manifest = null;
+    let selectedId = null;
+
+    function truncAddr(a, n = 6) {
+      if (!a || a.length <= n * 2 + 1) return a;
+      return a.slice(0, n) + '…' + a.slice(-n);
+    }
+
+    function pct(x) {
+      return (x * 100).toFixed(2) + '%';
+    }
+
+    function verdictClass(v) {
+      return { PASS: 'v-pass', FAIL: 'v-fail', WARN: 'v-warn', UNVERIFIABLE: 'v-unv' }[v] || '';
+    }
+
+    async function loadIndex() {
+      try {
+        const r = await fetch(INDEX_URL);
+        if (!r.ok) return;
+        const idx = await r.json();
+        const sel = $('#snapshot-select');
+        idx.snapshots.forEach(s => {
+          const o = document.createElement('option');
+          o.value = s.manifestUrl;
+          o.textContent = `${s.exchange} / ${s.id} (${s.sampled} samples, ${pct(s.valueCoverage)} cov)`;
+          sel.appendChild(o);
+        });
+        const params = new URLSearchParams(location.search);
+        const m = params.get('manifest');
+        if (m) sel.value = m;
+        else if (idx.snapshots[0]) sel.value = idx.snapshots[0].manifestUrl;
+      } catch (_) {}
+    }
+
+    async function loadManifest(url) {
+      $('#content').innerHTML = '<p class="state-loading">Fetching deposit-sample-manifest…</p>';
+      const r = await fetch(url);
+      if (!r.ok) throw new Error(`HTTP ${r.status} for ${url}`);
+      manifest = await r.json();
+      if (manifest.schema !== 'ardmere/deposit-sample-manifest@1') {
+        throw new Error('Unsupported schema: ' + manifest.schema);
+      }
+      selectedId = manifest.samples[0]?.id || null;
+      render();
+      history.replaceState(null, '', '?manifest=' + encodeURIComponent(url));
+    }
+
+    function render() {
+      const m = manifest;
+      const s = m.snapshot;
+      const sum = m.summary;
+      const samp = m.sampling;
+
+      $('#snapshot-title').textContent =
+        `${s.exchange} / ${s.id} · verifier ${m.artifacts.verifierRef}`;
+
+      const filters = uniqueFilters(m.samples);
+
+      $('#content').innerHTML = `
+        <div class="metrics">
+          <div class="metric"><div class="metric-k">Value coverage</div><div class="metric-v">${pct(samp.valueCoverageAchieved)}</div></div>
+          <div class="metric"><div class="metric-k">Sampled</div><div class="metric-v">${sum.sampled}</div></div>
+          <div class="metric"><div class="metric-k">Pass</div><div class="metric-v pass">${sum.pass}</div></div>
+          <div class="metric"><div class="metric-k">Fail</div><div class="metric-v fail">${sum.fail}</div></div>
+          <div class="metric"><div class="metric-k">Verdict</div><div class="metric-v ${verdictClass(sum.verdict)}">${sum.verdict}</div></div>
+        </div>
+
+        <div class="filters">
+          <select id="f-verdict"><option value="">All verdicts</option>${filters.verdicts.map(v => `<option>${v}</option>`).join('')}</select>
+          <select id="f-coin"><option value="">All coins</option>${filters.coins.map(c => `<option>${c}</option>`).join('')}</select>
+          <select id="f-network"><option value="">All networks</option>${filters.networks.map(n => `<option>${n}</option>`).join('')}</select>
+          <input type="search" id="f-search" placeholder="Search address or coin…" />
+        </div>
+
+        <div class="layout">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Coin</th><th>Net</th><th>Address</th><th>Claim</th><th>Actual</th><th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="sample-rows"></tbody>
+            </table>
+          </div>
+          <aside class="panel" id="detail-panel"></aside>
+        </div>
+
+        <pre class="cli" id="reproduce-cli"></pre>
+      `;
+
+      ['f-verdict', 'f-coin', 'f-network', 'f-search'].forEach(id => {
+        $('#' + id).addEventListener('input', paintRows);
+        $('#' + id).addEventListener('change', paintRows);
+      });
+
+      paintRows();
+      paintDetail();
+      paintCli();
+    }
+
+    function uniqueFilters(samples) {
+      const coins = new Set(), networks = new Set(), verdicts = new Set();
+      samples.forEach(r => {
+        coins.add(r.coin); networks.add(r.network); verdicts.add(r.verdict);
+      });
+      return {
+        coins: [...coins].sort(),
+        networks: [...networks].sort(),
+        verdicts: [...verdicts].sort()
+      };
+    }
+
+    function filteredSamples() {
+      const fv = $('#f-verdict')?.value || '';
+      const fc = $('#f-coin')?.value || '';
+      const fn = $('#f-network')?.value || '';
+      const q = ($('#f-search')?.value || '').toLowerCase();
+      return manifest.samples.filter(r => {
+        if (fv && r.verdict !== fv) return false;
+        if (fc && r.coin !== fc) return false;
+        if (fn && r.network !== fn) return false;
+        if (q && !(`${r.address} ${r.coin} ${r.network}`.toLowerCase().includes(q))) return false;
+        return true;
+      });
+    }
+
+    function paintRows() {
+      const tbody = $('#sample-rows');
+      if (!tbody) return;
+      const rows = filteredSamples();
+      tbody.innerHTML = rows.map(r => `
+        <tr data-id="${r.id}" class="${r.id === selectedId ? 'selected' : ''}">
+          <td>${r.coin}</td>
+          <td>${r.network}</td>
+          <td class="addr">${truncAddr(r.address)}</td>
+          <td>${r.claim}</td>
+          <td>${r.actual ?? '—'}</td>
+          <td class="${verdictClass(r.verdict)}">${r.verdict}</td>
+        </tr>
+      `).join('');
+      tbody.querySelectorAll('tr').forEach(tr => {
+        tr.addEventListener('click', () => {
+          selectedId = tr.dataset.id;
+          paintRows();
+          paintDetail();
+        });
+      });
+    }
+
+    function paintDetail() {
+      const panel = $('#detail-panel');
+      const row = manifest.samples.find(r => r.id === selectedId);
+      if (!row) {
+        panel.innerHTML = '<p class="panel-empty">Select a sample row</p>';
+        return;
+      }
+      const steps = (row.spotCheck?.steps || []).map(s => `<li>${escapeHtml(s)}</li>`).join('');
+      panel.innerHTML = `
+        <h2>Spot-check</h2>
+        <dl class="kv">
+          <dt>Address</dt><dd>${escapeHtml(row.address)}</dd>
+          <dt>Pair</dt><dd>${row.coin}|${row.network}</dd>
+          <dt>Height</dt><dd>${row.height}</dd>
+          <dt>Claim</dt><dd>${row.claim}</dd>
+          <dt>Actual</dt><dd>${row.actual ?? '(not measured)'}</dd>
+          <dt>Route</dt><dd>${row.route}${row.mint ? ' · mint ' + truncAddr(row.mint, 8) : ''}</dd>
+        </dl>
+        <div class="actions">
+          <a class="btn btn-primary" href="${row.explorerUrl}" target="_blank" rel="noopener">Open explorer</a>
+          <button class="btn" type="button" data-copy="addr">Copy address</button>
+          ${row.spotCheck?.rpcSnippet ? '<button class="btn" type="button" data-copy="rpc">Copy RPC</button>' : ''}
+        </div>
+        <ol class="steps">${steps}</ol>
+        ${row.spotCheck?.limitation ? `<p class="limitation">${escapeHtml(row.spotCheck.limitation)}</p>` : ''}
+        ${row.note ? `<p class="limitation" style="border-color:var(--border);color:var(--muted)">${escapeHtml(row.note)}</p>` : ''}
+      `;
+      panel.querySelector('[data-copy="addr"]')?.addEventListener('click', () => copy(row.address));
+      panel.querySelector('[data-copy="rpc"]')?.addEventListener('click', () => copy(row.spotCheck.rpcSnippet));
+    }
+
+    function paintCli() {
+      const a = manifest.artifacts;
+      const s = manifest.snapshot;
+      $('#reproduce-cli').textContent =
+`# Full local reproduce (requires wallet zip + artifacts)
+go run ./cmd/por verify -exchange ${s.exchange} -snapshot ${s.id} \\
+  -artifacts artifacts/${s.exchange}/<auditId>/bundles \\
+  --deposit-only -deposit-max-samples ${manifest.sampling.maxSamples}
+
+# Artifacts bound in this manifest:
+#   walletZipSha256:          ${a.walletZipSha256}
+#   bapiSha256:               ${a.bapiSha256}
+#   verificationBundleRoot:   ${a.verificationBundleRoot || '(run with --write-bundle)'}`;
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function copy(text) {
+      navigator.clipboard?.writeText(text);
+    }
+
+    async function init() {
+      await loadIndex();
+      const params = new URLSearchParams(location.search);
+      const url = params.get('manifest') || $('#snapshot-select').value || DEFAULT_MANIFEST;
+      try {
+        await loadManifest(url);
+      } catch (e) {
+        $('#content').innerHTML = `<p class="state-error">Failed to load manifest: ${escapeHtml(e.message)}</p>`;
+      }
+
+      $('#snapshot-select').addEventListener('change', () => {
+        if ($('#snapshot-select').value) loadManifest($('#snapshot-select').value).catch(showErr);
+      });
+      $('#reload-btn').addEventListener('click', () => {
+        const url = $('#snapshot-select').value || new URLSearchParams(location.search).get('manifest') || DEFAULT_MANIFEST;
+        loadManifest(url).catch(showErr);
+      });
+      $('#file-input').addEventListener('change', ev => {
+        const f = ev.target.files[0];
+        if (!f) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            manifest = JSON.parse(reader.result);
+            selectedId = manifest.samples?.[0]?.id || null;
+            render();
+          } catch (e) { showErr(e); }
+        };
+        reader.readAsText(f);
+      });
+    }
+
+    function showErr(e) {
+      $('#content').innerHTML = `<p class="state-error">${escapeHtml(e.message)}</p>`;
+    }
+
+    init();
+  </script>
+</body>
+</html>

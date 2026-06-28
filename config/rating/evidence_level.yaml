@@ -1,0 +1,89 @@
+schema: ardmere/evidence-level@1
+source: docs/por-transparency-framework.md
+updated: 2026-06-27
+
+note: >
+  Evidence Level describes public evidence availability and reproducibility.
+  It is an input to Stage assessment, not the final transparency rating.
+
+levels:
+  - id: e0
+    label: E0
+    name: No usable evidence
+    definition: No usable PoR artifacts, or PoR has stopped.
+    common_stage: Pre-Stage
+    minimum_evidence: []
+    indicators:
+      - no_snapshot
+      - no_summary
+      - no_root
+      - no_proof
+      - no_wallet_address_list
+      - no_verifier
+      - por_stopped
+
+  - id: e1
+    label: E1
+    name: Limited disclosure
+    definition: Has summary, reserve ratio, user inclusion proof, or basic verifier, but cannot reproduce the global asset-liability relation.
+    common_stage: Stage 0
+    minimum_evidence_any:
+      - summary
+      - reserve_ratio
+      - user_inclusion_proof
+      - basic_verifier
+    limitations:
+      - global_solvency_not_reproducible
+      - wallet_ownership_may_be_missing
+      - global_proof_may_be_missing
+    friction_markers:
+      - id: high_friction_e1
+        condition: User verification requires complex CLI, environment setup, or manual proof handling.
+        risk_flag: HIGH_FRICTION_INCLUSION_PROOF
+
+  - id: e2
+    label: E2
+    name: Public verifiable artifacts
+    definition: Public artifacts allow third parties to verify reserve side, liability side, or key parts of both.
+    common_stage: Stage 0 or Stage 1
+    core_artifacts:
+      - wallet_address_list
+      - wallet_ownership_proof
+      - global_proof
+      - root
+      - vk_config
+      - proof_schema
+      - trusted_setup_transcript
+    stage_note: >
+      E2 does not automatically imply Stage 1. Missing wallet_ownership_proof,
+      global_proof, setup transparency, independent review, or cross-binding may
+      still block Stage 1.
+
+  - id: e3
+    label: E3
+    name: Anchored permissionless evidence
+    definition: E2 plus low-friction inclusion proof, canonical anchor, DA, permissionless verification, and stronger cadence.
+    common_stage: Stage 2 candidate
+    required_evidence:
+      - low_friction_inclusion_proof
+      - canonical_anchor
+      - data_availability
+      - permissionless_replay
+      - version_anchor
+      - higher_frequency_or_event_trigger
+    stage_note: >
+      E3 is necessary evidence shape for Stage 2, but the final Stage 2 decision
+      still requires business-consistent constraints, reviewer independence, and
+      all Stage 2 hard requirements.
+
+stage_mapping:
+  - combination: Gen 0 / E0
+    stage_interpretation: Pre-Stage
+  - combination: Gen 1 + E1
+    stage_interpretation: Usually Stage 0.
+  - combination: Gen 2 + E1
+    stage_interpretation: Usually Stage 0; ZK may exist but production proof or critical artifacts are not public enough.
+  - combination: Gen 2 + E2
+    stage_interpretation: Stage 0 or Stage 1, depending on wallet_ownership_proof, global_proof, setup transparency, and review.
+  - combination: Gen 2/3 + E3
+    stage_interpretation: Stage 2 candidate; must still check low-friction inclusion proof, business constraints, permissionless replay, DA, frequency, and version anchoring.

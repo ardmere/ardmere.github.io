@@ -1,0 +1,18 @@
+{
+  "fetchedAt": "2026-06-14T13:40:00Z",
+  "source": "fixture",
+  "info": {
+    "audit_id": "202605",
+    "audit_time": "2026-05-27 10:00:00",
+    "merkelRootHash": "ca89456bb711c913",
+    "totalReserveRate": 127
+  },
+  "coinList": {
+    "list": [
+      {"coin": "BTC", "platformAssets": 323.4, "userAssets": 300.0, "reserveRate": 107.8},
+      {"coin": "ETH", "platformAssets": 867.8, "userAssets": 800.0, "reserveRate": 108.475},
+      {"coin": "USDT", "platformAssets": 1400000.0, "userAssets": 1100000.0, "reserveRate": 127.27},
+      {"coin": "USDC", "platformAssets": 600000.0, "userAssets": 500000.0, "reserveRate": 120.0}
+    ]
+  }
+}

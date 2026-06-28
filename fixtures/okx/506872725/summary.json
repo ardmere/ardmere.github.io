@@ -1,0 +1,46 @@
+{
+  "fetchedAt": "2026-06-14T00:00:00Z",
+  "source": "fixture",
+  "detailUrl": "https://www.okx.com/proof-of-reserves/detail",
+  "audit": {
+    "auditId": "506872725",
+    "merkleHash": "dd32f9c29d1840dc444b0c0780782cd04f6840870b934a0a8f607fc61b3e8d6b",
+    "createTime": 1778083200000,
+    "typeNum": 4,
+    "capitalRatio": {
+      "BTC": "106%",
+      "ETH": "102%",
+      "USDT": "110%"
+    },
+    "liabilityBalances": {
+      "BTC": "111188.864402819964229",
+      "ETH": "1556473.0830153074947602",
+      "USDT": "10242908095.7081861476258954"
+    },
+    "reserveBalances": {
+      "BTC": "117934.3717877240880507",
+      "ETH": "1594622.0336127062819954",
+      "USDT": "11256167328.0374608539069387"
+    },
+    "exchangeReserveBalances": {
+      "BTC": "112393",
+      "ETH": "1528286",
+      "USDT": "11100534816"
+    },
+    "custodyReserveBalances": {
+      "BTC": "5541.3717877240880507",
+      "ETH": "66336.0336127062819954",
+      "USDT": "155632512.0374608539069387"
+    },
+    "reserveCurrencies": [
+      "BTC",
+      "ETH",
+      "USDT"
+    ],
+    "liabilityCurrencies": [
+      "BTC",
+      "ETH",
+      "USDT"
+    ]
+  }
+}

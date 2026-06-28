@@ -1,0 +1,62 @@
+{
+  "ETH": {
+    "label": "Ethereum",
+    "spotCheckMode": "evm_native",
+    "explorerAddress": "https://etherscan.io/address/{address}",
+    "explorerBlock": "https://etherscan.io/block/{height}",
+    "historicalNote": "Token balances: use the Token Holdings tab filtered at block {height} (archive)."
+  },
+  "BSC": {
+    "label": "BNB Smart Chain",
+    "spotCheckMode": "evm_native",
+    "explorerAddress": "https://bscscan.com/address/{address}",
+    "explorerBlock": "https://bscscan.com/block/{height}"
+  },
+  "ARBITRUM": {
+    "label": "Arbitrum One",
+    "spotCheckMode": "evm_native",
+    "explorerAddress": "https://arbiscan.io/address/{address}",
+    "explorerBlock": "https://arbiscan.io/block/{height}",
+    "historicalNote": "CSV may record native ETH; verify eth_getBalance not WETH balanceOf."
+  },
+  "BASE": {
+    "label": "Base",
+    "spotCheckMode": "evm_native",
+    "explorerAddress": "https://basescan.org/address/{address}",
+    "explorerBlock": "https://basescan.org/block/{height}"
+  },
+  "OPTIMISM": {
+    "label": "Optimism",
+    "spotCheckMode": "evm_native",
+    "explorerAddress": "https://optimistic.etherscan.io/address/{address}",
+    "explorerBlock": "https://optimistic.etherscan.io/block/{height}"
+  },
+  "MATIC": {
+    "label": "Polygon",
+    "spotCheckMode": "evm_native",
+    "explorerAddress": "https://polygonscan.com/address/{address}",
+    "explorerBlock": "https://polygonscan.com/block/{height}"
+  },
+  "BTC": {
+    "label": "Bitcoin",
+    "spotCheckMode": "utxo",
+    "explorerAddress": "https://mempool.space/address/{address}",
+    "historicalNote": "High-volume addresses may need Esplora pagination; CSV height is Bitcoin block."
+  },
+  "SOL": {
+    "label": "Solana",
+    "spotCheckMode": "solana_spl",
+    "explorerAddress": "https://solscan.io/account/{address}",
+    "historicalNote": "Public RPC is live-only today; compare at slot {height} when historical API is available."
+  },
+  "TRX": {
+    "label": "TRON",
+    "spotCheckMode": "ledger_other",
+    "explorerAddress": "https://tronscan.org/#/address/{address}"
+  },
+  "XRP": {
+    "label": "XRP Ledger",
+    "spotCheckMode": "ledger_other",
+    "explorerAddress": "https://xrpscan.com/account/{address}"
+  }
+}

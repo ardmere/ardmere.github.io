@@ -1,0 +1,466 @@
+{
+  "schema": "ardmere/exchange-assessment@1",
+  "generatedAt": "2026-06-27T14:19:00Z",
+  "methodologyVersion": "por-transparency-framework@2026-06-27",
+  "exchange": "binance",
+  "snapshot": {
+    "id": "PR01JUN26",
+    "periodSeq": 43,
+    "snapshotTime": "2026-01-06T00:00:00Z",
+    "btcBlockHeight": 951913,
+    "exchangeMerkleRoot": "250e0c4ab441780d7276bd63a7e2bfb098213dd6bd9de89265923d8e3c11c2d1"
+  },
+  "porStage": "Stage 0",
+  "gen": "Gen 2",
+  "evidenceLevel": "E2",
+  "confidence": "medium",
+  "effectivePoR": false,
+  "frequency": {
+    "latestSnapshot": "2026-06-01T00:00:00Z",
+    "previousSnapshot": "2026-05-01T00:00:00Z",
+    "observedCadence": "monthly",
+    "historyAvailable": true,
+    "eventTriggeredUpdates": "unknown",
+    "dailyRootOrCommitmentAnchor": "no",
+    "stageImpact": "Monthly PoR is acceptable as a transitional baseline, but insufficient for Stage 2 without daily root/commitment anchoring, event-triggered updates, or stronger cadence.",
+    "notes": "Binance publishes recurring monthly PoR snapshots. This report does not establish event-triggered publication rules or official daily canonical anchoring."
+  },
+  "summary": {
+    "headline": "Binance provides public reserve summary and wallet_address_list artifacts for PR01JUN26, and ardmere can reproduce several reserve-side checks, but Stage 1 is blocked by missing wallet_ownership_proof, opaque trusted setup evidence, and unavailable public global proof/vk artifacts.",
+    "rationale": "The available artifacts support Gen 2 / E2 classification and Stage 0 PoR disclosure. Internal consistency and solvency-claim checks pass, and reserve-side on-chain checks provide partial coverage with several WARN/FAIL/UNVERIFIABLE findings. However, users still need to trust Binance for wallet control, trusted setup honesty, and public availability of the full global proof stack.",
+    "scope": "Binance PR01JUN26 / period 43. Wallet ZIP date is 2026-06-01, while the BAPI snapshot payload records snapshotTime as 2026-01-06T00:00:00Z; this mismatch is treated as a scope caveat.",
+    "limitations": [
+      "Assessment uses locally archived ardmere artifacts under artifacts/binance/PR01JUN26-20260601-period43.",
+      "Verification bundle v2 is used for verifier summary.",
+      "Several on-chain checks are affected by RPC/archive availability, block-height boundary differences, and chain-specific accounting semantics.",
+      "No public wallet_ownership_proof, trusted setup transcript, public global proof.csv/vk bundle, or third-party attestation artifact was available to this pipeline."
+    ]
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_wallet_ownership_proof",
+      "maxStage": "Stage 0",
+      "reason": "Binance publishes a wallet_address_list, but no public batch-verifiable wallet_ownership_proof was available.",
+      "riskFlag": "NO_WALLET_OWNERSHIP_PROOF"
+    },
+    {
+      "ruleId": "floor_opaque_trusted_setup",
+      "maxStage": "Stage 0",
+      "reason": "No public trusted setup transcript or transparent setup evidence was available for the zk proof system.",
+      "riskFlag": "OPAQUE_TRUSTED_SETUP"
+    },
+    {
+      "ruleId": "floor_login_wall_global_proof",
+      "maxStage": "Stage 0",
+      "reason": "The public pipeline did not have access to global proof.csv and verifying keys; global-zk-proof is UNVERIFIABLE.",
+      "riskFlag": "UNVERIFIABLE"
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "NO_WALLET_OWNERSHIP_PROOF",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "wallet_ownership_proof is missing, so users must trust that Binance controls the listed wallet_address_list addresses.",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "address-ownership@0: UNVERIFIABLE"
+        }
+      ]
+    },
+    {
+      "id": "OPAQUE_TRUSTED_SETUP",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Trusted setup transcript is not publicly verifiable, so users must trust setup honesty.",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "No public MPC transcript or transparent setup evidence was included in the archived artifacts."
+        }
+      ]
+    },
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "confidence_downgrade_or_stage_block",
+      "message": "global-zk-proof, address-ownership, third-party-attestation, and cross-chain-wrapped verifiers are UNVERIFIABLE for this snapshot.",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "global-zk-proof@0: UNVERIFIABLE"
+        },
+        {
+          "type": "verifier",
+          "value": "third-party-attestation@0: UNVERIFIABLE"
+        }
+      ]
+    },
+    {
+      "id": "NO_CANONICAL_ANCHOR",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "A third-party ardmere anchor exists for the archived bundle, but this does not replace an official exchange-controlled canonical Stage 2 anchor.",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "artifacts/binance/PR01JUN26-20260601-period43/bundles/PR01JUN26.anchor.json"
+        }
+      ]
+    },
+    {
+      "id": "BUSINESS_CONSTRAINT_GAP",
+      "severity": "high",
+      "stageEffect": "max_stage_1",
+      "message": "The public pipeline cannot confirm that proof constraints fully cover Binance's actual business risks, including lending, margin, collateral haircuts, and negative balance constraints.",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "No public proof constraints package was available to ardmere for this snapshot."
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "present": [
+      {
+        "kind": "summary",
+        "sha256": "7898c1147f470b08404618c7f485664a4cb91740be3415d469d52f23c64f4202",
+        "url": "https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot",
+        "localPath": "artifacts/binance/PR01JUN26-20260601-period43/raw/7898c1147f470b08404618c7f485664a4cb91740be3415d469d52f23c64f4202.json",
+        "availability": "public",
+        "requiredFor": [
+          "Stage 0",
+          "Stage 1"
+        ]
+      },
+      {
+        "kind": "wallet_address_list",
+        "sha256": "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2",
+        "url": "https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20260601.zip",
+        "localPath": "artifacts/binance/PR01JUN26-20260601-period43/raw/722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2.zip",
+        "availability": "public",
+        "requiredFor": [
+          "Stage 1"
+        ]
+      }
+    ],
+    "missing": [
+      {
+        "kind": "wallet_ownership_proof",
+        "impact": "stage_block",
+        "reason": "No public wallet ownership signature/proof bundle is available.",
+        "riskFlag": "NO_WALLET_OWNERSHIP_PROOF"
+      },
+      {
+        "kind": "trusted_setup_transcript",
+        "impact": "stage_block",
+        "reason": "No public MPC transcript or transparent setup evidence is available.",
+        "riskFlag": "OPAQUE_TRUSTED_SETUP"
+      },
+      {
+        "kind": "global_proof",
+        "impact": "stage_block",
+        "reason": "Global proof.csv / verifying key is not publicly distributed to this pipeline.",
+        "riskFlag": "UNVERIFIABLE"
+      },
+      {
+        "kind": "third_party_review",
+        "impact": "confidence_downgrade",
+        "reason": "No machine-readable independent third-party attestation artifact is available.",
+        "riskFlag": "UNVERIFIABLE"
+      }
+    ],
+    "artifactBundleRoot": "0xf452e47dd22ed63dc4a905fe79da6c6f7a6975cc0d775f50d01879e97616671f",
+    "verificationBundleRoot": "0x84e7f008460dcfa4ae4969c9a6e2a8b2585d5dcbe6a33cfead74b175782f6f42"
+  },
+  "verifierResults": [
+    {
+      "verifierId": "artifact-integrity",
+      "version": "1.0",
+      "verdict": "PASS",
+      "coverage": 1,
+      "inputArtifacts": [
+        "7898c1147f470b08404618c7f485664a4cb91740be3415d469d52f23c64f4202",
+        "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2"
+      ],
+      "findings": [
+        {
+          "subject": "bapiSnapshot",
+          "field": "sha256",
+          "status": "PASS",
+          "claim": "7898c1147f470b08404618c7f485664a4cb91740be3415d469d52f23c64f4202",
+          "actual": "7898c1147f470b08404618c7f485664a4cb91740be3415d469d52f23c64f4202"
+        },
+        {
+          "subject": "walletZip",
+          "field": "sha256",
+          "status": "PASS",
+          "claim": "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2",
+          "actual": "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2"
+        }
+      ]
+    },
+    {
+      "verifierId": "internal-consistency",
+      "version": "1.1",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "HotCold+Deposit aggregated for BAPI reconciliation; 66 PASS findings.",
+      "inputArtifacts": [
+        "7898c1147f470b08404618c7f485664a4cb91740be3415d469d52f23c64f4202",
+        "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2"
+      ],
+      "findings": [
+        {
+          "subject": "wallet-sources",
+          "field": "row_counts",
+          "status": "PASS",
+          "actual": "HotCold=1262 Deposit=1980326 total=1981588",
+          "note": "HotCold+Deposit aggregated for BAPI reconciliation"
+        }
+      ]
+    },
+    {
+      "verifierId": "solvency-claim",
+      "version": "1.0",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "51 solvency-claim findings passed.",
+      "inputArtifacts": [
+        "7898c1147f470b08404618c7f485664a4cb91740be3415d469d52f23c64f4202"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "onchain-balance-hot",
+      "version": "2.1",
+      "verdict": "FAIL",
+      "coverage": 0.039619651347068144,
+      "reason": "Reserve-side HotCold checks include 1 FAIL, 4 WARN, 155 UNVERIFIABLE, and 1 PASS findings in v2 bundle.",
+      "inputArtifacts": [
+        "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "onchain-balance-token",
+      "version": "2.0",
+      "verdict": "FAIL",
+      "coverage": 0.5356576862123613,
+      "reason": "Token checks include 4 FAIL, 202 WARN, 38 UNVERIFIABLE, and 1 PASS findings in v2 bundle.",
+      "inputArtifacts": [
+        "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "onchain-balance-ledger",
+      "version": "1.4",
+      "verdict": "FAIL",
+      "coverage": 0.13391442155309033,
+      "reason": "Ledger checks include 9 FAIL, 151 WARN, 68 UNVERIFIABLE, and 1 PASS findings in v2 bundle.",
+      "inputArtifacts": [
+        "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "onchain-balance-deposit",
+      "version": "1.2",
+      "verdict": "WARN",
+      "coverage": 0.1330571960641722,
+      "reason": "Value-weighted deposit sample has 300 WARN findings and more than 25% sampled rows failed RPC.",
+      "inputArtifacts": [
+        "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "btc-anchor",
+      "version": "1",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "BTC block time anchor verifier not implemented.",
+      "inputArtifacts": [],
+      "findings": []
+    },
+    {
+      "verifierId": "address-ownership",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "No public download channel for wallet ownership signatures / proofs.",
+      "inputArtifacts": [],
+      "findings": []
+    },
+    {
+      "verifierId": "global-zk-proof",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "Global proof.csv / verifying key not publicly distributed.",
+      "inputArtifacts": [],
+      "findings": []
+    },
+    {
+      "verifierId": "third-party-attestation",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "No public third-party attestation report available.",
+      "inputArtifacts": [],
+      "findings": []
+    },
+    {
+      "verifierId": "cross-chain-wrapped",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "Wrapped token reconciliation rules not finalized.",
+      "inputArtifacts": [],
+      "findings": []
+    }
+  ],
+  "checklist": [
+    {
+      "id": "S0-1",
+      "stage": "Stage 0",
+      "question": "Has public PoR been published during the last 12 months?",
+      "status": "pass",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "summary"
+        }
+      ],
+      "notes": "BAPI summary and wallet ZIP are archived."
+    },
+    {
+      "id": "S0-3",
+      "stage": "Stage 0",
+      "question": "Is there reserve summary or user inclusion proof?",
+      "status": "pass",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "bapiSnapshot"
+        }
+      ],
+      "notes": "Reserve summary is public."
+    },
+    {
+      "id": "S1-2",
+      "stage": "Stage 1",
+      "question": "Is wallet_address_list public and on-chain checkable?",
+      "status": "pass",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "walletZip"
+        }
+      ],
+      "notes": "Wallet ZIP is public and partially checked on-chain by ardmere."
+    },
+    {
+      "id": "S1-3",
+      "stage": "Stage 1",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "address-ownership@0: UNVERIFIABLE"
+        }
+      ],
+      "notes": "Blocks Stage 1."
+    },
+    {
+      "id": "S1-4",
+      "stage": "Stage 1",
+      "question": "Is global_proof plus root/vk/config public and locally reproducible?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "global-zk-proof@0: UNVERIFIABLE"
+        }
+      ],
+      "notes": "Blocks Stage 1."
+    },
+    {
+      "id": "S1-8",
+      "stage": "Stage 1",
+      "question": "Is trusted setup transcript public and verifiable, or is proof system transparent setup?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "No public setup transcript observed."
+        }
+      ],
+      "notes": "Blocks Stage 1."
+    },
+    {
+      "id": "S2-5",
+      "stage": "Stage 2",
+      "question": "Is inclusion proof low-friction and bound to public global_proof/root/summary?",
+      "status": "not_applicable",
+      "evidence": [],
+      "notes": "Stage 2 not evaluated because Stage 1 hard blockers remain."
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "P0",
+      "text": "Publish batch-verifiable wallet_ownership_proof for the PR01JUN26 wallet_address_list.",
+      "relatedRiskFlags": [
+        "NO_WALLET_OWNERSHIP_PROOF"
+      ]
+    },
+    {
+      "priority": "P0",
+      "text": "Publish trusted setup transcript / MPC ceremony, or migrate to a transparent setup proof system.",
+      "relatedRiskFlags": [
+        "OPAQUE_TRUSTED_SETUP"
+      ]
+    },
+    {
+      "priority": "P0",
+      "text": "Publish global proof.csv, verifying keys, vk/config, and proof schema without login or manual request.",
+      "relatedRiskFlags": [
+        "UNVERIFIABLE"
+      ]
+    },
+    {
+      "priority": "P1",
+      "text": "Add official canonical anchoring for proof/root/vk commitments and historical artifacts.",
+      "relatedRiskFlags": [
+        "NO_CANONICAL_ANCHOR"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "report",
+      "value": "artifacts/binance/PR01JUN26-20260601-period43/AUDIT-REPORT.md"
+    },
+    {
+      "type": "artifact",
+      "value": "artifacts/binance/PR01JUN26-20260601-period43/bundles/PR01JUN26.artifact-bundle.json"
+    },
+    {
+      "type": "artifact",
+      "value": "artifacts/binance/PR01JUN26-20260601-period43/bundles/PR01JUN26.verification-bundle.v2.json"
+    },
+    {
+      "type": "hash",
+      "value": "artifact-bundle sha256=ffc546892f40613f04434624c3ae14e3d5bb9f23e38bc971731c071b656ade50"
+    },
+    {
+      "type": "hash",
+      "value": "verification-bundle.v2 sha256=b3b5a3dc2f08f198110131c787c52a666b3af5b5c3fbf4eddff4dff6e7c1e709"
+    }
+  ]
+}

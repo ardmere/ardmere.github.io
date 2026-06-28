@@ -1,0 +1,12 @@
+{
+  "provider": "solanaindex",
+  "baseUrl": "https://solanaindex.top",
+  "balancePath": "/api/v1/solana/token-balance/{address}/{mint}/{slot}",
+  "auth": "bearer",
+  "env": {
+    "apiKey": "SOLANA_INDEX_API_KEY",
+    "apiKeyAlt": "SOLANA_HISTORY_API_KEY",
+    "baseUrlOverride": "SOLANA_HISTORY_API_URL"
+  },
+  "notes": "Standard Solana JSON-RPC cannot return SPL balances at historical slots. Set SOLANA_INDEX_API_KEY (Bearer) to enable slot-indexed reads for ledger/deposit verifiers."
+}

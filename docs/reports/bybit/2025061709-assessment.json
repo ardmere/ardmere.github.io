@@ -1,0 +1,460 @@
+{
+  "schema": "ardmere/exchange-assessment@1",
+  "generatedAt": "2026-06-27T14:51:00Z",
+  "methodologyVersion": "por-transparency-framework@2026-06-27",
+  "exchange": "bybit",
+  "snapshot": {
+    "id": "2025061709",
+    "periodSeq": 0,
+    "snapshotTime": "2025-06-17T09:00:00Z",
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "c91d5de0554f97244e4d9f8056fad70fa0cb2cdb23c290ec597a042645dcbc03"
+  },
+  "porStage": "Stage 0",
+  "gen": "Gen 1",
+  "evidenceLevel": "E1",
+  "confidence": "low",
+  "effectivePoR": false,
+  "frequency": {
+    "latestSnapshot": "2025-06-17T09:00:00Z",
+    "observedCadence": "monthly",
+    "historyAvailable": true,
+    "eventTriggeredUpdates": "unknown",
+    "dailyRootOrCommitmentAnchor": "no",
+    "stageImpact": "Monthly publication and login-gated user proof can support limited Stage 0 disclosure, but they do not satisfy Stage 1 or Stage 2 without public wallet/proof artifacts and stronger canonical anchoring.",
+    "notes": "Bybit references monthly third-party PoR/PoL reporting. This ardmere snapshot uses a fixture summary and official Merkle proof test vector, so cadence is treated as contextual rather than independently verified from production artifacts."
+  },
+  "summary": {
+    "headline": "Bybit exposes a reserve ratio summary and a user Merkle proof flow, and ardmere can replay a supplied SHA-256 Merkle path. However, the available public evidence does not include wallet_address_list, wallet_ownership_proof, or a global proof, so the snapshot remains Stage 0 and should not be treated as effective PoR.",
+    "rationale": "The archived bundle supports Gen 1 / E1 evidence: a summary artifact plus optional user inclusion proof. The user-merkle-proof verifier passes for the supplied v5 test vector and binds to the summary merkle root, but this proves only single-account inclusion for that JSON input. It does not prove exchange-wide liabilities, reserve ownership, on-chain balances, or business-consistent constraints.",
+    "scope": "Bybit snapshot 2025061709, snapshotTime 2025-06-17T09:00:00Z. Local artifacts under artifacts/bybit/2025061709.",
+    "limitations": [
+      "The summary artifact is an ardmere fixture imported from a Bybit-style response; datacenter access to the public x-api endpoint is WAF-gated.",
+      "The userMerkleProof artifact is the official bybit-exchange/merkle-proof v5 test vector, not evidence from a real logged-in production account.",
+      "No public wallet_address_list, wallet_ownership_proof, global proof, BTC time anchor, or machine-readable third-party attestation artifact is available to this pipeline."
+    ]
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_public_wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "No public wallet_address_list is available, so ardmere cannot independently reconcile claimed reserves against exchange-controlled addresses.",
+      "riskFlag": "UNVERIFIABLE"
+    },
+    {
+      "ruleId": "floor_no_wallet_ownership_proof",
+      "maxStage": "Stage 0",
+      "reason": "No public wallet_ownership_proof is available, so users must trust Bybit or the third-party report for wallet control claims.",
+      "riskFlag": "NO_WALLET_OWNERSHIP_PROOF"
+    },
+    {
+      "ruleId": "floor_no_global_proof",
+      "maxStage": "Stage 0",
+      "reason": "Bybit's public flow is Merkle inclusion based and does not provide a public global_proof that proves exchange-wide liability correctness.",
+      "riskFlag": "UNVERIFIABLE"
+    },
+    {
+      "ruleId": "floor_business_constraint_gap",
+      "maxStage": "Stage 0",
+      "reason": "The Merkle proof path does not establish public proof constraints for negative-net-worth dummy users, margin/lending treatment, collateral haircuts, or full liability completeness.",
+      "riskFlag": "BUSINESS_CONSTRAINT_GAP"
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "stage_block",
+      "message": "Reserve-side and global proof claims are UNVERIFIABLE because public wallet and global proof artifacts are missing.",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "internal-consistency@0: UNVERIFIABLE"
+        },
+        {
+          "type": "verifier",
+          "value": "onchain-balance-hot@0: UNVERIFIABLE"
+        },
+        {
+          "type": "verifier",
+          "value": "global-zk-proof@0: UNVERIFIABLE"
+        }
+      ]
+    },
+    {
+      "id": "NO_WALLET_OWNERSHIP_PROOF",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No public wallet_ownership_proof is available for batch or independent verification.",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "address-ownership@0: UNVERIFIABLE"
+        }
+      ]
+    },
+    {
+      "id": "BUSINESS_CONSTRAINT_GAP",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "The public Merkle flow does not establish proof constraints sufficient for exchange-wide solvency or negative-balance protections.",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "user-merkle-proof@bybit-1 PASS proves inclusion only for the supplied account JSON."
+        }
+      ]
+    },
+    {
+      "id": "HIGH_FRICTION_INCLUSION_PROOF",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "User inclusion verification is login-gated and requires downloading myProof.json / running validator logic; ardmere did not verify a production low-friction user flow.",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "docs/bybit-por-data-guide.md"
+        }
+      ]
+    },
+    {
+      "id": "NO_CANONICAL_ANCHOR",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "A third-party ardmere anchor exists for the archived bundle, but no official Bybit canonical on-chain/DA anchor is established in this report.",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "artifacts/bybit/2025061709/bundles/2025061709.anchor.json"
+        }
+      ]
+    },
+    {
+      "id": "HIGH_FREQUENCY_GAP",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "Monthly PoR cadence does not satisfy Stage 2 frequency expectations without daily root/commitment anchoring or event-triggered updates.",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "Observed cadence is monthly; daily root/commitment anchor is not established in this report."
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "present": [
+      {
+        "kind": "summary",
+        "sha256": "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a",
+        "url": "https://www.bybit.com/x-api/por/public/v1/reserve-ratio/latest",
+        "localPath": "artifacts/bybit/2025061709/raw/110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a.json",
+        "availability": "archived",
+        "requiredFor": [
+          "Stage 0"
+        ]
+      },
+      {
+        "kind": "user_merkle_proof",
+        "sha256": "d095eed7e7dde2625c7311d24dbe307e9b12a25574e29ac4e1c073f14fdc2ab8",
+        "url": "file://./fixtures/bybit/mock_user_merkle_tree_path_40_v5.json",
+        "localPath": "artifacts/bybit/2025061709/raw/d095eed7e7dde2625c7311d24dbe307e9b12a25574e29ac4e1c073f14fdc2ab8.json",
+        "availability": "archived",
+        "requiredFor": [
+          "Stage 0"
+        ]
+      }
+    ],
+    "missing": [
+      {
+        "kind": "wallet_address_list",
+        "impact": "stage_block",
+        "reason": "No public wallet address CSV/ZIP is available to ardmere.",
+        "riskFlag": "UNVERIFIABLE"
+      },
+      {
+        "kind": "wallet_ownership_proof",
+        "impact": "stage_block",
+        "reason": "No public wallet ownership signature/proof bundle is available.",
+        "riskFlag": "NO_WALLET_OWNERSHIP_PROOF"
+      },
+      {
+        "kind": "global_proof",
+        "impact": "stage_block",
+        "reason": "Bybit does not publish a public global zk proof or equivalent liability proof bundle to this pipeline.",
+        "riskFlag": "UNVERIFIABLE"
+      },
+      {
+        "kind": "canonical_anchor",
+        "impact": "stage_block",
+        "reason": "No official Bybit canonical chain/DA anchor is established in this report.",
+        "riskFlag": "NO_CANONICAL_ANCHOR"
+      },
+      {
+        "kind": "third_party_review",
+        "impact": "confidence_downgrade",
+        "reason": "Hacken reports are referenced publicly, but no machine-readable attestation artifact is available in this pipeline.",
+        "riskFlag": "UNVERIFIABLE"
+      }
+    ],
+    "artifactBundleRoot": "0x7e2710dde862676f03cdde12e4590d451efca54b597049c5a732884c9fd9e69d",
+    "verificationBundleRoot": "0xd9079261cfa47c44357e30119fdf95a9d077fda29a2a2026cc4a1bd067872c21"
+  },
+  "verifierResults": [
+    {
+      "verifierId": "artifact-integrity",
+      "version": "1.0",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "Summary and userMerkleProof hashes match archived files.",
+      "inputArtifacts": [
+        "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a",
+        "d095eed7e7dde2625c7311d24dbe307e9b12a25574e29ac4e1c073f14fdc2ab8"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "solvency-claim",
+      "version": "1.0",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "Self-reported total reserve rate 102.50%; BTC 105.20%, ETH 101.00%, USDT 100.50%. Does not prove reserve authenticity.",
+      "inputArtifacts": [
+        "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "user-merkle-proof",
+      "version": "bybit-1",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "Supplied v5 SHA-256 Merkle path is valid and binds to the summary root; proves inclusion only for the supplied account JSON.",
+      "inputArtifacts": [
+        "d095eed7e7dde2625c7311d24dbe307e9b12a25574e29ac4e1c073f14fdc2ab8"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "internal-consistency",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "No public wallet address CSV; cannot reconcile summary vs address aggregates.",
+      "inputArtifacts": [
+        "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "btc-anchor",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "Summary does not declare a BTC block height time anchor.",
+      "inputArtifacts": [
+        "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "onchain-balance-hot",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "No public HotCold wallet address list.",
+      "inputArtifacts": [
+        "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "onchain-balance-token",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "No public wallet address list for ERC20/BEP20 audit.",
+      "inputArtifacts": [
+        "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "address-ownership",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "No public download channel for wallet ownership signatures / proofs.",
+      "inputArtifacts": [
+        "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "global-zk-proof",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "Bybit uses pure Merkle Tree; user myProof.json proves inclusion only.",
+      "inputArtifacts": [
+        "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "third-party-attestation",
+      "version": "0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "Hacken monthly PoR reports are public but not machine-readable in this pipeline.",
+      "inputArtifacts": [
+        "110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a"
+      ],
+      "findings": []
+    }
+  ],
+  "checklist": [
+    {
+      "id": "summary_snapshot",
+      "stage": "Stage 0",
+      "question": "Is a public summary / reserve ratio snapshot available?",
+      "status": "warn",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "artifacts/bybit/2025061709/raw/110282f57984ebd218a3ba0ee510b8e08bf6a2bb24de3cad9c0af22d528d422a.json"
+        }
+      ],
+      "notes": "Archived summary fixture is available; production endpoint is WAF-gated for datacenter fetches."
+    },
+    {
+      "id": "wallet_address_list",
+      "stage": "Stage 1",
+      "question": "Is a public wallet_address_list available?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "internal-consistency@0: UNVERIFIABLE"
+        }
+      ],
+      "notes": "No public wallet CSV/ZIP is available."
+    },
+    {
+      "id": "wallet_ownership_proof",
+      "stage": "Stage 1",
+      "question": "Is public wallet_ownership_proof available?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "address-ownership@0: UNVERIFIABLE"
+        }
+      ],
+      "notes": "No public wallet ownership signature/proof bundle is available."
+    },
+    {
+      "id": "global_proof",
+      "stage": "Stage 1",
+      "question": "Is a public global_proof or equivalent liability proof available?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "global-zk-proof@0: UNVERIFIABLE"
+        }
+      ],
+      "notes": "Bybit uses Merkle inclusion proof only; no public global zk proof."
+    },
+    {
+      "id": "low_friction_inclusion_proof",
+      "stage": "Stage 2",
+      "question": "Is low-friction independently reproducible inclusion proof available?",
+      "status": "warn",
+      "evidence": [
+        {
+          "type": "verifier",
+          "value": "user-merkle-proof@bybit-1: PASS on official test vector"
+        }
+      ],
+      "notes": "Verifier exists, but production proof is login-gated and archived sample is a test vector."
+    },
+    {
+      "id": "canonical_anchor_frequency",
+      "stage": "Stage 2",
+      "question": "Is there an official canonical anchor and high-frequency publication?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "artifacts/bybit/2025061709/bundles/2025061709.anchor.json"
+        }
+      ],
+      "notes": "No official on-chain/DA anchor or daily commitment cadence is established."
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "P0",
+      "text": "Publish a complete wallet_address_list and batch-verifiable wallet_ownership_proof for every PoR snapshot.",
+      "relatedRiskFlags": [
+        "NO_WALLET_OWNERSHIP_PROOF"
+      ]
+    },
+    {
+      "priority": "P0",
+      "text": "Publish a public global_proof or equivalent exchange-wide liability proof, with documented proof constraints for negative balances, lending, margin, and collateral treatment.",
+      "relatedRiskFlags": [
+        "BUSINESS_CONSTRAINT_GAP"
+      ]
+    },
+    {
+      "priority": "P1",
+      "text": "Provide machine-readable third-party attestation artifacts and stable public download URLs for summary, wallet, and liability evidence.",
+      "relatedRiskFlags": [
+        "UNVERIFIABLE"
+      ]
+    },
+    {
+      "priority": "P1",
+      "text": "Move user inclusion proof verification into a low-friction web/WASM or one-click local verifier, and archive anonymized reproducible proof fixtures for each snapshot.",
+      "relatedRiskFlags": [
+        "HIGH_FRICTION_INCLUSION_PROOF"
+      ]
+    },
+    {
+      "priority": "P2",
+      "text": "Anchor each snapshot root/proof bundle to an official canonical on-chain or DA record and increase publication cadence beyond monthly snapshots.",
+      "relatedRiskFlags": [
+        "NO_CANONICAL_ANCHOR",
+        "HIGH_FREQUENCY_GAP"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "url",
+      "value": "https://www.bybit.com/en/proof-of-reserves"
+    },
+    {
+      "type": "url",
+      "value": "https://www.bybit.com/en/announcement-info/reserve-ratio"
+    },
+    {
+      "type": "url",
+      "value": "https://github.com/bybit-exchange/merkle-proof"
+    },
+    {
+      "type": "artifact",
+      "value": "artifacts/bybit/2025061709/bundles/2025061709.artifact-bundle.json"
+    },
+    {
+      "type": "artifact",
+      "value": "artifacts/bybit/2025061709/bundles/2025061709.verification-bundle.json"
+    },
+    {
+      "type": "report",
+      "value": "artifacts/bybit/2025061709/AUDIT-REPORT.md"
+    }
+  ]
+}

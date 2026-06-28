@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ardmere.org/schemas/artifact-metadata.v1.schema.json",
+  "title": "ardmere/artifact-metadata@1",
+  "type": "object",
+  "required": [
+    "schema",
+    "generatedAt",
+    "exchange",
+    "snapshot",
+    "artifacts",
+    "verificationBundles",
+    "missingArtifacts"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "ardmere/artifact-metadata@1"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "generator": {
+      "type": "string"
+    },
+    "exchange": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "periodSeq": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "snapshotTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "btcBlockHeight": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "exchangeMerkleRoot": {
+          "type": "string"
+        }
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    },
+    "verificationBundles": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/verificationBundle"
+      }
+    },
+    "missingArtifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/missingArtifact"
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "root": {
+      "type": "string",
+      "pattern": "^0x[0-9a-fA-F]{64}$"
+    },
+    "artifact": {
+      "type": "object",
+      "required": [
+        "kind",
+        "sha256",
+        "fetchedAt",
+        "sizeBytes",
+        "requiredFor",
+        "availability"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "url": {
+          "type": "string"
+        },
+        "fetchedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "localPath": {
+          "type": "string"
+        },
+        "requiredFor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "availability": {
+          "enum": [
+            "public",
+            "permissioned",
+            "login_gated",
+            "manual_request",
+            "unavailable",
+            "archived"
+          ]
+        },
+        "role": {
+          "enum": [
+            "summary",
+            "wallet_address_list",
+            "wallet_ownership_proof",
+            "global_proof",
+            "vk_config",
+            "trusted_setup_transcript",
+            "third_party_review",
+            "canonical_anchor",
+            "data_availability",
+            "user_inclusion_proof",
+            "verifier",
+            "other"
+          ]
+        },
+        "contentType": {
+          "type": "string"
+        },
+        "merkleRoot": {
+          "$ref": "#/$defs/root"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "verificationBundle": {
+      "type": "object",
+      "required": ["kind", "sha256", "builtAt", "merkleRoot"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "verification-bundle"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "builtAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "localPath": {
+          "type": "string"
+        },
+        "merkleRoot": {
+          "$ref": "#/$defs/root"
+        },
+        "verdictSummary": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "coverageBps": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000
+        }
+      }
+    },
+    "missingArtifact": {
+      "type": "object",
+      "required": ["kind", "requiredFor", "impact", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "requiredFor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "impact": {
+          "enum": [
+            "stage_block",
+            "confidence_downgrade",
+            "coverage_gap",
+            "informational"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "riskFlag": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

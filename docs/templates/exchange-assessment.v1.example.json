@@ -1,0 +1,250 @@
+{
+  "schema": "ardmere/exchange-assessment@1",
+  "generatedAt": "2026-06-27T14:00:00Z",
+  "methodologyVersion": "por-transparency-framework@2026-06-27",
+  "exchange": "binance",
+  "snapshot": {
+    "id": "PR01JUN26",
+    "periodSeq": 43,
+    "snapshotTime": "2026-06-01T00:00:00Z",
+    "btcBlockHeight": 899999,
+    "exchangeMerkleRoot": "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  },
+  "porStage": "Stage 0",
+  "gen": "Gen 2",
+  "evidenceLevel": "E2",
+  "confidence": "medium",
+  "effectivePoR": false,
+  "summary": {
+    "headline": "Binance has public wallet and ZK-style artifacts, but Stage 1 is blocked by missing wallet_ownership_proof and opaque trusted setup evidence.",
+    "rationale": "The snapshot has public reserve-side and liability-side evidence, but users must still trust that Binance controls the listed wallets and that the proof parameters were generated without toxic waste.",
+    "scope": "Example structure only; replace with a real snapshot-specific scope in a production report.",
+    "limitations": [
+      "This example is intended to validate schema structure.",
+      "Hashes and URLs are placeholders."
+    ]
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_wallet_ownership_proof",
+      "maxStage": "Stage 0",
+      "reason": "wallet_ownership_proof is not publicly available for the wallet_address_list.",
+      "riskFlag": "NO_WALLET_OWNERSHIP_PROOF"
+    },
+    {
+      "ruleId": "floor_opaque_trusted_setup",
+      "maxStage": "Stage 0",
+      "reason": "Trusted setup transcript or equivalent transparent setup evidence is not publicly verifiable.",
+      "riskFlag": "OPAQUE_TRUSTED_SETUP"
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "NO_WALLET_OWNERSHIP_PROOF",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "wallet_ownership_proof is missing, so users must trust that the exchange controls the listed addresses.",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "No public wallet ownership signature bundle observed."
+        }
+      ]
+    },
+    {
+      "id": "OPAQUE_TRUSTED_SETUP",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Trusted setup transcript is not publicly verifiable.",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "No public MPC transcript observed."
+        }
+      ]
+    },
+    {
+      "id": "NO_CANONICAL_ANCHOR",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "proof/root/vk is exchange-server hosted only, with no canonical anchor or independent archive.",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "verification-bundle"
+        }
+      ]
+    }
+  ],
+  "artifacts": {
+    "present": [
+      {
+        "kind": "summary",
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+        "url": "https://example.com/binance/PR01JUN26/summary.json",
+        "availability": "public",
+        "requiredFor": [
+          "Stage 0",
+          "Stage 1"
+        ]
+      },
+      {
+        "kind": "wallet_address_list",
+        "sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "url": "https://example.com/binance/PR01JUN26/wallet.zip",
+        "availability": "public",
+        "requiredFor": [
+          "Stage 1"
+        ]
+      },
+      {
+        "kind": "global_proof",
+        "sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+        "url": "https://example.com/binance/PR01JUN26/global-proof.zip",
+        "availability": "public",
+        "requiredFor": [
+          "Stage 1"
+        ]
+      }
+    ],
+    "missing": [
+      {
+        "kind": "wallet_ownership_proof",
+        "impact": "stage_block",
+        "reason": "No public ownership signature bundle is available.",
+        "riskFlag": "NO_WALLET_OWNERSHIP_PROOF"
+      },
+      {
+        "kind": "trusted_setup_transcript",
+        "impact": "stage_block",
+        "reason": "No public MPC transcript or transparent setup evidence is available.",
+        "riskFlag": "OPAQUE_TRUSTED_SETUP"
+      }
+    ],
+    "artifactBundleRoot": "0xbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "verificationBundleRoot": "0xcccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  },
+  "verifierResults": [
+    {
+      "verifierId": "internal-consistency",
+      "version": "1.0",
+      "verdict": "PASS",
+      "coverage": 1,
+      "reason": "Summary and wallet aggregate are internally consistent.",
+      "inputArtifacts": [
+        "1111111111111111111111111111111111111111111111111111111111111111",
+        "2222222222222222222222222222222222222222222222222222222222222222"
+      ],
+      "findings": [
+        {
+          "subject": "summary",
+          "field": "walletAggregate",
+          "status": "PASS",
+          "note": "Example finding; replace with verifier output in production."
+        }
+      ]
+    },
+    {
+      "verifierId": "address-ownership",
+      "version": "0.0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "No public download channel for wallet ownership signatures / proofs.",
+      "inputArtifacts": [
+        "2222222222222222222222222222222222222222222222222222222222222222"
+      ],
+      "findings": []
+    },
+    {
+      "verifierId": "trusted-setup-transparency",
+      "version": "0.0",
+      "verdict": "UNVERIFIABLE",
+      "coverage": 0,
+      "reason": "Trusted setup transcript is not public.",
+      "inputArtifacts": [],
+      "findings": []
+    }
+  ],
+  "checklist": [
+    {
+      "id": "S0-1",
+      "stage": "Stage 0",
+      "question": "Has public PoR been published during the last 12 months?",
+      "status": "pass",
+      "evidence": [
+        {
+          "type": "artifact",
+          "value": "summary"
+        }
+      ],
+      "notes": "Example status."
+    },
+    {
+      "id": "S1-3",
+      "stage": "Stage 1",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "No public ownership proof observed."
+        }
+      ],
+      "notes": "Blocks Stage 1."
+    },
+    {
+      "id": "S1-8",
+      "stage": "Stage 1",
+      "question": "Is trusted setup transcript public and verifiable, or is the proof system transparent setup?",
+      "status": "fail",
+      "evidence": [
+        {
+          "type": "note",
+          "value": "No public setup transcript observed."
+        }
+      ],
+      "notes": "Blocks Stage 1."
+    },
+    {
+      "id": "S2-5",
+      "stage": "Stage 2",
+      "question": "Is inclusion proof low-friction, exportable, locally reproducible, and bound to public root/global_proof/summary?",
+      "status": "not_applicable",
+      "evidence": [],
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved."
+    }
+  ],
+  "recommendations": [
+    {
+      "priority": "P0",
+      "text": "Publish batch-verifiable wallet_ownership_proof for wallet_address_list.",
+      "relatedRiskFlags": [
+        "NO_WALLET_OWNERSHIP_PROOF"
+      ]
+    },
+    {
+      "priority": "P0",
+      "text": "Publish trusted setup transcript or migrate to a transparent setup proof system.",
+      "relatedRiskFlags": [
+        "OPAQUE_TRUSTED_SETUP"
+      ]
+    },
+    {
+      "priority": "P1",
+      "text": "Anchor proof/root/vk commitments in a canonical public record.",
+      "relatedRiskFlags": [
+        "NO_CANONICAL_ANCHOR"
+      ]
+    }
+  ],
+  "references": [
+    {
+      "type": "report",
+      "value": "docs/por-transparency-framework.md"
+    },
+    {
+      "type": "note",
+      "value": "This example validates exchange-assessment schema shape and is not a production rating."
+    }
+  ]
+}

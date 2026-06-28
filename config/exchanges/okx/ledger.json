@@ -1,0 +1,151 @@
+{
+  "networkAliases": {
+    "APTOS": "APT",
+    "ASSET_HUB": "STATEMINT"
+  },
+  "coinAliases": {
+    "APTOS": "APT",
+    "ASSET-HUB": "DOT"
+  },
+  "entries": [
+    {
+      "coin": "BTC",
+      "network": "BTC",
+      "backend": "esplora",
+      "esploraBase": "https://blockstream.info/api",
+      "decimals": 8
+    },
+    {
+      "coin": "DOGE",
+      "network": "DOGE",
+      "backend": "blockcypher",
+      "blockcypher": "doge",
+      "decimals": 8,
+      "maxTxCount": 200000
+    },
+    {
+      "coin": "LTC",
+      "network": "LTC",
+      "backend": "esplora",
+      "esploraBase": "https://litecoinspace.org/api",
+      "blockcypher": "ltc",
+      "decimals": 8,
+      "maxTxCount": 100000
+    },
+    {
+      "coin": "BCHN",
+      "network": "BCH",
+      "backend": "blockchair",
+      "blockchair": "bitcoin-cash",
+      "decimals": 8
+    },
+    {
+      "coin": "RIPPLE",
+      "network": "XRP",
+      "backend": "xrpl",
+      "decimals": 6
+    },
+    {
+      "coin": "SOL",
+      "network": "SOL",
+      "backend": "solana",
+      "decimals": 9,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "APT",
+      "network": "APT",
+      "backend": "aptos",
+      "decimals": 8
+    },
+    {
+      "coin": "SUI",
+      "network": "SUI",
+      "backend": "sui",
+      "decimals": 9,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "DOT",
+      "network": "STATEMINT",
+      "backend": "substrate",
+      "rpcUrl": "https://polkadot-asset-hub-rpc.polkadot.io",
+      "decimals": 10
+    },
+    {
+      "coin": "USDC",
+      "network": "APT",
+      "backend": "aptos-fa",
+      "mint": "0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b",
+      "decimals": 6
+    },
+    {
+      "coin": "USDC-APTOS",
+      "network": "APT",
+      "backend": "aptos-fa",
+      "mint": "0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b",
+      "decimals": 6
+    },
+    {
+      "coin": "USDT-APTOS",
+      "network": "APT",
+      "backend": "aptos-fa",
+      "mint": "0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b",
+      "decimals": 6
+    },
+    {
+      "coin": "USDC-SUI",
+      "network": "SUI",
+      "backend": "sui-coin",
+      "mint": "0xdba34672e30cb065b1f93e3ab55318768fd6fec6391a5c7fd3858738188f5d5::usdc::USDC",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "USDT-SPL",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "USDC-SPL",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "USDG",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "2u1tszSeqZ3qBWF3uNGPFc8TzMk2tdiwknnRMWGWjGWH",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "USDT-TON",
+      "network": "TON",
+      "backend": "ton-jetton",
+      "mint": "EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "FIL",
+      "network": "FIL",
+      "backend": "filecoin",
+      "decimals": 18,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "TONCOIN-NEW",
+      "network": "TON",
+      "backend": "ton-native",
+      "decimals": 9,
+      "liveSnapshot": true
+    }
+  ]
+}

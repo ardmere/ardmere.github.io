@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ardmere.org/schemas/deposit-sample-manifest.v1.schema.json",
+  "title": "ardmere/deposit-sample-manifest@1",
+  "type": "object",
+  "required": ["schema", "generatedAt", "snapshot", "artifacts", "sampling", "summary", "samples"],
+  "additionalProperties": false,
+  "properties": {
+    "schema": { "const": "ardmere/deposit-sample-manifest@1" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "generator": { "type": "string" },
+    "snapshot": {
+      "type": "object",
+      "required": ["exchange", "id", "merkleRoot"],
+      "properties": {
+        "exchange": { "type": "string" },
+        "id": { "type": "string" },
+        "periodSeq": { "type": "integer" },
+        "snapshotTime": { "type": "string", "format": "date-time" },
+        "merkleRoot": { "type": "string", "pattern": "^0x[0-9a-fA-F]{64}$" }
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["walletZipSha256", "bapiSha256", "verifierRef"],
+      "properties": {
+        "walletZipSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "walletZipUrl": { "type": "string", "format": "uri" },
+        "bapiSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+        "verificationBundleRoot": { "type": "string", "pattern": "^0x[0-9a-fA-F]{64}$" },
+        "verifierRef": { "type": "string" }
+      }
+    },
+    "sampling": {
+      "type": "object",
+      "required": ["method", "maxSamples", "valueCoverageAchieved", "verifiableDepositRows"],
+      "properties": {
+        "method": { "const": "value_weighted_head" },
+        "topKPerCoin": { "type": "integer", "minimum": 1 },
+        "maxSamples": { "type": "integer", "minimum": 1 },
+        "valueCoverageTarget": { "type": "number", "minimum": 0, "maximum": 1 },
+        "valueCoverageAchieved": { "type": "number", "minimum": 0, "maximum": 1 },
+        "verifiableDepositRows": { "type": "integer", "minimum": 0 },
+        "unsupportedRows": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": ["verdict", "pass", "warn", "fail", "unverifiable", "rpcError", "sampled"],
+      "properties": {
+        "verdict": { "enum": ["PASS", "WARN", "FAIL", "PARTIAL", "UNVERIFIABLE"] },
+        "pass": { "type": "integer", "minimum": 0 },
+        "warn": { "type": "integer", "minimum": 0 },
+        "fail": { "type": "integer", "minimum": 0 },
+        "unverifiable": { "type": "integer", "minimum": 0 },
+        "rpcError": { "type": "integer", "minimum": 0 },
+        "sampled": { "type": "integer", "minimum": 0 },
+        "reason": { "type": "string" }
+      }
+    },
+    "networks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "spotCheckMode", "explorerAddress"],
+        "properties": {
+          "label": { "type": "string" },
+          "spotCheckMode": {
+            "enum": [
+              "evm_native",
+              "evm_erc20",
+              "utxo",
+              "solana_native",
+              "solana_spl",
+              "ledger_other"
+            ]
+          },
+          "explorerAddress": { "type": "string" },
+          "explorerBlock": { "type": "string" },
+          "historicalNote": { "type": "string" }
+        }
+      }
+    },
+    "samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "address",
+          "coin",
+          "network",
+          "height",
+          "claim",
+          "verdict",
+          "route",
+          "explorerUrl",
+          "spotCheck"
+        ],
+        "properties": {
+          "id": { "type": "string", "minLength": 8 },
+          "address": { "type": "string", "minLength": 4 },
+          "coin": { "type": "string" },
+          "network": { "type": "string" },
+          "height": { "type": "integer", "minimum": 0 },
+          "claim": { "type": "string" },
+          "actual": { "type": "string" },
+          "delta": { "type": "string" },
+          "verdict": { "enum": ["PASS", "WARN", "FAIL", "UNVERIFIABLE"] },
+          "route": { "enum": ["native", "token", "ledger"] },
+          "provider": { "type": "string" },
+          "tokenContract": { "type": "string" },
+          "mint": { "type": "string" },
+          "explorerUrl": { "type": "string", "format": "uri" },
+          "spotCheck": {
+            "type": "object",
+            "required": ["mode", "steps"],
+            "properties": {
+              "mode": { "type": "string" },
+              "steps": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+              "rpcSnippet": { "type": "string" },
+              "limitation": { "type": "string" }
+            }
+          },
+          "note": { "type": "string" }
+        }
+      }
+    }
+  }
+}

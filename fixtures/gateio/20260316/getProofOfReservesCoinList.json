@@ -1,0 +1,44 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "list": [
+      {
+        "coin": "BTC",
+        "reserve_rate": 147.62,
+        "reserve_amount": 25404,
+        "customer_liability": 17216
+      },
+      {
+        "coin": "USDT",
+        "reserve_rate": 101.79,
+        "reserve_amount": 1477820139,
+        "customer_liability": 1451799979
+      },
+      {
+        "coin": "ETH",
+        "reserve_rate": 122.77,
+        "reserve_amount": 439611,
+        "customer_liability": 358121
+      },
+      {
+        "coin": "GUSD",
+        "reserve_rate": 296.51,
+        "reserve_amount": 320361289,
+        "customer_liability": 108046282
+      },
+      {
+        "coin": "SOL",
+        "reserve_rate": 102.31,
+        "reserve_amount": 895246,
+        "customer_liability": 875020
+      },
+      {
+        "coin": "USDC",
+        "reserve_rate": 110.18,
+        "reserve_amount": 134927493,
+        "customer_liability": 122462410
+      }
+    ]
+  }
+}

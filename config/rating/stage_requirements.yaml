@@ -1,0 +1,155 @@
+schema: ardmere/stage-requirements@1
+source: docs/por-transparency-framework.md
+updated: 2026-06-27
+
+stages:
+  - id: pre_stage
+    label: Pre-Stage
+    name: No usable PoR
+    definition: No minimum usable PoR artifacts, or PoR has stopped.
+    effective_por: false
+    requirements_any:
+      - id: p_no_public_por
+        requirement: No public PoR in the last 12 months.
+      - id: p_por_stopped
+        requirement: Previously had PoR but no longer publishes current reports.
+      - id: p_marketing_only
+        requirement: Only marketing claims, with no snapshot, summary, root, proof, or review report.
+      - id: p_traditional_reporting_only
+        requirement: Financial statements or public company disclosures exist, but no exchange-level PoR artifacts.
+      - id: p_reserves_only_dashboard
+        requirement: Only on-chain balance dashboard, with no liability summary, inclusion proof, or global proof.
+
+  - id: stage_0
+    label: Stage 0
+    name: Trust the Exchange
+    definition: Has minimum PoR disclosure, but third parties cannot independently reproduce the global solvency relation.
+    effective_por: false
+    requirements_all:
+      - id: s0_continuous_por
+        requirement: Public PoR has been published during the last 12 months and has not stopped.
+        evidence_fields: [snapshot.id, snapshot.snapshotTime]
+      - id: s0_snapshot_scope
+        requirement: Snapshot time and covered assets are explicit.
+        evidence_fields: [snapshot.snapshotTime, scope.assets]
+      - id: s0_minimum_disclosure
+        requirement: Has reserve summary or user Merkle inclusion proof.
+        required_artifacts_any: [summary, user_inclusion_proof]
+      - id: s0_user_proof_exportable_if_present
+        requirement: If user proof exists, leaf/hash rules are public, proof is exportable, and third parties can locally verify user-supplied proof.
+        required_if_artifact_present: user_inclusion_proof
+      - id: s0_verifier_or_spec
+        requirement: Has open-source verifier or sufficiently detailed algorithm specification.
+        required_artifacts_any: [verifier_source, verifier_spec]
+
+  - id: stage_1
+    label: Stage 1
+    name: Verifiable Disclosure
+    definition: Key artifacts are public and independently reproducible, but canonical record keeping and proof boundaries remain exchange-controlled.
+    effective_por: true
+    requirements_all:
+      - id: s1_satisfies_stage_0
+        requirement: Satisfies all Stage 0 requirements.
+        depends_on: stage_0
+      - id: s1_wallet_address_list_public
+        requirement: wallet_address_list is public, includes block height, and can be checked on-chain.
+        required_artifacts: [wallet_address_list]
+      - id: s1_wallet_ownership_proof
+        requirement: wallet_ownership_proof or equivalent address control proof is public and batch-verifiable.
+        required_artifacts: [wallet_ownership_proof]
+      - id: s1_global_proof_public
+        requirement: global_proof plus root/vk/config is public and locally reproducible; no login, registration, cookie, API key, or manual request.
+        required_artifacts: [global_proof, vk_config]
+      - id: s1_permissionless_core_artifacts
+        requirement: summary, wallet_address_list, wallet_ownership_proof, global_proof, and vk/config are downloadable without permission.
+        required_artifacts: [summary, wallet_address_list, wallet_ownership_proof, global_proof, vk_config]
+      - id: s1_independent_review
+        requirement: Independent review exists and review type is stated.
+        required_artifacts: [third_party_review]
+      - id: s1_cross_binding
+        requirement: summary binds to wallet_address_list aggregate, and summary binds to proof root or commitment.
+        evidence_fields: [bindings.summary_wallet, bindings.summary_proof_root]
+      - id: s1_parameter_transparency
+        requirement: Trusted setup transcript/MPC ceremony is public and verifiable, or the proof system uses transparent setup.
+        required_artifacts_any: [trusted_setup_transcript, transparent_setup_proof_system]
+      - id: s1_historical_archive
+        requirement: Historical snapshot artifacts are archived, not only shown on the current webpage.
+        required_artifacts: [historical_artifacts]
+      - id: s1_proof_boundary
+        requirement: Proof scope and exclusions are disclosed, including off-balance-sheet and off-chain boundaries.
+        evidence_fields: [scope.liabilities, scope.exclusions]
+
+  - id: stage_2
+    label: Stage 2
+    name: Trust-minimized PoR
+    definition: Proofs and data are permissionlessly verifiable, business-consistent, low-friction for users, anchored, and historically traceable.
+    effective_por: true
+    requirements_all:
+      - id: s2_satisfies_stage_1
+        requirement: Satisfies all Stage 1 requirements.
+        depends_on: stage_1
+      - id: s2_business_consistent_constraints
+        requirement: Proof constraints cover actual business risks and prove no negative-net-worth dummy users or negative balance offset of real liabilities.
+        required_artifacts: [proof_constraints]
+        evidence_fields: [constraints.no_negative_net_worth_dummy_users, constraints.no_negative_balance_offset, constraints.business_model_coverage]
+      - id: s2_canonical_anchor
+        requirement: root, proof root, or commitment is anchored on-chain with a non-deletable historical commitment chain.
+        required_artifacts: [canonical_anchor]
+      - id: s2_data_availability
+        requirement: proof bundle, vk, config, and wallet_address_list bundle remain available on stable public DA or equivalent archive.
+        required_artifacts: [data_availability]
+      - id: s2_low_friction_inclusion_proof
+        requirement: inclusion proof is exportable, locally reproducible, and has Web/WASM/GUI one-click verification with clear errors; result binds to public root/global_proof/summary.
+        required_artifacts: [user_inclusion_proof, user_verification_ui]
+        evidence_fields: [user_verification.proof_export, user_verification.local_replay, user_verification.one_click_ui, user_verification.root_binding]
+      - id: s2_permissionless_replay
+        requirement: Third parties can rerun core verification without login or API key; on-chain verifier or equivalent public verification path is preferred.
+        evidence_fields: [permissionless.replay, permissionless.no_login, permissionless.no_api_key]
+      - id: s2_version_anchoring
+        requirement: vk/config/verifier version hash or commitment is anchored in chain/DA, and changes have an audit trail.
+        required_artifacts: [version_anchor]
+      - id: s2_frequency
+        requirement: Head CEXs must provide weekly full PoR, daily root/commitment anchoring, event-triggered updates, or stronger cadence.
+        evidence_fields: [frequency.full_por, frequency.anchor, frequency.event_trigger]
+      - id: s2_independence
+        requirement: Conflicts between reviewer and technical provider are disclosed; reviewer is not both player and referee without explanation.
+        evidence_fields: [review.independence, review.conflicts]
+
+floor_rules:
+  - id: floor_sample_only
+    condition: Only sample proof exists, not current production proof.
+    max_stage: Stage 0
+    risk_flag: SAMPLE_ONLY
+  - id: floor_login_wall_global_proof
+    condition: Proof bundle requires login, registration, cookie, API key, or manual request, and liability side cannot be publicly reproduced.
+    max_stage: Stage 0
+    risk_flag: LOGIN_WALL
+  - id: floor_inclusion_black_box
+    condition: inclusion proof is not exportable, not locally reproducible, or only black-box verified.
+    max_stage: Stage 0
+    risk_flag: BLACK_BOX_INCLUSION_PROOF
+  - id: floor_inclusion_high_friction
+    condition: inclusion proof is reproducible but requires complex CLI, environment setup, or manual parameter stitching.
+    max_stage: Stage 1
+    risk_flag: HIGH_FRICTION_INCLUSION_PROOF
+  - id: floor_no_wallet_ownership_proof
+    condition: wallet_ownership_proof is missing.
+    max_stage: Stage 0
+    risk_flag: NO_WALLET_OWNERSHIP_PROOF
+  - id: floor_opaque_trusted_setup
+    condition: Trusted setup is opaque or has no verifiable transcript.
+    max_stage: Stage 0
+    risk_flag: OPAQUE_TRUSTED_SETUP
+  - id: floor_no_independent_review
+    condition: No independent third-party review.
+    max_stage: Stage 0
+    risk_flag: NO_INDEPENDENT_REVIEW
+  - id: floor_server_only_distribution
+    condition: proof/root/vk is only hosted by the exchange server and has no archive or anchor.
+    max_stage: Stage 1
+    risk_flag: NO_CANONICAL_ANCHOR
+  - id: floor_critical_implementation_issue
+    condition: Major unresolved implementation issue affects proof semantics.
+    max_stage: unchanged
+    confidence_effect: downgrade
+    risk_flag: IMPLEMENTATION_SEMANTICS_RISK
