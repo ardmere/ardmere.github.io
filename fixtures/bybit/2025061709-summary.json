@@ -1,0 +1,23 @@
+{
+  "fetchedAt": "2026-06-14T12:00:00Z",
+  "source": "fixture",
+  "info": {
+    "code": 0,
+    "data": {
+      "audit_id": "2025061709",
+      "audit_time": "2025-06-17 09:00:00",
+      "merkle_root_hash": "c91d5de0554f97244e4d9f8056fad70fa0cb2cdb23c290ec597a042645dcbc03",
+      "total_reserve_rate": 102.5
+    }
+  },
+  "coinList": {
+    "code": 0,
+    "data": {
+      "list": [
+        {"coin": "BTC", "reserve_rate": 105.2, "reserve_amount": 100000, "customer_liability": 95000},
+        {"coin": "ETH", "reserve_rate": 101.0, "reserve_amount": 500000, "customer_liability": 495000},
+        {"coin": "USDT", "reserve_rate": 100.5, "reserve_amount": 2000000, "customer_liability": 1990000}
+      ]
+    }
+  }
+}

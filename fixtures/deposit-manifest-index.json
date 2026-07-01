@@ -1,0 +1,18 @@
+{
+  "schema": "ardmere/deposit-manifest-index@1",
+  "updatedAt": "2026-06-14T12:00:00Z",
+  "snapshots": [
+    {
+      "exchange": "binance",
+      "id": "PR01JUN26",
+      "auditId": "PR01JUN26-20260601-period43",
+      "manifestUrl": "/fixtures/binance/PR01JUN26-deposit-manifest.example.json",
+      "walletZipDate": "2026-06-01",
+      "verdict": "FAIL",
+      "valueCoverage": 0.0486,
+      "sampled": 50,
+      "updatedAt": "2026-06-14T12:00:00Z",
+      "note": "Example fixture until exporter writes artifacts/ path"
+    }
+  ]
+}

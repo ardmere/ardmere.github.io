@@ -1,0 +1,191 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x3167e8ed73c5dd0ea7edba9b4438a7acad31cf212b976b12064087584065358c",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467",
+        "url": "https://www.okx.com/proof-of-reserves/detail"
+      },
+      {
+        "availability": "public",
+        "kind": "walletZip",
+        "sha256": "bf4eb2b7de9c88587166a4ead2e2ee1617381877875b00f2a775462bb9681009",
+        "url": "https://static.okx.com/cdn/okx/por/chain/por_csv_2026050700_V4.zip"
+      },
+      {
+        "availability": "public",
+        "kind": "globalProofBundle",
+        "sha256": "319a01e352db65d17c3a6fd32b89ef35501c50e9a6b8714608c65112c36eeaee",
+        "url": "https://static.okx.com/cdn/okx/por/merkel/por_506872725_proof_data.zip"
+      }
+    ],
+    "verificationBundleRoot": "0xa55912eb30e0bcc9fa9d1f0f0fe1e8cd3a081181de4cc3d31b0806da10450674"
+  },
+  "confidence": "medium",
+  "effectivePoR": true,
+  "evidenceLevel": "E2",
+  "exchange": "okx",
+  "gen": "Gen 2",
+  "generatedAt": "2026-07-01T14:44:06Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 1",
+  "riskFlags": [
+    {
+      "id": "NO_CANONICAL_ANCHOR",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "No official exchange canonical on-chain/DA anchor established."
+    },
+    {
+      "id": "HIGH_FREQUENCY_GAP",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
+      "message": "Monthly cadence does not satisfy Stage 2 frequency expectations."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "dd32f9c29d1840dc444b0c0780782cd04f6840870b934a0a8f607fc61b3e8d6b",
+    "id": "506872725",
+    "periodSeq": 0,
+    "snapshotTime": "2026-05-06T16:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_server_only_distribution",
+      "maxStage": "Stage 1",
+      "reason": "No official exchange canonical on-chain/DA anchor established.",
+      "riskFlag": "NO_CANONICAL_ANCHOR"
+    },
+    {
+      "ruleId": "s2_frequency",
+      "maxStage": "Stage 1",
+      "reason": "Monthly cadence does not satisfy Stage 2 frequency expectations.",
+      "riskFlag": "HIGH_FREQUENCY_GAP"
+    }
+  ],
+  "summary": {
+    "headline": "OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 506872725. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1.",
+    "rationale": "Stage 1 is supported by public wallet_address_list, wallet_ownership_proof, global_proof, and parameter/proof artifacts. Stage 2 is not reached because canonical official anchoring, stable DA, low-friction user inclusion proof, stronger publication frequency, and full business-consistent constraints are not established in this report.",
+    "scope": "okx snapshot 506872725"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467",
+        "bf4eb2b7de9c88587166a4ead2e2ee1617381877875b00f2a775462bb9681009",
+        "319a01e352db65d17c3a6fd32b89ef35501c50e9a6b8714608c65112c36eeaee"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467"
+      ],
+      "reason": "okx summary has no reserve currencies",
+      "verdict": "FAIL",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467",
+        "bf4eb2b7de9c88587166a4ead2e2ee1617381877875b00f2a775462bb9681009"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "internal-consistency",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "bf4eb2b7de9c88587166a4ead2e2ee1617381877875b00f2a775462bb9681009"
+      ],
+      "reason": "verified 320917/320917 address signatures",
+      "verdict": "PASS",
+      "verifierId": "address-ownership",
+      "version": "okx-1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "2.1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "2.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "1.2"
+    },
+    {
+      "coverage": 0.75,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467",
+        "319a01e352db65d17c3a6fd32b89ef35501c50e9a6b8714608c65112c36eeaee"
+      ],
+      "reason": "structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR for cryptographic verification",
+      "verdict": "PARTIAL",
+      "verifierId": "global-zk-proof",
+      "version": "okx-1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467"
+      ],
+      "reason": "BTC block time anchor verifier not implemented",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "fd614924387e4e3a49265a6dee234b4ea3010382be7f49aa778c5c20bb8c5467"
+      ],
+      "reason": "Wrapped token reconciliation rules not finalized",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

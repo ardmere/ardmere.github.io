@@ -1,0 +1,306 @@
+{
+  "networkAliases": {
+    "TRON": "TRX",
+    "POLYGON": "MATIC",
+    "APTOS": "APT",
+    "ZKSYNC2": "ZKSYNCERA",
+    "ETH_LINEA": "LINEA"
+  },
+  "coinAliases": {
+    "APTOS": "APT",
+    "ETH-BASE": "ETH",
+    "ETH-LINEA": "ETH",
+    "ETH-ZKSYNC2": "ETH",
+    "USDT-POLY": "USDT",
+    "USDT-AVAXC": "USDT",
+    "USDT-OPTIMISM": "USDT",
+    "POLY-USDC": "POLY-USDC-3359"
+  },
+  "native": {
+    "ETH|ETH": "ETH",
+    "BNB|BSC": "BSC",
+    "BNB|OPBNB": "OPBNB"
+  },
+  "tokens": [
+    {
+      "coin": "USDT-ERC20",
+      "network": "ETH",
+      "rpcNetwork": "ETH",
+      "decimals": 6,
+      "contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+    },
+    {
+      "coin": "USDT-TRC20",
+      "network": "TRX",
+      "rpcNetwork": "TRX",
+      "decimals": 6,
+      "contract": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"
+    },
+    {
+      "coin": "USDT",
+      "network": "ETH",
+      "rpcNetwork": "ETH",
+      "decimals": 6,
+      "contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+    },
+    {
+      "coin": "USDT",
+      "network": "TRX",
+      "rpcNetwork": "TRX",
+      "decimals": 6,
+      "contract": "TR7NHqjeKQxGTCi8q8ZY4pL8otSzgjLj6t"
+    },
+    {
+      "coin": "USDT",
+      "network": "BSC",
+      "rpcNetwork": "BSC",
+      "decimals": 18,
+      "contract": "0x55d398326f99059fF775485246999027B3197955"
+    },
+    {
+      "coin": "USDT-POLY",
+      "network": "MATIC",
+      "rpcNetwork": "MATIC",
+      "decimals": 6,
+      "contract": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"
+    },
+    {
+      "coin": "USDT-ARBITRUM",
+      "network": "ARBITRUM",
+      "rpcNetwork": "ARBITRUM",
+      "decimals": 6,
+      "contract": "0xFd086bC7CD5C761D9ea2EE882611Db150bbb8e8F"
+    },
+    {
+      "coin": "USDT",
+      "network": "BASE",
+      "rpcNetwork": "BASE",
+      "decimals": 6,
+      "contract": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+    },
+    {
+      "coin": "USDT",
+      "network": "ARBITRUM",
+      "rpcNetwork": "ARBITRUM",
+      "decimals": 6,
+      "contract": "0xFd086bC7CD5C761D9ea2EE882611Db150bbb8e8F"
+    },
+    {
+      "coin": "USDT",
+      "network": "OPTIMISM",
+      "rpcNetwork": "OPTIMISM",
+      "decimals": 6,
+      "contract": "0x94b008aA0059cDE27aaa000e64b9A45eb2531a33"
+    },
+    {
+      "coin": "USDT",
+      "network": "MATIC",
+      "rpcNetwork": "MATIC",
+      "decimals": 6,
+      "contract": "0xc2132D05D31c914a87C6611C10748AEb04B58e8F"
+    },
+    {
+      "coin": "USDT",
+      "network": "AVAXC",
+      "rpcNetwork": "AVAXC",
+      "decimals": 6,
+      "contract": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7"
+    },
+    {
+      "coin": "USDC",
+      "network": "ETH",
+      "rpcNetwork": "ETH",
+      "decimals": 6,
+      "contract": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48"
+    },
+    {
+      "coin": "USDC",
+      "network": "TRX",
+      "rpcNetwork": "TRX",
+      "decimals": 6,
+      "contract": "TEkxiTehnzSmSe2XqrBj4w32RUNErdAEJb"
+    },
+    {
+      "coin": "USDC-AVAXC",
+      "network": "AVAXC",
+      "rpcNetwork": "AVAXC",
+      "decimals": 6,
+      "contract": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7"
+    },
+    {
+      "coin": "USDC-BASE",
+      "network": "BASE",
+      "rpcNetwork": "BASE",
+      "decimals": 6,
+      "contract": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+    },
+    {
+      "coin": "USDC-ARBITRUM-NATIVE",
+      "network": "ARBITRUM",
+      "rpcNetwork": "ARBITRUM",
+      "decimals": 6,
+      "contract": "0xaf88d065e77c8cC2239327C5EDb3A432268e5831"
+    },
+    {
+      "coin": "USDC-OPTIMISM-FF85",
+      "network": "OPTIMISM",
+      "rpcNetwork": "OPTIMISM",
+      "decimals": 6,
+      "contract": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85"
+    },
+    {
+      "coin": "POLY-USDC-3359",
+      "network": "MATIC",
+      "rpcNetwork": "MATIC",
+      "decimals": 6,
+      "contract": "0x3c499c542cEF5E3811e1192ce70d8cC03d5c3359"
+    },
+    {
+      "coin": "TUSD",
+      "network": "TRX",
+      "rpcNetwork": "TRX",
+      "decimals": 18,
+      "contract": "TUpMhErZL2fhh4sNNRCByiWe5wGKiGFY9S"
+    },
+    {
+      "coin": "TRX",
+      "network": "TRX",
+      "rpcNetwork": "TRX",
+      "decimals": 6,
+      "native": true
+    },
+    {
+      "coin": "ETH-OPTIMISM",
+      "network": "OPTIMISM",
+      "rpcNetwork": "OPTIMISM",
+      "decimals": 18,
+      "native": true
+    },
+    {
+      "coin": "ETH-ARBITRUM",
+      "network": "ARBITRUM",
+      "rpcNetwork": "ARBITRUM",
+      "decimals": 18,
+      "native": true
+    },
+    {
+      "coin": "ETH",
+      "network": "ARBITRUM",
+      "rpcNetwork": "ARBITRUM",
+      "decimals": 18,
+      "native": true
+    },
+    {
+      "coin": "ETH",
+      "network": "OPTIMISM",
+      "rpcNetwork": "OPTIMISM",
+      "decimals": 18,
+      "native": true
+    },
+    {
+      "coin": "ETH",
+      "network": "BASE",
+      "rpcNetwork": "BASE",
+      "decimals": 18,
+      "native": true
+    },
+    {
+      "coin": "ETH",
+      "network": "LINEA",
+      "rpcNetwork": "LINEA",
+      "decimals": 18,
+      "native": true
+    },
+    {
+      "coin": "ETH",
+      "network": "ZKSYNCERA",
+      "rpcNetwork": "ZKSYNCERA",
+      "decimals": 18,
+      "native": true
+    },
+    {
+      "coin": "LINK",
+      "network": "ETH",
+      "rpcNetwork": "ETH",
+      "decimals": 18,
+      "contract": "0x514910771AF9Ca656af840dff83E8264EcF986CA"
+    },
+    {
+      "coin": "UNI",
+      "network": "ETH",
+      "rpcNetwork": "ETH",
+      "decimals": 18,
+      "contract": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
+    },
+    {
+      "coin": "OKB",
+      "network": "ETH",
+      "rpcNetwork": "ETH",
+      "decimals": 18,
+      "contract": "0x75231F58b43240C9718Dd899B1c856eAeDA33693"
+    },
+    {
+      "coin": "PEOPLE",
+      "network": "ETH",
+      "rpcNetwork": "ETH",
+      "decimals": 18,
+      "contract": "0x7a58c0Be72be218B41C606b346cC8d990FDC7d63"
+    },
+    {
+      "coin": "USDG-ERC20",
+      "network": "ETH",
+      "rpcNetwork": "ETH",
+      "decimals": 6,
+      "contract": "0xe343167631d89B6Ffc58B88d6b7fB0228795491D"
+    },
+    {
+      "coin": "OKB-X1",
+      "network": "XLAYER",
+      "rpcNetwork": "XLAYER",
+      "decimals": 18,
+      "native": true
+    },
+    {
+      "coin": "OKB-X1-ETH",
+      "network": "XLAYER",
+      "rpcNetwork": "XLAYER",
+      "decimals": 18,
+      "native": true
+    },
+    {
+      "coin": "OKB-X1-USDC",
+      "network": "XLAYER",
+      "rpcNetwork": "XLAYER",
+      "decimals": 6,
+      "contract": "0x74b7f16337b8972027f6196a17a631ac6de26d22"
+    },
+    {
+      "coin": "OKB-X1-USDT",
+      "network": "XLAYER",
+      "rpcNetwork": "XLAYER",
+      "decimals": 6,
+      "contract": "0x779ded0c9e1022225f8e0630b35a9b54be713736"
+    },
+    {
+      "coin": "USDG-XLAYER",
+      "network": "XLAYER",
+      "rpcNetwork": "XLAYER",
+      "decimals": 6,
+      "contract": "0x4ae46a509F6b1D9056937ba4500cb143933D2dc8"
+    },
+    {
+      "coin": "USDG",
+      "network": "XLAYER",
+      "rpcNetwork": "XLAYER",
+      "decimals": 6,
+      "contract": "0x4ae46a509F6b1D9056937ba4500cb143933D2dc8"
+    },
+    {
+      "coin": "FIL-EVM",
+      "network": "FEVM",
+      "rpcNetwork": "FEVM",
+      "decimals": 18,
+      "native": true
+    }
+  ]
+}

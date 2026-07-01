@@ -1,0 +1,171 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x9db05b45ef048abc974606d9945ad987d31c2df0e10ab8e1b960ae4e24d827f7",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d",
+        "url": "https://www.htx.com/zh-cn/finance/merkle/"
+      },
+      {
+        "availability": "public",
+        "kind": "globalProofBundle",
+        "sha256": "16954049006272c0cfead838b8098fff3b5a73fddbd1745ed1953113f851a182",
+        "url": "file://./fixtures/htx/public-data.zip"
+      }
+    ],
+    "verificationBundleRoot": "0x2807631f75566176b2f4f7a62d263bc2f4e60716121b6192120de939e491e1f8"
+  },
+  "confidence": "low",
+  "effectivePoR": false,
+  "evidenceLevel": "E1",
+  "exchange": "htx",
+  "gen": "Gen 1",
+  "generatedAt": "2026-07-01T15:18:33Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No public wallet_address_list."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "2c51a40e991be73032f034c61b5d6a620c6da1fc9a7e0fdf104ca396e45d9ee3",
+    "id": "20230910",
+    "periodSeq": 0,
+    "snapshotTime": "2023-09-10T18:10:33Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_public_wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "No public wallet_address_list.",
+      "riskFlag": "UNVERIFIABLE"
+    }
+  ],
+  "summary": {
+    "headline": "htx snapshot 20230910 remains Stage 0 in the ardmere public evaluation set.",
+    "rationale": "Public artifacts do not support independently reproducible global solvency verification for this snapshot.",
+    "scope": "htx snapshot 20230910"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d",
+        "16954049006272c0cfead838b8098fff3b5a73fddbd1745ed1953113f851a182"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d"
+      ],
+      "reason": "zk-derived summary has no public reserve ratios; import browser-captured ratio JSON via -summary-path",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0.7,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d",
+        "16954049006272c0cfead838b8098fff3b5a73fddbd1745ed1953113f851a182"
+      ],
+      "reason": "structure and merkle bind OK; set HTX_ZK_VERIFIER to zkverifiermac path for Groth16 cryptographic verification",
+      "verdict": "PARTIAL",
+      "verifierId": "global-zk-proof",
+      "version": "htx-1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d"
+      ],
+      "reason": "No public wallet address CSV; cannot reconcile summary vs address aggregates",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "internal-consistency",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d"
+      ],
+      "reason": "Summary does not declare a BTC block height time anchor",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d"
+      ],
+      "reason": "No public HotCold wallet address list",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d"
+      ],
+      "reason": "No public wallet address list for ERC20/BEP20 audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93feed459cfc833bd5c29fc04fdccc25a2a393d2938cf6037f1ef0789d94d47d"
+      ],
+      "reason": "Wrapped token reconciliation rules not finalized",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

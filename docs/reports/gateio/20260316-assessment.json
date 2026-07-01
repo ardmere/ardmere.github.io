@@ -1,0 +1,153 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0xef120b448c411c8ab6f03cdd705cc973bb642aa849a8d916ea3af5e0038d33eb",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71",
+        "url": "https://www.gate.com/api/web/v1/proof-of-reserves/getProofOfReservesInfo"
+      }
+    ],
+    "verificationBundleRoot": "0x22664cb5b0850c8dcf39931ca26eb3491fa90ea7a2b82407e11f4facd59ceef5"
+  },
+  "confidence": "low",
+  "effectivePoR": false,
+  "evidenceLevel": "E1",
+  "exchange": "gateio",
+  "gen": "Gen 1",
+  "generatedAt": "2026-07-01T15:18:32Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No public wallet_address_list."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "22299d113e6a4336509f35a9404025ba2a5a2274dc3414d69d37aa3198e843fe",
+    "id": "20260316",
+    "periodSeq": 0,
+    "snapshotTime": "2026-03-16T00:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_public_wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "No public wallet_address_list.",
+      "riskFlag": "UNVERIFIABLE"
+    }
+  ],
+  "summary": {
+    "headline": "gateio snapshot 20260316 remains Stage 0 in the ardmere public evaluation set.",
+    "rationale": "Public artifacts do not support independently reproducible global solvency verification for this snapshot.",
+    "scope": "gateio snapshot 20260316"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "No public wallet address CSV; cannot reconcile summary vs address aggregates",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "internal-consistency",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "Summary does not declare a BTC block height time anchor",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "No public HotCold wallet address list",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "No public wallet address list for ERC20/BEP20 audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "Global zkmerkle_cex tar.gz requires login; not available from public API",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "global-zk-proof",
+      "version": "gateio-0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71"
+      ],
+      "reason": "Wrapped token reconciliation rules not finalized",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

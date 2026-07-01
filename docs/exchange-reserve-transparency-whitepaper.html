@@ -1,0 +1,2539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exchange Reserve Transparency Whitepaper | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="exchange-reserve-transparency-whitepaper">Exchange Reserve
+Transparency Whitepaper</h1>
+<p><strong>Effective Proof-of-Reserves, Stage Framework, and Policy
+Roadmap</strong></p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Version</strong></td>
+<td>1.1 (2026-07-01)</td>
+</tr>
+<tr>
+<td><strong>Author</strong></td>
+<td>ardmere</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>Working draft</td>
+</tr>
+<tr>
+<td><strong>Primary audience</strong></td>
+<td>Regulators, institutional allocators, independent reviewers,
+exchange compliance teams</td>
+</tr>
+<tr>
+<td><strong>Secondary audience</strong></td>
+<td>Retail users (Chapter 11.5)</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Legal disclaimer.</strong> This document is an independent
+transparency and policy analysis. It is not investment advice, a custody
+recommendation, or an endorsement of any exchange. Public ratings bind
+to artifacts and verifier output; they do not guarantee solvency or
+safety.</p>
+</blockquote>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<p>When users deposit crypto on a centralized exchange (CEX), they
+receive an <strong>IOU</strong> on the exchange ledger—not on-chain
+coins under their private keys. History has repeatedly shown that
+displayed balances can be wrong, incomplete, or unbacked. After the
+collapse of FTX in November 2022, Proof of Reserves (PoR) declarations
+spread rapidly across major exchanges. That wave improved
+<strong>narrative</strong> transparency but did <strong>not</strong> end
+custodial risk.</p>
+<h3 id="four-judgments-that-run-through-this-whitepaper">Four judgments
+that run through this whitepaper</h3>
+<ol type="1">
+<li><strong>FTX did not end CeFi custody risk.</strong> Major freezes,
+hacks, fraud, and trust crises continued from 2023 through 2026 (AAX,
+JPEX, WazirX, 2139 Exchange, CoinUp, and others).</li>
+<li><strong>The post-FTX PoR wave concentrated on Layer 1
+(disclosure).</strong> Many post-FTX victims used <strong>unlicensed or
+fake “exchanges”</strong> (Layer 2). Binance/OKX PoR debates and
+JPEX-style fraud are <strong>different risk layers</strong> and must not
+be conflated.</li>
+<li><strong>PoR narrative does not prevent crisis freezes.</strong>
+Regional exchanges can halt withdrawals within hours under trust shocks
+(AAX). Without PoR, rumors alone can trigger run expectations (CoinUp).
+PoR does not replace liquidity, security operations, or governance
+resilience.</li>
+<li><strong>Effective PoR is not a panacea, but gaps can be
+named.</strong> Many failed platforms never offered independently
+verifiable disclosure. Standards should (<strong>a</strong>) constrain
+exchanges capable of disclosure, and (<strong>b</strong>) help users
+recognize platforms with <strong>no</strong> credible custody
+evidence.</li>
+</ol>
+<h3 id="dual-layer-risk-model">Dual-layer risk model</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Typical objects</th>
+<th>Main failure modes</th>
+<th>Role of this whitepaper</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Layer 1 — Disclosure</strong></td>
+<td>Licensed or semi-regulated CEXs (Binance, OKX, AAX, WazirX, …)</td>
+<td>Weak disclosure, Stage 0 marketing, crisis freezes, post-hack
+inability to recover</td>
+<td><strong>Primary scope:</strong> Stage framework,
+<code>UNVERIFIABLE</code> gaps, Stage 1 policy floor</td>
+</tr>
+<tr>
+<td><strong>Layer 2 — Admission</strong></td>
+<td>Unlicensed fake “exchanges,” Ponzi fronts, OTC referral scams (JPEX,
+2139, long-tail freeze sites)</td>
+<td>Never held real reserves; fake regulation; exit scams</td>
+<td><strong>Not a PoR tech problem:</strong> licensing, enforcement,
+public warnings; user habit: <strong>no public artifact = no custody
+guarantee</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="policy-conclusions">Policy conclusions</h3>
+<ul>
+<li><strong>Stage 0 is not effective PoR. Stage 1 is the minimum policy
+threshold</strong> for Layer 1 exchanges.</li>
+<li><strong>Financial audit and PoR audit are dual-track
+complements</strong>—a clean audit opinion does not imply effective PoR
+(Chapter 5).</li>
+<li>Every public rating must bind <strong>artifacts, hashes, verifier
+output</strong>, and explicit <strong><code>UNVERIFIABLE</code></strong>
+gaps—not marketing slogans.</li>
+<li>Regulators and institutions must address <strong>disclosure quality
+and platform admission</strong> together. Focusing only on headline PoR
+pages leaves Layer 2 untouched.</li>
+</ul>
+<h3 id="stage-at-a-glance">Stage at a glance</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Name</th>
+<th>Effective PoR?</th>
+<th>User still trusts (primarily)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-Stage</td>
+<td>No usable PoR</td>
+<td>No</td>
+<td>Brand, financial reports, regulation</td>
+</tr>
+<tr>
+<td>Stage 0</td>
+<td>Trust the exchange</td>
+<td>No</td>
+<td>Exchange narrative</td>
+</tr>
+<tr>
+<td><strong>Stage 1</strong></td>
+<td><strong>Verifiable disclosure</strong></td>
+<td><strong>Yes (minimum)</strong></td>
+<td>Proof boundaries, historical artifact maintenance</td>
+</tr>
+<tr>
+<td>Stage 2</td>
+<td>Trust-minimized PoR</td>
+<td>Yes (aspirational)</td>
+<td>Cryptography, public data, canonical on-chain records</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Current industry snapshot (ardmere public evaluation set,
+mid-2026):</strong> OKX reaches <strong>Stage 1</strong> on assessed
+snapshot <code>508399035</code> (Jun 2026); Binance, Bybit, Bitget,
+Gate.io, and HTX remain <strong>Stage 0</strong> with documented gaps.
+See <a
+href="#chapter-10-assessed-exchanges-public-evaluation-set">Chapter
+10</a> and <a
+href="https://ardmere.github.io/docs/reports/snapshot-history.html">snapshot
+history</a>.</p>
+<h3 id="reader-paths">Reader paths</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Reader</th>
+<th>Start here</th>
+<th>Also read</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Regulators / policy</td>
+<td>Executive Summary, Ch. 5, 7, 8, 11</td>
+<td>Ch. 3, Appendix H</td>
+</tr>
+<tr>
+<td>Institutions / risk</td>
+<td>Executive Summary, Ch. 5, 7, 9</td>
+<td>Ch. 10, Appendix A</td>
+</tr>
+<tr>
+<td>Exchange compliance</td>
+<td>Ch. 5, 6, 7, 8</td>
+<td>Ch. 9, Appendix A</td>
+</tr>
+<tr>
+<td>Independent reviewers / media</td>
+<td>Ch. 3, 5, 6, 9</td>
+<td>Appendix C–E, H</td>
+</tr>
+<tr>
+<td>Retail users</td>
+<td>Executive Summary, Ch. 1–3, <strong>Ch. 11.5</strong></td>
+<td>Ch. 10 (gaps only); <strong>do not</strong> rely on exchange PoR
+marketing alone</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1 id="part-i-where-the-problem-comes-from">Part I — Where the Problem
+Comes From</h1>
+<h2
+id="chapter-1-the-user-view-what-you-actually-hold-on-an-exchange">Chapter
+1 — The User View: What You Actually Hold on an Exchange</h2>
+<h3 id="after-you-deposit">1.1 After you deposit</h3>
+<p>On-chain assets move into exchange-controlled wallets. Your account
+balance is a <strong>liability entry</strong> on the exchange’s books—an
+IOU. You do not control those coins with your keys until you withdraw.
+Legally and technically, you are often an <strong>unsecured or specially
+treated creditor</strong>, depending on jurisdiction—not a bailor who
+“owns coins in a vault.”</p>
+<h3 id="six-common-misconceptions">1.2 Six common misconceptions</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>User intuition</th>
+<th>Reality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“Large platforms must be safe.”</td>
+<td>Scale ≠ reserve transparency. The largest venues have also
+failed.</td>
+</tr>
+<tr>
+<td>“Listed or audited means my balance is verified.”</td>
+<td>Financial audit addresses <strong>company</strong> financial
+statements, not necessarily your account inside a verifiable liability
+set.</td>
+</tr>
+<tr>
+<td>“I can log in and withdraw, so I’m fine.”</td>
+<td>Bank runs favor first movers; withdrawal halts often arrive without
+warning.</td>
+</tr>
+<tr>
+<td>“A PoR announcement = 100% reserves.”</td>
+<td>Many PoR programs cover partial assets/liabilities or cannot be
+independently reproduced.</td>
+</tr>
+<tr>
+<td>“After FTX, the industry learned.”</td>
+<td>2023–2026 still saw AAX, JPEX, WazirX, CoinUp-scale events; the PoR
+wave did not reach unlicensed Layer 2 platforms.</td>
+</tr>
+<tr>
+<td>“Official denial + normal deposits/withdrawals = no problem.”</td>
+<td>Without effective PoR, users cannot independently verify; denials
+are not substitutes for artifacts (CoinUp, June 2026).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="runs-and-liquidity">1.3 Runs and liquidity</h3>
+<p>CEX balances feel like demand deposits. In stress, everyone wants out
+at once. Exchanges may impose queues, “maintenance,” or full
+halts—sometimes within <strong>hours</strong> (FTX, AAX). Annual
+financial audits are too slow for this risk profile; users need
+<strong>shorter-cycle snapshots</strong> with public evidence.</p>
+<h3 id="bankruptcy">1.4 Bankruptcy</h3>
+<p>In insolvency, users typically join a <strong>creditor
+queue</strong>, not a “return my property” line. Customer-asset
+segregation rules vary by country. <strong>PoR does not change
+bankruptcy law</strong>; it provides <strong>ex-ante evidence</strong>
+about whether liabilities were backed at a defined snapshot.</p>
+<h3 id="self-custody-and-por">1.5 Self-custody and PoR</h3>
+<p>PoR improves <strong>custodial transparency</strong>; it does not
+eliminate the choice to self-custody. Lost private keys have no
+bankruptcy court. Policy should understand <strong>both</strong> paths:
+self-custody shifts key risk to the user; CEX custody shifts IOU and
+platform risk to the user.</p>
+<h3 id="closing-thought">1.6 Closing thought</h3>
+<blockquote>
+<p>Users do not need slogans. They need <strong>public evidence before a
+crisis</strong> that what the platform owes them is covered by assets
+the platform controls—evidence outsiders can fetch and re-verify.</p>
+</blockquote>
+<hr />
+<h2
+id="chapter-2-industry-history-from-trust-the-platform-to-show-evidence">Chapter
+2 — Industry History: From “Trust the Platform” to “Show Evidence”</h2>
+<h3 id="four-phases">Four phases</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Period</th>
+<th>Theme</th>
+<th>What users learned (in hindsight)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>I</strong></td>
+<td>2010–2014</td>
+<td>Early custody: exchange as on-ramp; no disclosure culture</td>
+<td>“Balance on screen” was unchecked</td>
+</tr>
+<tr>
+<td><strong>II</strong></td>
+<td>2015–2019</td>
+<td>Hacks and insolvencies; PoR still not routine</td>
+<td>Even surviving giants could socialize losses</td>
+</tr>
+<tr>
+<td><strong>III</strong></td>
+<td>2020–H1 2022</td>
+<td>CeFi expansion, earn/leverage, hidden rehypothecation</td>
+<td>Spot balance ≠ all economic exposure</td>
+</tr>
+<tr>
+<td><strong>IV</strong></td>
+<td>H2 2022–present</td>
+<td>FTX → PoR declaration wave → uneven quality; failures continue</td>
+<td>PoR PR ≠ end of freezes or fraud</td>
+</tr>
+</tbody>
+</table>
+<h3 id="timeline-selected">Timeline (selected)</h3>
+<pre><code>2013–14  Merkle liability-proof ideas │ Mt. Gox
+2016     Bitfinex hack │ socialized loss
+2018–19  Coincheck, QuadrigaCX
+2020     Early CEX PoR experiments (e.g. Gate.io)
+2022.02  Kraken systematic PoR audits
+2022.06  3AC collapse → CeFi contagion
+2022.11  FTX │ industry-wide PoR surge
+2022.11  AAX withdrawal freeze (immediate aftershock)
+2023     JPEX (Hong Kong)
+2023+    zk-SNARK/STARK PoR at major venues
+2024.07  WazirX hack + governance crisis
+2024.09  2139 Exchange-style exit scams
+2026.06  CoinUp “exit” rumors &amp; trust crisis (unconfirmed shutdown)</code></pre>
+<p>Phase IV closes with a pivot to <strong>dual-layer risk</strong>
+(Chapter 3.3): PoR marketing spread among Layer 1 headlines while Layer
+2 scams continued under the same word “exchange.”</p>
+<hr />
+<h2 id="chapter-3-major-cases-what-users-paid">Chapter 3 — Major Cases:
+What Users Paid</h2>
+<h3 id="before-ftx-selected">3.1 Before FTX (selected)</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Case</th>
+<th>Year</th>
+<th>User harm</th>
+<th>Lesson</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mt. Gox</strong></td>
+<td>2014</td>
+<td>Years-long withdrawal freeze; partial repayment</td>
+<td>Displayed balances can be wrong for years</td>
+</tr>
+<tr>
+<td><strong>Bitfinex</strong></td>
+<td>2016</td>
+<td>Socialized loss (BFX token)</td>
+<td>“Too big to fail” still hurts users</td>
+</tr>
+<tr>
+<td><strong>QuadrigaCX</strong></td>
+<td>2019</td>
+<td>Long freeze; cold wallets effectively empty</td>
+<td>“Only CEO knows keys” is unacceptable</td>
+</tr>
+<tr>
+<td><strong>3AC / CeFi chain</strong></td>
+<td>2022</td>
+<td>Contagion through opaque leverage</td>
+<td>Deposits may fund upstream risk</td>
+</tr>
+<tr>
+<td><strong>Celsius et al.</strong></td>
+<td>2022</td>
+<td>Earn freezes</td>
+<td>Spot PoR scope may exclude earn liabilities</td>
+</tr>
+<tr>
+<td><strong>FTX</strong></td>
+<td>2022.11</td>
+<td>Rapid halt; bankruptcy recovery</td>
+<td>Brand, funding, partial audit ≠ verifiable reserves</td>
+</tr>
+</tbody>
+</table>
+<h3 id="after-ftx-failures-and-exits-continued">3.2 After FTX: failures
+and “exits” continued</h3>
+<p><strong>Conclusion to state plainly:</strong> FTX did not end CeFi
+custody risk. After November 2022, users still faced freezes, hacks,
+fraud, and trust crises—different mechanisms, same user predicament:
+<strong>no independent verification before the event; creditor treatment
+after.</strong></p>
+<h4 id="type-a-regional-cex-freeze-then-effective-shutdown">Type A —
+Regional CEX: freeze then effective shutdown</h4>
+<p><strong>AAX (Atom Asset Exchange), from Nov 2022:</strong> Hong Kong
+venue; cited “system maintenance” to halt withdrawals after FTX; later
+delisted social channels, offices closed; liquidation and criminal
+investigations alleging large outflows during the “maintenance” period.
+~2M users affected per public reports. PoR wave had barely started;
+users could not verify “no FTX exposure” claims.</p>
+<h4 id="type-b-unlicensed-fraudulent-exchanges">Type B — Unlicensed /
+fraudulent “exchanges”</h4>
+<p><strong>JPEX (2023):</strong> Unlicensed in Hong Kong; offline
+promotion and high-yield narratives; SFC warnings; withdrawal friction
+then collapse. <strong>No effective PoR</strong>—Layer 2 admission
+failure, not a Binance Stage 0 debate.</p>
+<p><strong>2139 Exchange (2024):</strong> CONSOB blocking orders;
+Ponzi-like yields; mass withdrawal freeze and on-chain outflows.
+<strong>No real trading or reserve program</strong>—fraud, not
+disclosure tuning.</p>
+<h4 id="type-c-security-governance-failure">Type C — Security +
+governance failure</h4>
+<p><strong>WazirX (from Jul 2024):</strong> ~$230M multisig hack;
+trading/withdrawals suspended; restructuring disputes. Not classic
+embezzlement, but <strong>user outcome resembles a run</strong>—brand
+history did not prevent long freezes.</p>
+<h4 id="type-d-long-tail-fake-exchanges">Type D — Long-tail fake
+exchanges</h4>
+<p>Patterns like OrangeX complaints: deposits accepted, withdrawals
+blocked behind endless KYC/fees—often Layer 2; PoR standards do not
+audit platforms that never intended to pay.</p>
+<h4
+id="type-e-unconfirmed-exit-trust-crisis-platform-still-operating">Type
+E — Unconfirmed exit / trust crisis (platform still operating)</h4>
+<p><strong>CoinUp (Jun 2026):</strong> Derivatives venue; public
+warnings involving associated persons; “exit” rumors; CPX token sell
+pressure; official denials of shutdown and claims of normal
+deposits/withdrawals. <strong>No independently reproducible effective
+PoR</strong> at time of writing; users relied on announcements.
+<strong>Not confirmed as shutdown</strong>—classify as trust crisis
+until regulatory/judicial findings change.</p>
+<p><em>Writing rule:</em> do not label Type E as “confirmed exit”
+without primary sources; footnote dated press reports.</p>
+<h3 id="cross-case-conclusions-dual-layer-risk-and-por-limits">3.3
+Cross-case conclusions: dual-layer risk and PoR limits</h3>
+<p>The <a href="#executive-summary">Executive Summary</a> dual-layer
+table and four judgments apply across Types A–E. Case-specific
+emphasis:</p>
+<ul>
+<li><strong>Type A (AAX):</strong> PoR narrative had barely started;
+users could not verify “no FTX exposure” before the freeze.</li>
+<li><strong>Type B (JPEX, 2139):</strong> Layer 2 admission failure—no
+artifact path to Stage 0 debate.</li>
+<li><strong>Type C (WazirX):</strong> Effective PoR does not prevent
+hacks or governance breakdowns.</li>
+<li><strong>Type E (CoinUp):</strong> Without reproducible artifacts,
+official denials cannot substitute for evidence.</li>
+</ul>
+<p><strong>Do not</strong> treat every post-FTX failure as “PoR
+failure.” <strong>Do not</strong> use Layer 2 fraud to dismiss Layer 1
+disclosure standards.</p>
+<hr />
+<h2 id="chapter-4-rise-of-por-from-ideas-to-marketing-language">Chapter
+4 — Rise of PoR: From Ideas to Marketing Language</h2>
+<h3 id="origins-20132014">4.1 Origins (2013–2014)</h3>
+<p>Merkle-sum trees and early <strong>proof-of-solvency</strong>
+research combined <strong>liability commitments</strong> with
+<strong>reserve evidence</strong>, enabling privacy-preserving
+aggregation.</p>
+<h3 id="early-practice-20202022.2">4.2 Early practice (2020–2022.2)</h3>
+<p>Venues such as Gate.io and Kraken systematized Merkle-based
+approaches; adoption remained uneven.</p>
+<h3 id="post-ftx-declaration-wave-from-nov-2022">4.3 Post-FTX
+declaration wave (from Nov 2022)</h3>
+<p>Merkle and zk-SNARK PoR became standard PR. Technical capability
+improved; <strong>policy-grade reproducibility</strong> often did
+not.</p>
+<h3 id="six-gaps-between-marketing-and-verification">4.4 Six gaps
+between marketing and verification</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Marketing phrase</th>
+<th>What outsiders can actually verify</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“Audited”</td>
+<td>Financial audit or reproducible PoR artifacts?</td>
+</tr>
+<tr>
+<td>“Reserve ratio &gt; 100%”</td>
+<td>Which liabilities included (earn, margin, sub-accounts)?</td>
+</tr>
+<tr>
+<td>“Verify your own proof”</td>
+<td>Inclusion only ≠ exchange-wide solvency</td>
+</tr>
+<tr>
+<td>“ZK verified”</td>
+<td>If wallet lists / vk / global proof not public → cannot rerun</td>
+</tr>
+<tr>
+<td>“We all did PoR after FTX”</td>
+<td>Existence of a page ≠ third-party reproduction; Layer 2 never
+did</td>
+</tr>
+<tr>
+<td>“Industry is transparent now”</td>
+<td>AAX/JPEX/WazirX/CoinUp timeline contradicts blanket safety</td>
+</tr>
+</tbody>
+</table>
+<h3 id="what-por-can-and-cannot-do-preview">4.5 What PoR can and cannot
+do (preview)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Effective disclosure helps with</th>
+<th>PoR alone does not solve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Snapshot-bound, reproducible reserve/liability evidence</td>
+<td>Layer 2 licensing and fraud enforcement</td>
+</tr>
+<tr>
+<td>Separating Stage 0 marketing from Stage 1 thresholds</td>
+<td>Hacks, multisig failures (WazirX class)</td>
+</tr>
+<tr>
+<td>Naming <code>UNVERIFIABLE</code> gaps</td>
+<td>Liquidity crises and withdrawal queues</td>
+</tr>
+</tbody>
+</table>
+<h3 id="transition-to-part-ii">4.6 Transition to Part II</h3>
+<p>Headline PoR quality remains uneven; fake platforms still acquire
+users under the word “exchange.” <strong>Why PoR audit must complement
+financial audit</strong> → Chapter 5. <strong>Operational Stage
+standards</strong> → Chapters 6–8.</p>
+<h3 id="literature-note">4.7 Literature note</h3>
+<p>Academic proof-of-solvency work dates to ~2015; Vitalik’s 2022 “safe
+CEX” essay and major-venue zk/Merkle specs mark a second wave. IOSCO,
+Hong Kong SFC, and others address <strong>custody and client-asset
+rules</strong> but do not define an <strong>Effective PoR /
+Stage</strong> framework like this document. See <a
+href="#appendix-h-industry-references-and-positioning">Appendix
+H</a>.</p>
+<hr />
+<h1 id="part-ii-standards-for-effective-disclosure">Part II — Standards
+for Effective Disclosure</h1>
+<h2
+id="chapter-5-why-cexs-need-por-audit-dual-track-with-traditional-audit">Chapter
+5 — Why CEXs Need PoR Audit: Dual-Track with Traditional Audit</h2>
+<h3 id="two-meanings-of-audit">5.1 Two meanings of “audit”</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Term</th>
+<th>This whitepaper means</th>
+<th>Typical output</th>
+<th>Typical performer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Traditional audit</strong></td>
+<td>Reasonable assurance on <strong>financial statements</strong></td>
+<td>Audit opinion, going concern, ICF</td>
+<td>Licensed accounting firm</td>
+</tr>
+<tr>
+<td><strong>PoR audit / review</strong></td>
+<td>Verification that <strong>customer liabilities</strong> under a
+defined snapshot are covered by reserves per disclosed scope</td>
+<td>Artifacts, Merkle/zk proofs, verifier output, AUP</td>
+<td>Accounting AUP, security firm, technical reviewer</td>
+</tr>
+</tbody>
+</table>
+<p>Colloquial “PoR audit” must not be read as <strong>financial
+statement audit with a different name</strong>.</p>
+<h3 id="six-reasons-users-and-regulators-need-por-audit">5.2 Six reasons
+users and regulators need PoR audit</h3>
+<p><strong>① Withdrawals can happen anytime—runs are
+fast.</strong><br />
+Balances feel like demand deposits; crises unfold in days or hours.
+Annual audits are misaligned with user timing risk.</p>
+<p><strong>② Money sits in many places—“company has assets” ≠ “your
+coins exist.”</strong><br />
+Reserves span hot/cold wallets, staking, earn, affiliates. Financial
+statement line items do not automatically prove
+<strong>customer-level</strong> backing.</p>
+<p><strong>③ Technology allows public liability
+commitments.</strong><br />
+Merkle trees and zk systems can commit to <strong>total user
+liabilities</strong> while letting each user check inclusion—something
+traditional audit does not typically expose for public rerun.</p>
+<p><strong>④ Crises happen between audit periods.</strong><br />
+FTX and Celsius showed months-long windows where a prior clean opinion
+did not protect customer funds.</p>
+<p><strong>⑤ Marketing outruns evidence.</strong><br />
+“100% backed,” “audited,” “ZK verified” are often misread as personal
+safety. PoR audit decomposes slogans into <strong>downloadable,
+rerunnable</strong> materials—or marks gaps
+<code>UNVERIFIABLE</code>.</p>
+<p><strong>⑥ Audit process is not publicly rerunnable (complement to
+⑤).</strong><br />
+Financial audit relies on professional independence and workpapers users
+never see. Effective PoR adds <strong>public evidence</strong> for
+custody-specific claims—not an accusation of audit fraud, but a
+different trust boundary.</p>
+<h3 id="summary-table">5.3 Summary table</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>User concern</th>
+<th>Traditional audit usually covers</th>
+<th>PoR audit adds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Can I withdraw?</td>
+<td>Going concern at entity level</td>
+<td>Snapshot: liabilities vs reserves in scope</td>
+</tr>
+<tr>
+<td>Where are coins?</td>
+<td>“Digital assets” on balance sheet</td>
+<td>Concrete addresses + control proofs</td>
+</tr>
+<tr>
+<td>Is my balance counted?</td>
+<td>Generally not user-verifiable</td>
+<td>Liability commitment + inclusion path</td>
+</tr>
+<tr>
+<td>Last year was clean—am I safe now?</td>
+<td>Periodic (quarter/year)</td>
+<td>Shorter snapshot cadence + archives</td>
+</tr>
+<tr>
+<td>“100% reserves” true?</td>
+<td>Does not auto-verify on-chain slogans</td>
+<td>Artifacts + explicit gaps</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>CEXs sell <strong>custody and redemption</strong>, not an annual
+report alone. Users and regulators need to know <strong>what is owed to
+customers and whether outsiders can check</strong>—that is the purpose
+of PoR audit.</p>
+</blockquote>
+<h3 id="clean-financial-audit-still-requires-effective-por">5.4 Clean
+financial audit still requires effective PoR</h3>
+<blockquote>
+<p>Financial audit asks whether <strong>company accounts are fairly
+stated</strong>. Effective PoR asks whether <strong>customer liabilities
+are backed and outsiders can verify</strong>. A clean opinion on the
+former <strong>does not imply</strong> the latter.</p>
+</blockquote>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Financial audit</th>
+<th>Effective PoR</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Question</td>
+<td>Are statements fair?</td>
+<td>Are scoped liabilities backed at a snapshot?</td>
+</tr>
+<tr>
+<td>User-level rerun</td>
+<td>Generally no</td>
+<td>Core artifacts should be public</td>
+</tr>
+<tr>
+<td>Interval</td>
+<td>Quarter/year</td>
+<td>Monthly or better for custody evidence</td>
+</tr>
+<tr>
+<td>“Audited” slogan</td>
+<td>Entity financials</td>
+<td>Must not subsume PoR scope</td>
+</tr>
+</tbody>
+</table>
+<p><strong>FTX (2022.11):</strong> Audit ecosystem and reputation
+coexisted with customer fund commingling—illustrating why custody needs
+<strong>its own</strong> reproducible track.</p>
+<h3 id="five-common-misuses">5.5 Five common misuses</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Misuse</th>
+<th>Harm</th>
+<th>Correct framing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Financial audit opinion = effective PoR</td>
+<td>False safety on custody</td>
+<td>Dual-track disclosure</td>
+</tr>
+<tr>
+<td>User inclusion only</td>
+<td>“I verified me” ≠ whole exchange</td>
+<td>State global proof / wallet artifacts</td>
+</tr>
+<tr>
+<td>Third-party AUP on BTC only</td>
+<td>Narrow asset window</td>
+<td>Disclose scope and exclusions</td>
+</tr>
+<tr>
+<td>“Big Four audited PoR”</td>
+<td>Brand laundering</td>
+<td>Name review <strong>type</strong> and artifacts</td>
+</tr>
+<tr>
+<td>ZK marketing without public vk/bundle</td>
+<td><code>LOGIN_WALL</code> / <code>UNVERIFIABLE</code></td>
+<td>Stage 0 cap</td>
+</tr>
+</tbody>
+</table>
+<h3 id="report-taxonomy-do-not-conflate">5.6 Report taxonomy (do not
+conflate)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Type</th>
+<th>Shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Technical verification</td>
+<td>Artifacts reproducible</td>
+</tr>
+<tr>
+<td>AUP / agreed-upon procedures</td>
+<td>Steps performed; usually no overall assurance</td>
+</tr>
+<tr>
+<td>Limited assurance</td>
+<td>Limited scope on defined procedures</td>
+</tr>
+<tr>
+<td>Reasonable assurance / financial audit</td>
+<td>Company financials; may exclude PoR liability scope</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="chapter-6-concepts-and-terminology">Chapter 6 — Concepts and
+Terminology</h2>
+<h3 id="terminology-chain">6.0 Terminology chain</h3>
+<pre><code>Disclosure → PoR audit / review → Effective PoR (Stage 1+) → Public Stage record</code></pre>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Common misuse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Has PoR</strong></td>
+<td>Published a page or one-off proof</td>
+<td>≠ effective PoR</td>
+</tr>
+<tr>
+<td><strong>PoR audit</strong></td>
+<td>Third-party work on snapshot materials</td>
+<td>≠ financial audit</td>
+</tr>
+<tr>
+<td><strong>Effective PoR</strong></td>
+<td>Independently reproducible global core evidence (Stage 1+)</td>
+<td>≠ no risk, ≠ going concern</td>
+</tr>
+<tr>
+<td><strong>Stage rating</strong></td>
+<td>Primary maturity label</td>
+<td>Gen/E lenses do not upgrade Stage</td>
+</tr>
+</tbody>
+</table>
+<h3 id="three-data-planes-keep-separate">Three data planes (keep
+separate)</h3>
+<ol type="1">
+<li><strong>Reserve side:</strong> <code>wallet_address_list</code>,
+block heights, <code>wallet_ownership_proof</code></li>
+<li><strong>Liability side:</strong> <code>global_proof</code>,
+root/vk/config, inclusion proofs</li>
+<li><strong>Summary side:</strong> reserve ratios, scope, cross-binding
+to (1) and (2)</li>
+</ol>
+<h3 id="auxiliary-lenses-gen-and-e-level">6.1 Auxiliary lenses: Gen and
+E Level</h3>
+<p><strong>Stage is the primary public label.</strong> Gen and E Level
+are explanatory lenses only—they <strong>do not upgrade Stage</strong>
+and must not be marketed as parallel ratings.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Lens</th>
+<th>Question it answers</th>
+<th>Levels (summary)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Gen</strong> (technology generation)</td>
+<td>What proof technology does the exchange use?</td>
+<td><strong>Gen 0:</strong> no PoR · <strong>Gen 1:</strong> Merkle
+inclusion · <strong>Gen 2:</strong> Merkle + global ZK · <strong>Gen
+3:</strong> advanced / continuous (aspirational)</td>
+</tr>
+<tr>
+<td><strong>E Level</strong> (evidence availability)</td>
+<td>How much can outsiders obtain and rerun?</td>
+<td><strong>E0:</strong> no usable artifacts · <strong>E1:</strong>
+summary and/or inclusion only · <strong>E2:</strong> key artifacts
+public and reproducible · <strong>E3:</strong> E2 + anchoring, DA,
+low-friction inclusion, high frequency (Stage 2 candidate)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Common misread:</strong> <strong>Gen 2 + E2 ≠ Stage
+1.</strong> Binance publishes Gen 2–class marketing and partial E2
+artifacts (<code>summary</code>, <code>wallet_address_list</code>) but
+remains <strong>Stage 0</strong> when
+<code>wallet_ownership_proof</code>, <code>global_proof</code>, and
+<code>vk/config</code> are not permissionlessly available (Chapter
+10).</p>
+<h3 id="verifier-verdicts">6.2 Verifier verdicts</h3>
+<p>Independent reruns should use explicit outcomes—never treat silence
+as approval:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verdict</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PASS</strong></td>
+<td>Check succeeded on public artifacts for the bound snapshot</td>
+</tr>
+<tr>
+<td><strong>FAIL</strong></td>
+<td>Check failed; artifact or claim inconsistent</td>
+</tr>
+<tr>
+<td><strong>WARN</strong></td>
+<td>Partial pass with material caveats (scope, RPC, timing)</td>
+</tr>
+<tr>
+<td><strong>UNVERIFIABLE</strong></td>
+<td>Required input missing or not independently obtainable—<strong>not
+PASS</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Floor flags (e.g. <code>LOGIN_WALL</code>,
+<code>NO_WALLET_OWNERSHIP_PROOF</code>) cap Stage or confidence when
+triggered. See <a href="#appendix-b--machine-readable-rules">Appendix
+B</a>.</p>
+<hr />
+<h2 id="chapter-7-por-stage-framework">Chapter 7 — PoR Stage
+Framework</h2>
+<p><em>Philosophy borrowed from <a
+href="https://l2beat.com/stages">L2BEAT Stages</a>: <strong>Stage
+measures trust minimization, not a security seal.</strong> Domain
+differs: CEX reserves, not L2 rollups.</em></p>
+<h3 id="stage-overview">7.1 Stage overview</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Stage</th>
+<th>Name</th>
+<th>Effective PoR?</th>
+<th>User still trusts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pre-Stage</td>
+<td>No usable PoR</td>
+<td>No</td>
+<td>Brand, reports, regulation</td>
+</tr>
+<tr>
+<td>Stage 0</td>
+<td>Trust the exchange</td>
+<td>No</td>
+<td>Exchange narrative</td>
+</tr>
+<tr>
+<td><strong>Stage 1</strong></td>
+<td><strong>Verifiable disclosure</strong></td>
+<td><strong>Yes (minimum)</strong></td>
+<td>Proof boundaries, artifact maintenance</td>
+</tr>
+<tr>
+<td>Stage 2</td>
+<td>Trust-minimized</td>
+<td>Yes (target)</td>
+<td>Crypto + public data + canonical records</td>
+</tr>
+</tbody>
+</table>
+<h3 id="pre-stage-and-stage-0">7.2 Pre-Stage and Stage 0</h3>
+<p><strong>Pre-Stage (any):</strong> No public PoR in 12 months; PoR
+stopped; marketing only; financial reports without PoR artifacts;
+on-chain treasury display without liability side.</p>
+<p><strong>Stage 0 (all):</strong> Ongoing disclosure; snapshot
+boundaries; at least summary or user inclusion; exportable inclusion if
+offered; open-source verifier or spec.</p>
+<p><strong>Typical Stage 0 blockers:</strong> no public
+<code>wallet_address_list</code>, <code>wallet_ownership_proof</code>,
+or <code>global_proof</code>; opaque trusted setup; login-walled
+bundles.</p>
+<h3 id="stage-1-minimum-effective-por-all-required">7.3 Stage 1 —
+minimum effective PoR (all required)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S1-1</td>
+<td>Meets all Stage 0 thresholds</td>
+</tr>
+<tr>
+<td>S1-2</td>
+<td>Public <code>wallet_address_list</code> + block height, on-chain
+checkable</td>
+</tr>
+<tr>
+<td>S1-3</td>
+<td>Public batch-verifiable <code>wallet_ownership_proof</code></td>
+</tr>
+<tr>
+<td>S1-4</td>
+<td>Public <code>global_proof</code> + root/vk/config, locally
+rerunnable; <strong>no login wall</strong> on liability side</td>
+</tr>
+<tr>
+<td>S1-5</td>
+<td><strong>Permissionless download</strong> of <strong>all</strong>
+core artifacts: <code>summary</code>, <code>wallet_address_list</code>,
+<code>wallet_ownership_proof</code>, <code>global_proof</code>,
+<code>vk/config</code>—no registration, login, cookies, API key, ticket,
+or manual approval</td>
+</tr>
+<tr>
+<td>S1-6</td>
+<td>Independent third-party review with <strong>type
+disclosed</strong></td>
+</tr>
+<tr>
+<td>S1-7</td>
+<td>summary ↔︎ reserve aggregate and summary ↔︎ liability root
+<strong>cross-bound</strong></td>
+</tr>
+<tr>
+<td>S1-8</td>
+<td>Public trusted-setup transcript <strong>or</strong>
+transparent-setup proof system</td>
+</tr>
+<tr>
+<td>S1-9</td>
+<td>Historical snapshots archivable, not only current webpage</td>
+</tr>
+<tr>
+<td>S1-10</td>
+<td><strong>Proof boundary</strong> documented: covered vs excluded
+liabilities (earn, margin, off-balance-sheet)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>S1-5 emphasis:</strong> Independent reviewers, media,
+regulators, and the public must fetch the <strong>same</strong> artifact
+set <strong>without an account relationship</strong>. VIP-only bundles,
+reviewer-only packages, or split-view releases cap at <strong>Stage
+0</strong> (<code>LOGIN_WALL</code> floor)—even if other items pass.</p>
+<p><strong>Stage 1 equivalent statement:</strong></p>
+<blockquote>
+<p>Aside from implementation bugs and collusion, a third party that
+long-term fails to detect forged solvency must rely on the exchange
+replacing artifacts or reviewer collusion—not on “the exchange says it
+controls these addresses.”</p>
+</blockquote>
+<p><strong>Reference implementation in public set:</strong> OKX snapshot
+<code>506872725</code>.</p>
+<h3 id="stage-2-trust-minimized-por-directional-target">7.4 Stage 2 —
+trust-minimized PoR (directional target)</h3>
+<p>No complete industry instance at time of writing. Stage 2 builds on
+<strong>all</strong> Stage 1 requirements plus the following hard
+thresholds:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>ID</th>
+<th>Requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S2-1</td>
+<td>Meets all Stage 1 thresholds</td>
+</tr>
+<tr>
+<td>S2-2</td>
+<td><strong>Business-consistent constraints</strong> — proof covers
+actual business risk (lending, margin, collateral haircuts, etc.); no
+negative-net-worth dummy users or liability offset</td>
+</tr>
+<tr>
+<td>S2-3</td>
+<td><strong>On-chain anchoring</strong> — root / proof commitment
+on-chain with non-deletable historical chain</td>
+</tr>
+<tr>
+<td>S2-4</td>
+<td><strong>Data availability</strong> — proof packages, vk, config,
+<code>wallet_address_list</code> on stable public layer (on-chain, IPFS,
+DA)</td>
+</tr>
+<tr>
+<td>S2-5</td>
+<td><strong>Low-friction user verification</strong> — exportable
+inclusion proof with Web/WASM/GUI path bound to public root</td>
+</tr>
+<tr>
+<td>S2-6</td>
+<td><strong>Permissionless replay</strong> — core verification without
+login or API key; prefer on-chain verifier when ZK is used</td>
+</tr>
+<tr>
+<td>S2-7</td>
+<td><strong>Parameter and version anchoring</strong> —
+vk/config/verifier version commitments on-chain/DA with audit trail</td>
+</tr>
+<tr>
+<td>S2-8</td>
+<td><strong>Anti-timing frequency</strong> — e.g. weekly full PoR +
+daily root anchoring + event-triggered updates; monthly-only snapshots
+insufficient</td>
+</tr>
+<tr>
+<td>S2-9</td>
+<td><strong>Review independence</strong> — reviewer vs
+technology-provider conflicts disclosed</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Stage 2 equivalent statement:</strong></p>
+<blockquote>
+<p>Any user can low-barrier verify inclusion; any observer can verify
+the canonical root for the period; proof constraints reflect real
+business risk; the exchange cannot unilaterally rewrite anchored history
+or extend unproven windows.</p>
+</blockquote>
+<p><strong>Third-party archiving ≠ official Stage 2.</strong> Observer
+anchors prove “this third party saw these artifacts,” not
+exchange-operated canonical anchoring.</p>
+<h3 id="business-consistency-and-risk-flags">7.5 Business consistency
+and risk flags</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Risk theme</th>
+<th>Concern</th>
+<th>Typical flag</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Negative-net-worth dummy users</td>
+<td>Inflated solvency</td>
+<td>Stage 2 constraints</td>
+</tr>
+<tr>
+<td>Lending/margin outside proof</td>
+<td>Scope &lt; real risk</td>
+<td><code>scope.exclusions</code></td>
+</tr>
+<tr>
+<td>Earn vs spot conflation</td>
+<td>User confusion</td>
+<td>Ch. 1, 8 linkage</td>
+</tr>
+<tr>
+<td>Login wall / sample-only</td>
+<td>Apparent PoR, Stage 0</td>
+<td><code>LOGIN_WALL</code>, <code>SAMPLE_ONLY</code></td>
+</tr>
+<tr>
+<td>No ownership / opaque setup</td>
+<td>Reserve side untrusted</td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+</tr>
+<tr>
+<td>Server-only hosting</td>
+<td>History rewrite</td>
+<td><code>NO_CANONICAL_ANCHOR</code></td>
+</tr>
+<tr>
+<td>Monthly-only snapshots</td>
+<td>Timing window</td>
+<td>Stage 2 frequency</td>
+</tr>
+</tbody>
+</table>
+<h3 id="gap-discipline-and-confidence">7.6 Gap discipline and
+confidence</h3>
+<ul>
+<li><strong><code>UNVERIFIABLE</code> ≠ PASS</strong></li>
+<li>Ratings bind to a <strong>specific snapshot ID</strong></li>
+<li><strong>Floor rules:</strong> weakest link caps Stage or lowers
+confidence</li>
+<li>Single-user inclusion PASS ≠ exchange-wide solvency PASS</li>
+</ul>
+<hr />
+<h2
+id="chapter-8-minimum-effective-por-policy-actionable-clauses">Chapter 8
+— Minimum Effective PoR Policy (Actionable Clauses)</h2>
+<h3 id="layer-1-disclosure-track">8.1 Layer 1 (disclosure track)</h3>
+<ul>
+<li><strong>Stage 1</strong> is the minimum for licensing, institutional
+counterparty lists, and public registry <strong>effective PoR</strong>
+claims.</li>
+<li><strong>Stage 0</strong> must be labeled as relying primarily on
+exchange narrative.</li>
+<li><strong>S1-5 permissionless download</strong> is a standalone
+checklist item for supervisors.</li>
+</ul>
+<h3 id="layer-2-admission-track">8.2 Layer 2 (admission track)</h3>
+<p>Stage ratings <strong>do not apply</strong>. Tools: licensing,
+warnings, domain/payment blocks, criminal enforcement. User education:
+<strong>no public artifact → treat as no custody guarantee</strong>
+(Chapter 11.5).</p>
+<h3 id="do-not-conflate">8.3 Do not conflate</h3>
+<ul>
+<li>JPEX-style fraud does not invalidate Stage framework for Layer
+1.</li>
+<li>Binance PoR marketing does not protect users from Layer 2
+scams.</li>
+</ul>
+<hr />
+<h1 id="part-iii-how-to-verify">Part III — How to Verify</h1>
+<h2 id="chapter-9-evidence-chain-and-independent-verification">Chapter 9
+— Evidence Chain and Independent Verification</h2>
+<h3 id="end-to-end-flow">9.1 End-to-end flow</h3>
+<pre><code>Exchange publishes artifacts
+  → Content-addressed capture (URL, fetch time, content hash)
+  → Independent verifier rerun (PASS / FAIL / WARN / UNVERIFIABLE)
+  → Artifact bundle root + verification bundle root
+  → Optional on-chain anchor (digest only, not bulk data)
+  → Public report + gap list bound to snapshot ID</code></pre>
+<p>Each public rating must answer: <strong>which snapshot</strong>,
+<strong>which artifacts</strong>, <strong>which verifier
+version</strong>, <strong>which gaps remain</strong>.</p>
+<h3 id="step-1-permissionless-artifact-fetch-s1-5-test">9.2 Step 1 —
+Permissionless artifact fetch (S1-5 test)</h3>
+<p>From a clean browser session <strong>with no exchange
+account</strong>:</p>
+<ol type="1">
+<li>Locate the exchange’s public PoR landing page or API index for the
+<strong>current snapshot ID</strong>.</li>
+<li>Attempt direct download of all core artifacts: <code>summary</code>,
+<code>wallet_address_list</code>, <code>wallet_ownership_proof</code>,
+<code>global_proof</code>, <code>vk/config</code>.</li>
+<li>Record HTTP status, file hashes, and fetch timestamp. Any
+registration, login, cookie gate, API key, ticket, or manual approval →
+<strong><code>LOGIN_WALL</code> floor</strong> (Stage 0 cap).</li>
+</ol>
+<h3 id="step-2-verifier-rerun">9.3 Step 2 — Verifier rerun</h3>
+<ol type="1">
+<li>Obtain the exchange’s <strong>open-source verifier</strong> or
+published algorithm spec (Appendix H.3).</li>
+<li>Run reserve-side checks: address list vs on-chain balances at
+declared block height; <code>wallet_ownership_proof</code> batch
+verification.</li>
+<li>Run liability-side checks: <code>global_proof</code> +
+<code>vk/config</code> locally; cross-bind <code>summary</code> ↔︎
+reserve aggregate ↔︎ liability root.</li>
+<li>If user <code>inclusion_proof</code> is tested, confirm it binds to
+the <strong>same</strong> public root—single-user PASS ≠ exchange-wide
+solvency PASS.</li>
+</ol>
+<h3 id="step-3-record-and-publish">9.4 Step 3 — Record and publish</h3>
+<p>Bind the assessment to:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Snapshot ID + snapshot time</td>
+<td>Scope boundary</td>
+</tr>
+<tr>
+<td>Artifact URLs + SHA-256 hashes</td>
+<td>Reproducibility</td>
+</tr>
+<tr>
+<td>Verifier name + version</td>
+<td>Method transparency</td>
+</tr>
+<tr>
+<td>Per-check verdicts</td>
+<td>PASS / FAIL / WARN / UNVERIFIABLE</td>
+</tr>
+<tr>
+<td>Floor flags + max Stage</td>
+<td>Weakest-link caps</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>medium / low when friction or partial RPC</td>
+</tr>
+</tbody>
+</table>
+<h3 id="worked-example-okx-stage-1-snapshot-506872725">9.5 Worked
+example — OKX Stage 1 snapshot <code>506872725</code></h3>
+<p>Illustrative sequence (mid-2026 public evaluation set):</p>
+<ol type="1">
+<li><strong>Anonymous fetch:</strong> Download <code>summary</code>,
+<code>wallet_address_list</code>, <code>wallet_ownership_proof</code>,
+<code>global_proof</code>, and <code>vk/config</code> from OKX public
+PoR endpoints without logging in.</li>
+<li><strong>Reserve side:</strong> Verify address signatures in
+<code>wallet_ownership_proof</code>; reconcile listed addresses to
+on-chain balances at the declared snapshot boundary (expect some
+<code>WARN</code>/<code>UNVERIFIABLE</code> on exotic chains or omnibus
+labels).</li>
+<li><strong>Liability side:</strong> Run the OKX open-source global ZK
+verifier (<code>github.com/okx/proof-of-reserves-v2</code>) against the
+public bundle; confirm <code>summary</code> Merkle root matches
+<code>global_proof</code> commitment.</li>
+<li><strong>Stage call:</strong> All S1-1–S1-10 hard thresholds met →
+<strong>Stage 1</strong> / effective PoR <strong>Yes</strong>, with
+confidence <strong>medium</strong> (no official canonical on-chain
+anchor, monthly cadence vs Stage 2 frequency, business-constraint
+gaps).</li>
+<li><strong>What this does not prove:</strong> No freeze immunity, no
+hack protection, no coverage of earn/margin outside documented proof
+boundary.</li>
+</ol>
+<h3 id="boundaries">9.6 Boundaries</h3>
+<ol type="1">
+<li>Third-party archive anchors prove <strong>“this observer saw these
+artifacts”</strong>—not official Stage 2.</li>
+<li>Ratings are <strong>evidence records</strong> bound to artifacts,
+hashes, and verifier output.</li>
+<li>Coverage gaps (e.g. partial on-chain RPC failures)
+<strong>≠</strong> proof of insolvency.</li>
+</ol>
+<h3 id="independent-registry-role-ardmere">9.7 Independent registry role
+(ardmere)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Function</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Transparency registry</td>
+<td>Reproducible verifier toolchain and public Stage records</td>
+</tr>
+<tr>
+<td>Evidence binding</td>
+<td>Each record links artifacts, content hashes, and verifier
+output</td>
+</tr>
+<tr>
+<td>Policy use</td>
+<td>Reference index for regulators, institutions, and independent
+reviewers</td>
+</tr>
+</tbody>
+</table>
+<p>ardmere does not hold user funds, issue licenses, or perform
+financial statement audits. Empirical exchange assessments for the
+public evaluation set are in <a
+href="#chapter-10-assessed-exchanges-public-evaluation-set">Chapter
+10</a>.</p>
+<hr />
+<h1 id="part-iv-industry-state-and-path-forward">Part IV — Industry
+State and Path Forward</h1>
+<h2 id="chapter-10-assessed-exchanges-public-evaluation-set">Chapter 10
+— Assessed Exchanges (Public Evaluation Set)</h2>
+<h3 id="scope">10.1 Scope</h3>
+<p>This chapter covers exchanges in the <strong>ardmere public
+evaluation set</strong>—venues with published transparency assessments
+and machine-readable evaluation records
+(<code>exchange-assessment@1</code> schema). It is <strong>not</strong>
+an industry-wide ranking: Kraken, Coinbase, and others are out of scope
+unless separately assessed.</p>
+<p><strong>Exclusion from scoreboard:</strong> JPEX, 2139, CoinUp (Layer
+2 or Type E)—discussed in Chapter 3, not ranked alongside Layer 1.</p>
+<p><strong>Forward-looking note:</strong> Stages bind to
+<strong>specific snapshot IDs and assessment dates</strong>. A Stage
+label does not predict future snapshots, operational safety, or
+solvency.</p>
+<h3 id="summary-table-mid-2026">10.2 Summary table (mid-2026)</h3>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr>
+<th>Exchange</th>
+<th>Snapshot</th>
+<th>Assessed</th>
+<th>Stage</th>
+<th>Gen / E</th>
+<th>Effective PoR</th>
+<th>Headline gaps</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>OKX</strong></td>
+<td><code>508399035</code></td>
+<td>2026-06-18</td>
+<td><strong>Stage 1</strong></td>
+<td>Gen 2 / E2</td>
+<td>Yes</td>
+<td>No canonical anchor; monthly cadence; business-constraint gaps vs
+Stage 2</td>
+</tr>
+<tr>
+<td><strong>Binance</strong></td>
+<td><code>PR01JUN26</code></td>
+<td>2026-06-01</td>
+<td>Stage 0</td>
+<td>Gen 2 / E2</td>
+<td>No</td>
+<td>No public <code>wallet_ownership_proof</code>,
+<code>global_proof</code>/vk; opaque trusted setup</td>
+</tr>
+<tr>
+<td><strong>Bybit</strong></td>
+<td><code>2025061709</code></td>
+<td>2025-06-17</td>
+<td>Stage 0</td>
+<td>Gen 1 / E1</td>
+<td>No</td>
+<td>Inclusion path only; no public wallet list or global proof</td>
+</tr>
+<tr>
+<td><strong>Bitget</strong></td>
+<td><code>202605</code></td>
+<td>2026-05-27</td>
+<td>Stage 0</td>
+<td>Gen 1 / E1</td>
+<td>No</td>
+<td>Weak 64-bit Merkle; no wallet list / global proof</td>
+</tr>
+<tr>
+<td><strong>Gate.io</strong></td>
+<td><code>20260316</code></td>
+<td>2026-03-16</td>
+<td>Stage 0</td>
+<td>Gen 1 / E1</td>
+<td>No</td>
+<td>Summary public; zk bundle login-gated; no wallet list</td>
+</tr>
+<tr>
+<td><strong>HTX</strong></td>
+<td><code>20230910</code></td>
+<td>2023-09-10</td>
+<td>Stage 0</td>
+<td>Gen 1 / E1</td>
+<td>No</td>
+<td>2023 sample zk only; no current production public bundle</td>
+</tr>
+</tbody>
+</table>
+<h3 id="okx-stage-1-reference-506872725">10.3 OKX — Stage 1 reference
+(<code>506872725</code>)</h3>
+<ul>
+<li><strong>Passes:</strong> Public <code>wallet_address_list</code>,
+<code>wallet_ownership_proof</code>, <code>global_proof</code>,
+<code>vk/config</code>; S1-5 permissionless download; global ZK binding
+reproducible with open-source verifier.</li>
+<li><strong>Blocks Stage 2:</strong> <code>NO_CANONICAL_ANCHOR</code>,
+<code>HIGH_FRICTION_INCLUSION_PROOF</code>,
+<code>BUSINESS_CONSTRAINT_GAP</code>,
+<code>HIGH_FREQUENCY_GAP</code>.</li>
+<li><strong>Policy read:</strong> Current best public reference for
+<strong>minimum effective PoR</strong> among assessed majors—not a
+safety seal.</li>
+</ul>
+<h3 id="binance-pr01jun26">10.4 Binance (<code>PR01JUN26</code>)</h3>
+<ul>
+<li><strong>Partial S1-5 (Jun 2026):</strong> <code>summary</code> and
+<code>wallet_address_list</code> permissionlessly downloadable via
+public BAPI; <strong><code>wallet_ownership_proof</code>,
+<code>global_proof</code>, and <code>vk/config</code> are not</strong> →
+fails S1-5, remains Stage 0.</li>
+<li><strong>Flags:</strong> <code>NO_WALLET_OWNERSHIP_PROOF</code>,
+<code>OPAQUE_TRUSTED_SETUP</code>, <code>UNVERIFIABLE</code> on global
+ZK stack.</li>
+<li><strong>Upgrade P0:</strong> Publish ownership proof +
+permissionless global proof/vk + trusted-setup transcript (Chapter
+11.3).</li>
+</ul>
+<h3 id="bybit-2025061709">10.5 Bybit (<code>2025061709</code>)</h3>
+<ul>
+<li><strong>Available:</strong> Summary-style reserve ratio; user Merkle
+inclusion replayable on supplied test vector
+(<code>github.com/bybit-exchange/merkle-proof</code>).</li>
+<li><strong>Missing:</strong> Public <code>wallet_address_list</code>,
+<code>wallet_ownership_proof</code>, <code>global_proof</code>.</li>
+<li><strong>Misread to avoid:</strong> “I verified my leaf” ≠
+exchange-wide solvency.</li>
+</ul>
+<h3 id="bitget-202605">10.6 Bitget (<code>202605</code>)</h3>
+<ul>
+<li><strong>Available:</strong> Summary + optional user inclusion under
+Gen 1 Merkle scheme.</li>
+<li><strong>Defect:</strong> 64-bit truncated SHA-256 in public verifier
+weakens collision resistance.</li>
+<li><strong>Missing:</strong> Public wallet list, ownership proof,
+global proof.</li>
+</ul>
+<h3 id="gate.io-20260316">10.7 Gate.io (<code>20260316</code>)</h3>
+<ul>
+<li><strong>Available:</strong> Public reserve-ratio summary.</li>
+<li><strong>Blocked:</strong> ZK bundle behind login; no public
+<code>wallet_address_list</code> or <code>wallet_ownership_proof</code>
+→ <code>LOGIN_WALL</code> / <code>NO_GLOBAL_PROOF</code> class
+gaps.</li>
+</ul>
+<h3 id="htx-20230910">10.8 HTX (<code>20230910</code>)</h3>
+<ul>
+<li><strong>Stale sample:</strong> 2023 zk sample verifiable in
+isolation; <strong>no current production public bundle</strong> in the
+evaluation pipeline.</li>
+<li><strong>Missing:</strong> Contemporary
+<code>wallet_address_list</code>, ownership proof, and permissionless
+global proof for ongoing operations.</li>
+</ul>
+<p>Official upstream verifier repositories are listed in <a
+href="#h3-exchange-technical-specifications-single-venue-not-industry-policy">Appendix
+H.3</a>.</p>
+<hr />
+<h2 id="chapter-11-roadmap-and-policy-recommendations">Chapter 11 —
+Roadmap and Policy Recommendations</h2>
+<h3 id="three-parallel-roadmaps">11.0 Three parallel roadmaps</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Track</th>
+<th>Horizon</th>
+<th>Goal</th>
+<th>Observable success</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Industry disclosure</strong></td>
+<td>12–24 mo</td>
+<td>Headline CEXs: Stage 0 marketing → reproducible Stage 1</td>
+<td>Permissionless artifacts; fewer <code>LOGIN_WALL</code> flags</td>
+</tr>
+<tr>
+<td><strong>Regulation &amp; admission</strong></td>
+<td>24–36 mo</td>
+<td>Disclosure + enforcement together</td>
+<td>Stage 1 in VATP-style rules; warning lists operational</td>
+</tr>
+<tr>
+<td><strong>User behavior</strong></td>
+<td>Ongoing</td>
+<td>“Can trade” ≠ “custody safe”</td>
+<td>Pre-deposit checklist adoption; large balances self-custodied or
+Stage 1+</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>PoR does not eliminate CeFi risk, but it can turn “we can’t tell”
+into a <strong>gap list</strong>. Policy and user education should stop
+Stage 0 slogans on Layer 1 while helping users spot Layer 2 with
+<strong>no artifacts</strong>.</p>
+</blockquote>
+<h3 id="regulators-dual-track-phased-agenda">11.1 Regulators: dual-track
++ phased agenda</h3>
+<p><strong>Disclosure track (Layer 1):</strong> Stage 1 floor in license
+conditions; label Stage 0; require permissionless artifacts (S1-5); bind
+review type to artifact scope.</p>
+<p><strong>Admission track (Layer 2):</strong> Licensing, investor
+alerts, domain blocks, cross-border cooperation—<strong>Stage framework
+does not rate fraud platforms.</strong></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Timing</th>
+<th>Disclosure track</th>
+<th>Admission track</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>P0</strong></td>
+<td>0–12 mo</td>
+<td>Mandate artifact index + URLs; ban “audited reserves” without
+artifacts</td>
+<td>National warning portals; rapid alerts after major fraud</td>
+</tr>
+<tr>
+<td><strong>P1</strong></td>
+<td>12–24 mo</td>
+<td>Codify Stage 1 minimum; dual-track audit/PoR disclosure</td>
+<td>Clarify unlicensed custody/collecting criminal/civil liability</td>
+</tr>
+<tr>
+<td><strong>P2</strong></td>
+<td>24–36 mo</td>
+<td>Pilot Stage 2 elements (anchoring, frequency, business
+constraints)</td>
+<td>Cross-border warning sharing; ad/app store admission rules</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Avoid:</strong> PoR page without effective PoR definition;
+financial audit alone for crypto custody; dismissing PoR because of
+JPEX; PoR without liability side.</p>
+<h3 id="institutional-allocators-and-brokers">11.2 Institutional
+allocators and brokers</h3>
+<p><strong>Counterparty tiers:</strong><br />
+- <strong>Tier A:</strong> Stage 1+, reproducible artifacts, bounded
+gaps<br />
+- <strong>Tier B:</strong> Stage 0 / material <code>UNVERIFIABLE</code>
+— limits, shorter review cycle<br />
+- <strong>Tier C:</strong> No artifacts or Layer 2 signals — zero
+tolerance</p>
+<p><strong>Due diligence minimum:</strong> download current artifacts;
+verify S1-5; never equate inclusion with exchange-wide solvency; file
+PoR Stage beside license and financial audit.</p>
+<h3 id="exchanges-layer-1-upgrade-path">11.3 Exchanges (Layer 1 upgrade
+path)</h3>
+<p><strong>P0:</strong> <code>wallet_ownership_proof</code>,
+permissionless <code>global_proof</code> + vk, trusted-setup
+transparency.<br />
+<strong>P1:</strong> proof boundary docs; machine-readable review
+artifacts.<br />
+<strong>P2:</strong> historical archives; crisis communication
+discipline (no “maintenance” masking liquidity).</p>
+<p>Align each exchange’s open-source verifier repositories (see Appendix
+H) with <strong>production</strong> proof versions.</p>
+<h3 id="media-and-independent-reviewers">11.4 Media and independent
+reviewers</h3>
+<p><strong>Five questions before publishing:</strong> Layer 1 or 2? Ever
+had reproducible artifacts? Financial or PoR audit? Inclusion or global
+solvency? Does timeline since FTX support “industry safe”?</p>
+<h3 id="retail-users-and-self-custody-participants">11.5 Retail users
+and self-custody participants</h3>
+<blockquote>
+<p>On an exchange you hold an <strong>IOU</strong>, not keys. PoR helps
+outsiders check <strong>before</strong> a crisis whether owed balances
+were backed—it does <strong>not</strong> guarantee no freeze, hack, or
+bankruptcy. Goal: avoid fake platforms, limit exposure on real ones,
+know when to withdraw.</p>
+</blockquote>
+<h4 id="three-checks-before-depositing">Three checks before
+depositing</h4>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Step</th>
+<th>Ask yourself</th>
+<th>Pass</th>
+<th>Fail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>① Real exchange?</strong></td>
+<td>License or clear regulator registration? Recent warnings?</td>
+<td>Traceable license</td>
+<td>Treat as Layer 2—no large deposits</td>
+</tr>
+<tr>
+<td><strong>② Fetchable evidence?</strong></td>
+<td>Can you download reserve materials <strong>without
+registering</strong>?</td>
+<td>Public URLs or independent report lists artifacts</td>
+<td>Convenience account only—no large balances</td>
+</tr>
+<tr>
+<td><strong>③ Marketing red flags?</strong></td>
+<td>Guaranteed returns, “100% safe,” pressure to recruit?</td>
+<td>None</td>
+<td>Ponzi / scam pattern</td>
+</tr>
+</tbody>
+</table>
+<h4 id="by-amount-and-horizon">By amount and horizon</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small, short-term trading</td>
+<td>Licensed CEX after three checks; limit size</td>
+</tr>
+<tr>
+<td>Large or long-term hold</td>
+<td>Prefer <strong>self-custody</strong>; if CEX required, prefer
+<strong>Stage 1</strong> with few gaps</td>
+</tr>
+<tr>
+<td>Earn / leverage products</td>
+<td>Ask if PoR <strong>covers</strong> that account type—often
+spot-only</td>
+</tr>
+<tr>
+<td>Derivatives-only venues</td>
+<td>PoR usually addresses spot custody, not contract margin stack</td>
+</tr>
+</tbody>
+</table>
+<h4 id="warning-signals-while-deposited">Warning signals while
+deposited</h4>
+<p>Slow withdrawals, sudden KYC escalation, hack/restructuring news, PoR
+publications stopping, rumor cycles without public artifacts (CoinUp
+pattern)—<strong>reduce exposure</strong>; do not average down on faith
+alone.</p>
+<h4 id="if-something-goes-wrong">If something goes wrong</h4>
+<p>Screenshot balances and announcements; file complaints with
+regulators where applicable; beware <strong>recovery scams</strong>
+demanding fees to “unfreeze”; understand bankruptcy may treat you as a
+<strong>creditor</strong>, not asset owner.</p>
+<h4 id="do-not-assume">Do not assume</h4>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Myth</th>
+<th>Reality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PoR = cannot exit scam</td>
+<td>AAX, WazirX still hurt users</td>
+</tr>
+<tr>
+<td>I verified my leaf = exchange solvent</td>
+<td>Inclusion ≠ global proof (Bybit class)</td>
+</tr>
+<tr>
+<td>Big exchange = Stage 1</td>
+<td>Binance assessed Stage 0 on public pipeline</td>
+</tr>
+<tr>
+<td>Audit report = my coins safe</td>
+<td>Financial audit ≠ effective PoR</td>
+</tr>
+<tr>
+<td>“Withdrawals normal” = proof</td>
+<td>Without artifacts, you cannot verify (CoinUp)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Advanced users:</strong> read transparency reports for
+<code>UNVERIFIABLE</code> rows; use inclusion tools only with root
+binding to public summary; see community guides (Appendix H).</p>
+<h3 id="industry-technology-roadmap-1236-months">11.6 Industry
+technology roadmap (12–36 months)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Horizon</th>
+<th>Target</th>
+<th>Blocker</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0–12 mo</td>
+<td>Permissionless Stage 1 artifacts at majors</td>
+<td>Login walls, missing ownership</td>
+</tr>
+<tr>
+<td>12–24 mo</td>
+<td>Business-consistent proof pilots</td>
+<td>Circuit complexity</td>
+</tr>
+<tr>
+<td>24–36 mo</td>
+<td>Stage 2: anchoring, DA, frequency</td>
+<td>No full industry reference yet</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jurisdiction-notes-non-exhaustive">11.7 Jurisdiction notes
+(non-exhaustive)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Region</th>
+<th>PoR-relevant point</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Hong Kong SFC VATP</strong></td>
+<td>Client asset trust rules; <strong>PoR alone may not show full
+liabilities</strong>—dual-track with audit</td>
+</tr>
+<tr>
+<td><strong>EU MiCA</strong></td>
+<td>CASP custody obligations</td>
+</tr>
+<tr>
+<td><strong>US</strong></td>
+<td>Federal/state patchwork; entity scope matters</td>
+</tr>
+<tr>
+<td><strong>Emerging markets</strong></td>
+<td>Layer 2 fraud prevalence—admission + user §11.5 first</td>
+</tr>
+</tbody>
+</table>
+<p>See Appendix H.6 for IOSCO, SFC, MiCA pointers.</p>
+<h3 id="priority-matrix">11.8 Priority matrix</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Action</th>
+<th>Lead</th>
+<th>Verify by</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stage 1 in regulation</td>
+<td>Regulators</td>
+<td>Artifact compliance rate</td>
+</tr>
+<tr>
+<td>Permissionless global proof</td>
+<td>Exchanges</td>
+<td>Anonymous download tests</td>
+</tr>
+<tr>
+<td>Warning lists</td>
+<td>Enforcement</td>
+<td>Post-alert onboarding drop</td>
+</tr>
+<tr>
+<td>PoR due diligence</td>
+<td>Institutions</td>
+<td>Counterparty files with Stage + hash</td>
+</tr>
+<tr>
+<td>Three-step user checks</td>
+<td>Education</td>
+<td>Fraud complaint patterns</td>
+</tr>
+<tr>
+<td>Independent registry</td>
+<td>Third parties (e.g. ardmere)</td>
+<td>Public <code>UNVERIFIABLE</code> discipline</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Closing:</strong> Effective PoR <strong>constrains disclosure
+and aids recognition</strong>—not a CeFi safety cure. Regulators,
+exchanges, institutions, and users must act on <strong>four lines in
+parallel</strong>.</p>
+<hr />
+<h1 id="appendices">Appendices</h1>
+<h2 id="appendix-a-stage-1-practical-checklist">Appendix A — Stage 1
+Practical Checklist</h2>
+<p>The Stage 1 requirements S1-1 through S1-10 are defined in Chapter
+7.3. Use this appendix as a field checklist when assessing a
+snapshot.</p>
+<p><strong>S1-5 quick test:</strong> from a clean browser session with
+no exchange account, attempt direct download of all core artifacts for
+the current snapshot. Any registration/API gate → <strong>Stage 0
+cap</strong>.</p>
+<h2 id="appendix-b-machine-readable-rules">Appendix B — Machine-Readable
+Rules</h2>
+<p>Stage thresholds, evidence levels, and risk flags are expressed as
+structured rules for automation. Independent reviewers should encode the
+same logic when building assessment pipelines.</p>
+<h3 id="b.1-stage-requirement-ids">B.1 Stage requirement IDs</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Stage</th>
+<th>IDs</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Stage 0</td>
+<td>S0-1 … S0-5</td>
+<td>Minimum ongoing PoR + snapshot boundary + summary or inclusion +
+reproducible inclusion rules + open verifier/spec</td>
+</tr>
+<tr>
+<td>Stage 1</td>
+<td>S1-1 … S1-10</td>
+<td>All Stage 0 + public bilateral artifacts + S1-5 permissionless
+download + review + cross-binding + proof boundary</td>
+</tr>
+<tr>
+<td>Stage 2</td>
+<td>S2-1 … S2-9</td>
+<td>All Stage 1 + business constraints + anchoring + DA + low-friction
+inclusion + frequency + review independence</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b.2-floor-flags-weakest-link-caps">B.2 Floor flags (weakest-link
+caps)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Flag</th>
+<th>Typical stage cap</th>
+<th>Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LOGIN_WALL</code></td>
+<td>Stage 0</td>
+<td>Core artifacts require login, API key, or manual approval</td>
+</tr>
+<tr>
+<td><code>SAMPLE_ONLY</code></td>
+<td>Stage 0</td>
+<td>Only sample proof public; production bundle unavailable</td>
+</tr>
+<tr>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+<td>Stage 0</td>
+<td>No batch-verifiable address control proof</td>
+</tr>
+<tr>
+<td><code>NO_CANONICAL_ANCHOR</code></td>
+<td>Stage 1 (blocks Stage 2)</td>
+<td>Server-only hosting; no official on-chain/DA anchor</td>
+</tr>
+<tr>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+<td>Stage 0</td>
+<td>No public MPC transcript or transparent setup</td>
+</tr>
+<tr>
+<td><code>BUSINESS_CONSTRAINT_GAP</code></td>
+<td>Stage 1 (blocks Stage 2)</td>
+<td>Proof does not cover lending/margin/collateral risks</td>
+</tr>
+<tr>
+<td><code>HIGH_FREQUENCY_GAP</code></td>
+<td>Stage 1 (blocks Stage 2)</td>
+<td>Monthly-only snapshots without daily anchoring</td>
+</tr>
+<tr>
+<td><code>HIGH_FRICTION_INCLUSION_PROOF</code></td>
+<td>Stage 1 (blocks Stage 2)</td>
+<td>Inclusion requires CLI-heavy flow</td>
+</tr>
+<tr>
+<td><code>UNVERIFIABLE</code></td>
+<td>confidence ↓ / stage block</td>
+<td>Required evidence missing—not PASS</td>
+</tr>
+</tbody>
+</table>
+<h3 id="b.3-verdict-and-schema">B.3 Verdict and schema</h3>
+<ul>
+<li><strong>Verdicts:</strong> <code>PASS</code>, <code>FAIL</code>,
+<code>WARN</code>, <code>UNVERIFIABLE</code> (see Chapter 6.2).</li>
+<li><strong>Public evaluation records</strong> use schema
+<code>ardmere/exchange-assessment@1</code>: snapshot metadata,
+<code>porStage</code>, <code>gen</code>, <code>evidenceLevel</code>,
+<code>effectivePoR</code>, <code>stageBlockedReasons</code>,
+<code>riskFlags</code>, and per-check verifier output.</li>
+</ul>
+<h2 id="appendix-c-artifact-vocabulary">Appendix C — Artifact
+Vocabulary</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summary</code> / <code>bapiSnapshot</code></td>
+<td>Reserve ratios, merkle root metadata, scope</td>
+</tr>
+<tr>
+<td><code>wallet_address_list</code></td>
+<td>Reserve-side addresses and balances</td>
+</tr>
+<tr>
+<td><code>wallet_ownership_proof</code></td>
+<td>Control signatures or equivalent</td>
+</tr>
+<tr>
+<td><code>global_proof</code></td>
+<td>Liability-side zk/Merkle bundle</td>
+</tr>
+<tr>
+<td><code>vk/config</code></td>
+<td>Verifier parameters</td>
+</tr>
+<tr>
+<td><code>user_inclusion_proof</code></td>
+<td>Per-user path (supplement, not substitute for global)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="appendix-d-review-taxonomy">Appendix D — Review Taxonomy</h2>
+<p>See Chapter 5.6 for report types that must not be conflated
+(technical verification, AUP, limited assurance, reasonable assurance /
+financial audit).</p>
+<h2 id="appendix-e-major-case-index">Appendix E — Major Case Index</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Case</th>
+<th>Year</th>
+<th>Type</th>
+<th>Layer</th>
+<th>User recovery (as of drafting)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mt. Gox</td>
+<td>2014</td>
+<td>Long-term insolvency / hack</td>
+<td>1</td>
+<td>Partial repayments from 2024</td>
+</tr>
+<tr>
+<td>FTX</td>
+<td>2022.11</td>
+<td>Customer fund misuse</td>
+<td>1</td>
+<td>Bankruptcy distribution ongoing</td>
+</tr>
+<tr>
+<td>AAX</td>
+<td>2022–23</td>
+<td>Freeze / alleged misuse</td>
+<td>1</td>
+<td>Liquidation / criminal process</td>
+</tr>
+<tr>
+<td>JPEX</td>
+<td>2023</td>
+<td>Unlicensed fraud</td>
+<td>2</td>
+<td>Prosecution; limited recovery</td>
+</tr>
+<tr>
+<td>WazirX</td>
+<td>2024.7</td>
+<td>Hack + governance</td>
+<td>1</td>
+<td>Restructuring disputed</td>
+</tr>
+<tr>
+<td>2139 Exchange</td>
+<td>2024</td>
+<td>Ponzi fake platform</td>
+<td>2</td>
+<td>Minimal recovery</td>
+</tr>
+<tr>
+<td>CoinUp</td>
+<td>2026.06</td>
+<td>Unconfirmed exit / trust crisis</td>
+<td>weak 2 / 1</td>
+<td>Operating per official statements; unconfirmed shutdown</td>
+</tr>
+</tbody>
+</table>
+<p><em>Amounts per public regulatory and press sources; update as
+investigations conclude.</em></p>
+<h2 id="appendix-f-dual-layer-risk-diagram">Appendix F — Dual-Layer Risk
+Diagram</h2>
+<pre class="mermaid"><code>flowchart TB
+  subgraph L1[&quot;Layer 1 — Disclosure&quot;]
+    CEX[Licensed / semi-regulated CEX]
+    ST[Stage framework]
+    ART[Artifact replay + gap list]
+    CEX --&gt; ST --&gt; ART
+  end
+  subgraph L2[&quot;Layer 2 — Admission&quot;]
+    FAKE[Unlicensed fake exchanges]
+    ENF[Licensing + warnings + enforcement]
+    FAKE --&gt; ENF
+  end
+  USER[User sees word exchange] --&gt; L1
+  USER --&gt; L2</code></pre>
+<p><strong>Layer 1 (disclosure):</strong> PoR Stage separates effective
+from marketing disclosure; policy tools include Stage 1 floors, artifact
+replay, and explicit <code>UNVERIFIABLE</code> gaps.</p>
+<p><strong>Layer 2 (admission):</strong> Policy tool is licensing,
+warnings, blocks, and enforcement—not Stage ratings.</p>
+<p>Post-FTX PoR marketing primarily addressed Layer 1; many post-FTX
+victim platforms were Layer 2. See <a
+href="#33-cross-case-conclusions-dual-layer-risk-and-por-limits">Chapter
+3.3</a> and the <a href="#executive-summary">Executive Summary</a>
+dual-layer table.</p>
+<h2 id="appendix-g-public-evidence-archive">Appendix G — Public Evidence
+Archive</h2>
+<p>Each public assessment should bind:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exchange + snapshot ID</td>
+<td><code>okx</code> / <code>506872725</code></td>
+</tr>
+<tr>
+<td>Snapshot time (UTC)</td>
+<td><code>2026-05-06T16:00:00Z</code></td>
+</tr>
+<tr>
+<td>Artifact URLs</td>
+<td>Public PoR endpoint URLs at fetch time</td>
+</tr>
+<tr>
+<td>Content hashes</td>
+<td>SHA-256 per file + bundle root</td>
+</tr>
+<tr>
+<td>Verifier + version</td>
+<td>e.g. <code>global-zk-proof@okx-v2</code></td>
+</tr>
+<tr>
+<td>Per-check verdicts</td>
+<td><code>address-ownership: PASS</code>,
+<code>on-chain-btc: WARN</code></td>
+</tr>
+<tr>
+<td>Stage + confidence</td>
+<td><code>Stage 1</code>, <code>medium</code></td>
+</tr>
+<tr>
+<td>Risk flags</td>
+<td><code>NO_CANONICAL_ANCHOR</code>, …</td>
+</tr>
+<tr>
+<td>Optional anchor</td>
+<td>On-chain digest of bundle root (third-party or official)</td>
+</tr>
+</tbody>
+</table>
+<p>Historical records must remain addressable after exchanges change
+landing pages—archivers should store <strong>content-addressed
+copies</strong>, not rely on mutable URLs alone.</p>
+<h2 id="appendix-h-industry-references-and-positioning">Appendix H —
+Industry References and Positioning</h2>
+<p><strong>Positioning:</strong> Academic solvency papers, Vitalik’s
+2022 essay, Chamber PoR Practitioner’s Guide, exchange tech specs, and
+IOSCO custody guidance <strong>exist</strong>—but no widely adopted
+public policy whitepaper combines <strong>Effective PoR Stage floors,
+dual-track audit, dual-layer risk, and artifact-bound ratings</strong>
+as this document does.</p>
+<h3 id="h.1-academic-and-cryptographic-lineage">H.1 Academic and
+cryptographic lineage</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Work</th>
+<th>Link</th>
+<th>Relevance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Provisions (2015)</td>
+<td>https://eprint.iacr.org/2015/1008.pdf</td>
+<td>Early privacy-preserving proof of solvency</td>
+</tr>
+<tr>
+<td>Summa</td>
+<td>https://summa.gitbook.io/summa/</td>
+<td>Merkle sum trees</td>
+</tr>
+<tr>
+<td>IZPR (2023)</td>
+<td>https://eprint.iacr.org/2023/1156.pdf</td>
+<td>Incremental ZK proof of reserve</td>
+</tr>
+<tr>
+<td>Xiezhi (2024)</td>
+<td>https://eprint.iacr.org/2024/2001.pdf</td>
+<td>Succinct end-to-end ZK proof of solvency</td>
+</tr>
+<tr>
+<td>LPOR (2026)</td>
+<td>https://arxiv.org/pdf/2606.08211</td>
+<td>Layered proof of reserve</td>
+</tr>
+</tbody>
+</table>
+<h3 id="h.2-industry-essays-and-guides">H.2 Industry essays and
+guides</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Work</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vitalik, “Having a safe CEX: proof of solvency and beyond”
+(2022)</td>
+<td>https://vitalik.eth.limo/general/2022/11/19/proof_of_solvency.html</td>
+</tr>
+<tr>
+<td>Chamber of Digital Commerce, <em>Proof of Reserves: The
+Practitioner’s Guide</em></td>
+<td>https://niccarter.info/wp-content/uploads/Proof-of-Reserves-.pdf</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="h.3-exchange-technical-specifications-single-venue-not-industry-policy">H.3
+Exchange technical specifications (single-venue; not industry
+policy)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Exchange</th>
+<th>Repository or spec</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OKX</td>
+<td>https://github.com/okx/proof-of-reserves ·
+https://github.com/okx/proof-of-reserves-v2</td>
+</tr>
+<tr>
+<td>Binance</td>
+<td>https://github.com/binance/zkmerkle-proof-of-solvency</td>
+</tr>
+<tr>
+<td>Gate.io</td>
+<td>https://github.com/gateio/proof-of-reserves</td>
+</tr>
+<tr>
+<td>Bybit</td>
+<td>https://github.com/bybit-exchange/merkle-proof</td>
+</tr>
+<tr>
+<td>Bitget</td>
+<td>https://github.com/BitgetLimited/proof-of-reserves</td>
+</tr>
+<tr>
+<td>HTX</td>
+<td>https://github.com/huobiapi/Tool-Go-MerkleVerify</td>
+</tr>
+</tbody>
+</table>
+<h3
+id="h.4-regulation-custody-and-client-assets-not-por-stage-frameworks">H.4
+Regulation (custody and client assets; not PoR Stage frameworks)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Source</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IOSCO crypto policy recommendations (2023)</td>
+<td>https://www.iosco.org/library/pubdocs/pdf/IOSCOPD747.pdf</td>
+</tr>
+<tr>
+<td>Hong Kong SFC VATP guidelines (Appendix B)</td>
+<td>https://www.sfc.hk/-/media/EN/assets/components/codes/files-current/web/guidelines/Guidelines-for-Virtual-Asset-Trading-Platform-Operators/Appendix-B–Guidelines-for-Virtual-Asset-Trading-Platform-Operators-Eng.pdf</td>
+</tr>
+</tbody>
+</table>
+<h3 id="h.5-l2beat-stages-philosophical-analogue-different-domain">H.5
+L2BEAT Stages (philosophical analogue, different domain)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Reference</th>
+<th>Link</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L2BEAT Stages</td>
+<td>https://l2beat.com/stages</td>
+<td>Rollup trust minimization—not CEX reserves</td>
+</tr>
+</tbody>
+</table>
+<h3 id="h.6-jurisdiction-and-policy-pointers-non-exhaustive">H.6
+Jurisdiction and policy pointers (non-exhaustive)</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Source</th>
+<th>Link</th>
+<th>PoR-relevant note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IOSCO crypto policy recommendations (2023)</td>
+<td>https://www.iosco.org/library/pubdocs/pdf/IOSCOPD747.pdf</td>
+<td>Custody, client-asset protection; no Effective PoR Stage
+framework</td>
+</tr>
+<tr>
+<td>Hong Kong SFC VATP guidelines (Appendix B)</td>
+<td>https://www.sfc.hk/-/media/EN/assets/components/codes/files-current/web/guidelines/Guidelines-for-Virtual-Asset-Trading-Platform-Operators/Appendix-B–Guidelines-for-Virtual-Asset-Trading-Platform-Operators-Eng.pdf</td>
+<td>Client asset trust rules; dual-track with audit</td>
+</tr>
+<tr>
+<td>EU MiCA (Regulation 2023/1114)</td>
+<td>https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32023R1114</td>
+<td>CASP custody and safeguarding obligations</td>
+</tr>
+<tr>
+<td>US regulatory landscape</td>
+<td>—</td>
+<td>Federal/state patchwork; entity and product scope determine custody
+rules</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>End of whitepaper draft.</em></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OKX 506872725 PoR Transparency Report | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="okx-506872725-por-transparency-report">OKX 506872725 PoR
+Transparency Report</h1>
+<blockquote>
+<p>Methodology: <a href="../../por-transparency-framework.html">PoR Stage
+Framework</a><br />
+Assessment JSON: <a
+href="./506872725-assessment.json">506872725-assessment.json</a></p>
+</blockquote>
+<h2 id="summary">1. Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exchange</td>
+<td><code>okx</code></td>
+</tr>
+<tr>
+<td>Snapshot</td>
+<td><code>506872725</code></td>
+</tr>
+<tr>
+<td>Snapshot time</td>
+<td><code>2026-05-06T16:00:00Z</code></td>
+</tr>
+<tr>
+<td>PoR Stage</td>
+<td><code>Stage 1 — Verifiable Disclosure</code></td>
+</tr>
+<tr>
+<td>Gen / Evidence</td>
+<td><code>Gen 2 / E2</code></td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>medium</code></td>
+</tr>
+<tr>
+<td>Effective PoR</td>
+<td><code>true</code></td>
+</tr>
+</tbody>
+</table>
+<p>OKX publishes public summary, wallet_address_list,
+wallet_ownership_proof, and global zk proof bundle for audit 506872725.
+ardmere verifies address ownership and global zk binding, so this
+snapshot reaches Stage 1.</p>
+<p>Stage 1 is supported by public wallet_address_list,
+wallet_ownership_proof, global_proof, and parameter/proof artifacts.
+Stage 2 is not reached because canonical official anchoring, stable DA,
+low-friction user inclusion proof, stronger publication frequency, and
+full business-consistent constraints are not established in this
+report.</p>
+<h2 id="stage-decision">2. Stage Decision</h2>
+<h3 id="stage-1-effective-por">Stage 1, Effective PoR</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Missing / Blocked Evidence</th>
+<th>Risk Flag</th>
+<th>Max Stage</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>—</td>
+<td><code>NO_CANONICAL_ANCHOR</code></td>
+<td>Stage 1</td>
+<td>No official exchange canonical on-chain/DA anchor established.</td>
+</tr>
+<tr>
+<td>—</td>
+<td><code>HIGH_FREQUENCY_GAP</code></td>
+<td>Stage 1</td>
+<td>Monthly cadence does not satisfy Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verifier-evidence">5. Verifier Evidence</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Version</th>
+<th>Verdict</th>
+<th>Coverage</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>artifact-integrity</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>solvency-claim</code></td>
+<td><code>1.0</code></td>
+<td><code>FAIL</code></td>
+<td><code>1.0000</code></td>
+<td>okx summary has no reserve currencies</td>
+</tr>
+<tr>
+<td><code>internal-consistency</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>address-ownership</code></td>
+<td><code>okx-1</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td>verified 320917/320917 address signatures</td>
+</tr>
+<tr>
+<td><code>onchain-balance-hot</code></td>
+<td><code>2.1</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>onchain-balance-token</code></td>
+<td><code>2.0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>onchain-balance-ledger</code></td>
+<td><code>1.2</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>global-zk-proof</code></td>
+<td><code>okx-1</code></td>
+<td><code>PARTIAL</code></td>
+<td><code>0.7500</code></td>
+<td>structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR for
+cryptographic verification</td>
+</tr>
+<tr>
+<td><code>btc-anchor</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>BTC block time anchor verifier not implemented</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr>
+<td><code>cross-chain-wrapped</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>Wrapped token reconciliation rules not finalized</td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">8. Boundary</h2>
+<p>This report evaluates public PoR artifacts and reproducibility. It
+does not evaluate the exchange’s overall financial health, corporate
+governance, internal controls, off-chain assets, legal compliance, or
+complete off-balance-sheet liabilities.</p>
+<p>Missing data must be marked as <code>UNVERIFIABLE</code>, not treated
+as <code>PASS</code>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

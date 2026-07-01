@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>“Audited” is not effective PoR | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html" aria-current="page">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="audited-is-not-effective-por">“Audited” is not effective
+PoR</h1>
+<blockquote>
+<p><strong>Type:</strong> Explainer · <strong>Published:</strong>
+2026-06-28 (UTC) · <strong>Author:</strong> ardmere editorial<br />
+← <a href="./index.html">Insights</a><br />
+<strong>Related records:</strong> <a
+href="../reports/binance/PR01JUN26-transparency-report.html">Binance
+PR01JUN26 report</a> · <a
+href="../reports/okx/506872725-transparency-report.html">OKX 506872725
+report</a> · <a
+href="../effective-por-standard.html#por-and-traditional-audit-answer-different-questions">Effective
+PoR Standard §1.3</a></p>
+</blockquote>
+<p><em>This is an Insights piece—interpretive, not an artifact-bound
+rating. For Stage conclusions, read the linked reports.</em></p>
+<hr />
+<p>After every major exchange stress event, the same phrases return in
+press releases and social posts: <strong>“financially audited,” “100%
+backed,” “ZK verified.”</strong> Institutional and retail readers often
+treat these as interchangeable guarantees of solvency. They are not.</p>
+<p>This note explains why <strong>traditional audit and effective PoR
+answer different questions</strong>, and how to read “audited” without
+conflating it with the <a href="../effective-por-standard.html">minimum
+effective standard</a> ardmere applies in public reports.</p>
+<hr />
+<h2 id="three-sentences-that-sound-alike">1. Three sentences that sound
+alike</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>What the exchange says</th>
+<th>What many readers hear</th>
+<th>What actually needs to be checked</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>“Audited by a Big Four firm”</td>
+<td>Customer assets are safe and fully reserved</td>
+<td>Which entity was audited, which period, and whether <strong>user
+custody liabilities</strong> were in scope</td>
+</tr>
+<tr>
+<td>“100% reserve ratio”</td>
+<td>Every user can withdraw today</td>
+<td><strong>Which liabilities</strong> are in the ratio, at
+<strong>which snapshot</strong>, with <strong>which artifacts</strong>
+publicly reproducible</td>
+</tr>
+<tr>
+<td>“ZK proof verified”</td>
+<td>The whole exchange is solvent on-chain</td>
+<td>Whether <code>wallet_address_list</code>,
+<code>wallet_ownership_proof</code>, and <code>global_proof</code> are
+<strong>public</strong> and bind to the same snapshot</td>
+</tr>
+</tbody>
+</table>
+<p>Confusion here is not academic. It drives licensing conversations,
+counterparty limits, and media narratives that lag behind what public
+artifacts actually show.</p>
+<hr />
+<h2 id="what-financial-audit-is-good-at">2. What financial audit is good
+at</h2>
+<p>Traditional audit and assurance work remain essential for
+<strong>company-level</strong> questions:</p>
+<ul>
+<li>Are consolidated financial statements fairly presented?</li>
+<li>Do internal controls over financial reporting exist and
+operate?</li>
+<li>Are off-chain bank balances, receivables, and related-party
+exposures addressed?</li>
+<li>Is going concern appropriately assessed?</li>
+</ul>
+<p>For a listed parent or holding company, these outputs matter—and
+regulators rightly expect them on a <strong>dual-track</strong> basis
+alongside custody transparency. See <a
+href="../ardmere-service-audience.html#why-por-is-required-for-digital-asset-exchanges">Why
+PoR is required</a> for the custody-specific case.</p>
+<hr />
+<h2 id="what-audit-typically-does-not-give-por-readers">3. What audit
+typically does <em>not</em> give PoR readers</h2>
+<p>PoR is built for a different failure mode: <strong>whether customer
+liabilities under a defined scope are backed by reserves the exchange
+controls, in a way third parties can reproduce without trusting
+marketing copy.</strong></p>
+<p>Audit procedures generally do <strong>not</strong> provide:</p>
+<ol type="1">
+<li><strong>User-level reproducibility</strong> — An audit opinion does
+not publish a Merkle or ZK path that any user or researcher can re-run
+against public roots.</li>
+<li><strong>Wallet control at snapshot</strong> — Confirming “cash and
+equivalents” on a balance sheet is not the same as batch-verifying
+<code>wallet_ownership_proof</code> for a published
+<code>wallet_address_list</code>.</li>
+<li><strong>Liability-side proof scope</strong> — Audit scope follows
+accounting standards; PoR scope must be <strong>explicitly
+stated</strong> (spot, margin, earn, off-balance-sheet exclusions).</li>
+<li><strong>Timeliness between periods</strong> — Quarterly or annual
+audit cycles do not close the gap between monthly—or daily—custody risk
+windows.</li>
+</ol>
+<p>An exchange can therefore present a <strong>clean audit
+narrative</strong> while remaining <strong><a
+href="../reports/exchange-comparison.html">Stage 0</a></strong> under a
+PoR framework: some artifacts exist, but independent third parties
+cannot reproduce the global asset–liability relationship.</p>
+<hr />
+<h2 id="a-concrete-contrast-from-the-public-report-set">4. A concrete
+contrast from the public report set</h2>
+<p>The first ardmere report set illustrates the boundary without naming
+malice—only <strong>evidence completeness</strong>.</p>
+<h3 id="binance-pr01jun26-stage-0">Binance (<code>PR01JUN26</code>) —
+Stage 0</h3>
+<p>Public reserve summary and <code>wallet_address_list</code> are
+available; ardmere reproduces several reserve-side checks. Stage 1
+remains blocked because <strong><code>wallet_ownership_proof</code> is
+missing</strong>, <strong>trusted setup evidence is opaque</strong>, and
+<strong><code>global_proof</code> / verifying keys are not publicly
+distributed</strong>.</p>
+<p>A reader who stops at “large exchange with sophisticated ZK
+marketing” misses the policy point: <strong>Gen 2 technology in press
+materials ≠ Stage 1 effective PoR.</strong></p>
+<p>Full record: <a
+href="../reports/binance/PR01JUN26-transparency-report.html">Binance
+transparency report</a>.</p>
+<h3 id="okx-506872725-stage-1">OKX (<code>506872725</code>) — Stage
+1</h3>
+<p>Public summary, <code>wallet_address_list</code>, batch-verifiable
+ownership proof, and public <code>global_proof</code> are obtainable
+without login walls. ardmere verifies address ownership and global zk
+binding—so this snapshot meets the <strong>minimum effective</strong>
+bar.</p>
+<p>Stage 1 is <strong>not</strong> Stage 2: canonical anchoring,
+low-friction user inclusion proof, and business-consistent constraints
+remain open gaps documented in the report.</p>
+<p>Full record: <a
+href="../reports/okx/506872725-transparency-report.html">OKX transparency
+report</a>.</p>
+<hr />
+<h2 id="how-to-read-audit-taxonomy-in-disclosures">5. How to read “audit
+taxonomy” in disclosures</h2>
+<p>When a third party is named, ask which bucket applies (<a
+href="../effective-por-standard.html#report-types-that-must-not-be-conflated">Standard
+§3</a>):</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Type</th>
+<th>Reasonable takeaway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Technical verification</strong></td>
+<td>Artifacts were run through agreed checks; read which artifacts</td>
+</tr>
+<tr>
+<td><strong>AUP / agreed-upon procedures</strong></td>
+<td>Steps were executed; usually <strong>no</strong> overall solvency
+opinion</td>
+</tr>
+<tr>
+<td><strong>Limited assurance</strong></td>
+<td>Limited scope on defined procedures</td>
+</tr>
+<tr>
+<td><strong>Reasonable assurance / financial audit</strong></td>
+<td>Company financials; <strong>may not cover</strong> PoR liability
+scope</td>
+</tr>
+</tbody>
+</table>
+<p>“Audited” without this taxonomy is not actionable for custody
+policy.</p>
+<hr />
+<h2 id="practical-checklist-for-regulators-and-allocators">6. Practical
+checklist for regulators and allocators</h2>
+<ol type="1">
+<li><strong>Separate tracks</strong> — Require financial audit
+<em>and</em> PoR Stage evidence; do not accept one as proxy for the
+other.</li>
+<li><strong>Demand artifact names</strong> —
+<code>wallet_address_list</code>, <code>wallet_ownership_proof</code>,
+<code>global_proof</code>, scope statement, snapshot time.</li>
+<li><strong>Treat Stage 0 as transitional</strong> — Not effective PoR
+for licensing or institutional custody minimums (<a
+href="../effective-por-standard.html#stage-thresholds-for-policy-use">Standard
+§2</a>).</li>
+<li><strong>Follow the registry record</strong> — Marketing upgrades;
+artifacts either exist or they do not. Missing items stay
+<code>UNVERIFIABLE</code>, not PASS.</li>
+</ol>
+<hr />
+<h2 id="bottom-line">7. Bottom line</h2>
+<p><strong>Audit answers “how did the company report its financial
+condition?”</strong><br />
+<strong>Effective PoR answers “can outsiders reproduce whether customer
+liabilities in scope are backed at this snapshot?”</strong></p>
+<p>Until those questions are split in public discourse, “audited” will
+keep doing more reputational work than evidentiary work. Insights pieces
+like this one are meant to sharpen that distinction; <strong>ratings
+stay in Reports.</strong></p>
+<hr />
+<p><em>Next in this series (planned): why user Merkle inclusion PASS is
+not exchange-wide solvency PASS—lessons from Merkle-only
+disclosures.</em></p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

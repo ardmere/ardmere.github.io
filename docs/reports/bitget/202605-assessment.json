@@ -1,0 +1,180 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x482e0a28d40c3f480c1296d4417f8b17ff7d4fca878bbf65641aea1c63d2a05a",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00",
+        "url": "https://www.bitget.com/proof-of-reserves"
+      },
+      {
+        "availability": "public",
+        "kind": "userMerkleProof",
+        "sha256": "87cbcf7dee34b834e379f1d3e5ace4248fe19ad728741e6c59eac2af9200a48f",
+        "url": "file://./fixtures/bitget/merkel_tree_bg.json"
+      }
+    ],
+    "verificationBundleRoot": "0xbc4a687ddb072109da10bc68ebf33bbd2059767dfa49d7407d90f799ca706dcf"
+  },
+  "confidence": "low",
+  "effectivePoR": false,
+  "evidenceLevel": "E1",
+  "exchange": "bitget",
+  "gen": "Gen 1",
+  "generatedAt": "2026-07-01T15:18:01Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No public wallet_address_list."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "000000000000000000000000000000000000000000000000ca89456bb711c913",
+    "id": "202605",
+    "periodSeq": 0,
+    "snapshotTime": "2026-05-27T10:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_public_wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "No public wallet_address_list.",
+      "riskFlag": "UNVERIFIABLE"
+    }
+  ],
+  "summary": {
+    "headline": "bitget snapshot 202605 remains Stage 0 in the ardmere public evaluation set.",
+    "rationale": "Public artifacts do not support independently reproducible global solvency verification for this snapshot.",
+    "scope": "bitget snapshot 202605"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00",
+        "87cbcf7dee34b834e379f1d3e5ace4248fe19ad728741e6c59eac2af9200a48f"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "87cbcf7dee34b834e379f1d3e5ace4248fe19ad728741e6c59eac2af9200a48f"
+      ],
+      "reason": "Bitget user Merkle path valid under weak 64-bit truncated-hash scheme; proves inclusion only for supplied account",
+      "verdict": "PASS",
+      "verifierId": "user-merkle-proof",
+      "version": "bitget-1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "No public wallet address CSV; cannot reconcile summary vs address aggregates",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "internal-consistency",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "Summary does not declare a BTC block height time anchor",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "No public HotCold wallet address list",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "No public wallet address list for ERC20/BEP20 audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "Bitget uses pure Merkle Tree with 64-bit truncated SHA-256 (no ZK)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "global-zk-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "No clearly identified independent third-party PoR attestation in machine-readable form",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "b17df25a7711b4e7c6c4186ad8fa4b36d3c89806f3fc9371b47d6030d806ed00"
+      ],
+      "reason": "Wrapped token reconciliation rules not finalized",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

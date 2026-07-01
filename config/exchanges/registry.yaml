@@ -1,0 +1,98 @@
+# Exchange upstream registry — canonical list of official PoR pages and GitHub repos.
+# Consumed by: por exchanges, data guides, assessment references, exchange-comparison.
+#
+# Role vocabulary:
+#   verifier_toolchain         — open-source verifier / circuit / CLI
+#   global_zk_verifier_spec    — global ZK proof spec + implementation
+#   address_ownership_verifier — wallet control signature verification
+#   user_merkle_verifier       — user inclusion Merkle path verification (Gen 1)
+#   sample_artifact_release    — sample period bundles on GitHub Releases only
+
+version: 1
+updated: "2026-07-01"
+
+exchanges:
+  - id: binance
+    name: Binance
+    porPage: https://www.binance.com/en/proof-of-reserves
+    dataGuide: docs/binance-por-data-guide.md
+    vcTier: 3
+    upstreamRepos:
+      - url: https://github.com/binance/zkmerkle-proof-of-solvency
+        role: verifier_toolchain
+        ardmereUse: global-zk-proof@0 (stub)
+        note: Releases ship verifier binaries only; per-period proof.csv and vk are not permissionlessly published.
+    integrationNotes: >-
+      Public BAPI summary and wallet_address ZIP are permissionless; wallet_ownership_proof
+      and global_proof/vk are missing from public channels (blocks Stage 1 / S1-5).
+
+  - id: okx
+    name: OKX
+    porPage: https://www.okx.com/proof-of-reserves
+    dataGuide: docs/okx-por-data-guide.md
+    vcTier: 2
+    upstreamRepos:
+      - url: https://github.com/okx/proof-of-reserves
+        role: address_ownership_verifier
+        ardmereUse: address-ownership@okx-1
+        note: Go module dependency; ETH address signature verification.
+      - url: https://github.com/okx/proof-of-reserves-v2
+        role: global_zk_verifier_spec
+        ardmereUse: global-zk-proof@okx-1
+        note: Plonky2 global zk; optional OKX_ZK_STARK_VALIDATOR binary from zk-por-cli.
+    integrationNotes: >-
+      Permissionless CDN artifacts for summary, wallet zip, and liability zip; Stage 1 reference in this set.
+
+  - id: gateio
+    name: Gate.io
+    porPage: https://www.gate.com/proof-of-reserves
+    dataGuide: docs/gate-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/gateio/proof-of-reserves
+        role: verifier_toolchain
+        ardmereUse: global-zk-proof@gateio-1 (planned)
+        note: zk-SNARK verifier CLI; production zk bundle is login-gated on gate.com.
+    integrationNotes: >-
+      Public aggregate API only; no public wallet_address_list; zk bundle from My Audit requires login.
+
+  - id: bybit
+    name: Bybit
+    porPage: https://www.bybit.com/en/proof-of-reserves
+    dataGuide: docs/bybit-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/bybit-exchange/merkle-proof
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@bybit-1
+        note: Java reference verifier; logic ported in internal/exchanges/bybit/merkle.
+    integrationNotes: >-
+      Summary is browser/WAF-gated; user Merkle proof is login-gated; no public wallet list or global ZK.
+
+  - id: bitget
+    name: Bitget
+    porPage: https://www.bitget.com/proof-of-reserves
+    dataGuide: docs/bitget-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/BitgetLimited/proof-of-reserves
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@bitget-1
+        note: Java verifier; 64-bit truncated SHA-256 Merkle scheme; repo stale since ~2023.
+    integrationNotes: >-
+      No public wallet_address_list or global proof; weak truncated-hash user inclusion only.
+
+  - id: htx
+    name: HTX
+    porPage: https://www.htx.com/zh-cn/finance/merkle/
+    dataGuide: docs/htx-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/huobiapi/Tool-Go-MerkleVerify
+        role: sample_artifact_release
+        ardmereUse: global-zk-proof@htx-1
+        note: >-
+          Release 2.0.0 public-data.zip (2023-09-10 sample) + zkverifier binary;
+          current production bundles are dashboard/login gated.
+    integrationNotes: >-
+      ardmere archives the 2023 sample zk bundle; no public wallet list or current-period permissionless global proof.

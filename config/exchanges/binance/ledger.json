@@ -1,0 +1,293 @@
+{
+  "entries": [
+    {
+      "coin": "BTC",
+      "network": "BTC",
+      "backend": "esplora",
+      "esploraBase": "https://blockstream.info/api",
+      "decimals": 8
+    },
+    {
+      "coin": "DOGE",
+      "network": "DOGE",
+      "backend": "blockcypher",
+      "blockcypher": "doge",
+      "decimals": 8,
+      "maxTxCount": 200000
+    },
+    {
+      "coin": "LTC",
+      "network": "LTC",
+      "backend": "esplora",
+      "esploraBase": "https://litecoinspace.org/api",
+      "blockcypher": "ltc",
+      "decimals": 8,
+      "maxTxCount": 100000
+    },
+    {
+      "coin": "BCH",
+      "network": "BCH",
+      "backend": "blockchair",
+      "blockchair": "bitcoin-cash",
+      "blockcypher": "bch",
+      "decimals": 8,
+      "maxTxCount": 100000
+    },
+    {
+      "coin": "ZEC",
+      "network": "ZEC",
+      "backend": "blockcypher",
+      "blockcypher": "zec",
+      "decimals": 8,
+      "maxTxCount": 50000
+    },
+    {
+      "coin": "XRP",
+      "network": "XRP",
+      "backend": "xrpl",
+      "decimals": 6
+    },
+    {
+      "coin": "NEAR",
+      "network": "NEAR",
+      "backend": "near",
+      "decimals": 24,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "APT",
+      "network": "APT",
+      "backend": "aptos",
+      "decimals": 8
+    },
+    {
+      "coin": "SUI",
+      "network": "SUI",
+      "backend": "sui",
+      "decimals": 9,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "HBAR",
+      "network": "HBAR",
+      "backend": "hbar",
+      "decimals": 8
+    },
+    {
+      "coin": "DOT",
+      "network": "STATEMINT",
+      "backend": "substrate",
+      "rpcUrl": "https://polkadot-asset-hub-rpc.polkadot.io",
+      "decimals": 10
+    },
+    {
+      "coin": "DOT",
+      "network": "DOT",
+      "backend": "substrate",
+      "rpcUrl": "https://rpc.polkadot.io",
+      "decimals": 10
+    },
+    {
+      "coin": "ENJ",
+      "network": "ENJ",
+      "backend": "substrate",
+      "rpcUrl": "https://rpc.matrix.enjin.io",
+      "decimals": 18
+    },
+    {
+      "coin": "USDC",
+      "network": "APT",
+      "backend": "aptos-fa",
+      "mint": "0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b",
+      "decimals": 6
+    },
+    {
+      "coin": "USDT",
+      "network": "APT",
+      "backend": "aptos-fa",
+      "mint": "0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b",
+      "decimals": 6
+    },
+    {
+      "coin": "USDC",
+      "network": "NEAR",
+      "backend": "near-ft",
+      "mint": "17208628f84f1196d1cc167060e4604",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "USDT",
+      "network": "NEAR",
+      "backend": "near-ft",
+      "mint": "usdt.tether-token.near",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "USDC",
+      "network": "SUI",
+      "backend": "sui-coin",
+      "mint": "0xdba34672e30cb065b1f93e3ab55318768fd6fec6391a5c7fd3858738188f5d5::usdc::USDC",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "FDUSD",
+      "network": "SUI",
+      "backend": "sui-coin",
+      "mint": "0x5d9b682395a248aeee3d7f8ed601c4e3069e0384a8d37a337f8f8ad9d2a3486::fdusd::FDUSD",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "USDC",
+      "network": "HBAR",
+      "backend": "hbar-hts",
+      "mint": "0.0.456858",
+      "decimals": 6
+    },
+    {
+      "coin": "USDT",
+      "network": "TON",
+      "backend": "ton-jetton",
+      "mint": "EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "SOL",
+      "network": "SOL",
+      "backend": "solana",
+      "decimals": 9
+    },
+    {
+      "coin": "USDC",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      "decimals": 6
+    },
+    {
+      "coin": "USDT",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "Es9vMFrzaCERmJfrF4H2FYD4KCoNkY11McCe8BenwNYB",
+      "decimals": 6
+    },
+    {
+      "coin": "USD1",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "USD1ttGY1N17NEEHLmELoaybftRBUSErhqYiQzvEmuB",
+      "decimals": 6
+    },
+    {
+      "coin": "BOME",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "ukHH6c7mMyiWCf1b9pnWe25TSpkDDt3H5pQZgZ74J82",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "WIF",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "EKpQGSJtjMFqKZ9KQanSqYXRcF8fBopzLHYxdM65zcjm",
+      "decimals": 6
+    },
+    {
+      "coin": "TRUMP",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "6p6xgHyF7AeE6TZkSmFsko444wqoP15icUSqi2jfGiPN",
+      "decimals": 6
+    },
+    {
+      "coin": "USDC",
+      "network": "ALGO",
+      "backend": "algo-asa",
+      "assetId": 31566704,
+      "decimals": 6
+    },
+    {
+      "coin": "CAKE",
+      "network": "APT",
+      "backend": "aptos-coin",
+      "mint": "0x159df6b7689437016108a019fd5bef736bac692b6d4a1f10c941f6fbb9a74ca6::oft::CakeOFT",
+      "decimals": 8
+    },
+    {
+      "coin": "FDUSD",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "9zNQRsGLjNKwCUU5Gq5LR8beUCPzQMVMqKAi3SSZh54u",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "WLFI",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "WLFinEv6ypjkczcS83FZqFpgFZYwQXutRbxGe7oC16g",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "HFT",
+      "network": "SOL",
+      "backend": "solana-spl",
+      "mint": "2XKqjpyFV8J6CeevKHcdwLsziJY4fBXJYSWgH7r26tjt",
+      "decimals": 6,
+      "liveSnapshot": true
+    },
+    {
+      "coin": "USDC",
+      "network": "STATEMINT",
+      "backend": "substrate-asset",
+      "rpcUrl": "https://polkadot-asset-hub-rpc.polkadot.io",
+      "assetId": 1337,
+      "decimals": 6
+    },
+    {
+      "coin": "USDT",
+      "network": "STATEMINT",
+      "backend": "substrate-asset",
+      "rpcUrl": "https://polkadot-asset-hub-rpc.polkadot.io",
+      "assetId": 1984,
+      "decimals": 6
+    },
+    {
+      "coin": "USDC",
+      "network": "XLM",
+      "backend": "stellar-asset",
+      "mint": "USDC",
+      "issuer": "GA5ZSEJYB37JRC5AVCIA5MOP4RHTM335X2KGX3IHOJAPP5RE34K4KZVN",
+      "decimals": 7
+    },
+    {
+      "coin": "CHR",
+      "network": "CHR",
+      "backend": "chromia",
+      "rpcUrl": "https://bootstrap1.chromia.com:7740",
+      "mint": "15C0CA99BEE60A3B23829968771C50E491BD00D2E3AE448580CD48A8D71E7BBA",
+      "decimals": 6
+    },
+    {
+      "coin": "RLUSD",
+      "network": "XRP",
+      "backend": "xrpl-issued",
+      "mint": "524C555344000000000000000000000000000000",
+      "issuer": "rMxCKbEDwqr76QuheSUMdEGf4B9xJ8m5De",
+      "decimals": 6
+    },
+    {
+      "coin": "USDT",
+      "network": "XTZ",
+      "backend": "tezos-fa",
+      "mint": "KT1XnTn74bUtxHfDtBmm2bGZAQfhPbvKWR8o",
+      "decimals": 6
+    }
+  ]
+}

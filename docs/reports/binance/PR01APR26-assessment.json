@@ -1,0 +1,193 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x6b1b79590493c6b8bd05385cc200a2469dd19ce44c18901e873ef2eb198689a3",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "bapiSnapshot",
+        "sha256": "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896",
+        "url": "https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot"
+      },
+      {
+        "availability": "public",
+        "kind": "walletZip",
+        "sha256": "8542f142e3e3dfbe24786c821738a8e434c1f36cf1567c067e0b5cba27e7196f",
+        "url": "https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20260401.zip"
+      }
+    ],
+    "verificationBundleRoot": "0x6793d7424877c7a4d02d06d44d3ad2eb8821191378eba681fafb8e0a0bf2e74d"
+  },
+  "confidence": "medium",
+  "effectivePoR": false,
+  "evidenceLevel": "E2",
+  "exchange": "binance",
+  "gen": "Gen 2",
+  "generatedAt": "2026-07-01T15:17:44Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "riskFlags": [
+    {
+      "id": "NO_WALLET_OWNERSHIP_PROOF",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No public batch-verifiable wallet_ownership_proof."
+    },
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Public global proof/vk not available."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 943129,
+    "exchangeMerkleRoot": "",
+    "id": "PR01APR26",
+    "periodSeq": 41,
+    "snapshotTime": "2026-01-04T00:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_wallet_ownership_proof",
+      "maxStage": "Stage 0",
+      "reason": "No public batch-verifiable wallet_ownership_proof.",
+      "riskFlag": "NO_WALLET_OWNERSHIP_PROOF"
+    },
+    {
+      "ruleId": "floor_login_wall_global_proof",
+      "maxStage": "Stage 0",
+      "reason": "Public global proof/vk not available.",
+      "riskFlag": "UNVERIFIABLE"
+    }
+  ],
+  "summary": {
+    "headline": "Binance snapshot PR01APR26 provides public reserve summary and wallet_address_list where available, but Stage 1 is blocked by missing wallet_ownership_proof, opaque trusted setup, and unavailable public global proof/vk artifacts.",
+    "rationale": "The available artifacts support Gen 2 / E2 classification and Stage 0 PoR disclosure. Users still need to trust Binance for wallet control, trusted setup honesty, and public availability of the full global proof stack.",
+    "scope": "binance snapshot PR01APR26"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896",
+        "8542f142e3e3dfbe24786c821738a8e434c1f36cf1567c067e0b5cba27e7196f"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896",
+        "8542f142e3e3dfbe24786c821738a8e434c1f36cf1567c067e0b5cba27e7196f"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "internal-consistency",
+      "version": "1.1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "BTC block time anchor verifier not implemented",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "1"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "summary has no coin rows",
+      "verdict": "FAIL",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "2.1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "2.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "1.4"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-deposit",
+      "version": "1.2"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "Global proof.csv / verifying key not publicly distributed",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "global-zk-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896"
+      ],
+      "reason": "Wrapped token reconciliation rules not finalized",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

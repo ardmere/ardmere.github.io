@@ -1,0 +1,35 @@
+{
+  "auditId": "202605",
+  "encryptUid": "user123",
+  "nonce": "nonce456",
+  "hash": "a52503bd6f0872a2",
+  "balances": {
+    "BTC": "1.234",
+    "ETH": "5.678",
+    "USDT": "10000",
+    "USDC": "5000"
+  },
+  "merkelPath": [
+    {
+      "position": "right",
+      "level": 1,
+      "hash": "8cd6c6ae84774f9a",
+      "balances": {
+        "BTC": "2",
+        "ETH": "3",
+        "USDT": "4000",
+        "USDC": "1000"
+      }
+    }
+  ],
+  "root": {
+    "level": 1,
+    "hash": "ca89456bb711c913",
+    "balances": {
+      "BTC": "3.234",
+      "ETH": "8.678",
+      "USDT": "14000",
+      "USDC": "6000"
+    }
+  }
+}

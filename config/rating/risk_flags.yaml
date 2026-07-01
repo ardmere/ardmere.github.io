@@ -1,0 +1,101 @@
+schema: ardmere/risk-flags@1
+source: docs/por-transparency-framework.md
+updated: 2026-06-27
+
+severity_order:
+  - info
+  - low
+  - medium
+  - high
+  - critical
+
+flags:
+  - id: UNVERIFIABLE
+    severity: high
+    stage_effect: confidence_downgrade_or_stage_block
+    default_wording: Required evidence is missing or cannot be independently verified.
+    recommended_action: Publish the missing artifact or mark the claim as out of scope.
+
+  - id: STAGE_BLOCKED
+    severity: high
+    stage_effect: max_stage_applies
+    default_wording: The exchange cannot advance to the next Stage because a hard requirement is missing.
+    recommended_action: Fix the missing hard requirement before using higher-stage language.
+
+  - id: SAMPLE_ONLY
+    severity: high
+    stage_effect: max_stage_0
+    default_wording: Only sample proof is available; current production proof is not publicly verifiable.
+    recommended_action: Publish the current production proof bundle and bind it to the snapshot summary.
+
+  - id: LOGIN_WALL
+    severity: high
+    stage_effect: max_stage_0_if_liability_side_not_public
+    default_wording: Critical proof artifacts require login, registration, cookie, API key, or manual request.
+    recommended_action: Make production artifacts downloadable without permission.
+
+  - id: BLACK_BOX_INCLUSION_PROOF
+    severity: high
+    stage_effect: max_stage_0
+    default_wording: User inclusion proof cannot be exported or independently replayed; verification is only a black-box UI claim.
+    recommended_action: Provide exportable proof, public rules, and a local/open verifier.
+
+  - id: HIGH_FRICTION_INCLUSION_PROOF
+    severity: medium
+    stage_effect: max_stage_1
+    default_wording: User inclusion proof is reproducible, but the verification flow is too complex for ordinary users.
+    recommended_action: Provide Web/WASM/GUI one-click verification, clear errors, proof export, and local replay.
+
+  - id: NO_WALLET_OWNERSHIP_PROOF
+    severity: high
+    stage_effect: max_stage_0
+    default_wording: wallet_ownership_proof is missing, so users must trust that the exchange controls the listed addresses.
+    recommended_action: Publish batch-verifiable address ownership signatures or equivalent control proofs.
+
+  - id: OPAQUE_TRUSTED_SETUP
+    severity: high
+    stage_effect: max_stage_0
+    default_wording: Trusted setup is opaque or has no verifiable transcript, reintroducing a trust assumption in the exchange.
+    recommended_action: Publish MPC transcript or use a transparent-setup proof system.
+
+  - id: NO_INDEPENDENT_REVIEW
+    severity: medium
+    stage_effect: max_stage_0
+    default_wording: No independent third-party review is available, or review type and scope are not stated.
+    recommended_action: Publish a scoped technical review, AUP, limited assurance report, or reasonable assurance report.
+
+  - id: NO_CANONICAL_ANCHOR
+    severity: medium
+    stage_effect: max_stage_1
+    default_wording: proof/root/vk is exchange-server hosted only, with no canonical anchor or independent archive.
+    recommended_action: Anchor root/proof/commitment on-chain or publish immutable DA/archive records.
+
+  - id: BUSINESS_CONSTRAINT_GAP
+    severity: high
+    stage_effect: max_stage_1
+    default_wording: Proof constraints do not cover actual exchange business risks such as lending, margin, collateral haircuts, or negative balances.
+    recommended_action: Publish proof constraints that cover the real business model or explicitly disclose exclusions.
+
+  - id: NEGATIVE_NET_WORTH_DUMMY_USER_RISK
+    severity: high
+    stage_effect: max_stage_1
+    default_wording: The proof system does not demonstrate protection against negative-net-worth dummy users or negative balance offset of real liabilities.
+    recommended_action: Add circuit or equivalent public constraints for no negative-net-worth dummy users and no liability offset.
+
+  - id: IMPLEMENTATION_SEMANTICS_RISK
+    severity: high
+    stage_effect: confidence_downgrade
+    default_wording: A major unresolved implementation issue may affect proof semantics.
+    recommended_action: Fix the issue, publish regression tests, and rerun verification.
+
+  - id: CONFLICT_OF_INTEREST_UNDISCLOSED
+    severity: medium
+    stage_effect: confidence_downgrade
+    default_wording: Reviewer and technical provider conflict of interest is not disclosed.
+    recommended_action: Disclose reviewer independence, scope, and conflicts.
+
+  - id: HIGH_FREQUENCY_GAP
+    severity: medium
+    stage_effect: max_stage_1_for_stage_2_target
+    default_wording: Publication cadence is too slow for Stage 2 trust minimization.
+    recommended_action: Add daily anchoring, weekly full PoR, event-triggered updates, or stronger cadence.

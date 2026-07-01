@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exchange PoR Transparency Comparison | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html" aria-current="page">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="exchange-por-transparency-comparison">Exchange PoR Transparency
+Comparison</h1>
+<blockquote>
+<p>Methodology: <a href="../por-transparency-framework.html">PoR Stage
+Framework</a><br />
+Policy standard: <a href="../effective-por-standard.html">Effective PoR
+Standard</a><br />
+<strong>All 10 public reports:</strong> <a
+href="./snapshot-history.html">Snapshot history</a></p>
+</blockquote>
+<h2 id="summary-latest-snapshot-per-exchange">Summary (latest snapshot
+per exchange)</h2>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<thead>
+<tr>
+<th>Exchange</th>
+<th>Snapshot</th>
+<th>PoR Stage</th>
+<th>Gen / Evidence</th>
+<th>Effective PoR</th>
+<th>Confidence</th>
+<th>Last Verified Snapshot</th>
+<th>Upstream verifier</th>
+<th>Report</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OKX</td>
+<td><code>508399035</code></td>
+<td><code>Stage 1</code></td>
+<td><code>Gen 2 / E2</code></td>
+<td><code>true</code></td>
+<td><code>medium</code></td>
+<td><code>2026-06-18T16:00:00Z</code></td>
+<td><a
+href="https://github.com/okx/proof-of-reserves-v2">okx/proof-of-reserves-v2</a>
+(+ <a href="https://github.com/okx/proof-of-reserves">v1 sigs</a>)</td>
+<td><a href="./okx/508399035-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>Binance</td>
+<td><code>PR01JUN26</code></td>
+<td><code>Stage 0</code></td>
+<td><code>Gen 2 / E2</code></td>
+<td><code>false</code></td>
+<td><code>medium</code></td>
+<td><code>2026-06-01T00:00:00Z</code></td>
+<td><a
+href="https://github.com/binance/zkmerkle-proof-of-solvency">binance/zkmerkle-proof-of-solvency</a></td>
+<td><a href="./binance/PR01JUN26-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>Bitget</td>
+<td><code>202605</code></td>
+<td><code>Stage 0</code></td>
+<td><code>Gen 1 / E1</code></td>
+<td><code>false</code></td>
+<td><code>low</code></td>
+<td><code>2026-05-27T10:00:00Z</code></td>
+<td><a
+href="https://github.com/BitgetLimited/proof-of-reserves">BitgetLimited/proof-of-reserves</a></td>
+<td><a href="./bitget/202605-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>Bybit</td>
+<td><code>2025061709</code></td>
+<td><code>Stage 0</code></td>
+<td><code>Gen 1 / E1</code></td>
+<td><code>false</code></td>
+<td><code>low</code></td>
+<td><code>2025-06-17T09:00:00Z</code></td>
+<td><a
+href="https://github.com/bybit-exchange/merkle-proof">bybit-exchange/merkle-proof</a></td>
+<td><a href="./bybit/2025061709-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>Gate.io</td>
+<td><code>20260316</code></td>
+<td><code>Stage 0</code></td>
+<td><code>Gen 1 / E1</code></td>
+<td><code>false</code></td>
+<td><code>low</code></td>
+<td><code>2026-03-16T00:00:00Z</code></td>
+<td><a
+href="https://github.com/gateio/proof-of-reserves">gateio/proof-of-reserves</a></td>
+<td><a href="./gateio/20260316-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>HTX</td>
+<td><code>20230910</code></td>
+<td><code>Stage 0</code></td>
+<td><code>Gen 1 / E1</code></td>
+<td><code>false</code></td>
+<td><code>low</code></td>
+<td><code>2023-09-10T18:10:33Z</code></td>
+<td><a
+href="https://github.com/huobiapi/Tool-Go-MerkleVerify">huobiapi/Tool-Go-MerkleVerify</a></td>
+<td><a href="./htx/20230910-transparency-report.html">report</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="by-exchange">By exchange</h2>
+<ul>
+<li><strong>OKX (<code>Stage 1</code>)</strong> — Latest
+<code>508399035</code> (Jun 2026): public reserves, ownership proof,
+global zk proof. <a href="./okx/508399035-transparency-report.html">Full
+report</a> · <a
+href="./snapshot-history.html#okx-monthly-full-public-artifact-stack">history</a></li>
+<li><strong>Binance (<code>Stage 0</code>)</strong> — Latest
+<code>PR01JUN26</code>: public summary and wallet list; missing
+ownership proof, public global proof, trusted-setup transparency. <a
+href="./binance/PR01JUN26-transparency-report.html">Full report</a> · <a
+href="./snapshot-history.html#binance-monthly-bapi-summary-only-for-current-snapshot">Apr–Jun
+history</a></li>
+<li><strong>Bitget (<code>Stage 0</code>)</strong> — User Merkle proof
+path only; no public wallet list or global proof. <a
+href="./bitget/202605-transparency-report.html">Full report</a></li>
+<li><strong>Bybit (<code>Stage 0</code>)</strong> — Merkle inclusion
+path only; no public wallet list, ownership proof, or global proof. <a
+href="./bybit/2025061709-transparency-report.html">Full report</a></li>
+<li><strong>Gate.io (<code>Stage 0</code>)</strong> — Public
+reserve-ratio summary only; login-gated zk and no public wallet
+artifacts. <a href="./gateio/20260316-transparency-report.html">Full
+report</a></li>
+<li><strong>HTX (<code>Stage 0</code>)</strong> — Archived zk sample
+(2023-09); no wallet list, ownership proof, or current production
+bundle. <a href="./htx/20230910-transparency-report.html">Full
+report</a></li>
+</ul>
+<p>Gap detail, risk flags, and verifier output are in each report.
+Missing data is marked <code>UNVERIFIABLE</code>, not <code>PASS</code>
+(<a
+href="../por-transparency-framework.html#gap-reporting-discipline">methodology
+§1.3</a>).</p>
+<p>Canonical upstream registry (PoR pages + GitHub repos): <a
+href="../../config/exchanges/registry.yaml"><code>config/exchanges/registry.yaml</code></a>
+· CLI: <code>por exchanges</code>.</p>
+<h2 id="evidence-archive">Evidence archive</h2>
+<p>Assessment JSON, bundle roots, and hashes for this report set: <a
+href="./artifact-archive-index.html">Artifact archive index</a>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,444 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ardmere.org/schemas/exchange-assessment.v1.schema.json",
+  "title": "ardmere/exchange-assessment@1",
+  "type": "object",
+  "required": [
+    "schema",
+    "generatedAt",
+    "exchange",
+    "snapshot",
+    "porStage",
+    "gen",
+    "evidenceLevel",
+    "confidence",
+    "effectivePoR",
+    "summary",
+    "stageBlockedReasons",
+    "riskFlags",
+    "artifacts",
+    "verifierResults",
+    "checklist"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema": {
+      "const": "ardmere/exchange-assessment@1"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "methodologyVersion": {
+      "type": "string"
+    },
+    "exchange": {
+      "type": "string",
+      "minLength": 1
+    },
+    "snapshot": {
+      "$ref": "#/$defs/snapshot"
+    },
+    "porStage": {
+      "enum": ["Pre-Stage", "Stage 0", "Stage 1", "Stage 2"]
+    },
+    "gen": {
+      "enum": ["Gen 0", "Gen 1", "Gen 2", "Gen 3"]
+    },
+    "evidenceLevel": {
+      "enum": ["E0", "E1", "E2", "E3"]
+    },
+    "confidence": {
+      "enum": ["high", "medium", "low"]
+    },
+    "effectivePoR": {
+      "type": "boolean"
+    },
+    "frequency": {
+      "$ref": "#/$defs/frequency"
+    },
+    "summary": {
+      "type": "object",
+      "required": ["headline", "rationale"],
+      "additionalProperties": false,
+      "properties": {
+        "headline": {
+          "type": "string"
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "stageBlockedReasons": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/stageBlockedReason"
+      }
+    },
+    "riskFlags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/riskFlag"
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": ["present", "missing"],
+      "additionalProperties": false,
+      "properties": {
+        "present": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactRef"
+          }
+        },
+        "missing": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/missingArtifact"
+          }
+        },
+        "artifactBundleRoot": {
+          "$ref": "#/$defs/root"
+        },
+        "verificationBundleRoot": {
+          "$ref": "#/$defs/root"
+        }
+      }
+    },
+    "verifierResults": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/verifierResult"
+      }
+    },
+    "checklist": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/checklistItem"
+      }
+    },
+    "recommendations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/recommendation"
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/reference"
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-fA-F]{64}$"
+    },
+    "root": {
+      "type": "string",
+      "pattern": "^0x[0-9a-fA-F]{64}$"
+    },
+    "snapshot": {
+      "type": "object",
+      "required": ["id"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "periodSeq": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "snapshotTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "btcBlockHeight": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "exchangeMerkleRoot": {
+          "type": "string"
+        }
+      }
+    },
+    "frequency": {
+      "type": "object",
+      "required": ["observedCadence", "historyAvailable", "stageImpact"],
+      "additionalProperties": false,
+      "properties": {
+        "latestSnapshot": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "previousSnapshot": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "observedCadence": {
+          "enum": [
+            "none",
+            "irregular",
+            "monthly",
+            "weekly",
+            "daily",
+            "near_real_time",
+            "unknown"
+          ]
+        },
+        "historyAvailable": {
+          "type": "boolean"
+        },
+        "eventTriggeredUpdates": {
+          "enum": ["yes", "no", "unknown"]
+        },
+        "dailyRootOrCommitmentAnchor": {
+          "enum": ["yes", "no", "unknown"]
+        },
+        "stageImpact": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "stageBlockedReason": {
+      "type": "object",
+      "required": ["ruleId", "maxStage", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "ruleId": {
+          "type": "string"
+        },
+        "maxStage": {
+          "enum": ["Pre-Stage", "Stage 0", "Stage 1", "Stage 2", "unchanged"]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "riskFlag": {
+          "type": "string"
+        }
+      }
+    },
+    "riskFlag": {
+      "type": "object",
+      "required": ["id", "severity", "stageEffect", "message"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": ["info", "low", "medium", "high", "critical"]
+        },
+        "stageEffect": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reference"
+          }
+        }
+      }
+    },
+    "artifactRef": {
+      "type": "object",
+      "required": ["kind", "sha256", "availability"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "url": {
+          "type": "string"
+        },
+        "localPath": {
+          "type": "string"
+        },
+        "availability": {
+          "enum": [
+            "public",
+            "permissioned",
+            "login_gated",
+            "manual_request",
+            "unavailable",
+            "archived"
+          ]
+        },
+        "requiredFor": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "missingArtifact": {
+      "type": "object",
+      "required": ["kind", "impact", "reason"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "impact": {
+          "enum": [
+            "stage_block",
+            "confidence_downgrade",
+            "coverage_gap",
+            "informational"
+          ]
+        },
+        "reason": {
+          "type": "string"
+        },
+        "riskFlag": {
+          "type": "string"
+        }
+      }
+    },
+    "verifierResult": {
+      "type": "object",
+      "required": ["verifierId", "version", "verdict"],
+      "additionalProperties": false,
+      "properties": {
+        "verifierId": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "verdict": {
+          "enum": ["PASS", "WARN", "FAIL", "PARTIAL", "UNVERIFIABLE"]
+        },
+        "coverage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "reason": {
+          "type": "string"
+        },
+        "inputArtifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/sha256"
+          }
+        },
+        "findings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/finding"
+          }
+        }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "required": ["subject", "field", "status"],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "claim": {
+          "type": "string"
+        },
+        "actual": {
+          "type": "string"
+        },
+        "status": {
+          "enum": ["PASS", "WARN", "FAIL", "PARTIAL", "UNVERIFIABLE"]
+        },
+        "note": {
+          "type": "string"
+        }
+      }
+    },
+    "checklistItem": {
+      "type": "object",
+      "required": ["id", "stage", "status", "question"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "stage": {
+          "enum": ["Pre-Stage", "Stage 0", "Stage 1", "Stage 2"]
+        },
+        "question": {
+          "type": "string"
+        },
+        "status": {
+          "enum": ["pass", "fail", "warn", "unverifiable", "not_applicable"]
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/reference"
+          }
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "recommendation": {
+      "type": "object",
+      "required": ["priority", "text"],
+      "additionalProperties": false,
+      "properties": {
+        "priority": {
+          "enum": ["P0", "P1", "P2", "P3"]
+        },
+        "text": {
+          "type": "string"
+        },
+        "relatedRiskFlags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "reference": {
+      "type": "object",
+      "required": ["type", "value"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": ["artifact", "url", "hash", "verifier", "report", "note"]
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

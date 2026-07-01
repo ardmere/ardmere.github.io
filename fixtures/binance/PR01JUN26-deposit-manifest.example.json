@@ -1,0 +1,129 @@
+{
+  "schema": "ardmere/deposit-sample-manifest@1",
+  "generatedAt": "2026-06-14T12:00:00Z",
+  "generator": "por@deposit-manifest-export@1 (example fixture)",
+
+  "snapshot": {
+    "exchange": "binance",
+    "id": "PR01JUN26",
+    "periodSeq": 43,
+    "snapshotTime": "2026-01-06T00:00:00Z",
+    "merkleRoot": "0x250e0c4ab441780d7276bd63a7e2bfb098213dd6bd9de89265923d8e3c11c2d1"
+  },
+
+  "artifacts": {
+    "walletZipSha256": "722466eec2376e28cfeb825eeee1a08a50b7459e640d63f78a506386de65c8b2",
+    "walletZipUrl": "https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20260601.zip",
+    "bapiSha256": "7898c1147f470b08404618c7f485664a4cb91740be3415d469d52f23c64f4202",
+    "verificationBundleRoot": "0x9867fe6b3803000b8ac1013f984b77b9b93b64b687d19d370ae54f5bd5d7e09b",
+    "verifierRef": "onchain-balance-deposit@1.0"
+  },
+
+  "sampling": {
+    "method": "value_weighted_head",
+    "topKPerCoin": 3000,
+    "maxSamples": 50,
+    "valueCoverageTarget": 0.99,
+    "valueCoverageAchieved": 0.0486,
+    "verifiableDepositRows": 1980299,
+    "unsupportedRows": 27
+  },
+
+  "summary": {
+    "verdict": "FAIL",
+    "pass": 49,
+    "warn": 0,
+    "fail": 1,
+    "unverifiable": 0,
+    "rpcError": 0,
+    "sampled": 50,
+    "reason": "one sampled row failed balance check"
+  },
+
+  "networks": {
+    "SOL": {
+      "label": "Solana",
+      "spotCheckMode": "solana_spl",
+      "explorerAddress": "https://solscan.io/account/{address}",
+      "historicalNote": "ardmere uses live RPC; CSV height is slot {height}."
+    },
+    "ETH": {
+      "label": "Ethereum",
+      "spotCheckMode": "evm_native",
+      "explorerAddress": "https://etherscan.io/address/{address}",
+      "explorerBlock": "https://etherscan.io/block/{height}"
+    }
+  },
+
+  "samples": [
+    {
+      "id": "a1b2c3d4e5f67890",
+      "address": "F3569NwD7zsxhVBmNTnMeH9fKEtwXHo56gvHUsr6itEK",
+      "coin": "BOME",
+      "network": "SOL",
+      "height": 423478906,
+      "claim": "27790.751441",
+      "actual": "0",
+      "delta": "-27790.751441",
+      "verdict": "FAIL",
+      "route": "ledger",
+      "provider": "https://solana.drpc.org",
+      "mint": "ukHH6c7mMyiWCf1b9pnWe25TSpkDDt3H5pQZgZ74J82",
+      "explorerUrl": "https://solscan.io/account/F3569NwD7zsxhVBmNTnMeH9fKEtwXHo56gvHUsr6itEK",
+      "spotCheck": {
+        "mode": "solana_spl",
+        "steps": [
+          "Open Solscan for this address.",
+          "Find token account for mint ukHH6c7m… (BOME).",
+          "Compare balance with CSV claim 27790.751441 at slot 423478906.",
+          "Note: public verifiers may only show current balance until historical slot API is wired."
+        ],
+        "limitation": "Live-node vs snapshot-slot mismatch can cause false FAIL; not proof of insolvency."
+      },
+      "note": "deposit on-chain != csv (provider=https://solana.drpc.org, route=ledger)"
+    },
+    {
+      "id": "b2c3d4e5f6789012",
+      "address": "0x57a0dfd29d8aa63a34acddb8dce2910b7e98a646",
+      "coin": "ETH",
+      "network": "ETH",
+      "height": 25218797,
+      "claim": "0.031817860000000000",
+      "actual": "0.031817860000000000",
+      "delta": "0",
+      "verdict": "PASS",
+      "route": "native",
+      "provider": "https://eth.llamarpc.com",
+      "explorerUrl": "https://etherscan.io/address/0x57a0dfd29d8aa63a34acddb8dce2910b7e98a646",
+      "spotCheck": {
+        "mode": "evm_native",
+        "steps": [
+          "Open Etherscan address page.",
+          "Use 'Balance at Block' or eth_getBalance at block 25218797 (0x180f58d).",
+          "Should match claim within 1e-8 relative tolerance."
+        ],
+        "rpcSnippet": "curl -s $ETH_RPC -H 'content-type: application/json' -d '{\"jsonrpc\":\"2.0\",\"method\":\"eth_getBalance\",\"params\":[\"0x57a0dfd29d8aa63a34acddb8dce2910b7e98a646\",\"0x180f58d\"],\"id\":1}'"
+      }
+    },
+    {
+      "id": "c3d4e5f678901234",
+      "address": "4KnmzRxTvZ6RdKfd8Lmskcdtnd3r1AoFxTj6kptuC9L3",
+      "coin": "BOME",
+      "network": "SOL",
+      "height": 423478900,
+      "claim": "125000.5",
+      "verdict": "WARN",
+      "route": "ledger",
+      "explorerUrl": "https://solscan.io/account/4KnmzRxTvZ6RdKfd8Lmskcdtnd3r1AoFxTj6kptuC9L3",
+      "spotCheck": {
+        "mode": "solana_spl",
+        "steps": [
+          "RPC failed during ardmere run (HTTP 429 on legacy provider).",
+          "Re-try spot-check manually on Solscan or with your own Solana RPC."
+        ],
+        "limitation": "rpc-error row — does not indicate reserve shortfall."
+      },
+      "note": "deposit rpc error: solana HTTP 429"
+    }
+  ]
+}
