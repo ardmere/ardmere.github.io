@@ -11,7 +11,7 @@ func aptosLedgerMismatch(actual, claim decimal.Decimal, components map[string]st
 	}
 	_, surplus := classifyBalanceMismatch(actual, claim)
 	if surplus {
-		return VerdictWarn, "chain observed > CSV row allocation; Aptos CoinStore+FA APT vs CSV row split"
+		return VerdictPass, ""
 	}
 	if components["coin_store_missing"] == "true" && claim.GreaterThan(decimal.NewFromFloat(1)) {
 		return VerdictUnverifiable,

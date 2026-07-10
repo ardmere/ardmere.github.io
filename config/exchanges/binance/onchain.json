@@ -27,7 +27,7 @@
       "rpcNetwork": "ARBITRUM",
       "decimals": 6,
       "native": false,
-      "contract": "0xFd086bC7CD5C761D9ea2EE882611Db150bbb8e8F"
+      "contract": "0xFd086bC7CD5C481DCC9C85ebE478A1C0b69FCbb9"
     },
     {
       "coin": "USDT",
@@ -91,7 +91,7 @@
       "rpcNetwork": "OPTIMISM",
       "decimals": 6,
       "native": false,
-      "contract": "0x0b2C639c533813f4Aa9D7837CAEa46af2bB1fC71"
+      "contract": "0x0b2C639c533813f4Aa9D7837CAf62653d097Ff85"
     },
     {
       "coin": "USDC",
@@ -235,7 +235,7 @@
       "rpcNetwork": "BSC",
       "decimals": 18,
       "native": false,
-      "contract": "0x14016E85a3aeb32186A08206fe66Ce387e3CE2F0"
+      "contract": "0x14016E85a25aeb13065688cAFB43044C2ef86784"
     },
     {
       "coin": "ETH",
@@ -243,7 +243,7 @@
       "rpcNetwork": "BSC",
       "decimals": 18,
       "native": false,
-      "contract": "0x2170Ed0880ac9A755fd29B68F4E513dFf1878d63"
+      "contract": "0x2170Ed0880ac9A755fd29B2688956BD959F933F8"
     },
     {
       "coin": "ETH",
@@ -312,7 +312,7 @@
       "rpcNetwork": "BSC",
       "decimals": 18,
       "native": false,
-      "contract": "0x2859e4544C4aA3998932e7F779B519f2E78EAbd7"
+      "contract": "0x2859e4544c4bb03966803b044a93563bd2d0dd4d"
     },
     {
       "coin": "LINK",
@@ -328,7 +328,7 @@
       "rpcNetwork": "BSC",
       "decimals": 18,
       "native": false,
-      "contract": "0xF8A0bf9cF5Bb92A32DC64A73149bcD64cd619c65"
+      "contract": "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd"
     },
     {
       "coin": "UNI",
@@ -416,7 +416,7 @@
       "rpcNetwork": "BSC",
       "decimals": 18,
       "native": false,
-      "contract": "0xB3Ed0a426155B79B89a0EFc8BB5a7f060B4931B5"
+      "contract": "0xb3ed0a426155b79b898849803e3b36552f7ed507"
     },
     {
       "coin": "PENDLE",
@@ -424,7 +424,7 @@
       "rpcNetwork": "ARBITRUM",
       "decimals": 18,
       "native": false,
-      "contract": "0x0c880f6761F1af8d9Aa9C466984b80DAb9a8c9e7"
+      "contract": "0x0c880f6761F1af8d9Aa9C466984b80DAb9a8c9e8"
     },
     {
       "coin": "ENA",
@@ -448,7 +448,7 @@
       "rpcNetwork": "BSC",
       "decimals": 18,
       "native": false,
-      "contract": "0x2eD9a5C8C13b93955103EED26618166740b7aAFC"
+      "contract": "0x2ed9a5c8c13b93955103b9a7c167b67ef4d568a3"
     },
     {
       "coin": "GRT",
@@ -464,7 +464,7 @@
       "rpcNetwork": "ARBITRUM",
       "decimals": 18,
       "native": false,
-      "contract": "0x9623063377AD1B27544C965cCd7342f7EA7e88C0"
+      "contract": "0x9623063377AD1B27544C965cCd7342f7EA7e88C7"
     },
     {
       "coin": "GRT",
@@ -611,6 +611,14 @@
       "contract": "0xf629cbd94d3791c9250152bd8dfbdf380e2a3b9c"
     },
     {
+      "coin": "ENJ",
+      "network": "BSC",
+      "rpcNetwork": "BSC",
+      "decimals": 18,
+      "native": false,
+      "contract": "0xaa197ac887b185116e52dfcfd2a3c67baa7b65c9"
+    },
+    {
       "coin": "OP",
       "network": "OPTIMISM",
       "rpcNetwork": "OPTIMISM",
@@ -673,6 +681,14 @@
       "contract": "0x50c5725949A6F0c72E6C4a641F24049A917DB0Cb"
     },
     {
+      "coin": "FDUSD",
+      "network": "ARBITRUM",
+      "rpcNetwork": "ARBITRUM",
+      "decimals": 18,
+      "native": false,
+      "contract": "0x93c9932e4afa59201f0b5e63f7d816516f1669fe"
+    },
+    {
       "coin": "CRV",
       "network": "OPTIMISM",
       "rpcNetwork": "OPTIMISM",
@@ -686,7 +702,7 @@
       "rpcNetwork": "ARBITRUM",
       "decimals": 18,
       "native": false,
-      "contract": "0xb3999F658C0391d94A37f7FF328F3feC942BcADC"
+      "contract": "0x835bfe0ac8ea77f22e13795a49054ab2d6699982"
     },
     {
       "coin": "RLUSD",
@@ -702,7 +718,7 @@
       "rpcNetwork": "BSC",
       "decimals": 8,
       "native": false,
-      "contract": "0xba2aeCca97cD8c4bB708BaCB4155E440Cbbf102E"
+      "contract": "0xba2ae424d960c26247dd6c32edc70b295c744c43"
     },
     {
       "coin": "XRP",
@@ -710,7 +726,7 @@
       "rpcNetwork": "BSC",
       "decimals": 18,
       "native": false,
-      "contract": "0x1D2F0da169ceB9fc7B300509bFCd458bB5D00f5a"
+      "contract": "0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe"
     },
     {
       "coin": "USDT",
@@ -742,7 +758,7 @@
       "rpcNetwork": "TRX",
       "decimals": 18,
       "native": false,
-      "contract": "TUpMhErZL2fhh4sNNRCByiWe5wGKiGFY9S"
+      "contract": "TUpMhErZL2fhh4sVNULAbNKLokS4GjC1F4"
     },
     {
       "coin": "USDC",
@@ -750,7 +766,7 @@
       "rpcNetwork": "TRX",
       "decimals": 6,
       "native": false,
-      "contract": "TEkxiTehnzSmSe2XqrBj4w32RUNErdAEJb"
+      "contract": "TEkxiTehnzSmSe2XqrBj4w32RUN966rdz8"
     },
     {
       "coin": "U",
@@ -967,7 +983,7 @@
       "rpcNetwork": "BSC",
       "decimals": 18,
       "native": false,
-      "contract": "0x8894e0a0c962cb723c1976a4421c95949be2d4e3"
+      "contract": "0xd57f2e190c11cffc667aa5ad026cd4c8de0772a7"
     },
     {
       "coin": "BCH",
@@ -976,6 +992,54 @@
       "decimals": 8,
       "native": false,
       "contract": "0x3743ec0673453e5009310c727ba4eaf7b3a1cc04"
+    },
+    {
+      "coin": "WLD",
+      "network": "ETH",
+      "rpcNetwork": "ETH",
+      "decimals": 18,
+      "native": false,
+      "contract": "0x163f8c2467924be0ae7b5347228cabf260318753"
+    },
+    {
+      "coin": "WLD",
+      "network": "OPTIMISM",
+      "rpcNetwork": "OPTIMISM",
+      "decimals": 18,
+      "native": false,
+      "contract": "0xdc6ff44d5d932cbd77b52e5612ba0529dc6226f1"
+    },
+    {
+      "coin": "WLD",
+      "network": "WLD",
+      "rpcNetwork": "WLD",
+      "decimals": 18,
+      "native": false,
+      "contract": "0x2cfc85d8e48f8eab294be644d9e25c3030863003"
+    },
+    {
+      "coin": "USDC",
+      "network": "STARKNET",
+      "rpcNetwork": "STARKNET",
+      "decimals": 6,
+      "native": false,
+      "contract": "0x033068f6539f8e6e6b131e6b2b814e6c34a5224bc66947c47dab9dfee93b35fb"
+    },
+    {
+      "coin": "USDT",
+      "network": "SCROLL",
+      "rpcNetwork": "SCROLL",
+      "decimals": 6,
+      "native": false,
+      "contract": "0xf55BEC9cafDbE8730f096Aa55dad6D22d44099Df"
+    },
+    {
+      "coin": "USD1",
+      "network": "AB",
+      "rpcNetwork": "AB",
+      "decimals": 18,
+      "native": false,
+      "contract": "0x111111d2bf19e43c34263401e0cad979ed1cdb61"
     }
   ]
 }

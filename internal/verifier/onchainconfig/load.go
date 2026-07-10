@@ -223,6 +223,8 @@ func parseNetwork(s string) (rpc.Network, error) {
 		return rpc.Network("MTL"), nil
 	case "STARKNET":
 		return rpc.Network("STARKNET"), nil
+	case "AB":
+		return rpc.Network("AB"), nil
 	case "XLAYER":
 		return rpc.NetXLayer, nil
 	case "FEVM":

@@ -15,7 +15,7 @@ func TestAptosLedgerMismatch(t *testing.T) {
 		want   Verdict
 	}{
 		{name: "pass", actual: claim, comp: nil, want: VerdictPass},
-		{name: "surplus", actual: claim.Add(decimal.NewFromInt(100)), comp: nil, want: VerdictWarn},
+		{name: "surplus", actual: claim.Add(decimal.NewFromInt(100)), comp: nil, want: VerdictPass},
 		{name: "missing store", actual: decimal.Zero, comp: map[string]string{"coin_store_missing": "true"}, want: VerdictUnverifiable},
 		{name: "partial", actual: decimal.NewFromInt(500_000), comp: nil, want: VerdictWarn},
 	}

@@ -7,8 +7,11 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/ardmere/ardmere/internal/bundle"
+	"github.com/ardmere/ardmere/internal/exchanges/binance/bapi"
+	"github.com/ardmere/ardmere/internal/por"
 	"github.com/ardmere/ardmere/internal/verifier"
 )
 
@@ -39,10 +42,16 @@ func Write(ctx context.Context, opt Options) error {
 	if err != nil {
 		return fmt.Errorf("verification bundle: %w", err)
 	}
+	art.SnapshotTime = resolveSnapshotTime(opt.Exchange, dir, art)
+	ver.SnapshotTime = art.SnapshotTime
 
 	eval := evaluate(opt.Exchange, art, ver.Verifications)
-	assessment := buildAssessment(opt.Exchange, art, ver, eval)
-	reportMD := buildReportMarkdown(opt.Exchange, art, ver, eval)
+	freq := collectFrequency(opt.Exchange, opt.SnapshotID, art.SnapshotTime, opt.ReportsDir)
+	rctx := newReportContext(opt.Exchange, art, ver, eval, freq)
+	checklist := collectChecklist(rctx)
+	recommendations := collectRecommendations(rctx)
+	assessment := buildAssessment(opt.Exchange, art, ver, eval, checklist, recommendations)
+	reportMD := buildReportMarkdown(opt.Exchange, opt.SnapshotID, dir, art, ver, eval, freq, checklist, recommendations)
 
 	outDir := filepath.Join(opt.ReportsDir, opt.Exchange)
 	if err := os.MkdirAll(outDir, 0o755); err != nil {
@@ -65,7 +74,7 @@ func Write(ctx context.Context, opt Options) error {
 	return nil
 }
 
-func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval) map[string]any {
+func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, checklist []checklistItem, recommendations []recommendationItem) map[string]any {
 	vr := make([]map[string]any, 0, len(ver.Verifications))
 	for _, v := range ver.Verifications {
 		vr = append(vr, map[string]any{
@@ -116,10 +125,38 @@ func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.Ve
 			"verificationBundleRoot":   ver.MerkleRoot,
 		},
 		"verifierResults": vr,
+		"checklist":       checklistToAssessment(checklist),
+		"recommendations": recommendationsToAssessment(recommendations),
 	}
 }
 
-func buildReportMarkdown(exchangeID string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval) string {
+func checklistToAssessment(items []checklistItem) []map[string]any {
+	out := make([]map[string]any, 0, len(items))
+	for _, item := range items {
+		out = append(out, map[string]any{
+			"id":       item.ID,
+			"stage":    item.Stage,
+			"question": item.Question,
+			"status":   item.Status,
+			"notes":    item.Notes,
+		})
+	}
+	return out
+}
+
+func recommendationsToAssessment(recs []recommendationItem) []map[string]any {
+	out := make([]map[string]any, 0, len(recs))
+	for _, rec := range recs {
+		out = append(out, map[string]any{
+			"priority":         rec.Priority,
+			"text":             rec.Text,
+			"relatedRiskFlags": rec.RelatedRiskFlags,
+		})
+	}
+	return out
+}
+
+func buildReportMarkdown(exchangeID, snapshotID, snapshotDir string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, freq frequencyInfo, checklist []checklistItem, recommendations []recommendationItem) string {
 	var b strings.Builder
 	fmt.Fprintf(&b, "# %s %s PoR Transparency Report\n\n", strings.ToUpper(exchangeID), art.SnapshotID)
 	b.WriteString("> Methodology: [PoR Stage Framework](../../por-transparency-framework.md)  \n")
@@ -145,10 +182,17 @@ func buildReportMarkdown(exchangeID string, art bundle.ArtifactBundle, ver bundl
 	if len(eval.Blocked) > 0 {
 		b.WriteString("| Missing / Blocked Evidence | Risk Flag | Max Stage | Reason |\n| --- | --- | --- | --- |\n")
 		for _, row := range eval.Blocked {
-			fmt.Fprintf(&b, "| — | `%s` | %s | %s |\n", row.RiskFlag, row.MaxStage, row.Reason)
+			evidence := row.Evidence
+			if evidence == "" {
+				evidence = "—"
+			}
+			fmt.Fprintf(&b, "| `%s` | `%s` | %s | %s |\n", escapeCell(evidence), row.RiskFlag, row.MaxStage, row.Reason)
 		}
 		b.WriteString("\n")
 	}
+
+	writeSection3Frequency(&b, freq)
+	writeSection4Evidence(&b, exchangeID, snapshotID, snapshotDir, art, ver)
 
 	b.WriteString("## 5. Verifier Evidence\n\n")
 	b.WriteString("| Verifier | Version | Verdict | Coverage | Summary |\n| --- | --- | --- | --- | --- |\n")
@@ -158,7 +202,12 @@ func buildReportMarkdown(exchangeID string, art bundle.ArtifactBundle, ver bundl
 	}
 	b.WriteString("\n")
 
-	b.WriteString("## 8. Boundary\n\n")
+	writeSection6FindingDetails(&b, ver.Verifications, art.SnapshotID)
+
+	writeSection7Checklist(&b, checklist)
+	writeSection8Recommendations(&b, recommendations)
+
+	b.WriteString("## 9. Boundary\n\n")
 	b.WriteString("This report evaluates public PoR artifacts and reproducibility. It does not evaluate the exchange's overall financial health, corporate governance, internal controls, off-chain assets, legal compliance, or complete off-balance-sheet liabilities.\n\n")
 	b.WriteString("Missing data must be marked as `UNVERIFIABLE`, not treated as `PASS`.\n")
 	return b.String()
@@ -170,3 +219,26 @@ func escapeCell(s string) string {
 
 // Ensure verifier types referenced.
 var _ verifier.Verdict
+
+func resolveSnapshotTime(exchangeID, snapshotDir string, art bundle.ArtifactBundle) string {
+	if exchangeID != "binance" {
+		return art.SnapshotTime
+	}
+	for _, a := range art.Artifacts {
+		if a.Kind != por.KindBapiSnapshot && a.Kind != por.KindSummarySnapshot {
+			continue
+		}
+		path := a.LocalPath
+		if !filepath.IsAbs(path) {
+			path = filepath.Join(snapshotDir, path)
+		}
+		raw, err := bapi.LoadSnapshot(path)
+		if err != nil {
+			continue
+		}
+		if t, err := bapi.ParseSnapshotTime(raw.SnapshotTime); err == nil {
+			return t.UTC().Format(time.RFC3339)
+		}
+	}
+	return art.SnapshotTime
+}

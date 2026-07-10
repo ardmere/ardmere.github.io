@@ -1,12 +1,30 @@
 {
-  "provider": "solanaindex",
-  "baseUrl": "https://solanaindex.top",
-  "balancePath": "/api/v1/solana/token-balance/{address}/{mint}/{slot}",
-  "auth": "bearer",
-  "env": {
-    "apiKey": "SOLANA_INDEX_API_KEY",
-    "apiKeyAlt": "SOLANA_HISTORY_API_KEY",
-    "baseUrlOverride": "SOLANA_HISTORY_API_URL"
-  },
-  "notes": "Standard Solana JSON-RPC cannot return SPL balances at historical slots. Set SOLANA_INDEX_API_KEY (Bearer) to enable slot-indexed reads for ledger/deposit verifiers."
+  "providers": [
+    {
+      "id": "helius",
+      "baseUrl": "https://api.helius.xyz",
+      "balancePath": "/v1/wallet/{address}/balance-at?mint={mint}&slot={slot}",
+      "nativeMint": "So11111111111111111111111111111111111111111",
+      "auth": "x-api-key",
+      "env": {
+        "apiKey": "HELIUS_API_KEY",
+        "baseUrlOverride": "HELIUS_API_URL"
+      },
+      "notes": "Helius Wallet API balance-at (100 credits/request). Free plan ~10k queries/month."
+    },
+    {
+      "id": "solanaindex",
+      "baseUrl": "https://solanaindex.top",
+      "balancePath": "/api/v1/solana/token-balance/{address}/{mint}/{slot}",
+      "nativeBalancePath": "/api/v1/solana/native-balance/{address}/{slot}",
+      "auth": "bearer",
+      "env": {
+        "apiKey": "SOLANA_INDEX_API_KEY",
+        "apiKeyAlt": "SOLANA_HISTORY_API_KEY",
+        "baseUrlOverride": "SOLANA_HISTORY_API_URL"
+      },
+      "notes": "Fallback when HELIUS_API_KEY is unset. Trial pool is very small (5 requests)."
+    }
+  ],
+  "notes": "Standard Solana JSON-RPC cannot return SPL balances at historical slots. Set HELIUS_API_KEY (preferred) or SOLANA_INDEX_API_KEY to enable slot-indexed reads."
 }

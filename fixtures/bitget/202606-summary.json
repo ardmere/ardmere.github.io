@@ -1,0 +1,17 @@
+{
+  "fetchedAt": "2026-07-08T15:30:00Z",
+  "source": "announcement-scrape",
+  "info": {
+    "audit_id": "202606",
+    "audit_time": "2026-06-18 10:00:00",
+    "totalReserveRate": 123,
+    "period": 43
+  },
+  "coinList": {
+    "list": [
+      {"coin": "BTC", "platformAssets": 1.38, "userAssets": 1.0, "reserveRate": 138},
+      {"coin": "ETH", "platformAssets": 1.37, "userAssets": 1.0, "reserveRate": 137},
+      {"coin": "USDT", "platformAssets": 1.21, "userAssets": 1.0, "reserveRate": 121}
+    ]
+  }
+}

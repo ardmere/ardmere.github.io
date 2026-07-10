@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BINANCE PR01JUL26 PoR Transparency Report | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="binance-pr01jul26-por-transparency-report">BINANCE PR01JUL26 PoR
+Transparency Report</h1>
+<blockquote>
+<p>Methodology: <a href="../../por-transparency-framework.html">PoR Stage
+Framework</a><br />
+Assessment JSON: <a
+href="./PR01JUL26-assessment.json">PR01JUL26-assessment.json</a></p>
+</blockquote>
+<h2 id="summary">1. Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exchange</td>
+<td><code>binance</code></td>
+</tr>
+<tr>
+<td>Snapshot</td>
+<td><code>PR01JUL26</code></td>
+</tr>
+<tr>
+<td>Snapshot time</td>
+<td><code>2026-07-01T00:00:00Z</code></td>
+</tr>
+<tr>
+<td>PoR Stage</td>
+<td><code>Stage 0 — Trust the Exchange</code></td>
+</tr>
+<tr>
+<td>Gen / Evidence</td>
+<td><code>Gen 2 / E2</code></td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>medium</code></td>
+</tr>
+<tr>
+<td>Effective PoR</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>Binance snapshot PR01JUL26 provides public reserve summary and
+wallet_address_list where available, but Stage 1 is blocked by missing
+wallet_ownership_proof, opaque trusted setup, and unavailable public
+global proof/vk artifacts.</p>
+<p>The available artifacts support Gen 2 / E2 classification and Stage 0
+PoR disclosure. Users still need to trust Binance for wallet control,
+trusted setup honesty, and public availability of the full global proof
+stack.</p>
+<h2 id="stage-decision">2. Stage Decision</h2>
+<h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Missing / Blocked Evidence</th>
+<th>Risk Flag</th>
+<th>Max Stage</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wallet_ownership_proof</code></td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+<td>Stage 0</td>
+<td>No public batch-verifiable wallet_ownership_proof.</td>
+</tr>
+<tr>
+<td><code>global_proof.csv, verifying_key</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td>Stage 0</td>
+<td>Public global proof/vk not available.</td>
+</tr>
+<tr>
+<td><code>trusted_setup_transcript</code></td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+<td>Stage 0</td>
+<td>Trusted setup transcript is not public.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest snapshot (evaluation set)</td>
+<td><code>2026-07-01T00:00:00Z</code></td>
+</tr>
+<tr>
+<td>Previous snapshot</td>
+<td><code>2026-06-01T00:00:00Z</code></td>
+</tr>
+<tr>
+<td>Observed cadence</td>
+<td><code>~monthly</code></td>
+</tr>
+<tr>
+<td>History available</td>
+<td><code>4 snapshot(s) in public evaluation set</code></td>
+</tr>
+<tr>
+<td>Event-triggered updates</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Daily root / commitment anchor</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Stage impact</td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<p>This is the newest snapshot in the ardmere public evaluation set for
+binance.</p>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bapiSnapshot</code></td>
+<td><code>2bf5b5ead956cf67bdfcd9af36bb1bc00b321bb6fa248333a694c92b7249afb7</code></td>
+<td>https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot</td>
+</tr>
+<tr>
+<td><code>walletZip</code></td>
+<td><code>01b8f59d890414e42bdd66091fbd0c0f8a56735c6edd90d7c43ace67e49a3fa0</code></td>
+<td>https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20260701.zip</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact bundle root</td>
+<td><code>0xa3912d99ae0c7618475940dcd475f3c41be2feaff73fe87e1dc9de0f1044f75f</code></td>
+</tr>
+<tr>
+<td>Verification bundle root</td>
+<td><code>0x06204d29fe1adf837dd47fcc80cc99f2bb6e558aa6c07f882407c5910aadc75c</code></td>
+</tr>
+<tr>
+<td>Artifact bundle SHA-256</td>
+<td><code>0f45f9c861b192179738b59b77e277f996600f549ed558edd53601714176f4b6</code></td>
+</tr>
+<tr>
+<td>Verification bundle SHA-256</td>
+<td><code>93fc731e74b592b4f68cabecba6dfddfc7bcbd26fb53061d222d8e7071645eea</code></td>
+</tr>
+</tbody>
+</table>
+<p>Local bundle paths: <a
+href="../../../artifacts/binance/PR01JUL26/bundles/PR01JUL26.artifact-bundle.json">PR01JUL26.artifact-bundle.json</a>,
+<a
+href="../../../artifacts/binance/PR01JUL26/bundles/PR01JUL26.verification-bundle.v2.json">PR01JUL26.verification-bundle.v2.json</a></p>
+<h2 id="verifier-evidence">5. Verifier Evidence</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Version</th>
+<th>Verdict</th>
+<th>Coverage</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>artifact-integrity</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>internal-consistency</code></td>
+<td><code>1.1</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>btc-anchor</code></td>
+<td><code>1</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>solvency-claim</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>onchain-balance-hot</code></td>
+<td><code>2.1</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.0416</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>onchain-balance-token</code></td>
+<td><code>2.0</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.6834</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>onchain-balance-ledger</code></td>
+<td><code>1.4</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.1710</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>onchain-balance-deposit</code></td>
+<td><code>1.2</code></td>
+<td><code>PASS</code></td>
+<td><code>0.1245</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>address-ownership</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr>
+<td><code>global-zk-proof</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>Global proof.csv / verifying key not publicly distributed</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr>
+<td><code>cross-chain-wrapped</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verifier-finding-details">6. Verifier Finding Details</h2>
+<p>This section explains <code>FAIL</code>, <code>WARN</code>, and
+<code>UNVERIFIABLE</code> outcomes from the verification bundle.
+Row-level <code>UNVERIFIABLE</code> entries often mean the verifier does
+not yet support that (coin, network) pair, not that the exchange failed
+the check. Full machine-readable output:
+<code>PR01JUL26.verification-bundle.v2.json</code> in the local artifact
+bundle.</p>
+<h3 id="capability-and-artifact-gaps-unverifiable">Capability and
+artifact gaps (<code>UNVERIFIABLE</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>address-ownership</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr>
+<td><code>global-zk-proof</code></td>
+<td>Global proof.csv / verifying key not publicly distributed</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr>
+<td><code>cross-chain-wrapped</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="row-level-findings">Row-level findings</h3>
+<h4 id="onchain-balance-hot-fail"><code>onchain-balance-hot</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 2, PASS 1</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x73f5ebe90f27b46ea12e5795d16c4b408b19cc6f</code></td>
+<td><code>BNB@BSC#107345136</code></td>
+<td>3161.073862</td>
+<td>3161.072958497720012181</td>
+<td>accounted on-chain balance != csv claim by 0.000903502279987819
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x56eddb7aa87536c09ccc2793473599fd21a8b17f</code></td>
+<td><code>ETH@ETH#25433938</code></td>
+<td>16026.52437</td>
+<td>16021.024377714519000495</td>
+<td>accounted on-chain balance != csv claim by 5.499992285480999505
+(provider=cache)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="onchain-balance-token-fail"><code>onchain-balance-token</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 57, WARN 11, UNVERIFIABLE 6, PASS 1</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xdfd5293d8e347dfe59e90efd55b2956a1343963d</code></td>
+<td><code>AAVE@ETH#25433938</code></td>
+<td>21513.70239</td>
+<td>21513.658281429757891541</td>
+<td>on-chain balance != csv claim by 0.044108570242108459
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
+<td><code>BCH@ETH#25433938</code></td>
+<td>1499.012</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1499.012 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
+<td><code>BTC@ETH#25433938</code></td>
+<td>1156.4841</td>
+<td>400</td>
+<td>on-chain balance != csv claim by 756.4841 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x9f8c163cba728e99993abe7495f06c0a3c8ac8b9</code></td>
+<td><code>BUSD@AVAXC#89166730</code></td>
+<td>129697.2016</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 129697.2016 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe7804c37c13166ff0b37f5ae0bb07a3aebb6e245</code></td>
+<td><code>BUSD@MATIC#89439336</code></td>
+<td>156651.5241</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 156651.5241 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xacd03d601e5bb1b275bb94076ff46ed9d753435a</code></td>
+<td><code>BUSD@OPTIMISM#153632611</code></td>
+<td>3679.63027</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3679.63027 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>BUSD@MATIC#89439336</code></td>
+<td>0.8</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 0.8 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
+<td><code>CAKE@ETH#25433938</code></td>
+<td>17439.91448</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 17439.91448 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>CAKE@ETH#25433938</code></td>
+<td>348849</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 348849 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>CAKE@ETH#25433938</code></td>
+<td>24593.94636</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 24593.94636 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdfd5293d8e347dfe59e90efd55b2956a1343963d</code></td>
+<td><code>CAKE@ETH#25433938</code></td>
+<td>56949.96523</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 56949.96523 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
+<td><code>CAKE@ETH#25433938</code></td>
+<td>53521.95853</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 53521.95853 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
+<td><code>CHZ@ETH#25433938</code></td>
+<td>36253376.09</td>
+<td>36253226.913775091822482267</td>
+<td>on-chain balance != csv claim by 149.176224908177517733
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
+<td><code>ENA@ETH#25433938</code></td>
+<td>17871141.52</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 17871141.52 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
+<td><code>ENA@ETH#25433938</code></td>
+<td>18268232.75</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 18268232.75 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdfd5293d8e347dfe59e90efd55b2956a1343963d</code></td>
+<td><code>ENA@ETH#25433938</code></td>
+<td>13706637.76</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 13706637.76 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x18e226459ccf0eec276514a4fd3b226d8961e4d1</code></td>
+<td><code>ENA@ETH#25433938</code></td>
+<td>2075727.888</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2075727.888 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
+<td><code>ENA@ETH#25433938</code></td>
+<td>630115216</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 630115216 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x43684d03d81d3a4c70da68febdd61029d426f042</code></td>
+<td><code>ENA@ETH#25433938</code></td>
+<td>27343446.22</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 27343446.22 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>ENA@ETH#25433938</code></td>
+<td>1246038.24</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1246038.24 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>ENA@ETH#25433938</code></td>
+<td>580173076</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 580173076 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>ENA@ETH#25433938</code></td>
+<td>35734592.1</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 35734592.1 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>GRT@ARBITRUM#479089705</code></td>
+<td>494352067.1</td>
+<td>432481760.000000000001450888</td>
+<td>on-chain balance != csv claim by 61870307.099999999998549112
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x18e226459ccf0eec276514a4fd3b226d8961e4d1</code></td>
+<td><code>GRT@ETH#25433938</code></td>
+<td>1315581.858</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1315581.858 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
+<td><code>GRT@ETH#25433938</code></td>
+<td>15236583.59</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 15236583.59 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdfd5293d8e347dfe59e90efd55b2956a1343963d</code></td>
+<td><code>GRT@ETH#25433938</code></td>
+<td>3.44990978</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3.44990978 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>GRT@ETH#25433938</code></td>
+<td>897665.8017</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 897665.8017 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4fdfe365436b5273a42f135c6a6244a20404271e</code></td>
+<td><code>GRT@ETH#25433938</code></td>
+<td>3040301.896</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3040301.896 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
+<td><code>GRT@ETH#25433938</code></td>
+<td>23.26231794</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 23.26231794 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4aec0e98fc1fb55b9cc2faaa7a81acca42cb4e96</code></td>
+<td><code>GRT@ETH#25433938</code></td>
+<td>189374.7477</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 189374.7477 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>GRT@ETH#25433938</code></td>
+<td>20329156.3</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 20329156.3 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>GRT@MATIC#89439336</code></td>
+<td>73.1902</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 73.1902 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe7804c37c13166ff0b37f5ae0bb07a3aebb6e245</code></td>
+<td><code>GRT@MATIC#89439336</code></td>
+<td>20551.90111</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 20551.90111 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa64b436964e7415c0e70b9989a53e1fb9a90e726</code></td>
+<td><code>POL@ETH#25433938</code></td>
+<td>160000099.1</td>
+<td>49.065528965081548221</td>
+<td>POL+MATIC ERC20 on ETH still &lt;&lt; CSV; residual may be
+Polygon-native POL or internal ledger; on-chain balance != csv claim by
+160000050.034471034918451779 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x18e226459ccf0eec276514a4fd3b226d8961e4d1</code></td>
+<td><code>TUSD@BSC#107345136</code></td>
+<td>15000</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 15000 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe2fc31f816a9b94326492132018c3aecc4a93ae1</code></td>
+<td><code>TUSD@BSC#107345136</code></td>
+<td>53613.76233</td>
+<td>0.018991890000006253</td>
+<td>on-chain balance != csv claim by 53613.743338109999993747
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
+<td><code>TUSD@BSC#107345136</code></td>
+<td>896917.499</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 896917.499 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x43684d03d81d3a4c70da68febdd61029d426f042</code></td>
+<td><code>TUSD@BSC#107345136</code></td>
+<td>256388.6563</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 256388.6563 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>TUSD@BSC#107345136</code></td>
+<td>60337.586</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 60337.586 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x8894e0a0c962cb723c1976a4421c95949be2d4e3</code></td>
+<td><code>TUSD@BSC#107345136</code></td>
+<td>495359.3826</td>
+<td>71251.229140440670720258</td>
+<td>on-chain balance != csv claim by 424108.153459559329279742
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>TUSD@ETH#25433938</code></td>
+<td>1077.401833</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1077.401833 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>TUSD@BSC#107345136</code></td>
+<td>9.9151</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.9151 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
+<td><code>TUSD@ETH#25433938</code></td>
+<td>352175.8936</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 352175.8936 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdfd5293d8e347dfe59e90efd55b2956a1343963d</code></td>
+<td><code>TUSD@ETH#25433938</code></td>
+<td>30913.82647</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 30913.82647 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
+<td><code>TUSD@ETH#25433938</code></td>
+<td>64133.45955</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 64133.45955 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>TUSD@ETH#25433938</code></td>
+<td>43355.39948</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 43355.39948 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x59fbc084aeed2c8e6e9b6ebe8a11d443efcb40d2</code></td>
+<td><code>USD1@AB#12718065</code></td>
+<td>15422456.79</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 15422456.79
+(provider=https://api.mainnet.abs.xyz)</td>
+</tr>
+<tr>
+<td><code>0xee7ae85f2fe2239e27d9c1e23fffe168d63b4055</code></td>
+<td><code>USDC@WLD#31764180</code></td>
+<td>1424627.066</td>
+<td>1424601.066315</td>
+<td>on-chain balance != csv claim by 25.999685 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb38e8c17e38363af6ebdcb3dae12e0243582891d</code></td>
+<td><code>USDT@ARBITRUM#479089705</code></td>
+<td>23455350.36</td>
+<td>23455250.357965</td>
+<td>on-chain balance != csv claim by 100.002035 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x9696f59e4d72e237be84ffd425dcad154bf96976</code></td>
+<td><code>USDT@ETH#25433938</code></td>
+<td>55213921.49</td>
+<td>55213841.089374</td>
+<td>on-chain balance != csv claim by 80.400626 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
+<td><code>USDT@ETH#25433938</code></td>
+<td>79580872.66</td>
+<td>79580827.462177</td>
+<td>on-chain balance != csv claim by 45.197823 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf055616bfc551a314f24ab6c09e8e1582b49cb44</code></td>
+<td><code>USDC@SEIEVM#217115721</code></td>
+<td>11565979</td>
+<td>1640322.694007</td>
+<td>on-chain balance != csv claim by 9925656.305993
+(provider=https://evm-rpc.sei-apis.com)</td>
+</tr>
+<tr>
+<td><code>0xacd03d601e5bb1b275bb94076ff46ed9d753435a</code></td>
+<td><code>USDT@OPTIMISM#153632611</code></td>
+<td>8390320.854</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 8390320.854 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x18e226459ccf0eec276514a4fd3b226d8961e4d1</code></td>
+<td><code>USDT@OPTIMISM#153632611</code></td>
+<td>1774.870765</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1774.870765 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>USDT@OPTIMISM#153632611</code></td>
+<td>47035311.56</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 47035311.56 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>USDT@OPTIMISM#153632611</code></td>
+<td>187097.6339</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 187097.6339 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x3b9ce4b73fb57181194d83ec44544c0ccc77319a</code></td>
+<td><code>WLD@WLD#31764180</code></td>
+<td>22259517.02</td>
+<td>22259495.684554739598300955</td>
+<td>on-chain balance != csv claim by 21.335445260401699045
+(provider=https://worldchain-mainnet.g.alchemy.com/public)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>TUSD@ETH#25433938</code></td>
+<td>3843003.696</td>
+<td>0</td>
+<td>on-chain ERC20 balance &lt;&lt; CSV mega-stablecoin allocation;
+likely omnibus/internal ledger label — not single-address custody;
+delta=3843003.696 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>TDqSquXBgUCLYvYC4XZgrprLK589dkhSCf</code></td>
+<td><code>TUSD@TRX#84064751</code></td>
+<td>44862.19616</td>
+<td>30874.917585402395005971</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+13987.278574597604994029 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TDqSquXBgUCLYvYC4XZgrprLK589dkhSCf</code></td>
+<td><code>U@TRX#84064751</code></td>
+<td>34217094.01</td>
+<td>34133181.242840738726129221</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+83912.767159261273870779 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TNXoiAJ3dct8Fjg4M9fkLFh9S2v9TXc32G</code></td>
+<td><code>USDT@TRX#84064751</code></td>
+<td>53002388.36</td>
+<td>32705291.284967</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+20297097.075033 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TJqwA7SoZnERE4zW5uDEiPkbz4B66h9TFj</code></td>
+<td><code>USDT@TRX#84064751</code></td>
+<td>45383370.47</td>
+<td>28411959.064493</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+16971411.405507 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TJDENsfBJs4RFETt1X1W8wMDc8M5XnJhCe</code></td>
+<td><code>USDT@TRX#84064751</code></td>
+<td>46588884.34</td>
+<td>45949054.254867</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+639830.085133 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TYASr5UV6HEcXatwdFQfmLVUqQQQMUxHLS</code></td>
+<td><code>USDT@TRX#84064751</code></td>
+<td>36274558.52</td>
+<td>30111185.119494</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+6163373.400506 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TK4ykR48cQQoyFcZ5N4xZCbsBaHcg6n3gJ</code></td>
+<td><code>USDT@TRX#84064751</code></td>
+<td>53624676.49</td>
+<td>26665076.534717</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+26959599.955283 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TCLgK89AnXbC9rewvhNb9UgXCc2qJJpBXh</code></td>
+<td><code>USDT@TRX#84064751</code></td>
+<td>41198990.13</td>
+<td>38565673.139795</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+2633316.990205 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb</code></td>
+<td><code>USDT@TRX#84064751</code></td>
+<td>100000000</td>
+<td>0</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+100000000 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TQq26fUorctUZvrAgKg8Wz6QyYHvYd6xWK</code></td>
+<td><code>USDT@TRX#84064751</code></td>
+<td>15476669.78</td>
+<td>13376896.889797</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+2099772.890203 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Other unverifiable rows:</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Bridging in progress</code></td>
+<td><code>ETH@BASE</code></td>
+<td></td>
+<td></td>
+<td>placeholder wallet address (bridging in progress) — not a queryable
+on-chain address</td>
+</tr>
+<tr>
+<td><code>Bridging in progress</code></td>
+<td><code>ETH@BASE</code></td>
+<td></td>
+<td></td>
+<td>placeholder wallet address (bridging in progress) — not a queryable
+on-chain address</td>
+</tr>
+<tr>
+<td><code>Bridging in progress</code></td>
+<td><code>ETH@BASE</code></td>
+<td></td>
+<td></td>
+<td>placeholder wallet address (bridging in progress) — not a queryable
+on-chain address</td>
+</tr>
+<tr>
+<td><code>Bridging in progress</code></td>
+<td><code>ETH@ARBITRUM</code></td>
+<td></td>
+<td></td>
+<td>placeholder wallet address (bridging in progress) — not a queryable
+on-chain address</td>
+</tr>
+<tr>
+<td><code>Bridging in progress</code></td>
+<td><code>ETH@ARBITRUM</code></td>
+<td></td>
+<td></td>
+<td>placeholder wallet address (bridging in progress) — not a queryable
+on-chain address</td>
+</tr>
+<tr>
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>BTC@ETH#25433938</code></td>
+<td>1000</td>
+<td>0</td>
+<td>no WBTC at snapshot height; BTC likely native/off-chain custody —
+EVM WBTC balanceOf cannot verify this row</td>
+</tr>
+</tbody>
+</table>
+<h4 id="onchain-balance-ledger-fail"><code>onchain-balance-ledger</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 13, WARN 109, UNVERIFIABLE 9, PASS 1</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e</code></td>
+<td><code>CAKE\|APT#867767788</code></td>
+<td>3340818.333</td>
+<td>800000</td>
+<td>on-chain balance != csv claim by 2540818.333 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>c5f9zfpkKMD9N8uLqJcFeJAAz7v12vDMnup9Y6EeQkk</code></td>
+<td><code>SOL\|SOL#429980964</code></td>
+<td>4764335.668</td>
+<td>1.085865132</td>
+<td>on-chain balance != csv claim by 4764334.582134868
+(provider=https://api.helius.xyz)</td>
+</tr>
+<tr>
+<td><code>0xaa367ea8e145e3af459d3b8f6d50b96c76d9cf9c7dabedf9fff192f36eda0ee0</code></td>
+<td><code>USDC\|APT#867767788</code></td>
+<td>24629266.53</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 24629266.53 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f</code></td>
+<td><code>USDC\|APT#867767788</code></td>
+<td>1791897.02</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1791897.02 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70</code></td>
+<td><code>USDC\|APT#867767788</code></td>
+<td>182487.1009</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 182487.1009 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9</code></td>
+<td><code>USDC\|SOL#429980964</code></td>
+<td>499679778.8</td>
+<td>497753753.759298</td>
+<td>on-chain balance != csv claim by 1926025.040702
+(provider=https://api.helius.xyz)</td>
+</tr>
+<tr>
+<td><code>9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM</code></td>
+<td><code>USDC\|SOL#429980964</code></td>
+<td>1091.417022</td>
+<td>1090.417022</td>
+<td>on-chain balance != csv claim by 1
+(provider=https://api.helius.xyz)</td>
+</tr>
+<tr>
+<td><code>0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70</code></td>
+<td><code>USDT\|APT#867767788</code></td>
+<td>149870817.3</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 149870817.3 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e</code></td>
+<td><code>USDT\|APT#867767788</code></td>
+<td>400000000</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 400000000 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9</code></td>
+<td><code>USDT\|SOL#429980964</code></td>
+<td>133918581.8</td>
+<td>133900798.217789</td>
+<td>on-chain balance != csv claim by 17783.582211
+(provider=https://api.helius.xyz)</td>
+</tr>
+<tr>
+<td><code>G9RCBaYb8aBRxoe8QBC2ucGrVqjuZFysRhY8d56cnNT1</code></td>
+<td><code>USDT\|SOL#429980964</code></td>
+<td>311489.4214</td>
+<td>0.016752</td>
+<td>on-chain balance != csv claim by 311489.404648
+(provider=https://api.helius.xyz)</td>
+</tr>
+<tr>
+<td><code>rhWj9gaovwu2hZxYW7p388P8GRbuXFLQkK</code></td>
+<td><code>XRP\|XRP#105288795</code></td>
+<td>11801998.42</td>
+<td>11801843.918172</td>
+<td>on-chain balance != csv claim by 154.501828 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>rDAE53VfMvftPB4ogpWGWvzkQxfht6JPxr</code></td>
+<td><code>XRP\|XRP#105288795</code></td>
+<td>28888703.75</td>
+<td>28888607.727477</td>
+<td>on-chain balance != csv claim by 96.022523 (provider=cache)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>4212325.373</td>
+<td>2559057.63737864</td>
+<td>partial CoinStore+FA APT vs CSV row allocation; other custody forms
+not queried; on-chain balance != csv claim by 1653267.73562136
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x1d14ee0c332546658b13965a39faf5ec24ad195b722435d9fe23dc55487e67e3</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>118380.3993</td>
+<td>0.003994</td>
+<td>partial CoinStore+FA APT vs CSV row allocation; other custody forms
+not queried; on-chain balance != csv claim by 118380.395306
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>62626935.96</td>
+<td>22665573.834647</td>
+<td>partial CoinStore+FA APT vs CSV row allocation; other custody forms
+not queried; on-chain balance != csv claim by 39961362.125353
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x716666e019eb2cd1eea5ae29760e064f14984d8d6db2ff9ee56d0bd994e8c9b3</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>114195.4981</td>
+<td>6.371591</td>
+<td>partial CoinStore+FA APT vs CSV row allocation; other custody forms
+not queried; on-chain balance != csv claim by 114189.126509
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>19dQkvaH2NGgkGomzZu3qrnqRGCicXwedM</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/19dQkvaH2NGgkGomzZu3qrnqRGCicXwedM):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1NbpHNjzNeNSUfHoJFSDsTNBZ8PxSXwtjv</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1NbpHNjzNeNSUfHoJFSDsTNBZ8PxSXwtjv):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1JyNxYBkMSDRRaVzPZRzgJxpHkRoK28d7D</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1JyNxYBkMSDRRaVzPZRzgJxpHkRoK28d7D):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1G949ToNzeWSHqBCmvYRukaK6SqQtLdc8C</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1G949ToNzeWSHqBCmvYRukaK6SqQtLdc8C):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1P86nZCNWUiynP52AK2eTuTGZXYUTwX6qQ</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1P86nZCNWUiynP52AK2eTuTGZXYUTwX6qQ):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1B6cHqiZhcztHWriiyVrBbS7orHkSbjwbU</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1B6cHqiZhcztHWriiyVrBbS7orHkSbjwbU):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1Np9RvgpNve8hQ9H5oeGQ71T9uerDx32rr</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1Np9RvgpNve8hQ9H5oeGQ71T9uerDx32rr):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1KuPikhUYtHz3fmSQ2UvotpUuN672NuEcm</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1KuPikhUYtHz3fmSQ2UvotpUuN672NuEcm):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1KMcFqQxgJr7X9ADVGy28FSji4BuADkqUr</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1KMcFqQxgJr7X9ADVGy28FSji4BuADkqUr):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1Gi1qU3esZcmJtPphC19ZpNpVNL8ZFWFsM</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1Gi1qU3esZcmJtPphC19ZpNpVNL8ZFWFsM):
+blockchair HTTP 430</td>
+</tr>
+<tr>
+<td><code>1Pzaqw98PeRfyHypfqyEgg5yycJRsENrE7</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/1Pzaqw98PeRfyHypfqyEgg5yycJRsENrE7):
+blockchair HTTP 430</td>
+</tr>
+</tbody>
+</table>
+<p><em>94 additional <code>WARN</code> rows omitted; see verification
+bundle.</em></p>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Other unverifiable rows:</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0xc6ea9c27cd6737031631f6d4a4258f7ff87f3642da964a5fad49594847cce386</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>2060923.69</td>
+<td>0</td>
+<td>no AptosCoin/FungibleStore APT at ledger_version; account empty or
+CSV row is internal allocation; on-chain balance != csv claim by
+2060923.69 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x292f853b48a28864755c971299ce8a73a3e32c19a0f7b8dbbf782482396e8ef3</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>4000000.299</td>
+<td>0</td>
+<td>no AptosCoin/FungibleStore APT at ledger_version; account empty or
+CSV row is internal allocation; on-chain balance != csv claim by
+4000000.299 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x9fbc354d59041b8b1b8368e3e7397ac943a3c7c6da3ffde3aa4f4d221a1d205d</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>8333874.056</td>
+<td>0</td>
+<td>no AptosCoin/FungibleStore APT at ledger_version; account empty or
+CSV row is internal allocation; on-chain balance != csv claim by
+8333874.056 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xbdb53eb583ba02ab0606bdfc71b59a191400f75fb62f9df124494ab877cdfe2a</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>14596.32301</td>
+<td>0</td>
+<td>no AptosCoin/FungibleStore APT at ledger_version; account empty or
+CSV row is internal allocation; on-chain balance != csv claim by
+14596.32301 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x33f91e694d40ca0a14cb84e1f27a4d03de5cf292b07ed75ed3286e4f243dab34</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>1437737.908</td>
+<td>0</td>
+<td>no AptosCoin/FungibleStore APT at ledger_version; account empty or
+CSV row is internal allocation; on-chain balance != csv claim by
+1437737.908 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x265ca6100138fd7274fa66f043b7b259c44cdc64f75ffd634a4fb523d9d47d8c</code></td>
+<td><code>APT\|APT#867767788</code></td>
+<td>402396.998</td>
+<td>0</td>
+<td>no AptosCoin/FungibleStore APT at ledger_version; account empty or
+CSV row is internal allocation; on-chain balance != csv claim by
+402396.998 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>bc1p7x4aaws8t8cmmccu39kun6cajglx6ntuta7lhyxjt2cwrw4k89zqn0wley</code></td>
+<td><code>BTC\|BTC#956140</code></td>
+<td>2000.069978</td>
+<td>0.0699781</td>
+<td>on-chain UTXO sum &lt;&lt; CSV; likely omnibus/internal BTC custody
+not visible at this address</td>
+</tr>
+<tr>
+<td><code>DJfU2p6woQ9GiBdiXsWZWJnJ9uDdZfSSNC</code></td>
+<td><code>DOGE\|DOGE#6270926</code></td>
+<td>103254932.4</td>
+<td>99984413.52166502</td>
+<td>address has 1531292 txs; exceeds public API limit 200000 — set
+BLOCKCHAIR_API_KEY or use archive provider</td>
+</tr>
+<tr>
+<td><code>LZEjckteAtWrugbsy9zU8VHEZ4iUiXo9Nm</code></td>
+<td><code>LTC\|LTC#3134270</code></td>
+<td>156129.41</td>
+<td>156491.61377138</td>
+<td>address has 1618327 txs; exceeds public API limit 100000 — set
+BLOCKCHAIR_API_KEY or use archive provider</td>
+</tr>
+</tbody>
+</table>
+<h2 id="minimal-checklist">7. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Has public PoR been published during the last 12 months? (S0-1)</td>
+<td><code>pass</code></td>
+<td>Snapshot PR01JUL26 is in the public evaluation set.</td>
+</tr>
+<tr>
+<td>Is snapshot time explicit? (S0-2)</td>
+<td><code>pass</code></td>
+<td>2026-07-01T00:00:00Z</td>
+</tr>
+<tr>
+<td>Is there reserve summary or wallet_address_list? (S0-3)</td>
+<td><code>pass</code></td>
+<td>Summary and wallet_address_list present.</td>
+</tr>
+<tr>
+<td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
+<td><code>pass</code></td>
+<td>Wallet list present; hot-wallet on-chain verifier ran.</td>
+</tr>
+<tr>
+<td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
+<td><code>unverifiable</code></td>
+<td>address-ownership verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>Is global_proof public and independently reproducible? (S1-3)</td>
+<td><code>unverifiable</code></td>
+<td>global-zk-proof verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>Is independent third-party review available with stated scope?
+(S1-4)</td>
+<td><code>unverifiable</code></td>
+<td>third-party-attestation verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>If trusted setup is required, is transcript public; otherwise is the
+proof system transparent setup? (S1-5)</td>
+<td><code>unverifiable</code></td>
+<td>No public trusted setup transcript observed for zk-SNARK PoS.</td>
+</tr>
+<tr>
+<td>Is root/proof/vk canonically anchored outside exchange servers?
+(S2-1)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+<tr>
+<td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
+daily anchor)? (S2-2)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">8. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P0</code></td>
+<td>Publish batch-verifiable wallet_ownership_proof for
+wallet_address_list.</td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+</tr>
+<tr>
+<td><code>P0</code></td>
+<td>Make global proof.csv, verifying key, and parameter sources publicly
+downloadable.</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td><code>P0</code></td>
+<td>Publish trusted setup transcript or migrate to a transparent-setup
+proof system.</td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+</tr>
+<tr>
+<td><code>P2</code></td>
+<td>Review onchain-balance verifier FAIL/WARN outliers in the
+verification bundle and reconcile CSV vs chain deltas.</td>
+<td><code>IMPLEMENTATION_SEMANTICS_RISK</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">9. Boundary</h2>
+<p>This report evaluates public PoR artifacts and reproducibility. It
+does not evaluate the exchange’s overall financial health, corporate
+governance, internal controls, off-chain assets, legal compliance, or
+complete off-balance-sheet liabilities.</p>
+<p>Missing data must be marked as <code>UNVERIFIABLE</code>, not treated
+as <code>PASS</code>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

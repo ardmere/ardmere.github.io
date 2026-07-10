@@ -68,9 +68,9 @@ func DefaultProviderConfig() map[Network][]Provider {
 			{URL: "https://avalanche.drpc.org", Archive: true, Weight: 50, RateLimitMs: 500},
 		},
 		NetOpBNB: {
-			{URL: "https://opbnb-mainnet-rpc.bnbchain.org", Archive: true, Weight: 100, RateLimitMs: 300},
-			{URL: "https://opbnb.public.blastapi.io", Archive: true, Weight: 80, RateLimitMs: 300},
-			{URL: "https://opbnb.drpc.org", Archive: true, Weight: 50, RateLimitMs: 500},
+			{URL: "https://opbnb-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3", Archive: true, Weight: 110, RateLimitMs: 300},
+			{URL: "https://opbnb.drpc.org", Archive: true, Weight: 90, RateLimitMs: 500},
+			{URL: "https://opbnb-mainnet-rpc.bnbchain.org", Archive: true, Weight: 50, RateLimitMs: 300},
 		},
 		NetSonic: {
 			{URL: "https://rpc.soniclabs.com", Archive: true, Weight: 100, RateLimitMs: 200},
@@ -105,8 +105,9 @@ func DefaultProviderConfig() map[Network][]Provider {
 			{URL: "https://ronin.drpc.org", Archive: true, Weight: 60, RateLimitMs: 500},
 		},
 		NetSeiEVM: {
-			{URL: "https://evm-rpc.sei-apis.com", Archive: true, Weight: 100, RateLimitMs: 300},
-			{URL: "https://sei.drpc.org", Archive: true, Weight: 60, RateLimitMs: 500},
+			{URL: "https://evm.sei.io", Archive: true, Weight: 110, RateLimitMs: 300},
+			{URL: "https://sei.drpc.org", Archive: true, Weight: 90, RateLimitMs: 500},
+			{URL: "https://evm-rpc.sei-apis.com", Archive: true, Weight: 50, RateLimitMs: 300},
 		},
 		NetManta: {
 			{URL: "https://pacific-rpc.manta.network/http", Archive: true, Weight: 100, RateLimitMs: 300},
@@ -129,6 +130,16 @@ func DefaultProviderConfig() map[Network][]Provider {
 			{URL: "https://solana-rpc.publicnode.com", Archive: false, Weight: 90, RateLimitMs: 200},
 			{URL: "https://solana-mainnet.g.alchemy.com/v2/demo", Archive: false, Weight: 70, RateLimitMs: 250},
 			{URL: "https://api.mainnet-beta.solana.com", Archive: false, Weight: 30, RateLimitMs: 400},
+		},
+		Network("MTL"): {
+			{URL: "https://rpc.metall2.com", Archive: true, Weight: 100, RateLimitMs: 300},
+		},
+		Network("STARKNET"): {
+			{URL: "https://starknet-mainnet.public.blastapi.io/rpc/v0_9", Archive: true, Weight: 100, RateLimitMs: 300},
+			{URL: "https://rpc.starknet.lava.build/rpc/v0_9", Archive: true, Weight: 80, RateLimitMs: 300},
+		},
+		NetAB: {
+			{URL: "https://api.mainnet.abs.xyz", Archive: true, Weight: 100, RateLimitMs: 300},
 		},
 	}
 }
@@ -161,10 +172,50 @@ func LoadProviderConfig() (map[Network][]Provider, error) {
 	out := map[Network][]Provider{}
 	for netKey, providers := range file {
 		net := Network(strings.ToUpper(netKey))
-		out[net] = append(out[net], providers...)
-		sortProviders(out[net])
+		resolved := resolveProviders(providers)
+		if len(resolved) > 0 {
+			out[net] = append(out[net], resolved...)
+			sortProviders(out[net])
+		}
 	}
 	return out, nil
+}
+
+func resolveProviders(providers []Provider) []Provider {
+	out := make([]Provider, 0, len(providers))
+	for _, p := range providers {
+		u, ok := expandProviderURL(p.URL)
+		if !ok {
+			continue
+		}
+		p.URL = u
+		out = append(out, p)
+	}
+	return out
+}
+
+func expandProviderURL(url string) (string, bool) {
+	for i := 0; i < len(url); {
+		start := strings.Index(url[i:], "${")
+		if start < 0 {
+			break
+		}
+		start += i
+		end := strings.Index(url[start+2:], "}")
+		if end < 0 {
+			return "", false
+		}
+		end += start + 2
+		if os.Getenv(url[start+2:end]) == "" {
+			return "", false
+		}
+		i = end + 1
+	}
+	expanded := os.ExpandEnv(url)
+	if expanded == "" || strings.Contains(expanded, "${") {
+		return "", false
+	}
+	return expanded, true
 }
 
 func sortProviders(providers []Provider) {

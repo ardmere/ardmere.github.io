@@ -136,7 +136,7 @@ interface VerifyCtx {
 | `address-ownership@0` | `UNVERIFIABLE` reason: *"No public download channel for wallet ownership signatures / proofs"* | Binance provides official download channel |
 | `global-zk-proof@0` | `UNVERIFIABLE` reason: *"Global proof.csv / verifying key not publicly distributed; only available via logged-in user download"* | Binance public release / third-party mirror |
 | `third-party-attestation@0` | `UNVERIFIABLE` reason: *"No public third-party attestation report available"* | Any institution publishes publicly downloadable PoR attestation |
-| `cross-chain-wrapped@0` | `UNVERIFIABLE` reason: *"Wrapped tokens (wBTC/cbBTC/...) reconciliation rules not finalized"* | We finalize wrapped-asset reconciliation spec |
+| `cross-chain-wrapped@0` | `UNVERIFIABLE` reason: *"No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)"* | Exchange publishes representation metadata per wallet row; ardmere verifies against on-chain state |
 
 > **Value of placeholder verifiers**: The frontend UI **today** shows all 10 verification dimensions — 6 with real ✅/❓ verification + 4 explicitly marked ❌ "cannot verify + reason." This is more honest and more compelling than showing only the 6 real dimensions.
 
@@ -463,7 +463,7 @@ interface ChainRpcPool {
 | Algorand | AlgoNode | PureStake free | Algorand Foundation | ✅ indexer |
 | Aptos | Aptos Labs full node | publicnode | - | ✅ |
 
-> **Full list**: Maintained in `config/rpc-providers.json`, grouped by `(network, capability)`; each entry records `(url, weight, rateLimit, lastFailedAt, costModel)`.
+> **Full list**: Maintained in `config/rpc-providers.json`, grouped by `(network, capability)`; each entry records `(url, weight, rateLimit, lastFailedAt, costModel)`. Env expansion (`${INFURA_KEY}`, `${ALCHEMY_KEY}`) and ledger-specific backends are documented in [`ledger-rpc-runbook.md`](./ledger-rpc-runbook.md).
 
 ### 7.3 Node pool policies
 

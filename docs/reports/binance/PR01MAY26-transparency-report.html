@@ -56,7 +56,7 @@ href="./PR01MAY26-assessment.json">PR01MAY26-assessment.json</a></p>
 </tr>
 <tr>
 <td>Snapshot time</td>
-<td><code>2026-01-05T00:00:00Z</code></td>
+<td><code>2026-05-01T00:00:00Z</code></td>
 </tr>
 <tr>
 <td>PoR Stage</td>
@@ -114,8 +114,122 @@ stack.</p>
 <td>Stage 0</td>
 <td>Public global proof/vk not available.</td>
 </tr>
+<tr>
+<td>—</td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+<td>Stage 0</td>
+<td>Trusted setup transcript is not public.</td>
+</tr>
 </tbody>
 </table>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest snapshot (evaluation set)</td>
+<td><code>2026-06-01T00:00:00Z</code></td>
+</tr>
+<tr>
+<td>Previous snapshot</td>
+<td><code>2026-04-01T00:00:00Z</code></td>
+</tr>
+<tr>
+<td>Observed cadence</td>
+<td><code>~monthly</code></td>
+</tr>
+<tr>
+<td>History available</td>
+<td><code>3 snapshot(s) in public evaluation set</code></td>
+</tr>
+<tr>
+<td>Event-triggered updates</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Daily root / commitment anchor</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Stage impact</td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<p>Older snapshot PR01JUN26 is also in the public evaluation set.</p>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>bapiSnapshot</code></td>
+<td><code>7724bc46ca584e53aedf03c08d1248348f67f27670577dae9c4eeb4daf23bafb</code></td>
+<td>https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot</td>
+</tr>
+<tr>
+<td><code>walletZip</code></td>
+<td><code>6441024de77cd1ca52dfbfbc5f9d2a01a5db12648fc616dbbb76d53e91b1455f</code></td>
+<td>https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20260501.zip</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact bundle root</td>
+<td><code>0x399ca21b9a36fcf0cb31fc1e6bd9f3afeb356a9e3d21c60aabf129b70e4d1e2f</code></td>
+</tr>
+<tr>
+<td>Verification bundle root</td>
+<td><code>0x48a7a9cd6a8902bd00b34ca93117db0e8fbf4b84085871b2d5774313cc4d9f9c</code></td>
+</tr>
+<tr>
+<td>Artifact bundle SHA-256</td>
+<td><code>02da624f0504c305616cc8c58b71557e37fe03043fcf4cb1f6d7c53fcb71f114</code></td>
+</tr>
+<tr>
+<td>Verification bundle SHA-256</td>
+<td><code>384a994f5f4abe4e86edd8659e61e9e58ac77adba70638738d96d541cd60d57e</code></td>
+</tr>
+</tbody>
+</table>
+<p>Local bundle paths: <a
+href="../../../artifacts/binance/PR01MAY26/bundles/PR01MAY26.artifact-bundle.json">PR01MAY26.artifact-bundle.json</a>,
+<a
+href="../../../artifacts/binance/PR01MAY26/bundles/PR01MAY26.verification-bundle.v2.json">PR01MAY26.verification-bundle.v2.json</a></p>
 <h2 id="verifier-evidence">5. Verifier Evidence</h2>
 <table>
 <colgroup>
@@ -218,11 +332,220 @@ proofs</td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
-<td>Wrapped token reconciliation rules not finalized</td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="boundary">8. Boundary</h2>
+<h2 id="verifier-finding-details">6. Verifier Finding Details</h2>
+<p>This section explains <code>FAIL</code>, <code>WARN</code>, and
+<code>UNVERIFIABLE</code> outcomes from the verification bundle.
+Row-level <code>UNVERIFIABLE</code> entries often mean the verifier does
+not yet support that (coin, network) pair, not that the exchange failed
+the check. Full machine-readable output:
+<code>PR01MAY26.verification-bundle.v2.json</code> in the local artifact
+bundle.</p>
+<h3 id="capability-and-artifact-gaps-unverifiable">Capability and
+artifact gaps (<code>UNVERIFIABLE</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>btc-anchor</code></td>
+<td>BTC block time anchor verifier not implemented</td>
+</tr>
+<tr>
+<td><code>onchain-balance-hot</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>onchain-balance-token</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>onchain-balance-ledger</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>onchain-balance-deposit</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>address-ownership</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr>
+<td><code>global-zk-proof</code></td>
+<td>Global proof.csv / verifying key not publicly distributed</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr>
+<td><code>cross-chain-wrapped</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="row-level-findings">Row-level findings</h3>
+<h4 id="internal-consistency-pass"><code>internal-consistency</code>
+(<code>PASS</code>)</h4>
+<p>Finding counts: WARN 1, PASS 15</p>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>csv-extras</code></td>
+<td><code>longTailCoins</code></td>
+<td></td>
+<td>50 coins not in summary snapshot: [1INCH AAVE APT ARB ASTER BCH BNB
+BOME BTC BUSD CAKE CHR CHZ CRV DOGE DOT ENA ENJ ETH FDUSD FORM GRT HBAR
+HFT LINK LTC MASK NEAR OP PAXG PENDLE PEPE POL RLUSD S SHIB SOL SSV SUI
+TRUMP TUSD U UNI USD1 USDC USDE USDT WIF WLFI XRP]</td>
+<td>informational — binance summary lists top coins only</td>
+</tr>
+</tbody>
+</table>
+<h4 id="solvency-claim-fail"><code>solvency-claim</code>
+(<code>FAIL</code>)</h4>
+<p>Summary: summary has no coin rows</p>
+<h2 id="minimal-checklist">7. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Has public PoR been published during the last 12 months? (S0-1)</td>
+<td><code>pass</code></td>
+<td>Snapshot PR01MAY26 is in the public evaluation set.</td>
+</tr>
+<tr>
+<td>Is snapshot time explicit? (S0-2)</td>
+<td><code>pass</code></td>
+<td>2026-05-01T00:00:00Z</td>
+</tr>
+<tr>
+<td>Is there reserve summary or wallet_address_list? (S0-3)</td>
+<td><code>pass</code></td>
+<td>Summary and wallet_address_list present.</td>
+</tr>
+<tr>
+<td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
+<td><code>pass</code></td>
+<td>Wallet list present; on-chain replay skipped or incomplete.</td>
+</tr>
+<tr>
+<td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
+<td><code>unverifiable</code></td>
+<td>address-ownership verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>Is global_proof public and independently reproducible? (S1-3)</td>
+<td><code>unverifiable</code></td>
+<td>global-zk-proof verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>Is independent third-party review available with stated scope?
+(S1-4)</td>
+<td><code>unverifiable</code></td>
+<td>third-party-attestation verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>If trusted setup is required, is transcript public; otherwise is the
+proof system transparent setup? (S1-5)</td>
+<td><code>unverifiable</code></td>
+<td>No public trusted setup transcript observed for zk-SNARK PoS.</td>
+</tr>
+<tr>
+<td>Is root/proof/vk canonically anchored outside exchange servers?
+(S2-1)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+<tr>
+<td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
+daily anchor)? (S2-2)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">8. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P0</code></td>
+<td>Publish batch-verifiable wallet_ownership_proof for
+wallet_address_list.</td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+</tr>
+<tr>
+<td><code>P0</code></td>
+<td>Make global proof.csv, verifying key, and parameter sources publicly
+downloadable.</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td><code>P0</code></td>
+<td>Publish trusted setup transcript or migrate to a transparent-setup
+proof system.</td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">9. Boundary</h2>
 <p>This report evaluates public PoR artifacts and reproducibility. It
 does not evaluate the exchange’s overall financial health, corporate
 governance, internal controls, off-chain assets, legal compliance, or

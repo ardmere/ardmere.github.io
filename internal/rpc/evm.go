@@ -43,6 +43,7 @@ const (
 	NetXLayer    Network = "XLAYER"
 	NetFEVM      Network = "FEVM"
 	NetSolana    Network = "SOL"
+	NetAB        Network = "AB"
 )
 
 // PublicProviders lists fallback RPC endpoints for each supported network.
@@ -242,6 +243,20 @@ func (c *Client) callBatch(ctx context.Context, net Network, calls []rpcReq, his
 				goto nextProvider
 			}
 		}
+		if historical {
+			for _, rr := range batch {
+				out, err := decodeHexBytes(rr.Result)
+				out = normalizeEthCallResult(out)
+				if err != nil || len(out) < 32 {
+					n := 0
+					if out != nil {
+						n = len(out)
+					}
+					lastErr = fmt.Errorf("%s -> short eth_call in batch: %d bytes", u, n)
+					goto nextProvider
+				}
+			}
+		}
 		return batch, u, nil
 	nextProvider:
 	}
@@ -282,7 +297,11 @@ func (c *Client) GetBalance(ctx context.Context, net Network, address string, he
 			}
 		}
 	}
-	res, used, err := c.call(ctx, net, "eth_getBalance", []any{address, blk}, height > 0)
+	historical := height > 0
+	res, used, err := c.call(ctx, net, "eth_getBalance", []any{address, blk}, historical)
+	if err != nil && historical && isEVMHistoricalUnavailable(err) {
+		res, used, err = c.call(ctx, net, "eth_getBalance", []any{address, "latest"}, false)
+	}
 	if err != nil {
 		return nil, used, err
 	}
@@ -302,7 +321,7 @@ func (c *Client) CallContract(ctx context.Context, net Network, to string, data 
 	if c.cache != nil {
 		if raw, ok := c.cache.Get(net, "eth_call", to, dataHex, height); ok {
 			out, err := decodeHexBytes(raw)
-			if err == nil {
+			if err == nil && len(out) >= 32 {
 				return out, "cache", nil
 			}
 		}
@@ -312,15 +331,128 @@ func (c *Client) CallContract(ctx context.Context, net Network, to string, data 
 		"data": dataHex,
 	}
 	blk := blockTag(height)
-	res, used, err := c.call(ctx, net, "eth_call", []any{callObj, blk}, height > 0)
-	if err != nil {
-		return nil, used, err
+	historical := height > 0
+	providers := ProvidersFor(c.providers, net, historical)
+	if len(providers) == 0 {
+		return nil, "", fmt.Errorf("network %s not configured", net)
 	}
-	if c.cache != nil {
-		c.cache.Put(net, "eth_call", to, dataHex, height, res)
+	body, _ := json.Marshal(rpcReq{Jsonrpc: "2.0", Method: "eth_call", Params: []any{callObj, blk}, ID: 1})
+
+	var lastErr error
+	for _, p := range providers {
+		u := p.URL
+		if c.isDisabled(u) {
+			continue
+		}
+		if p.RateLimitMs > 0 {
+			time.Sleep(time.Duration(p.RateLimitMs) * time.Millisecond)
+		}
+		req, err := http.NewRequestWithContext(ctx, http.MethodPost, u, bytes.NewReader(body))
+		if err != nil {
+			lastErr = err
+			continue
+		}
+		req.Header.Set("Content-Type", "application/json")
+		req.Header.Set("User-Agent", "ardmere/0.1")
+
+		resp, err := c.httpc.Do(req)
+		if err != nil {
+			c.disable(u)
+			lastErr = err
+			continue
+		}
+		raw, _ := io.ReadAll(resp.Body)
+		resp.Body.Close()
+		if resp.StatusCode == http.StatusTooManyRequests {
+			lastErr = fmt.Errorf("%s -> HTTP 429", u)
+			time.Sleep(2 * time.Second)
+			continue
+		}
+		if resp.StatusCode != http.StatusOK {
+			c.disable(u)
+			lastErr = fmt.Errorf("%s -> HTTP %d", u, resp.StatusCode)
+			continue
+		}
+		var rr rpcResp
+		if err := json.Unmarshal(raw, &rr); err != nil {
+			c.disable(u)
+			lastErr = err
+			continue
+		}
+		if rr.Error != nil {
+			lastErr = fmt.Errorf("%s -> rpc error %d: %s", u, rr.Error.Code, rr.Error.Message)
+			continue
+		}
+		out, err := decodeHexBytes(rr.Result)
+		if err != nil {
+			lastErr = err
+			continue
+		}
+		out = normalizeEthCallResult(out)
+		if historical && len(out) < 32 {
+			lastErr = fmt.Errorf("%s -> short eth_call: %d bytes", u, len(out))
+			continue
+		}
+		if c.cache != nil && len(out) >= 32 {
+			c.cache.Put(net, "eth_call", to, dataHex, height, ethCallResultJSON(out))
+		}
+		return out, u, nil
 	}
-	out, err := decodeHexBytes(res)
-	return out, used, err
+	if lastErr == nil {
+		lastErr = errors.New("no usable provider")
+	}
+	if historical && isEVMHistoricalUnavailable(lastErr) {
+		body, _ = json.Marshal(rpcReq{Jsonrpc: "2.0", Method: "eth_call", Params: []any{callObj, "latest"}, ID: 1})
+		liveProviders := ProvidersFor(c.providers, net, false)
+		for _, p := range liveProviders {
+			u := p.URL
+			if c.isDisabled(u) {
+				continue
+			}
+			if p.RateLimitMs > 0 {
+				time.Sleep(time.Duration(p.RateLimitMs) * time.Millisecond)
+			}
+			req, err := http.NewRequestWithContext(ctx, http.MethodPost, u, bytes.NewReader(body))
+			if err != nil {
+				lastErr = err
+				continue
+			}
+			req.Header.Set("Content-Type", "application/json")
+			req.Header.Set("User-Agent", "ardmere/0.1")
+			resp, err := c.httpc.Do(req)
+			if err != nil {
+				lastErr = err
+				continue
+			}
+			raw, _ := io.ReadAll(resp.Body)
+			resp.Body.Close()
+			if resp.StatusCode != http.StatusOK {
+				lastErr = fmt.Errorf("%s -> HTTP %d", u, resp.StatusCode)
+				continue
+			}
+			var rr rpcResp
+			if err := json.Unmarshal(raw, &rr); err != nil {
+				lastErr = err
+				continue
+			}
+			if rr.Error != nil {
+				lastErr = fmt.Errorf("%s -> rpc error %d: %s", u, rr.Error.Code, rr.Error.Message)
+				continue
+			}
+			out, err := decodeHexBytes(rr.Result)
+			if err != nil {
+				lastErr = err
+				continue
+			}
+			out = normalizeEthCallResult(out)
+			if len(out) < 32 {
+				lastErr = fmt.Errorf("%s -> short eth_call: %d bytes", u, len(out))
+				continue
+			}
+			return out, u, nil
+		}
+	}
+	return nil, "", lastErr
 }
 
 // CallContractBatch executes multiple eth_call requests in JSON-RPC batches.
@@ -344,7 +476,7 @@ func (c *Client) CallContractBatch(ctx context.Context, net Network, calls []Con
 			if c.cache != nil {
 				if raw, ok := c.cache.Get(net, "eth_call", call.To, dataHex, height); ok {
 					decoded, err := decodeHexBytes(raw)
-					if err == nil {
+					if err == nil && len(decoded) >= 32 {
 						out[call.ID] = decoded
 						continue
 					}
@@ -385,10 +517,26 @@ func (c *Client) CallContractBatch(ctx context.Context, net Network, calls []Con
 			if err != nil {
 				return nil, used, fmt.Errorf("decode eth_call %d: %w", call.ID, err)
 			}
+			decoded = normalizeEthCallResult(decoded)
 			out[call.ID] = decoded
-			if c.cache != nil {
+			if c.cache != nil && len(decoded) >= 32 {
 				dataHex := "0x" + hex.EncodeToString(call.Data)
-				c.cache.Put(net, "eth_call", call.To, dataHex, height, rr.Result)
+				c.cache.Put(net, "eth_call", call.To, dataHex, height, ethCallResultJSON(decoded))
+			}
+		}
+		if height > 0 {
+			for _, call := range pending {
+				if len(out[call.ID]) >= 32 {
+					continue
+				}
+				retried, retryUsed, err := c.CallContract(ctx, net, call.To, call.Data, height)
+				if err != nil {
+					continue
+				}
+				out[call.ID] = retried
+				if used == "" {
+					used = retryUsed
+				}
 			}
 		}
 	}
@@ -419,12 +567,37 @@ func decodeHexBytes(raw json.RawMessage) ([]byte, error) {
 	return out, nil
 }
 
+// normalizeEthCallResult treats empty eth_call output as a 32-byte zero word (common for zero ERC20 balances).
+func normalizeEthCallResult(out []byte) []byte {
+	if len(out) == 0 {
+		return make([]byte, 32)
+	}
+	return out
+}
+
+func ethCallResultJSON(out []byte) json.RawMessage {
+	raw, _ := json.Marshal("0x" + hex.EncodeToString(out))
+	return raw
+}
+
 func blockTag(height int64) string {
 	blk := "0x" + strings.TrimLeft(fmt.Sprintf("%x", height), "0")
 	if blk == "0x" {
 		return "0x0"
 	}
 	return blk
+}
+
+func isEVMHistoricalUnavailable(err error) bool {
+	if err == nil {
+		return false
+	}
+	msg := strings.ToLower(err.Error())
+	return strings.Contains(msg, "missing trie") ||
+		strings.Contains(msg, "pruned") ||
+		strings.Contains(msg, "header not found") ||
+		strings.Contains(msg, "historical state") ||
+		strings.Contains(msg, "state is not available")
 }
 
 // GetBlockTime returns the unix timestamp of the given block on the given network.

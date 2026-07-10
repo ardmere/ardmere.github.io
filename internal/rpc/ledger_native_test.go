@@ -1,6 +1,19 @@
 package rpc
 
-import "testing"
+import (
+	"errors"
+	"testing"
+)
+
+func TestIsNearGarbageCollected(t *testing.T) {
+	err := errors.New("near ft: The data for block #200773913 is garbage collected on this node")
+	if !isNearGarbageCollected(err) {
+		t.Fatal("expected garbage collected detection")
+	}
+	if isNearGarbageCollected(nil) {
+		t.Fatal("nil should be false")
+	}
+}
 
 func TestParseAptosFABalanceBody(t *testing.T) {
 	tests := []struct {

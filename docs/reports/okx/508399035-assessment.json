@@ -1,11 +1,11 @@
 {
   "artifacts": {
-    "artifactBundleRoot": "0x4499e33e1cbd9d48387c677d883cffdd63f726576d14dd028d1eea537577e4ee",
+    "artifactBundleRoot": "0xf9d4380bc4a8ff2146cd305090b353b22776054bd583094c0e3aabbca86f7102",
     "present": [
       {
         "availability": "public",
         "kind": "summarySnapshot",
-        "sha256": "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14",
+        "sha256": "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3",
         "url": "https://www.okx.com/proof-of-reserves/detail"
       },
       {
@@ -21,16 +21,111 @@
         "url": "https://static.okx.com/cdn/okx/por/merkel/por_508399035_proof_data.zip"
       }
     ],
-    "verificationBundleRoot": "0xf4a547bbc8fdebdcb886c17fc91e6198c449c61e662996f166fb8f441f5d9151"
+    "verificationBundleRoot": "0x1bf05b5c8e8882acdf58b2ee3c9414cf338d99566eb522e6283e1a80d969c120"
   },
+  "checklist": [
+    {
+      "id": "S0-1",
+      "notes": "Snapshot 508399035 is in the public evaluation set.",
+      "question": "Has public PoR been published during the last 12 months?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-2",
+      "notes": "2026-06-18T16:00:00Z",
+      "question": "Is snapshot time explicit?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-3",
+      "notes": "Summary and wallet_address_list present.",
+      "question": "Is there reserve summary or wallet_address_list?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S1-1",
+      "notes": "Wallet list present; hot-wallet on-chain verifier ran.",
+      "question": "Is wallet_address_list public and on-chain verifiable?",
+      "stage": "Stage 1",
+      "status": "pass"
+    },
+    {
+      "id": "S1-2",
+      "notes": "address-ownership verifier PASS.",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "stage": "Stage 1",
+      "status": "pass"
+    },
+    {
+      "id": "S1-3",
+      "notes": "global-zk-proof verifier PASS.",
+      "question": "Is global_proof public and independently reproducible?",
+      "stage": "Stage 1",
+      "status": "pass"
+    },
+    {
+      "id": "S1-4",
+      "notes": "third-party-attestation verifier UNVERIFIABLE.",
+      "question": "Is independent third-party review available with stated scope?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-5",
+      "notes": "Plonky2 / zk-STARK uses transparent setup; no trusted setup ceremony required.",
+      "question": "If trusted setup is required, is transcript public; otherwise is the proof system transparent setup?",
+      "stage": "Stage 1",
+      "status": "pass"
+    },
+    {
+      "id": "S2-1",
+      "notes": "No official exchange canonical on-chain/DA anchor established.",
+      "question": "Is root/proof/vk canonically anchored outside exchange servers?",
+      "stage": "Stage 2",
+      "status": "fail"
+    },
+    {
+      "id": "S2-2",
+      "notes": "Monthly or slower cadence; does not meet Stage 2 frequency expectations.",
+      "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
+      "stage": "Stage 2",
+      "status": "fail"
+    }
+  ],
   "confidence": "medium",
   "effectivePoR": true,
   "evidenceLevel": "E2",
   "exchange": "okx",
   "gen": "Gen 2",
-  "generatedAt": "2026-07-01T14:43:02Z",
+  "generatedAt": "2026-07-08T15:30:13Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
   "porStage": "Stage 1",
+  "recommendations": [
+    {
+      "priority": "P1",
+      "relatedRiskFlags": [
+        "NO_CANONICAL_ANCHOR"
+      ],
+      "text": "Anchor root/proof/commitment on-chain or publish immutable DA/archive records."
+    },
+    {
+      "priority": "P1",
+      "relatedRiskFlags": [
+        "HIGH_FREQUENCY_GAP"
+      ],
+      "text": "Add daily anchoring, weekly full PoR, or event-triggered updates to reduce timing risk."
+    },
+    {
+      "priority": "P2",
+      "relatedRiskFlags": [
+        "IMPLEMENTATION_SEMANTICS_RISK"
+      ],
+      "text": "Review onchain-balance verifier FAIL/WARN outliers in the verification bundle and reconcile CSV vs chain deltas."
+    }
+  ],
   "riskFlags": [
     {
       "id": "NO_CANONICAL_ANCHOR",
@@ -56,12 +151,14 @@
   "stageBlockedReasons": [
     {
       "ruleId": "floor_server_only_distribution",
+      "evidence": "canonical on-chain/DA anchor",
       "maxStage": "Stage 1",
       "reason": "No official exchange canonical on-chain/DA anchor established.",
       "riskFlag": "NO_CANONICAL_ANCHOR"
     },
     {
       "ruleId": "s2_frequency",
+      "evidence": "weekly full PoR / daily anchor",
       "maxStage": "Stage 1",
       "reason": "Monthly cadence does not satisfy Stage 2 frequency expectations.",
       "riskFlag": "HIGH_FREQUENCY_GAP"
@@ -76,7 +173,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14",
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3",
         "1fd7764c9beafcf34141eaffd0352d1653040bb0cd30a1d8d1c2cd9ae408d139",
         "e1b2a413d2a0cd7464a3ad9e9ec2e2705e673240689455ce889e55723b33a075"
       ],
@@ -88,7 +185,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14"
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -98,7 +195,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14",
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3",
         "1fd7764c9beafcf34141eaffd0352d1653040bb0cd30a1d8d1c2cd9ae408d139"
       ],
       "reason": "",
@@ -117,9 +214,9 @@
       "version": "okx-1"
     },
     {
-      "coverage": 0.0021886738672340254,
+      "coverage": 0.0022243034418169046,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14",
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3",
         "1fd7764c9beafcf34141eaffd0352d1653040bb0cd30a1d8d1c2cd9ae408d139"
       ],
       "reason": "",
@@ -128,9 +225,9 @@
       "version": "2.1"
     },
     {
-      "coverage": 0.002361731800922297,
+      "coverage": 0.0029877943257357507,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14",
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3",
         "1fd7764c9beafcf34141eaffd0352d1653040bb0cd30a1d8d1c2cd9ae408d139"
       ],
       "reason": "",
@@ -139,9 +236,9 @@
       "version": "2.0"
     },
     {
-      "coverage": 0.0015218918286115663,
+      "coverage": 0.0023006525302087895,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14",
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3",
         "1fd7764c9beafcf34141eaffd0352d1653040bb0cd30a1d8d1c2cd9ae408d139"
       ],
       "reason": "",
@@ -150,20 +247,20 @@
       "version": "1.4"
     },
     {
-      "coverage": 0.75,
+      "coverage": 1,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14",
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3",
         "e1b2a413d2a0cd7464a3ad9e9ec2e2705e673240689455ce889e55723b33a075"
       ],
-      "reason": "structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR for cryptographic verification",
-      "verdict": "PARTIAL",
+      "reason": "zkSTARKValidator verify-global succeeded; summary merkle root bound to zk proof",
+      "verdict": "PASS",
       "verifierId": "global-zk-proof",
       "version": "okx-1"
     },
     {
       "coverage": 0,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14"
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3"
       ],
       "reason": "BTC block time anchor verifier not implemented",
       "verdict": "UNVERIFIABLE",
@@ -173,7 +270,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14"
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3"
       ],
       "reason": "No public third-party attestation report available",
       "verdict": "UNVERIFIABLE",
@@ -183,9 +280,9 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "ea4d3ccd3c12568a4d86a6c30ff853a51101d79106399108ecb6bb94ec87ce14"
+        "eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3"
       ],
-      "reason": "Wrapped token reconciliation rules not finalized",
+      "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
       "verdict": "UNVERIFIABLE",
       "verifierId": "cross-chain-wrapped",
       "version": "0"

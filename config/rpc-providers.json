@@ -1,96 +1,83 @@
 {
   "ETH": [
-    {"url": "https://eth.llamarpc.com", "archive": true, "rateLimitMs": 0, "weight": 40},
-    {"url": "https://eth.drpc.org", "archive": true, "rateLimitMs": 150, "weight": 35},
-    {"url": "https://ethereum-rpc.publicnode.com", "archive": false, "rateLimitMs": 200, "weight": 15},
-    {"url": "https://eth.merkle.io", "archive": true, "rateLimitMs": 0, "weight": 10}
+    {"url": "https://mainnet.infura.io/v3/${INFURA_KEY}", "archive": true, "rateLimitMs": 100, "weight": 130, "note": "requires INFURA_KEY"},
+    {"url": "https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY}", "archive": true, "rateLimitMs": 100, "weight": 125, "note": "requires ALCHEMY_KEY"},
+    {"url": "https://eth.llamarpc.com", "archive": true, "rateLimitMs": 0, "weight": 110},
+    {"url": "https://1rpc.io/eth", "archive": true, "rateLimitMs": 200, "weight": 100},
+    {"url": "https://eth.merkle.io", "archive": true, "rateLimitMs": 300, "weight": 90},
+    {"url": "https://eth.drpc.org", "archive": true, "rateLimitMs": 300, "weight": 70}
   ],
   "BSC": [
-    {"url": "https://bsc-mainnet.public.blastapi.io", "archive": true, "rateLimitMs": 500, "weight": 100},
-    {"url": "https://bsc.rpc.sentio.xyz", "archive": true, "rateLimitMs": 500, "weight": 90},
-    {"url": "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3", "archive": true, "rateLimitMs": 1000, "weight": 50},
-    {"url": "https://bnb.api.onfinality.io/public", "archive": true, "rateLimitMs": 1000, "weight": 40},
-    {"url": "https://bsc.drpc.org", "archive": true, "rateLimitMs": 1000, "weight": 20}
+    {"url": "https://bsc.rpc.sentio.xyz", "archive": true, "rateLimitMs": 500, "weight": 110},
+    {"url": "https://bsc-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3", "archive": true, "rateLimitMs": 1000, "weight": 100},
+    {"url": "https://bnb.api.onfinality.io/public", "archive": true, "rateLimitMs": 1000, "weight": 80},
+    {"url": "https://bsc-mainnet.public.blastapi.io", "archive": true, "rateLimitMs": 500, "weight": 40}
   ],
   "ARBITRUM": [
     {"url": "https://arb1.arbitrum.io/rpc", "archive": true, "rateLimitMs": 300, "weight": 110},
     {"url": "https://arbitrum.llamarpc.com", "archive": true, "rateLimitMs": 200, "weight": 100},
     {"url": "https://arbitrum-one-rpc.publicnode.com", "archive": true, "rateLimitMs": 400, "weight": 90},
-    {"url": "https://arbitrum-one.public.blastapi.io", "archive": true, "rateLimitMs": 500, "weight": 70},
-    {"url": "https://arbitrum.drpc.org", "archive": true, "rateLimitMs": 600, "weight": 50}
+    {"url": "https://arbitrum.gateway.tenderly.co", "archive": true, "rateLimitMs": 400, "weight": 70}
   ],
   "OPTIMISM": [
-    {"url": "https://optimism-mainnet.public.blastapi.io", "archive": true, "rateLimitMs": 400, "weight": 100},
-    {"url": "https://mainnet.optimism.io", "archive": true, "rateLimitMs": 300, "weight": 90},
-    {"url": "https://optimism.llamarpc.com", "archive": true, "rateLimitMs": 200, "weight": 80},
-    {"url": "https://optimism-rpc.publicnode.com", "archive": true, "rateLimitMs": 400, "weight": 70},
-    {"url": "https://optimism.drpc.org", "archive": true, "rateLimitMs": 600, "weight": 50}
+    {"url": "https://mainnet.optimism.io", "archive": true, "rateLimitMs": 300, "weight": 100},
+    {"url": "https://optimism.llamarpc.com", "archive": true, "rateLimitMs": 200, "weight": 90},
+    {"url": "https://optimism-rpc.publicnode.com", "archive": true, "rateLimitMs": 400, "weight": 80}
   ],
   "BASE": [
-    {"url": "https://base-mainnet.public.blastapi.io", "archive": true, "rateLimitMs": 400, "weight": 100},
-    {"url": "https://mainnet.base.org", "archive": true, "rateLimitMs": 300, "weight": 90},
-    {"url": "https://base.llamarpc.com", "archive": true, "rateLimitMs": 200, "weight": 80},
-    {"url": "https://base-rpc.publicnode.com", "archive": true, "rateLimitMs": 400, "weight": 70},
-    {"url": "https://base.drpc.org", "archive": true, "rateLimitMs": 600, "weight": 50}
+    {"url": "https://mainnet.base.org", "archive": true, "rateLimitMs": 300, "weight": 110},
+    {"url": "https://base-rpc.publicnode.com", "archive": true, "rateLimitMs": 400, "weight": 80},
+    {"url": "https://base-mainnet.public.blastapi.io", "archive": true, "rateLimitMs": 400, "weight": 60}
   ],
   "MATIC": [
     {"url": "https://polygon.gateway.tenderly.co", "archive": true, "rateLimitMs": 300, "weight": 100},
     {"url": "https://matic.rpc.sentio.xyz", "archive": true, "rateLimitMs": 300, "weight": 95},
     {"url": "https://polygon.lava.build", "archive": true, "rateLimitMs": 300, "weight": 90},
     {"url": "https://gateway.tenderly.co/public/polygon", "archive": true, "rateLimitMs": 400, "weight": 85},
-    {"url": "https://polygon-mainnet.public.blastapi.io", "archive": true, "rateLimitMs": 400, "weight": 50},
-    {"url": "https://polygon-bor-rpc.publicnode.com", "archive": true, "rateLimitMs": 400, "weight": 40},
-    {"url": "https://polygon.drpc.org", "archive": true, "rateLimitMs": 600, "weight": 30}
+    {"url": "https://polygon-bor-rpc.publicnode.com", "archive": true, "rateLimitMs": 400, "weight": 40}
   ],
   "AVAXC": [
     {"url": "https://api.avax.network/ext/bc/C/rpc", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://avalanche-c-chain-rpc.publicnode.com", "archive": true, "rateLimitMs": 300, "weight": 80},
-    {"url": "https://avalanche.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 50}
+    {"url": "https://avalanche-c-chain-rpc.publicnode.com", "archive": true, "rateLimitMs": 300, "weight": 80}
   ],
   "OPBNB": [
-    {"url": "https://opbnb-mainnet-rpc.bnbchain.org", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://opbnb.public.blastapi.io", "archive": true, "rateLimitMs": 300, "weight": 80},
-    {"url": "https://opbnb.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 50}
+    {"url": "https://opbnb-mainnet.nodereal.io/v1/64a9df0874fb4a93b9d0a3849de012d3", "archive": true, "rateLimitMs": 300, "weight": 110},
+    {"url": "https://opbnb.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 90},
+    {"url": "https://opbnb-mainnet-rpc.bnbchain.org", "archive": true, "rateLimitMs": 300, "weight": 50}
   ],
   "SONIC": [
-    {"url": "https://rpc.soniclabs.com", "archive": true, "rateLimitMs": 200, "weight": 100},
-    {"url": "https://sonic.drpc.org", "archive": true, "rateLimitMs": 400, "weight": 60}
+    {"url": "https://rpc.soniclabs.com", "archive": true, "rateLimitMs": 200, "weight": 100}
   ],
   "WLD": [
     {"url": "https://worldchain-mainnet.g.alchemy.com/public", "archive": true, "rateLimitMs": 200, "weight": 100},
     {"url": "https://worldchain-mainnet.gateway.tenderly.co", "archive": true, "rateLimitMs": 300, "weight": 80}
   ],
   "CELO": [
-    {"url": "https://forno.celo.org", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://celo.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://forno.celo.org", "archive": true, "rateLimitMs": 300, "weight": 100}
   ],
   "PLASMA": [
-    {"url": "https://rpc.plasma.to", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://plasma.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://rpc.plasma.to", "archive": true, "rateLimitMs": 300, "weight": 100}
   ],
   "KAIA": [
-    {"url": "https://public-en.node.kaia.io", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://kaia.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://public-en.node.kaia.io", "archive": true, "rateLimitMs": 300, "weight": 100}
   ],
   "KAVAEVM": [
     {"url": "https://evm.kava.io", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://kava-evm.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://evm.kava-rpc.com", "archive": true, "rateLimitMs": 400, "weight": 80}
   ],
   "ZKSYNCERA": [
-    {"url": "https://mainnet.era.zksync.io", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://zksync.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://mainnet.era.zksync.io", "archive": true, "rateLimitMs": 300, "weight": 100}
   ],
   "RON": [
-    {"url": "https://api.roninchain.com/rpc", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://ronin.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://api.roninchain.com/rpc", "archive": true, "rateLimitMs": 300, "weight": 100}
   ],
   "SEIEVM": [
-    {"url": "https://evm-rpc.sei-apis.com", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://sei.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://evm.sei.io", "archive": true, "rateLimitMs": 300, "weight": 110},
+    {"url": "https://sei.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 90},
+    {"url": "https://evm-rpc.sei-apis.com", "archive": true, "rateLimitMs": 300, "weight": 50}
   ],
   "MANTA": [
-    {"url": "https://pacific-rpc.manta.network/http", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://manta-pacific.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://pacific-rpc.manta.network/http", "archive": true, "rateLimitMs": 300, "weight": 100}
   ],
   "TRX": [
     {"url": "https://api.trongrid.io", "archive": true, "rateLimitMs": 250, "weight": 100},
@@ -98,27 +85,28 @@
   ],
   "LINEA": [
     {"url": "https://rpc.linea.build", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://linea.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://linea.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 70}
   ],
   "SCROLL": [
-    {"url": "https://rpc.scroll.io", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://scroll.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://rpc.scroll.io", "archive": true, "rateLimitMs": 300, "weight": 100}
   ],
   "CHZ2": [
     {"url": "https://rpc.ankr.com/chiliz", "archive": true, "rateLimitMs": 300, "weight": 100},
     {"url": "https://chiliz-mainnet.public.blastapi.io", "archive": true, "rateLimitMs": 400, "weight": 80}
   ],
   "MTL": [
-    {"url": "https://rpc.metallayer.com", "archive": true, "rateLimitMs": 300, "weight": 100},
-    {"url": "https://metall2.drpc.org", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://rpc.metall2.com", "archive": true, "rateLimitMs": 300, "weight": 100}
   ],
   "STARKNET": [
-    {"url": "https://starknet-mainnet.public.blastapi.io/rpc/v0_7", "archive": true, "rateLimitMs": 400, "weight": 100},
-    {"url": "https://starknet.drpc.org/rpc/v0_7", "archive": true, "rateLimitMs": 500, "weight": 60}
+    {"url": "https://starknet-mainnet.g.alchemy.com/starknet/version/rpc/v0_9/${ALCHEMY_KEY}", "archive": true, "rateLimitMs": 200, "weight": 120, "note": "requires ALCHEMY_KEY"},
+    {"url": "https://starknet-mainnet.public.blastapi.io/rpc/v0_9", "archive": true, "rateLimitMs": 300, "weight": 100},
+    {"url": "https://rpc.starknet.lava.build/rpc/v0_9", "archive": true, "rateLimitMs": 300, "weight": 80}
+  ],
+  "AB": [
+    {"url": "https://api.mainnet.abs.xyz", "archive": true, "rateLimitMs": 300, "weight": 100}
   ],
   "SOL": [
-    {"url": "https://solana.drpc.org", "archive": false, "rateLimitMs": 150, "weight": 100},
-    {"url": "https://solana-rpc.publicnode.com", "archive": false, "rateLimitMs": 200, "weight": 90},
+    {"url": "https://solana-rpc.publicnode.com", "archive": false, "rateLimitMs": 200, "weight": 100},
     {"url": "https://solana-mainnet.g.alchemy.com/v2/demo", "archive": false, "rateLimitMs": 250, "weight": 70, "note": "Alchemy public demo tier"},
     {"url": "https://api.mainnet-beta.solana.com", "archive": false, "rateLimitMs": 400, "weight": 30, "note": "official; strict rate limits — last resort"}
   ]

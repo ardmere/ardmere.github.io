@@ -9,7 +9,7 @@
 | --- | --- |
 | Exchange | `binance` |
 | Snapshot | `PR01APR26` |
-| Snapshot time | `2026-01-04T00:00:00Z` |
+| Snapshot time | `2026-04-01T00:00:00Z` |
 | PoR Stage | `Stage 0 — Trust the Exchange` |
 | Gen / Evidence | `Gen 2 / E2` |
 | Confidence | `medium` |
@@ -27,6 +27,41 @@ The available artifacts support Gen 2 / E2 classification and Stage 0 PoR disclo
 | --- | --- | --- | --- |
 | — | `NO_WALLET_OWNERSHIP_PROOF` | Stage 0 | No public batch-verifiable wallet_ownership_proof. |
 | — | `UNVERIFIABLE` | Stage 0 | Public global proof/vk not available. |
+| — | `OPAQUE_TRUSTED_SETUP` | Stage 0 | Trusted setup transcript is not public. |
+
+## 3. Frequency and Freshness
+
+| Field | Value |
+| --- | --- |
+| Latest snapshot (evaluation set) | `2026-06-01T00:00:00Z` |
+| Previous snapshot | `UNVERIFIABLE` |
+| Observed cadence | `~monthly` |
+| History available | `3 snapshot(s) in public evaluation set` |
+| Event-triggered updates | `UNVERIFIABLE` |
+| Daily root / commitment anchor | `UNVERIFIABLE` |
+| Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
+
+Older snapshot PR01JUN26 is also in the public evaluation set.
+
+## 4. Evidence and Bundles
+
+### Public Artifacts
+
+| Artifact | SHA-256 | Source |
+| --- | --- | --- |
+| `bapiSnapshot` | `c7acc61298004f872250d0a4016d106ae63ac10aa7f8e835c1afbd292e459896` | https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot |
+| `walletZip` | `8542f142e3e3dfbe24786c821738a8e434c1f36cf1567c067e0b5cba27e7196f` | https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20260401.zip |
+
+### Bundle References
+
+| Bundle | Value |
+| --- | --- |
+| Artifact bundle root | `0x6b1b79590493c6b8bd05385cc200a2469dd19ce44c18901e873ef2eb198689a3` |
+| Verification bundle root | `0x41418fa74a73f24e288d19d24dc2c132922d41956e06abf70231c40437b042a4` |
+| Artifact bundle SHA-256 | `95b00db0af242c7d15f1136f7c807b92649cc8de398fcdb41f7b0857667ac286` |
+| Verification bundle SHA-256 | `4418cbb3dc6219fc74d0deb721dc7d8c5b7192cdd0cfbba07f36a0c431fb2b57` |
+
+Local bundle paths: [PR01APR26.artifact-bundle.json](../../../artifacts/binance/PR01APR26/bundles/PR01APR26.artifact-bundle.json), [PR01APR26.verification-bundle.v2.json](../../../artifacts/binance/PR01APR26/bundles/PR01APR26.verification-bundle.v2.json)
 
 ## 5. Verifier Evidence
 
@@ -43,9 +78,66 @@ The available artifacts support Gen 2 / E2 classification and Stage 0 PoR disclo
 | `address-ownership` | `0` | `UNVERIFIABLE` | `0.0000` | No public download channel for wallet ownership signatures / proofs |
 | `global-zk-proof` | `0` | `UNVERIFIABLE` | `0.0000` | Global proof.csv / verifying key not publicly distributed |
 | `third-party-attestation` | `0` | `UNVERIFIABLE` | `0.0000` | No public third-party attestation report available |
-| `cross-chain-wrapped` | `0` | `UNVERIFIABLE` | `0.0000` | Wrapped token reconciliation rules not finalized |
+| `cross-chain-wrapped` | `0` | `UNVERIFIABLE` | `0.0000` | No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode) |
 
-## 8. Boundary
+## 6. Verifier Finding Details
+
+This section explains `FAIL`, `WARN`, and `UNVERIFIABLE` outcomes from the verification bundle. Row-level `UNVERIFIABLE` entries often mean the verifier does not yet support that (coin, network) pair, not that the exchange failed the check. Full machine-readable output: `PR01APR26.verification-bundle.v2.json` in the local artifact bundle.
+
+### Capability and artifact gaps (`UNVERIFIABLE`)
+
+| Verifier | Explanation |
+| --- | --- |
+| `btc-anchor` | BTC block time anchor verifier not implemented |
+| `onchain-balance-hot` | RPC queries skipped (--skip-rpc) |
+| `onchain-balance-token` | RPC queries skipped (--skip-rpc) |
+| `onchain-balance-ledger` | RPC queries skipped (--skip-rpc) |
+| `onchain-balance-deposit` | RPC queries skipped (--skip-rpc) |
+| `address-ownership` | No public download channel for wallet ownership signatures / proofs |
+| `global-zk-proof` | Global proof.csv / verifying key not publicly distributed |
+| `third-party-attestation` | No public third-party attestation report available |
+| `cross-chain-wrapped` | No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode) |
+
+### Row-level findings
+
+#### `internal-consistency` (`PASS`)
+
+Finding counts: WARN 1, PASS 15
+
+**WARN**
+
+| Subject | Field | Claim | Actual | Note |
+| --- | --- | --- | --- | --- |
+| `csv-extras` | `longTailCoins` |  | 49 coins not in summary snapshot: [1INCH AAVE APT ARB ASTER BCH BNB BOME BTC BUSD CHR CHZ CRV DOGE DOT ENA ENJ ETH FDUSD FORM GRT HBAR HFT LINK LTC MASK NEAR OP PAXG PENDLE PEPE POL RLUSD S SHIB SOL SSV SUI TRUMP TUSD U UNI USD1 USDC USDE USDT WIF WLFI XRP] | informational — binance summary lists top coins only |
+
+#### `solvency-claim` (`FAIL`)
+
+Summary: summary has no coin rows
+
+## 7. Minimal Checklist
+
+| Requirement | Status | Notes |
+| --- | --- | --- |
+| Has public PoR been published during the last 12 months? (S0-1) | `pass` | Snapshot PR01APR26 is in the public evaluation set. |
+| Is snapshot time explicit? (S0-2) | `pass` | 2026-04-01T00:00:00Z |
+| Is there reserve summary or wallet_address_list? (S0-3) | `pass` | Summary and wallet_address_list present. |
+| Is wallet_address_list public and on-chain verifiable? (S1-1) | `pass` | Wallet list present; on-chain replay skipped or incomplete. |
+| Is wallet_ownership_proof public and batch-verifiable? (S1-2) | `unverifiable` | address-ownership verifier UNVERIFIABLE. |
+| Is global_proof public and independently reproducible? (S1-3) | `unverifiable` | global-zk-proof verifier UNVERIFIABLE. |
+| Is independent third-party review available with stated scope? (S1-4) | `unverifiable` | third-party-attestation verifier UNVERIFIABLE. |
+| If trusted setup is required, is transcript public; otherwise is the proof system transparent setup? (S1-5) | `unverifiable` | No public trusted setup transcript observed for zk-SNARK PoS. |
+| Is root/proof/vk canonically anchored outside exchange servers? (S2-1) | `not_applicable` | Stage 2 is not evaluated until Stage 1 blockers are resolved. |
+| Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)? (S2-2) | `not_applicable` | Stage 2 is not evaluated until Stage 1 blockers are resolved. |
+
+## 8. Recommendations
+
+| Priority | Recommendation | Related Risk |
+| --- | --- | --- |
+| `P0` | Publish batch-verifiable wallet_ownership_proof for wallet_address_list. | `NO_WALLET_OWNERSHIP_PROOF` |
+| `P0` | Make global proof.csv, verifying key, and parameter sources publicly downloadable. | `UNVERIFIABLE` |
+| `P0` | Publish trusted setup transcript or migrate to a transparent-setup proof system. | `OPAQUE_TRUSTED_SETUP` |
+
+## 9. Boundary
 
 This report evaluates public PoR artifacts and reproducibility. It does not evaluate the exchange's overall financial health, corporate governance, internal controls, off-chain assets, legal compliance, or complete off-balance-sheet liabilities.
 

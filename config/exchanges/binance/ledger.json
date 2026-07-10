@@ -5,6 +5,8 @@
       "network": "BTC",
       "backend": "esplora",
       "esploraBase": "https://blockstream.info/api",
+      "alchemy": "bitcoin",
+      "blockchair": "bitcoin",
       "decimals": 8
     },
     {
@@ -12,6 +14,7 @@
       "network": "DOGE",
       "backend": "blockcypher",
       "blockcypher": "doge",
+      "blockchair": "dogecoin",
       "decimals": 8,
       "maxTxCount": 200000
     },
@@ -21,6 +24,7 @@
       "backend": "esplora",
       "esploraBase": "https://litecoinspace.org/api",
       "blockcypher": "ltc",
+      "blockchair": "litecoin",
       "decimals": 8,
       "maxTxCount": 100000
     },
@@ -28,18 +32,17 @@
       "coin": "BCH",
       "network": "BCH",
       "backend": "blockchair",
+      "alchemy": "bitcoin-cash",
       "blockchair": "bitcoin-cash",
-      "blockcypher": "bch",
-      "decimals": 8,
-      "maxTxCount": 100000
+      "decimals": 8
     },
     {
       "coin": "ZEC",
       "network": "ZEC",
-      "backend": "blockcypher",
-      "blockcypher": "zec",
+      "backend": "blockchair",
+      "blockchair": "zcash",
       "decimals": 8,
-      "maxTxCount": 50000
+      "liveSnapshot": true
     },
     {
       "coin": "XRP",
@@ -91,8 +94,9 @@
       "coin": "ENJ",
       "network": "ENJ",
       "backend": "substrate",
-      "rpcUrl": "https://rpc.matrix.enjin.io",
-      "decimals": 18
+      "rpcUrl": "https://enjin-relay-chain.matrixed.link",
+      "decimals": 18,
+      "liveSnapshot": true
     },
     {
       "coin": "USDC",
@@ -112,7 +116,7 @@
       "coin": "USDC",
       "network": "NEAR",
       "backend": "near-ft",
-      "mint": "17208628f84f1196d1cc167060e4604",
+      "mint": "17208628f84f5d6ad33f0da3bbbeb27ffcb398eac501a31bd6ad2011e36133a1",
       "decimals": 6,
       "liveSnapshot": true
     },
@@ -151,7 +155,7 @@
       "coin": "USDT",
       "network": "TON",
       "backend": "ton-jetton",
-      "mint": "EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr",
+      "mint": "EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs",
       "decimals": 6,
       "liveSnapshot": true
     },
@@ -159,7 +163,8 @@
       "coin": "SOL",
       "network": "SOL",
       "backend": "solana",
-      "decimals": 9
+      "decimals": 9,
+      "liveSnapshot": true
     },
     {
       "coin": "USDC",

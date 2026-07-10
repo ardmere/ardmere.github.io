@@ -35,6 +35,7 @@ func TestTokenSupportedEntriesValid(t *testing.T) {
 		rpc.Network("CHZ2"):     true,
 		rpc.Network("MTL"):      true,
 		rpc.Network("STARKNET"): true,
+		rpc.NetAB:               true,
 	}
 	for key, spec := range loadTokenSupported() {
 		if !strings.Contains(key, "|") {
@@ -52,6 +53,12 @@ func TestTokenSupportedEntriesValid(t *testing.T) {
 		if spec.Net == rpc.NetTron {
 			if !strings.HasPrefix(spec.Contract, "T") || len(spec.Contract) < 30 {
 				t.Fatalf("%s: bad tron contract %q", key, spec.Contract)
+			}
+			continue
+		}
+		if spec.Net == rpc.Network("STARKNET") {
+			if !strings.HasPrefix(spec.Contract, "0x") || len(spec.Contract) < 10 {
+				t.Fatalf("%s: bad starknet contract %q", key, spec.Contract)
 			}
 			continue
 		}

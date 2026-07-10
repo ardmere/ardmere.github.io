@@ -27,6 +27,7 @@ type stageEval struct {
 
 type blockedReason struct {
 	RuleID    string `json:"ruleId"`
+	Evidence  string `json:"evidence,omitempty"`
 	MaxStage  string `json:"maxStage"`
 	Reason    string `json:"reason"`
 	RiskFlag  string `json:"riskFlag"`
@@ -86,8 +87,8 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 			e.Rationale = "Missing or failing verifiers block Stage 1 effective PoR for this snapshot."
 		}
 		e.Blocked = []blockedReason{
-			{RuleID: "floor_server_only_distribution", MaxStage: "Stage 1", Reason: "No official exchange canonical on-chain/DA anchor established.", RiskFlag: "NO_CANONICAL_ANCHOR"},
-			{RuleID: "s2_frequency", MaxStage: "Stage 1", Reason: "Monthly cadence does not satisfy Stage 2 frequency expectations.", RiskFlag: "HIGH_FREQUENCY_GAP"},
+			{RuleID: "floor_server_only_distribution", Evidence: "canonical on-chain/DA anchor", MaxStage: "Stage 1", Reason: "No official exchange canonical on-chain/DA anchor established.", RiskFlag: "NO_CANONICAL_ANCHOR"},
+			{RuleID: "s2_frequency", Evidence: "weekly full PoR / daily anchor", MaxStage: "Stage 1", Reason: "Monthly cadence does not satisfy Stage 2 frequency expectations.", RiskFlag: "HIGH_FREQUENCY_GAP"},
 		}
 	case "binance":
 		e.Gen = "Gen 2"
@@ -97,15 +98,16 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 		e.Rationale = "The available artifacts support Gen 2 / E2 classification and Stage 0 PoR disclosure. Users still need to trust Binance for wallet control, trusted setup honesty, and public availability of the full global proof stack."
 		if verdict("global-zk-proof") == "UNVERIFIABLE" || !has("globalProofBundle") {
 			e.Blocked = append(e.Blocked,
-				blockedReason{RuleID: "floor_no_wallet_ownership_proof", MaxStage: "Stage 0", Reason: "No public batch-verifiable wallet_ownership_proof.", RiskFlag: "NO_WALLET_OWNERSHIP_PROOF"},
-				blockedReason{RuleID: "floor_login_wall_global_proof", MaxStage: "Stage 0", Reason: "Public global proof/vk not available.", RiskFlag: "UNVERIFIABLE"},
+				blockedReason{RuleID: "floor_no_wallet_ownership_proof", Evidence: "wallet_ownership_proof", MaxStage: "Stage 0", Reason: "No public batch-verifiable wallet_ownership_proof.", RiskFlag: "NO_WALLET_OWNERSHIP_PROOF"},
+				blockedReason{RuleID: "floor_login_wall_global_proof", Evidence: "global_proof.csv, verifying_key", MaxStage: "Stage 0", Reason: "Public global proof/vk not available.", RiskFlag: "UNVERIFIABLE"},
+				blockedReason{RuleID: "floor_opaque_trusted_setup", Evidence: "trusted_setup_transcript", MaxStage: "Stage 0", Reason: "Trusted setup transcript is not public.", RiskFlag: "OPAQUE_TRUSTED_SETUP"},
 			)
 		}
 	default:
 		e.Headline = exchangeID + " snapshot " + art.SnapshotID + " remains Stage 0 in the ardmere public evaluation set."
 		e.Rationale = "Public artifacts do not support independently reproducible global solvency verification for this snapshot."
 		if !has("walletZip") {
-			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_no_public_wallet_address_list", MaxStage: "Stage 0", Reason: "No public wallet_address_list.", RiskFlag: "UNVERIFIABLE"})
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_no_public_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "No public wallet_address_list.", RiskFlag: "UNVERIFIABLE"})
 		}
 	}
 

@@ -1,0 +1,24 @@
+{
+  "fetchedAt": "2026-07-08T15:30:00Z",
+  "source": "press-release-scrape",
+  "info": {
+    "code": 0,
+    "data": {
+      "audit_id": "2026052709",
+      "audit_time": "2026-05-27 09:00:00",
+      "total_reserve_rate": 106,
+      "period": 36
+    }
+  },
+  "coinList": {
+    "code": 0,
+    "data": {
+      "list": [
+        {"coin": "USDT", "reserve_rate": 106.0, "reserve_amount": 5890000000, "customer_liability": 5550000000},
+        {"coin": "USDC", "reserve_rate": 164.0, "reserve_amount": 925500000, "customer_liability": 563700000},
+        {"coin": "BTC", "reserve_rate": 108.0, "reserve_amount": 48582, "customer_liability": 44736},
+        {"coin": "ETH", "reserve_rate": 104.0, "reserve_amount": 579288, "customer_liability": 552540}
+      ]
+    }
+  }
+}

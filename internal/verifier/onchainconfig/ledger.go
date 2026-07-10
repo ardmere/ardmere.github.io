@@ -13,6 +13,7 @@ type LedgerKind string
 
 const (
 	LedgerEsplora      LedgerKind = "esplora"
+	LedgerAlchemy      LedgerKind = "alchemy"
 	LedgerBlockchair   LedgerKind = "blockchair"
 	LedgerBlockcypher  LedgerKind = "blockcypher"
 	LedgerSolanaNative LedgerKind = "solana"
@@ -44,6 +45,7 @@ type LedgerSpec struct {
 	Kind         LedgerKind
 	Decimals     int
 	EsploraBase  string // esplora
+	Alchemy      string // alchemy utxo chain slug (bitcoin, bitcoin-cash)
 	Blockchair   string // blockchair chain slug
 	Blockcypher  string // blockcypher chain slug
 	MaxTxCount   int    // blockcypher guard
@@ -66,6 +68,7 @@ type ledgerEntry struct {
 	Backend      string `json:"backend"`
 	Decimals     int    `json:"decimals"`
 	EsploraBase  string `json:"esploraBase,omitempty"`
+	Alchemy      string `json:"alchemy,omitempty"`
 	Blockchair   string `json:"blockchair,omitempty"`
 	Blockcypher  string `json:"blockcypher,omitempty"`
 	MaxTxCount   int    `json:"maxTxCount,omitempty"`
@@ -150,6 +153,7 @@ func loadLedgerFile(path string) (map[string]LedgerSpec, error) {
 			Kind:         LedgerKind(e.Backend),
 			Decimals:     e.Decimals,
 			EsploraBase:  e.EsploraBase,
+			Alchemy:      e.Alchemy,
 			Blockchair:   e.Blockchair,
 			Blockcypher:  e.Blockcypher,
 			MaxTxCount:   e.MaxTxCount,

@@ -45,6 +45,17 @@ func (c *LedgerClient) chromiaNode() string {
 	return "https://bootstrap1.chromia.com:7740"
 }
 
+func (c *LedgerClient) chromiaNodes() []string {
+	if u := os.Getenv("CHROMIA_NODE"); u != "" {
+		return []string{strings.TrimRight(u, "/")}
+	}
+	return []string{
+		"https://bootstrap1.chromia.com:7740",
+		"https://node.chromia.com:7740",
+		"https://0.chromia.systems:7740",
+	}
+}
+
 // AlgoASABalanceAtRound returns ASA balance (smallest units) at an algod round.
 func (c *LedgerClient) AlgoASABalanceAtRound(ctx context.Context, addr string, assetID, round int64) (int64, string, error) {
 	cacheChain := fmt.Sprintf("algo:asa:%d", assetID)
@@ -153,6 +164,10 @@ func (c *LedgerClient) SubstrateAssetBalanceAtBlock(ctx context.Context, rpcURL,
 	var acct substrateAssetAccount
 	ok, err := api.RPC.State.GetStorage(key, &acct, hash)
 	if err != nil {
+		if strings.Contains(err.Error(), "required result to be 32 bytes") {
+			c.cachePut(cacheChain, "balance", ss58Addr, height, []byte("0"))
+			return 0, wsURL, nil
+		}
 		return 0, wsURL, err
 	}
 	if !ok {
@@ -294,26 +309,32 @@ func (c *LedgerClient) ChromiaCHRBalanceAtHeight(ctx context.Context, nodeURL, b
 		return v, "cache", nil
 	}
 	node := nodeURL
+	nodes := c.chromiaNodes()
 	if node == "" {
-		node = c.chromiaNode()
+		node = nodes[0]
+	} else {
+		nodes = append([]string{strings.TrimRight(node, "/")}, nodes...)
 	}
 	accountHex = strings.TrimPrefix(strings.ToLower(accountHex), "0x")
 	acctBytes, err := hex.DecodeString(accountHex)
 	if err != nil {
 		return 0, node, fmt.Errorf("chromia account hex: %w", err)
 	}
-	queryPath := fmt.Sprintf("%s/query/%s", node, blockchainRID)
-	if height > 0 {
-		queryPath = fmt.Sprintf("%s/%d", queryPath, height)
-	}
 	payload := []any{
 		"ft4.get_balances_by_account_id",
 		map[string]any{"account_id": hex.EncodeToString(acctBytes)},
 	}
-	bodyRaw, used, err := c.httpPostJSON(ctx, queryPath, payload)
-	if err != nil {
-		return 0, used, err
-	}
+	var lastErr error
+	for _, base := range nodes {
+		queryPath := fmt.Sprintf("%s/query/%s", strings.TrimRight(base, "/"), blockchainRID)
+		if height > 0 {
+			queryPath = fmt.Sprintf("%s/%d", queryPath, height)
+		}
+		bodyRaw, used, err := c.httpPostJSON(ctx, queryPath, payload)
+		if err != nil {
+			lastErr = err
+			continue
+		}
 	var rows []struct {
 		Asset struct {
 			Name string `json:"name"`
@@ -327,10 +348,12 @@ func (c *LedgerClient) ChromiaCHRBalanceAtHeight(ctx context.Context, nodeURL, b
 		}
 		if err2 := json.Unmarshal(bodyRaw, &wrapped); err2 == nil && len(wrapped.Result) > 0 {
 			if err3 := json.Unmarshal(wrapped.Result, &rows); err3 != nil {
-				return 0, used, fmt.Errorf("chromia decode: %w", err)
+				lastErr = fmt.Errorf("chromia decode: %w", err)
+				continue
 			}
 		} else {
-			return 0, used, fmt.Errorf("chromia decode: %w", err)
+			lastErr = fmt.Errorf("chromia decode: %w", err)
+			continue
 		}
 	}
 	for _, row := range rows {
@@ -352,6 +375,11 @@ func (c *LedgerClient) ChromiaCHRBalanceAtHeight(ctx context.Context, nodeURL, b
 	}
 	c.cachePut(cacheChain, "balance", accountHex, height, []byte("0"))
 	return 0, used, nil
+	}
+	if lastErr != nil {
+		return 0, nodes[0], lastErr
+	}
+	return 0, nodes[0], fmt.Errorf("chromia: no nodes available")
 }
 
 func parseDecimalToSmallest(s string, decimals int) (int64, error) {

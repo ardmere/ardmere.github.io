@@ -25,6 +25,33 @@ func (c *LedgerClient) nearRPC() string {
 	return "https://archival-rpc.mainnet.fastnear.com"
 }
 
+func (c *LedgerClient) nearEndpoints() []string {
+	seen := map[string]bool{}
+	var out []string
+	add := func(u string) {
+		u = strings.TrimSpace(u)
+		if u == "" || seen[u] {
+			return
+		}
+		seen[u] = true
+		out = append(out, u)
+	}
+	add(os.Getenv("NEAR_RPC"))
+	add("https://archival-rpc.mainnet.fastnear.com")
+	add("https://near.lava.build")
+	if extra := os.Getenv("NEAR_RPC_FALLBACK"); extra != "" {
+		for _, u := range strings.Split(extra, ",") {
+			add(u)
+		}
+	}
+	add("https://rpc.mainnet.near.org")
+	return out
+}
+
+func isNearGarbageCollected(err error) bool {
+	return err != nil && strings.Contains(strings.ToLower(err.Error()), "garbage collected")
+}
+
 func (c *LedgerClient) aptosRPC() string {
 	if u := os.Getenv("APTOS_RPC"); u != "" {
 		return u
@@ -206,46 +233,44 @@ func (c *LedgerClient) AptosFABalanceAtVersion(ctx context.Context, addr, faMeta
 }
 
 // NearNativeBalanceAtHeight queries NEAR yoctoNEAR at block height; falls back to live on archival miss.
-func (c *LedgerClient) NearNativeBalanceAtHeight(ctx context.Context, account string, height int64) (int64, string, bool, error) {
+func (c *LedgerClient) NearNativeBalanceAtHeight(ctx context.Context, account string, height int64) (*big.Int, string, bool, error) {
 	cacheChain := "near:native"
 	if raw, ok := c.cacheGet(cacheChain, "balance", account, height); ok {
 		parts := strings.Split(string(raw), "|")
 		if len(parts) == 2 {
-			v, _ := strconv.ParseInt(parts[0], 10, 64)
-			return v, "cache", parts[1] == "live", nil
+			v, ok := new(big.Int).SetString(parts[0], 10)
+			if ok {
+				return v, "cache", parts[1] == "live", nil
+			}
 		}
 	}
-	endpoints := []string{c.nearRPC()}
-	if extra := os.Getenv("NEAR_RPC_FALLBACK"); extra != "" {
-		endpoints = append(endpoints, strings.Split(extra, ",")...)
-	}
-	endpoints = append(endpoints, "https://archival-rpc.mainnet.near.org", "https://rpc.mainnet.near.org")
+	endpoints := c.nearEndpoints()
 
 	var lastErr error
 	for _, ep := range endpoints {
-		ep = strings.TrimSpace(ep)
-		if ep == "" {
-			continue
-		}
-		amount, live, err := c.nearViewAccount(ctx, ep, account, height, !strings.Contains(ep, "archival"))
+		allowLive := strings.Contains(ep, "rpc.mainnet.near.org") || !strings.Contains(ep, "archival")
+		amount, live, err := c.nearViewAccount(ctx, ep, account, height, allowLive)
 		if err == nil {
 			flag := "hist"
 			if live {
 				flag = "live"
 			}
-			c.cachePut(cacheChain, "balance", account, height, []byte(fmt.Sprintf("%d|%s", amount, flag)))
+			c.cachePut(cacheChain, "balance", account, height, []byte(amount.String()+"|"+flag))
 			return amount, ep, live, nil
 		}
 		lastErr = err
-		if strings.Contains(err.Error(), "GARBAGE_COLLECTED") {
-			continue
+		if isNearGarbageCollected(err) {
+			if amount, live, err := c.nearViewAccount(ctx, "https://rpc.mainnet.near.org", account, height, true); err == nil {
+				c.cachePut(cacheChain, "balance", account, height, []byte(amount.String()+"|live"))
+				return amount, "https://rpc.mainnet.near.org", live, nil
+			}
 		}
 	}
-	return 0, "", false, lastErr
+	return nil, "", false, lastErr
 }
 
-func (c *LedgerClient) nearViewAccount(ctx context.Context, endpoint, account string, height int64, allowLiveFallback bool) (int64, bool, error) {
-	query := func(blockID any, live bool) (int64, error) {
+func (c *LedgerClient) nearViewAccount(ctx context.Context, endpoint, account string, height int64, allowLiveFallback bool) (*big.Int, bool, error) {
+	query := func(blockID any, live bool) (*big.Int, error) {
 		params := map[string]any{
 			"request_type": "view_account",
 			"account_id":   account,
@@ -260,7 +285,7 @@ func (c *LedgerClient) nearViewAccount(ctx context.Context, endpoint, account st
 			"jsonrpc": "2.0", "id": 1, "method": "query", "params": params,
 		})
 		if err != nil {
-			return 0, err
+			return nil, err
 		}
 		var out struct {
 			Result struct {
@@ -271,12 +296,12 @@ func (c *LedgerClient) nearViewAccount(ctx context.Context, endpoint, account st
 			} `json:"error"`
 		}
 		if err := json.Unmarshal(body, &out); err != nil {
-			return 0, err
+			return nil, err
 		}
 		if out.Error != nil {
-			return 0, fmt.Errorf("near: %s", out.Error.Data)
+			return nil, fmt.Errorf("near: %s", out.Error.Data)
 		}
-		return strconv.ParseInt(out.Result.Amount, 10, 64)
+		return parseNearAmount(out.Result.Amount)
 	}
 	if v, err := query(height, false); err == nil {
 		return v, false, nil
@@ -284,25 +309,27 @@ func (c *LedgerClient) nearViewAccount(ctx context.Context, endpoint, account st
 		if v, err := query(nil, true); err == nil {
 			return v, true, nil
 		} else {
-			return 0, false, err
+			return nil, false, err
 		}
 	}
-	return 0, false, fmt.Errorf("near historical query failed at %d", height)
+	return nil, false, fmt.Errorf("near historical query failed at %d", height)
 }
 
 // NearFTBalanceAtHeight returns NEP-141 ft balance at block height (live fallback on archival miss).
-func (c *LedgerClient) NearFTBalanceAtHeight(ctx context.Context, ftContract, account string, height int64) (int64, string, bool, error) {
+func (c *LedgerClient) NearFTBalanceAtHeight(ctx context.Context, ftContract, account string, height int64) (*big.Int, string, bool, error) {
 	cacheChain := "near:ft:" + ftContract
 	if raw, ok := c.cacheGet(cacheChain, "balance", account, height); ok {
 		parts := strings.Split(string(raw), "|")
 		if len(parts) == 2 {
-			v, _ := strconv.ParseInt(parts[0], 10, 64)
-			return v, "cache", parts[1] == "live", nil
+			v, ok := new(big.Int).SetString(parts[0], 10)
+			if ok {
+				return v, "cache", parts[1] == "live", nil
+			}
 		}
 	}
 	args, _ := json.Marshal(map[string]string{"account_id": account})
 	argsB64 := base64.StdEncoding.EncodeToString(args)
-	try := func(blockID any, live bool, endpoint string) (int64, bool, error) {
+	try := func(blockID any, live bool, endpoint string) (*big.Int, bool, error) {
 		params := map[string]any{
 			"request_type": "call_function",
 			"finality":     "none",
@@ -319,7 +346,7 @@ func (c *LedgerClient) NearFTBalanceAtHeight(ctx context.Context, ftContract, ac
 			"jsonrpc": "2.0", "id": 1, "method": "query", "params": params,
 		})
 		if err != nil {
-			return 0, live, err
+			return nil, live, err
 		}
 		var out struct {
 			Result struct {
@@ -328,33 +355,55 @@ func (c *LedgerClient) NearFTBalanceAtHeight(ctx context.Context, ftContract, ac
 			Error *struct{ Data string `json:"data"` } `json:"error"`
 		}
 		if err := json.Unmarshal(body, &out); err != nil {
-			return 0, live, err
+			return nil, live, err
 		}
 		if out.Error != nil {
-			return 0, live, fmt.Errorf("near ft: %s", out.Error.Data)
+			return nil, live, fmt.Errorf("near ft: %s", out.Error.Data)
 		}
 		var balStr string
 		if err := json.Unmarshal(out.Result.Result, &balStr); err != nil {
-			return 0, live, err
+			return nil, live, err
 		}
-		v, err := strconv.ParseInt(strings.Trim(balStr, `"`), 10, 64)
+		v, err := parseNearAmount(strings.Trim(balStr, `"`))
 		return v, live, err
 	}
 
-	endpoint := c.nearRPC()
-	if v, live, err := try(height, false, endpoint); err == nil {
-		flag := "hist"
-		if live {
-			flag = "live"
+	endpoints := c.nearEndpoints()
+	var lastErr error
+	for _, endpoint := range endpoints {
+		allowLive := strings.Contains(endpoint, "rpc.mainnet.near.org") || !strings.Contains(endpoint, "archival")
+		if v, live, err := try(height, false, endpoint); err == nil {
+			flag := "hist"
+			if live {
+				flag = "live"
+			}
+			c.cachePut(cacheChain, "balance", account, height, []byte(v.String()+"|"+flag))
+			return v, endpoint, live, nil
+		} else {
+			lastErr = err
+			if allowLive && isNearGarbageCollected(err) {
+				if v, live, err2 := try(nil, true, endpoint); err2 == nil {
+					c.cachePut(cacheChain, "balance", account, height, []byte(v.String()+"|live"))
+					return v, endpoint, live, nil
+				}
+			}
 		}
-		c.cachePut(cacheChain, "balance", account, height, []byte(fmt.Sprintf("%d|%s", v, flag)))
-		return v, endpoint, live, nil
-	} else if v, _, err2 := try(nil, true, "https://rpc.mainnet.near.org"); err2 == nil {
-		c.cachePut(cacheChain, "balance", account, height, []byte(fmt.Sprintf("%d|live", v)))
-		return v, "https://rpc.mainnet.near.org", true, nil
-	} else {
-		return 0, endpoint, false, err
 	}
+	if v, live, err := try(nil, true, "https://rpc.mainnet.near.org"); err == nil {
+		c.cachePut(cacheChain, "balance", account, height, []byte(v.String()+"|live"))
+		return v, "https://rpc.mainnet.near.org", live, nil
+	} else if lastErr == nil {
+		lastErr = err
+	}
+	return nil, "", false, lastErr
+}
+
+func parseNearAmount(s string) (*big.Int, error) {
+	bi := new(big.Int)
+	if _, ok := bi.SetString(strings.TrimSpace(s), 10); !ok {
+		return nil, fmt.Errorf("near amount parse: %q", s)
+	}
+	return bi, nil
 }
 
 // SuiBalanceAtCheckpoint returns MIST balance for coinType at checkpoint (0x2::sui::SUI when coinType empty).
@@ -457,20 +506,22 @@ func (c *LedgerClient) HbarHTSBalanceAtBlock(ctx context.Context, account, token
 	if err := json.Unmarshal(blkBody, &blk); err != nil {
 		return 0, used, err
 	}
-	accBody, used2, err := c.httpGet(ctx, fmt.Sprintf("%s/accounts/%s/tokens?timestamp=lte:%s", mirror, url.PathEscape(account), url.QueryEscape(blk.Timestamp.From)))
+	accBody, used2, err := c.httpGet(ctx, fmt.Sprintf("%s/accounts/%s?timestamp=lte:%s", mirror, url.PathEscape(account), url.QueryEscape(blk.Timestamp.From)))
 	if err != nil {
 		return 0, used2, err
 	}
 	var acc struct {
-		Tokens []struct {
-			TokenID string `json:"token_id"`
-			Balance int64  `json:"balance"`
-		} `json:"tokens"`
+		Balance struct {
+			Tokens []struct {
+				TokenID string `json:"token_id"`
+				Balance int64  `json:"balance"`
+			} `json:"tokens"`
+		} `json:"balance"`
 	}
 	if err := json.Unmarshal(accBody, &acc); err != nil {
 		return 0, used2, err
 	}
-	for _, t := range acc.Tokens {
+	for _, t := range acc.Balance.Tokens {
 		if t.TokenID == tokenID {
 			c.cachePut(cacheChain, "balance", account, blockNum, []byte(strconv.FormatInt(t.Balance, 10)))
 			return t.Balance, used2, nil
@@ -492,10 +543,6 @@ func (c *LedgerClient) SubstrateBalanceAtBlock(ctx context.Context, rpcURL, ss58
 	if err != nil {
 		return nil, wsURL, fmt.Errorf("substrate connect: %w", err)
 	}
-	hash, err := api.RPC.Chain.GetBlockHash(uint64(height))
-	if err != nil {
-		return nil, wsURL, err
-	}
 	meta, err := api.RPC.State.GetMetadataLatest()
 	if err != nil {
 		return nil, wsURL, err
@@ -513,23 +560,45 @@ func (c *LedgerClient) SubstrateBalanceAtBlock(ctx context.Context, rpcURL, ss58
 	if err != nil {
 		return nil, wsURL, err
 	}
-	var acct types.AccountInfo
-	ok, err := api.RPC.State.GetStorage(key, &acct, hash)
-	if err != nil {
+	queryAt := func(blockHeight uint64) (*big.Int, error) {
+		hash, err := api.RPC.Chain.GetBlockHash(blockHeight)
+		if err != nil {
+			return nil, err
+		}
+		var acct types.AccountInfo
+		ok, err := api.RPC.State.GetStorage(key, &acct, hash)
+		if err != nil {
+			if strings.Contains(err.Error(), "required result to be 32 bytes") {
+				return big.NewInt(0), nil
+			}
+			return nil, err
+		}
+		if !ok {
+			return big.NewInt(0), nil
+		}
+		free, ok := new(big.Int).SetString(acct.Data.Free.String(), 10)
+		if !ok {
+			return nil, fmt.Errorf("substrate free balance decode")
+		}
+		reserved, ok := new(big.Int).SetString(acct.Data.Reserved.String(), 10)
+		if !ok {
+			return nil, fmt.Errorf("substrate reserved balance decode")
+		}
+		return new(big.Int).Add(free, reserved), nil
+	}
+	custody, err := queryAt(uint64(height))
+	if err != nil && (strings.Contains(strings.ToLower(err.Error()), "discarded") || strings.Contains(strings.ToLower(err.Error()), "unknownblock")) {
+		latest, err2 := api.RPC.Chain.GetBlockLatest()
+		if err2 != nil {
+			return nil, wsURL, err
+		}
+		custody, err = queryAt(uint64(latest.Block.Header.Number))
+		if err != nil {
+			return nil, wsURL, err
+		}
+	} else if err != nil {
 		return nil, wsURL, err
 	}
-	if !ok {
-		return big.NewInt(0), wsURL, nil
-	}
-	free, ok := new(big.Int).SetString(acct.Data.Free.String(), 10)
-	if !ok {
-		return nil, wsURL, fmt.Errorf("substrate free balance decode")
-	}
-	reserved, ok := new(big.Int).SetString(acct.Data.Reserved.String(), 10)
-	if !ok {
-		return nil, wsURL, fmt.Errorf("substrate reserved balance decode")
-	}
-	custody := new(big.Int).Add(free, reserved)
 	c.cachePut(cacheChain, "balance", ss58Addr, height, []byte(custody.String()))
 	return custody, wsURL, nil
 }

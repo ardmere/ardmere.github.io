@@ -29,6 +29,18 @@ func TestDecodeHexBytes(t *testing.T) {
 	}
 }
 
+func TestNormalizeEthCallResultEmpty(t *testing.T) {
+	out := normalizeEthCallResult(nil)
+	if len(out) != 32 {
+		t.Fatalf("got len %d want 32", len(out))
+	}
+	for _, b := range out {
+		if b != 0 {
+			t.Fatal("expected zero padding")
+		}
+	}
+}
+
 func TestProvidersForHistoricalPrefersArchive(t *testing.T) {
 	all := map[Network][]Provider{
 		NetBSC: {
@@ -39,6 +51,17 @@ func TestProvidersForHistoricalPrefersArchive(t *testing.T) {
 	got := ProvidersFor(all, NetBSC, true)
 	if len(got) != 2 || got[0].URL != "https://archive.example" {
 		t.Fatalf("archive-first order: %+v", got)
+	}
+}
+
+func TestResolveProvidersExpandsEnv(t *testing.T) {
+	t.Setenv("INFURA_KEY", "test-infura-key")
+	got := resolveProviders([]Provider{
+		{URL: "https://mainnet.infura.io/v3/${INFURA_KEY}", Archive: true, Weight: 1},
+		{URL: "https://mainnet.infura.io/v3/${MISSING_KEY}", Archive: true, Weight: 1},
+	})
+	if len(got) != 1 || got[0].URL != "https://mainnet.infura.io/v3/test-infura-key" {
+		t.Fatalf("resolveProviders: %+v", got)
 	}
 }
 

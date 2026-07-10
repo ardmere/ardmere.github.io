@@ -76,23 +76,31 @@ Under the ardmere framework, this snapshot should **not** be described as `{{for
 
 {{verifier_interpretation}}
 
-## 6. Minimal Checklist
+## 6. Verifier Finding Details
+
+{{finding_details_intro}}
+
+{{stub_unverifiable_table}}
+
+{{row_level_finding_blocks}}
+
+## 7. Minimal Checklist
 
 | Requirement | Status | Notes |
 | --- | --- | --- |
 | {{requirement}} | {{status}} | {{notes}} |
 
-## 7. Recommendations
+## 8. Recommendations
 
 | Priority | Recommendation | Related Risk |
 | --- | --- | --- |
 | `{{priority}}` | {{recommendation}} | `{{related_risk}}` |
 
-## 8. Boundary
+## 9. Boundary
 
 This report evaluates public PoR artifacts and reproducibility. It does not evaluate the exchange's overall financial health, corporate governance, internal controls, off-chain assets, legal compliance, or complete off-balance-sheet liabilities. Traditional audit and PoR should be treated as complementary evidence tracks.
 
-## 9. References
+## 10. References
 
 - Assessment JSON: `{{assessment_json_path}}`
 - Artifact bundle: `{{artifact_bundle_path}}`

@@ -63,7 +63,7 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 	for _, r := range allRows {
 		key := r.Coin + "|" + r.Network
 		if _, ok := supported[key]; !ok {
-			if isLedgerCandidate(r.Coin) {
+			if shouldReportUnsupportedLedger(v.Exchange, r.Coin, r.Network) {
 				unsupportedPairs[key]++
 			}
 			continue
@@ -203,11 +203,12 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 			passCount++
 			continue
 		}
+		if surplus {
+			passCount++
+			continue
+		}
 
 		note := fmt.Sprintf("on-chain balance != csv claim by %s (provider=%s)", diff.Abs().String(), res.used)
-		if surplus {
-			note = "chain observed > CSV row allocation; " + note
-		}
 		if snap := ledgerLiveSnapshotNote(spec, res.components); snap != "" {
 			note = snap + "; " + note
 		}
@@ -215,7 +216,7 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 			note = tronSnap + "; " + note
 		}
 		status := VerdictFail
-		if surplus || ledgerLiveSnapshotNote(spec, res.components) != "" || tronSnapshotMismatchNote(res.row.Coin, res.row.Network) != "" {
+		if ledgerLiveSnapshotNote(spec, res.components) != "" || tronSnapshotMismatchNote(res.row.Coin, res.row.Network) != "" {
 			status = VerdictWarn
 		}
 		if status == VerdictWarn {
@@ -256,7 +257,7 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 		out.Reason = "some ledger rows cannot be verified without archive API (e.g. high-volume DOGE)"
 	case warnCount > 0:
 		out.Verdict = VerdictWarn
-		out.Reason = "some rows use live Solana balance or chain surplus vs CSV"
+		out.Reason = "some rows use live Solana balance or other snapshot API limits vs CSV"
 	case errCount > len(rows)/4:
 		out.Verdict = VerdictWarn
 		out.Reason = "more than 25% of supported ledger rows failed to query"
@@ -275,23 +276,74 @@ func (v OnchainBalanceLedger) balanceAtHeight(ctx context.Context, r walletzip.R
 	switch spec.Kind {
 	case onchainconfig.LedgerEsplora:
 		raw, u, e := v.Ledger.EsploraBalanceAtHeight(ctx, spec.EsploraBase, r.Address, r.Height)
+		if e != nil && spec.Alchemy != "" {
+			if bal, u2, mode, comps, e2 := v.balanceAlchemy(ctx, r, spec); e2 == nil {
+				return bal, u2, mode, comps, false, "", nil
+			}
+		}
 		if e != nil && spec.Blockcypher != "" {
 			return v.balanceBlockcypher(ctx, r, spec)
+		}
+		if e != nil && spec.Blockchair != "" {
+			raw, u, live, e2 := v.Ledger.BlockchairBalanceAtHeight(ctx, spec.Blockchair, r.Address, r.Height)
+			if e2 == nil {
+				mode := "blockchair_utxo"
+				if live {
+					mode = "blockchair_live"
+					components["live_snapshot"] = "true"
+				}
+				return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, mode, components, false, "", nil
+			}
 		}
 		if e != nil {
 			return decimal.Zero, u, "esplora", nil, false, "", e
 		}
 		return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, "esplora_utxo", nil, false, "", nil
 
+	case onchainconfig.LedgerAlchemy:
+		bal, u, mode, comps, err := v.balanceAlchemy(ctx, r, spec)
+		if err == nil {
+			return bal, u, mode, comps, false, "", nil
+		}
+		if spec.Blockchair != "" {
+			raw, u, live, e := v.Ledger.BlockchairBalanceAtHeight(ctx, spec.Blockchair, r.Address, r.Height)
+			if e == nil {
+				mode := "blockchair_utxo"
+				if live {
+					mode = "blockchair_live"
+					components["live_snapshot"] = "true"
+				}
+				return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, mode, components, false, "", nil
+			}
+		}
+		return decimal.Zero, u, "alchemy", nil, false, "", err
+
 	case onchainconfig.LedgerBlockchair:
-		raw, u, e := v.Ledger.BlockchairBalanceAtHeight(ctx, spec.Blockchair, r.Address, r.Height)
+		raw, u, live, e := v.Ledger.BlockchairBalanceAtHeight(ctx, spec.Blockchair, r.Address, r.Height)
+		if e != nil && spec.Blockchair == "zcash" {
+			raw, u, e = v.Ledger.CipherScanZECBalance(ctx, r.Address)
+			if e == nil {
+				live = true
+				components["live_snapshot"] = "true"
+			}
+		}
+		if e != nil && spec.Alchemy != "" {
+			if bal, u2, mode, comps, e2 := v.balanceAlchemy(ctx, r, spec); e2 == nil {
+				return bal, u2, mode, comps, false, "", nil
+			}
+		}
 		if e != nil && spec.Blockcypher != "" {
 			return v.balanceBlockcypher(ctx, r, spec)
 		}
 		if e != nil {
 			return decimal.Zero, u, "blockchair", nil, false, "", e
 		}
-		return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, "blockchair_utxo", nil, false, "", nil
+		mode := "blockchair_utxo"
+		if live {
+			mode = "blockchair_live"
+			components["live_snapshot"] = "true"
+		}
+		return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, mode, components, false, "", nil
 
 	case onchainconfig.LedgerBlockcypher:
 		return v.balanceBlockcypher(ctx, r, spec)
@@ -304,11 +356,18 @@ func (v OnchainBalanceLedger) balanceAtHeight(ctx context.Context, r walletzip.R
 		return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, "xrpl_account", nil, false, "", nil
 
 	case onchainconfig.LedgerSolanaNative:
-		raw, u, e := v.Ledger.SolanaNativeBalance(ctx, r.Address)
+		slot := r.Height
+		raw, u, historical, e := v.Ledger.SolanaNativeBalanceAtSlot(ctx, r.Address, slot)
 		if e != nil {
-			return decimal.Zero, u, "solana", nil, false, "", e
+			return decimal.Zero, u, "solana", components, false, "", e
 		}
-		return decimal.NewFromInt(int64(raw)).Shift(-int32(spec.Decimals)), u, "solana_native", nil, false, "", nil
+		mode := "solana_native"
+		if historical {
+			mode = "solana_native_slot"
+			components["historical_slot"] = strconv.FormatInt(slot, 10)
+			components["history_provider"] = rpc.SolanaHistoryProviderFromUsed(u)
+		}
+		return decimal.NewFromInt(int64(raw)).Shift(-int32(spec.Decimals)), u, mode, components, false, "", nil
 
 	case onchainconfig.LedgerSolanaSPL:
 		slot := r.Height
@@ -320,7 +379,7 @@ func (v OnchainBalanceLedger) balanceAtHeight(ctx context.Context, r walletzip.R
 		if historical {
 			mode = "solana_spl_slot"
 			components["historical_slot"] = strconv.FormatInt(slot, 10)
-			components["history_provider"] = "solanaindex"
+			components["history_provider"] = rpc.SolanaHistoryProviderFromUsed(u)
 		}
 		return decimal.NewFromInt(int64(raw)).Shift(-int32(spec.Decimals)), u, mode, components, false, "", nil
 
@@ -347,7 +406,7 @@ func (v OnchainBalanceLedger) balanceAtHeight(ctx context.Context, r walletzip.R
 		if live {
 			mode = "near_native_live"
 		}
-		return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, mode, nil, false, "", nil
+		return decimal.NewFromBigInt(raw, -int32(spec.Decimals)), u, mode, nil, false, "", nil
 
 	case onchainconfig.LedgerNearFT:
 		raw, u, live, e := v.Ledger.NearFTBalanceAtHeight(ctx, spec.Mint, r.Address, r.Height)
@@ -358,7 +417,7 @@ func (v OnchainBalanceLedger) balanceAtHeight(ctx context.Context, r walletzip.R
 		if live {
 			mode = "near_ft_live"
 		}
-		return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, mode, nil, false, "", nil
+		return decimal.NewFromBigInt(raw, -int32(spec.Decimals)), u, mode, nil, false, "", nil
 
 	case onchainconfig.LedgerSui:
 		raw, u, e := v.Ledger.SuiBalanceAtCheckpoint(ctx, r.Address, "", r.Height)
@@ -474,6 +533,19 @@ func (v OnchainBalanceLedger) balanceAtHeight(ctx context.Context, r walletzip.R
 	}
 }
 
+func (v OnchainBalanceLedger) balanceAlchemy(ctx context.Context, r walletzip.Row, spec onchainconfig.LedgerSpec) (
+	decimal.Decimal, string, string, map[string]string, error,
+) {
+	if spec.Alchemy == "" {
+		return decimal.Zero, "", "alchemy", nil, fmt.Errorf("alchemy chain not configured")
+	}
+	raw, u, err := v.Ledger.AlchemyBalanceAtHeight(ctx, spec.Alchemy, r.Address, r.Height)
+	if err != nil {
+		return decimal.Zero, u, "alchemy", nil, err
+	}
+	return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, "alchemy_utxo", nil, nil
+}
+
 func (v OnchainBalanceLedger) balanceBlockcypher(ctx context.Context, r walletzip.Row, spec onchainconfig.LedgerSpec) (
 	decimal.Decimal, string, string, map[string]string, bool, string, error,
 ) {
@@ -482,6 +554,18 @@ func (v OnchainBalanceLedger) balanceBlockcypher(ctx context.Context, r walletzi
 		return decimal.Zero, u, "blockcypher", nil, false, "", e
 	}
 	if spec.MaxTxCount > 0 && nTx > spec.MaxTxCount {
+		if spec.Blockchair != "" {
+			raw, u, live, e2 := v.Ledger.BlockchairBalanceAtHeight(ctx, spec.Blockchair, r.Address, r.Height)
+			if e2 == nil {
+				components := map[string]string{"blockcypher_tx_count": fmt.Sprintf("%d", nTx)}
+				mode := "blockchair_utxo"
+				if live {
+					mode = "blockchair_live"
+					components["live_snapshot"] = "true"
+				}
+				return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, mode, components, false, "", nil
+			}
+		}
 		return decimal.NewFromInt(raw).Shift(-int32(spec.Decimals)), u, "blockcypher", nil,
 			true, fmt.Sprintf("address has %d txs; exceeds public API limit %d — set BLOCKCHAIR_API_KEY or use archive provider", nTx, spec.MaxTxCount),
 			nil

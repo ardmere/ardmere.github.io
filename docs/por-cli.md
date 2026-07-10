@@ -39,6 +39,26 @@ See [verifier-architecture.md](./verifier-architecture.md) for verifier matrix a
 - Does not broadcast transactions (prints `cast send` for the operator)
 - Uses public RPC providers only
 
+## Environment variables (verify / anchor)
+
+Load API keys before `por verify` when using paid or quota-backed providers. Full chain-by-chain notes: [ledger-rpc-runbook.md](./ledger-rpc-runbook.md).
+
+| Variable | Purpose |
+|----------|---------|
+| `INFURA_KEY` / `ALCHEMY_KEY` | ETH archive RPC in `config/rpc-providers.json` |
+| `BLOCKCHAIR_API_KEY` | BCH/BTC/ZEC historical UTXO via Blockchair `state=` |
+| `HELIUS_API_KEY` | Solana historical slot |
+| `NEAR_RPC` / `NEAR_RPC_FALLBACK` | NEAR archival + failover |
+| `CHROMIA_NODE` | Chromia postchain query base URL |
+
+Example:
+
+```bash
+source ~/.zshenv
+go run ./cmd/por verify -exchange binance -snapshot PR01JUN26 \
+  -artifacts ./artifacts/binance/PR01JUN26
+```
+
 ## Query anchored data on-chain
 
 After anchoring (schema v3+), read snapshot records directly from the proxy contract — no log scan required. Full query guide: [anchor-query-api.md](./anchor-query-api.md) (view functions, `cast` / `ethers.js` examples, pre-v3 event queries, bundle verification loop).

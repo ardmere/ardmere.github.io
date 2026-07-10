@@ -40,7 +40,7 @@ Framework</a></p>
 <p>This index lists every assessed snapshot in the ardmere public
 evaluation set. The <a href="../../index.html">homepage</a> shows the
 six most recent rows; the table below is the complete history.</p>
-<p><strong>Assessed:</strong> 2026-07-01 · Schema:
+<p><strong>Assessed:</strong> 2026-07-08 · Schema:
 <code>ardmere/exchange-assessment@1</code></p>
 <h2 id="all-public-reports">All public reports</h2>
 <table>
@@ -62,6 +62,13 @@ six most recent rows; the table below is the complete history.</p>
 </thead>
 <tbody>
 <tr>
+<td>Binance</td>
+<td><code>PR01JUL26</code></td>
+<td>2026-07-01</td>
+<td>Stage 0</td>
+<td><a href="./binance/PR01JUL26-transparency-report.html">report</a></td>
+</tr>
+<tr>
 <td>OKX</td>
 <td><code>508399035</code></td>
 <td>2026-06-18</td>
@@ -69,9 +76,30 @@ six most recent rows; the table below is the complete history.</p>
 <td><a href="./okx/508399035-transparency-report.html">report</a></td>
 </tr>
 <tr>
+<td>Gate.io</td>
+<td><code>20260618</code></td>
+<td>2026-06-18</td>
+<td>Stage 0</td>
+<td><a href="./gateio/20260618-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>Bitget</td>
+<td><code>202606</code></td>
+<td>2026-06-18</td>
+<td>Stage 0</td>
+<td><a href="./bitget/202606-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>Bybit</td>
+<td><code>2026052709</code></td>
+<td>2026-05-27</td>
+<td>Stage 0</td>
+<td><a href="./bybit/2026052709-transparency-report.html">report</a></td>
+</tr>
+<tr>
 <td>Binance</td>
 <td><code>PR01JUN26</code></td>
-<td>2026-01-06</td>
+<td>2026-06-01</td>
 <td>Stage 0</td>
 <td><a href="./binance/PR01JUN26-transparency-report.html">report</a></td>
 </tr>
@@ -92,7 +120,7 @@ six most recent rows; the table below is the complete history.</p>
 <tr>
 <td>Binance</td>
 <td><code>PR01MAY26</code></td>
-<td>2026-01-05</td>
+<td>2026-05-01</td>
 <td>Stage 0</td>
 <td><a href="./binance/PR01MAY26-transparency-report.html">report</a></td>
 </tr>
@@ -106,7 +134,7 @@ six most recent rows; the table below is the complete history.</p>
 <tr>
 <td>Binance</td>
 <td><code>PR01APR26</code></td>
-<td>2026-01-04</td>
+<td>2026-04-01</td>
 <td>Stage 0</td>
 <td><a href="./binance/PR01APR26-transparency-report.html">report</a></td>
 </tr>
@@ -201,6 +229,14 @@ public artifact stack)</h2>
 </thead>
 <tbody>
 <tr>
+<td><code>PR01JUL26</code></td>
+<td>01/07/26</td>
+<td>Stage 0</td>
+<td>No</td>
+<td>Full BAPI summary + wallet zip (period 44)</td>
+<td><a href="./binance/PR01JUL26-transparency-report.html">report</a></td>
+</tr>
+<tr>
 <td><code>PR01JUN26</code></td>
 <td>01/06/26</td>
 <td>Stage 0</td>
@@ -228,54 +264,88 @@ period</td>
 </tr>
 </tbody>
 </table>
-<h2 id="gate.io-bybit-bitget-htx-single-snapshot-in-set">Gate.io, Bybit,
-Bitget, HTX (single snapshot in set)</h2>
-<p>Public APIs, WAF, login walls, or fixture-only pipelines limit these
-venues to <strong>one</strong> assessed snapshot each until additional
-periods are captured manually.</p>
+<h2 id="gate.io-bybit-bitget-htx">Gate.io, Bybit, Bitget, HTX</h2>
+<p>Public APIs, WAF, login walls, or fixture-only pipelines often
+require browser capture for full cryptographic binding.</p>
 <table>
 <colgroup>
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
-<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
 </colgroup>
 <thead>
 <tr>
 <th>Exchange</th>
 <th>Snapshot</th>
 <th>Stage</th>
+<th>Notes</th>
 <th>Report</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Gate.io</td>
+<td><code>20260618</code></td>
+<td>Stage 0</td>
+<td>Page-scrape import (official merkle root)</td>
+<td><a href="./gateio/20260618-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>Gate.io</td>
 <td><code>20260316</code></td>
 <td>Stage 0</td>
+<td>Fixture import</td>
 <td><a href="./gateio/20260316-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>Bybit</td>
+<td><code>2026052709</code></td>
+<td>Stage 0</td>
+<td>Press-release scrape; merkle root missing</td>
+<td><a href="./bybit/2026052709-transparency-report.html">report</a></td>
 </tr>
 <tr>
 <td>Bybit</td>
 <td><code>2025061709</code></td>
 <td>Stage 0</td>
+<td>Fixture import</td>
 <td><a href="./bybit/2025061709-transparency-report.html">report</a></td>
+</tr>
+<tr>
+<td>Bitget</td>
+<td><code>202606</code></td>
+<td>Stage 0</td>
+<td>Announcement scrape; merkle root missing</td>
+<td><a href="./bitget/202606-transparency-report.html">report</a></td>
 </tr>
 <tr>
 <td>Bitget</td>
 <td><code>202605</code></td>
 <td>Stage 0</td>
+<td>Fixture import</td>
 <td><a href="./bitget/202605-transparency-report.html">report</a></td>
 </tr>
 <tr>
 <td>HTX</td>
 <td><code>20230910</code></td>
 <td>Stage 0</td>
+<td>GitHub sample zk bundle (2023-09)</td>
 <td><a href="./htx/20230910-transparency-report.html">report</a></td>
 </tr>
 </tbody>
 </table>
+<p>HTX June 2026 (<code>20260601</code>) pending manual
+<code>public-data.zip</code> import — see
+<code>artifacts/htx/20260601/FETCH_NEEDED.md</code>.</p>
 <h2 id="regenerating-this-set">Regenerating this set</h2>
+<p>Ensure <code>~/.zshenv</code> exports RPC keys
+(<code>INFURA_KEY</code>, <code>ALCHEMY_KEY</code>,
+<code>BLOCKCHAIR_API_KEY</code>, …) — see <a
+href="../ledger-rpc-runbook.html">ledger-rpc-runbook.md</a>.
+<code>./scripts/por.sh</code> loads <code>~/.zshenv</code> and repo
+<code>.env</code> automatically.</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/por-batch-recent.sh</span> 3 okx,binance</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">./scripts/build-public-html.sh</span></span></code></pre></div>

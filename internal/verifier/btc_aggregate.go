@@ -125,7 +125,7 @@ func stablecoinEthOmnibusMismatch(r walletzip.Row, actual decimal.Decimal) (bool
 	return false, ""
 }
 
-// classifyBalanceMismatch decides PASS / WARN (chain surplus) / FAIL (chain short).
+// classifyBalanceMismatch decides PASS (within tolerance or chain surplus) / FAIL (chain short).
 func classifyBalanceMismatch(actual, claim decimal.Decimal) (within bool, surplus bool) {
 	if balanceWithinTolerance(actual, claim) {
 		return true, false

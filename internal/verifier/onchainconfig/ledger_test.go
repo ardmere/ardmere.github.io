@@ -19,8 +19,12 @@ func TestLedgerForExchangeBinance(t *testing.T) {
 		t.Fatalf("APT|APT: %+v", m["APT|APT"])
 	}
 	spec, ok = m["BTC|BTC"]
-	if !ok || spec.Kind != onchainconfig.LedgerEsplora {
+	if !ok || spec.Kind != onchainconfig.LedgerEsplora || spec.Alchemy != "bitcoin" {
 		t.Fatalf("BTC|BTC: %+v", spec)
+	}
+	spec, ok = m["BCH|BCH"]
+	if !ok || spec.Kind != onchainconfig.LedgerBlockchair || spec.Blockchair != "bitcoin-cash" {
+		t.Fatalf("BCH|BCH: %+v", spec)
 	}
 	spec, ok = m["XRP|XRP"]
 	if !ok || spec.Kind != onchainconfig.LedgerXRPL || spec.Decimals != 6 {

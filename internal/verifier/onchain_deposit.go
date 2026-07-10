@@ -183,12 +183,14 @@ func (v OnchainBalanceDeposit) Run(ctx context.Context) Verification {
 			passCount++
 			continue
 		}
+		if surplus {
+			passCount++
+			continue
+		}
 		diff := res.actual.Sub(res.row.Balance)
 		note := fmt.Sprintf("deposit on-chain != csv by %s (provider=%s, route=%s)", diff.Abs().String(), res.used, res.route)
 		status := VerdictFail
-		if surplus {
-			status = VerdictWarn
-		} else if res.route == string(routeLedger) {
+		if res.route == string(routeLedger) {
 			if spec, ok := loadLedgerSupportedFor(v.Exchange)[res.row.Coin+"|"+res.row.Network]; ok {
 				if snap := ledgerLiveSnapshotNote(spec, res.components); snap != "" {
 					status = VerdictWarn

@@ -15,16 +15,111 @@
         "url": "https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20260501.zip"
       }
     ],
-    "verificationBundleRoot": "0x74c4d58c363485d2dbc20b7c5404f8817f44dd33c4da515a43a9b213cdf4e7bb"
+    "verificationBundleRoot": "0x48a7a9cd6a8902bd00b34ca93117db0e8fbf4b84085871b2d5774313cc4d9f9c"
   },
+  "checklist": [
+    {
+      "id": "S0-1",
+      "notes": "Snapshot PR01MAY26 is in the public evaluation set.",
+      "question": "Has public PoR been published during the last 12 months?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-2",
+      "notes": "2026-05-01T00:00:00Z",
+      "question": "Is snapshot time explicit?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-3",
+      "notes": "Summary and wallet_address_list present.",
+      "question": "Is there reserve summary or wallet_address_list?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S1-1",
+      "notes": "Wallet list present; on-chain replay skipped or incomplete.",
+      "question": "Is wallet_address_list public and on-chain verifiable?",
+      "stage": "Stage 1",
+      "status": "pass"
+    },
+    {
+      "id": "S1-2",
+      "notes": "address-ownership verifier UNVERIFIABLE.",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-3",
+      "notes": "global-zk-proof verifier UNVERIFIABLE.",
+      "question": "Is global_proof public and independently reproducible?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-4",
+      "notes": "third-party-attestation verifier UNVERIFIABLE.",
+      "question": "Is independent third-party review available with stated scope?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-5",
+      "notes": "No public trusted setup transcript observed for zk-SNARK PoS.",
+      "question": "If trusted setup is required, is transcript public; otherwise is the proof system transparent setup?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S2-1",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is root/proof/vk canonically anchored outside exchange servers?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-2",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    }
+  ],
   "confidence": "medium",
   "effectivePoR": false,
   "evidenceLevel": "E2",
   "exchange": "binance",
   "gen": "Gen 2",
-  "generatedAt": "2026-07-01T15:17:25Z",
+  "generatedAt": "2026-07-03T14:20:05Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
   "porStage": "Stage 0",
+  "recommendations": [
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "NO_WALLET_OWNERSHIP_PROOF"
+      ],
+      "text": "Publish batch-verifiable wallet_ownership_proof for wallet_address_list."
+    },
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "UNVERIFIABLE"
+      ],
+      "text": "Make global proof.csv, verifying key, and parameter sources publicly downloadable."
+    },
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "OPAQUE_TRUSTED_SETUP"
+      ],
+      "text": "Publish trusted setup transcript or migrate to a transparent-setup proof system."
+    }
+  ],
   "riskFlags": [
     {
       "id": "NO_WALLET_OWNERSHIP_PROOF",
@@ -37,6 +132,12 @@
       "severity": "high",
       "stageEffect": "max_stage_0",
       "message": "Public global proof/vk not available."
+    },
+    {
+      "id": "OPAQUE_TRUSTED_SETUP",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Trusted setup transcript is not public."
     }
   ],
   "schema": "ardmere/exchange-assessment@1",
@@ -45,7 +146,7 @@
     "exchangeMerkleRoot": "",
     "id": "PR01MAY26",
     "periodSeq": 42,
-    "snapshotTime": "2026-01-05T00:00:00Z"
+    "snapshotTime": "2026-05-01T00:00:00Z"
   },
   "stageBlockedReasons": [
     {
@@ -59,6 +160,12 @@
       "maxStage": "Stage 0",
       "reason": "Public global proof/vk not available.",
       "riskFlag": "UNVERIFIABLE"
+    },
+    {
+      "ruleId": "floor_opaque_trusted_setup",
+      "maxStage": "Stage 0",
+      "reason": "Trusted setup transcript is not public.",
+      "riskFlag": "OPAQUE_TRUSTED_SETUP"
     }
   ],
   "summary": {
@@ -184,7 +291,7 @@
       "inputArtifacts": [
         "7724bc46ca584e53aedf03c08d1248348f67f27670577dae9c4eeb4daf23bafb"
       ],
-      "reason": "Wrapped token reconciliation rules not finalized",
+      "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
       "verdict": "UNVERIFIABLE",
       "verifierId": "cross-chain-wrapped",
       "version": "0"

@@ -59,7 +59,7 @@ func StubReason(exchange, verifierID string) string {
 		}
 		return "No public third-party attestation report available"
 	case "cross-chain-wrapped":
-		return "Wrapped token reconciliation rules not finalized"
+		return "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)"
 	default:
 		return "Verifier not available for this exchange snapshot"
 	}

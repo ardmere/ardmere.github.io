@@ -93,8 +93,10 @@ Methodology: [por-transparency-framework.md](./por-transparency-framework.md). P
 ## Scripts
 
 ```
-scripts/por.sh              primary wrapper
+scripts/por.sh              primary wrapper (loads ~/.zshenv + .env)
+scripts/_por-env.sh         shared env bootstrap for por wrappers
 scripts/por-run.sh          alias → por
+scripts/por-batch-recent.sh batch verify + reports (via por.sh)
 scripts/por-fetch.sh        alias → por fetch
 scripts/gateio/               → por fetch gateio
 scripts/okx/                  → por fetch okx

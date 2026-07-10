@@ -206,6 +206,9 @@ func (a *Adapter) ParseSnapshotFromArtifacts(artBundle bundle.ArtifactBundle, ar
 	}
 
 	snapTime, _ := time.Parse(time.RFC3339, artBundle.SnapshotTime)
+	if t, err := bapi.ParseSnapshotTime(raw.SnapshotTime); err == nil {
+		snapTime = t
+	}
 	snap := Normalize(raw, Meta{
 		Exchange:       artBundle.Exchange,
 		PeriodSeq:      artBundle.PeriodSeq,
@@ -225,8 +228,19 @@ func resolvePath(artifactsDir, localPath string) string {
 	if filepath.IsAbs(localPath) {
 		return localPath
 	}
-	if _, err := os.Stat(localPath); err == nil {
+	if p := filepath.Join(artifactsDir, localPath); fileExists(p) {
+		return p
+	}
+	if p := filepath.Join(artifactsDir, "raw", filepath.Base(localPath)); fileExists(p) {
+		return p
+	}
+	if fileExists(localPath) {
 		return localPath
 	}
 	return filepath.Join(artifactsDir, filepath.Base(localPath))
+}
+
+func fileExists(path string) bool {
+	_, err := os.Stat(path)
+	return err == nil
 }

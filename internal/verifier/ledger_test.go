@@ -20,6 +20,10 @@ func TestLedgerSupportedEntriesValid(t *testing.T) {
 			if spec.EsploraBase == "" {
 				t.Fatalf("%s: missing esploraBase", key)
 			}
+		case onchainconfig.LedgerAlchemy:
+			if spec.Alchemy == "" {
+				t.Fatalf("%s: missing alchemy chain", key)
+			}
 		case onchainconfig.LedgerBlockchair:
 			if spec.Blockchair == "" {
 				t.Fatalf("%s: missing blockchair chain", key)

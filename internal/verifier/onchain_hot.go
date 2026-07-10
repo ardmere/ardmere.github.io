@@ -28,7 +28,7 @@ import (
 //
 // As such, the verdict is intentionally PARTIAL when there are HotCold rows
 // we can't verify (which there always are today). `coverage` reflects the
-// fraction of HotCold rows we did verify.
+// fraction of HotCold rows we did verify (row count).
 type OnchainBalanceHot struct {
 	Exchange        string
 	WalletCSV       walletzip.File
@@ -83,7 +83,7 @@ func (v OnchainBalanceHot) Run(ctx context.Context) Verification {
 		key := r.Coin + "|" + r.Network
 		if _, ok := loadNativeSupported(v.Exchange)[key]; ok {
 			supported = append(supported, r)
-		} else {
+		} else if shouldReportUnsupportedHot(v.Exchange, r.Coin, r.Network) {
 			unsupportedPairs[key]++
 		}
 	}
@@ -133,19 +133,29 @@ func (v OnchainBalanceHot) Run(ctx context.Context) Verification {
 			}
 		}()
 	}
-	for _, r := range supported {
-		jobs <- r
-	}
-	close(jobs)
-	go func() { wg.Wait(); close(results) }()
-
 	var (
 		passCount           int
 		toleranceNoiseCount int
 		warnCount           int
 		failCount           int
 		errCount            int
+		unverifiableCount   int
 	)
+	for _, r := range supported {
+		if note := nonQueryableAddressNote(r.Coin, r.Network, r.Address); note != "" {
+			unverifiableCount++
+			out.Findings = append(out.Findings, Finding{
+				Subject: r.Address,
+				Field:   r.Coin + "@" + r.Network,
+				Status:  VerdictUnverifiable,
+				Note:    note,
+			})
+			continue
+		}
+		jobs <- r
+	}
+	close(jobs)
+	go func() { wg.Wait(); close(results) }()
 
 	for res := range results {
 		if res.err != nil {
@@ -175,6 +185,10 @@ func (v OnchainBalanceHot) Run(ctx context.Context) Verification {
 			}
 			continue
 		}
+		if _, surplus := classifyBalanceMismatch(res.accounted.total, res.row.Balance); surplus {
+			passCount++
+			continue
+		}
 		if res.accounted.incomplete {
 			warnCount++
 			out.Findings = append(out.Findings, Finding{
@@ -201,25 +215,17 @@ func (v OnchainBalanceHot) Run(ctx context.Context) Verification {
 			})
 			continue
 		}
-		_, surplus := classifyBalanceMismatch(res.accounted.total, res.row.Balance)
 		note := fmt.Sprintf("accounted on-chain balance != csv claim by %s (provider=%s)", diff.String(), res.used)
 		if boundaryNote != "" {
 			note = boundaryNote + "; " + note
 		}
-		status := VerdictFail
-		if surplus {
-			status = VerdictWarn
-			note = "chain observed > CSV row allocation; " + note
-			warnCount++
-		} else {
-			failCount++
-		}
+		failCount++
 		out.Findings = append(out.Findings, Finding{
 			Subject:    res.row.Address,
 			Field:      res.row.Coin + "@" + res.row.Network + "#" + fmt.Sprintf("%d", matchedHeight),
 			Claim:      res.row.Balance.String(),
 			Actual:     res.accounted.total.String(),
-			Status:     status,
+			Status:     VerdictFail,
 			Note:       note,
 			Components: res.accounted.components,
 		})
@@ -243,7 +249,7 @@ func (v OnchainBalanceHot) Run(ctx context.Context) Verification {
 		out.Reason = "more than 25% of supported rows failed to query rpc"
 	case warnCount > 0:
 		out.Verdict = VerdictWarn
-		out.Reason = "some rows show chain-observed balance above CSV (surplus) or incomplete staking/deposit attribution — not reserve shortfall"
+		out.Reason = "some rows have incomplete staking/deposit attribution below CSV — not reserve shortfall"
 	case len(supported) < len(allRows):
 		out.Verdict = VerdictPartial
 	default:

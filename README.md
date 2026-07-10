@@ -67,9 +67,9 @@ go run ./cmd/por fetch htx -zk-bundle ./public-data.zip
 go run ./cmd/por verify -exchange htx -snapshot 20230910
 ```
 
-Or: `./scripts/por.sh anchor -exchange okx`
+Or: `./scripts/por.sh anchor -exchange okx` (loads `~/.zshenv` and `.env` for RPC keys)
 
-Copy [`.env.example`](.env.example) to `.env` for local RPC and contract settings. Private keys stay outside the repo.
+Copy [`.env.example`](.env.example) to `.env` for local RPC and contract settings. API keys for verify (`INFURA_KEY`, `BLOCKCHAIR_API_KEY`, …) belong in `~/.zshenv` — see [ledger-rpc-runbook](docs/ledger-rpc-runbook.md). Private keys stay outside the repo.
 
 ## Developer documentation
 

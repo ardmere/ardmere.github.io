@@ -27,12 +27,14 @@
   "stageBlockedReasons": [
     {
       "ruleId": "floor_no_wallet_ownership_proof",
+      "evidence": "wallet_ownership_proof",
       "maxStage": "Stage 0",
       "reason": "wallet_ownership_proof is not publicly available for the wallet_address_list.",
       "riskFlag": "NO_WALLET_OWNERSHIP_PROOF"
     },
     {
       "ruleId": "floor_opaque_trusted_setup",
+      "evidence": "trusted_setup_transcript",
       "maxStage": "Stage 0",
       "reason": "Trusted setup transcript or equivalent transparent setup evidence is not publicly verifiable.",
       "riskFlag": "OPAQUE_TRUSTED_SETUP"

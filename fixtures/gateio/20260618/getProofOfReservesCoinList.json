@@ -1,0 +1,14 @@
+{
+  "code": 0,
+  "message": "success",
+  "data": {
+    "list": [
+      {"coin": "BTC", "reserve_rate": 132.7, "reserve_amount": 25292, "customer_liability": 19054},
+      {"coin": "USDT", "reserve_rate": 101.0, "reserve_amount": 1432497914, "customer_liability": 1418321860},
+      {"coin": "USD1", "reserve_rate": 109.9, "reserve_amount": 782869261, "customer_liability": 712567030},
+      {"coin": "ETH", "reserve_rate": 122.9, "reserve_amount": 423960, "customer_liability": 344935},
+      {"coin": "LAB", "reserve_rate": 108.0, "reserve_amount": 14621965, "customer_liability": 13534669},
+      {"coin": "DOGE", "reserve_rate": 107.1, "reserve_amount": 2281506498, "customer_liability": 2129789802}
+    ]
+  }
+}

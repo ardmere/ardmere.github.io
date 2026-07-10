@@ -68,6 +68,18 @@ per exchange)</h2>
 </thead>
 <tbody>
 <tr>
+<td>Binance</td>
+<td><code>PR01JUL26</code></td>
+<td><code>Stage 0</code></td>
+<td><code>Gen 2 / E2</code></td>
+<td><code>false</code></td>
+<td><code>medium</code></td>
+<td><code>2026-07-01T00:00:00Z</code></td>
+<td><a
+href="https://github.com/binance/zkmerkle-proof-of-solvency">binance/zkmerkle-proof-of-solvency</a></td>
+<td><a href="./binance/PR01JUL26-transparency-report.html">report</a></td>
+</tr>
+<tr>
 <td>OKX</td>
 <td><code>508399035</code></td>
 <td><code>Stage 1</code></td>
@@ -81,52 +93,40 @@ href="https://github.com/okx/proof-of-reserves-v2">okx/proof-of-reserves-v2</a>
 <td><a href="./okx/508399035-transparency-report.html">report</a></td>
 </tr>
 <tr>
-<td>Binance</td>
-<td><code>PR01JUN26</code></td>
+<td>Gate.io</td>
+<td><code>20260618</code></td>
 <td><code>Stage 0</code></td>
-<td><code>Gen 2 / E2</code></td>
+<td><code>Gen 1 / E1</code></td>
 <td><code>false</code></td>
-<td><code>medium</code></td>
-<td><code>2026-06-01T00:00:00Z</code></td>
+<td><code>low</code></td>
+<td><code>2026-06-18T00:00:00Z</code></td>
 <td><a
-href="https://github.com/binance/zkmerkle-proof-of-solvency">binance/zkmerkle-proof-of-solvency</a></td>
-<td><a href="./binance/PR01JUN26-transparency-report.html">report</a></td>
+href="https://github.com/gateio/proof-of-reserves">gateio/proof-of-reserves</a></td>
+<td><a href="./gateio/20260618-transparency-report.html">report</a></td>
 </tr>
 <tr>
 <td>Bitget</td>
-<td><code>202605</code></td>
+<td><code>202606</code></td>
 <td><code>Stage 0</code></td>
 <td><code>Gen 1 / E1</code></td>
 <td><code>false</code></td>
 <td><code>low</code></td>
-<td><code>2026-05-27T10:00:00Z</code></td>
+<td><code>2026-06-18T10:00:00Z</code></td>
 <td><a
 href="https://github.com/BitgetLimited/proof-of-reserves">BitgetLimited/proof-of-reserves</a></td>
-<td><a href="./bitget/202605-transparency-report.html">report</a></td>
+<td><a href="./bitget/202606-transparency-report.html">report</a></td>
 </tr>
 <tr>
 <td>Bybit</td>
-<td><code>2025061709</code></td>
+<td><code>2026052709</code></td>
 <td><code>Stage 0</code></td>
 <td><code>Gen 1 / E1</code></td>
 <td><code>false</code></td>
 <td><code>low</code></td>
-<td><code>2025-06-17T09:00:00Z</code></td>
+<td><code>2026-05-27T09:00:00Z</code></td>
 <td><a
 href="https://github.com/bybit-exchange/merkle-proof">bybit-exchange/merkle-proof</a></td>
-<td><a href="./bybit/2025061709-transparency-report.html">report</a></td>
-</tr>
-<tr>
-<td>Gate.io</td>
-<td><code>20260316</code></td>
-<td><code>Stage 0</code></td>
-<td><code>Gen 1 / E1</code></td>
-<td><code>false</code></td>
-<td><code>low</code></td>
-<td><code>2026-03-16T00:00:00Z</code></td>
-<td><a
-href="https://github.com/gateio/proof-of-reserves">gateio/proof-of-reserves</a></td>
-<td><a href="./gateio/20260316-transparency-report.html">report</a></td>
+<td><a href="./bybit/2026052709-transparency-report.html">report</a></td>
 </tr>
 <tr>
 <td>HTX</td>
@@ -144,30 +144,32 @@ href="https://github.com/huobiapi/Tool-Go-MerkleVerify">huobiapi/Tool-Go-MerkleV
 </table>
 <h2 id="by-exchange">By exchange</h2>
 <ul>
+<li><strong>Binance (<code>Stage 0</code>)</strong> — Latest
+<code>PR01JUL26</code> (Jul 2026, period 44): public summary and wallet
+list; missing ownership proof, public global proof, trusted-setup
+transparency. <a href="./binance/PR01JUL26-transparency-report.html">Full
+report</a> · <a
+href="./snapshot-history.html#binance-monthly-bapi-summary-only-for-current-snapshot">history</a></li>
 <li><strong>OKX (<code>Stage 1</code>)</strong> — Latest
 <code>508399035</code> (Jun 2026): public reserves, ownership proof,
 global zk proof. <a href="./okx/508399035-transparency-report.html">Full
 report</a> · <a
 href="./snapshot-history.html#okx-monthly-full-public-artifact-stack">history</a></li>
-<li><strong>Binance (<code>Stage 0</code>)</strong> — Latest
-<code>PR01JUN26</code>: public summary and wallet list; missing
-ownership proof, public global proof, trusted-setup transparency. <a
-href="./binance/PR01JUN26-transparency-report.html">Full report</a> · <a
-href="./snapshot-history.html#binance-monthly-bapi-summary-only-for-current-snapshot">Apr–Jun
-history</a></li>
-<li><strong>Bitget (<code>Stage 0</code>)</strong> — User Merkle proof
-path only; no public wallet list or global proof. <a
-href="./bitget/202605-transparency-report.html">Full report</a></li>
-<li><strong>Bybit (<code>Stage 0</code>)</strong> — Merkle inclusion
-path only; no public wallet list, ownership proof, or global proof. <a
-href="./bybit/2025061709-transparency-report.html">Full report</a></li>
-<li><strong>Gate.io (<code>Stage 0</code>)</strong> — Public
-reserve-ratio summary only; login-gated zk and no public wallet
-artifacts. <a href="./gateio/20260316-transparency-report.html">Full
-report</a></li>
-<li><strong>HTX (<code>Stage 0</code>)</strong> — Archived zk sample
-(2023-09); no wallet list, ownership proof, or current production
-bundle. <a href="./htx/20230910-transparency-report.html">Full
+<li><strong>Gate.io (<code>Stage 0</code>)</strong> — Latest
+<code>20260618</code>: public reserve-ratio summary (page-scrape
+import); login-gated zk and no public wallet artifacts. <a
+href="./gateio/20260618-transparency-report.html">Full report</a></li>
+<li><strong>Bitget (<code>Stage 0</code>)</strong> — Latest
+<code>202606</code>: announcement-scrape summary; merkle root and user
+proof still need browser capture. <a
+href="./bitget/202606-transparency-report.html">Full report</a></li>
+<li><strong>Bybit (<code>Stage 0</code>)</strong> — Latest
+<code>2026052709</code> (period 36, May 27 2026): press-release scrape;
+merkle root needs browser API capture. <a
+href="./bybit/2026052709-transparency-report.html">Full report</a></li>
+<li><strong>HTX (<code>Stage 0</code>)</strong> — Still on archived zk
+sample <code>20230910</code> (2023-09); June 2026 bundle requires manual
+login download. <a href="./htx/20230910-transparency-report.html">Full
 report</a></li>
 </ul>
 <p>Gap detail, risk flags, and verifier output are in each report.

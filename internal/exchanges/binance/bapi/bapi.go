@@ -110,9 +110,9 @@ func FetchSnapshotMeta(ctx context.Context, auditID string, snap Snapshot) (Snap
 	return meta, fmt.Errorf("auditId %s snapshotTime %q not found in history list", auditID, snap.SnapshotTime)
 }
 
-// ParseSnapshotTime parses Binance snapshot time, e.g. "01/04/26 00:00:00 UTC".
+// ParseSnapshotTime parses Binance snapshot time (DD/MM/YY), e.g. "01/04/26 00:00:00 UTC".
 func ParseSnapshotTime(s string) (time.Time, error) {
-	return time.Parse("01/02/06 15:04:05 MST", strings.TrimSpace(s))
+	return time.Parse("02/01/06 15:04:05 MST", strings.TrimSpace(s))
 }
 
 type dlResp struct {

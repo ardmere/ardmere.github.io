@@ -27,6 +27,7 @@ These files stay in the public git repository for contributors and operators, bu
 | [STRUCTURE.md](./STRUCTURE.md) | Repository layout |
 | [por-cli.md](./por-cli.md) | CLI reference |
 | [verifier-architecture.md](./verifier-architecture.md) | Verifier architecture |
+| [ledger-rpc-runbook.md](./ledger-rpc-runbook.md) | On-chain / ledger RPC ops: env vars, failure modes, fix order |
 | [deployments.md](./deployments.md) | On-chain deployment records |
 | [anchor-query-api.md](./anchor-query-api.md) | ArdmerePoRAnchor on-chain query guide (`cast` / `ethers.js`) |
 | [decisions.md](./decisions.md) | Architecture decision records |
@@ -39,6 +40,8 @@ These files stay in the public git repository for contributors and operators, bu
 | [exchange-upstream-registry.md](./exchange-upstream-registry.md) | Official PoR pages + GitHub repos (human index) |
 | [../config/exchanges/registry.yaml](../config/exchanges/registry.yaml) | Machine-readable upstream registry (`por exchanges`) |
 | [exchange-reserve-transparency-whitepaper.md](./exchange-reserve-transparency-whitepaper.md) | **Whitepaper body (English draft v1.0)** — exchange reserve transparency framework and methodology |
+
+Project-specific Cursor Agent Skills live in `.cursor/skills/` (gitignored; not published to the site).
 
 ## Internal / non-product
 

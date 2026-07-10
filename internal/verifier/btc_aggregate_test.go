@@ -12,7 +12,7 @@ func TestClassifyBalanceMismatch(t *testing.T) {
 	surplus := decimal.RequireFromString("11")
 	short := decimal.RequireFromString("9")
 	if w, s := classifyBalanceMismatch(surplus, claim); w || !s {
-		t.Fatalf("expected surplus warn classification")
+		t.Fatalf("expected surplus pass classification")
 	}
 	if w, s := classifyBalanceMismatch(short, claim); w || s {
 		t.Fatalf("expected shortage fail classification, within=%v surplus=%v", w, s)

@@ -195,6 +195,11 @@ func runOnchainBalanceDeposit(ctx context.Context, in Input, ref string) verifie
 	}.Run(ctx)
 }
 
-func runBTCAnchor(_ context.Context, in Input, ref string) verifier.Verification {
-	return verifier.Stub(ref, in.Exchange, in.Snapshot.ID, in.SummarySha, "")
+func runBTCAnchor(ctx context.Context, in Input, ref string) verifier.Verification {
+	_, ver := verifier.ParseVerifierRef(ref)
+	return verifier.BTCAnchor{
+		SummarySha256: in.SummarySha,
+		Snapshot:      in.Snapshot,
+		Version:       ver,
+	}.Run(ctx)
 }

@@ -76,7 +76,7 @@ func (v OnchainBalanceToken) Run(ctx context.Context) Verification {
 	for _, r := range allRows {
 		key := r.Coin + "|" + r.Network
 		if _, ok := loadTokenSupportedFor(v.Exchange)[key]; !ok {
-			if isEVMTokenCandidate(r.Coin) {
+			if shouldReportUnsupportedToken(v.Exchange, r.Coin, r.Network) {
 				unsupportedPairs[key]++
 			}
 			continue
@@ -138,13 +138,23 @@ func (v OnchainBalanceToken) Run(ctx context.Context) Verification {
 			}
 		}()
 	}
+	var passCount, warnCount, failCount, unverifiableCount, errCount int
 	for _, r := range supported {
+		if note := nonQueryableAddressNote(r.Coin, r.Network, r.Address); note != "" {
+			unverifiableCount++
+			out.Findings = append(out.Findings, Finding{
+				Subject: r.Address,
+				Field:   r.Coin + "@" + r.Network,
+				Status:  VerdictUnverifiable,
+				Note:    note,
+			})
+			continue
+		}
 		jobs <- r
 	}
 	close(jobs)
 	go func() { wg.Wait(); close(results) }()
 
-	var passCount, warnCount, failCount, unverifiableCount, errCount int
 	for res := range results {
 		if res.err != nil {
 			errCount++
@@ -161,6 +171,10 @@ func (v OnchainBalanceToken) Run(ctx context.Context) Verification {
 		diff := res.actual.Sub(claim)
 		within, surplus := classifyBalanceMismatch(res.actual, claim)
 		if within {
+			passCount++
+			continue
+		}
+		if surplus {
 			passCount++
 			continue
 		}
@@ -215,9 +229,6 @@ func (v OnchainBalanceToken) Run(ctx context.Context) Verification {
 
 		spec := loadTokenSupportedFor(v.Exchange)[res.row.Coin+"|"+res.row.Network]
 		note := fmt.Sprintf("on-chain balance != csv claim by %s (provider=%s)", diff.Abs().String(), res.used)
-		if surplus {
-			note = "chain observed > CSV row allocation; " + note
-		}
 		if res.boundaryNote != "" {
 			note = res.boundaryNote + "; " + note
 		}
@@ -257,10 +268,10 @@ func (v OnchainBalanceToken) Run(ctx context.Context) Verification {
 		tronSnap := tronSnapshotMismatchNote(res.row.Coin, res.row.Network) != ""
 		fevmSnap := fevmSnapshotNote(res.row.Coin, res.row.Network) != ""
 		status := VerdictFail
-		if surplus || tronSnap || fevmSnap {
+		if tronSnap || fevmSnap {
 			status = VerdictWarn
 		}
-		if surplus || tronSnap || fevmSnap {
+		if tronSnap || fevmSnap {
 			warnCount++
 		} else {
 			failCount++
@@ -294,7 +305,7 @@ func (v OnchainBalanceToken) Run(ctx context.Context) Verification {
 		out.Reason = "some supported rows cannot be verified on-chain (e.g. native BTC custody on ETH network row)"
 	case warnCount > 0:
 		out.Verdict = VerdictWarn
-		out.Reason = "some rows show chain-observed balance above CSV (surplus), not reserve shortfall"
+		out.Reason = "some token rows hit RPC or snapshot API limits vs CSV"
 	case errCount > len(supported)/4:
 		out.Verdict = VerdictWarn
 		out.Reason = "more than 25% of supported token rows failed to query rpc"
@@ -314,6 +325,13 @@ func (v OnchainBalanceToken) tokenBalanceAtHeight(ctx context.Context, r walletz
 			return decimal.Zero, used, nil, err
 		}
 		return decimal.NewFromBigInt(bal, -int32(spec.Decimals)), used, map[string]string{"mode": "starknet_weth"}, nil
+	}
+	if spec.Net == rpc.Network("STARKNET") && spec.Contract != "" {
+		bal, used, err := v.ledgerClient().StarknetERC20BalanceAtBlock(ctx, spec.Contract, r.Address, r.Height)
+		if err != nil {
+			return decimal.Zero, used, nil, err
+		}
+		return decimal.NewFromBigInt(bal, -int32(spec.Decimals)), used, map[string]string{"mode": "starknet_erc20", "token": spec.Contract}, nil
 	}
 	if r.Coin == "S" && r.Network == "SONIC" {
 		accounted, err := v.sonicAccountedBalance(ctx, r.Address, r.Height, sonicCache)

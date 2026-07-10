@@ -105,13 +105,13 @@ report.</p>
 </thead>
 <tbody>
 <tr>
-<td>—</td>
+<td><code>canonical on-chain/DA anchor</code></td>
 <td><code>NO_CANONICAL_ANCHOR</code></td>
 <td>Stage 1</td>
 <td>No official exchange canonical on-chain/DA anchor established.</td>
 </tr>
 <tr>
-<td>—</td>
+<td><code>weekly full PoR / daily anchor</code></td>
 <td><code>HIGH_FREQUENCY_GAP</code></td>
 <td>Stage 1</td>
 <td>Monthly cadence does not satisfy Stage 2 frequency
@@ -119,6 +119,120 @@ expectations.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest snapshot (evaluation set)</td>
+<td><code>2026-06-18T16:00:00Z</code></td>
+</tr>
+<tr>
+<td>Previous snapshot</td>
+<td><code>2026-05-06T16:00:00Z</code></td>
+</tr>
+<tr>
+<td>Observed cadence</td>
+<td><code>~monthly</code></td>
+</tr>
+<tr>
+<td>History available</td>
+<td><code>3 snapshot(s) in public evaluation set</code></td>
+</tr>
+<tr>
+<td>Event-triggered updates</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Daily root / commitment anchor</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Stage impact</td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<p>This is the newest snapshot in the ardmere public evaluation set for
+okx.</p>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summarySnapshot</code></td>
+<td><code>eadf8fe305b6893c36c3de295b5ceb59a8f4e9e3e12db2b49675bc6701a8a9c3</code></td>
+<td>https://www.okx.com/proof-of-reserves/detail</td>
+</tr>
+<tr>
+<td><code>walletZip</code></td>
+<td><code>1fd7764c9beafcf34141eaffd0352d1653040bb0cd30a1d8d1c2cd9ae408d139</code></td>
+<td>https://static.okx.com/cdn/okx/por/chain/por_csv_2026061900_V3.zip</td>
+</tr>
+<tr>
+<td><code>globalProofBundle</code></td>
+<td><code>e1b2a413d2a0cd7464a3ad9e9ec2e2705e673240689455ce889e55723b33a075</code></td>
+<td>https://static.okx.com/cdn/okx/por/merkel/por_508399035_proof_data.zip</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact bundle root</td>
+<td><code>0xf9d4380bc4a8ff2146cd305090b353b22776054bd583094c0e3aabbca86f7102</code></td>
+</tr>
+<tr>
+<td>Verification bundle root</td>
+<td><code>0x1bf05b5c8e8882acdf58b2ee3c9414cf338d99566eb522e6283e1a80d969c120</code></td>
+</tr>
+<tr>
+<td>Artifact bundle SHA-256</td>
+<td><code>d15001dced11ff7fc3c8aeda80a21a340eaaa8f2f83d5b4609cdce569e0c88b1</code></td>
+</tr>
+<tr>
+<td>Verification bundle SHA-256</td>
+<td><code>0d4a6bf9fbe9eeb3289c77b4bc5eba15ac91db13c00a683d29260b44f06ccfb9</code></td>
+</tr>
+</tbody>
+</table>
+<p>Local bundle paths: <a
+href="../../../artifacts/okx/508399035/bundles/508399035.artifact-bundle.json">508399035.artifact-bundle.json</a>,
+<a
+href="../../../artifacts/okx/508399035/bundles/508399035.verification-bundle.v2.json">508399035.verification-bundle.v2.json</a></p>
 <h2 id="verifier-evidence">5. Verifier Evidence</h2>
 <table>
 <colgroup>
@@ -177,23 +291,23 @@ expectations.</td>
 <td><code>onchain-balance-token</code></td>
 <td><code>2.0</code></td>
 <td><code>FAIL</code></td>
-<td><code>0.0024</code></td>
+<td><code>0.0030</code></td>
 <td></td>
 </tr>
 <tr>
 <td><code>onchain-balance-ledger</code></td>
 <td><code>1.4</code></td>
 <td><code>FAIL</code></td>
-<td><code>0.0015</code></td>
+<td><code>0.0023</code></td>
 <td></td>
 </tr>
 <tr>
 <td><code>global-zk-proof</code></td>
 <td><code>okx-1</code></td>
-<td><code>PARTIAL</code></td>
-<td><code>0.7500</code></td>
-<td>structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR for
-cryptographic verification</td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td>zkSTARKValidator verify-global succeeded; summary merkle root bound
+to zk proof</td>
 </tr>
 <tr>
 <td><code>btc-anchor</code></td>
@@ -214,11 +328,2790 @@ cryptographic verification</td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
-<td>Wrapped token reconciliation rules not finalized</td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="boundary">8. Boundary</h2>
+<h2 id="verifier-finding-details">6. Verifier Finding Details</h2>
+<p>This section explains <code>FAIL</code>, <code>WARN</code>, and
+<code>UNVERIFIABLE</code> outcomes from the verification bundle.
+Row-level <code>UNVERIFIABLE</code> entries often mean the verifier does
+not yet support that (coin, network) pair, not that the exchange failed
+the check. Full machine-readable output:
+<code>508399035.verification-bundle.v2.json</code> in the local artifact
+bundle.</p>
+<h3 id="capability-and-artifact-gaps-unverifiable">Capability and
+artifact gaps (<code>UNVERIFIABLE</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>btc-anchor</code></td>
+<td>BTC block time anchor verifier not implemented</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr>
+<td><code>cross-chain-wrapped</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="row-level-findings">Row-level findings</h3>
+<h4 id="internal-consistency-pass"><code>internal-consistency</code>
+(<code>PASS</code>)</h4>
+<p>Finding counts: WARN 11, PASS 22</p>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BTC</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>5531.9478778728929917</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>ETH</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>39558.1772869728048806</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>USDT</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>191946635.8045224507315334</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>USDC</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>177423039.1015769740354214</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>XRP</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>963903.2137709051666404</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>DOGE</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>75415352.5328960016013964</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>SOL</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>128690.0037699438799555</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>OKB</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>12671.21093626265</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>LINK</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>296771.4034853100999999</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>LTC</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>54009.628879997753657</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr>
+<td><code>UNI</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>60916.2943337618763291</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+</tbody>
+</table>
+<h4 id="onchain-balance-hot-fail"><code>onchain-balance-hot</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 1, WARN 4, UNVERIFIABLE 16, PASS 1</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x05e851e9196fa1fc55f92ddd07ee83a978db35d0</code></td>
+<td><code>ETH@ETH#25345500</code></td>
+<td>832.12497732</td>
+<td>17.4891558088222</td>
+<td>accounted on-chain balance != csv claim by 814.6358215111778
+(provider=cache)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x9b4495fcc3c99b3cb73a3722320ff1858c81c2f0</code></td>
+<td><code>ETH@ETH#25345500</code></td>
+<td>839.17505406</td>
+<td>0.04997816</td>
+<td>chain liquid+indexed deposits &lt;&lt; CSV ETH allocation; likely
+omnibus/internal custody label — not single-address reserve; observed
+delta=839.1250759 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4ccda666c69cd35be70aabd8931d824b2cfa3d2d</code></td>
+<td><code>ETH@ETH#25345500</code></td>
+<td>1236.35102649</td>
+<td>0.499127259078130314</td>
+<td>chain liquid+indexed deposits &lt;&lt; CSV ETH allocation; likely
+omnibus/internal custody label — not single-address reserve; observed
+delta=1235.851899230921869686 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd5f8c864f21824daf3a4b22d9c33693642ed7634</code></td>
+<td><code>ETH@ETH#25345500</code></td>
+<td>207342.52232797</td>
+<td>0.799072178747936154</td>
+<td>chain liquid+indexed deposits &lt;&lt; CSV ETH allocation; likely
+omnibus/internal custody label — not single-address reserve; observed
+delta=207341.723255791252063846 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe839a3e9efb32c6a56ab7128e51056585275506c</code></td>
+<td><code>ETH@ETH#25345500</code></td>
+<td>284131.31916117</td>
+<td>5597.839126934988361811</td>
+<td>likely ETH2 deposit balance; deposit indexer unavailable: etherscan
+txlist: status=0 message=NOTOK; observed delta=278533.480034235011638189
+(provider=cache)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Unsupported (coin, network) pairs:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Pair</th>
+<th>Rows</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASSET-HUB\|DOT</code></td>
+<td>50</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>A\|VAULTA</code></td>
+<td>2</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>DOTK-OKC20\|OKC</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>ELF\|AELF</code></td>
+<td>263</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>ETCK-KIP20\|OKC</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>ETC\|ETC</code></td>
+<td>42</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>ETHK-OKC20\|OKC</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>FILK-OKC20\|OKC</code></td>
+<td>8</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>LINKK-OKC20\|OKC</code></td>
+<td>3</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>LTCK-OKC20\|OKC</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>OKB-OKC20\|OKC</code></td>
+<td>3</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>TRXK-KIP20\|OKC</code></td>
+<td>14</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>UNIK-OKC20\|OKC</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>USDC-OKC20\|OKC</code></td>
+<td>237</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>USDT-OKC20\|OKC</code></td>
+<td>100</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr>
+<td><code>XRPK-KIP20\|OKC</code></td>
+<td>5</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+</tbody>
+</table>
+<h4 id="onchain-balance-token-fail"><code>onchain-balance-token</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 157, WARN 213, PASS 2</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0x611f7bf868a6212f871e89f7e44684045ddfb09d</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>1119325648.11</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1119325648.11 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x91d40e4818f4d4c57b4578d9eca6afc92ac8debe</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>175889537.9756854757</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 175889537.9756854757
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb0a27099582833c0cb8c7a0565759ff145113d64</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>85271343.345626</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 85271343.345626
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4a4aaa0155237881fbd5c34bfae16e985a7b068d</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>21744011.0089032823</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 21744011.0089032823
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x343d752bb710c5575e417edb3f9fa06241a4749a</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>9966364.122794</td>
+<td>46.412112</td>
+<td>on-chain balance != csv claim by 9966317.710682
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x3c9df24f248ff949161a5a43bbf6dd69378d7799</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>8788890.8489837</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 8788890.8489837
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xafee421482faea92292ed3ffe29371742542ad72</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>8767014.800987</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 8767014.800987
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x85dcd76d4fbd3aa0c85c27b9441222c19a14134b</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>5941615.515201</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 5941615.515201
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb5216cb558cb018583bed009ee25ca73eb27bb1d</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>5015693.220212</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 5015693.220212
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd8a3ed83a59d3e10d82a4b845d64b24ba0572baf</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>3911578.164781</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3911578.164781
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x3f03440b19d15ff2068daf68e57eb656bfd0a67e</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>3759840.63621</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3759840.63621 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xde3c8d726e906b379a020cdb04bbe4b8f39a726f</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>2674234.876199</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2674234.876199
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe7c5e276b2434743f6c79365d967cbe4291477bc</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>2636733.295912</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2636733.295912
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4a1ca3e90e9e3a00eb27e9f409b4db310aa7405f</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>1966160.455769</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1966160.455769
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xff8a035ea6c80673f741c2265985ed976a40d390</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>932963.7752159399</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 932963.7752159399
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x9098575016440086c694c85c5010a0ed85249675</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>879733.358725</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 879733.358725 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x92ea7496eba5f001d620005f88f3e8e686e3d4ea</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>379523.52</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 379523.52 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4cafbe2b5bd89f0c0b7d6fef75b47e7c2ae82f22</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>276669.708697</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 276669.708697 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa0c9b4ce1785953abdceae569789aa158a01da4c</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>271720.894945</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 271720.894945 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc74e4c556a16390165c99b40aabc39a87c358305</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>235758.271106</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 235758.271106 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf418263a6468c80d3bcb71033c56aacf81b241ba</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>200190.64</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 200190.64 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x3b50287cf8f073ff443b84de57e2375d446b962b</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>158913.879751</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 158913.879751 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xfbabce3f61f043cad4516e8ec526717133c12057</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>135768.992487</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 135768.992487 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x76705493d53beefadffc253acb8aef72b7e7f6c6</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>119173.24072</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 119173.24072 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb57198a6e5af11544936a520a54268bc6ababb0c</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>112390.602791</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 112390.602791 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x04e9d79a17f4894c76c65c52516f790531ef6bee</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>106057.793878</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 106057.793878 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x0af6b0b2f1e8b1a259fffc70f2c19e177e4638c4</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>102150.99</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 102150.99 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x9d1964437bb6d849c66ab2a2a033340dc2d999dc</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>95786.116837</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 95786.116837 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x2fb2841c747621a7187b6f2a5390ae77321e5257</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>87525.643751</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 87525.643751 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x91d40e4818f4d4c57b4578d9eca6afc92ac8debe</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>81236.6762816413</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 81236.6762816413
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x229b1c70124141ec96945aec2323a22b68bb093c</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>78299.07596</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 78299.07596 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x99860ec99aae9c0aa5ab763ee73da1217a9da665</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>73169.442597</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 73169.442597 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x993fade64545c0d82d121fab5232b2072da98daf</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>67183.6</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 67183.6 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x74f42a5bc01eaeaf724da49254da739c37b5a808</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>65134.755561</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 65134.755561 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6bea9e00a6bb63d22904d975bdf8a98f26f9f49d</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>64344.197481</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 64344.197481 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4a152242605ab21df5ac6e819fdb128a4efc33fc</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>64344.197432</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 64344.197432 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5ca1063894e5bbd688830d83fefa5ce3d339744d</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>61121.706922</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 61121.706922 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x55823001c8cd87a6e86716ca768bce51f2d89c9c</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>52369.72407388</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 52369.72407388
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x582988097ef9f2cf50cfac3f5f3b1ed54bc52a88</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>49669.675025</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 49669.675025 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xbf90664017218ac7d9db5ae0c84873628e9ae1ae</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>44142.30371176</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 44142.30371176
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x2ef3ddc24e4020173da2c0f3a148eff4a9f6d9dd</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>43777.044961</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 43777.044961 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x9c308b1665097af7ab2e38a41577bfecdc2d1c5c</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>42354.84532091</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 42354.84532091
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4a8c00e80e3cfae4c903f9462b4ee2826404fe05</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>41151.531102</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 41151.531102 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf1e7b58ccd200fcb9400ddbc30867c43b7dc9ee1</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>41151.331175</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 41151.331175 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x7d328f5d5f4640f81b2f93d2903ec0a6c030eed6</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>40963.67003613</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 40963.67003613
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x04ba1b380b1418007c1407bbe12ac21a596ae1e0</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>39608.565961</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 39608.565961 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x03426aacbcf9030a380b3ba4a1f16b968649ef3d</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>35911.962433</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 35911.962433 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xaf6e08926da465fb3c59c2ad5dad47f6dca252ab</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>32622.72</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 32622.72 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4a4aaa0155237881fbd5c34bfae16e985a7b068d</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>30822.1988656955</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 30822.1988656955
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xbe9ac2d59743d69c4054bab09fa9821929d0f31b</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>29456.250044</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 29456.250044 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x85f56cd748379755494f1365a3efc19569973e99</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>29016.392484</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 29016.392484 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x0ca0e2aa6f2203ef8fa6e1f7f1903fb3a8ec1d35</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>23407.566664</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 23407.566664 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6cbb2add2a126e65cef029afca45576910a26b5f</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>23007.43</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 23007.43 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc30082de324fbfb7b293bcda397e2da2942d861d</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>22994.919244</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 22994.919244 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb1da6e546bd592218d6e849a8177d9d4fbf12986</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>20656.310731</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 20656.310731 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x1cdf5ba7297f276bf0320c88ca948d4311c913ce</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>19083.586352</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 19083.586352 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x41ddf01de355547d821873ebd4fb2ffa2dc63d4c</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>18295.126814</td>
+<td>0.00009</td>
+<td>on-chain balance != csv claim by 18295.126724 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe7f6a87b1950b687a31d068bd01c6be81bc7e1af</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>16805.684276</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 16805.684276 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x28734d8ccfa30a3270513b40fd147071b79d7638</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>14848.093439</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 14848.093439 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x42cf18596ee08e877d532df1b7cf763059a7ea57</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>14758.390218</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 14758.390218 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6cc5f688a315f3dc28a7781717a9a798a59fda7b</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>11302.306303002590174878</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 11302.306303002590174878
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5d002b87b6e1bdf390027c1210fdc1f6dd2ed85c</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>10339.783718</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 10339.783718 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x00000000004e3d5628234f18b977041e5242651f</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>8106.253163</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 8106.253163 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x7cfb1543e6dec0dadd2435f23b97e08d682b6241</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>7490.499101</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 7490.499101 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x48120be2162bf6d7b1c8ea04a150a530d294dcd0</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>7271.51</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 7271.51 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x26738cb185d888bb8c77ef0821dae410d0a748de</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>6580.761654</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 6580.761654 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4610dd69a52fc33fb50e284eec80cdfb0049caf7</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>6266.34406</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 6266.34406 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xcbabcb8d416591cc30c875f0a76df4dd1a53ba65</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>6097.332</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 6097.332 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x0d96b0525186c56aab001ff856313c85ced6bbe3</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>5740.62</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 5740.62 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa58fe8afb81d4d4f94b9d3523845fe5b2077f779</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>5823.6435</td>
+<td>0.026754</td>
+<td>on-chain balance != csv claim by 5823.616746 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xcf67640fd0716eb9c0d18c32214a36b8d8a2abaf</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>5700.363529</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 5700.363529 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x787d2b2c401d2635fa4251fe6cf267177f5e45d5</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>4912.04882206</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4912.04882206 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x942fd3a57d045b83f1e8f1d0381b496950cc16d3</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4884.342349</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4884.342349 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdf18e02f023c2f87245e30509ae273854d825573</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>4239.74390235</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4239.74390235 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x0145506e5169a5efcbfc048636553d532108d668</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>3857.1065</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3857.1065 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe57245fb0e5fc8d3cb02fb05e1cb0a8939970d6d</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>3901.736277</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3901.736277 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x7d8b449450b78d6ef2af6e69d0b818cc822f2804</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>3801.08989</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3801.08989 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x8dbeda7085ddb63fd91bdfb8ba2c69a9a06c7589</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>3716.7398</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3716.7398 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4e3dd9ec3047246a5fd849334438696df4851b97</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>3530.58365806</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3530.58365806 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x03c1f15c3f2461d6b53cd7ab799b95b6d2e669d0</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>3500</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3500 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5a741eab50d90a955392fcb06d77e81fccefdb3d</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>3265.078569</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3265.078569 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6671c4d6bbdff00ef9aa4ad9488d400a36272cf6</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>3236.30079953</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3236.30079953 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x1caf4162b5c0d254b4d07809dba8abf34b895b86</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>3199.16248961</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3199.16248961 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xcc8e49f620f47dee27dd08caa8dd3554302388ea</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>3036.885</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3036.885 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6fb31ae81a72af0ce3acd41d5eefe57d2758f72c</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>2863.17572044</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2863.17572044 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x8505bc2f4e44844db42cd9935905fbdd6a96d897</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>2690.7088</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2690.7088 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x45d6e0a10d9a58bba0df2f8f8b66c7b447451bc7</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>2578.16279</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2578.16279 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd082b5c3b274d4433b2353b927d91a1082e5d1d1</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>2459.19770969</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2459.19770969 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6290a8e42010d4a68c8428920d5113300bdeaa40</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>2162.286628</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2162.286628 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb10cd07b0fbec13a9bc1e89e57e51e00fd26586c</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>2069.48525718</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2069.48525718 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x1f1ca79462ec79445c6bd10b9225e1ad2ab9f3d1</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>2028.7302</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2028.7302 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x23d90deb6252846090f83e4e39555199bcc3b729</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>1969.612683</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1969.612683 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x02a899128336dcc1cd087386292153e01de3848a</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>1900.10162555</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1900.10162555 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6682018cc6f3e6138ea8e63d6b87b2a48f445c1f</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>1893.63922039</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1893.63922039 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x0af6b0b2f1e8b1a259fffc70f2c19e177e4638c4</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>1887.741668</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1887.741668 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc8802feab2fafb48b7d1ade77e197002c210f391</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>1683.735722</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1683.735722 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x10e7d149e73dae219bb517de0fcb6a9601ba0f02</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>1663.986314</td>
+<td>50</td>
+<td>on-chain balance != csv claim by 1613.986314 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc310dd8b3b57748bf20d45243527768a09da7661</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>1641.877204</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1641.877204 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x32de6ee2e3edb1405eb712277a100f3924075700</code></td>
+<td><code>PEOPLE@ETH#25345500</code></td>
+<td>1619.4748</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1619.4748 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x34bba0d0a1d0cab16ef6be267465efe5c4df201a</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>1439.092055</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1439.092055 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe73856b980d2765790e6653228bfc534629e25b3</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>999.9</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 999.9 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xbf0538e028264414f705ec5ad17e0c923ccdbc26</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>888.138339</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 888.138339 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x7fd1cf2c0347ccb62dc2ca6db0031abc35a18e0e</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>799.9</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 799.9 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x42cf18596ee08e877d532df1b7cf763059a7ea57</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>700.688187</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 700.688187 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xabf8a176e8077047cc009263e89081f1a7b6bff6</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>661.6497</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 661.6497 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x8c1dd7385efdd54b96dd417ec192f8dc17a13f92</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>624.449831</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 624.449831 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x0b38179722faecaeaabf19477374f75b58645894</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>630.090064</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 630.090064 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4b3da5f48b5fc6552734f55f9f8fadbc902235f6</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>499</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 499 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x000000000000d5775ff7721cefb8097af62e52dd</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>459.213822</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 459.213822 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x3273efbac62e9a4d91f454e04bc2969c3c42c23b</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>405.629</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 405.629 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf7f767ec932a506efce0b644a2344f628f804bfd</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>348.920896</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 348.920896 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x8b688535f823d2a4c6b57997850f8d4fa3ff0135</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>329.4254</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 329.4254 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x177dd993ad65ea85b5f85281e68893a46122f230</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>301.924862</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 301.924862 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x0e081924b84fb5e378d7b2e3b0d3e7e3a5269f68</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>301.59</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 301.59 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xbf90664017218ac7d9db5ae0c84873628e9ae1ae</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>253.2335271573</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 253.2335271573
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x55823001c8cd87a6e86716ca768bce51f2d89c9c</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>233.510185</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 233.510185 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdd765ebdd3437b9a7674b6667d13ade7416e8237</code></td>
+<td><code>POLY-USDC@MATIC#88728936</code></td>
+<td>216.905631</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 216.905631 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc9b00b361785f3af5fd1027554ff1509923691b6</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>214.203491</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 214.203491 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x8ed12b6e826589bfb32a3d0149d3fbd12d548722</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>212.401406</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 212.401406 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xff8a035ea6c80673f741c2265985ed976a40d390</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>185.12488712</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 185.12488712 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x73238f23192e190753f327d78394779e54249038</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>173.922828</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 173.922828 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xaa5504106eaaab3df740671d85319a5fe81511f4</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>147.5</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 147.5 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x62383739d68dd0f844103db8dfb05a7eded5bbe6</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>123.402721</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 123.402721 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x105e68f301dd2ccc169243951da88c74fceb81e0</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>111.401379</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 111.401379 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe995fe7dc72f7a817ca38c70004fa5388e7f4c2e</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>114.71218</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 114.71218 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xebeb422937ea3c652926dde7c978cea631e9a0e5</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>105.25121</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 105.25121 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf1d885f9579e211db28fbc1df31859fe16137eee</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>111.214236</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 111.214236 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf28143f7b282e59bd5f979012982e7cb9d9b95b0</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>101.250523</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 101.250523 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6f4b48aa129d873507770cdccb25bd60daaf09aa</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>96.434108</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 96.434108 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd953e4717c4aa75b08052645379cec64d539ea5a</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>96.207252</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 96.207252 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb8b70cf4edd49aa6c7212286917bcefb42da01c3</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>94.655592</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 94.655592 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5ebfc3de7cef8a26775b15913130831ee9159109</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>90.563481</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 90.563481 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc3520b4a68f7fd5e0832e90187a8fad3d7d3c880</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>90.48124</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 90.48124 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc7f758b2126a33239fb7e80f91c722caf7126c15</code></td>
+<td><code>USDT-OPTIMISM@OPTIMISM#153099811</code></td>
+<td>90.195751</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 90.195751 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc496e5e40f18035d6f8e805f1e5595657d7dca9f</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>88.95282</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 88.95282 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x0938c63109801ee4243a487ab84dffa2bba4589e</code></td>
+<td><code>USDT-ARBITRUM@ARBITRUM#474829257</code></td>
+<td>78.397627</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 78.397627 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdc80e4412b4c6817318b3450b98f87f745206e0b</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>54.039151</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 54.039151 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xaa488c5dd62d17465128c5034179e88a4f2f4170</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>47.995717</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 47.995717 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa9ac43f5b5e38155a288d1a01d2cbc4478e14573</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>35.38</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 35.38 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x3c9df24f248ff949161a5a43bbf6dd69378d7799</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>34.5644520006</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 34.5644520006 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb0473ca01e91981623b65daf84ab7bc94a7e4000</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>24.9968</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 24.9968 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x993fade64545c0d82d121fab5232b2072da98daf</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>18.95</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 18.95 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x0799ddbf6f14db566ca4df4ff0575c4cc1e7749c</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>14.009382</td>
+<td>8.843332</td>
+<td>on-chain balance != csv claim by 5.16605 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6cbb2add2a126e65cef029afca45576910a26b5f</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>14.607403</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 14.607403 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe2bc72b7f2c15476cdda714a44d08432d9302487</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>12</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 12 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xaf6e08926da465fb3c59c2ad5dad47f6dca252ab</code></td>
+<td><code>OKB@ETH#25345500</code></td>
+<td>8.2962431535</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 8.2962431535 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x079959dc64e2f6126414b66ac994600a2dd73099</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>5.604602</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 5.604602 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x2ad0f758ce754653c79b681750bff16fe005f230</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.999999</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.999999 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x9157b6c4f48112490962175b4058d485939653ca</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.99976</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.99976 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x136bc54e0950eae85591954ae2bdea2199681234</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.99976</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.99976 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x920c6944f9e1c5bb7a80d180a8df75f65b0b94e5</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.9997</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.9997 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xceca016c59a63cccdf7a703f52b9dee581e1fa40</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.99968</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.99968 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x3716ae413fcdc5c177735ce6cb38e68ed4c08b1d</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.99961</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.99961 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x1810a491db6f47ea99e31903db4b65f74eaf0b36</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.9996</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.9996 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc6eca660c5da896784071ebc252fc27184da54cf</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.99956</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.99956 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe270b325c128ac89107ef4a078b303bf81dc7538</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.99956</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.99956 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x381686ce20da524ad9520a157cdf7c871827ce0a</code></td>
+<td><code>USDC-AVAXC@AVAXC#88306240</code></td>
+<td>4.999362</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4.999362 (provider=cache)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TLaGjwhvA8XQYSxFAcAXy7Dvuue9eGYitv</code></td>
+<td><code>USDT-TRC20@TRX#83709660</code></td>
+<td>243232693.234473</td>
+<td>179134665.740288</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+64098027.494185 (provider=https://api.trongrid.io)</td>
+</tr>
+<tr>
+<td><code>TCw6YaWm3y6DvxY7M8hrCDnrJGeGMumzGJ</code></td>
+<td><code>TRX@TRX#83709660</code></td>
+<td>465294638.105331</td>
+<td>0</td>
+<td>live TRX balance vs snapshot CSV; Tron historical native balance
+limited on public nodes; on-chain balance != csv claim by
+465294638.105331 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TYE5mNXSQHuPAdCa1etk76BKybD4FKJto6</code></td>
+<td><code>USDT-TRC20@TRX#83709660</code></td>
+<td>95974697.146829</td>
+<td>65227120.737843</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+30747576.408986 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>0x7fea5b4568751533039179116e372e26b6b41b13</code></td>
+<td><code>USDC@ETH#25345500</code></td>
+<td>41621800.609858</td>
+<td>4.517902</td>
+<td>on-chain ERC20 balance &lt;&lt; CSV mega-stablecoin allocation;
+likely omnibus/internal ledger label — not single-address custody;
+delta=41621796.091956 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>THdXEcBCZ7nagnmfRrfSHoiLRTbSRueoVW</code></td>
+<td><code>TRX@TRX#83709660</code></td>
+<td>71436182.072994</td>
+<td>0</td>
+<td>live TRX balance vs snapshot CSV; Tron historical native balance
+limited on public nodes; on-chain balance != csv claim by
+71436182.072994 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TWAY47W8ci9XtfMgvs4r2A7Z2NFGUDJqpp</code></td>
+<td><code>TRX@TRX#83709660</code></td>
+<td>68289440</td>
+<td>0</td>
+<td>live TRX balance vs snapshot CSV; Tron historical native balance
+limited on public nodes; on-chain balance != csv claim by 68289440
+(provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>THwyeoCMSXQq2aGDpXpSqo89VnTtFktGGp</code></td>
+<td><code>TRX@TRX#83709660</code></td>
+<td>51572829.264957</td>
+<td>0</td>
+<td>live TRX balance vs snapshot CSV; Tron historical native balance
+limited on public nodes; on-chain balance != csv claim by
+51572829.264957 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TD9GNrgmrg46yistfTMJpRQZcDmDRx1Bmq</code></td>
+<td><code>TRX@TRX#83709660</code></td>
+<td>33417832.529417</td>
+<td>0</td>
+<td>live TRX balance vs snapshot CSV; Tron historical native balance
+limited on public nodes; on-chain balance != csv claim by
+33417832.529417 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TJVeQfDKsV2ZqrDzZKabgoE6De1vJhnP7h</code></td>
+<td><code>TRX@TRX#83709660</code></td>
+<td>18167856.407142</td>
+<td>0</td>
+<td>live TRX balance vs snapshot CSV; Tron historical native balance
+limited on public nodes; on-chain balance != csv claim by
+18167856.407142 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TBNHZP2iAVyDhpTSZ8ee2Xjci1JExZTPE5</code></td>
+<td><code>USDT-TRC20@TRX#83709660</code></td>
+<td>8463250.31129</td>
+<td>7978778.541636</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+484471.769654 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>0x611f7bf868a6212f871e89f7e44684045ddfb09d</code></td>
+<td><code>OKB-X1@XLAYER</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): network XLAYER not configured</td>
+</tr>
+<tr>
+<td><code>TBwBJwj81yXc4DNKS19GJcpUUzfSWRbBzS</code></td>
+<td><code>USDT-TRC20@TRX#83709660</code></td>
+<td>13180213.989589</td>
+<td>11881743.887357</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+1298470.102232 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TNkUL9Za9uBnSJ5MQMDaf2aSSFpuuoKw3k</code></td>
+<td><code>USDT-TRC20@TRX#83709660</code></td>
+<td>8382310.886537</td>
+<td>3438149.909432</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); on-chain balance != csv claim by
+4944160.977105 (provider=https://api.trongrid.io)</td>
+</tr>
+<tr>
+<td><code>TXGRttpC4PZkyid4WYFoWDJdekT1MmnGVC</code></td>
+<td><code>TRX@TRX#83709660</code></td>
+<td>7945378.727503</td>
+<td>0</td>
+<td>live TRX balance vs snapshot CSV; Tron historical native balance
+limited on public nodes; on-chain balance != csv claim by 7945378.727503
+(provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr>
+<td><code>TVvyKT63p66nqhQiNHX25izSUAvjcdER9X</code></td>
+<td><code>TRX@TRX#83709660</code></td>
+<td>6643124.263812</td>
+<td>0</td>
+<td>live TRX balance vs snapshot CSV; Tron historical native balance
+limited on public nodes; on-chain balance != csv claim by 6643124.263812
+(provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+</tbody>
+</table>
+<p><em>198 additional <code>WARN</code> rows omitted; see verification
+bundle.</em></p>
+<h4 id="onchain-balance-ledger-fail"><code>onchain-balance-ledger</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 111, WARN 123, UNVERIFIABLE 2, PASS 2</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>C68a6RCGLiPskbPYtAcsCjhG8tfTWYcoB4JjCrXFdqyo</code></td>
+<td><code>USDG\|SOL#427319948</code></td>
+<td>88840703.689716</td>
+<td>88840584.112457</td>
+<td>on-chain balance != csv claim by 119.577259
+(provider=https://api.helius.xyz)</td>
+</tr>
+<tr>
+<td><code>0x709b8e7b649b6de24552f8154c5c5edd4be950145d48f74829511e3cbef41b5a</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>7769877.194035</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 7769877.194035
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4c1ef44079cb31851349fba50d385f708a10ec7ac612859fdbf28888d1f7b572</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>8478221.9460576</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 8478221.9460576
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x51c6abe562e755582d268340b2cf0e2d8895a155dc9b7a7fb5465000d62d770b</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>6250423.430363</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 6250423.430363
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd7eb876597276ad1c4159eb7a03dd4b694db9c142f28a9472a42510bc6a13a6e</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>3769985.088027</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3769985.088027
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x2af5827f7017a7f6127184d73b2340f12e5dc248a48f48e2fe3fff08f6007beb</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>4066856.13184567</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 4066856.13184567
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x612a398b1320b877cbc84fee033e88aa9e06cfa630b9d56d2b469ea7750bf157</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>3075172.237336</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3075172.237336
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>3WjxkXbu9JBosUWUnJpjzec7Wa4rSkWo9khUbbLDCssk</code></td>
+<td><code>SOL\|SOL#427319948</code></td>
+<td>2823088.987601145</td>
+<td>4.047288082</td>
+<td>on-chain balance != csv claim by 2823084.940313063
+(provider=https://api.helius.xyz)</td>
+</tr>
+<tr>
+<td><code>0x51c6abe562e755582d268340b2cf0e2d8895a155dc9b7a7fb5465000d62d770b</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>2282189.077211</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2282189.077211
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd7eb876597276ad1c4159eb7a03dd4b694db9c142f28a9472a42510bc6a13a6e</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>2052655.909869</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 2052655.909869
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x781fa312385e11c39c0c901f7d76d2892e32d272d09fad90f728656a542c2995</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>1518257.6</td>
+<td>46.92014438</td>
+<td>on-chain balance != csv claim by 1518210.67985562
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6f64b49c6c9899abaab8b748aa37c5776105a4e243cc4ee0a62d7aea4fb13865</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>1103134.803228</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1103134.803228
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf3a9bd8f8f9c7e07bef7d0a841e2165b6ed7a6767934975684f982d1c4b78581</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>1101268.002415</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1101268.002415
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc3ffdaa47eb60296d098f44b8e569e40543e733e01e78bf1abe96cbbcf442491</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>1082874.7374205</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1082874.7374205
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xcf884dde6b75437e22b0860f6346ca3e385c35b28b891f16fa9da8d64cdd37</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>1000478.712428</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1000478.712428
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x8f347361a9461e9312a4d2b5b5b928c65c3a740965705361317e3ca0015c64d8</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>922537.7213531</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 922537.7213531
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x76e20f5a1053f14843e9667917eb105d4213597a4b3033d1daa9da8e81bf55da</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>775000.78229</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 775000.78229 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd2b472ad7168b53759e6cdccc2ef83964209806d28844d42f188e48f6b87fffd</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>732361.705319</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 732361.705319 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>A2nNTaAiDSYqCykEzXeK2hohAaxMpbpZQN</code></td>
+<td><code>DOGE\|DOGE#6254074</code></td>
+<td>510750.001</td>
+<td>500921.001</td>
+<td>on-chain balance != csv claim by 9829 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x26809f4fab301efb45d91ca4bd468cef3244438e2361dfc139f489a118ed95b7</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>396111.4977252</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 396111.4977252
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x612a398b1320b877cbc84fee033e88aa9e06cfa630b9d56d2b469ea7750bf157</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>321140.509823</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 321140.509823 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdf13371a54322a65f3e049c07fcc0124ab1e4e22385a95d829b751f220ee872d</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>321484.93783229</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 321484.93783229
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdd9d51fd5def96dfa15ebc8ea9a98d818e2ae86e6c4f5a40419c8bb043c8af32</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>226678.74202629</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 226678.74202629
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb936d83662102e666b0863a7cab427ae1f710a3a9d8f315e454edc21a39f28cd</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>149262.7879144</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 149262.7879144
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xc9bc867420c8bc13add4008261774acd063435e2e77fd7b35975b57bdfc7716a</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>84523.89</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 84523.89 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x719f198d51db6d507bdd1bd4e43a98085b4b58428d01d24f3781d1863fecdd15</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>82959.7177549</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 82959.7177549 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x3db375ba86a32d0245170ef665db1b96072a435565fe492ffd92396fd7e97531</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>74055.09987765</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 74055.09987765
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa507d2395d68f7fb6c9345bc39403981b50b83c41607893ae71af94e4877d637</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>67308.964414</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 67308.964414 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe63c17bec2269d3cf0fedf88b16f4d05995fadaed3a97361c178af7e6c53895e</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>64344.197471</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 64344.197471 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x76e20f5a1053f14843e9667917eb105d4213597a4b3033d1daa9da8e81bf55da</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>56205.143828</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 56205.143828 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x9f4ac0affc4e79a0023b403e8455fb584c3118b8f6fb17732522ec4a3143294c</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>42251.6389748</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 42251.6389748 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe63c17bec2269d3cf0fedf88b16f4d05995fadaed3a97361c178af7e6c53895e</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>41151.531177</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 41151.531177 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xaa9363f60cee8b21abf35b49ec0eb8cd86dfa9d479aa3734483ae93ef1c66669</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>40684.7394852</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 40684.7394852 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xfc4b8005085837503d583649b0daa2f68d2c69255c0f3656819232889e1711a5</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>39908.5482851</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 39908.5482851 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xcf884dde6b75437e22b0860f6346ca3e385c35b28b891f16fa9da8d64cdd37</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>38437.899287</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 38437.899287 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>GD3tr9DR8ZnSy2pQ22RwzSR4vKY48SxHLdgCymXQ6W5i</code></td>
+<td><code>SOL\|SOL#427319948</code></td>
+<td>35375.333790745</td>
+<td>0.240511123</td>
+<td>on-chain balance != csv claim by 35375.093279622
+(provider=https://api.helius.xyz)</td>
+</tr>
+<tr>
+<td><code>0xa507d2395d68f7fb6c9345bc39403981b50b83c41607893ae71af94e4877d637</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>30927.363119</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 30927.363119 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x3362d9ac7de31e010c333d1274aebb3f99bc58de864eb5c0c71e7ca2d9ebad70</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>27816.52821165</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 27816.52821165
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe24c5f9ceddf4917ecf707cca259fa336b1ce4e3db6790584bec1747de0ba590</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>26091.136751</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 26091.136751 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5bb0aea1ca2ae630beb1d238b2dac2505ec7528783a1460e9041b2341ad42188</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>25919.640655</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 25919.640655 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xfb9709f3bdcb816cf5ed2bbdc4e52387100faa499c80a26b56c8fc9b4693ea90</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>24696.76750938</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 24696.76750938
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf3a9bd8f8f9c7e07bef7d0a841e2165b6ed7a6767934975684f982d1c4b78581</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>23885.697585</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 23885.697585 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x2cd5c058cf0594c70949c86b4bc548f871babd86f6e5250caab210cd9602d892</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>23328.037091</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 23328.037091 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4e30a7c354208ab73e4702b30dc2bd617860c01a25601e728c78b6d064ac3f43</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>21100.0476812</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 21100.0476812 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x40e18b05ca9707b56d65720bec375c916d23df84fbf3a8c9db9d55c6ed0aad5d</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>18455.45437125</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 18455.45437125
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd2b472ad7168b53759e6cdccc2ef83964209806d28844d42f188e48f6b87fffd</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>15452.118755</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 15452.118755 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf719790bf38d1a981e6bf849602394e2531f1553bfcc26569a1ba4f9628f09ec</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>15360.94</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 15360.94 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa5ab0d8982da365c24feef396a6884c41d01716158171de6a226f7b2d4704ae4</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>13462.63114351</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 13462.63114351
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xcd1020ed5014029f11a64737dcfb5f49c619a0ac19a35c1d91cc23e71f950422</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>12411.39188521</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 12411.39188521
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>3n8t1n1NF6rhDeAPqQJF7RDD6JLGJPQftF1gMEKd4Sfs</code></td>
+<td><code>SOL\|SOL#427319948</code></td>
+<td>10699.109934254</td>
+<td>0.140801137</td>
+<td>on-chain balance != csv claim by 10698.969133117
+(provider=https://api.helius.xyz)</td>
+</tr>
+<tr>
+<td><code>0xb3003185561644a9b70281af99381651a15315c75808a7ed4abd353a769e32c2</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>8458.44929702</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 8458.44929702 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa07c09757eee7051143b0790c99f14ac0fc0d2fb40e4bec5aed863881e41e1c3</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>6861</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 6861 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x54b2980f24eb570c45b88cd02cc9e968912632f1f7840b23d3b4483591db2786</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>6214.206338</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 6214.206338 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5bb0aea1ca2ae630beb1d238b2dac2505ec7528783a1460e9041b2341ad42188</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>5262.5304</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 5262.5304 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa072b25a76fac70d5ecd5460ae855750bbb8dba454a7320e8f398c71a4cb69b9</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>3187.5702114</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3187.5702114 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x54b2980f24eb570c45b88cd02cc9e968912632f1f7840b23d3b4483591db2786</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>3024.688709</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3024.688709 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe24c5f9ceddf4917ecf707cca259fa336b1ce4e3db6790584bec1747de0ba590</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>1972.823232</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1972.823232 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x612a398b1320b877cbc84fee033e88aa9e06cfa630b9d56d2b469ea7750bf157</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>1121.89293327</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1121.89293327 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb1af32dc49767be11d794c7ac6a67c4a3838e5a3483c64549dfb4734dcba1ad3</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>1010.9994907</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 1010.9994907 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf12ab2006b1ba6768e67eb4162fad0e5a1f33d33ed449340ed90f94b7485276e</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>994.963871</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 994.963871 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x34651505953861253b2796483433b500e3ceff98e38e259770a417b4bec30bb4</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>957.94722598</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 957.94722598 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x2b9378a4473fa663fdbe6a9673898d4ea2e9f6fe08afcb962ca1cbd81999bf4f</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>720.227841</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 720.227841 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x25ee5cdcd37bdb510e4d70c240ed666cae441b86085546d56edeea1c4fa589cf</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>608.3976766</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 608.3976766 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xfd84b64cfa48aee4de081341080eb421154f6414705a60da5a015958717bdb87</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>502.15</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 502.15 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x709b8e7b649b6de24552f8154c5c5edd4be950145d48f74829511e3cbef41b5a</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>502.1494786</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 502.1494786 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd6880103d691d630ab40443ea1f8b4038bed1ff6a6bea10d8c41df6ce6d53dc3</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>499.9</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 499.9 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xef98dd35f4320b79038c861c52b0b3b6d3dde4cd74902452a260f554d0472ce4</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>462.6289</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 462.6289 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdc8eb927f3db62950a6eb21c6a96531448aa385d2e34b66628ce48bae559e106</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>412.3533615</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 412.3533615 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x7dbc6d82ffd5fd7d564ef411a5b343191194475f3798f03cb37373753100fd6d</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>329.43921465</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 329.43921465 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb7809da0d0716b12abbba6a41f1cdf3264b77a7719c2d1d396ca7516862e5e6f</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>324.4112</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 324.4112 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x688fd776608906a4396100762875ccd34696d12d75a1c72f6df97b28d3968d56</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>307.74</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 307.74 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5c77f9f1244ccb1fba334aaaf4425add2e00420017527bcece3500119276335b</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>299.9</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 299.9 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xad19eea305cd97a7677e4864b0915ae3f205894602b33dd01dad532b4c8d4559</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>299.9</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 299.9 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe63c17bec2269d3cf0fedf88b16f4d05995fadaed3a97361c178af7e6c53895e</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>294.49640111</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 294.49640111 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x59d8c3aee4dd4f8aef9d0f9cc5a149c3f0cf47632b301a6e04ad434328e28a94</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>281.001</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 281.001 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xf3a9bd8f8f9c7e07bef7d0a841e2165b6ed7a6767934975684f982d1c4b78581</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>264.30330816</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 264.30330816 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5bb0aea1ca2ae630beb1d238b2dac2505ec7528783a1460e9041b2341ad42188</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>259.24846477</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 259.24846477 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xd7eb876597276ad1c4159eb7a03dd4b694db9c142f28a9472a42510bc6a13a6e</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>246.63533888</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 246.63533888 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xe24c5f9ceddf4917ecf707cca259fa336b1ce4e3db6790584bec1747de0ba590</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>224.72117016</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 224.72117016 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdce51d4a200fda0bbf0343b5c0b3c9047afe0bf173b4207d490e9efceb3071d8</code></td>
+<td><code>USDT-APTOS\|APT#840200933</code></td>
+<td>211.48944</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 211.48944 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa507d2395d68f7fb6c9345bc39403981b50b83c41607893ae71af94e4877d637</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>207.58645637</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 207.58645637 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xcb27e898947904bff31dbbb815b05e5fb2ac13fa68f6975607a16712552aef76</code></td>
+<td><code>APTOS\|APT#840200933</code></td>
+<td>205.0986908</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 205.0986908 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xb6d6e3d5a584540abb4b233145cf333213e220ff903808e5222386ba4a4d63ae</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>87.794426</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 87.794426 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xa0cbb53bc9742600daf01010b45e0723ee94ffd7491a1d0eed7938d560f1310f</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>54.04153</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 54.04153 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x2cd5c058cf0594c70949c86b4bc548f871babd86f6e5250caab210cd9602d892</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>47.820919</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 47.820919 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x30edf91802149dc71665e4258dae6c19abda611a8fec1bc59057eb4d4c28d5f8</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.981616</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.981616 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x8264eeafa0767bcb41b7711d476f6c87eb206e5ed20f2e880601c5d0b3d715a8</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.980062</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.980062 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4b1326729f64c4eda98c6d597edfa48f5a10a69f840dc47006cb32ded66856b7</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x720f53e724eb334ec5ed4cfa3a208571bf000d578fef9cf719b697679556c8e5</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x5945aa11e6717ced3c0b959cce8a142b6ac6d10f1a83f3b5bd4306658800758d</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x47e16f9db551a90ec8bf2fd017d7d21797cba6c3ac8bd77711d59044a06ccb55</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x6d67f3901606ec31ee3021dfba49992c3e71c8e11e5da1b7baefe875a930474c</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x81d7cfc8a55333fa3bd2c749782b78395af1316a38ef1806feff240e9655e7e1</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x756ae256187f2fb867d52e505b179e038d8b5aecbab9e7c11d0c2c7b9d09f52b</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x1c21e926fcc9059907eb71b2826d2f2525f70dd89b61945e1a181a3e423cd392</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x60204b5571f8c20a925c6b835d567971c924f0de5da710504f76a6082fdcebf2</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x84cdacbf0cf376f16d762a45c2105862a766a89b7c623a5c1673a09d62baab45</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x216f4ad3dacef611d00456506fc8397184e4176efa405b0c2e394179cd1b63a8</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4d2097a9c499c64373ffcdcbfa5b70c4e77c2ebae696684d3cad22e5281008bd</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x7bbc45a4c5cabcec15a9f37b318fd7d9f4912c7eddd433670e545522bdf15d09</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x599ab0e8174023f1d2bca49b2aaf86488fb3bad00af56f7fd3059e2a799dd7c6</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x135ba3467d14a3613ae17e5df30e7710f0d04b027fad532414d4a235344d6671</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xcc5ad1895e56158e04638c3885c1c4f66d41bb00cbea56b70ba464d7da0b6d2c</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x87cf5735202ff86aff450721c9c3abe2b89e4a207e5380ae82fa95313d834d2e</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x4ef1b714b8d54de76737bc9452a07e73e1e2c0d2a86346c63b723ac8a96155db</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xaffe1d91b202c3b28adccf15a6044d5a9c2cff2501661dd19e69f20676d244f0</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x81a215ba108615faaa347ce1d4f41f303bd45b2e692710915f20996d91c4cf86</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x2551114bcda955ef5fce627e5046ee0e04d9b9ecff3508a178cfc3124afdd2c3</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x90bb51eaad22c38ebea8ee281f367972f63b2cc5c214ad118e31331bbe00bde1</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xba99b0ed33094dadf256789475ac4d3635e3a109b4c40c75cb1272367b32fa3c</code></td>
+<td><code>USDC-APTOS\|APT#840200933</code></td>
+<td>9.98</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 9.98 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>ltc1q007kfe7s6hsy8mf03jpzanrvrj8h6g2hk4h2wu34ggwcm4cyqersprfmnj</code></td>
+<td><code>LTC\|LTC#3127194</code></td>
+<td>891.70290657</td>
+<td>890.59758131</td>
+<td>on-chain balance != csv claim by 1.10532526 (provider=cache)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UQDY4-KtVxawZU_Vva7KTOhlhx8Ho0jI0ahyebYT5YuJkYSf</code></td>
+<td><code>TONCOIN-NEW\|TON#74139837</code></td>
+<td>13375926.688197012</td>
+<td>12230464.075189614</td>
+<td>live TON balance via tonapi vs snapshot CSV; no public historical
+seqno API; on-chain balance != csv claim by 1145462.613007398
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>EQDbf_PU1DLAcneMzWjjUbK_Vc7oahP0iOpuHbxIwDfaI5Rm</code></td>
+<td><code>TONCOIN-NEW\|TON#74139837</code></td>
+<td>5117343.224889212</td>
+<td>12.301580252</td>
+<td>live TON balance via tonapi vs snapshot CSV; no public historical
+seqno API; on-chain balance != csv claim by 5117330.92330896
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0xdf7c04c9bebf4b35bd8c66a92469f0b66cf77ce8586b6262709a897659f4e772</code></td>
+<td><code>USDC-SUI\|SUI#288486982</code></td>
+<td>4408270.628906</td>
+<td>0</td>
+<td>Sui public RPC may return latest checkpoint balance rather than
+snapshot checkpoint; on-chain balance != csv claim by 4408270.628906
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x2bf102613d75bf4da4e954948d50636656301a916d13f8995180f84b1794eecf</code></td>
+<td><code>USDC-SUI\|SUI#288486982</code></td>
+<td>3003055.288068</td>
+<td>0</td>
+<td>Sui public RPC may return latest checkpoint balance rather than
+snapshot checkpoint; on-chain balance != csv claim by 3003055.288068
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>f1iesbg2vfubsunwyjjcvaeh3wuxoi4neyatprhmq</code></td>
+<td><code>FIL\|FIL#6116396</code></td>
+<td>2413113.463034402378767142</td>
+<td>2003800.975933774438171252</td>
+<td>live Filecoin StateGetActor balance vs snapshot CSV; Glif lookback
+limited on public nodes; on-chain balance != csv claim by
+409312.48710062794059589 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>UQDYa6Lp99YwuDrDmCsngxs5dKzL_P7epA4iP0T7dsoY1po4</code></td>
+<td><code>TONCOIN-NEW\|TON#74139837</code></td>
+<td>2239827.886274203</td>
+<td>2215579.697504624</td>
+<td>live TON balance via tonapi vs snapshot CSV; no public historical
+seqno API; on-chain balance != csv claim by 24248.188769579
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>UQBmoechltZNb69I-ksuqGH2ewSE0tFKWcr3AdjChs5E5Uii</code></td>
+<td><code>USDT-TON\|TON</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://tonapi.io/v2/accounts/UQBmoechltZNb69I-ksuqGH2ewSE0tFKWcr3AdjChs5E5Uii/jettons/EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr):
+HTTP 400: {“error”:“can’t decode address
+EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr”}</td>
+</tr>
+<tr>
+<td><code>UQAHsamD0jg4uG0FtCCkKBP2JPLLT02RaU2Ous8PX0sCrbCt</code></td>
+<td><code>USDT-TON\|TON</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://tonapi.io/v2/accounts/UQAHsamD0jg4uG0FtCCkKBP2JPLLT02RaU2Ous8PX0sCrbCt/jettons/EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr):
+HTTP 400: {“error”:“can’t decode address
+EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr”}</td>
+</tr>
+<tr>
+<td><code>UQAWBO4_6eixoz9q8Shzck9G2zOiu2S3p9T8jlgWYTpKBqB2</code></td>
+<td><code>USDT-TON\|TON</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://tonapi.io/v2/accounts/UQAWBO4_6eixoz9q8Shzck9G2zOiu2S3p9T8jlgWYTpKBqB2/jettons/EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr):
+HTTP 400: {“error”:“can’t decode address
+EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr”}</td>
+</tr>
+<tr>
+<td><code>UQBmoechltZNb69I-ksuqGH2ewSE0tFKWcr3AdjChs5E5Uii</code></td>
+<td><code>TONCOIN-NEW\|TON#74139837</code></td>
+<td>877259.558910857</td>
+<td>785234.467266321</td>
+<td>live TON balance via tonapi vs snapshot CSV; no public historical
+seqno API; on-chain balance != csv claim by 92025.091644536
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>f1ohs3ah3pj6s7rna2furnpvcoeztzef5eded6u2y</code></td>
+<td><code>FIL\|FIL#6116396</code></td>
+<td>318306.583979347047787358</td>
+<td>292712.460997920031276636</td>
+<td>live Filecoin StateGetActor balance vs snapshot CSV; Glif lookback
+limited on public nodes; on-chain balance != csv claim by
+25594.122981427016510722 (provider=cache)</td>
+</tr>
+<tr>
+<td><code>0x33fbf89217a07be0b7d5525a3bc17119a8d7bd70aa3b16eb77d836a4e6c8a026</code></td>
+<td><code>USDC-SUI\|SUI#288486982</code></td>
+<td>258228.977221</td>
+<td>0</td>
+<td>Sui public RPC may return latest checkpoint balance rather than
+snapshot checkpoint; on-chain balance != csv claim by 258228.977221
+(provider=cache)</td>
+</tr>
+<tr>
+<td><code>UQA2ogqg4sy7KfGuQVXWtbOm3vnE7NVGCeBCl6-XdJkqy3pq</code></td>
+<td><code>USDT-TON\|TON</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://tonapi.io/v2/accounts/UQA2ogqg4sy7KfGuQVXWtbOm3vnE7NVGCeBCl6-XdJkqy3pq/jettons/EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr):
+HTTP 400: {“error”:“can’t decode address
+EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr”}</td>
+</tr>
+<tr>
+<td><code>UQANL6-PmVenYBTCpKXDwNYaQPJ-fJFL__hWR0OHAtYRCoci</code></td>
+<td><code>USDT-TON\|TON</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://tonapi.io/v2/accounts/UQANL6-PmVenYBTCpKXDwNYaQPJ-fJFL__hWR0OHAtYRCoci/jettons/EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr):
+HTTP 400: {“error”:“can’t decode address
+EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr”}</td>
+</tr>
+<tr>
+<td><code>UQDbSRhbADuce1uOWHQj5oQpgWCVSFA5ddQ0NRnUg26tIUON</code></td>
+<td><code>USDT-TON\|TON</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://tonapi.io/v2/accounts/UQDbSRhbADuce1uOWHQj5oQpgWCVSFA5ddQ0NRnUg26tIUON/jettons/EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr):
+HTTP 400: {“error”:“can’t decode address
+EQCxE6mUTQJKFnGh1kS7u5DqsD2je6B84774Y_8f5g3L-Gr”}</td>
+</tr>
+</tbody>
+</table>
+<p><em>108 additional <code>WARN</code> rows omitted; see verification
+bundle.</em></p>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Other unverifiable rows:</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ADNbM5fBujCRBW1vqezNeAWmnsLp19ki3n</code></td>
+<td><code>DOGE\|DOGE#6254074</code></td>
+<td>438568208.78528263</td>
+<td>438836884.49492876</td>
+<td>address has 212361 txs; exceeds public API limit 200000 — set
+BLOCKCHAIR_API_KEY or use archive provider</td>
+</tr>
+<tr>
+<td><code>ltc1qzvcgmntglcuv4smv3lzj6k8szcvsrmvk0phrr9wfq8w493r096ssm2fgsw</code></td>
+<td><code>LTC\|LTC#3127194</code></td>
+<td>68727.08945253</td>
+<td>68732.14920214</td>
+<td>address has 295453 txs; exceeds public API limit 100000 — set
+BLOCKCHAIR_API_KEY or use archive provider</td>
+</tr>
+</tbody>
+</table>
+<h2 id="minimal-checklist">7. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Has public PoR been published during the last 12 months? (S0-1)</td>
+<td><code>pass</code></td>
+<td>Snapshot 508399035 is in the public evaluation set.</td>
+</tr>
+<tr>
+<td>Is snapshot time explicit? (S0-2)</td>
+<td><code>pass</code></td>
+<td>2026-06-18T16:00:00Z</td>
+</tr>
+<tr>
+<td>Is there reserve summary or wallet_address_list? (S0-3)</td>
+<td><code>pass</code></td>
+<td>Summary and wallet_address_list present.</td>
+</tr>
+<tr>
+<td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
+<td><code>pass</code></td>
+<td>Wallet list present; hot-wallet on-chain verifier ran.</td>
+</tr>
+<tr>
+<td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
+<td><code>pass</code></td>
+<td>address-ownership verifier PASS.</td>
+</tr>
+<tr>
+<td>Is global_proof public and independently reproducible? (S1-3)</td>
+<td><code>pass</code></td>
+<td>global-zk-proof verifier PASS.</td>
+</tr>
+<tr>
+<td>Is independent third-party review available with stated scope?
+(S1-4)</td>
+<td><code>unverifiable</code></td>
+<td>third-party-attestation verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>If trusted setup is required, is transcript public; otherwise is the
+proof system transparent setup? (S1-5)</td>
+<td><code>pass</code></td>
+<td>Plonky2 / zk-STARK uses transparent setup; no trusted setup ceremony
+required.</td>
+</tr>
+<tr>
+<td>Is root/proof/vk canonically anchored outside exchange servers?
+(S2-1)</td>
+<td><code>fail</code></td>
+<td>No official exchange canonical on-chain/DA anchor established.</td>
+</tr>
+<tr>
+<td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
+daily anchor)? (S2-2)</td>
+<td><code>fail</code></td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">8. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P1</code></td>
+<td>Anchor root/proof/commitment on-chain or publish immutable
+DA/archive records.</td>
+<td><code>NO_CANONICAL_ANCHOR</code></td>
+</tr>
+<tr>
+<td><code>P1</code></td>
+<td>Add daily anchoring, weekly full PoR, or event-triggered updates to
+reduce timing risk.</td>
+<td><code>HIGH_FREQUENCY_GAP</code></td>
+</tr>
+<tr>
+<td><code>P2</code></td>
+<td>Review onchain-balance verifier FAIL/WARN outliers in the
+verification bundle and reconcile CSV vs chain deltas.</td>
+<td><code>IMPLEMENTATION_SEMANTICS_RISK</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">9. Boundary</h2>
 <p>This report evaluates public PoR artifacts and reproducibility. It
 does not evaluate the exchange’s overall financial health, corporate
 governance, internal controls, off-chain assets, legal compliance, or

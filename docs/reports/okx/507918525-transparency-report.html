@@ -119,6 +119,119 @@ expectations.</td>
 </tr>
 </tbody>
 </table>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest snapshot (evaluation set)</td>
+<td><code>2026-06-18T16:00:00Z</code></td>
+</tr>
+<tr>
+<td>Previous snapshot</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Observed cadence</td>
+<td><code>~monthly</code></td>
+</tr>
+<tr>
+<td>History available</td>
+<td><code>3 snapshot(s) in public evaluation set</code></td>
+</tr>
+<tr>
+<td>Event-triggered updates</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Daily root / commitment anchor</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Stage impact</td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<p>Older snapshot 508399035 is also in the public evaluation set.</p>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summarySnapshot</code></td>
+<td><code>eb8d2a4279f148fc425e11c6349e971697242b3558a2db73cbfd0b223bd836cb</code></td>
+<td>https://www.okx.com/proof-of-reserves/detail</td>
+</tr>
+<tr>
+<td><code>walletZip</code></td>
+<td><code>fb55af0ad9bd7a2c70d72c0e42b8cb358eab412fa336d5a68e1a2c509cd719b0</code></td>
+<td>https://static.okx.com/cdn/okx/por/chain/por_csv_2026042000_V3.zip</td>
+</tr>
+<tr>
+<td><code>globalProofBundle</code></td>
+<td><code>afd141a8ec0a5ccae1ef6b82aa4a458260c99fb11eedd7e36d334d0e34445d1c</code></td>
+<td>https://static.okx.com/cdn/okx/por/merkel/por_507918525_proof_data.zip</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact bundle root</td>
+<td><code>0x54ef34dcf7257e7b2e1689f44fd8d3a2a22336a6b684258c8fb98b06ab264841</code></td>
+</tr>
+<tr>
+<td>Verification bundle root</td>
+<td><code>0xe69418e85af6d2bee11f345d9851eda8585a56485e26185dfc7dbaf330c3f6e1</code></td>
+</tr>
+<tr>
+<td>Artifact bundle SHA-256</td>
+<td><code>e91708984155de3ded734a3f4412a8d43f34938f9f9d76f349307e5edab107b6</code></td>
+</tr>
+<tr>
+<td>Verification bundle SHA-256</td>
+<td><code>550a0d97ce8bf17cb444495c44922c3e606b1c73d395db94775fbd33bab8e61c</code></td>
+</tr>
+</tbody>
+</table>
+<p>Local bundle paths: <a
+href="../../../artifacts/okx/507918525/bundles/507918525.artifact-bundle.json">507918525.artifact-bundle.json</a>,
+<a
+href="../../../artifacts/okx/507918525/bundles/507918525.verification-bundle.v2.json">507918525.verification-bundle.v2.json</a></p>
 <h2 id="verifier-evidence">5. Verifier Evidence</h2>
 <table>
 <colgroup>
@@ -214,11 +327,174 @@ cryptographic verification</td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
-<td>Wrapped token reconciliation rules not finalized</td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="boundary">8. Boundary</h2>
+<h2 id="verifier-finding-details">6. Verifier Finding Details</h2>
+<p>This section explains <code>FAIL</code>, <code>WARN</code>, and
+<code>UNVERIFIABLE</code> outcomes from the verification bundle.
+Row-level <code>UNVERIFIABLE</code> entries often mean the verifier does
+not yet support that (coin, network) pair, not that the exchange failed
+the check. Full machine-readable output:
+<code>507918525.verification-bundle.v2.json</code> in the local artifact
+bundle.</p>
+<h3 id="capability-and-artifact-gaps-unverifiable">Capability and
+artifact gaps (<code>UNVERIFIABLE</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>onchain-balance-hot</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>onchain-balance-token</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>onchain-balance-ledger</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr>
+<td><code>btc-anchor</code></td>
+<td>BTC block time anchor verifier not implemented</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr>
+<td><code>cross-chain-wrapped</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="row-level-findings">Row-level findings</h3>
+<h4 id="solvency-claim-fail"><code>solvency-claim</code>
+(<code>FAIL</code>)</h4>
+<p>Summary: okx summary has no reserve currencies</p>
+<h4 id="global-zk-proof-partial"><code>global-zk-proof</code>
+(<code>PARTIAL</code>)</h4>
+<p>Summary: structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR
+for cryptographic verification</p>
+<p>Finding counts: PASS 6</p>
+<h2 id="minimal-checklist">7. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Has public PoR been published during the last 12 months? (S0-1)</td>
+<td><code>pass</code></td>
+<td>Snapshot 507918525 is in the public evaluation set.</td>
+</tr>
+<tr>
+<td>Is snapshot time explicit? (S0-2)</td>
+<td><code>pass</code></td>
+<td>2026-04-19T16:00:00Z</td>
+</tr>
+<tr>
+<td>Is there reserve summary or wallet_address_list? (S0-3)</td>
+<td><code>pass</code></td>
+<td>Summary and wallet_address_list present.</td>
+</tr>
+<tr>
+<td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
+<td><code>pass</code></td>
+<td>Wallet list present; on-chain replay skipped or incomplete.</td>
+</tr>
+<tr>
+<td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
+<td><code>pass</code></td>
+<td>address-ownership verifier PASS.</td>
+</tr>
+<tr>
+<td>Is global_proof public and independently reproducible? (S1-3)</td>
+<td><code>pass</code></td>
+<td>global-zk-proof verifier PARTIAL.</td>
+</tr>
+<tr>
+<td>Is independent third-party review available with stated scope?
+(S1-4)</td>
+<td><code>unverifiable</code></td>
+<td>third-party-attestation verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>If trusted setup is required, is transcript public; otherwise is the
+proof system transparent setup? (S1-5)</td>
+<td><code>pass</code></td>
+<td>Plonky2 / zk-STARK uses transparent setup; no trusted setup ceremony
+required.</td>
+</tr>
+<tr>
+<td>Is root/proof/vk canonically anchored outside exchange servers?
+(S2-1)</td>
+<td><code>fail</code></td>
+<td>No official exchange canonical on-chain/DA anchor established.</td>
+</tr>
+<tr>
+<td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
+daily anchor)? (S2-2)</td>
+<td><code>fail</code></td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">8. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P1</code></td>
+<td>Anchor root/proof/commitment on-chain or publish immutable
+DA/archive records.</td>
+<td><code>NO_CANONICAL_ANCHOR</code></td>
+</tr>
+<tr>
+<td><code>P1</code></td>
+<td>Add daily anchoring, weekly full PoR, or event-triggered updates to
+reduce timing risk.</td>
+<td><code>HIGH_FREQUENCY_GAP</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">9. Boundary</h2>
 <p>This report evaluates public PoR artifacts and reproducibility. It
 does not evaluate the exchange’s overall financial health, corporate
 governance, internal controls, off-chain assets, legal compliance, or

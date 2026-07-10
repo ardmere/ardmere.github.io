@@ -22,6 +22,7 @@ type LedgerClient struct {
 	httpc           *http.Client
 	cache           *ResultCache
 	blockchairKey   string
+	alchemyKey      string
 	solanaProviders []Provider
 	xrplRPC         string
 
@@ -36,6 +37,7 @@ func NewLedger() *LedgerClient {
 		httpc:           &http.Client{Timeout: 90 * time.Second},
 		cache:           NewResultCache(""),
 		blockchairKey:   os.Getenv("BLOCKCHAIR_API_KEY"),
+		alchemyKey:      os.Getenv("ALCHEMY_KEY"),
 		solanaProviders: loadSolanaProviders(),
 		xrplRPC:         loadXRPLRPC(),
 		solDisabled:     map[string]time.Time{},
@@ -94,6 +96,47 @@ func (c *LedgerClient) cachePut(chain, method, target string, height int64, resu
 
 // EsploraBalanceAtHeight sums confirmed UTXOs for addr up to block height via Esplora tx pagination.
 func (c *LedgerClient) EsploraBalanceAtHeight(ctx context.Context, apiBase, addr string, height int64) (int64, string, error) {
+	var lastErr error
+	for _, base := range esploraBasesToTry(apiBase) {
+		bal, used, err := c.esploraBalanceAtHeightOnce(ctx, base, addr, height)
+		if err == nil {
+			return bal, used, nil
+		}
+		lastErr = err
+		if !isEsploraRetryable(err) {
+			return 0, used, err
+		}
+	}
+	if lastErr == nil {
+		lastErr = fmt.Errorf("esplora: no usable base for %s", apiBase)
+	}
+	return 0, "", lastErr
+}
+
+func esploraBasesToTry(primary string) []string {
+	out := []string{primary}
+	if strings.Contains(primary, "blockstream") || strings.Contains(primary, "mempool.space") {
+		for _, b := range EsploraBases {
+			if b != primary {
+				out = append(out, b)
+			}
+		}
+	}
+	return out
+}
+
+func isEsploraRetryable(err error) bool {
+	if err == nil {
+		return false
+	}
+	msg := err.Error()
+	return strings.Contains(msg, "HTTP 429") ||
+		strings.Contains(msg, "HTTP 502") ||
+		strings.Contains(msg, "HTTP 503") ||
+		strings.Contains(msg, "HTTP 504")
+}
+
+func (c *LedgerClient) esploraBalanceAtHeightOnce(ctx context.Context, apiBase, addr string, height int64) (int64, string, error) {
 	chain := "esplora:" + apiBase
 	if raw, ok := c.cacheGet(chain, "balance", addr, height); ok {
 		v, _ := strconv.ParseInt(string(raw), 10, 64)
@@ -105,7 +148,7 @@ func (c *LedgerClient) EsploraBalanceAtHeight(ctx context.Context, apiBase, addr
 	lastTxid := ""
 	pages := 0
 	used := base
-	for pages < 80 {
+	for pages < 400 {
 		path := fmt.Sprintf("%s/address/%s/txs/chain", base, url.PathEscape(addr))
 		if lastTxid != "" {
 			path += "/" + lastTxid
@@ -152,8 +195,8 @@ func (c *LedgerClient) EsploraBalanceAtHeight(ctx context.Context, apiBase, addr
 			break
 		}
 	}
-	if pages >= 80 {
-		return 0, used, fmt.Errorf("esplora tx pagination exceeded 80 pages for %s", addr)
+	if pages >= 400 {
+		return 0, used, fmt.Errorf("esplora tx pagination exceeded 400 pages for %s", addr)
 	}
 	c.cachePut(chain, "balance", addr, height, []byte(strconv.FormatInt(balance, 10)))
 	return balance, used, nil
@@ -177,51 +220,90 @@ type esploraTx struct {
 }
 
 // BlockchairBalanceAtHeight returns address balance at block state when API key is configured.
-func (c *LedgerClient) BlockchairBalanceAtHeight(ctx context.Context, chain, addr string, height int64) (int64, string, error) {
+// Without BLOCKCHAIR_API_KEY it falls back to the latest Blockchair dashboard (live snapshot).
+func (c *LedgerClient) BlockchairBalanceAtHeight(ctx context.Context, chain, addr string, height int64) (int64, string, bool, error) {
 	if c.blockchairKey == "" {
-		return 0, "", fmt.Errorf("BLOCKCHAIR_API_KEY not set")
+		return c.blockchairBalanceLive(ctx, chain, addr)
 	}
 	cacheChain := "blockchair:" + chain
 	if raw, ok := c.cacheGet(cacheChain, "balance", addr, height); ok {
 		v, _ := strconv.ParseInt(string(raw), 10, 64)
-		return v, "cache", nil
+		return v, "cache", false, nil
 	}
 	u := fmt.Sprintf("https://api.blockchair.com/%s/dashboards/address/%s?state=%d&key=%s",
 		chain, url.PathEscape(addr), height, url.QueryEscape(c.blockchairKey))
-	req, err := http.NewRequestWithContext(ctx, http.MethodGet, u, nil)
+	bal, used, err := c.blockchairParseDashboard(ctx, u)
 	if err != nil {
-		return 0, "", err
+		return 0, used, false, err
 	}
-	resp, err := c.httpc.Do(req)
+	c.cachePut(cacheChain, "balance", addr, height, []byte(strconv.FormatInt(bal, 10)))
+	return bal, used, false, nil
+}
+
+func (c *LedgerClient) blockchairBalanceLive(ctx context.Context, chain, addr string) (int64, string, bool, error) {
+	if c.blockchairKey == "" {
+		time.Sleep(750 * time.Millisecond)
+	}
+	u := fmt.Sprintf("https://api.blockchair.com/%s/dashboards/address/%s", chain, url.PathEscape(addr))
+	bal, used, err := c.blockchairParseDashboard(ctx, u)
 	if err != nil {
-		return 0, "", err
+		return 0, used, true, err
 	}
-	body, _ := io.ReadAll(resp.Body)
-	resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return 0, u, fmt.Errorf("blockchair HTTP %d", resp.StatusCode)
+	return bal, used, true, nil
+}
+
+func (c *LedgerClient) blockchairParseDashboard(ctx context.Context, u string) (int64, string, error) {
+	var lastErr error
+	maxAttempts := 3
+	if c.blockchairKey == "" {
+		maxAttempts = 5
 	}
-	var out struct {
-		Data map[string]struct {
-			Address struct {
-				Balance int64 `json:"balance"`
-			} `json:"address"`
-		} `json:"data"`
-		Context struct {
-			Error string `json:"error"`
-		} `json:"context"`
+	for attempt := 0; attempt < maxAttempts; attempt++ {
+		if attempt > 0 {
+			time.Sleep(time.Duration(attempt) * 2 * time.Second)
+		}
+		req, err := http.NewRequestWithContext(ctx, http.MethodGet, u, nil)
+		if err != nil {
+			return 0, "", err
+		}
+		resp, err := c.httpc.Do(req)
+		if err != nil {
+			return 0, "", err
+		}
+		body, _ := io.ReadAll(resp.Body)
+		resp.Body.Close()
+		if resp.StatusCode == 430 {
+			lastErr = fmt.Errorf("blockchair HTTP 430")
+			continue
+		}
+		if resp.StatusCode != http.StatusOK {
+			return 0, u, fmt.Errorf("blockchair HTTP %d", resp.StatusCode)
+		}
+		var out struct {
+			Data map[string]struct {
+				Address struct {
+					Balance int64 `json:"balance"`
+				} `json:"address"`
+			} `json:"data"`
+			Context struct {
+				Error string `json:"error"`
+			} `json:"context"`
+		}
+		if err := json.Unmarshal(body, &out); err != nil {
+			return 0, u, err
+		}
+		if out.Context.Error != "" {
+			return 0, u, fmt.Errorf("blockchair: %s", out.Context.Error)
+		}
+		for _, v := range out.Data {
+			return v.Address.Balance, u, nil
+		}
+		return 0, u, fmt.Errorf("blockchair: empty data")
 	}
-	if err := json.Unmarshal(body, &out); err != nil {
-		return 0, u, err
+	if lastErr != nil {
+		return 0, u, lastErr
 	}
-	if out.Context.Error != "" {
-		return 0, u, fmt.Errorf("blockchair: %s", out.Context.Error)
-	}
-	for _, v := range out.Data {
-		c.cachePut(cacheChain, "balance", addr, height, []byte(strconv.FormatInt(v.Address.Balance, 10)))
-		return v.Address.Balance, "blockchair", nil
-	}
-	return 0, u, fmt.Errorf("blockchair: empty data for %s", addr)
+	return 0, u, fmt.Errorf("blockchair: request failed")
 }
 
 // BlockcypherBalanceBefore returns balance before block height (approximate for high-volume addresses).
@@ -470,4 +552,37 @@ func truncate(s string, n int) string {
 		return s
 	}
 	return s[:n]
+}
+
+// CipherScanZECBalance returns transparent ZEC balance in zatoshis via cipherscan.app (live).
+func (c *LedgerClient) CipherScanZECBalance(ctx context.Context, addr string) (int64, string, error) {
+	cacheChain := "cipherscan:zec"
+	if raw, ok := c.cacheGet(cacheChain, "balance", addr, 0); ok {
+		v, _ := strconv.ParseInt(string(raw), 10, 64)
+		return v, "cache", nil
+	}
+	u := fmt.Sprintf("https://cipherscan.app/api/address/%s", url.PathEscape(addr))
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, u, nil)
+	if err != nil {
+		return 0, u, err
+	}
+	req.Header.Set("User-Agent", "ardmere/0.1")
+	resp, err := c.httpc.Do(req)
+	if err != nil {
+		return 0, u, err
+	}
+	body, _ := io.ReadAll(resp.Body)
+	resp.Body.Close()
+	if resp.StatusCode != http.StatusOK {
+		return 0, u, fmt.Errorf("cipherscan HTTP %d", resp.StatusCode)
+	}
+	var out struct {
+		Balance float64 `json:"balance"`
+	}
+	if err := json.Unmarshal(body, &out); err != nil {
+		return 0, u, err
+	}
+	zat := int64(out.Balance * 1e8)
+	c.cachePut(cacheChain, "balance", addr, 0, []byte(strconv.FormatInt(zat, 10)))
+	return zat, u, nil
 }

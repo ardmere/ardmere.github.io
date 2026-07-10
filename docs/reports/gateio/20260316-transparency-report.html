@@ -100,6 +100,109 @@ solvency verification for this snapshot.</p>
 </tr>
 </tbody>
 </table>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest snapshot (evaluation set)</td>
+<td><code>2026-03-16T00:00:00Z</code></td>
+</tr>
+<tr>
+<td>Previous snapshot</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Observed cadence</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>History available</td>
+<td><code>1 snapshot(s) in public evaluation set</code></td>
+</tr>
+<tr>
+<td>Event-triggered updates</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Daily root / commitment anchor</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Stage impact</td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<p>Only one gateio snapshot is in the ardmere public evaluation set.</p>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summarySnapshot</code></td>
+<td><code>ed9a64cb48f33df8c524dea226c06d4360e79a23f0dd4b5aa6d470aeb2b2de71</code></td>
+<td>https://www.gate.com/api/web/v1/proof-of-reserves/getProofOfReservesInfo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact bundle root</td>
+<td><code>0xef120b448c411c8ab6f03cdd705cc973bb642aa849a8d916ea3af5e0038d33eb</code></td>
+</tr>
+<tr>
+<td>Verification bundle root</td>
+<td><code>0x9cdd55018571ba1f1c09c4960b8bd56a55199695278c24a94bedb875a44f8b75</code></td>
+</tr>
+<tr>
+<td>Artifact bundle SHA-256</td>
+<td><code>8e10dfcb1e5d56f07ea04884df60ac787b429a1154b20efb14b1c4760c14fbb5</code></td>
+</tr>
+<tr>
+<td>Verification bundle SHA-256</td>
+<td><code>fa3bd1667afabade5e43ba0d89101028e83f72ba1e0a78f436c6ab1eea55a990</code></td>
+</tr>
+</tbody>
+</table>
+<p>Local bundle paths: <a
+href="../../../artifacts/gateio/20260316/bundles/20260316.artifact-bundle.json">20260316.artifact-bundle.json</a>,
+<a
+href="../../../artifacts/gateio/20260316/bundles/20260316.verification-bundle.v2.json">20260316.verification-bundle.v2.json</a></p>
 <h2 id="verifier-evidence">5. Verifier Evidence</h2>
 <table>
 <colgroup>
@@ -190,11 +293,177 @@ API</td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
-<td>Wrapped token reconciliation rules not finalized</td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
 </tr>
 </tbody>
 </table>
-<h2 id="boundary">8. Boundary</h2>
+<h2 id="verifier-finding-details">6. Verifier Finding Details</h2>
+<p>This section explains <code>FAIL</code>, <code>WARN</code>, and
+<code>UNVERIFIABLE</code> outcomes from the verification bundle.
+Row-level <code>UNVERIFIABLE</code> entries often mean the verifier does
+not yet support that (coin, network) pair, not that the exchange failed
+the check. Full machine-readable output:
+<code>20260316.verification-bundle.v2.json</code> in the local artifact
+bundle.</p>
+<h3 id="capability-and-artifact-gaps-unverifiable">Capability and
+artifact gaps (<code>UNVERIFIABLE</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>internal-consistency</code></td>
+<td>No public wallet address CSV; cannot reconcile summary vs address
+aggregates</td>
+</tr>
+<tr>
+<td><code>btc-anchor</code></td>
+<td>Summary does not declare a BTC block height time anchor</td>
+</tr>
+<tr>
+<td><code>onchain-balance-hot</code></td>
+<td>No public HotCold wallet address list</td>
+</tr>
+<tr>
+<td><code>onchain-balance-token</code></td>
+<td>No public wallet address list for ERC20/BEP20 audit</td>
+</tr>
+<tr>
+<td><code>address-ownership</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr>
+<td><code>global-zk-proof</code></td>
+<td>Global zkmerkle_cex tar.gz requires login; not available from public
+API</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr>
+<td><code>cross-chain-wrapped</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<p>No additional row-level <code>FAIL</code> or <code>WARN</code>
+findings beyond the summary table in §5.</p>
+<h2 id="minimal-checklist">7. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Has public PoR been published during the last 12 months? (S0-1)</td>
+<td><code>pass</code></td>
+<td>Snapshot 20260316 is in the public evaluation set.</td>
+</tr>
+<tr>
+<td>Is snapshot time explicit? (S0-2)</td>
+<td><code>pass</code></td>
+<td>2026-03-16T00:00:00Z</td>
+</tr>
+<tr>
+<td>Is there reserve summary or wallet_address_list? (S0-3)</td>
+<td><code>pass</code></td>
+<td>Summary present; wallet_address_list absent.</td>
+</tr>
+<tr>
+<td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
+<td><code>fail</code></td>
+<td>No public wallet_address_list artifact.</td>
+</tr>
+<tr>
+<td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
+<td><code>unverifiable</code></td>
+<td>address-ownership verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>Is global_proof public and independently reproducible? (S1-3)</td>
+<td><code>unverifiable</code></td>
+<td>global-zk-proof verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>Is independent third-party review available with stated scope?
+(S1-4)</td>
+<td><code>unverifiable</code></td>
+<td>third-party-attestation verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>If trusted setup is required, is transcript public; otherwise is the
+proof system transparent setup? (S1-5)</td>
+<td><code>unverifiable</code></td>
+<td>No public trusted setup transcript observed for zk-SNARK global
+proof.</td>
+</tr>
+<tr>
+<td>Is root/proof/vk canonically anchored outside exchange servers?
+(S2-1)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+<tr>
+<td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
+daily anchor)? (S2-2)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">8. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P0</code></td>
+<td>Publish missing public artifacts required for independent
+reproduction.</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td><code>P0</code></td>
+<td>Publish trusted setup transcript or migrate to a transparent-setup
+proof system.</td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">9. Boundary</h2>
 <p>This report evaluates public PoR artifacts and reproducibility. It
 does not evaluate the exchange’s overall financial health, corporate
 governance, internal controls, off-chain assets, legal compliance, or
