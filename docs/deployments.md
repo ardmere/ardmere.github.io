@@ -2,10 +2,22 @@
 
 On-chain anchor contract deployments and first anchor transactions.
 
+**Product target (ADR-002):** Base mainnet (`8453`) is the intended **production** primary anchor chain.  
+**Operable today:** Ethereum Sepolia only. Base mainnet is **not deployed** in this refresh (requires deployer key + Base RPC — see checklist below).
+
+| Network | Chain ID | Role | Status |
+| --- | --- | --- | --- |
+| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy + impl v3) |
+| Base | `8453` | Production primary (ADR-002) | **Pending** — not deployed |
+| Base Sepolia | `84532` | Optional L2 testnet | **Pending** — not deployed |
+
+See [`decisions.md` ADR-002](./decisions.md#adr-002-primary-anchor-chain-base).
+
+---
 
 ## Ethereum Sepolia (testnet, chain id `11155111`)
 
-Primary testnet deployment. Contract is **UUPS upgradeable** — users interact with the **proxy** address; upgrades are authorized by the deployer (owner).
+Primary **testnet** deployment (operable CLI default until Base mainnet ships). Contract is **UUPS upgradeable** — users interact with the **proxy** address; upgrades are authorized by the deployer (owner).
 
 Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only).
 
@@ -35,3 +47,26 @@ Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only)
 | **Deploy tx** | [`0x54fb600a67a85bf8d8639130e96eb01e5b4d0801e508dcd72f98c7d69b34330c`](https://sepolia.etherscan.io/tx/0x54fb600a67a85bf8d8639130e96eb01e5b4d0801e508dcd72f98c7d69b34330c) |
 | **Deploy block** | `11179549` |
 | **Source verified** | [Etherscan](https://sepolia.etherscan.io/address/0x6106d883F222DCfA2B797c2231984541BD878873#code) ✓ |
+
+---
+
+## Base mainnet (chain id `8453`) — pending
+
+Intended production deployment of the same UUPS `ArdmerePoRAnchor` pattern. **No proxy or implementation address yet.**
+
+### Blockers for this environment
+
+- Operator `PRIVATE_KEY` / `ANCHOR_SIGNER` not present in Cloud Agent env (must stay in maintainer `~/.zshenv`).
+- No `BASE_RPC_URL` / BaseScan API key configured here.
+- Deploy must be signed by the project maintainer; this refresh only documents the gap.
+
+### Deploy checklist (maintainer)
+
+1. Fund deployer on Base; export `PRIVATE_KEY`, `ANCHOR_SIGNER`, `BASE_RPC_URL` (and BaseScan key if verifying).
+2. Deploy implementation + `ERC1967Proxy` via Foundry (`contracts/`), schema v3 storage.
+3. Verify proxy + impl on BaseScan and Sourcify.
+4. Record addresses in this file; set `ANCHOR_CONTRACT` / chain id in `.env.example` comments for production.
+5. Optional: Base Sepolia dry-run before mainnet.
+6. First `anchorSnapshot` tx for a public evaluation-set root; link tx here.
+
+Until then, treat Sepolia anchors as **testnet evidence only**.

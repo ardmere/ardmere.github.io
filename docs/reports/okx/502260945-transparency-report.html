@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OKX 502260945 PoR Transparency Report | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="okx-502260945-por-transparency-report">OKX 502260945 PoR
+Transparency Report</h1>
+<blockquote>
+<p>Methodology: <a href="../../por-transparency-framework.html">PoR Stage
+Framework</a><br />
+Assessment JSON: <a
+href="./502260945-assessment.json">502260945-assessment.json</a></p>
+</blockquote>
+<h2 id="summary">1. Summary</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exchange</td>
+<td><code>okx</code></td>
+</tr>
+<tr class="even">
+<td>Snapshot</td>
+<td><code>502260945</code></td>
+</tr>
+<tr class="odd">
+<td>Snapshot time</td>
+<td><code>2026-10-02T16:00:00Z</code></td>
+</tr>
+<tr class="even">
+<td>PoR Stage</td>
+<td><code>Stage 0 — Trust the Exchange</code></td>
+</tr>
+<tr class="odd">
+<td>Gen / Evidence</td>
+<td><code>Gen 2 / E2</code></td>
+</tr>
+<tr class="even">
+<td>Confidence</td>
+<td><code>medium</code></td>
+</tr>
+<tr class="odd">
+<td>Effective PoR</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>OKX audit 502260945 does not meet all Stage 1 public artifact
+thresholds in this pipeline.</p>
+<p>Missing or failing verifiers block Stage 1 effective PoR for this
+snapshot.</p>
+<h2 id="stage-decision">2. Stage Decision</h2>
+<h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Missing / Blocked Evidence</th>
+<th>Risk Flag</th>
+<th>Max Stage</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>canonical on-chain/DA anchor</code></td>
+<td><code>NO_CANONICAL_ANCHOR</code></td>
+<td>Stage 1</td>
+<td>No official exchange canonical on-chain/DA anchor established.</td>
+</tr>
+<tr class="even">
+<td><code>weekly full PoR / daily anchor</code></td>
+<td><code>HIGH_FREQUENCY_GAP</code></td>
+<td>Stage 1</td>
+<td>Monthly cadence does not satisfy Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Latest snapshot (evaluation set)</td>
+<td><code>2026-10-02T16:00:00Z</code></td>
+</tr>
+<tr class="even">
+<td>Previous snapshot</td>
+<td><code>2026-06-18T16:00:00Z</code></td>
+</tr>
+<tr class="odd">
+<td>Observed cadence</td>
+<td><code>~55 days between snapshots</code></td>
+</tr>
+<tr class="even">
+<td>History available</td>
+<td><code>4 snapshot(s) in public evaluation set</code></td>
+</tr>
+<tr class="odd">
+<td>Event-triggered updates</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="even">
+<td>Daily root / commitment anchor</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="odd">
+<td>Stage impact</td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<p>This is the newest snapshot in the ardmere public evaluation set for
+okx.</p>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>summarySnapshot</code></td>
+<td><code>a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5</code></td>
+<td>https://www.okx.com/proof-of-reserves/detail</td>
+</tr>
+<tr class="even">
+<td><code>walletZip</code></td>
+<td><code>5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07</code></td>
+<td>https://static.okx.com/cdn/okx/por/chain/por_csv_2026100300_V4.zip</td>
+</tr>
+<tr class="odd">
+<td><code>globalProofBundle</code></td>
+<td><code>6a6da5f8afec8d93b922cca48d04c70b10f5ca2a28944487edf66d8f2b23283d</code></td>
+<td>https://static.okx.com/cdn/okx/por/merkel/por_502260945_proof_data.zip</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artifact bundle root</td>
+<td><code>0x2ad5edb3d7796238ec5f464f034aca0abeafeb331d5a52ec02db4323788c39b8</code></td>
+</tr>
+<tr class="even">
+<td>Verification bundle root</td>
+<td><code>0xe0d49f7eccf3e1d5c45fc045189cc44f741228aadb93e9f6d930ed00b3b1a911</code></td>
+</tr>
+<tr class="odd">
+<td>Artifact bundle SHA-256</td>
+<td><code>aca7e3b255b8f705e7c06b6d85bd390380884744e50c3c4156b0d7bce1400aac</code></td>
+</tr>
+<tr class="even">
+<td>Verification bundle SHA-256</td>
+<td><code>ba61d5b275ccff099407ea8ebc1d9060173749136184137c9aa0e0f60889df98</code></td>
+</tr>
+</tbody>
+</table>
+<p>Local bundle paths: <a
+href="../../../artifacts/okx/502260945/bundles/502260945.artifact-bundle.json">502260945.artifact-bundle.json</a>,
+<a
+href="../../../artifacts/okx/502260945/bundles/502260945.verification-bundle.v2.json">502260945.verification-bundle.v2.json</a></p>
+<h2 id="verifier-evidence">5. Verifier Evidence</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Verifier</th>
+<th>Version</th>
+<th>Verdict</th>
+<th>Coverage</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>artifact-integrity</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>solvency-claim</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>internal-consistency</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>address-ownership</code></td>
+<td><code>okx-1</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.9994</code></td>
+<td>371/588673 address signatures failed</td>
+</tr>
+<tr class="odd">
+<td><code>onchain-balance-hot</code></td>
+<td><code>2.1</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr class="even">
+<td><code>onchain-balance-token</code></td>
+<td><code>2.0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr class="odd">
+<td><code>onchain-balance-ledger</code></td>
+<td><code>1.2</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr class="even">
+<td><code>global-zk-proof</code></td>
+<td><code>okx-1</code></td>
+<td><code>PARTIAL</code></td>
+<td><code>0.7500</code></td>
+<td>structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR for
+cryptographic verification</td>
+</tr>
+<tr class="odd">
+<td><code>btc-anchor</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>BTC block time anchor verifier not implemented</td>
+</tr>
+<tr class="even">
+<td><code>third-party-attestation</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr class="odd">
+<td><code>cross-chain-wrapped</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verifier-finding-details">6. Verifier Finding Details</h2>
+<p>This section explains <code>FAIL</code>, <code>WARN</code>, and
+<code>UNVERIFIABLE</code> outcomes from the verification bundle.
+Row-level <code>UNVERIFIABLE</code> entries often mean the verifier does
+not yet support that (coin, network) pair, not that the exchange failed
+the check. Full machine-readable output:
+<code>502260945.verification-bundle.v2.json</code> in the local artifact
+bundle.</p>
+<h3 id="capability-and-artifact-gaps-unverifiable">Capability and
+artifact gaps (<code>UNVERIFIABLE</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Verifier</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>onchain-balance-hot</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr class="even">
+<td><code>onchain-balance-token</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr class="odd">
+<td><code>onchain-balance-ledger</code></td>
+<td>RPC queries skipped (–skip-rpc)</td>
+</tr>
+<tr class="even">
+<td><code>btc-anchor</code></td>
+<td>BTC block time anchor verifier not implemented</td>
+</tr>
+<tr class="odd">
+<td><code>third-party-attestation</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr class="even">
+<td><code>cross-chain-wrapped</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="row-level-findings">Row-level findings</h3>
+<h4 id="internal-consistency-pass"><code>internal-consistency</code>
+(<code>PASS</code>)</h4>
+<p>Finding counts: WARN 12, PASS 22</p>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>BTC</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>6212.6345421722722054</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="even">
+<td><code>ETH</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>76435.0842110844594599</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="odd">
+<td><code>USDT</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>140455480.2233823973766545</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="even">
+<td><code>USDC</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>170948528.8094416760670415</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="odd">
+<td><code>XRP</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>9987386.9676800585949367</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="even">
+<td><code>DOGE</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>71459950.2071206516013964</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="odd">
+<td><code>SOL</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>83913.4943315679429555</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="even">
+<td><code>OKB</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>12900.49316739333</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="odd">
+<td><code>LINK</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>134254.8996063100999999</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="even">
+<td><code>LTC</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>49433.5384791958234293</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="odd">
+<td><code>UNI</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>49994.1428860879014175</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+<tr class="even">
+<td><code>USDG</code></td>
+<td><code>custodyReserveBalances</code></td>
+<td>835031.78834801</td>
+<td></td>
+<td>custody balances are summary-only; public wallet CSV does not break
+out third-party addresses</td>
+</tr>
+</tbody>
+</table>
+<h4 id="address-ownership-fail"><code>address-ownership</code>
+(<code>FAIL</code>)</h4>
+<p>Summary: 371/588673 address signatures failed</p>
+<p>Finding counts: FAIL 5</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0x80299387783b6b8c0645a17ea72fdc3cd32e0c9367445fdbe7344742af521fc39afc1fbc3917efc3a4bd72c48814e9b0</code></td>
+<td><code>signature</code></td>
+<td>I am an OKX address</td>
+<td></td>
+<td>missing signature2 for dual-EOA row</td>
+</tr>
+<tr class="even">
+<td><code>0x8063539f96661a8b8b86222b7170ee312c0ecc523b89e3f938698f69d0f82908d3db19259e047afc5c780b12eda785bc</code></td>
+<td><code>signature</code></td>
+<td>I am an OKX address</td>
+<td></td>
+<td>missing signature2 for dual-EOA row</td>
+</tr>
+<tr class="odd">
+<td><code>0x806e4c086bc3aff5b9940868fac93e11b139aa04cf749a1adf13e8c6058e861df0426488db4c04d249d26d7d55e9a650</code></td>
+<td><code>signature</code></td>
+<td>I am an OKX address</td>
+<td></td>
+<td>missing signature2 for dual-EOA row</td>
+</tr>
+<tr class="even">
+<td><code>0x8082858d8486e36a4102dffb38cd65ad34aa93b7e81ecca681004508872f4df261ecf7b9ac3e741288f9a0ccbc3a9d0b</code></td>
+<td><code>signature</code></td>
+<td>I am an OKX address</td>
+<td></td>
+<td>missing signature2 for dual-EOA row</td>
+</tr>
+<tr class="odd">
+<td><code>0x808c89165c54339155a9447c617c363a6c04fcb31716030e32d4db483ca1698f566c3b87d1f38d46e33e4742f0ef7b89</code></td>
+<td><code>signature</code></td>
+<td>I am an OKX address</td>
+<td></td>
+<td>missing signature2 for dual-EOA row</td>
+</tr>
+</tbody>
+</table>
+<h4 id="global-zk-proof-partial"><code>global-zk-proof</code>
+(<code>PARTIAL</code>)</h4>
+<p>Summary: structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR
+for cryptographic verification</p>
+<p>Finding counts: PASS 6</p>
+<h2 id="minimal-checklist">7. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Has public PoR been published during the last 12 months? (S0-1)</td>
+<td><code>pass</code></td>
+<td>Snapshot 502260945 is in the public evaluation set.</td>
+</tr>
+<tr class="even">
+<td>Is snapshot time explicit? (S0-2)</td>
+<td><code>pass</code></td>
+<td>2026-10-02T16:00:00Z</td>
+</tr>
+<tr class="odd">
+<td>Is there reserve summary or wallet_address_list? (S0-3)</td>
+<td><code>pass</code></td>
+<td>Summary and wallet_address_list present.</td>
+</tr>
+<tr class="even">
+<td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
+<td><code>pass</code></td>
+<td>Wallet list present; on-chain replay skipped or incomplete.</td>
+</tr>
+<tr class="odd">
+<td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
+<td><code>fail</code></td>
+<td>address-ownership verifier FAIL.</td>
+</tr>
+<tr class="even">
+<td>Is global_proof public and independently reproducible? (S1-3)</td>
+<td><code>pass</code></td>
+<td>global-zk-proof verifier PARTIAL.</td>
+</tr>
+<tr class="odd">
+<td>Is independent third-party review available with stated scope?
+(S1-4)</td>
+<td><code>unverifiable</code></td>
+<td>third-party-attestation verifier UNVERIFIABLE.</td>
+</tr>
+<tr class="even">
+<td>If trusted setup is required, is transcript public; otherwise is the
+proof system transparent setup? (S1-5)</td>
+<td><code>pass</code></td>
+<td>Plonky2 / zk-STARK uses transparent setup; no trusted setup ceremony
+required.</td>
+</tr>
+<tr class="odd">
+<td>Is root/proof/vk canonically anchored outside exchange servers?
+(S2-1)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+<tr class="even">
+<td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
+daily anchor)? (S2-2)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">8. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>P1</code></td>
+<td>Anchor root/proof/commitment on-chain or publish immutable
+DA/archive records.</td>
+<td><code>NO_CANONICAL_ANCHOR</code></td>
+</tr>
+<tr class="even">
+<td><code>P1</code></td>
+<td>Add daily anchoring, weekly full PoR, or event-triggered updates to
+reduce timing risk.</td>
+<td><code>HIGH_FREQUENCY_GAP</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">9. Boundary</h2>
+<p>This report evaluates public PoR artifacts and reproducibility. It
+does not evaluate the exchange’s overall financial health, corporate
+governance, internal controls, off-chain assets, legal compliance, or
+complete off-balance-sheet liabilities.</p>
+<p>Missing data must be marked as <code>UNVERIFIABLE</code>, not treated
+as <code>PASS</code>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

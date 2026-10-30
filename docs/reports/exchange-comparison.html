@@ -36,7 +36,7 @@ Comparison</h1>
 Framework</a><br />
 Policy standard: <a href="../effective-por-standard.html">Effective PoR
 Standard</a><br />
-<strong>All 10 public reports:</strong> <a
+<strong>All public reports:</strong> <a
 href="./snapshot-history.html">Snapshot history</a></p>
 </blockquote>
 <h2 id="summary-latest-snapshot-per-exchange">Summary (latest snapshot
@@ -54,7 +54,7 @@ per exchange)</h2>
 <col style="width: 11%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Exchange</th>
 <th>Snapshot</th>
 <th>PoR Stage</th>
@@ -67,32 +67,32 @@ per exchange)</h2>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Binance</td>
-<td><code>PR01JUL26</code></td>
+<td><code>PR01OCT26</code></td>
 <td><code>Stage 0</code></td>
 <td><code>Gen 2 / E2</code></td>
 <td><code>false</code></td>
 <td><code>medium</code></td>
-<td><code>2026-07-01T00:00:00Z</code></td>
+<td><code>2026-10-01T00:00:00Z</code></td>
 <td><a
 href="https://github.com/binance/zkmerkle-proof-of-solvency">binance/zkmerkle-proof-of-solvency</a></td>
-<td><a href="./binance/PR01JUL26-transparency-report.html">report</a></td>
+<td><a href="./binance/PR01OCT26-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>OKX</td>
-<td><code>508399035</code></td>
-<td><code>Stage 1</code></td>
+<td><code>502260945</code></td>
+<td><code>Stage 0</code></td>
 <td><code>Gen 2 / E2</code></td>
-<td><code>true</code></td>
+<td><code>false</code></td>
 <td><code>medium</code></td>
-<td><code>2026-06-18T16:00:00Z</code></td>
+<td><code>2026-10-02T16:00:00Z</code></td>
 <td><a
 href="https://github.com/okx/proof-of-reserves-v2">okx/proof-of-reserves-v2</a>
 (+ <a href="https://github.com/okx/proof-of-reserves">v1 sigs</a>)</td>
-<td><a href="./okx/508399035-transparency-report.html">report</a></td>
+<td><a href="./okx/502260945-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Gate.io</td>
 <td><code>20260618</code></td>
 <td><code>Stage 0</code></td>
@@ -104,7 +104,7 @@ href="https://github.com/okx/proof-of-reserves-v2">okx/proof-of-reserves-v2</a>
 href="https://github.com/gateio/proof-of-reserves">gateio/proof-of-reserves</a></td>
 <td><a href="./gateio/20260618-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Bitget</td>
 <td><code>202606</code></td>
 <td><code>Stage 0</code></td>
@@ -116,7 +116,7 @@ href="https://github.com/gateio/proof-of-reserves">gateio/proof-of-reserves</a><
 href="https://github.com/BitgetLimited/proof-of-reserves">BitgetLimited/proof-of-reserves</a></td>
 <td><a href="./bitget/202606-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Bybit</td>
 <td><code>2026052709</code></td>
 <td><code>Stage 0</code></td>
@@ -128,7 +128,7 @@ href="https://github.com/BitgetLimited/proof-of-reserves">BitgetLimited/proof-of
 href="https://github.com/bybit-exchange/merkle-proof">bybit-exchange/merkle-proof</a></td>
 <td><a href="./bybit/2026052709-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>HTX</td>
 <td><code>20230910</code></td>
 <td><code>Stage 0</code></td>
@@ -145,32 +145,38 @@ href="https://github.com/huobiapi/Tool-Go-MerkleVerify">huobiapi/Tool-Go-MerkleV
 <h2 id="by-exchange">By exchange</h2>
 <ul>
 <li><strong>Binance (<code>Stage 0</code>)</strong> — Latest
-<code>PR01JUL26</code> (Jul 2026, period 44): public summary and wallet
+<code>PR01OCT26</code> (Oct 2026, period 47): public summary and wallet
 list; missing ownership proof, public global proof, trusted-setup
-transparency. <a href="./binance/PR01JUL26-transparency-report.html">Full
-report</a> · <a
+transparency. On-chain verifiers run with <code>--skip-rpc</code> in
+this refresh (no operator RPC keys in CI). <a
+href="./binance/PR01OCT26-transparency-report.html">Full report</a> · <a
 href="./snapshot-history.html#binance-monthly-bapi-summary-only-for-current-snapshot">history</a></li>
-<li><strong>OKX (<code>Stage 1</code>)</strong> — Latest
-<code>508399035</code> (Jun 2026): public reserves, ownership proof,
-global zk proof. <a href="./okx/508399035-transparency-report.html">Full
-report</a> · <a
+<li><strong>OKX (<code>Stage 0</code>)</strong> — Latest
+<code>502260945</code> (Oct 2026, V4 wallet CSV): summary + wallet zip +
+liability zip public; address-ownership <strong>FAIL</strong> (~371/588k
+signatures); global zk structure PARTIAL without
+<code>OKX_ZK_STARK_VALIDATOR</code>. Prior <code>508399035</code> (Jun
+2026) remains the last <strong>Stage 1</strong> row in history. <a
+href="./okx/502260945-transparency-report.html">Full report</a> · <a
 href="./snapshot-history.html#okx-monthly-full-public-artifact-stack">history</a></li>
-<li><strong>Gate.io (<code>Stage 0</code>)</strong> — Latest
-<code>20260618</code>: public reserve-ratio summary (page-scrape
-import); login-gated zk and no public wallet artifacts. <a
-href="./gateio/20260618-transparency-report.html">Full report</a></li>
-<li><strong>Bitget (<code>Stage 0</code>)</strong> — Latest
-<code>202606</code>: announcement-scrape summary; merkle root and user
-proof still need browser capture. <a
+<li><strong>Gate.io (<code>Stage 0</code>)</strong> — Latest published
+<code>20260618</code> retained: live Akamai/WAF block from this
+environment on 2026-10-30; page-scrape import still Stage 0 (login-gated
+zk). <a href="./gateio/20260618-transparency-report.html">Full
+report</a></li>
+<li><strong>Bitget (<code>Stage 0</code>)</strong> — Latest published
+<code>202606</code> retained: no stable public JSON from datacenter IP;
+announcement-scrape Stage 0. <a
 href="./bitget/202606-transparency-report.html">Full report</a></li>
-<li><strong>Bybit (<code>Stage 0</code>)</strong> — Latest
-<code>2026052709</code> (period 36, May 27 2026): press-release scrape;
-merkle root needs browser API capture. <a
+<li><strong>Bybit (<code>Stage 0</code>)</strong> — Latest published
+<code>2026052709</code> retained: WAF block on reserve-ratio API;
+press-release scrape Stage 0. <a
 href="./bybit/2026052709-transparency-report.html">Full report</a></li>
 <li><strong>HTX (<code>Stage 0</code>)</strong> — Still on archived zk
-sample <code>20230910</code> (2023-09); June 2026 bundle requires manual
-login download. <a href="./htx/20230910-transparency-report.html">Full
-report</a></li>
+sample <code>20230910</code> (2023-09-10). Live merkle page is
+login-gated; <code>public-data.zip</code> not publicly downloadable in
+this refresh (sample re-fetched 2026-10-30). <a
+href="./htx/20230910-transparency-report.html">Full report</a></li>
 </ul>
 <p>Gap detail, risk flags, and verifier output are in each report.
 Missing data is marked <code>UNVERIFIABLE</code>, not <code>PASS</code>
@@ -183,6 +189,10 @@ href="../../config/exchanges/registry.yaml"><code>config/exchanges/registry.yaml
 <h2 id="evidence-archive">Evidence archive</h2>
 <p>Assessment JSON, bundle roots, and hashes for this report set: <a
 href="./artifact-archive-index.html">Artifact archive index</a>.</p>
+<p><strong>Note:</strong> <code>artifacts/</code> remains gitignored
+(ADR-003). Archive bundle links may 404 on GitHub Pages for casual
+visitors; local <code>artifacts/</code> or operator mirror required to
+download bundles.</p>
     </article>
   </main>
 

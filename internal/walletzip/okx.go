@@ -55,7 +55,7 @@ func forEachOKXRow(zipPath string, yield func(Row) error) (int64, error) {
 			continue
 		}
 		if !inAddr {
-			if len(rec) >= 2 && strings.EqualFold(rec[0], "coin") && strings.Contains(strings.ToLower(rec[1]), "network") {
+			if isOKXAddressHeader(rec) {
 				inAddr = true
 			}
 			continue
@@ -135,7 +135,7 @@ func readOKXTopTotals(zipPath string) (map[string]decimal.Decimal, error) {
 			return out, nil
 		}
 		if strings.EqualFold(rec[0], "coin") {
-			if len(rec) > 1 && strings.Contains(strings.ToLower(rec[1]), "network") {
+			if isOKXAddressHeader(rec) {
 				return out, nil
 			}
 			continue
@@ -166,7 +166,40 @@ func okxMainCSVName(zipPath string) (string, error) {
 	return "", fmt.Errorf("okx main por csv not found in %s", zipPath)
 }
 
+// isOKXAddressHeader detects V3 (`coin,network,...`) and V4
+// (`coin,Type,Network,Snapshot Height,address,amount,...`) section headers.
+func isOKXAddressHeader(rec []string) bool {
+	if len(rec) < 2 || !strings.EqualFold(strings.TrimSpace(rec[0]), "coin") {
+		return false
+	}
+	for _, col := range rec[1:] {
+		if strings.Contains(strings.ToLower(col), "network") {
+			return true
+		}
+	}
+	return false
+}
+
 func parseOKXAddressRecord(rec []string) (Row, error) {
+	// V4: coin, Type, Network, Snapshot Height, address, amount, message, sig...
+	if len(rec) >= 8 && looksLikeOKXV4Address(rec) {
+		amt, err := decimal.NewFromString(rec[5])
+		if err != nil {
+			return Row{}, fmt.Errorf("amount %q: %w", rec[5], err)
+		}
+		var h int64
+		if _, err := fmt.Sscan(rec[3], &h); err != nil {
+			return Row{}, fmt.Errorf("height %q: %w", rec[3], err)
+		}
+		return Row{
+			Coin:    strings.ToUpper(rec[0]),
+			Network: normalizeOKXNetwork(rec[2]),
+			Address: rec[4],
+			Balance: amt,
+			Height:  h,
+		}, nil
+	}
+	// V3 / earlier: coin, network, height, address, amount, message, sig...
 	if len(rec) < 7 {
 		return Row{}, fmt.Errorf("short record: %d fields", len(rec))
 	}
@@ -185,6 +218,12 @@ func parseOKXAddressRecord(rec []string) (Row, error) {
 		Balance: amt,
 		Height:  h,
 	}, nil
+}
+
+func looksLikeOKXV4Address(rec []string) bool {
+	// Column 1 is staking type (e.g. "Non Staking" / "Staking"), not a network code.
+	typ := strings.ToLower(strings.TrimSpace(rec[1]))
+	return strings.Contains(typ, "staking")
 }
 
 func normalizeOKXNetwork(net string) string {

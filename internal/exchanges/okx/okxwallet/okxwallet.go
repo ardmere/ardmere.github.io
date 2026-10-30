@@ -4,7 +4,8 @@
 //
 //	coin,amount                         — exchange reserve totals (top section)
 //	(blank line)
-//	coin,Network,Snapshot Height,address,amount,message,signature1,...
+//	V3: coin,Network,Snapshot Height,address,amount,message,signature1,...
+//	V4: coin,Type,Network,Snapshot Height,address,amount,message,signature1,...
 package okxwallet
 
 import (
@@ -113,7 +114,7 @@ func ForEachAddressRow(zipPath string, yield func(AddressRow) error) (int64, err
 			continue
 		}
 		if !inAddr {
-			if len(rec) >= 2 && strings.EqualFold(rec[0], "coin") && strings.Contains(strings.ToLower(rec[1]), "network") {
+			if isAddressHeader(rec) {
 				inAddr = true
 			}
 			continue
@@ -155,7 +156,52 @@ func AggregateZip(zipPath string) (*Aggregate, error) {
 	return agg, nil
 }
 
+func isAddressHeader(rec []string) bool {
+	if len(rec) < 2 || !strings.EqualFold(strings.TrimSpace(rec[0]), "coin") {
+		return false
+	}
+	for _, col := range rec[1:] {
+		if strings.Contains(strings.ToLower(col), "network") {
+			return true
+		}
+	}
+	return false
+}
+
 func parseAddressRecord(rec []string) (AddressRow, error) {
+	// V4 inserts a Type column after coin.
+	if len(rec) >= 8 && strings.Contains(strings.ToLower(rec[1]), "staking") {
+		amt, err := decimal.NewFromString(rec[5])
+		if err != nil {
+			return AddressRow{}, fmt.Errorf("amount %q: %w", rec[5], err)
+		}
+		var h int64
+		if _, err := fmt.Sscan(rec[3], &h); err != nil {
+			return AddressRow{}, fmt.Errorf("height %q: %w", rec[3], err)
+		}
+		row := AddressRow{
+			Coin:       strings.ToUpper(rec[0]),
+			Network:    rec[2],
+			Height:     h,
+			Address:    rec[4],
+			Amount:     amt,
+			Message:    rec[6],
+			Signature1: rec[7],
+		}
+		if len(rec) > 8 {
+			row.Signature2 = rec[8]
+		}
+		if len(rec) > 9 {
+			row.Script = rec[9]
+		}
+		if len(rec) > 10 {
+			row.EOA1 = rec[10]
+		}
+		if len(rec) > 11 {
+			row.EOA2 = rec[11]
+		}
+		return row, nil
+	}
 	if len(rec) < 7 {
 		return AddressRow{}, fmt.Errorf("short record: %d fields", len(rec))
 	}
