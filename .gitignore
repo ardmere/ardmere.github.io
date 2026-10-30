@@ -14,7 +14,8 @@ contracts/lib/
 cmd/por/por
 *.bin
 
-artifacts/
+# Root-only evidence archive (do not ignore internal/artifacts Go package)
+/artifacts/
 .cache/
 *.tmp
 .DS_Store
