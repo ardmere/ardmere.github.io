@@ -55,7 +55,7 @@ Retail users benefit indirectly; exchanges are assessed subjects, not the primar
 
 Full doc map: [docs/README.md](docs/README.md).
 
-Public HTML pages are generated from markdown with `./scripts/build-public-html.sh` (requires `pandoc`). Edit the `.md` sources, rebuild, and commit both.
+Public HTML pages are generated from markdown with `./scripts/build-public-html.sh` (requires `pandoc`). The homepage, snapshot history, and exchange comparison pages are regenerated from `docs/reports/*/*-assessment.json` (`go run ./cmd/por site`, also run automatically after `por report` / `por batch`). Edit per-snapshot editorial notes in `config/site/snapshot-notes.yaml` when needed; rebuild HTML after markdown changes and commit both.
 
 ## Verification toolkit
 
