@@ -8,6 +8,7 @@
 | Date (UTC) | Type | Title |
 | --- | --- | --- |
 | 2026-07-01 | Policy | [Exchange Reserve Transparency Whitepaper](../exchange-reserve-transparency-whitepaper.md) |
+| 2026-06-28 | Explainer | [“Audited” is not effective PoR](./why-audited-is-not-effective-por.md) |
 
 ## Types
 

@@ -84,37 +84,79 @@ func verifyOKXAddressRow(r okxwallet.AddressRow) error {
 	switch coinType {
 	case okxcommon.EvmCoinTye:
 		if r.EOA1 != "" && r.EOA2 != "" {
-			if err := okxcommon.VerifyEvmCoin(coin, r.EOA1, r.Message, r.Signature1); err != nil {
+			if r.Signature2 == "" {
+				return fmt.Errorf("missing signature2 for dual-EOA row")
+			}
+			if err := safeVerify(func() error {
+				return okxcommon.VerifyEvmCoin(coin, r.EOA1, r.Message, r.Signature1)
+			}); err != nil {
 				return err
 			}
-			return okxcommon.VerifyEvmCoin(coin, r.EOA2, r.Message, r.Signature2)
+			return safeVerify(func() error {
+				return okxcommon.VerifyEvmCoin(coin, r.EOA2, r.Message, r.Signature2)
+			})
 		}
 		if r.EOA1 != "" {
-			return okxcommon.VerifyEvmCoin(coin, r.EOA1, r.Message, r.Signature1)
+			return safeVerify(func() error {
+				return okxcommon.VerifyEvmCoin(coin, r.EOA1, r.Message, r.Signature1)
+			})
 		}
-		return okxcommon.VerifyEvmCoin(coin, r.Address, r.Message, r.Signature1)
+		return safeVerify(func() error {
+			return okxcommon.VerifyEvmCoin(coin, r.Address, r.Message, r.Signature1)
+		})
 	case okxcommon.EcdsaCoinType:
 		if r.EOA1 != "" && r.EOA2 != "" {
-			if err := okxcommon.VerifyEcdsaCoin(coin, r.EOA1, r.Message, r.Signature1); err != nil {
+			if r.Signature2 == "" {
+				return fmt.Errorf("missing signature2 for dual-EOA row")
+			}
+			if err := safeVerify(func() error {
+				return okxcommon.VerifyEcdsaCoin(coin, r.EOA1, r.Message, r.Signature1)
+			}); err != nil {
 				return err
 			}
-			return okxcommon.VerifyEcdsaCoin(coin, r.EOA2, r.Message, r.Signature2)
+			return safeVerify(func() error {
+				return okxcommon.VerifyEcdsaCoin(coin, r.EOA2, r.Message, r.Signature2)
+			})
 		}
 		if r.EOA1 != "" {
-			return okxcommon.VerifyEcdsaCoin(coin, r.EOA1, r.Message, r.Signature1)
+			return safeVerify(func() error {
+				return okxcommon.VerifyEcdsaCoin(coin, r.EOA1, r.Message, r.Signature1)
+			})
 		}
-		return okxcommon.VerifyEcdsaCoin(coin, r.Address, r.Message, r.Signature1)
+		return safeVerify(func() error {
+			return okxcommon.VerifyEcdsaCoin(coin, r.Address, r.Message, r.Signature1)
+		})
 	case okxcommon.Ed25519CoinType:
-		return okxcommon.VerifyEd25519Coin(coin, r.Address, r.Message, r.Signature1, r.Script)
+		return safeVerify(func() error {
+			return okxcommon.VerifyEd25519Coin(coin, r.Address, r.Message, r.Signature1, r.Script)
+		})
 	case okxcommon.TrxCoinType:
-		return okxcommon.VerifyTRX(r.Address, r.Message, r.Signature1)
+		return safeVerify(func() error {
+			return okxcommon.VerifyTRX(r.Address, r.Message, r.Signature1)
+		})
 	case okxcommon.BethCoinType:
-		return okxcommon.VerifyBETH(r.Address, r.Message, r.Signature1)
+		return safeVerify(func() error {
+			return okxcommon.VerifyBETH(r.Address, r.Message, r.Signature1)
+		})
 	case okxcommon.UTXOCoinType:
-		return okxcommon.VerifyUtxoCoin(coin, r.Address, r.Message, r.Signature1, r.Signature2, r.Script)
+		return safeVerify(func() error {
+			return okxcommon.VerifyUtxoCoin(coin, r.Address, r.Message, r.Signature1, r.Signature2, r.Script)
+		})
 	case okxcommon.StarkCoinType:
-		return okxcommon.VerifyStarkCoin(coin, r.Address, r.Message, r.Signature1, r.Script)
+		return safeVerify(func() error {
+			return okxcommon.VerifyStarkCoin(coin, r.Address, r.Message, r.Signature1, r.Script)
+		})
 	default:
 		return fmt.Errorf("unsupported coin type %s", coinType)
 	}
+}
+
+// safeVerify catches panics from upstream OKX helpers (e.g. MustDecode on empty hex).
+func safeVerify(fn func() error) (err error) {
+	defer func() {
+		if rec := recover(); rec != nil {
+			err = fmt.Errorf("verify panic: %v", rec)
+		}
+	}()
+	return fn()
 }

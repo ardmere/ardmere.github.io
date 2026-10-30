@@ -1,0 +1,281 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x2ad5edb3d7796238ec5f464f034aca0abeafeb331d5a52ec02db4323788c39b8",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "url": "https://www.okx.com/proof-of-reserves/detail"
+      },
+      {
+        "availability": "public",
+        "kind": "walletZip",
+        "sha256": "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07",
+        "url": "https://static.okx.com/cdn/okx/por/chain/por_csv_2026100300_V4.zip"
+      },
+      {
+        "availability": "public",
+        "kind": "globalProofBundle",
+        "sha256": "6a6da5f8afec8d93b922cca48d04c70b10f5ca2a28944487edf66d8f2b23283d",
+        "url": "https://static.okx.com/cdn/okx/por/merkel/por_502260945_proof_data.zip"
+      }
+    ],
+    "verificationBundleRoot": "0xe0d49f7eccf3e1d5c45fc045189cc44f741228aadb93e9f6d930ed00b3b1a911"
+  },
+  "checklist": [
+    {
+      "id": "S0-1",
+      "notes": "Snapshot 502260945 is in the public evaluation set.",
+      "question": "Has public PoR been published during the last 12 months?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-2",
+      "notes": "2026-10-02T16:00:00Z",
+      "question": "Is snapshot time explicit?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-3",
+      "notes": "Summary and wallet_address_list present.",
+      "question": "Is there reserve summary or wallet_address_list?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S1-1",
+      "notes": "Wallet list present; on-chain replay skipped or incomplete.",
+      "question": "Is wallet_address_list public and on-chain verifiable?",
+      "stage": "Stage 1",
+      "status": "pass"
+    },
+    {
+      "id": "S1-2",
+      "notes": "address-ownership verifier FAIL.",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "stage": "Stage 1",
+      "status": "fail"
+    },
+    {
+      "id": "S1-3",
+      "notes": "global-zk-proof verifier PARTIAL.",
+      "question": "Is global_proof public and independently reproducible?",
+      "stage": "Stage 1",
+      "status": "pass"
+    },
+    {
+      "id": "S1-4",
+      "notes": "third-party-attestation verifier UNVERIFIABLE.",
+      "question": "Is independent third-party review available with stated scope?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-5",
+      "notes": "Plonky2 / zk-STARK uses transparent setup; no trusted setup ceremony required.",
+      "question": "If trusted setup is required, is transcript public; otherwise is the proof system transparent setup?",
+      "stage": "Stage 1",
+      "status": "pass"
+    },
+    {
+      "id": "S2-1",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is root/proof/vk canonically anchored outside exchange servers?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-2",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    }
+  ],
+  "confidence": "medium",
+  "effectivePoR": false,
+  "evidenceLevel": "E2",
+  "exchange": "okx",
+  "gen": "Gen 2",
+  "generatedAt": "2026-10-30T14:36:19Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "recommendations": [
+    {
+      "priority": "P1",
+      "relatedRiskFlags": [
+        "NO_CANONICAL_ANCHOR"
+      ],
+      "text": "Anchor root/proof/commitment on-chain or publish immutable DA/archive records."
+    },
+    {
+      "priority": "P1",
+      "relatedRiskFlags": [
+        "HIGH_FREQUENCY_GAP"
+      ],
+      "text": "Add daily anchoring, weekly full PoR, or event-triggered updates to reduce timing risk."
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "NO_CANONICAL_ANCHOR",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No official exchange canonical on-chain/DA anchor established."
+    },
+    {
+      "id": "HIGH_FREQUENCY_GAP",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Monthly cadence does not satisfy Stage 2 frequency expectations."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "2e927a544db12b2e1bcb3b81f616abedd89add6c989fe0cb9f2ae1f1b6268e60",
+    "id": "502260945",
+    "periodSeq": 0,
+    "snapshotTime": "2026-10-02T16:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_server_only_distribution",
+      "evidence": "canonical on-chain/DA anchor",
+      "maxStage": "Stage 1",
+      "reason": "No official exchange canonical on-chain/DA anchor established.",
+      "riskFlag": "NO_CANONICAL_ANCHOR"
+    },
+    {
+      "ruleId": "s2_frequency",
+      "evidence": "weekly full PoR / daily anchor",
+      "maxStage": "Stage 1",
+      "reason": "Monthly cadence does not satisfy Stage 2 frequency expectations.",
+      "riskFlag": "HIGH_FREQUENCY_GAP"
+    }
+  ],
+  "summary": {
+    "headline": "OKX audit 502260945 does not meet all Stage 1 public artifact thresholds in this pipeline.",
+    "rationale": "Missing or failing verifiers block Stage 1 effective PoR for this snapshot.",
+    "scope": "okx snapshot 502260945"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07",
+        "6a6da5f8afec8d93b922cca48d04c70b10f5ca2a28944487edf66d8f2b23283d"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "internal-consistency",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0.9993697689549207,
+      "inputArtifacts": [
+        "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07"
+      ],
+      "reason": "371/588673 address signatures failed",
+      "verdict": "FAIL",
+      "verifierId": "address-ownership",
+      "version": "okx-1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "2.1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "2.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+      ],
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "1.2"
+    },
+    {
+      "coverage": 0.75,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "6a6da5f8afec8d93b922cca48d04c70b10f5ca2a28944487edf66d8f2b23283d"
+      ],
+      "reason": "structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR for cryptographic verification",
+      "verdict": "PARTIAL",
+      "verifierId": "global-zk-proof",
+      "version": "okx-1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+      ],
+      "reason": "BTC block time anchor verifier not implemented",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+      ],
+      "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}
