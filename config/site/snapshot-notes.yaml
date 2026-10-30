@@ -1,0 +1,14 @@
+# Editorial overrides for snapshot-history.md (auto-generated via por site).
+# Keys are exchange/snapshot-id; values replace heuristic Notes text.
+overrides:
+  gateio/20260618: Page-scrape import (official merkle root)
+  gateio/20260316: Fixture import
+  bybit/2026052709: Press-release scrape; merkle root missing
+  bybit/2025061709: Fixture import
+  bitget/202606: Announcement scrape; merkle root missing
+  bitget/202605: Fixture import
+  htx/20230910: GitHub sample zk bundle (2023-09)
+
+footers:
+  - |-
+    HTX June 2026 (`20260601`) pending manual `public-data.zip` import — see `artifacts/htx/20260601/FETCH_NEEDED.md`.

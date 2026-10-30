@@ -60,6 +60,7 @@ build_page() {
 }
 
 echo "Building public HTML pages..."
+go run ./cmd/por site
 build_page "docs/por-transparency-framework.md" "methodology"
 build_page "docs/effective-por-standard.md" "standard"
 build_page "docs/ardmere-service-audience.md"

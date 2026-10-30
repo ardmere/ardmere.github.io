@@ -35,6 +35,8 @@ func Main(args []string) int {
 		return runBatch(args[2:])
 	case "report":
 		return runReport(args[2:])
+	case "site":
+		return runSite(args[2:])
 	case "help", "-h", "--help":
 		usage()
 		return 0
@@ -54,6 +56,7 @@ Commands:
   fetch    archive-only download (gateio | htx | bybit | bitget | okx)
   batch    fetch+verify last N snapshots per exchange and write reports
   report   generate assessment + transparency report from cached artifacts
+  site     regenerate homepage, snapshot history, and exchange comparison
   probe    chain/RPC diagnostics (rpc | tron | stakehub | sonic-sfc)
   exchanges  list official PoR upstream pages and GitHub repos (registry)
 
@@ -63,6 +66,7 @@ Examples:
   go run ./cmd/por anchor -exchange okx
   go run ./cmd/por verify -exchange binance -snapshot PR01JUN26
   go run ./cmd/por fetch htx -zk-bundle ./public-data.zip
+  go run ./cmd/por site
   go run ./cmd/por probe rpc -network BSC -chainlist
 `)
 }

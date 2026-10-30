@@ -51,6 +51,7 @@ func runBatch(args []string) int {
 	if failed > 0 {
 		return 1
 	}
+	refreshSitePages()
 	return 0
 }
 
@@ -75,5 +76,6 @@ func runReport(args []string) int {
 		log.Fatalf("report: %v", err)
 	}
 	fmt.Printf("wrote reports for %s %s\n", *exchangeID, *snapshotID)
+	refreshSitePages()
 	return 0
 }
