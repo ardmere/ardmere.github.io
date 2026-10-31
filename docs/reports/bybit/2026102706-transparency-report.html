@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BYBIT 2026102706 PoR Transparency Report | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="bybit-2026102706-por-transparency-report">BYBIT 2026102706 PoR
+Transparency Report</h1>
+<blockquote>
+<p>Methodology: <a href="../../por-transparency-framework.html">PoR Stage
+Framework</a><br />
+Assessment JSON: <a
+href="./2026102706-assessment.json">2026102706-assessment.json</a></p>
+</blockquote>
+<h2 id="summary">1. Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exchange</td>
+<td><code>bybit</code></td>
+</tr>
+<tr>
+<td>Snapshot</td>
+<td><code>2026102706</code></td>
+</tr>
+<tr>
+<td>Snapshot time</td>
+<td><code>2026-10-27T06:00:00Z</code></td>
+</tr>
+<tr>
+<td>PoR Stage</td>
+<td><code>Stage 0 — Trust the Exchange</code></td>
+</tr>
+<tr>
+<td>Gen / Evidence</td>
+<td><code>Gen 1 / E1</code></td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td><code>low</code></td>
+</tr>
+<tr>
+<td>Effective PoR</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>bybit snapshot 2026102706 remains Stage 0 in the ardmere public
+evaluation set.</p>
+<p>Public artifacts do not support independently reproducible global
+solvency verification for this snapshot.</p>
+<h2 id="stage-decision">2. Stage Decision</h2>
+<h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr>
+<th>Missing / Blocked Evidence</th>
+<th>Risk Flag</th>
+<th>Max Stage</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>wallet_address_list</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td>Stage 0</td>
+<td>No public wallet_address_list.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Latest snapshot (evaluation set)</td>
+<td><code>2026-09-23T03:00:00Z</code></td>
+</tr>
+<tr>
+<td>Previous snapshot</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Observed cadence</td>
+<td><code>~231 days between snapshots</code></td>
+</tr>
+<tr>
+<td>History available</td>
+<td><code>3 snapshot(s) in public evaluation set</code></td>
+</tr>
+<tr>
+<td>Event-triggered updates</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Daily root / commitment anchor</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr>
+<td>Stage impact</td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>summarySnapshot</code></td>
+<td><code>8fe7cb998465dfdb0f2be8ad662c4880c6098b099e9c92c9b34af0e61371f3a0</code></td>
+<td>https://www.bybit.com/x-api/por/public/v1/reserve-ratio/latest</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Artifact bundle root</td>
+<td><code>0x7b3625510a187a5f476c09cd37e916b23f72ec1bbc2371a2382b325d8896c5f5</code></td>
+</tr>
+<tr>
+<td>Verification bundle root</td>
+<td><code>0x8b93005b5808b08d3493cb0687178e1b18279ad8a38990b14500dfcc135c9754</code></td>
+</tr>
+<tr>
+<td>Artifact bundle SHA-256</td>
+<td><code>61275b1063e64c845081cc06b66ed9e160a4deacd29b26d48146981797b6416c</code></td>
+</tr>
+<tr>
+<td>Verification bundle SHA-256</td>
+<td><code>f7121c49d6f91195875c10aba66c0e1fe735ae6508593fa37e1facc8581c1126</code></td>
+</tr>
+</tbody>
+</table>
+<p>Local bundle paths: <a
+href="../../../artifacts/bybit/2026102706/bundles/2026102706.artifact-bundle.json">2026102706.artifact-bundle.json</a>,
+<a
+href="../../../artifacts/bybit/2026102706/bundles/2026102706.verification-bundle.v2.json">2026102706.verification-bundle.v2.json</a></p>
+<h2 id="verifier-evidence">5. Verifier Evidence</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Version</th>
+<th>Verdict</th>
+<th>Coverage</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>artifact-integrity</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>solvency-claim</code></td>
+<td><code>1.0</code></td>
+<td><code>FAIL</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>user-merkle-proof</code></td>
+<td><code>bybit-1</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>myProof.json not present; download from Bybit PoR page while logged
+in and import via -user-proof</td>
+</tr>
+<tr>
+<td><code>internal-consistency</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public wallet address CSV; cannot reconcile summary vs address
+aggregates</td>
+</tr>
+<tr>
+<td><code>btc-anchor</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>Summary does not declare a BTC block height time anchor</td>
+</tr>
+<tr>
+<td><code>onchain-balance-hot</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public HotCold wallet address list</td>
+</tr>
+<tr>
+<td><code>onchain-balance-token</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public wallet address list for ERC20/BEP20 audit</td>
+</tr>
+<tr>
+<td><code>onchain-balance-ledger</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>Verifier not available for this exchange snapshot</td>
+</tr>
+<tr>
+<td><code>address-ownership</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr>
+<td><code>global-zk-proof</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>Bybit uses pure Merkle Tree (no ZK); user myProof.json proves
+inclusion only</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>Hacken monthly PoR reports are public but not machine-readable in
+this pipeline</td>
+</tr>
+<tr>
+<td><code>cross-chain-wrapped</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verifier-finding-details">6. Verifier Finding Details</h2>
+<p>This section explains <code>FAIL</code>, <code>WARN</code>, and
+<code>UNVERIFIABLE</code> outcomes from the verification bundle.
+Row-level <code>UNVERIFIABLE</code> entries often mean the verifier does
+not yet support that (coin, network) pair, not that the exchange failed
+the check. Full machine-readable output:
+<code>2026102706.verification-bundle.v2.json</code> in the local
+artifact bundle.</p>
+<h3 id="capability-and-artifact-gaps-unverifiable">Capability and
+artifact gaps (<code>UNVERIFIABLE</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr>
+<th>Verifier</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user-merkle-proof</code></td>
+<td>myProof.json not present; download from Bybit PoR page while logged
+in and import via -user-proof</td>
+</tr>
+<tr>
+<td><code>internal-consistency</code></td>
+<td>No public wallet address CSV; cannot reconcile summary vs address
+aggregates</td>
+</tr>
+<tr>
+<td><code>btc-anchor</code></td>
+<td>Summary does not declare a BTC block height time anchor</td>
+</tr>
+<tr>
+<td><code>onchain-balance-hot</code></td>
+<td>No public HotCold wallet address list</td>
+</tr>
+<tr>
+<td><code>onchain-balance-token</code></td>
+<td>No public wallet address list for ERC20/BEP20 audit</td>
+</tr>
+<tr>
+<td><code>onchain-balance-ledger</code></td>
+<td>Verifier not available for this exchange snapshot</td>
+</tr>
+<tr>
+<td><code>address-ownership</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr>
+<td><code>global-zk-proof</code></td>
+<td>Bybit uses pure Merkle Tree (no ZK); user myProof.json proves
+inclusion only</td>
+</tr>
+<tr>
+<td><code>third-party-attestation</code></td>
+<td>Hacken monthly PoR reports are public but not machine-readable in
+this pipeline</td>
+</tr>
+<tr>
+<td><code>cross-chain-wrapped</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="row-level-findings">Row-level findings</h3>
+<h4 id="solvency-claim-fail"><code>solvency-claim</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 5</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr>
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>total</code></td>
+<td><code>totalReserveRate</code></td>
+<td>0</td>
+<td>0.00</td>
+<td>self-reported exchange summary only; does not prove reserve
+authenticity</td>
+</tr>
+<tr>
+<td><code>BTC</code></td>
+<td><code>reserveRate</code></td>
+<td>0</td>
+<td>0.00</td>
+<td>self-reported exchange summary only; does not prove reserve
+authenticity</td>
+</tr>
+<tr>
+<td><code>ETH</code></td>
+<td><code>reserveRate</code></td>
+<td>0</td>
+<td>0.00</td>
+<td>self-reported exchange summary only; does not prove reserve
+authenticity</td>
+</tr>
+<tr>
+<td><code>USDT</code></td>
+<td><code>reserveRate</code></td>
+<td>0</td>
+<td>0.00</td>
+<td>self-reported exchange summary only; does not prove reserve
+authenticity</td>
+</tr>
+<tr>
+<td><code>USDC</code></td>
+<td><code>reserveRate</code></td>
+<td>0</td>
+<td>0.00</td>
+<td>self-reported exchange summary only; does not prove reserve
+authenticity</td>
+</tr>
+</tbody>
+</table>
+<h2 id="minimal-checklist">7. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Has public PoR been published during the last 12 months? (S0-1)</td>
+<td><code>pass</code></td>
+<td>Snapshot 2026102706 is in the public evaluation set.</td>
+</tr>
+<tr>
+<td>Is snapshot time explicit? (S0-2)</td>
+<td><code>pass</code></td>
+<td>2026-10-27T06:00:00Z</td>
+</tr>
+<tr>
+<td>Is there reserve summary or wallet_address_list? (S0-3)</td>
+<td><code>pass</code></td>
+<td>Summary present; wallet_address_list absent.</td>
+</tr>
+<tr>
+<td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
+<td><code>fail</code></td>
+<td>No public wallet_address_list artifact.</td>
+</tr>
+<tr>
+<td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
+<td><code>unverifiable</code></td>
+<td>address-ownership verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>Is global_proof public and independently reproducible? (S1-3)</td>
+<td><code>unverifiable</code></td>
+<td>global-zk-proof verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>Is independent third-party review available with stated scope?
+(S1-4)</td>
+<td><code>unverifiable</code></td>
+<td>third-party-attestation verifier UNVERIFIABLE.</td>
+</tr>
+<tr>
+<td>If trusted setup is required, is transcript public; otherwise is the
+proof system transparent setup? (S1-5)</td>
+<td><code>not_applicable</code></td>
+<td>No global ZK proof in the assessed public artifact set.</td>
+</tr>
+<tr>
+<td>Is root/proof/vk canonically anchored outside exchange servers?
+(S2-1)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+<tr>
+<td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
+daily anchor)? (S2-2)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">8. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr>
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>P0</code></td>
+<td>Publish missing public artifacts required for independent
+reproduction.</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">9. Boundary</h2>
+<p>This report evaluates public PoR artifacts and reproducibility. It
+does not evaluate the exchange’s overall financial health, corporate
+governance, internal controls, off-chain assets, legal compliance, or
+complete off-balance-sheet liabilities.</p>
+<p>Missing data must be marked as <code>UNVERIFIABLE</code>, not treated
+as <code>PASS</code>.</p>
+<h2 id="capture-notes-gaps-2026-10-31">Capture notes / gaps
+(2026-10-31)</h2>
+<ul>
+<li><code>x-api/por/public/v1/reserve-ratio/latest</code> returns
+<strong>404</strong>; public page uses <code>queryHisBalancesInfo</code>
+/ <code>queryHisChainInfo</code> (liability/audit-scope amounts
+only).</li>
+<li>Exact October reserve ratios were <strong>not published</strong> in
+press/Hacken PDF located at capture time — <strong>not
+invented</strong>. <code>solvency-claim</code> FAIL reflects missing
+ratios (rates stored as 0).</li>
+<li>Merkle root not present on public APIs. User
+<code>myProof.json</code> login-gated — <code>user-merkle-proof</code>
+UNVERIFIABLE.</li>
+</ul>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

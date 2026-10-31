@@ -1,0 +1,261 @@
+{
+  "fetchedAt": "2026-10-31T14:31:04Z",
+  "source": "browser-api",
+  "sourceUrl": "https://www.htx.com/-/x/hbg/v1/open/profit/merkel/getPublicSnapshotBalanceData",
+  "notes": "Public API returns display rootHash (base64). Production zk proof0.csv / public-data.zip remains login-gated. No single total_reserve_rate on page — omitted intentionally. USDs is aggregate; USDT/USDC appear as subItems with their own ratios.",
+  "info": {
+    "code": 0,
+    "data": {
+      "audit_id": "20260801",
+      "audit_time": "2026-08-01 00:00:00",
+      "merkle_root_hash": "MjAyNjA4MDFyb290X3BhdGhfc2VsZjEx",
+      "merkle_root_display_decoded": "20260801root_path_self11"
+    }
+  },
+  "coinList": {
+    "code": 0,
+    "data": {
+      "list": [
+        {
+          "coin": "BTC",
+          "reserve_rate": 103.0,
+          "reserve_amount": 20471.88545733,
+          "customer_liability": 19933.9
+        },
+        {
+          "coin": "ETH",
+          "reserve_rate": 100.0,
+          "reserve_amount": 122626.94807717,
+          "customer_liability": 122077.57
+        },
+        {
+          "coin": "TRX",
+          "reserve_rate": 106.0,
+          "reserve_amount": 9375673533.86,
+          "customer_liability": 8848375609.92
+        },
+        {
+          "coin": "USDS",
+          "reserve_rate": 103.0,
+          "reserve_amount": 1090399828.632784,
+          "customer_liability": 1059013519.31
+        },
+        {
+          "coin": "USDT",
+          "reserve_rate": 77.0,
+          "reserve_amount": 709756398.8054373,
+          "customer_liability": 926290010.67
+        },
+        {
+          "coin": "USDC",
+          "reserve_rate": 530.0,
+          "reserve_amount": 218469322.4629282,
+          "customer_liability": 41257863.24
+        },
+        {
+          "coin": "USDS",
+          "reserve_rate": 104.0,
+          "reserve_amount": 670002.44,
+          "customer_liability": 641263.38
+        },
+        {
+          "coin": "U",
+          "reserve_rate": 990.0,
+          "reserve_amount": 33108901.49450299,
+          "customer_liability": 3343226.29
+        },
+        {
+          "coin": "USDD",
+          "reserve_rate": 147.0,
+          "reserve_amount": 128395203.42991534,
+          "customer_liability": 87481155.73
+        },
+        {
+          "coin": "HTX",
+          "reserve_rate": 102.0,
+          "reserve_amount": 232059560281011.75,
+          "customer_liability": 227344046943170.1
+        },
+        {
+          "coin": "XRP",
+          "reserve_rate": 102.0,
+          "reserve_amount": 29018853.73,
+          "customer_liability": 28394765.66
+        },
+        {
+          "coin": "DOGE",
+          "reserve_rate": 100.0,
+          "reserve_amount": 450816847.68,
+          "customer_liability": 449219803.49
+        },
+        {
+          "coin": "SOL",
+          "reserve_rate": 102.0,
+          "reserve_amount": 424080.4538558,
+          "customer_liability": 417221.34
+        }
+      ]
+    }
+  },
+  "raw": {
+    "code": 200,
+    "data": {
+      "rootHash": "MjAyNjA4MDFyb290X3BhdGhfc2VsZjEx",
+      "data": [
+        {
+          "auditId": null,
+          "auditNo": "20261001",
+          "auditTime": "2026-10-01 00:00:00"
+        },
+        {
+          "auditId": null,
+          "auditNo": "20260901",
+          "auditTime": "2026-09-01 00:00:00"
+        },
+        {
+          "auditId": null,
+          "auditNo": "20260801",
+          "auditTime": "2026-08-01 00:00:00"
+        },
+        {
+          "auditId": null,
+          "auditNo": "20260701",
+          "auditTime": "2026-07-01 00:00:00"
+        },
+        {
+          "auditId": null,
+          "auditNo": "20260601",
+          "auditTime": "2026-06-01 00:00:00"
+        },
+        {
+          "auditId": null,
+          "auditNo": "20260501",
+          "auditTime": "2026-05-01 00:00:00"
+        }
+      ],
+      "list": [
+        {
+          "currency": "btc",
+          "userBalance": 19933.9,
+          "walletBalance": 18782.85,
+          "thirdPartyBalance": 1689.03545733,
+          "accountBalance": 20471.88545733,
+          "reserveRatio": "103%",
+          "subItems": null
+        },
+        {
+          "currency": "eth",
+          "userBalance": 122077.57,
+          "walletBalance": 31101.08,
+          "thirdPartyBalance": 91525.86807717,
+          "accountBalance": 122626.94807717,
+          "reserveRatio": "100%",
+          "subItems": null
+        },
+        {
+          "currency": "trx",
+          "userBalance": 8848375609.92,
+          "walletBalance": 9375673533.86,
+          "thirdPartyBalance": 0,
+          "accountBalance": 9375673533.86,
+          "reserveRatio": "106%",
+          "subItems": null
+        },
+        {
+          "currency": "usds",
+          "userBalance": 1059013519.31,
+          "walletBalance": 200844137.48,
+          "thirdPartyBalance": 889555691.1527839,
+          "accountBalance": 1090399828.632784,
+          "reserveRatio": "103%",
+          "subItems": [
+            {
+              "currency": "usdt",
+              "userBalance": 926290010.67,
+              "walletBalance": 53833173.22,
+              "thirdPartyBalance": 655923225.5854373,
+              "accountBalance": 709756398.8054373,
+              "reserveRatio": "77%",
+              "subItems": null
+            },
+            {
+              "currency": "usdc",
+              "userBalance": 41257863.24,
+              "walletBalance": 1041000.0,
+              "thirdPartyBalance": 217428322.4629282,
+              "accountBalance": 218469322.4629282,
+              "reserveRatio": "530%",
+              "subItems": null
+            },
+            {
+              "currency": "usds",
+              "userBalance": 641263.38,
+              "walletBalance": 670002.44,
+              "thirdPartyBalance": 0,
+              "accountBalance": 670002.44,
+              "reserveRatio": "104%",
+              "subItems": null
+            },
+            {
+              "currency": "u",
+              "userBalance": 3343226.29,
+              "walletBalance": 19984999.0,
+              "thirdPartyBalance": 13123902.49450299,
+              "accountBalance": 33108901.49450299,
+              "reserveRatio": "990%",
+              "subItems": null
+            },
+            {
+              "currency": "usdd",
+              "userBalance": 87481155.73,
+              "walletBalance": 125314962.82,
+              "thirdPartyBalance": 3080240.60991534,
+              "accountBalance": 128395203.42991534,
+              "reserveRatio": "147%",
+              "subItems": null
+            }
+          ]
+        },
+        {
+          "currency": "htx",
+          "userBalance": 227344046943170.1,
+          "walletBalance": 231757796434003.8,
+          "thirdPartyBalance": 301763847007.9497,
+          "accountBalance": 232059560281011.75,
+          "reserveRatio": "102%",
+          "subItems": null
+        },
+        {
+          "currency": "xrp",
+          "userBalance": 28394765.66,
+          "walletBalance": 29018853.73,
+          "thirdPartyBalance": 0,
+          "accountBalance": 29018853.73,
+          "reserveRatio": "102%",
+          "subItems": null
+        },
+        {
+          "currency": "doge",
+          "userBalance": 449219803.49,
+          "walletBalance": 450816847.68,
+          "thirdPartyBalance": 0,
+          "accountBalance": 450816847.68,
+          "reserveRatio": "100%",
+          "subItems": null
+        },
+        {
+          "currency": "sol",
+          "userBalance": 417221.34,
+          "walletBalance": 422246.72,
+          "thirdPartyBalance": 1833.7338558,
+          "accountBalance": 424080.4538558,
+          "reserveRatio": "102%",
+          "subItems": null
+        }
+      ]
+    },
+    "success": true,
+    "ts": 1793456311361,
+    "fail": false
+  }
+}

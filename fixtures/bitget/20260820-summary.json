@@ -1,0 +1,285 @@
+{
+  "fetchedAt": "2026-10-31T14:31:04Z",
+  "source": "browser-api",
+  "sourceUrl": "https://www.bitget.com/v1/bill/proof/assets/public/queryTotalReserveAmount",
+  "officialAuditId": "Au2026082022",
+  "info": {
+    "audit_id": "20260820",
+    "auditId": "20260820",
+    "audit_time": "2026-08-20 14:00:00",
+    "snapshotTime": "2026-08-20 14:00:00",
+    "merkleRootHash": "d1822a31506cba59",
+    "merkelRootHash": "d1822a31506cba59",
+    "totalReserveRate": 122.0,
+    "officialAuditId": "Au2026082022"
+  },
+  "coinList": {
+    "list": [
+      {
+        "coin": "BTC",
+        "coinName": "BTC",
+        "reserveRate": 134.0,
+        "platformAssets": 35836.60821828,
+        "userAssets": 26811.37129054,
+        "reserve_amount": 35836.60821828,
+        "customer_liability": 26811.37129054
+      },
+      {
+        "coin": "USDT",
+        "coinName": "USDT",
+        "reserveRate": 100.0,
+        "platformAssets": 1456459340.9991345,
+        "userAssets": 1453506874.303357,
+        "reserve_amount": 1456459340.9991345,
+        "customer_liability": 1453506874.303357
+      },
+      {
+        "coin": "ETH",
+        "coinName": "ETH",
+        "reserveRate": 154.0,
+        "platformAssets": 190089.82791499997,
+        "userAssets": 123688.09769485,
+        "reserve_amount": 190089.82791499997,
+        "customer_liability": 123688.09769485
+      },
+      {
+        "coin": "USDC",
+        "coinName": "USDC",
+        "reserveRate": 121.0,
+        "platformAssets": 133100993.95530996,
+        "userAssets": 109685432.3874559,
+        "reserve_amount": 133100993.95530996,
+        "customer_liability": 109685432.3874559
+      }
+    ]
+  },
+  "rawTotal": {
+    "auditId": "Au2026082022",
+    "coinChainHeightList": [
+      {
+        "chainHeight": "117052457",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "963316",
+        "chainName": "BITCOIN"
+      },
+      {
+        "chainHeight": "178723441",
+        "chainName": "Lightning Network"
+      },
+      {
+        "chainHeight": "31208736",
+        "chainName": "Merlin Chain"
+      },
+      {
+        "chainHeight": "11263627",
+        "chainName": "MEZO"
+      },
+      {
+        "chainHeight": "986241494",
+        "chainName": "APTOS"
+      },
+      {
+        "chainHeight": "496535427",
+        "chainName": "Arbitrum One"
+      },
+      {
+        "chainHeight": "93265839",
+        "chainName": "AVAX C-Chain"
+      },
+      {
+        "chainHeight": "117052591",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "25796784",
+        "chainName": "Ethereum"
+      },
+      {
+        "chainHeight": "25548175",
+        "chainName": "Morph"
+      },
+      {
+        "chainHeight": "155817815",
+        "chainName": "Optimism"
+      },
+      {
+        "chainHeight": "30293864",
+        "chainName": "Plasma"
+      },
+      {
+        "chainHeight": "92352920",
+        "chainName": "Polygon"
+      },
+      {
+        "chainHeight": "440486267",
+        "chainName": "Solana"
+      },
+      {
+        "chainHeight": "87358867",
+        "chainName": "The Open Network"
+      },
+      {
+        "chainHeight": "85521026",
+        "chainName": "Tron"
+      },
+      {
+        "chainHeight": "2344794",
+        "chainName": "Alienxchain"
+      },
+      {
+        "chainHeight": "85250878",
+        "chainName": "Arbitrum Nova"
+      },
+      {
+        "chainHeight": "496535428",
+        "chainName": "Arbitrum One"
+      },
+      {
+        "chainHeight": "50222527",
+        "chainName": "BASE"
+      },
+      {
+        "chainHeight": "117052608",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "39212296",
+        "chainName": "Blast"
+      },
+      {
+        "chainHeight": "181291260",
+        "chainName": "Eclipse"
+      },
+      {
+        "chainHeight": "25796792",
+        "chainName": "Ethereum"
+      },
+      {
+        "chainHeight": "62021109",
+        "chainName": "Fuel"
+      },
+      {
+        "chainHeight": "14259142",
+        "chainName": "Gensyn"
+      },
+      {
+        "chainHeight": "40491594",
+        "chainName": "Katana"
+      },
+      {
+        "chainHeight": "31772798",
+        "chainName": "LINEA"
+      },
+      {
+        "chainHeight": "9301044",
+        "chainName": "Manta NetWork"
+      },
+      {
+        "chainHeight": "24437407",
+        "chainName": "MEGA"
+      },
+      {
+        "chainHeight": "37835451",
+        "chainName": "Metal DAO L2"
+      },
+      {
+        "chainHeight": "43533415",
+        "chainName": "Mode"
+      },
+      {
+        "chainHeight": "34703187",
+        "chainName": "SCROLL"
+      },
+      {
+        "chainHeight": "13592044",
+        "chainName": "Starknet"
+      },
+      {
+        "chainHeight": "33949389",
+        "chainName": "World Chain"
+      },
+      {
+        "chainHeight": "33649104",
+        "chainName": "Zircuit"
+      },
+      {
+        "chainHeight": "71622402",
+        "chainName": "zkSync Era"
+      },
+      {
+        "chainHeight": "986241497",
+        "chainName": "APTOS"
+      },
+      {
+        "chainHeight": "496535433",
+        "chainName": "Arbitrum One"
+      },
+      {
+        "chainHeight": "50222534",
+        "chainName": "BASE"
+      },
+      {
+        "chainHeight": "117052609",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "97643449",
+        "chainName": "Monad"
+      },
+      {
+        "chainHeight": "25548177",
+        "chainName": "Morph"
+      },
+      {
+        "chainHeight": "57406978",
+        "chainName": "Noble"
+      },
+      {
+        "chainHeight": "155817818",
+        "chainName": "Optimism"
+      },
+      {
+        "chainHeight": "92352914",
+        "chainName": "Polygon"
+      },
+      {
+        "chainHeight": "227430014",
+        "chainName": "SEIEVM"
+      },
+      {
+        "chainHeight": "440486280",
+        "chainName": "Solana"
+      },
+      {
+        "chainHeight": "77818355",
+        "chainName": "SONIC"
+      },
+      {
+        "chainHeight": "29985907",
+        "chainName": "ZKFair"
+      }
+    ],
+    "customerCoinList": [
+      "BTC",
+      "USDT",
+      "ETH",
+      "USDC"
+    ],
+    "customerTotalAmount": 3766687682.259094,
+    "merkleRootHash": "d1822a31506cba59",
+    "platformCoinList": [
+      "BTC",
+      "USDT",
+      "ETH",
+      "USDC"
+    ],
+    "platformTotalAmount": 4591162980.694741,
+    "snapshotTime": "1787234400000",
+    "totalLevel": 26,
+    "totalRecords": 47052070,
+    "totalReserveRatio": 122,
+    "totalVerifyRecords": 903
+  }
+}

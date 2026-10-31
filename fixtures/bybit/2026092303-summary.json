@@ -1,0 +1,102 @@
+{
+  "fetchedAt": "2026-10-31T14:31:04Z",
+  "source": "press-release+browser-api",
+  "sourceUrls": [
+    "https://www.prnewswire.com/apac/news-releases/bybit-releases-latest-proof-of-reserves-report-adding-10-tokens-as-mainstream-asset-value-hit-19-6-billion-302894244.html",
+    "https://www.bybit.com/x-api/cht/asset/page/por/queryHisBalancesInfo",
+    "https://www.bybit.com/common-static/cht-static/por/Bybit_PoR_Audit_2026_Sep_23.pdf"
+  ],
+  "notes": "x-api/por/public/v1/reserve-ratio/latest returns 404 (2026-10-31). Ratios from official PR/Hacken; customer_liability amounts from browser queryHisBalancesInfo.",
+  "info": {
+    "code": 0,
+    "data": {
+      "audit_id": "2026092303",
+      "audit_time": "2026-09-23 03:00:00",
+      "total_reserve_rate": 104,
+      "period": 40
+    }
+  },
+  "coinList": {
+    "code": 0,
+    "data": {
+      "list": [
+        {
+          "coin": "USDT",
+          "reserve_rate": 110.0,
+          "reserve_amount": 3960000000,
+          "customer_liability": 3592526774.2293243
+        },
+        {
+          "coin": "USDC",
+          "reserve_rate": 223.0,
+          "reserve_amount": 748300000,
+          "customer_liability": 334782751.5940895
+        },
+        {
+          "coin": "BTC",
+          "reserve_rate": 104.0,
+          "reserve_amount": 58721,
+          "customer_liability": 56131.76156056
+        },
+        {
+          "coin": "ETH",
+          "reserve_rate": 103.0,
+          "reserve_amount": 570018,
+          "customer_liability": 551868.68282417
+        }
+      ]
+    }
+  },
+  "browserLiabilities": {
+    "AAVE": "217665.48948520",
+    "APEX": "80336245.28542797",
+    "APT": "27405969.64813806",
+    "ARB": "214314966.63078696",
+    "ASTER": "61217412.73862262",
+    "ATOM": "5706620.73729408",
+    "AVAX": "5378615.32575574",
+    "BTC": "56131.76156056",
+    "CAP": "338323405.30552251",
+    "COMP": "158042.05317489",
+    "CRV": "57247770.97037965",
+    "DOGE": "1503281792.09006240",
+    "DOT": "20460492.87377513",
+    "DYDX": "43659450.93590020",
+    "ENA": "435771329.83798803",
+    "ETH": "551868.68282417",
+    "FET": "47876938.46394102",
+    "GALA": "1893836861.55029970",
+    "GRAM": "41158613.98371151",
+    "HYPE": "2637169.50735167",
+    "LDO": "46538484.67447499",
+    "LINK": "7295851.49173729",
+    "LIT": "8553576.97877195",
+    "LTC": "1377838.28975915",
+    "MNT": "687681133.96124694",
+    "ONDO": "157083248.30782516",
+    "OP": "110178356.82056934",
+    "PENGU": "1987474723.98512793",
+    "PEPE": "16664023302458.09192073",
+    "POL": "99771398.86227306",
+    "PUMP": "11110320389.25644745",
+    "RENDER": "8566994.29098103",
+    "S": "180290339.28662128",
+    "SHIB": "2432983250687.64971686",
+    "SOL": "3299749.43041161",
+    "SPX": "33459552.00931031",
+    "STABLE": "815845141.08917377",
+    "SUI": "78736507.58210942",
+    "UNI": "7287161.54772960",
+    "USD1": "417617484.45092951",
+    "USDC": "334782751.59408950",
+    "USDE": "515919686.77438475",
+    "USDT": "3592526774.22932440",
+    "USDTB": "17369918.89305429",
+    "WLD": "48507526.19915040",
+    "XAUT": "26831.86275204",
+    "XPL": "153445569.73883949",
+    "XRP": "260248495.26742771",
+    "ZEREBRO": "524060828.65174886",
+    "ZRO": "15552170.53966399"
+  }
+}

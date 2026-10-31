@@ -1,0 +1,3487 @@
+{
+  "code": 0,
+  "data": {
+    "snapshot_time": "2026-10-18 00:00:00",
+    "merkle_root_hash": "1f477d978e245494748822e890f742eb9a4b02f2ece8f8c2a89106a25fc87c7b",
+    "gate_wallet_balance": "8688838336.4022523261",
+    "customer_net_balance": "7332718966.3107612212666483",
+    "excess_reserve_value": "1356119370.0914911048333517",
+    "total_reserve_rate": "118.49%",
+    "currency_data": [
+      {
+        "currency": "funtoken",
+        "customer_net_balances": "2721665595.692993",
+        "exchange_net_balances": "2725957782.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "24271381"
+      },
+      {
+        "currency": "uai",
+        "customer_net_balances": "14133460.611577",
+        "exchange_net_balances": "14315954.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4288343"
+      },
+      {
+        "currency": "gps",
+        "customer_net_balances": "101531009.962978",
+        "exchange_net_balances": "102960099.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "844065"
+      },
+      {
+        "currency": "wemix",
+        "customer_net_balances": "36198736.801747",
+        "exchange_net_balances": "36731872.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6696219"
+      },
+      {
+        "currency": "shib",
+        "customer_net_balances": "4383892617840.864730",
+        "exchange_net_balances": "4511450000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "22530181"
+      },
+      {
+        "currency": "pnut",
+        "customer_net_balances": "15352807.508640",
+        "exchange_net_balances": "15960168.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "690116"
+      },
+      {
+        "currency": "alch",
+        "customer_net_balances": "240893425.045522",
+        "exchange_net_balances": "241722708.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "8694764"
+      },
+      {
+        "currency": "tslax",
+        "customer_net_balances": "3441.918592",
+        "exchange_net_balances": "3545.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1272440"
+      },
+      {
+        "currency": "wif",
+        "customer_net_balances": "8480137.328231",
+        "exchange_net_balances": "8483996.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1681527"
+      },
+      {
+        "currency": "comp",
+        "customer_net_balances": "28224.576557",
+        "exchange_net_balances": "28285.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "602473"
+      },
+      {
+        "currency": "rune",
+        "customer_net_balances": "1393939.593693",
+        "exchange_net_balances": "1437175.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "933157"
+      },
+      {
+        "currency": "spyon",
+        "customer_net_balances": "624.188397",
+        "exchange_net_balances": "644.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "497921"
+      },
+      {
+        "currency": "pengu",
+        "customer_net_balances": "434857412.092864",
+        "exchange_net_balances": "434910138.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3269653"
+      },
+      {
+        "currency": "grass",
+        "customer_net_balances": "9573804.720024",
+        "exchange_net_balances": "9712406.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "5732261"
+      },
+      {
+        "currency": "moodeng",
+        "customer_net_balances": "27179853.239795",
+        "exchange_net_balances": "27317688.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1009114"
+      },
+      {
+        "currency": "mana",
+        "customer_net_balances": "7709060.457704",
+        "exchange_net_balances": "8011038.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "678053"
+      },
+      {
+        "currency": "floki",
+        "customer_net_balances": "271856507334.007011",
+        "exchange_net_balances": "282881000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6593956"
+      },
+      {
+        "currency": "paal",
+        "customer_net_balances": "84757383.730469",
+        "exchange_net_balances": "85207663.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "708841"
+      },
+      {
+        "currency": "ao",
+        "customer_net_balances": "414609.353723",
+        "exchange_net_balances": "428934.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1554456"
+      },
+      {
+        "currency": "crclx",
+        "customer_net_balances": "88983.883140",
+        "exchange_net_balances": "89576.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7486763"
+      },
+      {
+        "currency": "ban",
+        "customer_net_balances": "496421889.804769",
+        "exchange_net_balances": "498521109.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "26950050"
+      },
+      {
+        "currency": "0g",
+        "customer_net_balances": "3390082.320143",
+        "exchange_net_balances": "4140843.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "938314"
+      },
+      {
+        "currency": "xpl",
+        "customer_net_balances": "23746477.989476",
+        "exchange_net_balances": "23801715.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1828209"
+      },
+      {
+        "currency": "near",
+        "customer_net_balances": "5235145.992863",
+        "exchange_net_balances": "5374553.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "26851265"
+      },
+      {
+        "currency": "hsk",
+        "customer_net_balances": "44556684.044734",
+        "exchange_net_balances": "44572821.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3834598"
+      },
+      {
+        "currency": "swftc",
+        "customer_net_balances": "140861648.249431",
+        "exchange_net_balances": "147709288.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "422299"
+      },
+      {
+        "currency": "cgpt",
+        "customer_net_balances": "43844155.524133",
+        "exchange_net_balances": "43864746.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "944846"
+      },
+      {
+        "currency": "xcn",
+        "customer_net_balances": "300332631.086102",
+        "exchange_net_balances": "345859657.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1407993"
+      },
+      {
+        "currency": "form",
+        "customer_net_balances": "2879223.677123",
+        "exchange_net_balances": "3099439.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "749753"
+      },
+      {
+        "currency": "icp",
+        "customer_net_balances": "1919306.205252",
+        "exchange_net_balances": "1928218.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "5582192"
+      },
+      {
+        "currency": "kda",
+        "customer_net_balances": "115775915.183169",
+        "exchange_net_balances": "115936724.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1242724"
+      },
+      {
+        "currency": "enj",
+        "customer_net_balances": "16789711.753590",
+        "exchange_net_balances": "17036344.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "464069"
+      },
+      {
+        "currency": "avax",
+        "customer_net_balances": "1107817.679145",
+        "exchange_net_balances": "1125599.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "10961083"
+      },
+      {
+        "currency": "wal",
+        "customer_net_balances": "26449240.694935",
+        "exchange_net_balances": "26702589.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1051012"
+      },
+      {
+        "currency": "spcx",
+        "customer_net_balances": "83525.000000",
+        "exchange_net_balances": "83525.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "11936237"
+      },
+      {
+        "currency": "o",
+        "customer_net_balances": "3479403.487016",
+        "exchange_net_balances": "3497945.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1490753"
+      },
+      {
+        "currency": "nmr",
+        "customer_net_balances": "59511.901148",
+        "exchange_net_balances": "59828.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "677199"
+      },
+      {
+        "currency": "htx",
+        "customer_net_balances": "491018957928.001036",
+        "exchange_net_balances": "491478000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "811036"
+      },
+      {
+        "currency": "usat",
+        "customer_net_balances": "1010487.372900",
+        "exchange_net_balances": "1011452.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1011350"
+      },
+      {
+        "currency": "melania",
+        "customer_net_balances": "18743345.017546",
+        "exchange_net_balances": "18750616.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1536987"
+      },
+      {
+        "currency": "genius",
+        "customer_net_balances": "2016939.883031",
+        "exchange_net_balances": "2021259.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "610823"
+      },
+      {
+        "currency": "bts",
+        "customer_net_balances": "400856641.774811",
+        "exchange_net_balances": "410195216.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "484644"
+      },
+      {
+        "currency": "pons",
+        "customer_net_balances": "51376528.628493",
+        "exchange_net_balances": "51962053.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "13536114"
+      },
+      {
+        "currency": "spcxg",
+        "customer_net_balances": "4488.000000",
+        "exchange_net_balances": "4488.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "663102"
+      },
+      {
+        "currency": "sc",
+        "customer_net_balances": "1137479448.166937",
+        "exchange_net_balances": "1145319695.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "903427"
+      },
+      {
+        "currency": "hype",
+        "customer_net_balances": "659310.353152",
+        "exchange_net_balances": "659409.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "52027377"
+      },
+      {
+        "currency": "alex",
+        "customer_net_balances": "101563040.309340",
+        "exchange_net_balances": "101680605.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "449762"
+      },
+      {
+        "currency": "dogs",
+        "customer_net_balances": "11764070986.865353",
+        "exchange_net_balances": "12122445560.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "465137"
+      },
+      {
+        "currency": "omi",
+        "customer_net_balances": "7219162422.712241",
+        "exchange_net_balances": "7326264822.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2032158"
+      },
+      {
+        "currency": "fluid",
+        "customer_net_balances": "568155.348407",
+        "exchange_net_balances": "568529.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1258724"
+      },
+      {
+        "currency": "aia",
+        "customer_net_balances": "90007960.413334",
+        "exchange_net_balances": "90074043.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6611433"
+      },
+      {
+        "currency": "ksm",
+        "customer_net_balances": "104834.555047",
+        "exchange_net_balances": "106089.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "443027"
+      },
+      {
+        "currency": "ckb",
+        "customer_net_balances": "1474218453.232257",
+        "exchange_net_balances": "1480281938.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2192592"
+      },
+      {
+        "currency": "xny",
+        "customer_net_balances": "598993972.984993",
+        "exchange_net_balances": "600998840.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2766396"
+      },
+      {
+        "currency": "pendle",
+        "customer_net_balances": "1445324.766015",
+        "exchange_net_balances": "1527225.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3123174"
+      },
+      {
+        "currency": "bat",
+        "customer_net_balances": "4291579.645557",
+        "exchange_net_balances": "4460783.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "778539"
+      },
+      {
+        "currency": "syrup",
+        "customer_net_balances": "13473426.061089",
+        "exchange_net_balances": "13624338.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2622684"
+      },
+      {
+        "currency": "sand",
+        "customer_net_balances": "10552036.489280",
+        "exchange_net_balances": "48186013.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2832854"
+      },
+      {
+        "currency": "plume",
+        "customer_net_balances": "96411265.608668",
+        "exchange_net_balances": "96562085.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1710789"
+      },
+      {
+        "currency": "wkc",
+        "customer_net_balances": "22593172412381.827078",
+        "exchange_net_balances": "22674600000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1408092"
+      },
+      {
+        "currency": "usdpt",
+        "customer_net_balances": "7499140.825606",
+        "exchange_net_balances": "7662123.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7672083"
+      },
+      {
+        "currency": "dgai",
+        "customer_net_balances": "13440958.157648",
+        "exchange_net_balances": "13514799.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "11687462"
+      },
+      {
+        "currency": "one",
+        "customer_net_balances": "1180984099.000000",
+        "exchange_net_balances": "1180984099.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1675679"
+      },
+      {
+        "currency": "pi",
+        "customer_net_balances": "334141407.085713",
+        "exchange_net_balances": "334192345.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "26585000"
+      },
+      {
+        "currency": "wojak",
+        "customer_net_balances": "16852015579583.460252",
+        "exchange_net_balances": "17011500000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "707678"
+      },
+      {
+        "currency": "cfg",
+        "customer_net_balances": "15202676.580213",
+        "exchange_net_balances": "15512005.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1856941"
+      },
+      {
+        "currency": "alu",
+        "customer_net_balances": "221750491.587496",
+        "exchange_net_balances": "221858457.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "906069"
+      },
+      {
+        "currency": "sei",
+        "customer_net_balances": "46942520.311175",
+        "exchange_net_balances": "47921420.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2951958"
+      },
+      {
+        "currency": "agi",
+        "customer_net_balances": "93205824.264473",
+        "exchange_net_balances": "93621058.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "472691"
+      },
+      {
+        "currency": "bbt",
+        "customer_net_balances": "56642034.677766",
+        "exchange_net_balances": "58150724.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2994761"
+      },
+      {
+        "currency": "baby",
+        "customer_net_balances": "108431326.291066",
+        "exchange_net_balances": "115243876.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1388572"
+      },
+      {
+        "currency": "turbo",
+        "customer_net_balances": "1651549520.459778",
+        "exchange_net_balances": "1712940770.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1448804"
+      },
+      {
+        "currency": "magic",
+        "customer_net_balances": "7016599.365503",
+        "exchange_net_balances": "7463206.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "739826"
+      },
+      {
+        "currency": "xt",
+        "customer_net_balances": "835629.629260",
+        "exchange_net_balances": "835651.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4068784"
+      },
+      {
+        "currency": "fun",
+        "customer_net_balances": "66542736.912313",
+        "exchange_net_balances": "71555386.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1091934"
+      },
+      {
+        "currency": "bananas31",
+        "customer_net_balances": "101241162.942082",
+        "exchange_net_balances": "104798324.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "645556"
+      },
+      {
+        "currency": "mubarak",
+        "customer_net_balances": "55651693.835431",
+        "exchange_net_balances": "58636571.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3199562"
+      },
+      {
+        "currency": "wlfi",
+        "customer_net_balances": "118527432.455892",
+        "exchange_net_balances": "118563866.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6758139"
+      },
+      {
+        "currency": "metis",
+        "customer_net_balances": "383651.687655",
+        "exchange_net_balances": "397240.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1532156"
+      },
+      {
+        "currency": "geod",
+        "customer_net_balances": "7657830.225235",
+        "exchange_net_balances": "7657854.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1916913"
+      },
+      {
+        "currency": "aio",
+        "customer_net_balances": "20904303.439224",
+        "exchange_net_balances": "21036094.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "646017"
+      },
+      {
+        "currency": "mon",
+        "customer_net_balances": "118810441.475367",
+        "exchange_net_balances": "118838998.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2511067"
+      },
+      {
+        "currency": "hana",
+        "customer_net_balances": "227073558.617493",
+        "exchange_net_balances": "232052035.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2661403"
+      },
+      {
+        "currency": "ake",
+        "customer_net_balances": "233211534.071647",
+        "exchange_net_balances": "258397559.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7840039"
+      },
+      {
+        "currency": "ccd",
+        "customer_net_balances": "261554151.419976",
+        "exchange_net_balances": "277938685.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1002801"
+      },
+      {
+        "currency": "apt",
+        "customer_net_balances": "4006346.277392",
+        "exchange_net_balances": "4051661.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3161915"
+      },
+      {
+        "currency": "rats",
+        "customer_net_balances": "297189840795.679644",
+        "exchange_net_balances": "297500000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4953642"
+      },
+      {
+        "currency": "erg",
+        "customer_net_balances": "5275166.540358",
+        "exchange_net_balances": "5346903.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1701918"
+      },
+      {
+        "currency": "broccoli",
+        "customer_net_balances": "34988032.648456",
+        "exchange_net_balances": "41382687.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "805802"
+      },
+      {
+        "currency": "mbg",
+        "customer_net_balances": "12390378.833897",
+        "exchange_net_balances": "12419095.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1294068"
+      },
+      {
+        "currency": "sapien",
+        "customer_net_balances": "12408204.154029",
+        "exchange_net_balances": "12595249.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "752187"
+      },
+      {
+        "currency": "ont",
+        "customer_net_balances": "8071049.125017",
+        "exchange_net_balances": "8218356.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "422340"
+      },
+      {
+        "currency": "kekius",
+        "customer_net_balances": "113310168.012233",
+        "exchange_net_balances": "113327563.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "571623"
+      },
+      {
+        "currency": "dos",
+        "customer_net_balances": "6995433.562684",
+        "exchange_net_balances": "7188207.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1346350"
+      },
+      {
+        "currency": "xch",
+        "customer_net_balances": "1088386.185193",
+        "exchange_net_balances": "1101843.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1733198"
+      },
+      {
+        "currency": "mag7xon",
+        "customer_net_balances": "119152.564949",
+        "exchange_net_balances": "121262.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "654454"
+      },
+      {
+        "currency": "ldo",
+        "customer_net_balances": "5510918.854835",
+        "exchange_net_balances": "5641404.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2180965"
+      },
+      {
+        "currency": "sushi",
+        "customer_net_balances": "4295862.683459",
+        "exchange_net_balances": "4483531.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "963061"
+      },
+      {
+        "currency": "linea",
+        "customer_net_balances": "317913939.433539",
+        "exchange_net_balances": "318678019.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "847363"
+      },
+      {
+        "currency": "snx",
+        "customer_net_balances": "2463816.047241",
+        "exchange_net_balances": "2564002.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "543567"
+      },
+      {
+        "currency": "magma",
+        "customer_net_balances": "9978285.131700",
+        "exchange_net_balances": "9979917.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2643180"
+      },
+      {
+        "currency": "io",
+        "customer_net_balances": "10953745.228136",
+        "exchange_net_balances": "11270704.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1694436"
+      },
+      {
+        "currency": "waves",
+        "customer_net_balances": "2424925.516704",
+        "exchange_net_balances": "2449115.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "579704"
+      },
+      {
+        "currency": "raca",
+        "customer_net_balances": "60141060232.833076",
+        "exchange_net_balances": "60155994727.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "752545"
+      },
+      {
+        "currency": "paxg",
+        "customer_net_balances": "1835.948866",
+        "exchange_net_balances": "1889.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7887713"
+      },
+      {
+        "currency": "dogelonmars",
+        "customer_net_balances": "27777710990754.722173",
+        "exchange_net_balances": "28929200000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "844732"
+      },
+      {
+        "currency": "puffer",
+        "customer_net_balances": "15812752.800146",
+        "exchange_net_balances": "15816903.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "629038"
+      },
+      {
+        "currency": "ena",
+        "customer_net_balances": "55161739.844071",
+        "exchange_net_balances": "55349965.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "10406899"
+      },
+      {
+        "currency": "chz",
+        "customer_net_balances": "54178825.932293",
+        "exchange_net_balances": "55384611.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "759931"
+      },
+      {
+        "currency": "us",
+        "customer_net_balances": "179975812.221613",
+        "exchange_net_balances": "180094780.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1053193"
+      },
+      {
+        "currency": "trb",
+        "customer_net_balances": "40050.590307",
+        "exchange_net_balances": "42074.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "742616"
+      },
+      {
+        "currency": "rose",
+        "customer_net_balances": "82093924.495075",
+        "exchange_net_balances": "82100883.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "604918"
+      },
+      {
+        "currency": "nos",
+        "customer_net_balances": "3273407.811120",
+        "exchange_net_balances": "3287336.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1599288"
+      },
+      {
+        "currency": "fb",
+        "customer_net_balances": "5644616.424180",
+        "exchange_net_balances": "5658727.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2125416"
+      },
+      {
+        "currency": "people",
+        "customer_net_balances": "197414198.178973",
+        "exchange_net_balances": "197415955.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1475486"
+      },
+      {
+        "currency": "kite",
+        "customer_net_balances": "9005021.908750",
+        "exchange_net_balances": "9795570.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1128252"
+      },
+      {
+        "currency": "usde",
+        "customer_net_balances": "1066564.590507",
+        "exchange_net_balances": "3113174.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3115041"
+      },
+      {
+        "currency": "leo",
+        "customer_net_balances": "89204.493988",
+        "exchange_net_balances": "122202.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1098235"
+      },
+      {
+        "currency": "h",
+        "customer_net_balances": "134984488.175804",
+        "exchange_net_balances": "135248547.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7775437"
+      },
+      {
+        "currency": "a",
+        "customer_net_balances": "16691339.345311",
+        "exchange_net_balances": "16692496.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1498317"
+      },
+      {
+        "currency": "zig",
+        "customer_net_balances": "35791024.993253",
+        "exchange_net_balances": "35993666.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1797162"
+      },
+      {
+        "currency": "wpay",
+        "customer_net_balances": "11329037.972995",
+        "exchange_net_balances": "11330125.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "9654625"
+      },
+      {
+        "currency": "atom",
+        "customer_net_balances": "1796417.870199",
+        "exchange_net_balances": "1965052.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3334693"
+      },
+      {
+        "currency": "stbl",
+        "customer_net_balances": "103748577.812565",
+        "exchange_net_balances": "105222769.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2414861"
+      },
+      {
+        "currency": "slc",
+        "customer_net_balances": "2930516099.257087",
+        "exchange_net_balances": "2930616549.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "464062"
+      },
+      {
+        "currency": "grt",
+        "customer_net_balances": "32573986.569091",
+        "exchange_net_balances": "32788411.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "769247"
+      },
+      {
+        "currency": "meme",
+        "customer_net_balances": "1012997090.256763",
+        "exchange_net_balances": "1021261625.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "491327"
+      },
+      {
+        "currency": "kct",
+        "customer_net_balances": "4927263222.364303",
+        "exchange_net_balances": "4964832438.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3011666"
+      },
+      {
+        "currency": "numi",
+        "customer_net_balances": "44243825.914350",
+        "exchange_net_balances": "44262187.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1024668"
+      },
+      {
+        "currency": "mstrx",
+        "customer_net_balances": "11521.497794",
+        "exchange_net_balances": "11523.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1601225"
+      },
+      {
+        "currency": "spx",
+        "customer_net_balances": "7831992.822709",
+        "exchange_net_balances": "7833808.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2879707"
+      },
+      {
+        "currency": "哈基米",
+        "customer_net_balances": "55436722.091413",
+        "exchange_net_balances": "55436997.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1067161"
+      },
+      {
+        "currency": "velo",
+        "customer_net_balances": "527344546.040971",
+        "exchange_net_balances": "529474741.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2161314"
+      },
+      {
+        "currency": "tag",
+        "customer_net_balances": "4353406423.314607",
+        "exchange_net_balances": "4422541006.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2087880"
+      },
+      {
+        "currency": "xem",
+        "customer_net_balances": "1395919606.888280",
+        "exchange_net_balances": "1398315764.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "424947"
+      },
+      {
+        "currency": "align",
+        "customer_net_balances": "136981209.832980",
+        "exchange_net_balances": "149599256.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "741712"
+      },
+      {
+        "currency": "sky",
+        "customer_net_balances": "13712420.065337",
+        "exchange_net_balances": "14108437.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "978136"
+      },
+      {
+        "currency": "usdt",
+        "customer_net_balances": "832598051.755833",
+        "exchange_net_balances": "929860538.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "929860538"
+      },
+      {
+        "currency": "ach",
+        "customer_net_balances": "112789421.201803",
+        "exchange_net_balances": "115607257.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "608555"
+      },
+      {
+        "currency": "tbk",
+        "customer_net_balances": "9661771.775883",
+        "exchange_net_balances": "9665692.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1669844"
+      },
+      {
+        "currency": "ondo",
+        "customer_net_balances": "43737036.454135",
+        "exchange_net_balances": "43741953.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "19023375"
+      },
+      {
+        "currency": "zerebro",
+        "customer_net_balances": "28165184.803714",
+        "exchange_net_balances": "28193774.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "652713"
+      },
+      {
+        "currency": "box",
+        "customer_net_balances": "21846824.673170",
+        "exchange_net_balances": "21868648.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "541248"
+      },
+      {
+        "currency": "tia",
+        "customer_net_balances": "4689695.774201",
+        "exchange_net_balances": "4694069.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2977917"
+      },
+      {
+        "currency": "usdy",
+        "customer_net_balances": "94501.777997",
+        "exchange_net_balances": "88066829.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "101391339"
+      },
+      {
+        "currency": "ygg",
+        "customer_net_balances": "45936575.791659",
+        "exchange_net_balances": "46305569.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1099293"
+      },
+      {
+        "currency": "ordi",
+        "customer_net_balances": "828199.056928",
+        "exchange_net_balances": "881337.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3274166"
+      },
+      {
+        "currency": "gala",
+        "customer_net_balances": "523707145.832924",
+        "exchange_net_balances": "529138725.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1013035"
+      },
+      {
+        "currency": "at",
+        "customer_net_balances": "3843751.239588",
+        "exchange_net_balances": "3890715.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "531587"
+      },
+      {
+        "currency": "apepe",
+        "customer_net_balances": "3168830303227.102830",
+        "exchange_net_balances": "3170930000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3744551"
+      },
+      {
+        "currency": "idol",
+        "customer_net_balances": "182940368.018063",
+        "exchange_net_balances": "183518887.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1304084"
+      },
+      {
+        "currency": "beamx",
+        "customer_net_balances": "169330152.217268",
+        "exchange_net_balances": "170971846.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "485559"
+      },
+      {
+        "currency": "alph",
+        "customer_net_balances": "17383200.420792",
+        "exchange_net_balances": "17443296.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1048166"
+      },
+      {
+        "currency": "我踏马来了",
+        "customer_net_balances": "216738061.408833",
+        "exchange_net_balances": "216790674.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2147310"
+      },
+      {
+        "currency": "koma",
+        "customer_net_balances": "229399725.332537",
+        "exchange_net_balances": "265926630.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4695997"
+      },
+      {
+        "currency": "mega",
+        "customer_net_balances": "12267521.407589",
+        "exchange_net_balances": "12285371.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "540063"
+      },
+      {
+        "currency": "bless",
+        "customer_net_balances": "280544151.409702",
+        "exchange_net_balances": "286769825.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2095712"
+      },
+      {
+        "currency": "prove",
+        "customer_net_balances": "3554648.404007",
+        "exchange_net_balances": "3557595.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "647125"
+      },
+      {
+        "currency": "skyai",
+        "customer_net_balances": "364580612.522923",
+        "exchange_net_balances": "373340100.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "10569257"
+      },
+      {
+        "currency": "hot",
+        "customer_net_balances": "1234922250.630537",
+        "exchange_net_balances": "1246160415.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "448741"
+      },
+      {
+        "currency": "ats",
+        "customer_net_balances": "11913768.591884",
+        "exchange_net_balances": "11926781.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "501400"
+      },
+      {
+        "currency": "wbtc",
+        "customer_net_balances": "78.198719",
+        "exchange_net_balances": "83.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6787468"
+      },
+      {
+        "currency": "luna",
+        "customer_net_balances": "11650452.955283",
+        "exchange_net_balances": "12298099.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "520700"
+      },
+      {
+        "currency": "gho",
+        "customer_net_balances": "5843454.699386",
+        "exchange_net_balances": "6090752.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6067606"
+      },
+      {
+        "currency": "dent",
+        "customer_net_balances": "9829553965.539404",
+        "exchange_net_balances": "9829672606.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "495807"
+      },
+      {
+        "currency": "zama",
+        "customer_net_balances": "23899333.994794",
+        "exchange_net_balances": "23911881.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1690569"
+      },
+      {
+        "currency": "bone",
+        "customer_net_balances": "16796680.788124",
+        "exchange_net_balances": "16826481.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "974925"
+      },
+      {
+        "currency": "inj",
+        "customer_net_balances": "744704.148910",
+        "exchange_net_balances": "753841.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6456651"
+      },
+      {
+        "currency": "stoc",
+        "customer_net_balances": "4018543.805475",
+        "exchange_net_balances": "4018708.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3405934"
+      },
+      {
+        "currency": "aero",
+        "customer_net_balances": "9836711.913459",
+        "exchange_net_balances": "9838877.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7841585"
+      },
+      {
+        "currency": "bb",
+        "customer_net_balances": "76712393.875051",
+        "exchange_net_balances": "77376122.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "614442"
+      },
+      {
+        "currency": "jto",
+        "customer_net_balances": "2669385.607445",
+        "exchange_net_balances": "2672807.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1185122"
+      },
+      {
+        "currency": "pha",
+        "customer_net_balances": "20753139.273536",
+        "exchange_net_balances": "21055166.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1007067"
+      },
+      {
+        "currency": "op",
+        "customer_net_balances": "22041448.180271",
+        "exchange_net_balances": "22106917.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2784365"
+      },
+      {
+        "currency": "scr",
+        "customer_net_balances": "20288450.841016",
+        "exchange_net_balances": "20303061.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "402324"
+      },
+      {
+        "currency": "ftt",
+        "customer_net_balances": "2530291.237040",
+        "exchange_net_balances": "2531037.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "641363"
+      },
+      {
+        "currency": "on",
+        "customer_net_balances": "33558560.962757",
+        "exchange_net_balances": "35236016.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4495762"
+      },
+      {
+        "currency": "kgen",
+        "customer_net_balances": "24541471.076893",
+        "exchange_net_balances": "24932175.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2193282"
+      },
+      {
+        "currency": "xaut",
+        "customer_net_balances": "8385.611454",
+        "exchange_net_balances": "8552.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "35674753"
+      },
+      {
+        "currency": "aeon",
+        "customer_net_balances": "16033776.216660",
+        "exchange_net_balances": "17805872.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "648310"
+      },
+      {
+        "currency": "ultima",
+        "customer_net_balances": "632.000000",
+        "exchange_net_balances": "632.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "965973"
+      },
+      {
+        "currency": "spcxx",
+        "customer_net_balances": "5173.701942",
+        "exchange_net_balances": "5200.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "764770"
+      },
+      {
+        "currency": "ar",
+        "customer_net_balances": "1197829.054542",
+        "exchange_net_balances": "1197935.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4493814"
+      },
+      {
+        "currency": "deso",
+        "customer_net_balances": "708662.610740",
+        "exchange_net_balances": "708663.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "989860"
+      },
+      {
+        "currency": "clanker",
+        "customer_net_balances": "50344.842372",
+        "exchange_net_balances": "50463.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "559391"
+      },
+      {
+        "currency": "wrx",
+        "customer_net_balances": "84619414.904347",
+        "exchange_net_balances": "84699578.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1548307"
+      },
+      {
+        "currency": "acx",
+        "customer_net_balances": "10891610.750785",
+        "exchange_net_balances": "10916757.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "473677"
+      },
+      {
+        "currency": "rbnt",
+        "customer_net_balances": "369198986.279947",
+        "exchange_net_balances": "369231897.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "602954"
+      },
+      {
+        "currency": "ctc",
+        "customer_net_balances": "6332675.381537",
+        "exchange_net_balances": "6967292.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "622247"
+      },
+      {
+        "currency": "tao",
+        "customer_net_balances": "69209.280400",
+        "exchange_net_balances": "69274.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "18775416"
+      },
+      {
+        "currency": "soxlg",
+        "customer_net_balances": "6562.000000",
+        "exchange_net_balances": "6562.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "644747"
+      },
+      {
+        "currency": "dna",
+        "customer_net_balances": "4933394.396982",
+        "exchange_net_balances": "8766006.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2379794"
+      },
+      {
+        "currency": "spk",
+        "customer_net_balances": "20665903.861895",
+        "exchange_net_balances": "20739422.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "403795"
+      },
+      {
+        "currency": "lit",
+        "customer_net_balances": "1599067.410395",
+        "exchange_net_balances": "1611154.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4972022"
+      },
+      {
+        "currency": "evaa",
+        "customer_net_balances": "6857573.511989",
+        "exchange_net_balances": "7525903.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4177627"
+      },
+      {
+        "currency": "usdc",
+        "customer_net_balances": "97645095.415551",
+        "exchange_net_balances": "103121445.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "103121445"
+      },
+      {
+        "currency": "up",
+        "customer_net_balances": "7710495.349419",
+        "exchange_net_balances": "7728796.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1052120"
+      },
+      {
+        "currency": "bsv",
+        "customer_net_balances": "567074.272595",
+        "exchange_net_balances": "576422.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "10196912"
+      },
+      {
+        "currency": "mstrg",
+        "customer_net_balances": "4676.000000",
+        "exchange_net_balances": "4676.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "649148"
+      },
+      {
+        "currency": "btr",
+        "customer_net_balances": "75398776.866394",
+        "exchange_net_balances": "75907002.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3317134"
+      },
+      {
+        "currency": "aztec",
+        "customer_net_balances": "41468614.414603",
+        "exchange_net_balances": "42464062.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "815818"
+      },
+      {
+        "currency": "win",
+        "customer_net_balances": "10026149414.549464",
+        "exchange_net_balances": "10286133364.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "543003"
+      },
+      {
+        "currency": "openai",
+        "customer_net_balances": "15749.000000",
+        "exchange_net_balances": "15749.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "13438020"
+      },
+      {
+        "currency": "iron",
+        "customer_net_balances": "9489308.278159",
+        "exchange_net_balances": "10307475.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "773059"
+      },
+      {
+        "currency": "xrp",
+        "customer_net_balances": "52529328.868867",
+        "exchange_net_balances": "60396694.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "78902240"
+      },
+      {
+        "currency": "soon",
+        "customer_net_balances": "19434035.665513",
+        "exchange_net_balances": "20679213.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6240158"
+      },
+      {
+        "currency": "flow",
+        "customer_net_balances": "15309059.966741",
+        "exchange_net_balances": "15323068.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "454481"
+      },
+      {
+        "currency": "dcr",
+        "customer_net_balances": "41970.962366",
+        "exchange_net_balances": "41982.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "605308"
+      },
+      {
+        "currency": "bch",
+        "customer_net_balances": "43678.832345",
+        "exchange_net_balances": "45995.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "12649161"
+      },
+      {
+        "currency": "grin",
+        "customer_net_balances": "47746406.536637",
+        "exchange_net_balances": "50382952.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "611144"
+      },
+      {
+        "currency": "aixbt",
+        "customer_net_balances": "24066805.576424",
+        "exchange_net_balances": "25100734.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "463107"
+      },
+      {
+        "currency": "bera",
+        "customer_net_balances": "4298538.863275",
+        "exchange_net_balances": "4534093.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "764447"
+      },
+      {
+        "currency": "stable",
+        "customer_net_balances": "50607884.576044",
+        "exchange_net_balances": "52886396.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1274614"
+      },
+      {
+        "currency": "manta",
+        "customer_net_balances": "10670265.898259",
+        "exchange_net_balances": "10686622.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "697087"
+      },
+      {
+        "currency": "bio",
+        "customer_net_balances": "29086939.188727",
+        "exchange_net_balances": "30669044.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "722561"
+      },
+      {
+        "currency": "virtual",
+        "customer_net_balances": "6104409.845428",
+        "exchange_net_balances": "6357680.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4166822"
+      },
+      {
+        "currency": "naka",
+        "customer_net_balances": "4981742.097481",
+        "exchange_net_balances": "4995582.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "448752"
+      },
+      {
+        "currency": "toshi",
+        "customer_net_balances": "7109152863.517963",
+        "exchange_net_balances": "7111835694.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "767935"
+      },
+      {
+        "currency": "avaai",
+        "customer_net_balances": "255972919.075552",
+        "exchange_net_balances": "266178074.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1902107"
+      },
+      {
+        "currency": "rez",
+        "customer_net_balances": "127914089.757286",
+        "exchange_net_balances": "127934728.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "429987"
+      },
+      {
+        "currency": "ada",
+        "customer_net_balances": "89436855.131883",
+        "exchange_net_balances": "89465592.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "19801418"
+      },
+      {
+        "currency": "1inch",
+        "customer_net_balances": "6590120.679798",
+        "exchange_net_balances": "6959722.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "643494"
+      },
+      {
+        "currency": "wet",
+        "customer_net_balances": "9361965.280139",
+        "exchange_net_balances": "9484900.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "470355"
+      },
+      {
+        "currency": "cspr",
+        "customer_net_balances": "438987602.760343",
+        "exchange_net_balances": "440800483.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1009432"
+      },
+      {
+        "currency": "sui",
+        "customer_net_balances": "27907071.773345",
+        "exchange_net_balances": "27976638.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "27828361"
+      },
+      {
+        "currency": "dydx",
+        "customer_net_balances": "8611224.126118",
+        "exchange_net_balances": "8854685.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1015277"
+      },
+      {
+        "currency": "zil",
+        "customer_net_balances": "228572610.311381",
+        "exchange_net_balances": "230475850.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "520413"
+      },
+      {
+        "currency": "peaq",
+        "customer_net_balances": "83220431.208966",
+        "exchange_net_balances": "83476711.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3096901"
+      },
+      {
+        "currency": "lunc",
+        "customer_net_balances": "65900050433.829210",
+        "exchange_net_balances": "67950245316.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3130461"
+      },
+      {
+        "currency": "tbc",
+        "customer_net_balances": "1420379.338486",
+        "exchange_net_balances": "1420850.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7340111"
+      },
+      {
+        "currency": "aioz",
+        "customer_net_balances": "15144580.342243",
+        "exchange_net_balances": "15401662.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1585754"
+      },
+      {
+        "currency": "brett",
+        "customer_net_balances": "272546752.580237",
+        "exchange_net_balances": "276037320.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1266734"
+      },
+      {
+        "currency": "axs",
+        "customer_net_balances": "767601.751034",
+        "exchange_net_balances": "770404.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "775565"
+      },
+      {
+        "currency": "vxt",
+        "customer_net_balances": "81429231.720119",
+        "exchange_net_balances": "82699541.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "817401"
+      },
+      {
+        "currency": "laptop",
+        "customer_net_balances": "22717386.938936",
+        "exchange_net_balances": "24009503.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1901311"
+      },
+      {
+        "currency": "sent",
+        "customer_net_balances": "22421332.615343",
+        "exchange_net_balances": "23199992.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "532206"
+      },
+      {
+        "currency": "kmno",
+        "customer_net_balances": "29436359.141675",
+        "exchange_net_balances": "29458170.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1161534"
+      },
+      {
+        "currency": "pieverse",
+        "customer_net_balances": "16591038.975934",
+        "exchange_net_balances": "16700012.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "17832271"
+      },
+      {
+        "currency": "blue",
+        "customer_net_balances": "55924074.927909",
+        "exchange_net_balances": "55998700.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "477611"
+      },
+      {
+        "currency": "aster",
+        "customer_net_balances": "23253499.570419",
+        "exchange_net_balances": "23256049.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "16286210"
+      },
+      {
+        "currency": "bome",
+        "customer_net_balances": "2269657197.128566",
+        "exchange_net_balances": "2271657289.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1415468"
+      },
+      {
+        "currency": "allo",
+        "customer_net_balances": "10067793.920529",
+        "exchange_net_balances": "10188747.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2148296"
+      },
+      {
+        "currency": "br",
+        "customer_net_balances": "4287812.246243",
+        "exchange_net_balances": "4512728.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2050898"
+      },
+      {
+        "currency": "aiot",
+        "customer_net_balances": "27002704.558424",
+        "exchange_net_balances": "27212927.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1453441"
+      },
+      {
+        "currency": "mstron",
+        "customer_net_balances": "11994.367231",
+        "exchange_net_balances": "12612.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1749471"
+      },
+      {
+        "currency": "open",
+        "customer_net_balances": "5514407.650737",
+        "exchange_net_balances": "5657720.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "509759"
+      },
+      {
+        "currency": "zeta",
+        "customer_net_balances": "19527197.972163",
+        "exchange_net_balances": "19618637.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "808875"
+      },
+      {
+        "currency": "blkgrwon",
+        "customer_net_balances": "91366.556910",
+        "exchange_net_balances": "94500.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "438389"
+      },
+      {
+        "currency": "sut",
+        "customer_net_balances": "6346089.386989",
+        "exchange_net_balances": "6346099.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1329507"
+      },
+      {
+        "currency": "imx",
+        "customer_net_balances": "5893290.703725",
+        "exchange_net_balances": "5958324.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "895058"
+      },
+      {
+        "currency": "sqd",
+        "customer_net_balances": "31531681.549458",
+        "exchange_net_balances": "31583091.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "565020"
+      },
+      {
+        "currency": "s",
+        "customer_net_balances": "29499630.486658",
+        "exchange_net_balances": "29857002.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1556444"
+      },
+      {
+        "currency": "q",
+        "customer_net_balances": "159053117.222717",
+        "exchange_net_balances": "164450411.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "18003865"
+      },
+      {
+        "currency": "enso",
+        "customer_net_balances": "888754.133567",
+        "exchange_net_balances": "1014174.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "690448"
+      },
+      {
+        "currency": "nil",
+        "customer_net_balances": "11898192.352667",
+        "exchange_net_balances": "11902174.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "910396"
+      },
+      {
+        "currency": "data",
+        "customer_net_balances": "3294304.118518",
+        "exchange_net_balances": "3309630.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "542778"
+      },
+      {
+        "currency": "aic",
+        "customer_net_balances": "32929084.483458",
+        "exchange_net_balances": "34514901.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "496910"
+      },
+      {
+        "currency": "taiko",
+        "customer_net_balances": "13325945.284580",
+        "exchange_net_balances": "13503499.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "961043"
+      },
+      {
+        "currency": "scarcity",
+        "customer_net_balances": "39833312.865726",
+        "exchange_net_balances": "39840389.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "432904"
+      },
+      {
+        "currency": "elizaos",
+        "customer_net_balances": "3153084226.225645",
+        "exchange_net_balances": "3153605234.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1385945"
+      },
+      {
+        "currency": "bas",
+        "customer_net_balances": "690559708.157674",
+        "exchange_net_balances": "690579406.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "12748094"
+      },
+      {
+        "currency": "vtho",
+        "customer_net_balances": "778864813.232893",
+        "exchange_net_balances": "933341242.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "590337"
+      },
+      {
+        "currency": "velvet",
+        "customer_net_balances": "32795357.621738",
+        "exchange_net_balances": "35006089.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2337705"
+      },
+      {
+        "currency": "myx",
+        "customer_net_balances": "29460957.169732",
+        "exchange_net_balances": "29500550.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1723421"
+      },
+      {
+        "currency": "fhe",
+        "customer_net_balances": "97148589.860845",
+        "exchange_net_balances": "111667836.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1960886"
+      },
+      {
+        "currency": "trx",
+        "customer_net_balances": "59678947.500605",
+        "exchange_net_balances": "179648268.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "59679153"
+      },
+      {
+        "currency": "snek",
+        "customer_net_balances": "1835291802.214731",
+        "exchange_net_balances": "1840958864.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1294745"
+      },
+      {
+        "currency": "pippin",
+        "customer_net_balances": "265420203.493578",
+        "exchange_net_balances": "293919909.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4483453"
+      },
+      {
+        "currency": "xdc",
+        "customer_net_balances": "110542165.565779",
+        "exchange_net_balances": "111507894.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3647422"
+      },
+      {
+        "currency": "oort",
+        "customer_net_balances": "258786112.880182",
+        "exchange_net_balances": "258789584.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "510953"
+      },
+      {
+        "currency": "epic",
+        "customer_net_balances": "2353623.889434",
+        "exchange_net_balances": "2745302.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "737661"
+      },
+      {
+        "currency": "cnpy",
+        "customer_net_balances": "13048415.598388",
+        "exchange_net_balances": "13416146.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3120997"
+      },
+      {
+        "currency": "arc",
+        "customer_net_balances": "220191958.770013",
+        "exchange_net_balances": "220195711.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "9294460"
+      },
+      {
+        "currency": "usdd",
+        "customer_net_balances": "825683.868661",
+        "exchange_net_balances": "1233120.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1229420"
+      },
+      {
+        "currency": "googlon",
+        "customer_net_balances": "1588.000000",
+        "exchange_net_balances": "1588.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "543986"
+      },
+      {
+        "currency": "fartcoin",
+        "customer_net_balances": "58103542.960578",
+        "exchange_net_balances": "58955692.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "8445991"
+      },
+      {
+        "currency": "ens",
+        "customer_net_balances": "175393.530384",
+        "exchange_net_balances": "179958.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "981491"
+      },
+      {
+        "currency": "pokt",
+        "customer_net_balances": "74418887.368083",
+        "exchange_net_balances": "74789111.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "544388"
+      },
+      {
+        "currency": "b2",
+        "customer_net_balances": "11121459.646685",
+        "exchange_net_balances": "11123836.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4551872"
+      },
+      {
+        "currency": "avnt",
+        "customer_net_balances": "3762733.332090",
+        "exchange_net_balances": "3772000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "401151"
+      },
+      {
+        "currency": "ustc",
+        "customer_net_balances": "113535392.727927",
+        "exchange_net_balances": "117537970.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "576640"
+      },
+      {
+        "currency": "vvv",
+        "customer_net_balances": "346716.934942",
+        "exchange_net_balances": "347503.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7860175"
+      },
+      {
+        "currency": "kava",
+        "customer_net_balances": "7453392.692574",
+        "exchange_net_balances": "8163158.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "573869"
+      },
+      {
+        "currency": "crclon",
+        "customer_net_balances": "15599.215215",
+        "exchange_net_balances": "17285.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1442635"
+      },
+      {
+        "currency": "twt",
+        "customer_net_balances": "1905401.688346",
+        "exchange_net_balances": "1934181.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "871154"
+      },
+      {
+        "currency": "dot",
+        "customer_net_balances": "8510231.104405",
+        "exchange_net_balances": "11299279.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "12529769"
+      },
+      {
+        "currency": "orca",
+        "customer_net_balances": "533252.723779",
+        "exchange_net_balances": "539113.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "957357"
+      },
+      {
+        "currency": "stx",
+        "customer_net_balances": "4021177.284950",
+        "exchange_net_balances": "4808840.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1704252"
+      },
+      {
+        "currency": "neo",
+        "customer_net_balances": "645530.304661",
+        "exchange_net_balances": "1082446.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2387875"
+      },
+      {
+        "currency": "air",
+        "customer_net_balances": "122640932.111238",
+        "exchange_net_balances": "124171335.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "573049"
+      },
+      {
+        "currency": "stonk",
+        "customer_net_balances": "22985136.650580",
+        "exchange_net_balances": "22986561.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2319343"
+      },
+      {
+        "currency": "aurora",
+        "customer_net_balances": "8895517.390872",
+        "exchange_net_balances": "9024238.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "513026"
+      },
+      {
+        "currency": "storj",
+        "customer_net_balances": "19117051.226414",
+        "exchange_net_balances": "19208194.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "478667"
+      },
+      {
+        "currency": "gomining",
+        "customer_net_balances": "1126348.214605",
+        "exchange_net_balances": "1185394.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "445351"
+      },
+      {
+        "currency": "merl",
+        "customer_net_balances": "31587145.614980",
+        "exchange_net_balances": "32428271.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "821082"
+      },
+      {
+        "currency": "googlx",
+        "customer_net_balances": "2134.434130",
+        "exchange_net_balances": "2135.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "733169"
+      },
+      {
+        "currency": "mina",
+        "customer_net_balances": "12433924.758696",
+        "exchange_net_balances": "12477828.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "894160"
+      },
+      {
+        "currency": "rhea",
+        "customer_net_balances": "18856446.915671",
+        "exchange_net_balances": "18868865.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1294403"
+      },
+      {
+        "currency": "qqqon",
+        "customer_net_balances": "1055.000000",
+        "exchange_net_balances": "1055.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "755180"
+      },
+      {
+        "currency": "take",
+        "customer_net_balances": "59905369.700091",
+        "exchange_net_balances": "69790765.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3852798"
+      },
+      {
+        "currency": "prom",
+        "customer_net_balances": "245864.612616",
+        "exchange_net_balances": "246496.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1182220"
+      },
+      {
+        "currency": "mug",
+        "customer_net_balances": "641.000000",
+        "exchange_net_balances": "641.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "571425"
+      },
+      {
+        "currency": "ita",
+        "customer_net_balances": "174950.441142",
+        "exchange_net_balances": "186381.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1930907"
+      },
+      {
+        "currency": "pepe",
+        "customer_net_balances": "4445098759965.480828",
+        "exchange_net_balances": "4450000000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "17836490"
+      },
+      {
+        "currency": "bnkr",
+        "customer_net_balances": "1315537287.696186",
+        "exchange_net_balances": "1323685437.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "461965"
+      },
+      {
+        "currency": "pact",
+        "customer_net_balances": "3169259582.666575",
+        "exchange_net_balances": "3189637637.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "441604"
+      },
+      {
+        "currency": "npc",
+        "customer_net_balances": "164688677.035287",
+        "exchange_net_balances": "165263256.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3037041"
+      },
+      {
+        "currency": "cpool",
+        "customer_net_balances": "27491460.024141",
+        "exchange_net_balances": "28731801.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "796444"
+      },
+      {
+        "currency": "bnb",
+        "customer_net_balances": "50727.628671",
+        "exchange_net_balances": "74935.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "54201180"
+      },
+      {
+        "currency": "cc",
+        "customer_net_balances": "36397742.514157",
+        "exchange_net_balances": "39023541.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3988985"
+      },
+      {
+        "currency": "arb",
+        "customer_net_balances": "27648997.275628",
+        "exchange_net_balances": "27781171.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "5154239"
+      },
+      {
+        "currency": "etc",
+        "customer_net_balances": "1637997.857264",
+        "exchange_net_balances": "1690338.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "13096738"
+      },
+      {
+        "currency": "btw",
+        "customer_net_balances": "140934386.603022",
+        "exchange_net_balances": "140934713.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "332887793"
+      },
+      {
+        "currency": "zest",
+        "customer_net_balances": "26856271.719252",
+        "exchange_net_balances": "27106769.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4871356"
+      },
+      {
+        "currency": "pyth",
+        "customer_net_balances": "26410160.866031",
+        "exchange_net_balances": "26442855.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1959415"
+      },
+      {
+        "currency": "abt",
+        "customer_net_balances": "6437251.188756",
+        "exchange_net_balances": "6567544.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1871749"
+      },
+      {
+        "currency": "usdg",
+        "customer_net_balances": "765377.066804",
+        "exchange_net_balances": "6620719.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6629325"
+      },
+      {
+        "currency": "yfii",
+        "customer_net_balances": "17809.098160",
+        "exchange_net_balances": "17833.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "424444"
+      },
+      {
+        "currency": "cashcat",
+        "customer_net_balances": "27568856.373814",
+        "exchange_net_balances": "27659840.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2987538"
+      },
+      {
+        "currency": "neiro",
+        "customer_net_balances": "6799314214.005579",
+        "exchange_net_balances": "6811502464.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "483479"
+      },
+      {
+        "currency": "cell",
+        "customer_net_balances": "6747035.832714",
+        "exchange_net_balances": "6908642.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "462739"
+      },
+      {
+        "currency": "btc",
+        "customer_net_balances": "21156.976134",
+        "exchange_net_balances": "25727.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2115530402"
+      },
+      {
+        "currency": "w",
+        "customer_net_balances": "63043716.055400",
+        "exchange_net_balances": "63077437.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "825178"
+      },
+      {
+        "currency": "ethfi",
+        "customer_net_balances": "4947662.087527",
+        "exchange_net_balances": "4947737.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3388705"
+      },
+      {
+        "currency": "esp",
+        "customer_net_balances": "4972376.484356",
+        "exchange_net_balances": "5250985.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "451006"
+      },
+      {
+        "currency": "msfton",
+        "customer_net_balances": "816.440989",
+        "exchange_net_balances": "830.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "444543"
+      },
+      {
+        "currency": "vet",
+        "customer_net_balances": "235229296.016733",
+        "exchange_net_balances": "239570481.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1625005"
+      },
+      {
+        "currency": "rvn",
+        "customer_net_balances": "299996514.108799",
+        "exchange_net_balances": "301387987.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "427276"
+      },
+      {
+        "currency": "sats",
+        "customer_net_balances": "123825544503269.732193",
+        "exchange_net_balances": "134000000000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1366800"
+      },
+      {
+        "currency": "cake",
+        "customer_net_balances": "1656496.184392",
+        "exchange_net_balances": "1687571.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3684643"
+      },
+      {
+        "currency": "believe",
+        "customer_net_balances": "369311412.608131",
+        "exchange_net_balances": "369639507.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "704384"
+      },
+      {
+        "currency": "gt",
+        "customer_net_balances": "83444232.871589",
+        "exchange_net_balances": "107646669.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1070007888"
+      },
+      {
+        "currency": "xtz",
+        "customer_net_balances": "3032668.662075",
+        "exchange_net_balances": "4811879.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1438751"
+      },
+      {
+        "currency": "ltc",
+        "customer_net_balances": "500786.711066",
+        "exchange_net_balances": "553534.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "32719402"
+      },
+      {
+        "currency": "cetus",
+        "customer_net_balances": "18126331.808913",
+        "exchange_net_balances": "19369207.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "431603"
+      },
+      {
+        "currency": "aria",
+        "customer_net_balances": "39187967.560544",
+        "exchange_net_balances": "40024873.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2267408"
+      },
+      {
+        "currency": "mog",
+        "customer_net_balances": "9092397101660.258155",
+        "exchange_net_balances": "9281460000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "935571"
+      },
+      {
+        "currency": "shx",
+        "customer_net_balances": "482994244.953189",
+        "exchange_net_balances": "502945505.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2873326"
+      },
+      {
+        "currency": "jasmy",
+        "customer_net_balances": "651900913.184593",
+        "exchange_net_balances": "671697542.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3073015"
+      },
+      {
+        "currency": "dood",
+        "customer_net_balances": "317495065.436303",
+        "exchange_net_balances": "321834213.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "426107"
+      },
+      {
+        "currency": "crv",
+        "customer_net_balances": "10834897.265684",
+        "exchange_net_balances": "10872509.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3856478"
+      },
+      {
+        "currency": "coti",
+        "customer_net_balances": "64318330.633457",
+        "exchange_net_balances": "64694235.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "695914"
+      },
+      {
+        "currency": "xpr",
+        "customer_net_balances": "357034889.975374",
+        "exchange_net_balances": "714936277.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1393266"
+      },
+      {
+        "currency": "tradoor",
+        "customer_net_balances": "3421739.736182",
+        "exchange_net_balances": "3455209.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2011967"
+      },
+      {
+        "currency": "uni",
+        "customer_net_balances": "3425332.871598",
+        "exchange_net_balances": "3547020.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "25488891"
+      },
+      {
+        "currency": "ptb",
+        "customer_net_balances": "4868390352.497555",
+        "exchange_net_balances": "4915208383.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3423441"
+      },
+      {
+        "currency": "sun",
+        "customer_net_balances": "30352027.680500",
+        "exchange_net_balances": "31015853.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "514862"
+      },
+      {
+        "currency": "flip",
+        "customer_net_balances": "1573649.025370",
+        "exchange_net_balances": "1573890.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "474527"
+      },
+      {
+        "currency": "useless",
+        "customer_net_balances": "66803017.452355",
+        "exchange_net_balances": "69185973.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "9939256"
+      },
+      {
+        "currency": "kas",
+        "customer_net_balances": "764439860.883928",
+        "exchange_net_balances": "766885894.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "27063402"
+      },
+      {
+        "currency": "siren",
+        "customer_net_balances": "34063085.946617",
+        "exchange_net_balances": "34545745.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1674085"
+      },
+      {
+        "currency": "cro",
+        "customer_net_balances": "74223647.165811",
+        "exchange_net_balances": "74234720.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4219501"
+      },
+      {
+        "currency": "wld",
+        "customer_net_balances": "20832951.414670",
+        "exchange_net_balances": "21038367.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "10249891"
+      },
+      {
+        "currency": "rlc",
+        "customer_net_balances": "559006.803916",
+        "exchange_net_balances": "560922.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "419456"
+      },
+      {
+        "currency": "eth",
+        "customer_net_balances": "362785.142215",
+        "exchange_net_balances": "449042.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1082053266"
+      },
+      {
+        "currency": "usd",
+        "customer_net_balances": "1205987.699548",
+        "exchange_net_balances": "48384802.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "48384802"
+      },
+      {
+        "currency": "not",
+        "customer_net_balances": "1300851429.144475",
+        "exchange_net_balances": "1315203262.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "494252"
+      },
+      {
+        "currency": "algo",
+        "customer_net_balances": "33885943.834503",
+        "exchange_net_balances": "34946817.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3882939"
+      },
+      {
+        "currency": "night",
+        "customer_net_balances": "135221081.135578",
+        "exchange_net_balances": "135773504.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "5374728"
+      },
+      {
+        "currency": "babydoge",
+        "customer_net_balances": "11939453839931575.721669",
+        "exchange_net_balances": "12900000000000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3870000"
+      },
+      {
+        "currency": "safe",
+        "customer_net_balances": "5638074.346859",
+        "exchange_net_balances": "5650628.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "583201"
+      },
+      {
+        "currency": "edgex",
+        "customer_net_balances": "1614654.762045",
+        "exchange_net_balances": "1614683.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "463251"
+      },
+      {
+        "currency": "coinon",
+        "customer_net_balances": "2411.968276",
+        "exchange_net_balances": "2523.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "438468"
+      },
+      {
+        "currency": "rsc",
+        "customer_net_balances": "9904932.747454",
+        "exchange_net_balances": "9904973.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "691268"
+      },
+      {
+        "currency": "gusd",
+        "customer_net_balances": "175467818.031801",
+        "exchange_net_balances": "317797598.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "317320901"
+      },
+      {
+        "currency": "deep",
+        "customer_net_balances": "39677447.558842",
+        "exchange_net_balances": "39788314.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "782953"
+      },
+      {
+        "currency": "rsr",
+        "customer_net_balances": "301280692.222416",
+        "exchange_net_balances": "301739719.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "575718"
+      },
+      {
+        "currency": "ht",
+        "customer_net_balances": "2893990.189849",
+        "exchange_net_balances": "3192632.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "442465"
+      },
+      {
+        "currency": "token",
+        "customer_net_balances": "427809269.896382",
+        "exchange_net_balances": "428665294.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "812319"
+      },
+      {
+        "currency": "dka",
+        "customer_net_balances": "234569660.814857",
+        "exchange_net_balances": "235690903.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "861920"
+      },
+      {
+        "currency": "bank",
+        "customer_net_balances": "27694760.279911",
+        "exchange_net_balances": "31496865.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "815137"
+      },
+      {
+        "currency": "super",
+        "customer_net_balances": "5023623.786134",
+        "exchange_net_balances": "5145669.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "948757"
+      },
+      {
+        "currency": "iag",
+        "customer_net_balances": "19558268.164897",
+        "exchange_net_balances": "20833650.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "430005"
+      },
+      {
+        "currency": "akt",
+        "customer_net_balances": "8335462.613939",
+        "exchange_net_balances": "8388929.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6002277"
+      },
+      {
+        "currency": "nft",
+        "customer_net_balances": "3401204007175.358448",
+        "exchange_net_balances": "3525290000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "843601"
+      },
+      {
+        "currency": "order",
+        "customer_net_balances": "13523938.708328",
+        "exchange_net_balances": "13606396.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "412408"
+      },
+      {
+        "currency": "bonk",
+        "customer_net_balances": "585770278771.361491",
+        "exchange_net_balances": "589361000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1735609"
+      },
+      {
+        "currency": "vatreni",
+        "customer_net_balances": "1838790.691752",
+        "exchange_net_balances": "1839326.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2717972"
+      },
+      {
+        "currency": "core",
+        "customer_net_balances": "50298740.798761",
+        "exchange_net_balances": "50633425.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "886083"
+      },
+      {
+        "currency": "pyusd",
+        "customer_net_balances": "429384.762666",
+        "exchange_net_balances": "429425.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "429210"
+      },
+      {
+        "currency": "mnt",
+        "customer_net_balances": "6508037.927235",
+        "exchange_net_balances": "6605483.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3500244"
+      },
+      {
+        "currency": "griffain",
+        "customer_net_balances": "214420772.006305",
+        "exchange_net_balances": "214977119.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3177145"
+      },
+      {
+        "currency": "qqqx",
+        "customer_net_balances": "1589.780153",
+        "exchange_net_balances": "1592.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1140721"
+      },
+      {
+        "currency": "orai",
+        "customer_net_balances": "1203203.979348",
+        "exchange_net_balances": "1210292.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "618216"
+      },
+      {
+        "currency": "sndkg",
+        "customer_net_balances": "1294.000000",
+        "exchange_net_balances": "1294.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1703867"
+      },
+      {
+        "currency": "okb",
+        "customer_net_balances": "96169.132224",
+        "exchange_net_balances": "96174.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "10914795"
+      },
+      {
+        "currency": "mavia",
+        "customer_net_balances": "24813466.360480",
+        "exchange_net_balances": "24856899.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "644289"
+      },
+      {
+        "currency": "alt",
+        "customer_net_balances": "71787529.318555",
+        "exchange_net_balances": "75920937.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "688146"
+      },
+      {
+        "currency": "qanx",
+        "customer_net_balances": "95741771.910400",
+        "exchange_net_balances": "103979311.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1256173"
+      },
+      {
+        "currency": "coinx",
+        "customer_net_balances": "4461.294621",
+        "exchange_net_balances": "4589.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "800078"
+      },
+      {
+        "currency": "flr",
+        "customer_net_balances": "234178946.274012",
+        "exchange_net_balances": "239188579.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1540373"
+      },
+      {
+        "currency": "b",
+        "customer_net_balances": "61789370.891363",
+        "exchange_net_balances": "63160346.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7983466"
+      },
+      {
+        "currency": "light",
+        "customer_net_balances": "28331954.589164",
+        "exchange_net_balances": "30766065.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6382111"
+      },
+      {
+        "currency": "fil",
+        "customer_net_balances": "21207734.341326",
+        "exchange_net_balances": "21331801.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "22264000"
+      },
+      {
+        "currency": "gram",
+        "customer_net_balances": "4471214.387307",
+        "exchange_net_balances": "6309275.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "8511212"
+      },
+      {
+        "currency": "lab",
+        "customer_net_balances": "146248262.402672",
+        "exchange_net_balances": "149716630.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6527644"
+      },
+      {
+        "currency": "crclg",
+        "customer_net_balances": "40333.000000",
+        "exchange_net_balances": "40333.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3367827"
+      },
+      {
+        "currency": "usd1",
+        "customer_net_balances": "391757947.569546",
+        "exchange_net_balances": "395594390.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "395633950"
+      },
+      {
+        "currency": "ub",
+        "customer_net_balances": "113428209.209383",
+        "exchange_net_balances": "113615939.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "13569150"
+      },
+      {
+        "currency": "xym",
+        "customer_net_balances": "274855333.175269",
+        "exchange_net_balances": "275309650.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "764258"
+      },
+      {
+        "currency": "flock",
+        "customer_net_balances": "11917656.531862",
+        "exchange_net_balances": "12044122.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "527652"
+      },
+      {
+        "currency": "tut",
+        "customer_net_balances": "37116354.399304",
+        "exchange_net_balances": "40304614.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "751680"
+      },
+      {
+        "currency": "flux",
+        "customer_net_balances": "8587665.311495",
+        "exchange_net_balances": "8685023.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "618546"
+      },
+      {
+        "currency": "dexe",
+        "customer_net_balances": "493668.271219",
+        "exchange_net_balances": "493780.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "851868"
+      },
+      {
+        "currency": "tslaon",
+        "customer_net_balances": "1524.926721",
+        "exchange_net_balances": "1575.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "564581"
+      },
+      {
+        "currency": "intcg",
+        "customer_net_balances": "5178.000000",
+        "exchange_net_balances": "5178.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "473677"
+      },
+      {
+        "currency": "trump",
+        "customer_net_balances": "3610962.109864",
+        "exchange_net_balances": "3650932.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6322684"
+      },
+      {
+        "currency": "inx",
+        "customer_net_balances": "372674842.514354",
+        "exchange_net_balances": "372848226.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1515254"
+      },
+      {
+        "currency": "nvdaon",
+        "customer_net_balances": "2800.406689",
+        "exchange_net_balances": "2921.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "632262"
+      },
+      {
+        "currency": "morpho",
+        "customer_net_balances": "660848.961945",
+        "exchange_net_balances": "661882.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1559396"
+      },
+      {
+        "currency": "slvon",
+        "customer_net_balances": "47509.624920",
+        "exchange_net_balances": "47512.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2462557"
+      },
+      {
+        "currency": "drift",
+        "customer_net_balances": "29676989.959057",
+        "exchange_net_balances": "29722462.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "460191"
+      },
+      {
+        "currency": "ta",
+        "customer_net_balances": "41840187.092947",
+        "exchange_net_balances": "49796887.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1981915"
+      },
+      {
+        "currency": "syn",
+        "customer_net_balances": "4497045.909019",
+        "exchange_net_balances": "4647895.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "844754"
+      },
+      {
+        "currency": "fet",
+        "customer_net_balances": "63497192.908135",
+        "exchange_net_balances": "64760342.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "12272083"
+      },
+      {
+        "currency": "swarms",
+        "customer_net_balances": "320677031.403571",
+        "exchange_net_balances": "355470591.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2416132"
+      },
+      {
+        "currency": "skr",
+        "customer_net_balances": "39345264.875941",
+        "exchange_net_balances": "39419109.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "566451"
+      },
+      {
+        "currency": "fxnw",
+        "customer_net_balances": "35847023.890424",
+        "exchange_net_balances": "36452572.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "11410383"
+      },
+      {
+        "currency": "cfx",
+        "customer_net_balances": "97141748.657470",
+        "exchange_net_balances": "97900169.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "5150526"
+      },
+      {
+        "currency": "doge",
+        "customer_net_balances": "2185772089.723507",
+        "exchange_net_balances": "2333595886.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "185357520"
+      },
+      {
+        "currency": "zeus",
+        "customer_net_balances": "182899213.966297",
+        "exchange_net_balances": "183345954.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1608126"
+      },
+      {
+        "currency": "jst",
+        "customer_net_balances": "5111640.884645",
+        "exchange_net_balances": "5618133.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "761312"
+      },
+      {
+        "currency": "iotx",
+        "customer_net_balances": "116784911.481886",
+        "exchange_net_balances": "117697310.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "474907"
+      },
+      {
+        "currency": "met",
+        "customer_net_balances": "1353186.378415",
+        "exchange_net_balances": "1354927.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "450987"
+      },
+      {
+        "currency": "beat",
+        "customer_net_balances": "87370284.740779",
+        "exchange_net_balances": "88993582.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6513439"
+      },
+      {
+        "currency": "gf",
+        "customer_net_balances": "392140301.553052",
+        "exchange_net_balances": "415306580.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2974009"
+      },
+      {
+        "currency": "qtum",
+        "customer_net_balances": "825581.889946",
+        "exchange_net_balances": "866307.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "744416"
+      },
+      {
+        "currency": "chip",
+        "customer_net_balances": "25893352.289297",
+        "exchange_net_balances": "25896982.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1065659"
+      },
+      {
+        "currency": "acp",
+        "customer_net_balances": "169724867.990484",
+        "exchange_net_balances": "169745866.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "821059"
+      },
+      {
+        "currency": "lpt",
+        "customer_net_balances": "316523.699781",
+        "exchange_net_balances": "340377.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "555392"
+      },
+      {
+        "currency": "zulu",
+        "customer_net_balances": "159614885.050147",
+        "exchange_net_balances": "159615798.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "479485"
+      },
+      {
+        "currency": "spyx",
+        "customer_net_balances": "823.932845",
+        "exchange_net_balances": "825.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "635716"
+      },
+      {
+        "currency": "ctr",
+        "customer_net_balances": "156356665.878668",
+        "exchange_net_balances": "156359412.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2086928"
+      },
+      {
+        "currency": "ath",
+        "customer_net_balances": "381250062.498921",
+        "exchange_net_balances": "381331314.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2057663"
+      },
+      {
+        "currency": "ssv",
+        "customer_net_balances": "255533.976728",
+        "exchange_net_balances": "255536.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "644206"
+      },
+      {
+        "currency": "link",
+        "customer_net_balances": "1712976.180056",
+        "exchange_net_balances": "1733918.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "20895445"
+      },
+      {
+        "currency": "eigen",
+        "customer_net_balances": "5355179.141714",
+        "exchange_net_balances": "5361784.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1257337"
+      },
+      {
+        "currency": "drv",
+        "customer_net_balances": "8402204.533603",
+        "exchange_net_balances": "8489623.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3302377"
+      },
+      {
+        "currency": "astr",
+        "customer_net_balances": "90519940.182715",
+        "exchange_net_balances": "91636282.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "537629"
+      },
+      {
+        "currency": "jup",
+        "customer_net_balances": "6650370.356576",
+        "exchange_net_balances": "8698739.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2521154"
+      },
+      {
+        "currency": "rektcoin",
+        "customer_net_balances": "5312342784857.998942",
+        "exchange_net_balances": "6064160000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "494835"
+      },
+      {
+        "currency": "xpin",
+        "customer_net_balances": "6018715610.239368",
+        "exchange_net_balances": "6121672021.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4321899"
+      },
+      {
+        "currency": "xlm",
+        "customer_net_balances": "32699318.694862",
+        "exchange_net_balances": "35620850.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "6341579"
+      },
+      {
+        "currency": "qubic",
+        "customer_net_balances": "16507651090482.208152",
+        "exchange_net_balances": "16612700000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7243137"
+      },
+      {
+        "currency": "popcat",
+        "customer_net_balances": "27596626.072433",
+        "exchange_net_balances": "27601376.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1206455"
+      },
+      {
+        "currency": "cow",
+        "customer_net_balances": "3085383.300125",
+        "exchange_net_balances": "3090009.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "394593"
+      },
+      {
+        "currency": "sol",
+        "customer_net_balances": "977616.671217",
+        "exchange_net_balances": "1002162.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "184433232"
+      },
+      {
+        "currency": "marscoin",
+        "customer_net_balances": "28887131.636545",
+        "exchange_net_balances": "29391416.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2215817"
+      },
+      {
+        "currency": "jellyjelly",
+        "customer_net_balances": "379795156.616811",
+        "exchange_net_balances": "384899503.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "19472064"
+      },
+      {
+        "currency": "pump",
+        "customer_net_balances": "1866864664.211556",
+        "exchange_net_balances": "1868348443.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "7818289"
+      },
+      {
+        "currency": "blkhion",
+        "customer_net_balances": "135656.043307",
+        "exchange_net_balances": "143388.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "697871"
+      },
+      {
+        "currency": "snt",
+        "customer_net_balances": "67815522.187290",
+        "exchange_net_balances": "71900725.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "525880"
+      },
+      {
+        "currency": "gwei",
+        "customer_net_balances": "44717238.001586",
+        "exchange_net_balances": "44777851.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "967514"
+      },
+      {
+        "currency": "rlusd",
+        "customer_net_balances": "1196533.558917",
+        "exchange_net_balances": "1230011.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1231486"
+      },
+      {
+        "currency": "skhynixg",
+        "customer_net_balances": "2946.849500",
+        "exchange_net_balances": "2947.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2667035"
+      },
+      {
+        "currency": "coai",
+        "customer_net_balances": "8365048.520822",
+        "exchange_net_balances": "8542289.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2185970"
+      },
+      {
+        "currency": "zro",
+        "customer_net_balances": "1799069.770925",
+        "exchange_net_balances": "1901297.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3562841"
+      },
+      {
+        "currency": "dog",
+        "customer_net_balances": "11394191955.081401",
+        "exchange_net_balances": "11444286719.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "10339911"
+      },
+      {
+        "currency": "huma",
+        "customer_net_balances": "36287680.048047",
+        "exchange_net_balances": "44199306.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1214595"
+      },
+      {
+        "currency": "pol",
+        "customer_net_balances": "32322101.690519",
+        "exchange_net_balances": "32572754.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2979754"
+      },
+      {
+        "currency": "qnt",
+        "customer_net_balances": "49795.657437",
+        "exchange_net_balances": "50108.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "9600291"
+      },
+      {
+        "currency": "render",
+        "customer_net_balances": "2538923.864192",
+        "exchange_net_balances": "2642347.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4799559"
+      },
+      {
+        "currency": "m",
+        "customer_net_balances": "4203951.950427",
+        "exchange_net_balances": "4206475.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3156958"
+      },
+      {
+        "currency": "bgsc",
+        "customer_net_balances": "2731076938.382632",
+        "exchange_net_balances": "2770916817.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1419262"
+      },
+      {
+        "currency": "iota",
+        "customer_net_balances": "24587880.717164",
+        "exchange_net_balances": "26643506.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1193095"
+      },
+      {
+        "currency": "hbar",
+        "customer_net_balances": "60359064.042098",
+        "exchange_net_balances": "62179307.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "5273426"
+      },
+      {
+        "currency": "ray",
+        "customer_net_balances": "1264130.218678",
+        "exchange_net_balances": "1273144.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2341439"
+      },
+      {
+        "currency": "mcat",
+        "customer_net_balances": "2510590.737017",
+        "exchange_net_balances": "2581276.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2004851"
+      },
+      {
+        "currency": "lsk",
+        "customer_net_balances": "2019480.153823",
+        "exchange_net_balances": "2038242.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "379743"
+      },
+      {
+        "currency": "btt",
+        "customer_net_balances": "3486334338688.878689",
+        "exchange_net_balances": "3492160000000.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1245653"
+      },
+      {
+        "currency": "trac",
+        "customer_net_balances": "1680776.379227",
+        "exchange_net_balances": "1707951.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "671053"
+      },
+      {
+        "currency": "naoris",
+        "customer_net_balances": "89986871.740463",
+        "exchange_net_balances": "90645212.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2761052"
+      },
+      {
+        "currency": "ff",
+        "customer_net_balances": "159890317.184812",
+        "exchange_net_balances": "170294637.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "17528426"
+      },
+      {
+        "currency": "acu",
+        "customer_net_balances": "21513606.140893",
+        "exchange_net_balances": "21737821.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2131609"
+      },
+      {
+        "currency": "zk",
+        "customer_net_balances": "101259809.382593",
+        "exchange_net_balances": "101534285.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1507580"
+      },
+      {
+        "currency": "nvdax",
+        "customer_net_balances": "4021.000000",
+        "exchange_net_balances": "4021.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "872163"
+      },
+      {
+        "currency": "ethw",
+        "customer_net_balances": "5035812.989343",
+        "exchange_net_balances": "5035927.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1180421"
+      },
+      {
+        "currency": "龙虾",
+        "customer_net_balances": "236596996.512402",
+        "exchange_net_balances": "236606276.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4930873"
+      },
+      {
+        "currency": "ape",
+        "customer_net_balances": "16652631.621764",
+        "exchange_net_balances": "16788220.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2400043"
+      },
+      {
+        "currency": "牛来",
+        "customer_net_balances": "32872698.627827",
+        "exchange_net_balances": "32997622.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1946858"
+      },
+      {
+        "currency": "zbcn",
+        "customer_net_balances": "886293564.302455",
+        "exchange_net_balances": "887187030.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1834701"
+      },
+      {
+        "currency": "strk",
+        "customer_net_balances": "58130195.306911",
+        "exchange_net_balances": "59474669.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "3574426"
+      },
+      {
+        "currency": "aave",
+        "customer_net_balances": "74889.474992",
+        "exchange_net_balances": "75526.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "11489831"
+      },
+      {
+        "currency": "aleo",
+        "customer_net_balances": "183347817.798432",
+        "exchange_net_balances": "184456548.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "9683967"
+      },
+      {
+        "currency": "theta",
+        "customer_net_balances": "9021196.798746",
+        "exchange_net_balances": "9111830.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1706644"
+      },
+      {
+        "currency": "hnt",
+        "customer_net_balances": "3428767.258058",
+        "exchange_net_balances": "3445299.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1404992"
+      },
+      {
+        "currency": "go4",
+        "customer_net_balances": "3517009.034223",
+        "exchange_net_balances": "3517249.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "608132"
+      },
+      {
+        "currency": "grok",
+        "customer_net_balances": "797495039.910802",
+        "exchange_net_balances": "798482936.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "408902"
+      },
+      {
+        "currency": "ct",
+        "customer_net_balances": "9516288.537635",
+        "exchange_net_balances": "9705084.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2941416"
+      },
+      {
+        "currency": "chillguy",
+        "customer_net_balances": "59690953.516686",
+        "exchange_net_balances": "68202761.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "662179"
+      },
+      {
+        "currency": "tx",
+        "customer_net_balances": "447270084.775659",
+        "exchange_net_balances": "450725744.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "855927"
+      },
+      {
+        "currency": "qkc",
+        "customer_net_balances": "284498311.398871",
+        "exchange_net_balances": "287311774.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "739826"
+      },
+      {
+        "currency": "arkm",
+        "customer_net_balances": "10939717.244855",
+        "exchange_net_balances": "10949683.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "1247715"
+      },
+      {
+        "currency": "kaia",
+        "customer_net_balances": "14898548.686379",
+        "exchange_net_balances": "16277579.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "684471"
+      },
+      {
+        "currency": "ain",
+        "customer_net_balances": "118240231.632029",
+        "exchange_net_balances": "119814830.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "4848905"
+      },
+      {
+        "currency": "cys",
+        "customer_net_balances": "15575609.107544",
+        "exchange_net_balances": "22216018.000000",
+        "third_net_balances": "0.000000",
+        "gate_wallet_balance_usd": "2543733"
+      }
+    ]
+  },
+  "message": "from cache",
+  "timestamp": 1793455809000
+}

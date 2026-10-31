@@ -22,6 +22,20 @@ overrides:
   bingx/20260915: Support-article scrape; merkle root missing
   bingx/20260815: Support-article scrape; merkle root missing
 
+
+  gateio/20261018: Browser lastSnapshot API; classic getProofOfReserves* broken (code 7); history list login-gated
+  bitget/20261021: Browser API queryTotalReserveAmount + queryPlatformReserveDetail; user Merkle login-gated
+  bitget/20260929: Browser API (19-asset coverage)
+  bitget/20260820: Browser API (pre-expansion 4-asset coverage in detail)
+  htx/20261001: Browser getPublicSnapshotBalanceData; zk zip login-gated; no official totalReserveRate
+  htx/20260901: Browser public snapshot API
+  htx/20260801: Browser public snapshot API
+  bybit/2026092303: PR/Hacken ratios + browser liabilities; reserve-ratio/latest 404; no merkle on public API
+  bybit/2026102706: Browser liabilities only; exact reserve ratios not published — not invented
+  bybit/2026082604: Browser liabilities + Hacken >100% attestation; exact ratios omitted
+
 footers:
   - |-
-    HTX June 2026 (`20260601`) pending manual `public-data.zip` import — see `artifacts/htx/20260601/FETCH_NEEDED.md`.
+    HTX Aug–Oct 2026 summaries imported from public browser API; production `public-data.zip` / proof0.csv remains login-gated (see `artifacts/htx/*/FETCH_NEEDED.md` notes in browser-por-capture).
+  - |-
+    Gate Aug/Sep 2026 historical snapshots not available without login (public API returns latest only). Bybit Oct exact reserve ratios unpublished as of capture.
