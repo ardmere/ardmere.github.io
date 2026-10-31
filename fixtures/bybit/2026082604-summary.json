@@ -1,0 +1,101 @@
+{
+  "fetchedAt": "2026-10-31T14:31:24Z",
+  "source": "browser-api+hacken-attestation",
+  "sourceUrls": [
+    "https://www.bybit.com/x-api/cht/asset/page/por/queryHisBalancesInfo",
+    "https://www.bybit.com/common-static/cht-static/por/Bybit_PoR_Audit_2026_Aug_26.pdf"
+  ],
+  "notes": "Hacken Aug 26 PDF attests all in-scope collateral ratios >100% but does not publish exact per-coin percentages. Exact Aug ratios intentionally omitted (not invented). Liability amounts from browser API. reserve_rate fields left at 0 to signal missing precise published ratios.",
+  "info": {
+    "code": 0,
+    "data": {
+      "audit_id": "2026082604",
+      "audit_time": "2026-08-26 04:00:00",
+      "period": 39
+    }
+  },
+  "coinList": {
+    "code": 0,
+    "data": {
+      "list": [
+        {
+          "coin": "BTC",
+          "customer_liability": 55997.896004,
+          "reserve_rate": 0,
+          "reserve_amount": 0
+        },
+        {
+          "coin": "ETH",
+          "customer_liability": 536016.68499504,
+          "reserve_rate": 0,
+          "reserve_amount": 0
+        },
+        {
+          "coin": "USDT",
+          "customer_liability": 4057366026.542167,
+          "reserve_rate": 0,
+          "reserve_amount": 0
+        },
+        {
+          "coin": "USDC",
+          "customer_liability": 605576772.388167,
+          "reserve_rate": 0,
+          "reserve_amount": 0
+        }
+      ]
+    }
+  },
+  "browserLiabilities": {
+    "A": "25144396.08197653",
+    "AAVE": "248648.75913178",
+    "AGI": "88025664.28155259",
+    "AGLA": "589970463.05851596",
+    "APEX": "75016641.02875390",
+    "APT": "24523531.08593080",
+    "ARB": "231223179.70888912",
+    "ASTER": "60655576.81425452",
+    "ATOM": "4791956.49075484",
+    "AVAX": "4510843.16620147",
+    "BEAM": "712140804.04672488",
+    "BLUR": "47148041.86985340",
+    "BTC": "55997.89600400",
+    "COMP": "132823.90337908",
+    "CRV": "49832913.09741557",
+    "DOGE": "1407583659.02749387",
+    "DOT": "20008312.44177591",
+    "DYDX": "40446745.38763991",
+    "ENA": "461778590.55412910",
+    "ETH": "536016.68499504",
+    "FET": "44487103.67830654",
+    "GALA": "1756650084.84269595",
+    "GRAM": "39980717.12050878",
+    "HYPE": "3269849.13514970",
+    "IMX": "15577061.17569579",
+    "LDO": "40896076.81320046",
+    "LINK": "7114748.10820248",
+    "LTC": "1251315.62650072",
+    "MANA": "22163898.15543617",
+    "MNT": "693373344.50466877",
+    "ONDO": "127326481.76856860",
+    "OP": "94035557.51629232",
+    "PEPE": "14769142999267.63066479",
+    "POL": "131197745.40217357",
+    "RENDER": "7928414.45205725",
+    "S": "173672935.86818916",
+    "SAND": "31785478.64896617",
+    "SHIB": "1909885533851.32336223",
+    "SHRAP": "70626200.16589865",
+    "SOL": "3822884.85880679",
+    "STABLE": "1462290922.50671179",
+    "SUSHI": "10339102.13044563",
+    "UNI": "7594129.40124566",
+    "USD1": "391251456.55712794",
+    "USDC": "605576772.38816705",
+    "USDE": "317665221.46358378",
+    "USDT": "4057366026.54216732",
+    "WLD": "38733439.57827011",
+    "XAUT": "27034.23163325",
+    "XRP": "239584010.54704740"
+  },
+  "hackenAttestation": "all_in_scope_collateral_ratios_gt_100pct"
+}

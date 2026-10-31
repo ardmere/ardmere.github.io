@@ -1,0 +1,252 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x25bf42e7c4c2410fbb06e6933d5b7368165afc2f84534942b47b0ff3f5000420",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a",
+        "url": "https://www.htx.com/zh-cn/finance/merkle/"
+      }
+    ],
+    "verificationBundleRoot": "0x3688bc078e03a27b6e5907fdba8d06e1095e395324b05aeb9dd3ca03de56ddaa"
+  },
+  "checklist": [
+    {
+      "id": "S0-1",
+      "notes": "Snapshot 20260901 is in the public evaluation set.",
+      "question": "Has public PoR been published during the last 12 months?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-2",
+      "notes": "2026-09-01T00:00:00Z",
+      "question": "Is snapshot time explicit?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-3",
+      "notes": "Summary present; wallet_address_list absent.",
+      "question": "Is there reserve summary or wallet_address_list?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S1-1",
+      "notes": "No public wallet_address_list artifact.",
+      "question": "Is wallet_address_list public and on-chain verifiable?",
+      "stage": "Stage 1",
+      "status": "fail"
+    },
+    {
+      "id": "S1-2",
+      "notes": "address-ownership verifier UNVERIFIABLE.",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-3",
+      "notes": "global-zk-proof verifier UNVERIFIABLE.",
+      "question": "Is global_proof public and independently reproducible?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-4",
+      "notes": "third-party-attestation verifier UNVERIFIABLE.",
+      "question": "Is independent third-party review available with stated scope?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-5",
+      "notes": "No public trusted setup transcript observed for zk-SNARK global proof.",
+      "question": "If trusted setup is required, is transcript public; otherwise is the proof system transparent setup?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S2-1",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is root/proof/vk canonically anchored outside exchange servers?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-2",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    }
+  ],
+  "confidence": "low",
+  "effectivePoR": false,
+  "evidenceLevel": "E1",
+  "exchange": "htx",
+  "gen": "Gen 1",
+  "generatedAt": "2026-10-31T14:32:50Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "recommendations": [
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "UNVERIFIABLE"
+      ],
+      "text": "Publish missing public artifacts required for independent reproduction."
+    },
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "OPAQUE_TRUSTED_SETUP"
+      ],
+      "text": "Publish trusted setup transcript or migrate to a transparent-setup proof system."
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No public wallet_address_list."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "MjAyNjA5MDFyb290X3BhdGhfc2VsZjEx",
+    "id": "20260901",
+    "periodSeq": 0,
+    "snapshotTime": "2026-09-01T00:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_public_wallet_address_list",
+      "evidence": "wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "No public wallet_address_list.",
+      "riskFlag": "UNVERIFIABLE"
+    }
+  ],
+  "summary": {
+    "headline": "htx snapshot 20260901 remains Stage 0 in the ardmere public evaluation set.",
+    "rationale": "Public artifacts do not support independently reproducible global solvency verification for this snapshot.",
+    "scope": "htx snapshot 20260901"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "gate summary missing totalReserveRate",
+      "verdict": "FAIL",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "HTX public-data zk bundle not present; download from PoR Reports or GitHub release public-data.zip",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "global-zk-proof",
+      "version": "htx-1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "No public wallet address CSV; cannot reconcile summary vs address aggregates",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "internal-consistency",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "Summary does not declare a BTC block height time anchor",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "No public HotCold wallet address list",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "No public wallet address list for ERC20/BEP20 audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "48f05075759733b04b0f6e7bd84da8f4776b72f3a972e1dbcc7d1264f9edcf5a"
+      ],
+      "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

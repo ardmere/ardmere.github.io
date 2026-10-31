@@ -1,0 +1,313 @@
+{
+  "code": "200",
+  "data": {
+    "platformAssetDetailListList": [
+      {
+        "coinName": "BTC",
+        "customerTotalAmount": 26811.37129054,
+        "platformTotalAssetList": [
+          {
+            "chainName": "BITCOIN",
+            "coinName": "BTC",
+            "platformTotalAmount": 35301.39749506
+          },
+          {
+            "chainName": "Binance Smart Chain",
+            "coinName": "BTC",
+            "platformTotalAmount": 515.23016689
+          },
+          {
+            "chainName": "Lightning Network",
+            "coinName": "BTC",
+            "platformTotalAmount": 19.83199811
+          },
+          {
+            "chainName": "MEZO",
+            "coinName": "BTC",
+            "platformTotalAmount": 0.09905794
+          },
+          {
+            "chainName": "Merlin Chain",
+            "coinName": "BTC",
+            "platformTotalAmount": 0.04950028
+          }
+        ],
+        "totalReserveRatio": 134
+      },
+      {
+        "coinName": "USDT",
+        "customerTotalAmount": 1453506874.303357,
+        "platformTotalAssetList": [
+          {
+            "chainName": "APTOS",
+            "coinName": "USDT",
+            "platformTotalAmount": 10023694.499297
+          },
+          {
+            "chainName": "AVAX C",
+            "coinName": "USDT",
+            "platformTotalAmount": 17317749.64699
+          },
+          {
+            "chainName": "Arbitrum One",
+            "coinName": "USDT",
+            "platformTotalAmount": 23409201.893701
+          },
+          {
+            "chainName": "Binance Smart Chain",
+            "coinName": "USDT",
+            "platformTotalAmount": 253649632.54484248
+          },
+          {
+            "chainName": "Ethereum",
+            "coinName": "USDT",
+            "platformTotalAmount": 591759669.428299
+          },
+          {
+            "chainName": "Morph",
+            "coinName": "USDT",
+            "platformTotalAmount": 2123832.095132
+          },
+          {
+            "chainName": "Optimism",
+            "coinName": "USDT",
+            "platformTotalAmount": 13067353.376276
+          },
+          {
+            "chainName": "Plasma",
+            "coinName": "USDT",
+            "platformTotalAmount": 21485264.748225
+          },
+          {
+            "chainName": "Polygon",
+            "coinName": "USDT",
+            "platformTotalAmount": 24342380.540787
+          },
+          {
+            "chainName": "Solana",
+            "coinName": "USDT",
+            "platformTotalAmount": 123688887.853857
+          },
+          {
+            "chainName": "The Open Network",
+            "coinName": "USDT",
+            "platformTotalAmount": 46864845.42424
+          },
+          {
+            "chainName": "Tron",
+            "coinName": "USDT",
+            "platformTotalAmount": 328726828.947488
+          }
+        ],
+        "totalReserveRatio": 100
+      },
+      {
+        "coinName": "ETH",
+        "customerTotalAmount": 123688.09769485,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Alienxchain",
+            "coinName": "ETH",
+            "platformTotalAmount": 0.19449789
+          },
+          {
+            "chainName": "Arbitrum Nova",
+            "coinName": "ETH",
+            "platformTotalAmount": 0.02593604
+          },
+          {
+            "chainName": "Arbitrum One",
+            "coinName": "ETH",
+            "platformTotalAmount": 13631.50777183
+          },
+          {
+            "chainName": "BASE",
+            "coinName": "ETH",
+            "platformTotalAmount": 11615.24891725
+          },
+          {
+            "chainName": "Binance Smart Chain",
+            "coinName": "ETH",
+            "platformTotalAmount": 18273.73439766
+          },
+          {
+            "chainName": "Blast",
+            "coinName": "ETH",
+            "platformTotalAmount": 142.27608004
+          },
+          {
+            "chainName": "Eclipse",
+            "coinName": "ETH",
+            "platformTotalAmount": 8.8975983
+          },
+          {
+            "chainName": "Ethereum",
+            "coinName": "ETH",
+            "platformTotalAmount": 136482.04222521
+          },
+          {
+            "chainName": "Fuel",
+            "coinName": "ETH",
+            "platformTotalAmount": 78.79948239
+          },
+          {
+            "chainName": "Gensyn",
+            "coinName": "ETH",
+            "platformTotalAmount": 2.00626923
+          },
+          {
+            "chainName": "Katana",
+            "coinName": "ETH",
+            "platformTotalAmount": 5.0150637
+          },
+          {
+            "chainName": "LINEA",
+            "coinName": "ETH",
+            "platformTotalAmount": 111.57935029
+          },
+          {
+            "chainName": "MEGA",
+            "coinName": "ETH",
+            "platformTotalAmount": 1.99995792
+          },
+          {
+            "chainName": "Manta NetWork",
+            "coinName": "ETH",
+            "platformTotalAmount": 14.06796255
+          },
+          {
+            "chainName": "Metal DAO L2",
+            "coinName": "ETH",
+            "platformTotalAmount": 0.5310888
+          },
+          {
+            "chainName": "Mode",
+            "coinName": "ETH",
+            "platformTotalAmount": 0.45790165
+          },
+          {
+            "chainName": "Morph",
+            "coinName": "ETH",
+            "platformTotalAmount": 2132.01558021
+          },
+          {
+            "chainName": "Optimism",
+            "coinName": "ETH",
+            "platformTotalAmount": 4295.51891156
+          },
+          {
+            "chainName": "SCROLL",
+            "coinName": "ETH",
+            "platformTotalAmount": 1677.46690415
+          },
+          {
+            "chainName": "Starknet",
+            "coinName": "ETH",
+            "platformTotalAmount": 1434.06649755
+          },
+          {
+            "chainName": "World Chain",
+            "coinName": "ETH",
+            "platformTotalAmount": 3.99717055
+          },
+          {
+            "chainName": "Zircuit",
+            "coinName": "ETH",
+            "platformTotalAmount": 12.74884024
+          },
+          {
+            "chainName": "zkSync Era",
+            "coinName": "ETH",
+            "platformTotalAmount": 165.62950999
+          }
+        ],
+        "totalReserveRatio": 154
+      },
+      {
+        "coinName": "USDC",
+        "customerTotalAmount": 109685432.3874559,
+        "platformTotalAssetList": [
+          {
+            "chainName": "APTOS",
+            "coinName": "USDC",
+            "platformTotalAmount": 4886011.646454
+          },
+          {
+            "chainName": "AVAX C",
+            "coinName": "USDC",
+            "platformTotalAmount": 2696054.440492
+          },
+          {
+            "chainName": "Arbitrum One",
+            "coinName": "USDC",
+            "platformTotalAmount": 7117200.026158
+          },
+          {
+            "chainName": "BASE",
+            "coinName": "USDC",
+            "platformTotalAmount": 10646493.137073
+          },
+          {
+            "chainName": "Binance Smart Chain",
+            "coinName": "USDC",
+            "platformTotalAmount": 17258407.93047531
+          },
+          {
+            "chainName": "Ethereum",
+            "coinName": "USDC",
+            "platformTotalAmount": 49480258.141903
+          },
+          {
+            "chainName": "Monad",
+            "coinName": "USDC",
+            "platformTotalAmount": 2898139.322462
+          },
+          {
+            "chainName": "Morph",
+            "coinName": "USDC",
+            "platformTotalAmount": 6903618.084863
+          },
+          {
+            "chainName": "Noble",
+            "coinName": "USDC",
+            "platformTotalAmount": 790053.574369
+          },
+          {
+            "chainName": "Optimism",
+            "coinName": "USDC",
+            "platformTotalAmount": 1503318.715873
+          },
+          {
+            "chainName": "Polygon",
+            "coinName": "USDC",
+            "platformTotalAmount": 13807431.802106
+          },
+          {
+            "chainName": "SEIEVM",
+            "coinName": "USDC",
+            "platformTotalAmount": 2307203.624252
+          },
+          {
+            "chainName": "SONIC",
+            "coinName": "USDC",
+            "platformTotalAmount": 1343483.133028
+          },
+          {
+            "chainName": "Solana",
+            "coinName": "USDC",
+            "platformTotalAmount": 11462678.145919
+          },
+          {
+            "chainName": "ZKFair",
+            "coinName": "USDC",
+            "platformTotalAmount": 642.22988264
+          }
+        ],
+        "totalReserveRatio": 121
+      }
+    ],
+    "userVerifyNumber": 903,
+    "walletAssetDetailListList": []
+  },
+  "params": []
+}

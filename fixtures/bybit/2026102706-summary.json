@@ -1,0 +1,100 @@
+{
+  "fetchedAt": "2026-10-31T14:31:04Z",
+  "source": "browser-api",
+  "sourceUrls": [
+    "https://www.bybit.com/x-api/cht/asset/page/por/queryHisBalancesInfo",
+    "https://www.bybit.com/en/app/user/proof-of-reserve"
+  ],
+  "notes": "Public UI/API no longer exposes reserve ratios (reserve-ratio/latest 404). queryHisBalancesInfo provides liability/audit-scope amounts only. Exact Oct reserve ratios not published in press as of capture; not invented. Hacken Oct PDF not located.",
+  "info": {
+    "code": 0,
+    "data": {
+      "audit_id": "2026102706",
+      "audit_time": "2026-10-27 06:00:00",
+      "period": 41
+    }
+  },
+  "coinList": {
+    "code": 0,
+    "data": {
+      "list": [
+        {
+          "coin": "BTC",
+          "customer_liability": 57373.99224782,
+          "reserve_rate": 0,
+          "reserve_amount": 0
+        },
+        {
+          "coin": "ETH",
+          "customer_liability": 558637.12859043,
+          "reserve_rate": 0,
+          "reserve_amount": 0
+        },
+        {
+          "coin": "USDT",
+          "customer_liability": 3309755957.892343,
+          "reserve_rate": 0,
+          "reserve_amount": 0
+        },
+        {
+          "coin": "USDC",
+          "customer_liability": 140934805.0366651,
+          "reserve_rate": 0,
+          "reserve_amount": 0
+        }
+      ]
+    }
+  },
+  "browserLiabilities": {
+    "AAVE": "202884.72994393",
+    "APEX": "80026927.04898708",
+    "APT": "27964046.96511654",
+    "ARB": "200097390.67859706",
+    "ASTER": "58250851.56030637",
+    "ATOM": "6487988.80570100",
+    "AVAX": "4615187.26074574",
+    "BTC": "57373.99224782",
+    "CAP": "528096663.66052539",
+    "COMP": "152431.65557923",
+    "CRV": "58181377.51969125",
+    "DOGE": "1446107950.32530769",
+    "DOT": "22596218.92814363",
+    "DYDX": "41058497.38399111",
+    "ENA": "345737687.54453744",
+    "ETH": "558637.12859043",
+    "FET": "50315950.59724321",
+    "GALA": "1640938299.07886006",
+    "GRAM": "41499016.28211023",
+    "HYPE": "2353404.87331728",
+    "LDO": "49619213.22917181",
+    "LINK": "6786072.58290711",
+    "LIT": "7581090.26775741",
+    "LTC": "1202318.60810283",
+    "MNT": "687223848.14906126",
+    "ONDO": "137189563.28058217",
+    "OP": "97561707.19079840",
+    "PENGU": "1791067537.56324494",
+    "PEPE": "14653712318803.92591946",
+    "POL": "104031208.91361879",
+    "PUMP": "8213313618.68352197",
+    "RENDER": "8110980.30513131",
+    "S": "153342969.12988735",
+    "SHIB": "1913503832974.08727209",
+    "SOL": "3580174.35910573",
+    "SPX": "33775401.75229612",
+    "STABLE": "800787231.86019556",
+    "SUI": "81004009.38524283",
+    "UNI": "6982524.54073653",
+    "USD1": "328580797.48555802",
+    "USDC": "140934805.03666510",
+    "USDE": "548567764.11113526",
+    "USDT": "3309755957.89234300",
+    "USDTB": "17253629.01080561",
+    "WLD": "59127388.67754921",
+    "XAUT": "35066.45233087",
+    "XPL": "150998695.73632662",
+    "XRP": "256482721.09451569",
+    "ZEREBRO": "492714488.03307072",
+    "ZRO": "16669214.69899836"
+  }
+}

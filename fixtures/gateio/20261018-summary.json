@@ -1,0 +1,3003 @@
+{
+  "fetchedAt": "2026-10-31T14:31:04Z",
+  "source": "browser-api",
+  "sourceUrl": "https://www.gate.com/api/web/v1/bill/audit/lastSnapshot",
+  "notes": "Classic getProofOfReservesInfo/CoinList/List returned code=7 invalid currency pair (2026-10-31). Public no-login surface is lastSnapshot only; audit history list is login-gated (401).",
+  "info": {
+    "code": 0,
+    "message": "success",
+    "data": {
+      "audit_id": "20261018",
+      "audit_time": "2026-10-18 00:00:00",
+      "merkle_root_hash": "1f477d978e245494748822e890f742eb9a4b02f2ece8f8c2a89106a25fc87c7b",
+      "total_reserve_rate": 118.49,
+      "total_reserve_amount": 8688838336.402252,
+      "customer_net_balance": 7332718966.310761,
+      "excess_reserve_value": 1356119370.0914912
+    }
+  },
+  "coinList": {
+    "code": 0,
+    "message": "success",
+    "data": {
+      "list": [
+        {
+          "coin": "FUNTOKEN",
+          "reserve_rate": 100.1577,
+          "reserve_amount": 2725957782.0,
+          "customer_liability": 2721665595.692993
+        },
+        {
+          "coin": "UAI",
+          "reserve_rate": 101.2912,
+          "reserve_amount": 14315954.0,
+          "customer_liability": 14133460.611577
+        },
+        {
+          "coin": "GPS",
+          "reserve_rate": 101.4075,
+          "reserve_amount": 102960099.0,
+          "customer_liability": 101531009.962978
+        },
+        {
+          "coin": "WEMIX",
+          "reserve_rate": 101.4728,
+          "reserve_amount": 36731872.0,
+          "customer_liability": 36198736.801747
+        },
+        {
+          "coin": "SHIB",
+          "reserve_rate": 102.9097,
+          "reserve_amount": 4511450000000.0,
+          "customer_liability": 4383892617840.8647
+        },
+        {
+          "coin": "PNUT",
+          "reserve_rate": 103.956,
+          "reserve_amount": 15960168.0,
+          "customer_liability": 15352807.50864
+        },
+        {
+          "coin": "ALCH",
+          "reserve_rate": 100.3443,
+          "reserve_amount": 241722708.0,
+          "customer_liability": 240893425.045522
+        },
+        {
+          "coin": "TSLAX",
+          "reserve_rate": 102.9949,
+          "reserve_amount": 3545.0,
+          "customer_liability": 3441.918592
+        },
+        {
+          "coin": "WIF",
+          "reserve_rate": 100.0455,
+          "reserve_amount": 8483996.0,
+          "customer_liability": 8480137.328231
+        },
+        {
+          "coin": "COMP",
+          "reserve_rate": 100.2141,
+          "reserve_amount": 28285.0,
+          "customer_liability": 28224.576557
+        },
+        {
+          "coin": "RUNE",
+          "reserve_rate": 103.1017,
+          "reserve_amount": 1437175.0,
+          "customer_liability": 1393939.593693
+        },
+        {
+          "coin": "SPYON",
+          "reserve_rate": 103.174,
+          "reserve_amount": 644.0,
+          "customer_liability": 624.188397
+        },
+        {
+          "coin": "PENGU",
+          "reserve_rate": 100.0121,
+          "reserve_amount": 434910138.0,
+          "customer_liability": 434857412.092864
+        },
+        {
+          "coin": "GRASS",
+          "reserve_rate": 101.4477,
+          "reserve_amount": 9712406.0,
+          "customer_liability": 9573804.720024
+        },
+        {
+          "coin": "MOODENG",
+          "reserve_rate": 100.5071,
+          "reserve_amount": 27317688.0,
+          "customer_liability": 27179853.239795
+        },
+        {
+          "coin": "MANA",
+          "reserve_rate": 103.9172,
+          "reserve_amount": 8011038.0,
+          "customer_liability": 7709060.457704
+        },
+        {
+          "coin": "FLOKI",
+          "reserve_rate": 104.0553,
+          "reserve_amount": 282881000000.0,
+          "customer_liability": 271856507334.00702
+        },
+        {
+          "coin": "PAAL",
+          "reserve_rate": 100.5313,
+          "reserve_amount": 85207663.0,
+          "customer_liability": 84757383.730469
+        },
+        {
+          "coin": "AO",
+          "reserve_rate": 103.455,
+          "reserve_amount": 428934.0,
+          "customer_liability": 414609.353723
+        },
+        {
+          "coin": "CRCLX",
+          "reserve_rate": 100.6654,
+          "reserve_amount": 89576.0,
+          "customer_liability": 88983.88314
+        },
+        {
+          "coin": "BAN",
+          "reserve_rate": 100.4229,
+          "reserve_amount": 498521109.0,
+          "customer_liability": 496421889.804769
+        },
+        {
+          "coin": "0G",
+          "reserve_rate": 122.1458,
+          "reserve_amount": 4140843.0,
+          "customer_liability": 3390082.320143
+        },
+        {
+          "coin": "XPL",
+          "reserve_rate": 100.2326,
+          "reserve_amount": 23801715.0,
+          "customer_liability": 23746477.989476
+        },
+        {
+          "coin": "NEAR",
+          "reserve_rate": 102.6629,
+          "reserve_amount": 5374553.0,
+          "customer_liability": 5235145.992863
+        },
+        {
+          "coin": "HSK",
+          "reserve_rate": 100.0362,
+          "reserve_amount": 44572821.0,
+          "customer_liability": 44556684.044734
+        },
+        {
+          "coin": "SWFTC",
+          "reserve_rate": 104.8613,
+          "reserve_amount": 147709288.0,
+          "customer_liability": 140861648.249431
+        },
+        {
+          "coin": "CGPT",
+          "reserve_rate": 100.047,
+          "reserve_amount": 43864746.0,
+          "customer_liability": 43844155.524133
+        },
+        {
+          "coin": "XCN",
+          "reserve_rate": 115.1589,
+          "reserve_amount": 345859657.0,
+          "customer_liability": 300332631.086102
+        },
+        {
+          "coin": "FORM",
+          "reserve_rate": 107.6484,
+          "reserve_amount": 3099439.0,
+          "customer_liability": 2879223.677123
+        },
+        {
+          "coin": "ICP",
+          "reserve_rate": 100.4643,
+          "reserve_amount": 1928218.0,
+          "customer_liability": 1919306.205252
+        },
+        {
+          "coin": "KDA",
+          "reserve_rate": 100.1389,
+          "reserve_amount": 115936724.0,
+          "customer_liability": 115775915.183169
+        },
+        {
+          "coin": "ENJ",
+          "reserve_rate": 101.4689,
+          "reserve_amount": 17036344.0,
+          "customer_liability": 16789711.75359
+        },
+        {
+          "coin": "AVAX",
+          "reserve_rate": 101.6051,
+          "reserve_amount": 1125599.0,
+          "customer_liability": 1107817.679145
+        },
+        {
+          "coin": "WAL",
+          "reserve_rate": 100.9579,
+          "reserve_amount": 26702589.0,
+          "customer_liability": 26449240.694935
+        },
+        {
+          "coin": "SPCX",
+          "reserve_rate": 100.0,
+          "reserve_amount": 83525.0,
+          "customer_liability": 83525.0
+        },
+        {
+          "coin": "O",
+          "reserve_rate": 100.5329,
+          "reserve_amount": 3497945.0,
+          "customer_liability": 3479403.487016
+        },
+        {
+          "coin": "NMR",
+          "reserve_rate": 100.5312,
+          "reserve_amount": 59828.0,
+          "customer_liability": 59511.901148
+        },
+        {
+          "coin": "HTX",
+          "reserve_rate": 100.0935,
+          "reserve_amount": 491478000000.0,
+          "customer_liability": 491018957928.00104
+        },
+        {
+          "coin": "USAT",
+          "reserve_rate": 100.0955,
+          "reserve_amount": 1011452.0,
+          "customer_liability": 1010487.3729
+        },
+        {
+          "coin": "MELANIA",
+          "reserve_rate": 100.0388,
+          "reserve_amount": 18750616.0,
+          "customer_liability": 18743345.017546
+        },
+        {
+          "coin": "GENIUS",
+          "reserve_rate": 100.2141,
+          "reserve_amount": 2021259.0,
+          "customer_liability": 2016939.883031
+        },
+        {
+          "coin": "BTS",
+          "reserve_rate": 102.3297,
+          "reserve_amount": 410195216.0,
+          "customer_liability": 400856641.774811
+        },
+        {
+          "coin": "PONS",
+          "reserve_rate": 101.1397,
+          "reserve_amount": 51962053.0,
+          "customer_liability": 51376528.628493
+        },
+        {
+          "coin": "SPCXG",
+          "reserve_rate": 100.0,
+          "reserve_amount": 4488.0,
+          "customer_liability": 4488.0
+        },
+        {
+          "coin": "SC",
+          "reserve_rate": 100.6893,
+          "reserve_amount": 1145319695.0,
+          "customer_liability": 1137479448.166937
+        },
+        {
+          "coin": "HYPE",
+          "reserve_rate": 100.015,
+          "reserve_amount": 659409.0,
+          "customer_liability": 659310.353152
+        },
+        {
+          "coin": "ALEX",
+          "reserve_rate": 100.1158,
+          "reserve_amount": 101680605.0,
+          "customer_liability": 101563040.30934
+        },
+        {
+          "coin": "DOGS",
+          "reserve_rate": 103.0463,
+          "reserve_amount": 12122445560.0,
+          "customer_liability": 11764070986.865353
+        },
+        {
+          "coin": "OMI",
+          "reserve_rate": 101.4836,
+          "reserve_amount": 7326264822.0,
+          "customer_liability": 7219162422.712241
+        },
+        {
+          "coin": "FLUID",
+          "reserve_rate": 100.0658,
+          "reserve_amount": 568529.0,
+          "customer_liability": 568155.348407
+        },
+        {
+          "coin": "AIA",
+          "reserve_rate": 100.0734,
+          "reserve_amount": 90074043.0,
+          "customer_liability": 90007960.413334
+        },
+        {
+          "coin": "KSM",
+          "reserve_rate": 101.1966,
+          "reserve_amount": 106089.0,
+          "customer_liability": 104834.555047
+        },
+        {
+          "coin": "CKB",
+          "reserve_rate": 100.4113,
+          "reserve_amount": 1480281938.0,
+          "customer_liability": 1474218453.232257
+        },
+        {
+          "coin": "XNY",
+          "reserve_rate": 100.3347,
+          "reserve_amount": 600998840.0,
+          "customer_liability": 598993972.984993
+        },
+        {
+          "coin": "PENDLE",
+          "reserve_rate": 105.6666,
+          "reserve_amount": 1527225.0,
+          "customer_liability": 1445324.766015
+        },
+        {
+          "coin": "BAT",
+          "reserve_rate": 103.9427,
+          "reserve_amount": 4460783.0,
+          "customer_liability": 4291579.645557
+        },
+        {
+          "coin": "SYRUP",
+          "reserve_rate": 101.1201,
+          "reserve_amount": 13624338.0,
+          "customer_liability": 13473426.061089
+        },
+        {
+          "coin": "SAND",
+          "reserve_rate": 456.6513,
+          "reserve_amount": 48186013.0,
+          "customer_liability": 10552036.48928
+        },
+        {
+          "coin": "PLUME",
+          "reserve_rate": 100.1564,
+          "reserve_amount": 96562085.0,
+          "customer_liability": 96411265.608668
+        },
+        {
+          "coin": "WKC",
+          "reserve_rate": 100.3604,
+          "reserve_amount": 22674600000000.0,
+          "customer_liability": 22593172412381.83
+        },
+        {
+          "coin": "USDPT",
+          "reserve_rate": 102.1733,
+          "reserve_amount": 7662123.0,
+          "customer_liability": 7499140.825606
+        },
+        {
+          "coin": "DGAI",
+          "reserve_rate": 100.5494,
+          "reserve_amount": 13514799.0,
+          "customer_liability": 13440958.157648
+        },
+        {
+          "coin": "ONE",
+          "reserve_rate": 100.0,
+          "reserve_amount": 1180984099.0,
+          "customer_liability": 1180984099.0
+        },
+        {
+          "coin": "PI",
+          "reserve_rate": 100.0152,
+          "reserve_amount": 334192345.0,
+          "customer_liability": 334141407.085713
+        },
+        {
+          "coin": "WOJAK",
+          "reserve_rate": 100.9464,
+          "reserve_amount": 17011500000000.0,
+          "customer_liability": 16852015579583.46
+        },
+        {
+          "coin": "CFG",
+          "reserve_rate": 102.0347,
+          "reserve_amount": 15512005.0,
+          "customer_liability": 15202676.580213
+        },
+        {
+          "coin": "ALU",
+          "reserve_rate": 100.0487,
+          "reserve_amount": 221858457.0,
+          "customer_liability": 221750491.587496
+        },
+        {
+          "coin": "SEI",
+          "reserve_rate": 102.0853,
+          "reserve_amount": 47921420.0,
+          "customer_liability": 46942520.311175
+        },
+        {
+          "coin": "AGI",
+          "reserve_rate": 100.4455,
+          "reserve_amount": 93621058.0,
+          "customer_liability": 93205824.264473
+        },
+        {
+          "coin": "BBT",
+          "reserve_rate": 102.6636,
+          "reserve_amount": 58150724.0,
+          "customer_liability": 56642034.677766
+        },
+        {
+          "coin": "BABY",
+          "reserve_rate": 106.2828,
+          "reserve_amount": 115243876.0,
+          "customer_liability": 108431326.291066
+        },
+        {
+          "coin": "TURBO",
+          "reserve_rate": 103.7172,
+          "reserve_amount": 1712940770.0,
+          "customer_liability": 1651549520.459778
+        },
+        {
+          "coin": "MAGIC",
+          "reserve_rate": 106.365,
+          "reserve_amount": 7463206.0,
+          "customer_liability": 7016599.365503
+        },
+        {
+          "coin": "XT",
+          "reserve_rate": 100.0026,
+          "reserve_amount": 835651.0,
+          "customer_liability": 835629.62926
+        },
+        {
+          "coin": "FUN",
+          "reserve_rate": 107.533,
+          "reserve_amount": 71555386.0,
+          "customer_liability": 66542736.912313
+        },
+        {
+          "coin": "BANANAS31",
+          "reserve_rate": 103.5136,
+          "reserve_amount": 104798324.0,
+          "customer_liability": 101241162.942082
+        },
+        {
+          "coin": "MUBARAK",
+          "reserve_rate": 105.3635,
+          "reserve_amount": 58636571.0,
+          "customer_liability": 55651693.835431
+        },
+        {
+          "coin": "WLFI",
+          "reserve_rate": 100.0307,
+          "reserve_amount": 118563866.0,
+          "customer_liability": 118527432.455892
+        },
+        {
+          "coin": "METIS",
+          "reserve_rate": 103.5418,
+          "reserve_amount": 397240.0,
+          "customer_liability": 383651.687655
+        },
+        {
+          "coin": "GEOD",
+          "reserve_rate": 100.0003,
+          "reserve_amount": 7657854.0,
+          "customer_liability": 7657830.225235
+        },
+        {
+          "coin": "AIO",
+          "reserve_rate": 100.6304,
+          "reserve_amount": 21036094.0,
+          "customer_liability": 20904303.439224
+        },
+        {
+          "coin": "MON",
+          "reserve_rate": 100.024,
+          "reserve_amount": 118838998.0,
+          "customer_liability": 118810441.475367
+        },
+        {
+          "coin": "HANA",
+          "reserve_rate": 102.1925,
+          "reserve_amount": 232052035.0,
+          "customer_liability": 227073558.617493
+        },
+        {
+          "coin": "AKE",
+          "reserve_rate": 110.7996,
+          "reserve_amount": 258397559.0,
+          "customer_liability": 233211534.071647
+        },
+        {
+          "coin": "CCD",
+          "reserve_rate": 106.2643,
+          "reserve_amount": 277938685.0,
+          "customer_liability": 261554151.419976
+        },
+        {
+          "coin": "APT",
+          "reserve_rate": 101.1311,
+          "reserve_amount": 4051661.0,
+          "customer_liability": 4006346.277392
+        },
+        {
+          "coin": "RATS",
+          "reserve_rate": 100.1044,
+          "reserve_amount": 297500000000.0,
+          "customer_liability": 297189840795.6796
+        },
+        {
+          "coin": "ERG",
+          "reserve_rate": 101.3599,
+          "reserve_amount": 5346903.0,
+          "customer_liability": 5275166.540358
+        },
+        {
+          "coin": "BROCCOLI",
+          "reserve_rate": 118.2767,
+          "reserve_amount": 41382687.0,
+          "customer_liability": 34988032.648456
+        },
+        {
+          "coin": "MBG",
+          "reserve_rate": 100.2318,
+          "reserve_amount": 12419095.0,
+          "customer_liability": 12390378.833897
+        },
+        {
+          "coin": "SAPIEN",
+          "reserve_rate": 101.5074,
+          "reserve_amount": 12595249.0,
+          "customer_liability": 12408204.154029
+        },
+        {
+          "coin": "ONT",
+          "reserve_rate": 101.8251,
+          "reserve_amount": 8218356.0,
+          "customer_liability": 8071049.125017
+        },
+        {
+          "coin": "KEKIUS",
+          "reserve_rate": 100.0154,
+          "reserve_amount": 113327563.0,
+          "customer_liability": 113310168.012233
+        },
+        {
+          "coin": "DOS",
+          "reserve_rate": 102.7557,
+          "reserve_amount": 7188207.0,
+          "customer_liability": 6995433.562684
+        },
+        {
+          "coin": "XCH",
+          "reserve_rate": 101.2364,
+          "reserve_amount": 1101843.0,
+          "customer_liability": 1088386.185193
+        },
+        {
+          "coin": "MAG7XON",
+          "reserve_rate": 101.7704,
+          "reserve_amount": 121262.0,
+          "customer_liability": 119152.564949
+        },
+        {
+          "coin": "LDO",
+          "reserve_rate": 102.3678,
+          "reserve_amount": 5641404.0,
+          "customer_liability": 5510918.854835
+        },
+        {
+          "coin": "SUSHI",
+          "reserve_rate": 104.3686,
+          "reserve_amount": 4483531.0,
+          "customer_liability": 4295862.683459
+        },
+        {
+          "coin": "LINEA",
+          "reserve_rate": 100.2403,
+          "reserve_amount": 318678019.0,
+          "customer_liability": 317913939.433539
+        },
+        {
+          "coin": "SNX",
+          "reserve_rate": 104.0663,
+          "reserve_amount": 2564002.0,
+          "customer_liability": 2463816.047241
+        },
+        {
+          "coin": "MAGMA",
+          "reserve_rate": 100.0164,
+          "reserve_amount": 9979917.0,
+          "customer_liability": 9978285.1317
+        },
+        {
+          "coin": "IO",
+          "reserve_rate": 102.8936,
+          "reserve_amount": 11270704.0,
+          "customer_liability": 10953745.228136
+        },
+        {
+          "coin": "WAVES",
+          "reserve_rate": 100.9975,
+          "reserve_amount": 2449115.0,
+          "customer_liability": 2424925.516704
+        },
+        {
+          "coin": "RACA",
+          "reserve_rate": 100.0248,
+          "reserve_amount": 60155994727.0,
+          "customer_liability": 60141060232.83308
+        },
+        {
+          "coin": "PAXG",
+          "reserve_rate": 102.8896,
+          "reserve_amount": 1889.0,
+          "customer_liability": 1835.948866
+        },
+        {
+          "coin": "DOGELONMARS",
+          "reserve_rate": 104.1454,
+          "reserve_amount": 28929200000000.0,
+          "customer_liability": 27777710990754.723
+        },
+        {
+          "coin": "PUFFER",
+          "reserve_rate": 100.0262,
+          "reserve_amount": 15816903.0,
+          "customer_liability": 15812752.800146
+        },
+        {
+          "coin": "ENA",
+          "reserve_rate": 100.3412,
+          "reserve_amount": 55349965.0,
+          "customer_liability": 55161739.844071
+        },
+        {
+          "coin": "CHZ",
+          "reserve_rate": 102.2256,
+          "reserve_amount": 55384611.0,
+          "customer_liability": 54178825.932293
+        },
+        {
+          "coin": "US",
+          "reserve_rate": 100.0661,
+          "reserve_amount": 180094780.0,
+          "customer_liability": 179975812.221613
+        },
+        {
+          "coin": "TRB",
+          "reserve_rate": 105.0521,
+          "reserve_amount": 42074.0,
+          "customer_liability": 40050.590307
+        },
+        {
+          "coin": "ROSE",
+          "reserve_rate": 100.0085,
+          "reserve_amount": 82100883.0,
+          "customer_liability": 82093924.495075
+        },
+        {
+          "coin": "NOS",
+          "reserve_rate": 100.4255,
+          "reserve_amount": 3287336.0,
+          "customer_liability": 3273407.81112
+        },
+        {
+          "coin": "FB",
+          "reserve_rate": 100.25,
+          "reserve_amount": 5658727.0,
+          "customer_liability": 5644616.42418
+        },
+        {
+          "coin": "PEOPLE",
+          "reserve_rate": 100.0009,
+          "reserve_amount": 197415955.0,
+          "customer_liability": 197414198.178973
+        },
+        {
+          "coin": "KITE",
+          "reserve_rate": 108.779,
+          "reserve_amount": 9795570.0,
+          "customer_liability": 9005021.90875
+        },
+        {
+          "coin": "USDE",
+          "reserve_rate": 291.888,
+          "reserve_amount": 3113174.0,
+          "customer_liability": 1066564.590507
+        },
+        {
+          "coin": "LEO",
+          "reserve_rate": 136.9909,
+          "reserve_amount": 122202.0,
+          "customer_liability": 89204.493988
+        },
+        {
+          "coin": "H",
+          "reserve_rate": 100.1956,
+          "reserve_amount": 135248547.0,
+          "customer_liability": 134984488.175804
+        },
+        {
+          "coin": "A",
+          "reserve_rate": 100.0069,
+          "reserve_amount": 16692496.0,
+          "customer_liability": 16691339.345311
+        },
+        {
+          "coin": "ZIG",
+          "reserve_rate": 100.5662,
+          "reserve_amount": 35993666.0,
+          "customer_liability": 35791024.993253
+        },
+        {
+          "coin": "WPAY",
+          "reserve_rate": 100.0096,
+          "reserve_amount": 11330125.0,
+          "customer_liability": 11329037.972995
+        },
+        {
+          "coin": "ATOM",
+          "reserve_rate": 109.3872,
+          "reserve_amount": 1965052.0,
+          "customer_liability": 1796417.870199
+        },
+        {
+          "coin": "STBL",
+          "reserve_rate": 101.4209,
+          "reserve_amount": 105222769.0,
+          "customer_liability": 103748577.812565
+        },
+        {
+          "coin": "SLC",
+          "reserve_rate": 100.0034,
+          "reserve_amount": 2930616549.0,
+          "customer_liability": 2930516099.257087
+        },
+        {
+          "coin": "GRT",
+          "reserve_rate": 100.6583,
+          "reserve_amount": 32788411.0,
+          "customer_liability": 32573986.569091
+        },
+        {
+          "coin": "MEME",
+          "reserve_rate": 100.8158,
+          "reserve_amount": 1021261625.0,
+          "customer_liability": 1012997090.256763
+        },
+        {
+          "coin": "KCT",
+          "reserve_rate": 100.7625,
+          "reserve_amount": 4964832438.0,
+          "customer_liability": 4927263222.364303
+        },
+        {
+          "coin": "NUMI",
+          "reserve_rate": 100.0415,
+          "reserve_amount": 44262187.0,
+          "customer_liability": 44243825.91435
+        },
+        {
+          "coin": "MSTRX",
+          "reserve_rate": 100.013,
+          "reserve_amount": 11523.0,
+          "customer_liability": 11521.497794
+        },
+        {
+          "coin": "SPX",
+          "reserve_rate": 100.0232,
+          "reserve_amount": 7833808.0,
+          "customer_liability": 7831992.822709
+        },
+        {
+          "coin": "哈基米",
+          "reserve_rate": 100.0005,
+          "reserve_amount": 55436997.0,
+          "customer_liability": 55436722.091413
+        },
+        {
+          "coin": "VELO",
+          "reserve_rate": 100.4039,
+          "reserve_amount": 529474741.0,
+          "customer_liability": 527344546.040971
+        },
+        {
+          "coin": "TAG",
+          "reserve_rate": 101.5881,
+          "reserve_amount": 4422541006.0,
+          "customer_liability": 4353406423.314607
+        },
+        {
+          "coin": "XEM",
+          "reserve_rate": 100.1717,
+          "reserve_amount": 1398315764.0,
+          "customer_liability": 1395919606.88828
+        },
+        {
+          "coin": "ALIGN",
+          "reserve_rate": 109.2115,
+          "reserve_amount": 149599256.0,
+          "customer_liability": 136981209.83298
+        },
+        {
+          "coin": "SKY",
+          "reserve_rate": 102.888,
+          "reserve_amount": 14108437.0,
+          "customer_liability": 13712420.065337
+        },
+        {
+          "coin": "USDT",
+          "reserve_rate": 111.6818,
+          "reserve_amount": 929860538.0,
+          "customer_liability": 832598051.755833
+        },
+        {
+          "coin": "ACH",
+          "reserve_rate": 102.4983,
+          "reserve_amount": 115607257.0,
+          "customer_liability": 112789421.201803
+        },
+        {
+          "coin": "TBK",
+          "reserve_rate": 100.0406,
+          "reserve_amount": 9665692.0,
+          "customer_liability": 9661771.775883
+        },
+        {
+          "coin": "ONDO",
+          "reserve_rate": 100.0112,
+          "reserve_amount": 43741953.0,
+          "customer_liability": 43737036.454135
+        },
+        {
+          "coin": "ZEREBRO",
+          "reserve_rate": 100.1015,
+          "reserve_amount": 28193774.0,
+          "customer_liability": 28165184.803714
+        },
+        {
+          "coin": "BOX",
+          "reserve_rate": 100.0999,
+          "reserve_amount": 21868648.0,
+          "customer_liability": 21846824.67317
+        },
+        {
+          "coin": "TIA",
+          "reserve_rate": 100.0933,
+          "reserve_amount": 4694069.0,
+          "customer_liability": 4689695.774201
+        },
+        {
+          "coin": "USDY",
+          "reserve_rate": 93190.6583,
+          "reserve_amount": 88066829.0,
+          "customer_liability": 94501.777997
+        },
+        {
+          "coin": "YGG",
+          "reserve_rate": 100.8033,
+          "reserve_amount": 46305569.0,
+          "customer_liability": 45936575.791659
+        },
+        {
+          "coin": "ORDI",
+          "reserve_rate": 106.4161,
+          "reserve_amount": 881337.0,
+          "customer_liability": 828199.056928
+        },
+        {
+          "coin": "GALA",
+          "reserve_rate": 101.0371,
+          "reserve_amount": 529138725.0,
+          "customer_liability": 523707145.832924
+        },
+        {
+          "coin": "AT",
+          "reserve_rate": 101.2218,
+          "reserve_amount": 3890715.0,
+          "customer_liability": 3843751.239588
+        },
+        {
+          "coin": "APEPE",
+          "reserve_rate": 100.0663,
+          "reserve_amount": 3170930000000.0,
+          "customer_liability": 3168830303227.103
+        },
+        {
+          "coin": "IDOL",
+          "reserve_rate": 100.3162,
+          "reserve_amount": 183518887.0,
+          "customer_liability": 182940368.018063
+        },
+        {
+          "coin": "BEAMX",
+          "reserve_rate": 100.9695,
+          "reserve_amount": 170971846.0,
+          "customer_liability": 169330152.217268
+        },
+        {
+          "coin": "ALPH",
+          "reserve_rate": 100.3457,
+          "reserve_amount": 17443296.0,
+          "customer_liability": 17383200.420792
+        },
+        {
+          "coin": "我踏马来了",
+          "reserve_rate": 100.0243,
+          "reserve_amount": 216790674.0,
+          "customer_liability": 216738061.408833
+        },
+        {
+          "coin": "KOMA",
+          "reserve_rate": 115.9228,
+          "reserve_amount": 265926630.0,
+          "customer_liability": 229399725.332537
+        },
+        {
+          "coin": "MEGA",
+          "reserve_rate": 100.1455,
+          "reserve_amount": 12285371.0,
+          "customer_liability": 12267521.407589
+        },
+        {
+          "coin": "BLESS",
+          "reserve_rate": 102.2191,
+          "reserve_amount": 286769825.0,
+          "customer_liability": 280544151.409702
+        },
+        {
+          "coin": "PROVE",
+          "reserve_rate": 100.0829,
+          "reserve_amount": 3557595.0,
+          "customer_liability": 3554648.404007
+        },
+        {
+          "coin": "SKYAI",
+          "reserve_rate": 102.4026,
+          "reserve_amount": 373340100.0,
+          "customer_liability": 364580612.522923
+        },
+        {
+          "coin": "HOT",
+          "reserve_rate": 100.91,
+          "reserve_amount": 1246160415.0,
+          "customer_liability": 1234922250.630537
+        },
+        {
+          "coin": "ATS",
+          "reserve_rate": 100.1092,
+          "reserve_amount": 11926781.0,
+          "customer_liability": 11913768.591884
+        },
+        {
+          "coin": "WBTC",
+          "reserve_rate": 106.1398,
+          "reserve_amount": 83.0,
+          "customer_liability": 78.198719
+        },
+        {
+          "coin": "LUNA",
+          "reserve_rate": 105.559,
+          "reserve_amount": 12298099.0,
+          "customer_liability": 11650452.955283
+        },
+        {
+          "coin": "GHO",
+          "reserve_rate": 104.232,
+          "reserve_amount": 6090752.0,
+          "customer_liability": 5843454.699386
+        },
+        {
+          "coin": "DENT",
+          "reserve_rate": 100.0012,
+          "reserve_amount": 9829672606.0,
+          "customer_liability": 9829553965.539404
+        },
+        {
+          "coin": "ZAMA",
+          "reserve_rate": 100.0525,
+          "reserve_amount": 23911881.0,
+          "customer_liability": 23899333.994794
+        },
+        {
+          "coin": "BONE",
+          "reserve_rate": 100.1774,
+          "reserve_amount": 16826481.0,
+          "customer_liability": 16796680.788124
+        },
+        {
+          "coin": "INJ",
+          "reserve_rate": 101.2269,
+          "reserve_amount": 753841.0,
+          "customer_liability": 744704.14891
+        },
+        {
+          "coin": "STOC",
+          "reserve_rate": 100.0041,
+          "reserve_amount": 4018708.0,
+          "customer_liability": 4018543.805475
+        },
+        {
+          "coin": "AERO",
+          "reserve_rate": 100.022,
+          "reserve_amount": 9838877.0,
+          "customer_liability": 9836711.913459
+        },
+        {
+          "coin": "BB",
+          "reserve_rate": 100.8652,
+          "reserve_amount": 77376122.0,
+          "customer_liability": 76712393.875051
+        },
+        {
+          "coin": "JTO",
+          "reserve_rate": 100.1282,
+          "reserve_amount": 2672807.0,
+          "customer_liability": 2669385.607445
+        },
+        {
+          "coin": "PHA",
+          "reserve_rate": 101.4553,
+          "reserve_amount": 21055166.0,
+          "customer_liability": 20753139.273536
+        },
+        {
+          "coin": "OP",
+          "reserve_rate": 100.297,
+          "reserve_amount": 22106917.0,
+          "customer_liability": 22041448.180271
+        },
+        {
+          "coin": "SCR",
+          "reserve_rate": 100.072,
+          "reserve_amount": 20303061.0,
+          "customer_liability": 20288450.841016
+        },
+        {
+          "coin": "FTT",
+          "reserve_rate": 100.0295,
+          "reserve_amount": 2531037.0,
+          "customer_liability": 2530291.23704
+        },
+        {
+          "coin": "ON",
+          "reserve_rate": 104.9986,
+          "reserve_amount": 35236016.0,
+          "customer_liability": 33558560.962757
+        },
+        {
+          "coin": "KGEN",
+          "reserve_rate": 101.592,
+          "reserve_amount": 24932175.0,
+          "customer_liability": 24541471.076893
+        },
+        {
+          "coin": "XAUT",
+          "reserve_rate": 101.9842,
+          "reserve_amount": 8552.0,
+          "customer_liability": 8385.611454
+        },
+        {
+          "coin": "AEON",
+          "reserve_rate": 111.0523,
+          "reserve_amount": 17805872.0,
+          "customer_liability": 16033776.21666
+        },
+        {
+          "coin": "ULTIMA",
+          "reserve_rate": 100.0,
+          "reserve_amount": 632.0,
+          "customer_liability": 632.0
+        },
+        {
+          "coin": "SPCXX",
+          "reserve_rate": 100.5083,
+          "reserve_amount": 5200.0,
+          "customer_liability": 5173.701942
+        },
+        {
+          "coin": "AR",
+          "reserve_rate": 100.0088,
+          "reserve_amount": 1197935.0,
+          "customer_liability": 1197829.054542
+        },
+        {
+          "coin": "DESO",
+          "reserve_rate": 100.0001,
+          "reserve_amount": 708663.0,
+          "customer_liability": 708662.61074
+        },
+        {
+          "coin": "CLANKER",
+          "reserve_rate": 100.2347,
+          "reserve_amount": 50463.0,
+          "customer_liability": 50344.842372
+        },
+        {
+          "coin": "WRX",
+          "reserve_rate": 100.0947,
+          "reserve_amount": 84699578.0,
+          "customer_liability": 84619414.904347
+        },
+        {
+          "coin": "ACX",
+          "reserve_rate": 100.2309,
+          "reserve_amount": 10916757.0,
+          "customer_liability": 10891610.750785
+        },
+        {
+          "coin": "RBNT",
+          "reserve_rate": 100.0089,
+          "reserve_amount": 369231897.0,
+          "customer_liability": 369198986.279947
+        },
+        {
+          "coin": "CTC",
+          "reserve_rate": 110.0213,
+          "reserve_amount": 6967292.0,
+          "customer_liability": 6332675.381537
+        },
+        {
+          "coin": "TAO",
+          "reserve_rate": 100.0935,
+          "reserve_amount": 69274.0,
+          "customer_liability": 69209.2804
+        },
+        {
+          "coin": "SOXLG",
+          "reserve_rate": 100.0,
+          "reserve_amount": 6562.0,
+          "customer_liability": 6562.0
+        },
+        {
+          "coin": "DNA",
+          "reserve_rate": 177.6871,
+          "reserve_amount": 8766006.0,
+          "customer_liability": 4933394.396982
+        },
+        {
+          "coin": "SPK",
+          "reserve_rate": 100.3557,
+          "reserve_amount": 20739422.0,
+          "customer_liability": 20665903.861895
+        },
+        {
+          "coin": "LIT",
+          "reserve_rate": 100.7559,
+          "reserve_amount": 1611154.0,
+          "customer_liability": 1599067.410395
+        },
+        {
+          "coin": "EVAA",
+          "reserve_rate": 109.7459,
+          "reserve_amount": 7525903.0,
+          "customer_liability": 6857573.511989
+        },
+        {
+          "coin": "USDC",
+          "reserve_rate": 105.6084,
+          "reserve_amount": 103121445.0,
+          "customer_liability": 97645095.415551
+        },
+        {
+          "coin": "UP",
+          "reserve_rate": 100.2373,
+          "reserve_amount": 7728796.0,
+          "customer_liability": 7710495.349419
+        },
+        {
+          "coin": "BSV",
+          "reserve_rate": 101.6484,
+          "reserve_amount": 576422.0,
+          "customer_liability": 567074.272595
+        },
+        {
+          "coin": "MSTRG",
+          "reserve_rate": 100.0,
+          "reserve_amount": 4676.0,
+          "customer_liability": 4676.0
+        },
+        {
+          "coin": "BTR",
+          "reserve_rate": 100.674,
+          "reserve_amount": 75907002.0,
+          "customer_liability": 75398776.866394
+        },
+        {
+          "coin": "AZTEC",
+          "reserve_rate": 102.4005,
+          "reserve_amount": 42464062.0,
+          "customer_liability": 41468614.414603
+        },
+        {
+          "coin": "WIN",
+          "reserve_rate": 102.5931,
+          "reserve_amount": 10286133364.0,
+          "customer_liability": 10026149414.549463
+        },
+        {
+          "coin": "OPENAI",
+          "reserve_rate": 100.0,
+          "reserve_amount": 15749.0,
+          "customer_liability": 15749.0
+        },
+        {
+          "coin": "IRON",
+          "reserve_rate": 108.622,
+          "reserve_amount": 10307475.0,
+          "customer_liability": 9489308.278159
+        },
+        {
+          "coin": "XRP",
+          "reserve_rate": 114.9771,
+          "reserve_amount": 60396694.0,
+          "customer_liability": 52529328.868867
+        },
+        {
+          "coin": "SOON",
+          "reserve_rate": 106.4072,
+          "reserve_amount": 20679213.0,
+          "customer_liability": 19434035.665513
+        },
+        {
+          "coin": "FLOW",
+          "reserve_rate": 100.0915,
+          "reserve_amount": 15323068.0,
+          "customer_liability": 15309059.966741
+        },
+        {
+          "coin": "DCR",
+          "reserve_rate": 100.0263,
+          "reserve_amount": 41982.0,
+          "customer_liability": 41970.962366
+        },
+        {
+          "coin": "BCH",
+          "reserve_rate": 105.3027,
+          "reserve_amount": 45995.0,
+          "customer_liability": 43678.832345
+        },
+        {
+          "coin": "GRIN",
+          "reserve_rate": 105.522,
+          "reserve_amount": 50382952.0,
+          "customer_liability": 47746406.536637
+        },
+        {
+          "coin": "AIXBT",
+          "reserve_rate": 104.2961,
+          "reserve_amount": 25100734.0,
+          "customer_liability": 24066805.576424
+        },
+        {
+          "coin": "BERA",
+          "reserve_rate": 105.4799,
+          "reserve_amount": 4534093.0,
+          "customer_liability": 4298538.863275
+        },
+        {
+          "coin": "STABLE",
+          "reserve_rate": 104.5023,
+          "reserve_amount": 52886396.0,
+          "customer_liability": 50607884.576044
+        },
+        {
+          "coin": "MANTA",
+          "reserve_rate": 100.1533,
+          "reserve_amount": 10686622.0,
+          "customer_liability": 10670265.898259
+        },
+        {
+          "coin": "BIO",
+          "reserve_rate": 105.4392,
+          "reserve_amount": 30669044.0,
+          "customer_liability": 29086939.188727
+        },
+        {
+          "coin": "VIRTUAL",
+          "reserve_rate": 104.149,
+          "reserve_amount": 6357680.0,
+          "customer_liability": 6104409.845428
+        },
+        {
+          "coin": "NAKA",
+          "reserve_rate": 100.2778,
+          "reserve_amount": 4995582.0,
+          "customer_liability": 4981742.097481
+        },
+        {
+          "coin": "TOSHI",
+          "reserve_rate": 100.0377,
+          "reserve_amount": 7111835694.0,
+          "customer_liability": 7109152863.517963
+        },
+        {
+          "coin": "AVAAI",
+          "reserve_rate": 103.9868,
+          "reserve_amount": 266178074.0,
+          "customer_liability": 255972919.075552
+        },
+        {
+          "coin": "REZ",
+          "reserve_rate": 100.0161,
+          "reserve_amount": 127934728.0,
+          "customer_liability": 127914089.757286
+        },
+        {
+          "coin": "ADA",
+          "reserve_rate": 100.0321,
+          "reserve_amount": 89465592.0,
+          "customer_liability": 89436855.131883
+        },
+        {
+          "coin": "1INCH",
+          "reserve_rate": 105.6084,
+          "reserve_amount": 6959722.0,
+          "customer_liability": 6590120.679798
+        },
+        {
+          "coin": "WET",
+          "reserve_rate": 101.3131,
+          "reserve_amount": 9484900.0,
+          "customer_liability": 9361965.280139
+        },
+        {
+          "coin": "CSPR",
+          "reserve_rate": 100.413,
+          "reserve_amount": 440800483.0,
+          "customer_liability": 438987602.760343
+        },
+        {
+          "coin": "SUI",
+          "reserve_rate": 100.2493,
+          "reserve_amount": 27976638.0,
+          "customer_liability": 27907071.773345
+        },
+        {
+          "coin": "DYDX",
+          "reserve_rate": 102.8273,
+          "reserve_amount": 8854685.0,
+          "customer_liability": 8611224.126118
+        },
+        {
+          "coin": "ZIL",
+          "reserve_rate": 100.8327,
+          "reserve_amount": 230475850.0,
+          "customer_liability": 228572610.311381
+        },
+        {
+          "coin": "PEAQ",
+          "reserve_rate": 100.308,
+          "reserve_amount": 83476711.0,
+          "customer_liability": 83220431.208966
+        },
+        {
+          "coin": "LUNC",
+          "reserve_rate": 103.1111,
+          "reserve_amount": 67950245316.0,
+          "customer_liability": 65900050433.82921
+        },
+        {
+          "coin": "TBC",
+          "reserve_rate": 100.0331,
+          "reserve_amount": 1420850.0,
+          "customer_liability": 1420379.338486
+        },
+        {
+          "coin": "AIOZ",
+          "reserve_rate": 101.6975,
+          "reserve_amount": 15401662.0,
+          "customer_liability": 15144580.342243
+        },
+        {
+          "coin": "BRETT",
+          "reserve_rate": 101.2807,
+          "reserve_amount": 276037320.0,
+          "customer_liability": 272546752.580237
+        },
+        {
+          "coin": "AXS",
+          "reserve_rate": 100.3651,
+          "reserve_amount": 770404.0,
+          "customer_liability": 767601.751034
+        },
+        {
+          "coin": "VXT",
+          "reserve_rate": 101.56,
+          "reserve_amount": 82699541.0,
+          "customer_liability": 81429231.720119
+        },
+        {
+          "coin": "LAPTOP",
+          "reserve_rate": 105.6878,
+          "reserve_amount": 24009503.0,
+          "customer_liability": 22717386.938936
+        },
+        {
+          "coin": "SENT",
+          "reserve_rate": 103.4729,
+          "reserve_amount": 23199992.0,
+          "customer_liability": 22421332.615343
+        },
+        {
+          "coin": "KMNO",
+          "reserve_rate": 100.0741,
+          "reserve_amount": 29458170.0,
+          "customer_liability": 29436359.141675
+        },
+        {
+          "coin": "PIEVERSE",
+          "reserve_rate": 100.6568,
+          "reserve_amount": 16700012.0,
+          "customer_liability": 16591038.975934
+        },
+        {
+          "coin": "BLUE",
+          "reserve_rate": 100.1334,
+          "reserve_amount": 55998700.0,
+          "customer_liability": 55924074.927909
+        },
+        {
+          "coin": "ASTER",
+          "reserve_rate": 100.011,
+          "reserve_amount": 23256049.0,
+          "customer_liability": 23253499.570419
+        },
+        {
+          "coin": "BOME",
+          "reserve_rate": 100.0881,
+          "reserve_amount": 2271657289.0,
+          "customer_liability": 2269657197.128566
+        },
+        {
+          "coin": "ALLO",
+          "reserve_rate": 101.2014,
+          "reserve_amount": 10188747.0,
+          "customer_liability": 10067793.920529
+        },
+        {
+          "coin": "BR",
+          "reserve_rate": 105.2455,
+          "reserve_amount": 4512728.0,
+          "customer_liability": 4287812.246243
+        },
+        {
+          "coin": "AIOT",
+          "reserve_rate": 100.7785,
+          "reserve_amount": 27212927.0,
+          "customer_liability": 27002704.558424
+        },
+        {
+          "coin": "MSTRON",
+          "reserve_rate": 105.1494,
+          "reserve_amount": 12612.0,
+          "customer_liability": 11994.367231
+        },
+        {
+          "coin": "OPEN",
+          "reserve_rate": 102.5989,
+          "reserve_amount": 5657720.0,
+          "customer_liability": 5514407.650737
+        },
+        {
+          "coin": "ZETA",
+          "reserve_rate": 100.4683,
+          "reserve_amount": 19618637.0,
+          "customer_liability": 19527197.972163
+        },
+        {
+          "coin": "BLKGRWON",
+          "reserve_rate": 103.4295,
+          "reserve_amount": 94500.0,
+          "customer_liability": 91366.55691
+        },
+        {
+          "coin": "SUT",
+          "reserve_rate": 100.0002,
+          "reserve_amount": 6346099.0,
+          "customer_liability": 6346089.386989
+        },
+        {
+          "coin": "IMX",
+          "reserve_rate": 101.1035,
+          "reserve_amount": 5958324.0,
+          "customer_liability": 5893290.703725
+        },
+        {
+          "coin": "SQD",
+          "reserve_rate": 100.163,
+          "reserve_amount": 31583091.0,
+          "customer_liability": 31531681.549458
+        },
+        {
+          "coin": "S",
+          "reserve_rate": 101.2114,
+          "reserve_amount": 29857002.0,
+          "customer_liability": 29499630.486658
+        },
+        {
+          "coin": "Q",
+          "reserve_rate": 103.3934,
+          "reserve_amount": 164450411.0,
+          "customer_liability": 159053117.222717
+        },
+        {
+          "coin": "ENSO",
+          "reserve_rate": 114.1119,
+          "reserve_amount": 1014174.0,
+          "customer_liability": 888754.133567
+        },
+        {
+          "coin": "NIL",
+          "reserve_rate": 100.0335,
+          "reserve_amount": 11902174.0,
+          "customer_liability": 11898192.352667
+        },
+        {
+          "coin": "DATA",
+          "reserve_rate": 100.4652,
+          "reserve_amount": 3309630.0,
+          "customer_liability": 3294304.118518
+        },
+        {
+          "coin": "AIC",
+          "reserve_rate": 104.8159,
+          "reserve_amount": 34514901.0,
+          "customer_liability": 32929084.483458
+        },
+        {
+          "coin": "TAIKO",
+          "reserve_rate": 101.3324,
+          "reserve_amount": 13503499.0,
+          "customer_liability": 13325945.28458
+        },
+        {
+          "coin": "SCARCITY",
+          "reserve_rate": 100.0178,
+          "reserve_amount": 39840389.0,
+          "customer_liability": 39833312.865726
+        },
+        {
+          "coin": "ELIZAOS",
+          "reserve_rate": 100.0165,
+          "reserve_amount": 3153605234.0,
+          "customer_liability": 3153084226.225645
+        },
+        {
+          "coin": "BAS",
+          "reserve_rate": 100.0029,
+          "reserve_amount": 690579406.0,
+          "customer_liability": 690559708.157674
+        },
+        {
+          "coin": "VTHO",
+          "reserve_rate": 119.8335,
+          "reserve_amount": 933341242.0,
+          "customer_liability": 778864813.232893
+        },
+        {
+          "coin": "VELVET",
+          "reserve_rate": 106.741,
+          "reserve_amount": 35006089.0,
+          "customer_liability": 32795357.621738
+        },
+        {
+          "coin": "MYX",
+          "reserve_rate": 100.1344,
+          "reserve_amount": 29500550.0,
+          "customer_liability": 29460957.169732
+        },
+        {
+          "coin": "FHE",
+          "reserve_rate": 114.9454,
+          "reserve_amount": 111667836.0,
+          "customer_liability": 97148589.860845
+        },
+        {
+          "coin": "TRX",
+          "reserve_rate": 301.0245,
+          "reserve_amount": 179648268.0,
+          "customer_liability": 59678947.500605
+        },
+        {
+          "coin": "SNEK",
+          "reserve_rate": 100.3088,
+          "reserve_amount": 1840958864.0,
+          "customer_liability": 1835291802.214731
+        },
+        {
+          "coin": "PIPPIN",
+          "reserve_rate": 110.7376,
+          "reserve_amount": 293919909.0,
+          "customer_liability": 265420203.493578
+        },
+        {
+          "coin": "XDC",
+          "reserve_rate": 100.8736,
+          "reserve_amount": 111507894.0,
+          "customer_liability": 110542165.565779
+        },
+        {
+          "coin": "OORT",
+          "reserve_rate": 100.0013,
+          "reserve_amount": 258789584.0,
+          "customer_liability": 258786112.880182
+        },
+        {
+          "coin": "EPIC",
+          "reserve_rate": 116.6415,
+          "reserve_amount": 2745302.0,
+          "customer_liability": 2353623.889434
+        },
+        {
+          "coin": "CNPY",
+          "reserve_rate": 102.8182,
+          "reserve_amount": 13416146.0,
+          "customer_liability": 13048415.598388
+        },
+        {
+          "coin": "ARC",
+          "reserve_rate": 100.0017,
+          "reserve_amount": 220195711.0,
+          "customer_liability": 220191958.770013
+        },
+        {
+          "coin": "USDD",
+          "reserve_rate": 149.3453,
+          "reserve_amount": 1233120.0,
+          "customer_liability": 825683.868661
+        },
+        {
+          "coin": "GOOGLON",
+          "reserve_rate": 100.0,
+          "reserve_amount": 1588.0,
+          "customer_liability": 1588.0
+        },
+        {
+          "coin": "FARTCOIN",
+          "reserve_rate": 101.4666,
+          "reserve_amount": 58955692.0,
+          "customer_liability": 58103542.960578
+        },
+        {
+          "coin": "ENS",
+          "reserve_rate": 102.6024,
+          "reserve_amount": 179958.0,
+          "customer_liability": 175393.530384
+        },
+        {
+          "coin": "POKT",
+          "reserve_rate": 100.4975,
+          "reserve_amount": 74789111.0,
+          "customer_liability": 74418887.368083
+        },
+        {
+          "coin": "B2",
+          "reserve_rate": 100.0214,
+          "reserve_amount": 11123836.0,
+          "customer_liability": 11121459.646685
+        },
+        {
+          "coin": "AVNT",
+          "reserve_rate": 100.2463,
+          "reserve_amount": 3772000.0,
+          "customer_liability": 3762733.33209
+        },
+        {
+          "coin": "USTC",
+          "reserve_rate": 103.5254,
+          "reserve_amount": 117537970.0,
+          "customer_liability": 113535392.727927
+        },
+        {
+          "coin": "VVV",
+          "reserve_rate": 100.2267,
+          "reserve_amount": 347503.0,
+          "customer_liability": 346716.934942
+        },
+        {
+          "coin": "KAVA",
+          "reserve_rate": 109.5227,
+          "reserve_amount": 8163158.0,
+          "customer_liability": 7453392.692574
+        },
+        {
+          "coin": "CRCLON",
+          "reserve_rate": 110.8069,
+          "reserve_amount": 17285.0,
+          "customer_liability": 15599.215215
+        },
+        {
+          "coin": "TWT",
+          "reserve_rate": 101.5104,
+          "reserve_amount": 1934181.0,
+          "customer_liability": 1905401.688346
+        },
+        {
+          "coin": "DOT",
+          "reserve_rate": 132.7729,
+          "reserve_amount": 11299279.0,
+          "customer_liability": 8510231.104405
+        },
+        {
+          "coin": "ORCA",
+          "reserve_rate": 101.099,
+          "reserve_amount": 539113.0,
+          "customer_liability": 533252.723779
+        },
+        {
+          "coin": "STX",
+          "reserve_rate": 119.5879,
+          "reserve_amount": 4808840.0,
+          "customer_liability": 4021177.28495
+        },
+        {
+          "coin": "NEO",
+          "reserve_rate": 167.6832,
+          "reserve_amount": 1082446.0,
+          "customer_liability": 645530.304661
+        },
+        {
+          "coin": "AIR",
+          "reserve_rate": 101.2479,
+          "reserve_amount": 124171335.0,
+          "customer_liability": 122640932.111238
+        },
+        {
+          "coin": "STONK",
+          "reserve_rate": 100.0062,
+          "reserve_amount": 22986561.0,
+          "customer_liability": 22985136.65058
+        },
+        {
+          "coin": "AURORA",
+          "reserve_rate": 101.447,
+          "reserve_amount": 9024238.0,
+          "customer_liability": 8895517.390872
+        },
+        {
+          "coin": "STORJ",
+          "reserve_rate": 100.4768,
+          "reserve_amount": 19208194.0,
+          "customer_liability": 19117051.226414
+        },
+        {
+          "coin": "GOMINING",
+          "reserve_rate": 105.2422,
+          "reserve_amount": 1185394.0,
+          "customer_liability": 1126348.214605
+        },
+        {
+          "coin": "MERL",
+          "reserve_rate": 102.6629,
+          "reserve_amount": 32428271.0,
+          "customer_liability": 31587145.61498
+        },
+        {
+          "coin": "GOOGLX",
+          "reserve_rate": 100.0265,
+          "reserve_amount": 2135.0,
+          "customer_liability": 2134.43413
+        },
+        {
+          "coin": "MINA",
+          "reserve_rate": 100.3531,
+          "reserve_amount": 12477828.0,
+          "customer_liability": 12433924.758696
+        },
+        {
+          "coin": "RHEA",
+          "reserve_rate": 100.0659,
+          "reserve_amount": 18868865.0,
+          "customer_liability": 18856446.915671
+        },
+        {
+          "coin": "QQQON",
+          "reserve_rate": 100.0,
+          "reserve_amount": 1055.0,
+          "customer_liability": 1055.0
+        },
+        {
+          "coin": "TAKE",
+          "reserve_rate": 116.5017,
+          "reserve_amount": 69790765.0,
+          "customer_liability": 59905369.700091
+        },
+        {
+          "coin": "PROM",
+          "reserve_rate": 100.2568,
+          "reserve_amount": 246496.0,
+          "customer_liability": 245864.612616
+        },
+        {
+          "coin": "MUG",
+          "reserve_rate": 100.0,
+          "reserve_amount": 641.0,
+          "customer_liability": 641.0
+        },
+        {
+          "coin": "ITA",
+          "reserve_rate": 106.5336,
+          "reserve_amount": 186381.0,
+          "customer_liability": 174950.441142
+        },
+        {
+          "coin": "PEPE",
+          "reserve_rate": 100.1103,
+          "reserve_amount": 4450000000000.0,
+          "customer_liability": 4445098759965.48
+        },
+        {
+          "coin": "BNKR",
+          "reserve_rate": 100.6194,
+          "reserve_amount": 1323685437.0,
+          "customer_liability": 1315537287.696186
+        },
+        {
+          "coin": "PACT",
+          "reserve_rate": 100.643,
+          "reserve_amount": 3189637637.0,
+          "customer_liability": 3169259582.666575
+        },
+        {
+          "coin": "NPC",
+          "reserve_rate": 100.3489,
+          "reserve_amount": 165263256.0,
+          "customer_liability": 164688677.035287
+        },
+        {
+          "coin": "CPOOL",
+          "reserve_rate": 104.5117,
+          "reserve_amount": 28731801.0,
+          "customer_liability": 27491460.024141
+        },
+        {
+          "coin": "BNB",
+          "reserve_rate": 147.7203,
+          "reserve_amount": 74935.0,
+          "customer_liability": 50727.628671
+        },
+        {
+          "coin": "CC",
+          "reserve_rate": 107.2142,
+          "reserve_amount": 39023541.0,
+          "customer_liability": 36397742.514157
+        },
+        {
+          "coin": "ARB",
+          "reserve_rate": 100.478,
+          "reserve_amount": 27781171.0,
+          "customer_liability": 27648997.275628
+        },
+        {
+          "coin": "ETC",
+          "reserve_rate": 103.1954,
+          "reserve_amount": 1690338.0,
+          "customer_liability": 1637997.857264
+        },
+        {
+          "coin": "BTW",
+          "reserve_rate": 100.0002,
+          "reserve_amount": 140934713.0,
+          "customer_liability": 140934386.603022
+        },
+        {
+          "coin": "ZEST",
+          "reserve_rate": 100.9327,
+          "reserve_amount": 27106769.0,
+          "customer_liability": 26856271.719252
+        },
+        {
+          "coin": "PYTH",
+          "reserve_rate": 100.1238,
+          "reserve_amount": 26442855.0,
+          "customer_liability": 26410160.866031
+        },
+        {
+          "coin": "ABT",
+          "reserve_rate": 102.024,
+          "reserve_amount": 6567544.0,
+          "customer_liability": 6437251.188756
+        },
+        {
+          "coin": "USDG",
+          "reserve_rate": 865.0271,
+          "reserve_amount": 6620719.0,
+          "customer_liability": 765377.066804
+        },
+        {
+          "coin": "YFII",
+          "reserve_rate": 100.1342,
+          "reserve_amount": 17833.0,
+          "customer_liability": 17809.09816
+        },
+        {
+          "coin": "CASHCAT",
+          "reserve_rate": 100.33,
+          "reserve_amount": 27659840.0,
+          "customer_liability": 27568856.373814
+        },
+        {
+          "coin": "NEIRO",
+          "reserve_rate": 100.1793,
+          "reserve_amount": 6811502464.0,
+          "customer_liability": 6799314214.005579
+        },
+        {
+          "coin": "CELL",
+          "reserve_rate": 102.3952,
+          "reserve_amount": 6908642.0,
+          "customer_liability": 6747035.832714
+        },
+        {
+          "coin": "BTC",
+          "reserve_rate": 121.6006,
+          "reserve_amount": 25727.0,
+          "customer_liability": 21156.976134
+        },
+        {
+          "coin": "W",
+          "reserve_rate": 100.0535,
+          "reserve_amount": 63077437.0,
+          "customer_liability": 63043716.0554
+        },
+        {
+          "coin": "ETHFI",
+          "reserve_rate": 100.0015,
+          "reserve_amount": 4947737.0,
+          "customer_liability": 4947662.087527
+        },
+        {
+          "coin": "ESP",
+          "reserve_rate": 105.6031,
+          "reserve_amount": 5250985.0,
+          "customer_liability": 4972376.484356
+        },
+        {
+          "coin": "MSFTON",
+          "reserve_rate": 101.6607,
+          "reserve_amount": 830.0,
+          "customer_liability": 816.440989
+        },
+        {
+          "coin": "VET",
+          "reserve_rate": 101.8455,
+          "reserve_amount": 239570481.0,
+          "customer_liability": 235229296.016733
+        },
+        {
+          "coin": "RVN",
+          "reserve_rate": 100.4638,
+          "reserve_amount": 301387987.0,
+          "customer_liability": 299996514.108799
+        },
+        {
+          "coin": "SATS",
+          "reserve_rate": 108.2168,
+          "reserve_amount": 134000000000000.0,
+          "customer_liability": 123825544503269.73
+        },
+        {
+          "coin": "CAKE",
+          "reserve_rate": 101.8759,
+          "reserve_amount": 1687571.0,
+          "customer_liability": 1656496.184392
+        },
+        {
+          "coin": "BELIEVE",
+          "reserve_rate": 100.0888,
+          "reserve_amount": 369639507.0,
+          "customer_liability": 369311412.608131
+        },
+        {
+          "coin": "GT",
+          "reserve_rate": 129.0043,
+          "reserve_amount": 107646669.0,
+          "customer_liability": 83444232.871589
+        },
+        {
+          "coin": "XTZ",
+          "reserve_rate": 158.6681,
+          "reserve_amount": 4811879.0,
+          "customer_liability": 3032668.662075
+        },
+        {
+          "coin": "LTC",
+          "reserve_rate": 110.5329,
+          "reserve_amount": 553534.0,
+          "customer_liability": 500786.711066
+        },
+        {
+          "coin": "CETUS",
+          "reserve_rate": 106.8567,
+          "reserve_amount": 19369207.0,
+          "customer_liability": 18126331.808913
+        },
+        {
+          "coin": "ARIA",
+          "reserve_rate": 102.1356,
+          "reserve_amount": 40024873.0,
+          "customer_liability": 39187967.560544
+        },
+        {
+          "coin": "MOG",
+          "reserve_rate": 102.0794,
+          "reserve_amount": 9281460000000.0,
+          "customer_liability": 9092397101660.258
+        },
+        {
+          "coin": "SHX",
+          "reserve_rate": 104.1307,
+          "reserve_amount": 502945505.0,
+          "customer_liability": 482994244.953189
+        },
+        {
+          "coin": "JASMY",
+          "reserve_rate": 103.0368,
+          "reserve_amount": 671697542.0,
+          "customer_liability": 651900913.184593
+        },
+        {
+          "coin": "DOOD",
+          "reserve_rate": 101.3667,
+          "reserve_amount": 321834213.0,
+          "customer_liability": 317495065.436303
+        },
+        {
+          "coin": "CRV",
+          "reserve_rate": 100.3471,
+          "reserve_amount": 10872509.0,
+          "customer_liability": 10834897.265684
+        },
+        {
+          "coin": "COTI",
+          "reserve_rate": 100.5844,
+          "reserve_amount": 64694235.0,
+          "customer_liability": 64318330.633457
+        },
+        {
+          "coin": "XPR",
+          "reserve_rate": 200.2427,
+          "reserve_amount": 714936277.0,
+          "customer_liability": 357034889.975374
+        },
+        {
+          "coin": "TRADOOR",
+          "reserve_rate": 100.9781,
+          "reserve_amount": 3455209.0,
+          "customer_liability": 3421739.736182
+        },
+        {
+          "coin": "UNI",
+          "reserve_rate": 103.5526,
+          "reserve_amount": 3547020.0,
+          "customer_liability": 3425332.871598
+        },
+        {
+          "coin": "PTB",
+          "reserve_rate": 100.9617,
+          "reserve_amount": 4915208383.0,
+          "customer_liability": 4868390352.497555
+        },
+        {
+          "coin": "SUN",
+          "reserve_rate": 102.1871,
+          "reserve_amount": 31015853.0,
+          "customer_liability": 30352027.6805
+        },
+        {
+          "coin": "FLIP",
+          "reserve_rate": 100.0153,
+          "reserve_amount": 1573890.0,
+          "customer_liability": 1573649.02537
+        },
+        {
+          "coin": "USELESS",
+          "reserve_rate": 103.5671,
+          "reserve_amount": 69185973.0,
+          "customer_liability": 66803017.452355
+        },
+        {
+          "coin": "KAS",
+          "reserve_rate": 100.32,
+          "reserve_amount": 766885894.0,
+          "customer_liability": 764439860.883928
+        },
+        {
+          "coin": "SIREN",
+          "reserve_rate": 101.417,
+          "reserve_amount": 34545745.0,
+          "customer_liability": 34063085.946617
+        },
+        {
+          "coin": "CRO",
+          "reserve_rate": 100.0149,
+          "reserve_amount": 74234720.0,
+          "customer_liability": 74223647.165811
+        },
+        {
+          "coin": "WLD",
+          "reserve_rate": 100.986,
+          "reserve_amount": 21038367.0,
+          "customer_liability": 20832951.41467
+        },
+        {
+          "coin": "RLC",
+          "reserve_rate": 100.3426,
+          "reserve_amount": 560922.0,
+          "customer_liability": 559006.803916
+        },
+        {
+          "coin": "ETH",
+          "reserve_rate": 123.7763,
+          "reserve_amount": 449042.0,
+          "customer_liability": 362785.142215
+        },
+        {
+          "coin": "USD",
+          "reserve_rate": 4012.0477,
+          "reserve_amount": 48384802.0,
+          "customer_liability": 1205987.699548
+        },
+        {
+          "coin": "NOT",
+          "reserve_rate": 101.1033,
+          "reserve_amount": 1315203262.0,
+          "customer_liability": 1300851429.144475
+        },
+        {
+          "coin": "ALGO",
+          "reserve_rate": 103.1307,
+          "reserve_amount": 34946817.0,
+          "customer_liability": 33885943.834503
+        },
+        {
+          "coin": "NIGHT",
+          "reserve_rate": 100.4085,
+          "reserve_amount": 135773504.0,
+          "customer_liability": 135221081.135578
+        },
+        {
+          "coin": "BABYDOGE",
+          "reserve_rate": 108.0451,
+          "reserve_amount": 1.29e+16,
+          "customer_liability": 1.1939453839931576e+16
+        },
+        {
+          "coin": "SAFE",
+          "reserve_rate": 100.2227,
+          "reserve_amount": 5650628.0,
+          "customer_liability": 5638074.346859
+        },
+        {
+          "coin": "EDGEX",
+          "reserve_rate": 100.0017,
+          "reserve_amount": 1614683.0,
+          "customer_liability": 1614654.762045
+        },
+        {
+          "coin": "COINON",
+          "reserve_rate": 104.6034,
+          "reserve_amount": 2523.0,
+          "customer_liability": 2411.968276
+        },
+        {
+          "coin": "RSC",
+          "reserve_rate": 100.0004,
+          "reserve_amount": 9904973.0,
+          "customer_liability": 9904932.747454
+        },
+        {
+          "coin": "GUSD",
+          "reserve_rate": 181.1145,
+          "reserve_amount": 317797598.0,
+          "customer_liability": 175467818.031801
+        },
+        {
+          "coin": "DEEP",
+          "reserve_rate": 100.2794,
+          "reserve_amount": 39788314.0,
+          "customer_liability": 39677447.558842
+        },
+        {
+          "coin": "RSR",
+          "reserve_rate": 100.1524,
+          "reserve_amount": 301739719.0,
+          "customer_liability": 301280692.222416
+        },
+        {
+          "coin": "HT",
+          "reserve_rate": 110.3194,
+          "reserve_amount": 3192632.0,
+          "customer_liability": 2893990.189849
+        },
+        {
+          "coin": "TOKEN",
+          "reserve_rate": 100.2001,
+          "reserve_amount": 428665294.0,
+          "customer_liability": 427809269.896382
+        },
+        {
+          "coin": "DKA",
+          "reserve_rate": 100.478,
+          "reserve_amount": 235690903.0,
+          "customer_liability": 234569660.814857
+        },
+        {
+          "coin": "BANK",
+          "reserve_rate": 113.7286,
+          "reserve_amount": 31496865.0,
+          "customer_liability": 27694760.279911
+        },
+        {
+          "coin": "SUPER",
+          "reserve_rate": 102.4294,
+          "reserve_amount": 5145669.0,
+          "customer_liability": 5023623.786134
+        },
+        {
+          "coin": "IAG",
+          "reserve_rate": 106.5209,
+          "reserve_amount": 20833650.0,
+          "customer_liability": 19558268.164897
+        },
+        {
+          "coin": "AKT",
+          "reserve_rate": 100.6414,
+          "reserve_amount": 8388929.0,
+          "customer_liability": 8335462.613939
+        },
+        {
+          "coin": "NFT",
+          "reserve_rate": 103.6483,
+          "reserve_amount": 3525290000000.0,
+          "customer_liability": 3401204007175.3584
+        },
+        {
+          "coin": "ORDER",
+          "reserve_rate": 100.6097,
+          "reserve_amount": 13606396.0,
+          "customer_liability": 13523938.708328
+        },
+        {
+          "coin": "BONK",
+          "reserve_rate": 100.613,
+          "reserve_amount": 589361000000.0,
+          "customer_liability": 585770278771.3615
+        },
+        {
+          "coin": "VATRENI",
+          "reserve_rate": 100.0291,
+          "reserve_amount": 1839326.0,
+          "customer_liability": 1838790.691752
+        },
+        {
+          "coin": "CORE",
+          "reserve_rate": 100.6654,
+          "reserve_amount": 50633425.0,
+          "customer_liability": 50298740.798761
+        },
+        {
+          "coin": "PYUSD",
+          "reserve_rate": 100.0094,
+          "reserve_amount": 429425.0,
+          "customer_liability": 429384.762666
+        },
+        {
+          "coin": "MNT",
+          "reserve_rate": 101.4973,
+          "reserve_amount": 6605483.0,
+          "customer_liability": 6508037.927235
+        },
+        {
+          "coin": "GRIFFAIN",
+          "reserve_rate": 100.2595,
+          "reserve_amount": 214977119.0,
+          "customer_liability": 214420772.006305
+        },
+        {
+          "coin": "QQQX",
+          "reserve_rate": 100.1396,
+          "reserve_amount": 1592.0,
+          "customer_liability": 1589.780153
+        },
+        {
+          "coin": "ORAI",
+          "reserve_rate": 100.5891,
+          "reserve_amount": 1210292.0,
+          "customer_liability": 1203203.979348
+        },
+        {
+          "coin": "SNDKG",
+          "reserve_rate": 100.0,
+          "reserve_amount": 1294.0,
+          "customer_liability": 1294.0
+        },
+        {
+          "coin": "OKB",
+          "reserve_rate": 100.0051,
+          "reserve_amount": 96174.0,
+          "customer_liability": 96169.132224
+        },
+        {
+          "coin": "MAVIA",
+          "reserve_rate": 100.175,
+          "reserve_amount": 24856899.0,
+          "customer_liability": 24813466.36048
+        },
+        {
+          "coin": "ALT",
+          "reserve_rate": 105.7578,
+          "reserve_amount": 75920937.0,
+          "customer_liability": 71787529.318555
+        },
+        {
+          "coin": "QANX",
+          "reserve_rate": 108.6039,
+          "reserve_amount": 103979311.0,
+          "customer_liability": 95741771.9104
+        },
+        {
+          "coin": "COINX",
+          "reserve_rate": 102.8625,
+          "reserve_amount": 4589.0,
+          "customer_liability": 4461.294621
+        },
+        {
+          "coin": "FLR",
+          "reserve_rate": 102.1392,
+          "reserve_amount": 239188579.0,
+          "customer_liability": 234178946.274012
+        },
+        {
+          "coin": "B",
+          "reserve_rate": 102.2188,
+          "reserve_amount": 63160346.0,
+          "customer_liability": 61789370.891363
+        },
+        {
+          "coin": "LIGHT",
+          "reserve_rate": 108.5914,
+          "reserve_amount": 30766065.0,
+          "customer_liability": 28331954.589164
+        },
+        {
+          "coin": "FIL",
+          "reserve_rate": 100.585,
+          "reserve_amount": 21331801.0,
+          "customer_liability": 21207734.341326
+        },
+        {
+          "coin": "GRAM",
+          "reserve_rate": 141.1088,
+          "reserve_amount": 6309275.0,
+          "customer_liability": 4471214.387307
+        },
+        {
+          "coin": "LAB",
+          "reserve_rate": 102.3716,
+          "reserve_amount": 149716630.0,
+          "customer_liability": 146248262.402672
+        },
+        {
+          "coin": "CRCLG",
+          "reserve_rate": 100.0,
+          "reserve_amount": 40333.0,
+          "customer_liability": 40333.0
+        },
+        {
+          "coin": "USD1",
+          "reserve_rate": 100.9793,
+          "reserve_amount": 395594390.0,
+          "customer_liability": 391757947.569546
+        },
+        {
+          "coin": "UB",
+          "reserve_rate": 100.1655,
+          "reserve_amount": 113615939.0,
+          "customer_liability": 113428209.209383
+        },
+        {
+          "coin": "XYM",
+          "reserve_rate": 100.1653,
+          "reserve_amount": 275309650.0,
+          "customer_liability": 274855333.175269
+        },
+        {
+          "coin": "FLOCK",
+          "reserve_rate": 101.0612,
+          "reserve_amount": 12044122.0,
+          "customer_liability": 11917656.531862
+        },
+        {
+          "coin": "TUT",
+          "reserve_rate": 108.5899,
+          "reserve_amount": 40304614.0,
+          "customer_liability": 37116354.399304
+        },
+        {
+          "coin": "FLUX",
+          "reserve_rate": 101.1337,
+          "reserve_amount": 8685023.0,
+          "customer_liability": 8587665.311495
+        },
+        {
+          "coin": "DEXE",
+          "reserve_rate": 100.0226,
+          "reserve_amount": 493780.0,
+          "customer_liability": 493668.271219
+        },
+        {
+          "coin": "TSLAON",
+          "reserve_rate": 103.2837,
+          "reserve_amount": 1575.0,
+          "customer_liability": 1524.926721
+        },
+        {
+          "coin": "INTCG",
+          "reserve_rate": 100.0,
+          "reserve_amount": 5178.0,
+          "customer_liability": 5178.0
+        },
+        {
+          "coin": "TRUMP",
+          "reserve_rate": 101.1069,
+          "reserve_amount": 3650932.0,
+          "customer_liability": 3610962.109864
+        },
+        {
+          "coin": "INX",
+          "reserve_rate": 100.0465,
+          "reserve_amount": 372848226.0,
+          "customer_liability": 372674842.514354
+        },
+        {
+          "coin": "NVDAON",
+          "reserve_rate": 104.3063,
+          "reserve_amount": 2921.0,
+          "customer_liability": 2800.406689
+        },
+        {
+          "coin": "MORPHO",
+          "reserve_rate": 100.1563,
+          "reserve_amount": 661882.0,
+          "customer_liability": 660848.961945
+        },
+        {
+          "coin": "SLVON",
+          "reserve_rate": 100.005,
+          "reserve_amount": 47512.0,
+          "customer_liability": 47509.62492
+        },
+        {
+          "coin": "DRIFT",
+          "reserve_rate": 100.1532,
+          "reserve_amount": 29722462.0,
+          "customer_liability": 29676989.959057
+        },
+        {
+          "coin": "TA",
+          "reserve_rate": 119.0169,
+          "reserve_amount": 49796887.0,
+          "customer_liability": 41840187.092947
+        },
+        {
+          "coin": "SYN",
+          "reserve_rate": 103.3544,
+          "reserve_amount": 4647895.0,
+          "customer_liability": 4497045.909019
+        },
+        {
+          "coin": "FET",
+          "reserve_rate": 101.9893,
+          "reserve_amount": 64760342.0,
+          "customer_liability": 63497192.908135
+        },
+        {
+          "coin": "SWARMS",
+          "reserve_rate": 110.85,
+          "reserve_amount": 355470591.0,
+          "customer_liability": 320677031.403571
+        },
+        {
+          "coin": "SKR",
+          "reserve_rate": 100.1877,
+          "reserve_amount": 39419109.0,
+          "customer_liability": 39345264.875941
+        },
+        {
+          "coin": "FXNW",
+          "reserve_rate": 101.6893,
+          "reserve_amount": 36452572.0,
+          "customer_liability": 35847023.890424
+        },
+        {
+          "coin": "CFX",
+          "reserve_rate": 100.7807,
+          "reserve_amount": 97900169.0,
+          "customer_liability": 97141748.65747
+        },
+        {
+          "coin": "DOGE",
+          "reserve_rate": 106.763,
+          "reserve_amount": 2333595886.0,
+          "customer_liability": 2185772089.723507
+        },
+        {
+          "coin": "ZEUS",
+          "reserve_rate": 100.2443,
+          "reserve_amount": 183345954.0,
+          "customer_liability": 182899213.966297
+        },
+        {
+          "coin": "JST",
+          "reserve_rate": 109.9086,
+          "reserve_amount": 5618133.0,
+          "customer_liability": 5111640.884645
+        },
+        {
+          "coin": "IOTX",
+          "reserve_rate": 100.7813,
+          "reserve_amount": 117697310.0,
+          "customer_liability": 116784911.481886
+        },
+        {
+          "coin": "MET",
+          "reserve_rate": 100.1286,
+          "reserve_amount": 1354927.0,
+          "customer_liability": 1353186.378415
+        },
+        {
+          "coin": "BEAT",
+          "reserve_rate": 101.858,
+          "reserve_amount": 88993582.0,
+          "customer_liability": 87370284.740779
+        },
+        {
+          "coin": "GF",
+          "reserve_rate": 105.9077,
+          "reserve_amount": 415306580.0,
+          "customer_liability": 392140301.553052
+        },
+        {
+          "coin": "QTUM",
+          "reserve_rate": 104.9329,
+          "reserve_amount": 866307.0,
+          "customer_liability": 825581.889946
+        },
+        {
+          "coin": "CHIP",
+          "reserve_rate": 100.014,
+          "reserve_amount": 25896982.0,
+          "customer_liability": 25893352.289297
+        },
+        {
+          "coin": "ACP",
+          "reserve_rate": 100.0124,
+          "reserve_amount": 169745866.0,
+          "customer_liability": 169724867.990484
+        },
+        {
+          "coin": "LPT",
+          "reserve_rate": 107.536,
+          "reserve_amount": 340377.0,
+          "customer_liability": 316523.699781
+        },
+        {
+          "coin": "ZULU",
+          "reserve_rate": 100.0006,
+          "reserve_amount": 159615798.0,
+          "customer_liability": 159614885.050147
+        },
+        {
+          "coin": "SPYX",
+          "reserve_rate": 100.1295,
+          "reserve_amount": 825.0,
+          "customer_liability": 823.932845
+        },
+        {
+          "coin": "CTR",
+          "reserve_rate": 100.0018,
+          "reserve_amount": 156359412.0,
+          "customer_liability": 156356665.878668
+        },
+        {
+          "coin": "ATH",
+          "reserve_rate": 100.0213,
+          "reserve_amount": 381331314.0,
+          "customer_liability": 381250062.498921
+        },
+        {
+          "coin": "SSV",
+          "reserve_rate": 100.0008,
+          "reserve_amount": 255536.0,
+          "customer_liability": 255533.976728
+        },
+        {
+          "coin": "LINK",
+          "reserve_rate": 101.2225,
+          "reserve_amount": 1733918.0,
+          "customer_liability": 1712976.180056
+        },
+        {
+          "coin": "EIGEN",
+          "reserve_rate": 100.1233,
+          "reserve_amount": 5361784.0,
+          "customer_liability": 5355179.141714
+        },
+        {
+          "coin": "DRV",
+          "reserve_rate": 101.0404,
+          "reserve_amount": 8489623.0,
+          "customer_liability": 8402204.533603
+        },
+        {
+          "coin": "ASTR",
+          "reserve_rate": 101.2333,
+          "reserve_amount": 91636282.0,
+          "customer_liability": 90519940.182715
+        },
+        {
+          "coin": "JUP",
+          "reserve_rate": 130.8008,
+          "reserve_amount": 8698739.0,
+          "customer_liability": 6650370.356576
+        },
+        {
+          "coin": "REKTCOIN",
+          "reserve_rate": 114.1523,
+          "reserve_amount": 6064160000000.0,
+          "customer_liability": 5312342784857.999
+        },
+        {
+          "coin": "XPIN",
+          "reserve_rate": 101.7106,
+          "reserve_amount": 6121672021.0,
+          "customer_liability": 6018715610.239368
+        },
+        {
+          "coin": "XLM",
+          "reserve_rate": 108.9345,
+          "reserve_amount": 35620850.0,
+          "customer_liability": 32699318.694862
+        },
+        {
+          "coin": "QUBIC",
+          "reserve_rate": 100.6364,
+          "reserve_amount": 16612700000000.0,
+          "customer_liability": 16507651090482.209
+        },
+        {
+          "coin": "POPCAT",
+          "reserve_rate": 100.0172,
+          "reserve_amount": 27601376.0,
+          "customer_liability": 27596626.072433
+        },
+        {
+          "coin": "COW",
+          "reserve_rate": 100.1499,
+          "reserve_amount": 3090009.0,
+          "customer_liability": 3085383.300125
+        },
+        {
+          "coin": "SOL",
+          "reserve_rate": 102.5107,
+          "reserve_amount": 1002162.0,
+          "customer_liability": 977616.671217
+        },
+        {
+          "coin": "MARSCOIN",
+          "reserve_rate": 101.7457,
+          "reserve_amount": 29391416.0,
+          "customer_liability": 28887131.636545
+        },
+        {
+          "coin": "JELLYJELLY",
+          "reserve_rate": 101.344,
+          "reserve_amount": 384899503.0,
+          "customer_liability": 379795156.616811
+        },
+        {
+          "coin": "PUMP",
+          "reserve_rate": 100.0795,
+          "reserve_amount": 1868348443.0,
+          "customer_liability": 1866864664.211556
+        },
+        {
+          "coin": "BLKHION",
+          "reserve_rate": 105.6997,
+          "reserve_amount": 143388.0,
+          "customer_liability": 135656.043307
+        },
+        {
+          "coin": "SNT",
+          "reserve_rate": 106.024,
+          "reserve_amount": 71900725.0,
+          "customer_liability": 67815522.18729
+        },
+        {
+          "coin": "GWEI",
+          "reserve_rate": 100.1355,
+          "reserve_amount": 44777851.0,
+          "customer_liability": 44717238.001586
+        },
+        {
+          "coin": "RLUSD",
+          "reserve_rate": 102.7979,
+          "reserve_amount": 1230011.0,
+          "customer_liability": 1196533.558917
+        },
+        {
+          "coin": "SKHYNIXG",
+          "reserve_rate": 100.0051,
+          "reserve_amount": 2947.0,
+          "customer_liability": 2946.8495
+        },
+        {
+          "coin": "COAI",
+          "reserve_rate": 102.1188,
+          "reserve_amount": 8542289.0,
+          "customer_liability": 8365048.520822
+        },
+        {
+          "coin": "ZRO",
+          "reserve_rate": 105.6822,
+          "reserve_amount": 1901297.0,
+          "customer_liability": 1799069.770925
+        },
+        {
+          "coin": "DOG",
+          "reserve_rate": 100.4397,
+          "reserve_amount": 11444286719.0,
+          "customer_liability": 11394191955.081402
+        },
+        {
+          "coin": "HUMA",
+          "reserve_rate": 121.8025,
+          "reserve_amount": 44199306.0,
+          "customer_liability": 36287680.048047
+        },
+        {
+          "coin": "POL",
+          "reserve_rate": 100.7755,
+          "reserve_amount": 32572754.0,
+          "customer_liability": 32322101.690519
+        },
+        {
+          "coin": "QNT",
+          "reserve_rate": 100.6272,
+          "reserve_amount": 50108.0,
+          "customer_liability": 49795.657437
+        },
+        {
+          "coin": "RENDER",
+          "reserve_rate": 104.0735,
+          "reserve_amount": 2642347.0,
+          "customer_liability": 2538923.864192
+        },
+        {
+          "coin": "M",
+          "reserve_rate": 100.06,
+          "reserve_amount": 4206475.0,
+          "customer_liability": 4203951.950427
+        },
+        {
+          "coin": "BGSC",
+          "reserve_rate": 101.4588,
+          "reserve_amount": 2770916817.0,
+          "customer_liability": 2731076938.382632
+        },
+        {
+          "coin": "IOTA",
+          "reserve_rate": 108.3603,
+          "reserve_amount": 26643506.0,
+          "customer_liability": 24587880.717164
+        },
+        {
+          "coin": "HBAR",
+          "reserve_rate": 103.0157,
+          "reserve_amount": 62179307.0,
+          "customer_liability": 60359064.042098
+        },
+        {
+          "coin": "RAY",
+          "reserve_rate": 100.713,
+          "reserve_amount": 1273144.0,
+          "customer_liability": 1264130.218678
+        },
+        {
+          "coin": "MCAT",
+          "reserve_rate": 102.8155,
+          "reserve_amount": 2581276.0,
+          "customer_liability": 2510590.737017
+        },
+        {
+          "coin": "LSK",
+          "reserve_rate": 100.929,
+          "reserve_amount": 2038242.0,
+          "customer_liability": 2019480.153823
+        },
+        {
+          "coin": "BTT",
+          "reserve_rate": 100.1671,
+          "reserve_amount": 3492160000000.0,
+          "customer_liability": 3486334338688.879
+        },
+        {
+          "coin": "TRAC",
+          "reserve_rate": 101.6168,
+          "reserve_amount": 1707951.0,
+          "customer_liability": 1680776.379227
+        },
+        {
+          "coin": "NAORIS",
+          "reserve_rate": 100.7316,
+          "reserve_amount": 90645212.0,
+          "customer_liability": 89986871.740463
+        },
+        {
+          "coin": "FF",
+          "reserve_rate": 106.5072,
+          "reserve_amount": 170294637.0,
+          "customer_liability": 159890317.184812
+        },
+        {
+          "coin": "ACU",
+          "reserve_rate": 101.0422,
+          "reserve_amount": 21737821.0,
+          "customer_liability": 21513606.140893
+        },
+        {
+          "coin": "ZK",
+          "reserve_rate": 100.2711,
+          "reserve_amount": 101534285.0,
+          "customer_liability": 101259809.382593
+        },
+        {
+          "coin": "NVDAX",
+          "reserve_rate": 100.0,
+          "reserve_amount": 4021.0,
+          "customer_liability": 4021.0
+        },
+        {
+          "coin": "ETHW",
+          "reserve_rate": 100.0023,
+          "reserve_amount": 5035927.0,
+          "customer_liability": 5035812.989343
+        },
+        {
+          "coin": "龙虾",
+          "reserve_rate": 100.0039,
+          "reserve_amount": 236606276.0,
+          "customer_liability": 236596996.512402
+        },
+        {
+          "coin": "APE",
+          "reserve_rate": 100.8142,
+          "reserve_amount": 16788220.0,
+          "customer_liability": 16652631.621764
+        },
+        {
+          "coin": "牛来",
+          "reserve_rate": 100.38,
+          "reserve_amount": 32997622.0,
+          "customer_liability": 32872698.627827
+        },
+        {
+          "coin": "ZBCN",
+          "reserve_rate": 100.1008,
+          "reserve_amount": 887187030.0,
+          "customer_liability": 886293564.302455
+        },
+        {
+          "coin": "STRK",
+          "reserve_rate": 102.3129,
+          "reserve_amount": 59474669.0,
+          "customer_liability": 58130195.306911
+        },
+        {
+          "coin": "AAVE",
+          "reserve_rate": 100.85,
+          "reserve_amount": 75526.0,
+          "customer_liability": 74889.474992
+        },
+        {
+          "coin": "ALEO",
+          "reserve_rate": 100.6047,
+          "reserve_amount": 184456548.0,
+          "customer_liability": 183347817.798432
+        },
+        {
+          "coin": "THETA",
+          "reserve_rate": 101.0047,
+          "reserve_amount": 9111830.0,
+          "customer_liability": 9021196.798746
+        },
+        {
+          "coin": "HNT",
+          "reserve_rate": 100.4821,
+          "reserve_amount": 3445299.0,
+          "customer_liability": 3428767.258058
+        },
+        {
+          "coin": "GO4",
+          "reserve_rate": 100.0068,
+          "reserve_amount": 3517249.0,
+          "customer_liability": 3517009.034223
+        },
+        {
+          "coin": "GROK",
+          "reserve_rate": 100.1239,
+          "reserve_amount": 798482936.0,
+          "customer_liability": 797495039.910802
+        },
+        {
+          "coin": "CT",
+          "reserve_rate": 101.9839,
+          "reserve_amount": 9705084.0,
+          "customer_liability": 9516288.537635
+        },
+        {
+          "coin": "CHILLGUY",
+          "reserve_rate": 114.2598,
+          "reserve_amount": 68202761.0,
+          "customer_liability": 59690953.516686
+        },
+        {
+          "coin": "TX",
+          "reserve_rate": 100.7726,
+          "reserve_amount": 450725744.0,
+          "customer_liability": 447270084.775659
+        },
+        {
+          "coin": "QKC",
+          "reserve_rate": 100.9889,
+          "reserve_amount": 287311774.0,
+          "customer_liability": 284498311.398871
+        },
+        {
+          "coin": "ARKM",
+          "reserve_rate": 100.0911,
+          "reserve_amount": 10949683.0,
+          "customer_liability": 10939717.244855
+        },
+        {
+          "coin": "KAIA",
+          "reserve_rate": 109.2561,
+          "reserve_amount": 16277579.0,
+          "customer_liability": 14898548.686379
+        },
+        {
+          "coin": "AIN",
+          "reserve_rate": 101.3317,
+          "reserve_amount": 119814830.0,
+          "customer_liability": 118240231.632029
+        },
+        {
+          "coin": "CYS",
+          "reserve_rate": 142.6334,
+          "reserve_amount": 22216018.0,
+          "customer_liability": 15575609.107544
+        }
+      ]
+    }
+  }
+}

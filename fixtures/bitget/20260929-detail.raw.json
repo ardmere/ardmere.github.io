@@ -1,0 +1,508 @@
+{
+  "code": "200",
+  "data": {
+    "platformAssetDetailListList": [
+      {
+        "coinName": "LINK",
+        "customerTotalAmount": 1745856.53164934,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Ethereum",
+            "coinName": "LINK",
+            "platformTotalAmount": 2387708.20657627
+          }
+        ],
+        "totalReserveRatio": 137
+      },
+      {
+        "coinName": "BTC",
+        "customerTotalAmount": 20531.72334901,
+        "platformTotalAssetList": [
+          {
+            "chainName": "BITCOIN",
+            "coinName": "BTC",
+            "platformTotalAmount": 29003.43307867
+          },
+          {
+            "chainName": "Binance Smart Chain",
+            "coinName": "BTC",
+            "platformTotalAmount": 78.16928657
+          },
+          {
+            "chainName": "Lightning Network",
+            "coinName": "BTC",
+            "platformTotalAmount": 17.85227542
+          },
+          {
+            "chainName": "MEZO",
+            "coinName": "BTC",
+            "platformTotalAmount": 0.09908394
+          },
+          {
+            "chainName": "Merlin Chain",
+            "coinName": "BTC",
+            "platformTotalAmount": 0.0530277
+          }
+        ],
+        "totalReserveRatio": 142
+      },
+      {
+        "coinName": "USDT",
+        "customerTotalAmount": 1180586720.1611428,
+        "platformTotalAssetList": [
+          {
+            "chainName": "APTOS",
+            "coinName": "USDT",
+            "platformTotalAmount": 16667997.639992
+          },
+          {
+            "chainName": "AVAX C",
+            "coinName": "USDT",
+            "platformTotalAmount": 22363554.0279
+          },
+          {
+            "chainName": "Arbitrum One",
+            "coinName": "USDT",
+            "platformTotalAmount": 3441246.47981
+          },
+          {
+            "chainName": "Binance Smart Chain",
+            "coinName": "USDT",
+            "platformTotalAmount": 411326391.8370396
+          },
+          {
+            "chainName": "Ethereum",
+            "coinName": "USDT",
+            "platformTotalAmount": 220210303.087801
+          },
+          {
+            "chainName": "Morph",
+            "coinName": "USDT",
+            "platformTotalAmount": 1417461.087729
+          },
+          {
+            "chainName": "Optimism",
+            "coinName": "USDT",
+            "platformTotalAmount": 4211027.358962
+          },
+          {
+            "chainName": "Plasma",
+            "coinName": "USDT",
+            "platformTotalAmount": 39687937.520558
+          },
+          {
+            "chainName": "Polygon",
+            "coinName": "USDT",
+            "platformTotalAmount": 28353509.615023
+          },
+          {
+            "chainName": "Solana",
+            "coinName": "USDT",
+            "platformTotalAmount": 139265354.534917
+          },
+          {
+            "chainName": "The Open Network",
+            "coinName": "USDT",
+            "platformTotalAmount": 40811740.028635
+          },
+          {
+            "chainName": "Tron",
+            "coinName": "USDT",
+            "platformTotalAmount": 340802344.132916
+          }
+        ],
+        "totalReserveRatio": 107
+      },
+      {
+        "coinName": "ETH",
+        "customerTotalAmount": 166080.3434189,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Alienxchain",
+            "coinName": "ETH",
+            "platformTotalAmount": 0.29672965
+          },
+          {
+            "chainName": "Arbitrum One",
+            "coinName": "ETH",
+            "platformTotalAmount": 14373.92999935
+          },
+          {
+            "chainName": "BASE",
+            "coinName": "ETH",
+            "platformTotalAmount": 11866.95583849
+          },
+          {
+            "chainName": "Binance Smart Chain",
+            "coinName": "ETH",
+            "platformTotalAmount": 28885.78507221
+          },
+          {
+            "chainName": "Blast",
+            "coinName": "ETH",
+            "platformTotalAmount": 143.34958138
+          },
+          {
+            "chainName": "Eclipse",
+            "coinName": "ETH",
+            "platformTotalAmount": 8.91172081
+          },
+          {
+            "chainName": "Ethereum",
+            "coinName": "ETH",
+            "platformTotalAmount": 118844.238968
+          },
+          {
+            "chainName": "Fuel",
+            "coinName": "ETH",
+            "platformTotalAmount": 99.76353192
+          },
+          {
+            "chainName": "Gensyn",
+            "coinName": "ETH",
+            "platformTotalAmount": 2.00253508
+          },
+          {
+            "chainName": "Katana",
+            "coinName": "ETH",
+            "platformTotalAmount": 5.01509439
+          },
+          {
+            "chainName": "LINEA",
+            "coinName": "ETH",
+            "platformTotalAmount": 114.43816029
+          },
+          {
+            "chainName": "MEGA",
+            "coinName": "ETH",
+            "platformTotalAmount": 1.99618913
+          },
+          {
+            "chainName": "Manta NetWork",
+            "coinName": "ETH",
+            "platformTotalAmount": 14.74699877
+          },
+          {
+            "chainName": "Metal DAO L2",
+            "coinName": "ETH",
+            "platformTotalAmount": 0.53108054
+          },
+          {
+            "chainName": "Mode",
+            "coinName": "ETH",
+            "platformTotalAmount": 0.49230515
+          },
+          {
+            "chainName": "Morph",
+            "coinName": "ETH",
+            "platformTotalAmount": 2116.38193049
+          },
+          {
+            "chainName": "Optimism",
+            "coinName": "ETH",
+            "platformTotalAmount": 1217.37266966
+          },
+          {
+            "chainName": "Robinhood Chain",
+            "coinName": "ETH",
+            "platformTotalAmount": 1397.29659047
+          },
+          {
+            "chainName": "SCROLL",
+            "coinName": "ETH",
+            "platformTotalAmount": 1685.52934561
+          },
+          {
+            "chainName": "Starknet",
+            "coinName": "ETH",
+            "platformTotalAmount": 1448.53925409
+          },
+          {
+            "chainName": "World Chain",
+            "coinName": "ETH",
+            "platformTotalAmount": 5.45149008
+          },
+          {
+            "chainName": "Zircuit",
+            "coinName": "ETH",
+            "platformTotalAmount": 12.79021584
+          },
+          {
+            "chainName": "zkSync Era",
+            "coinName": "ETH",
+            "platformTotalAmount": 178.43817296
+          }
+        ],
+        "totalReserveRatio": 110
+      },
+      {
+        "coinName": "LTC",
+        "customerTotalAmount": 180579.17762271,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Litecoin",
+            "coinName": "LTC",
+            "platformTotalAmount": 236858.51876765
+          }
+        ],
+        "totalReserveRatio": 131
+      },
+      {
+        "coinName": "USDC",
+        "customerTotalAmount": 96477014.80580994,
+        "platformTotalAssetList": [
+          {
+            "chainName": "APTOS",
+            "coinName": "USDC",
+            "platformTotalAmount": 4391207.059074
+          },
+          {
+            "chainName": "ARC",
+            "coinName": "USDC",
+            "platformTotalAmount": 2428871.88009001
+          },
+          {
+            "chainName": "AVAX C",
+            "coinName": "USDC",
+            "platformTotalAmount": 3076261.030268
+          },
+          {
+            "chainName": "Arbitrum One",
+            "coinName": "USDC",
+            "platformTotalAmount": 11295177.17645
+          },
+          {
+            "chainName": "BASE",
+            "coinName": "USDC",
+            "platformTotalAmount": 8702346.315671
+          },
+          {
+            "chainName": "Binance Smart Chain",
+            "coinName": "USDC",
+            "platformTotalAmount": 9700692.13260249
+          },
+          {
+            "chainName": "Ethereum",
+            "coinName": "USDC",
+            "platformTotalAmount": 38772355.317971
+          },
+          {
+            "chainName": "Monad",
+            "coinName": "USDC",
+            "platformTotalAmount": 1312190.009302
+          },
+          {
+            "chainName": "Morph",
+            "coinName": "USDC",
+            "platformTotalAmount": 3988325.962973
+          },
+          {
+            "chainName": "Optimism",
+            "coinName": "USDC",
+            "platformTotalAmount": 1047656.985866
+          },
+          {
+            "chainName": "Polygon",
+            "coinName": "USDC",
+            "platformTotalAmount": 8749054.50524
+          },
+          {
+            "chainName": "SEIEVM",
+            "coinName": "USDC",
+            "platformTotalAmount": 2253822.654746
+          },
+          {
+            "chainName": "SONIC",
+            "coinName": "USDC",
+            "platformTotalAmount": 2352908.876474
+          },
+          {
+            "chainName": "Solana",
+            "coinName": "USDC",
+            "platformTotalAmount": 50504358.94238
+          },
+          {
+            "chainName": "ZKFair",
+            "coinName": "USDC",
+            "platformTotalAmount": 632.23238202
+          }
+        ],
+        "totalReserveRatio": 154
+      },
+      {
+        "coinName": "NEAR",
+        "customerTotalAmount": 4558377.01880714,
+        "platformTotalAssetList": [
+          {
+            "chainName": "NEAR Protocol",
+            "coinName": "NEAR",
+            "platformTotalAmount": 8241498.6948775
+          }
+        ],
+        "totalReserveRatio": 181
+      },
+      {
+        "coinName": "USDGO",
+        "customerTotalAmount": 339873567.8264859,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Solana",
+            "coinName": "USDGO",
+            "platformTotalAmount": 572769868.073908
+          }
+        ],
+        "totalReserveRatio": 169
+      },
+      {
+        "coinName": "DOGE",
+        "customerTotalAmount": 432540508.99017394,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Dogecoin",
+            "coinName": "DOGE",
+            "platformTotalAmount": 562955956.3197594
+          }
+        ],
+        "totalReserveRatio": 130
+      },
+      {
+        "coinName": "HYPE",
+        "customerTotalAmount": 804215.74829023,
+        "platformTotalAssetList": [
+          {
+            "chainName": "HYPEREVM",
+            "coinName": "HYPE",
+            "platformTotalAmount": 869427.01392086
+          },
+          {
+            "chainName": "hyperliquid",
+            "coinName": "HYPE",
+            "platformTotalAmount": 275703.67340664
+          }
+        ],
+        "totalReserveRatio": 142
+      },
+      {
+        "coinName": "ONDO",
+        "customerTotalAmount": 41535026.57796292,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Ethereum",
+            "coinName": "ONDO",
+            "platformTotalAmount": 50868938.46256815
+          }
+        ],
+        "totalReserveRatio": 122
+      },
+      {
+        "coinName": "XAUT",
+        "customerTotalAmount": 7366.59435435,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Ethereum",
+            "coinName": "XAUT",
+            "platformTotalAmount": 12636.879216
+          }
+        ],
+        "totalReserveRatio": 172
+      },
+      {
+        "coinName": "PI",
+        "customerTotalAmount": 151511822.71127236,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Pi Network",
+            "coinName": "PI",
+            "platformTotalAmount": 165273321.3004699
+          }
+        ],
+        "totalReserveRatio": 109
+      },
+      {
+        "coinName": "BNB",
+        "customerTotalAmount": 85188.5123901,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Binance Smart Chain",
+            "coinName": "BNB",
+            "platformTotalAmount": 88350.73117771
+          },
+          {
+            "chainName": "Matchain",
+            "coinName": "BNB",
+            "platformTotalAmount": 10.0032913
+          },
+          {
+            "chainName": "opBNB",
+            "coinName": "BNB",
+            "platformTotalAmount": 366.95815434
+          }
+        ],
+        "totalReserveRatio": 104
+      },
+      {
+        "coinName": "XRP",
+        "customerTotalAmount": 65457156.06268707,
+        "platformTotalAssetList": [
+          {
+            "chainName": "XRP Ledger",
+            "coinName": "XRP",
+            "platformTotalAmount": 69852180.910835
+          }
+        ],
+        "totalReserveRatio": 107
+      },
+      {
+        "coinName": "SOL",
+        "customerTotalAmount": 789123.13214353,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Solana",
+            "coinName": "SOL",
+            "platformTotalAmount": 1235589.68359192
+          }
+        ],
+        "totalReserveRatio": 157
+      },
+      {
+        "coinName": "SUI",
+        "customerTotalAmount": 24186234.42472157,
+        "platformTotalAssetList": [
+          {
+            "chainName": "SUI",
+            "coinName": "SUI",
+            "platformTotalAmount": 36920800.39804728
+          }
+        ],
+        "totalReserveRatio": 153
+      },
+      {
+        "coinName": "ADA",
+        "customerTotalAmount": 66352933.40878774,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Cardano",
+            "coinName": "ADA",
+            "platformTotalAmount": 102578189.534069
+          }
+        ],
+        "totalReserveRatio": 155
+      },
+      {
+        "coinName": "TAO",
+        "customerTotalAmount": 72090.14785826,
+        "platformTotalAssetList": [
+          {
+            "chainName": "Bittensor",
+            "coinName": "TAO",
+            "platformTotalAmount": 105522.68781827
+          }
+        ],
+        "totalReserveRatio": 146
+      }
+    ],
+    "userVerifyNumber": 1610,
+    "walletAssetDetailListList": []
+  },
+  "params": []
+}

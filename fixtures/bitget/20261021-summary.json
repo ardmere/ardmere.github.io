@@ -1,0 +1,612 @@
+{
+  "fetchedAt": "2026-10-31T14:31:04Z",
+  "source": "browser-api",
+  "sourceUrl": "https://www.bitget.com/v1/bill/proof/assets/public/queryTotalReserveAmount",
+  "officialAuditId": "Au2026102112",
+  "info": {
+    "audit_id": "20261021",
+    "auditId": "20261021",
+    "audit_time": "2026-10-21 04:00:00",
+    "snapshotTime": "2026-10-21 04:00:00",
+    "merkleRootHash": "1ef42111598bd71b",
+    "merkelRootHash": "1ef42111598bd71b",
+    "totalReserveRate": 115.0,
+    "officialAuditId": "Au2026102112"
+  },
+  "coinList": {
+    "list": [
+      {
+        "coin": "LINK",
+        "coinName": "LINK",
+        "reserveRate": 107.0,
+        "platformAssets": 2154044.7641028,
+        "userAssets": 2013633.56331641,
+        "reserve_amount": 2154044.7641028,
+        "customer_liability": 2013633.56331641
+      },
+      {
+        "coin": "BTC",
+        "coinName": "BTC",
+        "reserveRate": 113.0,
+        "platformAssets": 30762.119361859997,
+        "userAssets": 27249.02763339,
+        "reserve_amount": 30762.119361859997,
+        "customer_liability": 27249.02763339
+      },
+      {
+        "coin": "USDT",
+        "coinName": "USDT",
+        "reserveRate": 105.0,
+        "platformAssets": 924684024.5893372,
+        "userAssets": 882474794.3933694,
+        "reserve_amount": 924684024.5893372,
+        "customer_liability": 882474794.3933694
+      },
+      {
+        "coin": "ETH",
+        "coinName": "ETH",
+        "reserveRate": 162.0,
+        "platformAssets": 215367.76249532995,
+        "userAssets": 133074.49172405,
+        "reserve_amount": 215367.76249532995,
+        "customer_liability": 133074.49172405
+      },
+      {
+        "coin": "LTC",
+        "coinName": "LTC",
+        "reserveRate": 110.0,
+        "platformAssets": 227786.02238149,
+        "userAssets": 208013.21334197,
+        "reserve_amount": 227786.02238149,
+        "customer_liability": 208013.21334197
+      },
+      {
+        "coin": "USDC",
+        "coinName": "USDC",
+        "reserveRate": 101.0,
+        "platformAssets": 150890694.9787458,
+        "userAssets": 149480614.7590278,
+        "reserve_amount": 150890694.9787458,
+        "customer_liability": 149480614.7590278
+      },
+      {
+        "coin": "NEAR",
+        "coinName": "NEAR",
+        "reserveRate": 122.0,
+        "platformAssets": 6958424.99009077,
+        "userAssets": 5710695.41894571,
+        "reserve_amount": 6958424.99009077,
+        "customer_liability": 5710695.41894571
+      },
+      {
+        "coin": "USDGO",
+        "coinName": "USDGO",
+        "reserveRate": 118.0,
+        "platformAssets": 642247904.413256,
+        "userAssets": 544150096.9708668,
+        "reserve_amount": 642247904.413256,
+        "customer_liability": 544150096.9708668
+      },
+      {
+        "coin": "DOGE",
+        "coinName": "DOGE",
+        "reserveRate": 115.0,
+        "platformAssets": 573582708.116955,
+        "userAssets": 500642056.52516335,
+        "reserve_amount": 573582708.116955,
+        "customer_liability": 500642056.52516335
+      },
+      {
+        "coin": "HYPE",
+        "coinName": "HYPE",
+        "reserveRate": 109.0,
+        "platformAssets": 944997.61805797,
+        "userAssets": 865101.19238075,
+        "reserve_amount": 944997.61805797,
+        "customer_liability": 865101.19238075
+      },
+      {
+        "coin": "ONDO",
+        "coinName": "ONDO",
+        "reserveRate": 109.0,
+        "platformAssets": 50649340.49582778,
+        "userAssets": 46357404.2400147,
+        "reserve_amount": 50649340.49582778,
+        "customer_liability": 46357404.2400147
+      },
+      {
+        "coin": "XAUT",
+        "coinName": "XAUT",
+        "reserveRate": 110.0,
+        "platformAssets": 12653.629958,
+        "userAssets": 11465.83650206,
+        "reserve_amount": 12653.629958,
+        "customer_liability": 11465.83650206
+      },
+      {
+        "coin": "PI",
+        "coinName": "PI",
+        "reserveRate": 103.0,
+        "platformAssets": 164467012.6104045,
+        "userAssets": 160436299.52246866,
+        "reserve_amount": 164467012.6104045,
+        "customer_liability": 160436299.52246866
+      },
+      {
+        "coin": "BNB",
+        "coinName": "BNB",
+        "reserveRate": 108.0,
+        "platformAssets": 104911.14094418,
+        "userAssets": 97367.70499731,
+        "reserve_amount": 104911.14094418,
+        "customer_liability": 97367.70499731
+      },
+      {
+        "coin": "XRP",
+        "coinName": "XRP",
+        "reserveRate": 113.0,
+        "platformAssets": 106092764.506867,
+        "userAssets": 93483388.81074855,
+        "reserve_amount": 106092764.506867,
+        "customer_liability": 93483388.81074855
+      },
+      {
+        "coin": "SOL",
+        "coinName": "SOL",
+        "reserveRate": 148.0,
+        "platformAssets": 1295928.83383277,
+        "userAssets": 876195.86251054,
+        "reserve_amount": 1295928.83383277,
+        "customer_liability": 876195.86251054
+      },
+      {
+        "coin": "SUI",
+        "coinName": "SUI",
+        "reserveRate": 110.0,
+        "platformAssets": 30632625.97093689,
+        "userAssets": 27904685.5615041,
+        "reserve_amount": 30632625.97093689,
+        "customer_liability": 27904685.5615041
+      },
+      {
+        "coin": "ADA",
+        "coinName": "ADA",
+        "reserveRate": 107.0,
+        "platformAssets": 87036280.669128,
+        "userAssets": 81688025.52831095,
+        "reserve_amount": 87036280.669128,
+        "customer_liability": 81688025.52831095
+      },
+      {
+        "coin": "TAO",
+        "coinName": "TAO",
+        "reserveRate": 109.0,
+        "platformAssets": 92739.19664682,
+        "userAssets": 84782.03343696,
+        "reserve_amount": 92739.19664682,
+        "customer_liability": 84782.03343696
+      }
+    ]
+  },
+  "rawTotal": {
+    "auditId": "Au2026102112",
+    "coinChainHeightList": [
+      {
+        "chainHeight": "128870420",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "972414",
+        "chainName": "BITCOIN"
+      },
+      {
+        "chainHeight": "179255517",
+        "chainName": "Lightning Network"
+      },
+      {
+        "chainHeight": "32506534",
+        "chainName": "Merlin Chain"
+      },
+      {
+        "chainHeight": "12654589",
+        "chainName": "MEZO"
+      },
+      {
+        "chainHeight": "1127867460",
+        "chainName": "APTOS"
+      },
+      {
+        "chainHeight": "516802781",
+        "chainName": "Arbitrum One"
+      },
+      {
+        "chainHeight": "98115669",
+        "chainName": "AVAX C-Chain"
+      },
+      {
+        "chainHeight": "128870598",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "26238437",
+        "chainName": "Ethereum"
+      },
+      {
+        "chainHeight": "28594149",
+        "chainName": "Morph"
+      },
+      {
+        "chainHeight": "158478208",
+        "chainName": "Optimism"
+      },
+      {
+        "chainHeight": "35613771",
+        "chainName": "Plasma"
+      },
+      {
+        "chainHeight": "95899892",
+        "chainName": "Polygon"
+      },
+      {
+        "chainHeight": "459487801",
+        "chainName": "Solana"
+      },
+      {
+        "chainHeight": "100369562",
+        "chainName": "The Open Network"
+      },
+      {
+        "chainHeight": "87294042",
+        "chainName": "Tron"
+      },
+      {
+        "chainHeight": "2360873",
+        "chainName": "Alienxchain"
+      },
+      {
+        "chainHeight": "516802782",
+        "chainName": "Arbitrum One"
+      },
+      {
+        "chainHeight": "52882953",
+        "chainName": "BASE"
+      },
+      {
+        "chainHeight": "128870613",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "41872673",
+        "chainName": "Blast"
+      },
+      {
+        "chainHeight": "196380439",
+        "chainName": "Eclipse"
+      },
+      {
+        "chainHeight": "26238459",
+        "chainName": "Ethereum"
+      },
+      {
+        "chainHeight": "67339593",
+        "chainName": "Fuel"
+      },
+      {
+        "chainHeight": "16919501",
+        "chainName": "Gensyn"
+      },
+      {
+        "chainHeight": "45812382",
+        "chainName": "Katana"
+      },
+      {
+        "chainHeight": "32382087",
+        "chainName": "LINEA"
+      },
+      {
+        "chainHeight": "9833123",
+        "chainName": "Manta NetWork"
+      },
+      {
+        "chainHeight": "29758165",
+        "chainName": "MEGA"
+      },
+      {
+        "chainHeight": "40495823",
+        "chainName": "Metal DAO L2"
+      },
+      {
+        "chainHeight": "46193785",
+        "chainName": "Mode"
+      },
+      {
+        "chainHeight": "28594167",
+        "chainName": "Morph"
+      },
+      {
+        "chainHeight": "158478192",
+        "chainName": "Optimism"
+      },
+      {
+        "chainHeight": "93986732",
+        "chainName": "Robinhood Chain"
+      },
+      {
+        "chainHeight": "35448387",
+        "chainName": "SCROLL"
+      },
+      {
+        "chainHeight": "16695619",
+        "chainName": "Starknet"
+      },
+      {
+        "chainHeight": "36609768",
+        "chainName": "World Chain"
+      },
+      {
+        "chainHeight": "36309479",
+        "chainName": "Zircuit"
+      },
+      {
+        "chainHeight": "72577648",
+        "chainName": "zkSync Era"
+      },
+      {
+        "chainHeight": "3198814",
+        "chainName": "Litecoin"
+      },
+      {
+        "chainHeight": "973799",
+        "chainName": "Bitcoin Cash"
+      },
+      {
+        "chainHeight": "26238433",
+        "chainName": "Ethereum"
+      },
+      {
+        "chainHeight": "87294126",
+        "chainName": "Tron"
+      },
+      {
+        "chainHeight": "107797760",
+        "chainName": "XRP Ledger"
+      },
+      {
+        "chainHeight": "1127870735",
+        "chainName": "APTOS"
+      },
+      {
+        "chainHeight": "27053061",
+        "chainName": "ARC"
+      },
+      {
+        "chainHeight": "98115695",
+        "chainName": "AVAX C-Chain"
+      },
+      {
+        "chainHeight": "52882944",
+        "chainName": "BASE"
+      },
+      {
+        "chainHeight": "26238438",
+        "chainName": "Ethereum"
+      },
+      {
+        "chainHeight": "115225080",
+        "chainName": "Monad"
+      },
+      {
+        "chainHeight": "158478229",
+        "chainName": "Optimism"
+      },
+      {
+        "chainHeight": "95899863",
+        "chainName": "Polygon"
+      },
+      {
+        "chainHeight": "238793420",
+        "chainName": "SEIEVM"
+      },
+      {
+        "chainHeight": "459487891",
+        "chainName": "Solana"
+      },
+      {
+        "chainHeight": "81390649",
+        "chainName": "SONIC"
+      },
+      {
+        "chainHeight": "29987345",
+        "chainName": "ZKFair"
+      },
+      {
+        "chainHeight": "26238428",
+        "chainName": "Ethereum"
+      },
+      {
+        "chainHeight": "6423925",
+        "chainName": "Dogecoin"
+      },
+      {
+        "chainHeight": "128870782",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "167751513",
+        "chainName": "Matchain"
+      },
+      {
+        "chainHeight": "197753052",
+        "chainName": "opBNB"
+      },
+      {
+        "chainHeight": "459487935",
+        "chainName": "Solana"
+      },
+      {
+        "chainHeight": "14095673",
+        "chainName": "Cardano"
+      },
+      {
+        "chainHeight": "22093498",
+        "chainName": "Polkadot Asset Hub"
+      },
+      {
+        "chainHeight": "28594172",
+        "chainName": "Morph"
+      },
+      {
+        "chainHeight": "65053881",
+        "chainName": "Stellar Lumens"
+      },
+      {
+        "chainHeight": "533763",
+        "chainName": "Avalanche"
+      },
+      {
+        "chainHeight": "98115694",
+        "chainName": "AVAX C-Chain"
+      },
+      {
+        "chainHeight": "100369611",
+        "chainName": "The Open Network"
+      },
+      {
+        "chainHeight": "220895737",
+        "chainName": "NEAR Protocol"
+      },
+      {
+        "chainHeight": "128870796",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "516802846",
+        "chainName": "Arbitrum One"
+      },
+      {
+        "chainHeight": "9329312",
+        "chainName": "Bittensor"
+      },
+      {
+        "chainHeight": "569309328",
+        "chainName": "KASPA"
+      },
+      {
+        "chainHeight": "336352842",
+        "chainName": "SUI"
+      },
+      {
+        "chainHeight": "101377135",
+        "chainName": "Hedera"
+      },
+      {
+        "chainHeight": "459487938",
+        "chainName": "Solana"
+      },
+      {
+        "chainHeight": "459487717",
+        "chainName": "Solana"
+      },
+      {
+        "chainHeight": "459487800",
+        "chainName": "Solana"
+      },
+      {
+        "chainHeight": "49103495",
+        "chainName": "HYPEREVM"
+      },
+      {
+        "chainHeight": "1182174197",
+        "chainName": "hyperliquid"
+      },
+      {
+        "chainHeight": "26238435",
+        "chainName": "Ethereum"
+      },
+      {
+        "chainHeight": "29324375",
+        "chainName": "Pi Network"
+      },
+      {
+        "chainHeight": "128870687",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "128870780",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "15948466",
+        "chainName": "AB Core"
+      },
+      {
+        "chainHeight": "128870781",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "8012327",
+        "chainName": "MemeCore"
+      },
+      {
+        "chainHeight": "128870553",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "128870799",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "128870752",
+        "chainName": "Binance Smart Chain"
+      },
+      {
+        "chainHeight": "1127869552",
+        "chainName": "APTOS"
+      },
+      {
+        "chainHeight": "336352736",
+        "chainName": "SUI"
+      },
+      {
+        "chainHeight": "459487720",
+        "chainName": "Solana"
+      },
+      {
+        "chainHeight": "516802670",
+        "chainName": "Arbitrum One"
+      },
+      {
+        "chainHeight": "516802671",
+        "chainName": "Arbitrum One"
+      },
+      {
+        "chainHeight": "516802462",
+        "chainName": "Arbitrum One"
+      },
+      {
+        "chainHeight": "128870555",
+        "chainName": "Binance Smart Chain"
+      }
+    ],
+    "customerCoinList": [
+      "BTC",
+      "USDT",
+      "ETH",
+      "USDC"
+    ],
+    "customerTotalAmount": 4774387173.484777,
+    "merkleRootHash": "1ef42111598bd71b",
+    "platformCoinList": [
+      "BTC",
+      "USDT",
+      "ETH",
+      "USDC"
+    ],
+    "platformTotalAmount": 5509866266.120954,
+    "snapshotTime": "1792555200000",
+    "totalLevel": 24,
+    "totalRecords": 9112434,
+    "totalReserveRatio": 115,
+    "totalVerifyRecords": 240
+  }
+}
