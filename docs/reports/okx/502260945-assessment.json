@@ -1,11 +1,11 @@
 {
   "artifacts": {
-    "artifactBundleRoot": "0x2ad5edb3d7796238ec5f464f034aca0abeafeb331d5a52ec02db4323788c39b8",
+    "artifactBundleRoot": "0x3067ccba7bff9f7a4af2cf98615f3ac719939d30e45f46d9bd4b11210c2edd4c",
     "present": [
       {
         "availability": "public",
         "kind": "summarySnapshot",
-        "sha256": "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "sha256": "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
         "url": "https://www.okx.com/proof-of-reserves/detail"
       },
       {
@@ -21,7 +21,7 @@
         "url": "https://static.okx.com/cdn/okx/por/merkel/por_502260945_proof_data.zip"
       }
     ],
-    "verificationBundleRoot": "0xe0d49f7eccf3e1d5c45fc045189cc44f741228aadb93e9f6d930ed00b3b1a911"
+    "verificationBundleRoot": "0x8781145c1a73f815c9f220c4af949d2be6ceaa4112127c046cc04fb144482b23"
   },
   "checklist": [
     {
@@ -54,14 +54,14 @@
     },
     {
       "id": "S1-2",
-      "notes": "address-ownership verifier FAIL.",
+      "notes": "address-ownership verifier PASS.",
       "question": "Is wallet_ownership_proof public and batch-verifiable?",
       "stage": "Stage 1",
-      "status": "fail"
+      "status": "pass"
     },
     {
       "id": "S1-3",
-      "notes": "global-zk-proof verifier PARTIAL.",
+      "notes": "global-zk-proof verifier PASS.",
       "question": "Is global_proof public and independently reproducible?",
       "stage": "Stage 1",
       "status": "pass"
@@ -82,27 +82,27 @@
     },
     {
       "id": "S2-1",
-      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "notes": "No official exchange canonical on-chain/DA anchor established.",
       "question": "Is root/proof/vk canonically anchored outside exchange servers?",
       "stage": "Stage 2",
-      "status": "not_applicable"
+      "status": "fail"
     },
     {
       "id": "S2-2",
-      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "notes": "Monthly or slower cadence; does not meet Stage 2 frequency expectations.",
       "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
       "stage": "Stage 2",
-      "status": "not_applicable"
+      "status": "fail"
     }
   ],
   "confidence": "medium",
-  "effectivePoR": false,
+  "effectivePoR": true,
   "evidenceLevel": "E2",
   "exchange": "okx",
   "gen": "Gen 2",
-  "generatedAt": "2026-10-30T14:36:19Z",
+  "generatedAt": "2026-10-31T13:06:19Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
-  "porStage": "Stage 0",
+  "porStage": "Stage 1",
   "recommendations": [
     {
       "priority": "P1",
@@ -122,14 +122,14 @@
   "riskFlags": [
     {
       "id": "NO_CANONICAL_ANCHOR",
-      "severity": "high",
-      "stageEffect": "max_stage_0",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
       "message": "No official exchange canonical on-chain/DA anchor established."
     },
     {
       "id": "HIGH_FREQUENCY_GAP",
-      "severity": "high",
-      "stageEffect": "max_stage_0",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
       "message": "Monthly cadence does not satisfy Stage 2 frequency expectations."
     }
   ],
@@ -158,15 +158,15 @@
     }
   ],
   "summary": {
-    "headline": "OKX audit 502260945 does not meet all Stage 1 public artifact thresholds in this pipeline.",
-    "rationale": "Missing or failing verifiers block Stage 1 effective PoR for this snapshot.",
+    "headline": "OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 502260945. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1.",
+    "rationale": "Stage 1 is supported by public wallet_address_list, wallet_ownership_proof, global_proof, and parameter/proof artifacts. Stage 2 is not reached because canonical official anchoring, stable DA, low-friction user inclusion proof, stronger publication frequency, and full business-consistent constraints are not established in this report.",
     "scope": "okx snapshot 502260945"
   },
   "verifierResults": [
     {
       "coverage": 1,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
         "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07",
         "6a6da5f8afec8d93b922cca48d04c70b10f5ca2a28944487edf66d8f2b23283d"
       ],
@@ -178,7 +178,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -188,7 +188,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
         "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07"
       ],
       "reason": "",
@@ -197,19 +197,19 @@
       "version": "1.0"
     },
     {
-      "coverage": 0.9993697689549207,
+      "coverage": 1,
       "inputArtifacts": [
         "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07"
       ],
-      "reason": "371/588673 address signatures failed",
-      "verdict": "FAIL",
+      "reason": "verified 588673/588673 address signatures (58 Aptos resource accounts via authentication_key)",
+      "verdict": "PASS",
       "verifierId": "address-ownership",
-      "version": "okx-1"
+      "version": "okx-1.1"
     },
     {
       "coverage": 0,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "RPC queries skipped (--skip-rpc)",
       "verdict": "UNVERIFIABLE",
@@ -219,7 +219,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "RPC queries skipped (--skip-rpc)",
       "verdict": "UNVERIFIABLE",
@@ -229,7 +229,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "RPC queries skipped (--skip-rpc)",
       "verdict": "UNVERIFIABLE",
@@ -237,20 +237,20 @@
       "version": "1.2"
     },
     {
-      "coverage": 0.75,
+      "coverage": 1,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
         "6a6da5f8afec8d93b922cca48d04c70b10f5ca2a28944487edf66d8f2b23283d"
       ],
-      "reason": "structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR for cryptographic verification",
-      "verdict": "PARTIAL",
+      "reason": "zkSTARKValidator verify-global succeeded; summary merkle root bound to zk proof",
+      "verdict": "PASS",
       "verifierId": "global-zk-proof",
       "version": "okx-1"
     },
     {
       "coverage": 0,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "BTC block time anchor verifier not implemented",
       "verdict": "UNVERIFIABLE",
@@ -260,7 +260,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "No public third-party attestation report available",
       "verdict": "UNVERIFIABLE",
@@ -270,7 +270,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
       "verdict": "UNVERIFIABLE",
