@@ -36,7 +36,7 @@ Comparison</h1>
 Framework</a><br />
 Policy standard: <a href="../effective-por-standard.html">Effective PoR
 Standard</a><br />
-<strong>All 20 public reports:</strong> <a
+<strong>All 24 public reports:</strong> <a
 href="./snapshot-history.html">Snapshot history</a></p>
 </blockquote>
 <h2 id="summary-latest-snapshot-per-exchange">Summary (latest snapshot
@@ -54,7 +54,7 @@ per exchange)</h2>
 <col style="width: 11%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Exchange</th>
 <th>Snapshot</th>
 <th>PoR Stage</th>
@@ -67,7 +67,7 @@ per exchange)</h2>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Binance</td>
 <td><code>PR01OCT26</code></td>
 <td><code>Stage 0</code></td>
@@ -79,7 +79,7 @@ per exchange)</h2>
 href="https://github.com/binance/zkmerkle-proof-of-solvency">binance/zkmerkle-proof-of-solvency</a></td>
 <td><a href="./binance/PR01OCT26-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>OKX</td>
 <td><code>502260945</code></td>
 <td><code>Stage 1</code></td>
@@ -92,7 +92,7 @@ href="https://github.com/okx/proof-of-reserves-v2">okx/proof-of-reserves-v2</a>
 (+ <a href="https://github.com/okx/proof-of-reserves">v1 sigs</a>)</td>
 <td><a href="./okx/502260945-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Gate.io</td>
 <td><code>20260618</code></td>
 <td><code>Stage 0</code></td>
@@ -104,7 +104,7 @@ href="https://github.com/okx/proof-of-reserves-v2">okx/proof-of-reserves-v2</a>
 href="https://github.com/gateio/proof-of-reserves">gateio/proof-of-reserves</a></td>
 <td><a href="./gateio/20260618-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Bybit</td>
 <td><code>2026052709</code></td>
 <td><code>Stage 0</code></td>
@@ -116,7 +116,7 @@ href="https://github.com/gateio/proof-of-reserves">gateio/proof-of-reserves</a><
 href="https://github.com/bybit-exchange/merkle-proof">bybit-exchange/merkle-proof</a></td>
 <td><a href="./bybit/2026052709-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Bitget</td>
 <td><code>202606</code></td>
 <td><code>Stage 0</code></td>
@@ -128,7 +128,7 @@ href="https://github.com/bybit-exchange/merkle-proof">bybit-exchange/merkle-proo
 href="https://github.com/BitgetLimited/proof-of-reserves">BitgetLimited/proof-of-reserves</a></td>
 <td><a href="./bitget/202606-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>HTX</td>
 <td><code>20230910</code></td>
 <td><code>Stage 0</code></td>
@@ -139,6 +139,18 @@ href="https://github.com/BitgetLimited/proof-of-reserves">BitgetLimited/proof-of
 <td><a
 href="https://github.com/huobiapi/Tool-Go-MerkleVerify">huobiapi/Tool-Go-MerkleVerify</a></td>
 <td><a href="./htx/20230910-transparency-report.html">report</a></td>
+</tr>
+<tr class="odd">
+<td>MEXC</td>
+<td><code>202610</code></td>
+<td><code>Stage 0</code></td>
+<td><code>Gen 1 / E1</code></td>
+<td><code>false</code></td>
+<td><code>low</code></td>
+<td><code>2026-10-15T00:00:00Z</code></td>
+<td><a
+href="https://github.com/mexcmerkle/mexc-merkle-proof-of-reserves">mexcmerkle/mexc-merkle-proof-of-reserves</a></td>
+<td><a href="./mexc/202610-transparency-report.html">report</a></td>
 </tr>
 </tbody>
 </table>
@@ -174,6 +186,12 @@ href="./bitget/202606-transparency-report.html">Full report</a></li>
 <code>20230910</code> (Sep 2023): htx snapshot 20230910 remains Stage 0
 in the ardmere public evaluation set. <a
 href="./htx/20230910-transparency-report.html">Full report</a></li>
+<li><strong>MEXC (<code>Stage 0</code>)</strong> — Latest
+<code>202610</code> (Oct 2026): MEXC snapshot 202610 is a weak Stage 0
+(press-release / import summary): self-reported ratios only; no public
+period merkle root in the archived package; user Merkle remains
+login-gated. <a href="./mexc/202610-transparency-report.html">Full
+report</a></li>
 </ul>
 <p>Gap detail, risk flags, and verifier output are in each report.
 Missing data is marked <code>UNVERIFIABLE</code>, not <code>PASS</code>

@@ -1,0 +1,292 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x9c3413cf09eaf6afe44141d4352138a915a97335bb8f3945090a9b5c3a6df512",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba",
+        "url": "https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836"
+      }
+    ],
+    "verificationBundleRoot": "0xbd970786476407076940c9110f7f5a47626f1731c71352f16843978290334bd0"
+  },
+  "checklist": [
+    {
+      "id": "S0-1",
+      "notes": "Snapshot 202607 is in the public evaluation set.",
+      "question": "Has public PoR been published during the last 12 months?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-2",
+      "notes": "2026-07-15T00:00:00Z",
+      "question": "Is snapshot time explicit?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-3",
+      "notes": "Summary present; wallet_address_list absent.",
+      "question": "Is there reserve summary or wallet_address_list?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S1-1",
+      "notes": "No public wallet_address_list artifact.",
+      "question": "Is wallet_address_list public and on-chain verifiable?",
+      "stage": "Stage 1",
+      "status": "fail"
+    },
+    {
+      "id": "S1-2",
+      "notes": "address-ownership verifier UNVERIFIABLE.",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-3",
+      "notes": "global-zk-proof verifier UNVERIFIABLE.",
+      "question": "Is global_proof public and independently reproducible?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-4",
+      "notes": "third-party-attestation verifier UNVERIFIABLE.",
+      "question": "Is independent third-party review available with stated scope?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-5",
+      "notes": "No global ZK proof in the assessed public artifact set.",
+      "question": "If trusted setup is required, is transcript public; otherwise is the proof system transparent setup?",
+      "stage": "Stage 1",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-1",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is root/proof/vk canonically anchored outside exchange servers?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-2",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    }
+  ],
+  "confidence": "low",
+  "effectivePoR": false,
+  "evidenceLevel": "E1",
+  "exchange": "mexc",
+  "gen": "Gen 1",
+  "generatedAt": "2026-10-31T13:37:06Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "recommendations": [
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "UNVERIFIABLE"
+      ],
+      "text": "Publish missing public artifacts required for independent reproduction."
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No public wallet_address_list."
+    },
+    {
+      "id": "NO_PUBLIC_MERKLE_ROOT",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Press-release summary has no public period merkle root to bind user proofs."
+    },
+    {
+      "id": "WAF_GATED",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "www.mexc.com PoR JSON is WAF-gated from datacenters; summary imported from press materials."
+    },
+    {
+      "id": "LOGIN_GATED_USER_PROOF",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "User myProof.json not present in the public evaluation package (login-gated)."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "",
+    "id": "202607",
+    "periodSeq": 0,
+    "snapshotTime": "2026-07-15T00:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_public_wallet_address_list",
+      "evidence": "wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "No public wallet_address_list.",
+      "riskFlag": "UNVERIFIABLE"
+    },
+    {
+      "ruleId": "floor_no_public_merkle_root",
+      "evidence": "merkle_root",
+      "maxStage": "Stage 0",
+      "reason": "Press-release summary has no public period merkle root to bind user proofs.",
+      "riskFlag": "NO_PUBLIC_MERKLE_ROOT"
+    },
+    {
+      "ruleId": "floor_waf_gated_dashboard",
+      "evidence": "por_dashboard_api",
+      "maxStage": "Stage 0",
+      "reason": "www.mexc.com PoR JSON is WAF-gated from datacenters; summary imported from press materials.",
+      "riskFlag": "WAF_GATED"
+    },
+    {
+      "ruleId": "floor_login_gated_user_proof",
+      "evidence": "userMerkleProof",
+      "maxStage": "Stage 0",
+      "reason": "User myProof.json not present in the public evaluation package (login-gated).",
+      "riskFlag": "LOGIN_GATED_USER_PROOF"
+    }
+  ],
+  "summary": {
+    "headline": "MEXC snapshot 202607 is a weak Stage 0 (press-release / import summary): self-reported ratios only; no public period merkle root in the archived package; user Merkle remains login-gated.",
+    "rationale": "solvency-claim PASS means self-reported reserve ratios ≥ 100% only — not independently reproduced reserves. Datacenter fetches of www.mexc.com are WAF-blocked; Hacken PDF attestation is not machine-parsed here.",
+    "scope": "mexc snapshot 202607"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": null,
+      "reason": "myProof.json not present; download from MEXC PoR page while logged in and import via -user-proof",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "user-merkle-proof",
+      "version": "mexc-1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "Wallet address bundle not available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "internal-consistency",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "BTC block time anchor verifier not implemented",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "Wallet address bundle not available for on-chain audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "Wallet address bundle not available for token audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "Global proof.csv / verifying key not publicly distributed",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "global-zk-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
+      ],
+      "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

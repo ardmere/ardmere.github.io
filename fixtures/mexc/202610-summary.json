@@ -1,0 +1,19 @@
+{
+  "fetchedAt": "2026-10-16T10:00:00Z",
+  "source": "press-release-scrape",
+  "info": {
+    "audit_id": "202610",
+    "audit_time": "2026-10-15 00:00:00",
+    "totalReserveRate": 111,
+    "sourceUrl": "https://blog.mexc.com/press-release/mexc-releases-october-2026-proof-of-reserves/",
+    "note": "Ratios from MEXC October 2026 PoR press release (Hacken). Absolute reserve/liability amounts not published in the article. No public merkle root."
+  },
+  "coinList": {
+    "list": [
+      {"coin": "BTC", "reserveRate": 294},
+      {"coin": "USDT", "reserveRate": 122},
+      {"coin": "USDC", "reserveRate": 115},
+      {"coin": "ETH", "reserveRate": 111}
+    ]
+  }
+}

@@ -9,6 +9,11 @@ overrides:
   bitget/202605: Fixture import
   htx/20230910: GitHub sample zk bundle (2023-09)
 
+  mexc/202610: Press-release scrape; merkle root missing; WAF-gated dashboard
+  mexc/202609: Press-release scrape; merkle root missing
+  mexc/202608: Press-release scrape; merkle root missing
+  mexc/202607: Press-release scrape; merkle root missing
+
 footers:
   - |-
     HTX June 2026 (`20260601`) pending manual `public-data.zip` import — see `artifacts/htx/20260601/FETCH_NEEDED.md`.

@@ -1,0 +1,19 @@
+{
+  "fetchedAt": "2026-09-15T10:00:00Z",
+  "source": "press-release-scrape",
+  "info": {
+    "audit_id": "202609",
+    "audit_time": "2026-09-10 00:00:00",
+    "totalReserveRate": 111,
+    "sourceUrl": "https://blog.mexc.com/press-release/mexcs-september-2026-proof-of-reserves/",
+    "note": "Ratios from MEXC September 2026 PoR press release (Hacken), snapshot dated 2026-09-10. No public merkle root in the press release."
+  },
+  "coinList": {
+    "list": [
+      {"coin": "BTC", "reserveRate": 297, "userAssets": 4106.57, "platformAssets": 12202.13},
+      {"coin": "USDT", "reserveRate": 119, "userAssets": 1526526878.38, "platformAssets": 1818202910.24},
+      {"coin": "USDC", "reserveRate": 111, "userAssets": 269894125.25, "platformAssets": 299925929.77},
+      {"coin": "ETH", "reserveRate": 111, "userAssets": 53243.98, "platformAssets": 58917.60}
+    ]
+  }
+}

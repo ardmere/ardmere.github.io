@@ -1,0 +1,40 @@
+{
+  "fetchedAt": "2026-07-15T10:00:00Z",
+  "source": "press-release-scrape",
+  "info": {
+    "audit_id": "202607",
+    "audit_time": "2026-07-15 00:00:00",
+    "totalReserveRate": 114,
+    "period": 1,
+    "sourceUrl": "https://blog.mexc.com/press-release/mexcs-july-2026-proof-of-reserves-report/",
+    "note": "Ratios from MEXC July 2026 PoR press release (Hacken). No public merkle root in the press release. WAF blocks www.mexc.com JSON from datacenters."
+  },
+  "coinList": {
+    "list": [
+      {
+        "coin": "BTC",
+        "reserveRate": 281,
+        "userAssets": 4439.51,
+        "platformAssets": 12474.0231
+      },
+      {
+        "coin": "USDT",
+        "reserveRate": 119,
+        "userAssets": 1811076206.47,
+        "platformAssets": 2155180685.6993
+      },
+      {
+        "coin": "USDC",
+        "reserveRate": 115,
+        "userAssets": 68340949.76,
+        "platformAssets": 78592092.224
+      },
+      {
+        "coin": "ETH",
+        "reserveRate": 114,
+        "userAssets": 62416.70,
+        "platformAssets": 71155.038
+      }
+    ]
+  }
+}

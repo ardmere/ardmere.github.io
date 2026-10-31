@@ -11,12 +11,16 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 
 | Exchange | Snapshot | Date | Stage | Report |
 | --- | --- | --- | --- | --- |
+| MEXC | `202610` | 2026-10-15 | Stage 0 | [report](./mexc/202610-transparency-report.md) |
 | OKX | `502260945` | 2026-10-02 | **Stage 1** | [report](./okx/502260945-transparency-report.md) |
 | Binance | `PR01OCT26` | 2026-10-01 | Stage 0 | [report](./binance/PR01OCT26-transparency-report.md) |
+| MEXC | `202609` | 2026-09-10 | Stage 0 | [report](./mexc/202609-transparency-report.md) |
 | OKX | `502299735` | 2026-09-07 | **Stage 1** | [report](./okx/502299735-transparency-report.md) |
 | Binance | `PR01SEP26` | 2026-09-01 | Stage 0 | [report](./binance/PR01SEP26-transparency-report.md) |
+| MEXC | `202608` | 2026-08-14 | Stage 0 | [report](./mexc/202608-transparency-report.md) |
 | OKX | `500375535` | 2026-08-10 | **Stage 1** | [report](./okx/500375535-transparency-report.md) |
 | Binance | `PR01AUG26` | 2026-08-01 | Stage 0 | [report](./binance/PR01AUG26-transparency-report.md) |
+| MEXC | `202607` | 2026-07-15 | Stage 0 | [report](./mexc/202607-transparency-report.md) |
 | Binance | `PR01JUL26` | 2026-07-01 | Stage 0 | [report](./binance/PR01JUL26-transparency-report.md) |
 | OKX | `508399035` | 2026-06-18 | **Stage 1** | [report](./okx/508399035-transparency-report.md) |
 | Bitget | `202606` | 2026-06-18 | Stage 0 | [report](./bitget/202606-transparency-report.md) |
@@ -63,6 +67,10 @@ Public APIs, WAF, login walls, or fixture-only pipelines often require browser c
 
 | Exchange | Snapshot | Stage | Notes | Report |
 | --- | --- | --- | --- | --- |
+| MEXC | `202610` | Stage 0 | Press-release scrape; merkle root missing; WAF-gated dashboard | [report](./mexc/202610-transparency-report.md) |
+| MEXC | `202609` | Stage 0 | Press-release scrape; merkle root missing | [report](./mexc/202609-transparency-report.md) |
+| MEXC | `202608` | Stage 0 | Press-release scrape; merkle root missing | [report](./mexc/202608-transparency-report.md) |
+| MEXC | `202607` | Stage 0 | Press-release scrape; merkle root missing | [report](./mexc/202607-transparency-report.md) |
 | Bitget | `202606` | Stage 0 | Announcement scrape; merkle root missing | [report](./bitget/202606-transparency-report.md) |
 | Gate.io | `20260618` | Stage 0 | Page-scrape import (official merkle root) | [report](./gateio/20260618-transparency-report.md) |
 | Bitget | `202605` | Stage 0 | Fixture import | [report](./bitget/202605-transparency-report.md) |
