@@ -14,6 +14,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/bitget/bitgetapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit/bybitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio/gateapi"
+	"github.com/ardmere/ardmere/internal/exchanges/bingx/bingxapi"
 	"github.com/ardmere/ardmere/internal/exchanges/kucoin/kucoinapi"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
 )
@@ -43,6 +44,9 @@ func Main(args []string) int {
 	case "kucoin":
 		RunKuCoin(args[1:])
 		return 0
+	case "bingx":
+		RunBingX(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -66,6 +70,7 @@ Exchanges:
   bitget     fetch or import Bitget PoR summary (+ optional merkel_tree_bg.json)
   mexc       fetch or import MEXC PoR summary (+ optional myProof.json)
   kucoin     fetch or import KuCoin PoR summary (public SSR scrape)
+  bingx      fetch or import BingX PoR summary (+ optional user Merkle JSON)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -76,6 +81,7 @@ Examples:
   por fetch bitget -summary-path ./summary.json -user-proof ./merkel_tree_bg.json
   por fetch mexc -summary-path ./fixtures/mexc/202607-summary.json -user-proof ./fixtures/mexc/merkle_proof.json
   por fetch kucoin
+  por fetch bingx -summary-path ./fixtures/bingx/20261015-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -358,6 +364,55 @@ func RunKuCoin(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch kucoin snapshot: %v\n\nTip: open https://www.kucoin.com/proof-of-reserves or import:\n  por fetch kucoin -summary-path ./fixtures/kucoin/20260930-summary.json", err)
+	}
+	logResult(stored)
+}
+
+// RunBingX archives BingX PoR summary (and optional user Merkle proof).
+func RunBingX(args []string) {
+	fs := flag.NewFlagSet("bingx", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import merged summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser-captured reserve-ratio API response JSON")
+	coinsFile := fs.String("coins-file", "", "browser-captured per-coin reserve list JSON")
+	userProofPath := fs.String("user-proof", "", "import login-gated leaf/path JSON")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+	}
+	if *infoFile != "" {
+		merged, err := bingxapi.BuildSummaryBundle(*infoFile, *coinsFile)
+		if err != nil {
+			log.Fatalf("merge browser capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "bingx-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("bingx")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch bingx snapshot: %v\n\nTip: BingX reserve APIs are app/security gated. Import a support-article fixture:\n  por fetch bingx -summary-path ./fixtures/bingx/20261015-summary.json", err)
 	}
 	logResult(stored)
 }

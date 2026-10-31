@@ -2,7 +2,7 @@
 
 > Methodology: [PoR Stage Framework](../por-transparency-framework.md)  
 > Policy standard: [Effective PoR Standard](../effective-por-standard.md)  
-> **All 27 public reports:** [Snapshot history](./snapshot-history.md)
+> **All 30 public reports:** [Snapshot history](./snapshot-history.md)
 
 ## Summary (latest snapshot per exchange)
 
@@ -16,6 +16,7 @@
 | HTX | `20230910` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2023-09-10T18:10:33Z` | [huobiapi/Tool-Go-MerkleVerify](https://github.com/huobiapi/Tool-Go-MerkleVerify) | [report](./htx/20230910-transparency-report.md) |
 | MEXC | `202610` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-15T00:00:00Z` | [mexcmerkle/mexc-merkle-proof-of-reserves](https://github.com/mexcmerkle/mexc-merkle-proof-of-reserves) | [report](./mexc/202610-transparency-report.md) |
 | KuCoin | `20260930` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-09-30T15:59:59Z` | — | [report](./kucoin/20260930-transparency-report.md) |
+| BingX | `20261015` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-15T00:00:00Z` | [BingX-API/BingX-proof-of-reserves](https://github.com/BingX-API/BingX-proof-of-reserves) | [report](./bingx/20261015-transparency-report.md) |
 
 ## By exchange
 
@@ -27,6 +28,7 @@
 - **HTX (`Stage 0`)** — Latest `20230910` (Sep 2023): htx snapshot 20230910 remains Stage 0 in the ardmere public evaluation set. [Full report](./htx/20230910-transparency-report.md)
 - **MEXC (`Stage 0`)** — Latest `202610` (Oct 2026): MEXC snapshot 202610 is a weak Stage 0 (press-release / import summary): self-reported ratios only; no public period merkle root in the archived package; user Merkle remains login-gated. [Full report](./mexc/202610-transparency-report.md)
 - **KuCoin (`Stage 0`)** — Latest `20260930` (Sep 2026): kucoin snapshot 20260930 remains Stage 0 in the ardmere public evaluation set. [Full report](./kucoin/20260930-transparency-report.md)
+- **BingX (`Stage 0`)** — Latest `20261015` (Oct 2026): bingx snapshot 20261015 remains Stage 0 in the ardmere public evaluation set. [Full report](./bingx/20261015-transparency-report.md)
 
 Gap detail, risk flags, and verifier output are in each report. Missing data is marked `UNVERIFIABLE`, not `PASS` ([methodology §1.3](../por-transparency-framework.md#gap-reporting-discipline)).
 

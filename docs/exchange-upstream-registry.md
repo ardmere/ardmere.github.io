@@ -27,6 +27,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | `htx` | VC1 | [merkle](https://www.htx.com/zh-cn/finance/merkle/) | [huobiapi/Tool-Go-MerkleVerify](https://github.com/huobiapi/Tool-Go-MerkleVerify) | `global-zk-proof@htx-1` |
 | `mexc` | VC1 | [verify user assets](https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836) | [mexcmerkle/mexc-merkle-proof-of-reserves](https://github.com/mexcmerkle/mexc-merkle-proof-of-reserves) | `user-merkle-proof@mexc-1` |
 | `kucoin` | VC1 | [proof-of-reserves](https://www.kucoin.com/proof-of-reserves) | — (no official OSS verifier found) | `user-merkle-proof@0` (stub) |
+| `bingx` | VC1 | [balance-reserve](https://bingx.com/en/balance-reserve) | [BingX-API/BingX-proof-of-reserves](https://github.com/BingX-API/BingX-proof-of-reserves) | `user-merkle-proof@bingx-1` |
 
 ## Data guides
 
@@ -40,6 +41,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | HTX | [htx-por-data-guide.md](./htx-por-data-guide.md) |
 | MEXC | [mexc-por-data-guide.md](./mexc-por-data-guide.md) |
 | KuCoin | [kucoin-por-data-guide.md](./kucoin-por-data-guide.md) |
+| BingX | [bingx-por-data-guide.md](./bingx-por-data-guide.md) |
 
 ## Maintenance
 

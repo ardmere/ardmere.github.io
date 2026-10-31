@@ -18,6 +18,10 @@ overrides:
   kucoin/20260731: Wayback SSR (Aug 31 crawl); July month-end
   kucoin/20260630: Wayback SSR (Jul 31 crawl); June month-end
 
+  bingx/20261015: Support-article scrape; merkle root missing
+  bingx/20260915: Support-article scrape; merkle root missing
+  bingx/20260815: Support-article scrape; merkle root missing
+
 footers:
   - |-
     HTX June 2026 (`20260601`) pending manual `public-data.zip` import — see `artifacts/htx/20260601/FETCH_NEEDED.md`.

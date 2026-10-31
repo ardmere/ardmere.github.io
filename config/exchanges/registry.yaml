@@ -121,3 +121,17 @@ exchanges:
       Public PoR page SSR (__NEXT_DATA__.initialReserve) exposes latest reserve ratios without login.
       User Merkle self-check is login-gated; no official OSS verifier repo found — user-merkle stays stubbed.
       No permissionless wallet_address_list or global ZK.
+
+  - id: bingx
+    name: BingX
+    porPage: https://bingx.com/en/balance-reserve
+    dataGuide: docs/bingx-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/BingX-API/BingX-proof-of-reserves
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@bingx-1
+        note: Python por.py SHA-256 leaf/path verifier; logic ported in internal/exchanges/bingx/merkle.
+    integrationNotes: >-
+      Reserve JSON APIs return app security / device-time errors from datacenters; import support-article
+      or browser capture. User Merkle leaf/path is login-gated; no public wallet list or global ZK.

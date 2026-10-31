@@ -11,13 +11,16 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 
 | Exchange | Snapshot | Date | Stage | Report |
 | --- | --- | --- | --- | --- |
+| BingX | `20261015` | 2026-10-15 | Stage 0 | [report](./bingx/20261015-transparency-report.md) |
 | MEXC | `202610` | 2026-10-15 | Stage 0 | [report](./mexc/202610-transparency-report.md) |
 | OKX | `502260945` | 2026-10-02 | **Stage 1** | [report](./okx/502260945-transparency-report.md) |
 | Binance | `PR01OCT26` | 2026-10-01 | Stage 0 | [report](./binance/PR01OCT26-transparency-report.md) |
 | KuCoin | `20260930` | 2026-09-30 | Stage 0 | [report](./kucoin/20260930-transparency-report.md) |
+| BingX | `20260915` | 2026-09-15 | Stage 0 | [report](./bingx/20260915-transparency-report.md) |
 | MEXC | `202609` | 2026-09-10 | Stage 0 | [report](./mexc/202609-transparency-report.md) |
 | OKX | `502299735` | 2026-09-07 | **Stage 1** | [report](./okx/502299735-transparency-report.md) |
 | Binance | `PR01SEP26` | 2026-09-01 | Stage 0 | [report](./binance/PR01SEP26-transparency-report.md) |
+| BingX | `20260815` | 2026-08-15 | Stage 0 | [report](./bingx/20260815-transparency-report.md) |
 | MEXC | `202608` | 2026-08-14 | Stage 0 | [report](./mexc/202608-transparency-report.md) |
 | OKX | `500375535` | 2026-08-10 | **Stage 1** | [report](./okx/500375535-transparency-report.md) |
 | Binance | `PR01AUG26` | 2026-08-01 | Stage 0 | [report](./binance/PR01AUG26-transparency-report.md) |
@@ -70,9 +73,12 @@ Public APIs, WAF, login walls, or fixture-only pipelines often require browser c
 
 | Exchange | Snapshot | Stage | Notes | Report |
 | --- | --- | --- | --- | --- |
+| BingX | `20261015` | Stage 0 | Support-article scrape; merkle root missing | [report](./bingx/20261015-transparency-report.md) |
 | MEXC | `202610` | Stage 0 | Press-release scrape; merkle root missing; WAF-gated dashboard | [report](./mexc/202610-transparency-report.md) |
 | KuCoin | `20260930` | Stage 0 | Live SSR scrape; no OSS Merkle verifier | [report](./kucoin/20260930-transparency-report.md) |
+| BingX | `20260915` | Stage 0 | Support-article scrape; merkle root missing | [report](./bingx/20260915-transparency-report.md) |
 | MEXC | `202609` | Stage 0 | Press-release scrape; merkle root missing | [report](./mexc/202609-transparency-report.md) |
+| BingX | `20260815` | Stage 0 | Support-article scrape; merkle root missing | [report](./bingx/20260815-transparency-report.md) |
 | MEXC | `202608` | Stage 0 | Press-release scrape; merkle root missing | [report](./mexc/202608-transparency-report.md) |
 | KuCoin | `20260731` | Stage 0 | Wayback SSR (Aug 31 crawl); July month-end | [report](./kucoin/20260731-transparency-report.md) |
 | MEXC | `202607` | Stage 0 | Press-release scrape; merkle root missing | [report](./mexc/202607-transparency-report.md) |
