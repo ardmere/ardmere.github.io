@@ -2,7 +2,7 @@
 
 > Methodology: [PoR Stage Framework](../por-transparency-framework.md)  
 > Policy standard: [Effective PoR Standard](../effective-por-standard.md)  
-> **All 16 public reports:** [Snapshot history](./snapshot-history.md)
+> **All 20 public reports:** [Snapshot history](./snapshot-history.md)
 
 ## Summary (latest snapshot per exchange)
 

@@ -1,11 +1,11 @@
 {
   "artifacts": {
-    "artifactBundleRoot": "0x2ad5edb3d7796238ec5f464f034aca0abeafeb331d5a52ec02db4323788c39b8",
+    "artifactBundleRoot": "0x3067ccba7bff9f7a4af2cf98615f3ac719939d30e45f46d9bd4b11210c2edd4c",
     "present": [
       {
         "availability": "public",
         "kind": "summarySnapshot",
-        "sha256": "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "sha256": "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
         "url": "https://www.okx.com/proof-of-reserves/detail"
       },
       {
@@ -21,7 +21,7 @@
         "url": "https://static.okx.com/cdn/okx/por/merkel/por_502260945_proof_data.zip"
       }
     ],
-    "verificationBundleRoot": "0xe0d49f7eccf3e1d5c45fc045189cc44f741228aadb93e9f6d930ed00b3b1a911"
+    "verificationBundleRoot": "0x088457d82fc40beb795d50dc75dc792fa2f9e45380898884bfba1530ff9375a5"
   },
   "checklist": [
     {
@@ -47,7 +47,7 @@
     },
     {
       "id": "S1-1",
-      "notes": "Wallet list present; on-chain replay skipped or incomplete.",
+      "notes": "Wallet list present; hot-wallet on-chain verifier ran.",
       "question": "Is wallet_address_list public and on-chain verifiable?",
       "stage": "Stage 1",
       "status": "pass"
@@ -61,7 +61,7 @@
     },
     {
       "id": "S1-3",
-      "notes": "global-zk-proof verifier PARTIAL.",
+      "notes": "global-zk-proof verifier PASS.",
       "question": "Is global_proof public and independently reproducible?",
       "stage": "Stage 1",
       "status": "pass"
@@ -100,7 +100,7 @@
   "evidenceLevel": "E2",
   "exchange": "okx",
   "gen": "Gen 2",
-  "generatedAt": "2026-10-30T14:36:19Z",
+  "generatedAt": "2026-10-30T15:41:07Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
   "porStage": "Stage 0",
   "recommendations": [
@@ -117,6 +117,13 @@
         "HIGH_FREQUENCY_GAP"
       ],
       "text": "Add daily anchoring, weekly full PoR, or event-triggered updates to reduce timing risk."
+    },
+    {
+      "priority": "P2",
+      "relatedRiskFlags": [
+        "IMPLEMENTATION_SEMANTICS_RISK"
+      ],
+      "text": "Review onchain-balance verifier FAIL/WARN outliers in the verification bundle and reconcile CSV vs chain deltas."
     }
   ],
   "riskFlags": [
@@ -166,7 +173,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
         "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07",
         "6a6da5f8afec8d93b922cca48d04c70b10f5ca2a28944487edf66d8f2b23283d"
       ],
@@ -178,7 +185,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -188,7 +195,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
         "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07"
       ],
       "reason": "",
@@ -207,50 +214,53 @@
       "version": "okx-1"
     },
     {
-      "coverage": 0,
+      "coverage": 0.00005775133295172158,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
+        "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07"
       ],
-      "reason": "RPC queries skipped (--skip-rpc)",
-      "verdict": "UNVERIFIABLE",
+      "reason": "",
+      "verdict": "PARTIAL",
       "verifierId": "onchain-balance-hot",
       "version": "2.1"
     },
     {
-      "coverage": 0,
+      "coverage": 0.0009562941309358604,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
+        "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07"
       ],
-      "reason": "RPC queries skipped (--skip-rpc)",
-      "verdict": "UNVERIFIABLE",
+      "reason": "",
+      "verdict": "FAIL",
       "verifierId": "onchain-balance-token",
       "version": "2.0"
     },
     {
-      "coverage": 0,
+      "coverage": 0.0005452405258089009,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
+        "5230bd14fe64f688c5fd480006f714e746a12b6065ac9d683ca02b89852e9e07"
       ],
-      "reason": "RPC queries skipped (--skip-rpc)",
-      "verdict": "UNVERIFIABLE",
+      "reason": "",
+      "verdict": "FAIL",
       "verifierId": "onchain-balance-ledger",
-      "version": "1.2"
+      "version": "1.4"
     },
     {
-      "coverage": 0.75,
+      "coverage": 1,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5",
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2",
         "6a6da5f8afec8d93b922cca48d04c70b10f5ca2a28944487edf66d8f2b23283d"
       ],
-      "reason": "structure and summary binding OK; set OKX_ZK_STARK_VALIDATOR for cryptographic verification",
-      "verdict": "PARTIAL",
+      "reason": "zkSTARKValidator verify-global succeeded; summary merkle root bound to zk proof",
+      "verdict": "PASS",
       "verifierId": "global-zk-proof",
       "version": "okx-1"
     },
     {
       "coverage": 0,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "BTC block time anchor verifier not implemented",
       "verdict": "UNVERIFIABLE",
@@ -260,7 +270,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "No public third-party attestation report available",
       "verdict": "UNVERIFIABLE",
@@ -270,7 +280,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "a5d9e493edba5c8ac6b17a81672cc4e439a1542743cf1671268e57787fb3aff5"
+        "4e51d11a27988427ad6affdd165b7e8c392c4666297ea0b812306922393c91f2"
       ],
       "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
       "verdict": "UNVERIFIABLE",

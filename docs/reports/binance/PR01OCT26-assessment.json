@@ -1,6 +1,6 @@
 {
   "artifacts": {
-    "artifactBundleRoot": "0xed4fa3dc336be3f6f0fbbe91e86fb7d7c50262170a2f520513d85c8ad557ec0b",
+    "artifactBundleRoot": "0x8c7964c29251e1b2571fe28fd433b48e36c34e506efb9072e504899215803663",
     "present": [
       {
         "availability": "public",
@@ -15,7 +15,7 @@
         "url": "https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20261001.zip"
       }
     ],
-    "verificationBundleRoot": "0xd48f9516c5a427ce89115781eb236bae6b6c0f07b5af59232948ad69b9cd31b3"
+    "verificationBundleRoot": "0x0ba36daabab39503df1decec99fe1f67eed3a65b496924aa974aced689355a2c"
   },
   "checklist": [
     {
@@ -41,7 +41,7 @@
     },
     {
       "id": "S1-1",
-      "notes": "Wallet list present; on-chain replay skipped or incomplete.",
+      "notes": "Wallet list present; hot-wallet on-chain verifier ran.",
       "question": "Is wallet_address_list public and on-chain verifiable?",
       "stage": "Stage 1",
       "status": "pass"
@@ -94,7 +94,7 @@
   "evidenceLevel": "E2",
   "exchange": "binance",
   "gen": "Gen 2",
-  "generatedAt": "2026-10-30T14:28:02Z",
+  "generatedAt": "2026-10-30T17:06:37Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
   "porStage": "Stage 0",
   "recommendations": [
@@ -118,6 +118,13 @@
         "OPAQUE_TRUSTED_SETUP"
       ],
       "text": "Publish trusted setup transcript or migrate to a transparent-setup proof system."
+    },
+    {
+      "priority": "P2",
+      "relatedRiskFlags": [
+        "IMPLEMENTATION_SEMANTICS_RISK"
+      ],
+      "text": "Review onchain-balance verifier FAIL/WARN outliers in the verification bundle and reconcile CSV vs chain deltas."
     }
   ],
   "riskFlags": [
@@ -220,42 +227,46 @@
       "version": "1.0"
     },
     {
-      "coverage": 0,
+      "coverage": 0.03802008608321377,
       "inputArtifacts": [
-        "a44f71850124c5304fed5be4f1e85b640934acab7d9bb1e063e036c29620f128"
+        "a44f71850124c5304fed5be4f1e85b640934acab7d9bb1e063e036c29620f128",
+        "656c334685e45635daabde9f2f446ba01b9d8b2f7a2ba03396327218f43ae685"
       ],
-      "reason": "RPC queries skipped (--skip-rpc)",
-      "verdict": "UNVERIFIABLE",
+      "reason": "",
+      "verdict": "FAIL",
       "verifierId": "onchain-balance-hot",
       "version": "2.1"
     },
     {
-      "coverage": 0,
+      "coverage": 0.6492109038737446,
       "inputArtifacts": [
-        "a44f71850124c5304fed5be4f1e85b640934acab7d9bb1e063e036c29620f128"
+        "a44f71850124c5304fed5be4f1e85b640934acab7d9bb1e063e036c29620f128",
+        "656c334685e45635daabde9f2f446ba01b9d8b2f7a2ba03396327218f43ae685"
       ],
-      "reason": "RPC queries skipped (--skip-rpc)",
-      "verdict": "UNVERIFIABLE",
+      "reason": "",
+      "verdict": "FAIL",
       "verifierId": "onchain-balance-token",
       "version": "2.0"
     },
     {
-      "coverage": 0,
+      "coverage": 0.16929698708751795,
       "inputArtifacts": [
-        "a44f71850124c5304fed5be4f1e85b640934acab7d9bb1e063e036c29620f128"
+        "a44f71850124c5304fed5be4f1e85b640934acab7d9bb1e063e036c29620f128",
+        "656c334685e45635daabde9f2f446ba01b9d8b2f7a2ba03396327218f43ae685"
       ],
-      "reason": "RPC queries skipped (--skip-rpc)",
-      "verdict": "UNVERIFIABLE",
+      "reason": "",
+      "verdict": "FAIL",
       "verifierId": "onchain-balance-ledger",
       "version": "1.4"
     },
     {
-      "coverage": 0,
+      "coverage": 0.1762317481263323,
       "inputArtifacts": [
-        "a44f71850124c5304fed5be4f1e85b640934acab7d9bb1e063e036c29620f128"
+        "a44f71850124c5304fed5be4f1e85b640934acab7d9bb1e063e036c29620f128",
+        "656c334685e45635daabde9f2f446ba01b9d8b2f7a2ba03396327218f43ae685"
       ],
-      "reason": "RPC queries skipped (--skip-rpc)",
-      "verdict": "UNVERIFIABLE",
+      "reason": "",
+      "verdict": "PASS",
       "verifierId": "onchain-balance-deposit",
       "version": "1.2"
     },
