@@ -1,0 +1,31 @@
+{
+  "fetchedAt": "2026-09-15T08:00:00Z",
+  "source": "support-article-scrape",
+  "info": {
+    "audit_id": "20260915",
+    "audit_time": "2026-09-15 00:00:00",
+    "totalReserveRate": 128.32,
+    "sourceUrl": "https://bingx.com/en/support/articles/17641862787343",
+    "note": "Ratios from BingX support article 17641862787343 (Merkle Tree PoR as of 2026-09-15). No public merkle root in the article."
+  },
+  "coinList": {
+    "list": [
+      {
+        "coin": "BTC",
+        "reserveRate": 146.52
+      },
+      {
+        "coin": "ETH",
+        "reserveRate": 128.32
+      },
+      {
+        "coin": "USDT",
+        "reserveRate": 122.17
+      },
+      {
+        "coin": "USDC",
+        "reserveRate": 124.76
+      }
+    ]
+  }
+}

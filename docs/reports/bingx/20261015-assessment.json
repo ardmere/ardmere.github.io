@@ -1,15 +1,15 @@
 {
   "artifacts": {
-    "artifactBundleRoot": "0x514b82d930fc0109961e5b607cdf0e9014ec6e6e68a2e1bb97ba2bbd0d397d67",
+    "artifactBundleRoot": "0xde2c105c8984556d9aa80282f43c87d159b3e3b57f936785fed0876c7f1155a6",
     "present": [
       {
         "availability": "public",
         "kind": "summarySnapshot",
-        "sha256": "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5",
+        "sha256": "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951",
         "url": "https://bingx.com/en/balance-reserve"
       }
     ],
-    "verificationBundleRoot": "0x4f12edd2ac6d8eae648288250b76b5d0489655fc378dd080ff4af68f6bc39fd0"
+    "verificationBundleRoot": "0xfdc3cdc8b012d9883aff9fff8f17554afdcfd541a4f90942d6a793a0f591c259"
   },
   "checklist": [
     {
@@ -88,7 +88,7 @@
   "evidenceLevel": "E1",
   "exchange": "bingx",
   "gen": "Gen 1",
-  "generatedAt": "2026-10-31T01:53:53Z",
+  "generatedAt": "2026-10-31T13:41:15Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
   "porStage": "Stage 0",
   "recommendations": [
@@ -134,7 +134,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -144,7 +144,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -162,7 +162,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "Wallet address bundle not available",
       "verdict": "UNVERIFIABLE",
@@ -172,7 +172,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "BTC block time anchor verifier not implemented",
       "verdict": "UNVERIFIABLE",
@@ -182,7 +182,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "Wallet address bundle not available for on-chain audit",
       "verdict": "UNVERIFIABLE",
@@ -192,7 +192,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "Wallet address bundle not available for token audit",
       "verdict": "UNVERIFIABLE",
@@ -202,7 +202,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "Verifier not available for this exchange snapshot",
       "verdict": "UNVERIFIABLE",
@@ -212,7 +212,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "No public download channel for wallet ownership signatures / proofs",
       "verdict": "UNVERIFIABLE",
@@ -222,7 +222,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "Global proof.csv / verifying key not publicly distributed",
       "verdict": "UNVERIFIABLE",
@@ -232,7 +232,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "No public third-party attestation report available",
       "verdict": "UNVERIFIABLE",
@@ -242,7 +242,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5"
+        "14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951"
       ],
       "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
       "verdict": "UNVERIFIABLE",

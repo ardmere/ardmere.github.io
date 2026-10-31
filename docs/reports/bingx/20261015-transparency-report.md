@@ -32,14 +32,14 @@ Public artifacts do not support independently reproducible global solvency verif
 | Field | Value |
 | --- | --- |
 | Latest snapshot (evaluation set) | `2026-10-15T00:00:00Z` |
-| Previous snapshot | `UNVERIFIABLE` |
-| Observed cadence | `UNVERIFIABLE` |
-| History available | `UNVERIFIABLE` |
+| Previous snapshot | `2026-09-15T00:00:00Z` |
+| Observed cadence | `~monthly` |
+| History available | `3 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-No sibling assessments found in the ardmere public evaluation set.
+This is the newest snapshot in the ardmere public evaluation set for bingx.
 
 ## 4. Evidence and Bundles
 
@@ -47,16 +47,16 @@ No sibling assessments found in the ardmere public evaluation set.
 
 | Artifact | SHA-256 | Source |
 | --- | --- | --- |
-| `summarySnapshot` | `fd7549e806a2331336c1c10e304a5015e4591d9632d79710024e5629494517c5` | https://bingx.com/en/balance-reserve |
+| `summarySnapshot` | `14f7c8a0b2ea0facd40400e71b49c7d69dd736b6951b792862b8c006bff02951` | https://bingx.com/en/balance-reserve |
 
 ### Bundle References
 
 | Bundle | Value |
 | --- | --- |
-| Artifact bundle root | `0x514b82d930fc0109961e5b607cdf0e9014ec6e6e68a2e1bb97ba2bbd0d397d67` |
-| Verification bundle root | `0x4f12edd2ac6d8eae648288250b76b5d0489655fc378dd080ff4af68f6bc39fd0` |
-| Artifact bundle SHA-256 | `1847913a80f7c63c7b14176b0d06e372817844955de6b7ebee0445cc4356c957` |
-| Verification bundle SHA-256 | `6264ff01d53b136afee68bcccd0f32f744d47135c0baad933bf8e064dc1802ac` |
+| Artifact bundle root | `0xde2c105c8984556d9aa80282f43c87d159b3e3b57f936785fed0876c7f1155a6` |
+| Verification bundle root | `0xfdc3cdc8b012d9883aff9fff8f17554afdcfd541a4f90942d6a793a0f591c259` |
+| Artifact bundle SHA-256 | `34970f588eb46f186d8d79487bea41d6405d51bbdd4e4f366c507988c9329866` |
+| Verification bundle SHA-256 | `4ce589d982d39722c95ab9eede4b884983fdf5c6276edb0873d70a6e0c246157` |
 
 Local bundle paths: [20261015.artifact-bundle.json](../../../artifacts/bingx/20261015/bundles/20261015.artifact-bundle.json), [20261015.verification-bundle.v2.json](../../../artifacts/bingx/20261015/bundles/20261015.verification-bundle.v2.json)
 
