@@ -6,7 +6,8 @@
     "audit_time": "2026-07-15 00:00:00",
     "totalReserveRate": 114,
     "period": 1,
-    "note": "Ratios from MEXC July 2026 PoR press release (Hacken). No public merkle root in the press release."
+    "sourceUrl": "https://blog.mexc.com/press-release/mexcs-july-2026-proof-of-reserves-report/",
+    "note": "Ratios from MEXC July 2026 PoR press release (Hacken). No public merkle root in the press release. WAF blocks www.mexc.com JSON from datacenters."
   },
   "coinList": {
     "list": [

@@ -1,15 +1,15 @@
 {
   "artifacts": {
-    "artifactBundleRoot": "0xaa20ccbdf54989019bc3a8f2665c15472b6c547f352449f1e1ccd53cfdb3f39f",
+    "artifactBundleRoot": "0x9c3413cf09eaf6afe44141d4352138a915a97335bb8f3945090a9b5c3a6df512",
     "present": [
       {
         "availability": "public",
         "kind": "summarySnapshot",
-        "sha256": "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262",
+        "sha256": "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba",
         "url": "https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836"
       }
     ],
-    "verificationBundleRoot": "0xf38f0dbd0ad9f7ef4483c06c0a8e11655f719858df876bc06a2d1a2c2463896b"
+    "verificationBundleRoot": "0xbd970786476407076940c9110f7f5a47626f1731c71352f16843978290334bd0"
   },
   "checklist": [
     {
@@ -88,7 +88,7 @@
   "evidenceLevel": "E1",
   "exchange": "mexc",
   "gen": "Gen 1",
-  "generatedAt": "2026-10-31T01:46:26Z",
+  "generatedAt": "2026-10-31T13:37:06Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
   "porStage": "Stage 0",
   "recommendations": [
@@ -106,6 +106,24 @@
       "severity": "high",
       "stageEffect": "max_stage_0",
       "message": "No public wallet_address_list."
+    },
+    {
+      "id": "NO_PUBLIC_MERKLE_ROOT",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Press-release summary has no public period merkle root to bind user proofs."
+    },
+    {
+      "id": "WAF_GATED",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "www.mexc.com PoR JSON is WAF-gated from datacenters; summary imported from press materials."
+    },
+    {
+      "id": "LOGIN_GATED_USER_PROOF",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "User myProof.json not present in the public evaluation package (login-gated)."
     }
   ],
   "schema": "ardmere/exchange-assessment@1",
@@ -123,18 +141,39 @@
       "maxStage": "Stage 0",
       "reason": "No public wallet_address_list.",
       "riskFlag": "UNVERIFIABLE"
+    },
+    {
+      "ruleId": "floor_no_public_merkle_root",
+      "evidence": "merkle_root",
+      "maxStage": "Stage 0",
+      "reason": "Press-release summary has no public period merkle root to bind user proofs.",
+      "riskFlag": "NO_PUBLIC_MERKLE_ROOT"
+    },
+    {
+      "ruleId": "floor_waf_gated_dashboard",
+      "evidence": "por_dashboard_api",
+      "maxStage": "Stage 0",
+      "reason": "www.mexc.com PoR JSON is WAF-gated from datacenters; summary imported from press materials.",
+      "riskFlag": "WAF_GATED"
+    },
+    {
+      "ruleId": "floor_login_gated_user_proof",
+      "evidence": "userMerkleProof",
+      "maxStage": "Stage 0",
+      "reason": "User myProof.json not present in the public evaluation package (login-gated).",
+      "riskFlag": "LOGIN_GATED_USER_PROOF"
     }
   ],
   "summary": {
-    "headline": "mexc snapshot 202607 remains Stage 0 in the ardmere public evaluation set.",
-    "rationale": "Public artifacts do not support independently reproducible global solvency verification for this snapshot.",
+    "headline": "MEXC snapshot 202607 is a weak Stage 0 (press-release / import summary): self-reported ratios only; no public period merkle root in the archived package; user Merkle remains login-gated.",
+    "rationale": "solvency-claim PASS means self-reported reserve ratios ≥ 100% only — not independently reproduced reserves. Datacenter fetches of www.mexc.com are WAF-blocked; Hacken PDF attestation is not machine-parsed here.",
     "scope": "mexc snapshot 202607"
   },
   "verifierResults": [
     {
       "coverage": 1,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -144,7 +183,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -162,7 +201,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "Wallet address bundle not available",
       "verdict": "UNVERIFIABLE",
@@ -172,7 +211,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "BTC block time anchor verifier not implemented",
       "verdict": "UNVERIFIABLE",
@@ -182,7 +221,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "Wallet address bundle not available for on-chain audit",
       "verdict": "UNVERIFIABLE",
@@ -192,7 +231,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "Wallet address bundle not available for token audit",
       "verdict": "UNVERIFIABLE",
@@ -202,7 +241,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "Verifier not available for this exchange snapshot",
       "verdict": "UNVERIFIABLE",
@@ -212,7 +251,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "No public download channel for wallet ownership signatures / proofs",
       "verdict": "UNVERIFIABLE",
@@ -222,7 +261,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "Global proof.csv / verifying key not publicly distributed",
       "verdict": "UNVERIFIABLE",
@@ -232,7 +271,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "No public third-party attestation report available",
       "verdict": "UNVERIFIABLE",
@@ -242,7 +281,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262"
+        "93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba"
       ],
       "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
       "verdict": "UNVERIFIABLE",

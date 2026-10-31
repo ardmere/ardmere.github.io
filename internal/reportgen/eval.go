@@ -103,6 +103,17 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 				blockedReason{RuleID: "floor_opaque_trusted_setup", Evidence: "trusted_setup_transcript", MaxStage: "Stage 0", Reason: "Trusted setup transcript is not public.", RiskFlag: "OPAQUE_TRUSTED_SETUP"},
 			)
 		}
+	case "mexc":
+		e.Headline = "MEXC snapshot " + art.SnapshotID + " is a weak Stage 0 (press-release / import summary): self-reported ratios only; no public period merkle root in the archived package; user Merkle remains login-gated."
+		e.Rationale = "solvency-claim PASS means self-reported reserve ratios ≥ 100% only — not independently reproduced reserves. Datacenter fetches of www.mexc.com are WAF-blocked; Hacken PDF attestation is not machine-parsed here."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_public_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "No public wallet_address_list.", RiskFlag: "UNVERIFIABLE"},
+			blockedReason{RuleID: "floor_no_public_merkle_root", Evidence: "merkle_root", MaxStage: "Stage 0", Reason: "Press-release summary has no public period merkle root to bind user proofs.", RiskFlag: "NO_PUBLIC_MERKLE_ROOT"},
+			blockedReason{RuleID: "floor_waf_gated_dashboard", Evidence: "por_dashboard_api", MaxStage: "Stage 0", Reason: "www.mexc.com PoR JSON is WAF-gated from datacenters; summary imported from press materials.", RiskFlag: "WAF_GATED"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User myProof.json not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
 	default:
 		e.Headline = exchangeID + " snapshot " + art.SnapshotID + " remains Stage 0 in the ardmere public evaluation set."
 		e.Rationale = "Public artifacts do not support independently reproducible global solvency verification for this snapshot."

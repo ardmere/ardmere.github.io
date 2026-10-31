@@ -76,10 +76,13 @@ href="./202607-assessment.json">202607-assessment.json</a></p>
 </tr>
 </tbody>
 </table>
-<p>mexc snapshot 202607 remains Stage 0 in the ardmere public evaluation
-set.</p>
-<p>Public artifacts do not support independently reproducible global
-solvency verification for this snapshot.</p>
+<p>MEXC snapshot 202607 is a weak Stage 0 (press-release / import
+summary): self-reported ratios only; no public period merkle root in the
+archived package; user Merkle remains login-gated.</p>
+<p>solvency-claim PASS means self-reported reserve ratios ≥ 100% only —
+not independently reproduced reserves. Datacenter fetches of
+www.mexc.com are WAF-blocked; Hacken PDF attestation is not
+machine-parsed here.</p>
 <h2 id="stage-decision">2. Stage Decision</h2>
 <h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
 <table>
@@ -104,6 +107,27 @@ solvency verification for this snapshot.</p>
 <td>Stage 0</td>
 <td>No public wallet_address_list.</td>
 </tr>
+<tr class="even">
+<td><code>merkle_root</code></td>
+<td><code>NO_PUBLIC_MERKLE_ROOT</code></td>
+<td>Stage 0</td>
+<td>Press-release summary has no public period merkle root to bind user
+proofs.</td>
+</tr>
+<tr class="odd">
+<td><code>por_dashboard_api</code></td>
+<td><code>WAF_GATED</code></td>
+<td>Stage 0</td>
+<td>www.mexc.com PoR JSON is WAF-gated from datacenters; summary
+imported from press materials.</td>
+</tr>
+<tr class="even">
+<td><code>userMerkleProof</code></td>
+<td><code>LOGIN_GATED_USER_PROOF</code></td>
+<td>Stage 0</td>
+<td>User myProof.json not present in the public evaluation package
+(login-gated).</td>
+</tr>
 </tbody>
 </table>
 <h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
@@ -121,7 +145,7 @@ solvency verification for this snapshot.</p>
 <tbody>
 <tr class="odd">
 <td>Latest snapshot (evaluation set)</td>
-<td><code>2026-07-15T00:00:00Z</code></td>
+<td><code>2026-10-15T00:00:00Z</code></td>
 </tr>
 <tr class="even">
 <td>Previous snapshot</td>
@@ -129,11 +153,11 @@ solvency verification for this snapshot.</p>
 </tr>
 <tr class="odd">
 <td>Observed cadence</td>
-<td><code>UNVERIFIABLE</code></td>
+<td><code>~monthly</code></td>
 </tr>
 <tr class="even">
 <td>History available</td>
-<td><code>UNVERIFIABLE</code></td>
+<td><code>4 snapshot(s) in public evaluation set</code></td>
 </tr>
 <tr class="odd">
 <td>Event-triggered updates</td>
@@ -150,8 +174,7 @@ expectations.</td>
 </tr>
 </tbody>
 </table>
-<p>No sibling assessments found in the ardmere public evaluation
-set.</p>
+<p>Older snapshot 202610 is also in the public evaluation set.</p>
 <h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
 <h3 id="public-artifacts">Public Artifacts</h3>
 <table>
@@ -170,7 +193,7 @@ set.</p>
 <tbody>
 <tr class="odd">
 <td><code>summarySnapshot</code></td>
-<td><code>2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262</code></td>
+<td><code>93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba</code></td>
 <td>https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836</td>
 </tr>
 </tbody>
@@ -190,19 +213,19 @@ set.</p>
 <tbody>
 <tr class="odd">
 <td>Artifact bundle root</td>
-<td><code>0xaa20ccbdf54989019bc3a8f2665c15472b6c547f352449f1e1ccd53cfdb3f39f</code></td>
+<td><code>0x9c3413cf09eaf6afe44141d4352138a915a97335bb8f3945090a9b5c3a6df512</code></td>
 </tr>
 <tr class="even">
 <td>Verification bundle root</td>
-<td><code>0xf38f0dbd0ad9f7ef4483c06c0a8e11655f719858df876bc06a2d1a2c2463896b</code></td>
+<td><code>0xbd970786476407076940c9110f7f5a47626f1731c71352f16843978290334bd0</code></td>
 </tr>
 <tr class="odd">
 <td>Artifact bundle SHA-256</td>
-<td><code>1d86db919f894319c312cfdbb3faf7cc77a0ba5318c1bb89c49fb7e42d8fe9de</code></td>
+<td><code>b6e0308a64e456619e857dd871acfdd2ef467cb78fd424d62504fbcdd3c64141</code></td>
 </tr>
 <tr class="even">
 <td>Verification bundle SHA-256</td>
-<td><code>de0948fd6ecc6efebb5b8c5057c86161dd0757e7885a75487fb1de53736070a9</code></td>
+<td><code>580fee926fc578396d1fa22f49096feba0d1d75e195545afbc04fb348aafdf74</code></td>
 </tr>
 </tbody>
 </table>

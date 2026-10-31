@@ -15,9 +15,9 @@
 | Confidence | `low` |
 | Effective PoR | `false` |
 
-mexc snapshot 202607 remains Stage 0 in the ardmere public evaluation set.
+MEXC snapshot 202607 is a weak Stage 0 (press-release / import summary): self-reported ratios only; no public period merkle root in the archived package; user Merkle remains login-gated.
 
-Public artifacts do not support independently reproducible global solvency verification for this snapshot.
+solvency-claim PASS means self-reported reserve ratios ≥ 100% only — not independently reproduced reserves. Datacenter fetches of www.mexc.com are WAF-blocked; Hacken PDF attestation is not machine-parsed here.
 
 ## 2. Stage Decision
 
@@ -26,20 +26,23 @@ Public artifacts do not support independently reproducible global solvency verif
 | Missing / Blocked Evidence | Risk Flag | Max Stage | Reason |
 | --- | --- | --- | --- |
 | `wallet_address_list` | `UNVERIFIABLE` | Stage 0 | No public wallet_address_list. |
+| `merkle_root` | `NO_PUBLIC_MERKLE_ROOT` | Stage 0 | Press-release summary has no public period merkle root to bind user proofs. |
+| `por_dashboard_api` | `WAF_GATED` | Stage 0 | www.mexc.com PoR JSON is WAF-gated from datacenters; summary imported from press materials. |
+| `userMerkleProof` | `LOGIN_GATED_USER_PROOF` | Stage 0 | User myProof.json not present in the public evaluation package (login-gated). |
 
 ## 3. Frequency and Freshness
 
 | Field | Value |
 | --- | --- |
-| Latest snapshot (evaluation set) | `2026-07-15T00:00:00Z` |
+| Latest snapshot (evaluation set) | `2026-10-15T00:00:00Z` |
 | Previous snapshot | `UNVERIFIABLE` |
-| Observed cadence | `UNVERIFIABLE` |
-| History available | `UNVERIFIABLE` |
+| Observed cadence | `~monthly` |
+| History available | `4 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-No sibling assessments found in the ardmere public evaluation set.
+Older snapshot 202610 is also in the public evaluation set.
 
 ## 4. Evidence and Bundles
 
@@ -47,16 +50,16 @@ No sibling assessments found in the ardmere public evaluation set.
 
 | Artifact | SHA-256 | Source |
 | --- | --- | --- |
-| `summarySnapshot` | `2b17acffe0282c2b7a683a855464797e749ffb594819eec942d17325d2ecf262` | https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836 |
+| `summarySnapshot` | `93f631b08db2d26e5c7c9fa1fc863b070a372fbd9908ba6fd5d69769c940aaba` | https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836 |
 
 ### Bundle References
 
 | Bundle | Value |
 | --- | --- |
-| Artifact bundle root | `0xaa20ccbdf54989019bc3a8f2665c15472b6c547f352449f1e1ccd53cfdb3f39f` |
-| Verification bundle root | `0xf38f0dbd0ad9f7ef4483c06c0a8e11655f719858df876bc06a2d1a2c2463896b` |
-| Artifact bundle SHA-256 | `1d86db919f894319c312cfdbb3faf7cc77a0ba5318c1bb89c49fb7e42d8fe9de` |
-| Verification bundle SHA-256 | `de0948fd6ecc6efebb5b8c5057c86161dd0757e7885a75487fb1de53736070a9` |
+| Artifact bundle root | `0x9c3413cf09eaf6afe44141d4352138a915a97335bb8f3945090a9b5c3a6df512` |
+| Verification bundle root | `0xbd970786476407076940c9110f7f5a47626f1731c71352f16843978290334bd0` |
+| Artifact bundle SHA-256 | `b6e0308a64e456619e857dd871acfdd2ef467cb78fd424d62504fbcdd3c64141` |
+| Verification bundle SHA-256 | `580fee926fc578396d1fa22f49096feba0d1d75e195545afbc04fb348aafdf74` |
 
 Local bundle paths: [202607.artifact-bundle.json](../../../artifacts/mexc/202607/bundles/202607.artifact-bundle.json), [202607.verification-bundle.v2.json](../../../artifacts/mexc/202607/bundles/202607.verification-bundle.v2.json)
 
