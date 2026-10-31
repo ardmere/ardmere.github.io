@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Query ArdmerePoRAnchor | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="query-ardmereporanchor">Query ArdmerePoRAnchor</h1>
+<p>How to read exchange PoR audit / anchor records from the on-chain
+<code>ArdmerePoRAnchor</code> contract. Use this when you want to
+confirm that a homepage report snapshot was anchored, or to pull the
+digest roots that bind an assessment.</p>
+<p>Related: <a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/deployments.md">Deployments</a>
+· <a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/anchor-query-api.md">Full
+ABI / query API</a> · <a
+href="./reports/artifact-archive-index.html">Evidence archive</a></p>
+<hr />
+<h2 id="what-is-on-chain">What is on-chain</h2>
+<p>Each successful <code>anchorSnapshot</code> stores one
+<strong>immutable</strong> <code>SnapshotRecord</code> (schema v3) and
+emits <code>SnapshotAnchored</code>. The record holds exchange id,
+period, snapshot time, and the Merkle roots of the artifact and
+verification bundles—not the raw PoR files.</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>You can read on-chain</th>
+<th>You still need off-chain</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Whether a snapshot id is anchored</td>
+<td>Raw wallets, proofs, ZK bundles</td>
+</tr>
+<tr class="even">
+<td>Artifact / verification Merkle roots</td>
+<td>Recomputing those roots from files</td>
+</tr>
+<tr class="odd">
+<td>Compact <code>verdictSummary</code> / <code>coverageBps</code></td>
+<td>Full verifier matrix and Stage narrative</td>
+</tr>
+</tbody>
+</table>
+<p>Always call the <strong>proxy</strong> address (UUPS). Do not send
+reads to the implementation address.</p>
+<hr />
+<h2 id="network-and-proxy">Network and proxy</h2>
+<p>Operable deployment today is <strong>Ethereum Sepolia</strong> only.
+Base mainnet is the product target but is not deployed yet—see <a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/deployments.md">deployments.md</a>.</p>
+<p>Copy the live <strong>Proxy (<code>ANCHOR_CONTRACT</code>)</strong>
+row from that file (and the matching Etherscan / Sourcify links).
+Summary of the current testnet instance:</p>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Item</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Network</td>
+<td>Ethereum Sepolia</td>
+</tr>
+<tr class="even">
+<td>Chain ID</td>
+<td>see <code>CHAIN_ID</code> / deployments.md</td>
+</tr>
+<tr class="odd">
+<td>Proxy (<code>ANCHOR_CONTRACT</code>)</td>
+<td>see <a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/deployments.md">deployments.md</a>
+— use the Proxy row</td>
+</tr>
+<tr class="even">
+<td>Implementation v3</td>
+<td><a
+href="https://sepolia.etherscan.io/address/0x62050405283f222EFEdF3BF0d6Cb16541cd1327a#code"><code>0x62050405283f222EFEdF3BF0d6Cb16541cd1327a</code></a></td>
+</tr>
+<tr class="odd">
+<td><code>SCHEMA_VERSION</code></td>
+<td><code>3</code></td>
+</tr>
+<tr class="even">
+<td><code>STORAGE_VERSION</code></td>
+<td><code>1</code></td>
+</tr>
+<tr class="odd">
+<td>Anchor signer</td>
+<td><code>0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F</code></td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Proxy address: copy from docs/deployments.md (Proxy / ANCHOR_CONTRACT row)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANCHOR_CONTRACT</span><span class="op">=</span>0x…   <span class="co"># Sepolia proxy</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">RPC_URL</span><span class="op">=</span>…             <span class="co"># any Sepolia HTTPS RPC</span></span></code></pre></div>
+<p>Sepolia anchors are <strong>testnet evidence</strong>. Treat them as
+reproducible digests, not mainnet production finality.</p>
+<hr />
+<h2 id="identifiers">Identifiers</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>How to compute</th>
+<th>Homepage example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>snapshotId</code></td>
+<td><code>keccak256(bytes(auditId))</code></td>
+<td>audit id <code>502260945</code> (OKX)</td>
+</tr>
+<tr class="even">
+<td><code>exchangeTag</code></td>
+<td><code>keccak256(bytes(exchange))</code></td>
+<td><code>"okx"</code>, <code>"binance"</code>, <code>"bingx"</code>,
+…</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> keccak <span class="st">&quot;502260945&quot;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 0xadc693dc11246c6b6472251c2b8aa6a79b2e84d12d9635db7b123b3049bd36c4</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> keccak <span class="st">&quot;okx&quot;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 0xd6b6d5e0aacce0469a313983d889ed10d0bb7c9545af0285a19b4ff094b4041d</span></span></code></pre></div>
+<p>Prefer lookup by <strong><code>snapshotId</code> from the homepage
+Snapshot column</strong> (same string as the report filename prefix).
+<code>periodSeq</code> on-chain may differ from the
+<code>periodSeq</code> field inside assessment JSON when the operator
+allocated the next free period for that exchange.</p>
+<hr />
+<h2 id="read-methods-abi">Read methods (ABI)</h2>
+<p>Source: <a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/contracts/src/ArdmerePoRAnchor.sol"><code>contracts/src/ArdmerePoRAnchor.sol</code></a>.
+Full field notes: <a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/anchor-query-api.md">anchor-query-api.md</a>.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Returns</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>snapshotExists(bytes32 snapshotId)</code></td>
+<td><code>bool</code></td>
+<td><code>true</code> iff v3 storage has the id</td>
+</tr>
+<tr class="even">
+<td><code>getSnapshot(bytes32 snapshotId)</code></td>
+<td><code>SnapshotRecord</code></td>
+<td>Reverts <code>SnapshotNotFound</code> if missing</td>
+</tr>
+<tr class="odd">
+<td><code>getLatestSnapshot(bytes32 exchangeTag)</code></td>
+<td><code>SnapshotRecord</code></td>
+<td>Most recently anchored for that exchange</td>
+</tr>
+<tr class="even">
+<td><code>getSnapshotByPeriod(bytes32 exchangeTag, uint32 periodSeq)</code></td>
+<td><code>SnapshotRecord</code></td>
+<td>By on-chain period index</td>
+</tr>
+<tr class="odd">
+<td><code>getSnapshotCount(bytes32 exchangeTag)</code></td>
+<td><code>uint256</code></td>
+<td>Count of v3 anchors</td>
+</tr>
+<tr class="even">
+<td><code>getSnapshotIdAt(bytes32 exchangeTag, uint256 index)</code></td>
+<td><code>bytes32</code></td>
+<td>Chronological id; <code>0</code> = earliest</td>
+</tr>
+<tr class="odd">
+<td><code>SCHEMA_VERSION()</code> / <code>STORAGE_VERSION()</code> /
+<code>signer()</code></td>
+<td>constants / address</td>
+<td>Sanity checks</td>
+</tr>
+</tbody>
+</table>
+<p><code>SnapshotRecord</code> fields used most often when auditing a
+homepage report:</p>
+<ul>
+<li><code>exchange</code>, <code>periodSeq</code>,
+<code>snapshotTime</code>, <code>btcBlockHeight</code></li>
+<li><code>artifactBundleRoot</code>,
+<code>verificationBundleRoot</code></li>
+<li><code>exchangeMerkleRoot</code>, <code>verdictSummary</code>,
+<code>coverageBps</code>, <code>anchoredAt</code></li>
+</ul>
+<p>Minimal ABI for <code>cast</code> / ethers:</p>
+<pre class="text"><code>snapshotExists(bytes32)(bool)
+getSnapshot(bytes32)((bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256))
+getLatestSnapshot(bytes32)((bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256))
+getSnapshotCount(bytes32)(uint256)</code></pre>
+<hr />
+<h2 id="homepage-snapshot-examples">Homepage snapshot examples</h2>
+<p>These audit ids match the current public homepage report set and are
+anchored on Sepolia (see the homepage table in <a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/deployments.md">deployments.md</a>).</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Exchange</th>
+<th>Homepage Snapshot (<code>auditId</code>)</th>
+<th><code>snapshotId</code> = <code>keccak256(auditId)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>BingX</td>
+<td><code>20261015</code></td>
+<td><code>0x770ca1dc46e92652a9eeb4887dcd7ee9d06d93e05e25abe55823609bdb534ffa</code></td>
+</tr>
+<tr class="even">
+<td>MEXC</td>
+<td><code>202610</code></td>
+<td><code>0xde6d943879fa24f6c45ad35a6dd1f1f4badcdb78acf82b7271ffa4ef94a78b90</code></td>
+</tr>
+<tr class="odd">
+<td>OKX</td>
+<td><code>502260945</code></td>
+<td><code>0xadc693dc11246c6b6472251c2b8aa6a79b2e84d12d9635db7b123b3049bd36c4</code></td>
+</tr>
+<tr class="even">
+<td>Binance</td>
+<td><code>PR01OCT26</code></td>
+<td><code>0x119a99ffa3d507d3acf3beec2c5503ad2588d8cd2d663b061f7eaddb31ec5f80</code></td>
+</tr>
+<tr class="odd">
+<td>KuCoin</td>
+<td><code>20260930</code></td>
+<td><code>0x723d99e9297f29529761b75bdf9e45d5743050e64aed2415424b2e7158cf4a84</code></td>
+</tr>
+<tr class="even">
+<td>BingX</td>
+<td><code>20260915</code></td>
+<td><code>0x0906c8899d82ae5ab245b26e34d6ea43275fc5aacd2ddbe74cae2f71af5e667a</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="check-that-a-homepage-row-is-anchored">Check that a homepage row
+is anchored</h3>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ANCHOR_CONTRACT = Proxy row from docs/deployments.md</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">ANCHOR_CONTRACT</span><span class="op">=</span>0x…</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">RPC_URL</span><span class="op">=</span><span class="va">${RPC_URL</span><span class="op">:-</span>https://rpc.sepolia.org<span class="va">}</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">RECORD_TUPLE</span><span class="op">=</span><span class="st">&quot;(bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256)&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># OKX Stage 1 row on the homepage</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> call <span class="va">$ANCHOR_CONTRACT</span> <span class="st">&quot;snapshotExists(bytes32)(bool)&quot;</span> <span class="dt">\</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="va">$(</span><span class="ex">cast</span> keccak <span class="st">&quot;502260945&quot;</span><span class="va">)</span> <span class="at">--rpc-url</span> <span class="va">$RPC_URL</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> call <span class="va">$ANCHOR_CONTRACT</span> <span class="st">&quot;getSnapshot(bytes32)</span><span class="va">${RECORD_TUPLE}</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  <span class="va">$(</span><span class="ex">cast</span> keccak <span class="st">&quot;502260945&quot;</span><span class="va">)</span> <span class="at">--rpc-url</span> <span class="va">$RPC_URL</span></span></code></pre></div>
+<h3 id="binance-pr01oct26">Binance <code>PR01OCT26</code></h3>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> call <span class="va">$ANCHOR_CONTRACT</span> <span class="st">&quot;snapshotExists(bytes32)(bool)&quot;</span> <span class="dt">\</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="va">$(</span><span class="ex">cast</span> keccak <span class="st">&quot;PR01OCT26&quot;</span><span class="va">)</span> <span class="at">--rpc-url</span> <span class="va">$RPC_URL</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> call <span class="va">$ANCHOR_CONTRACT</span> <span class="st">&quot;getSnapshot(bytes32)</span><span class="va">${RECORD_TUPLE}</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="va">$(</span><span class="ex">cast</span> keccak <span class="st">&quot;PR01OCT26&quot;</span><span class="va">)</span> <span class="at">--rpc-url</span> <span class="va">$RPC_URL</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Latest Binance anchor (may be this id after the homepage batch)</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="ex">cast</span> call <span class="va">$ANCHOR_CONTRACT</span> <span class="st">&quot;getLatestSnapshot(bytes32)</span><span class="va">${RECORD_TUPLE}</span><span class="st">&quot;</span> <span class="dt">\</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="va">$(</span><span class="ex">cast</span> keccak <span class="st">&quot;binance&quot;</span><span class="va">)</span> <span class="at">--rpc-url</span> <span class="va">$RPC_URL</span></span></code></pre></div>
+<h3 id="count-anchors-per-exchange">Count anchors per exchange</h3>
+<div class="sourceCode" id="cb6"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> binance okx bingx mexc kucoin<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="bu">echo</span> <span class="at">-n</span> <span class="st">&quot;</span><span class="va">$x</span><span class="st"> &quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">cast</span> call <span class="va">$ANCHOR_CONTRACT</span> <span class="st">&quot;getSnapshotCount(bytes32)(uint256)&quot;</span> <span class="dt">\</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">$(</span><span class="ex">cast</span> keccak <span class="st">&quot;</span><span class="va">$x</span><span class="st">&quot;</span><span class="va">)</span> <span class="at">--rpc-url</span> <span class="va">$RPC_URL</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code></pre></div>
+<p>After the homepage assessment batch documented in deployments, counts
+include at least: binance <code>4</code>, okx <code>4</code>, bingx
+<code>2</code>, kucoin <code>1</code>, mexc <code>1</code>.</p>
+<h3 id="match-roots-to-the-public-assessment-json">Match roots to the
+public assessment JSON</h3>
+<ol type="1">
+<li>Read <code>artifactBundleRoot</code> and
+<code>verificationBundleRoot</code> from <code>getSnapshot</code>.</li>
+<li>Open
+<code>docs/reports/&lt;exchange&gt;/&lt;auditId&gt;-assessment.json</code>.</li>
+<li>Compare to <code>artifacts.artifactBundleRoot</code> and
+<code>artifacts.verificationBundleRoot</code>.</li>
+</ol>
+<p>Example paths for homepage rows:</p>
+<ul>
+<li><a
+href="./reports/okx/502260945-assessment.json"><code>docs/reports/okx/502260945-assessment.json</code></a></li>
+<li><a
+href="./reports/binance/PR01OCT26-assessment.json"><code>docs/reports/binance/PR01OCT26-assessment.json</code></a></li>
+<li><a
+href="./reports/mexc/202610-assessment.json"><code>docs/reports/mexc/202610-assessment.json</code></a></li>
+<li><a
+href="./reports/bingx/20261015-assessment.json"><code>docs/reports/bingx/20261015-assessment.json</code></a></li>
+</ul>
+<p>Matching roots means the on-chain digest agrees with that assessment
+file. Full PoR replay still needs the artifact archive and
+<code>por verify</code>.</p>
+<hr />
+<h2 id="etherscan">Etherscan</h2>
+<p>Open the Sepolia proxy’s <strong>Read as Proxy</strong> tab (address
+in <a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/deployments.md">deployments.md</a>),
+use the verified ABI, and call <code>snapshotExists</code> /
+<code>getSnapshot</code> with a <code>snapshotId</code> from the table
+above (as <code>bytes32</code>).</p>
+<hr />
+<h2 id="further-reading">Further reading</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Topic</th>
+<th>Doc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Full view ABI, events, pre-v3 logs, ethers.js</td>
+<td><a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/anchor-query-api.md">anchor-query-api.md</a></td>
+</tr>
+<tr class="even">
+<td>Deploy / upgrade history and homepage anchor txs</td>
+<td><a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/deployments.md">deployments.md</a></td>
+</tr>
+<tr class="odd">
+<td>Trust boundary and verification loop</td>
+<td><a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/verifier-architecture.md">verifier-architecture.md</a></td>
+</tr>
+<tr class="even">
+<td>Operator CLI</td>
+<td><a
+href="https://github.com/ardmere/ardmere.github.io/blob/main/docs/por-cli.md">por-cli.md</a></td>
+</tr>
+</tbody>
+</table>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/contract-query-guide.html">On-chain</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

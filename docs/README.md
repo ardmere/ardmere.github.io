@@ -16,6 +16,7 @@ These pages are part of the ardmere public transparency registry. They are linke
 | [reports/*/transparency-report.html](./reports/) | Exchange transparency reports |
 | [reports/*/*-assessment.json](./reports/) | Machine-readable assessments bound to each report |
 | [ardmere-service-audience.html](./ardmere-service-audience.html) | Product audience and positioning |
+| [contract-query-guide.html](./contract-query-guide.html) | How to query `ArdmerePoRAnchor` for exchange audit / anchor records |
 | [deposit-spot-check.md](./deposit-spot-check.md) | Deposit spot-check spec ([`/verify/deposit/`](../verify/deposit/)) |
 
 ## Repository-only documentation
@@ -29,7 +30,7 @@ These files stay in the public git repository for contributors and operators, bu
 | [verifier-architecture.md](./verifier-architecture.md) | Verifier architecture |
 | [ledger-rpc-runbook.md](./ledger-rpc-runbook.md) | On-chain / ledger RPC ops: env vars, failure modes, fix order |
 | [deployments.md](./deployments.md) | On-chain deployment records |
-| [anchor-query-api.md](./anchor-query-api.md) | ArdmerePoRAnchor on-chain query guide (`cast` / `ethers.js`) |
+| [anchor-query-api.md](./anchor-query-api.md) | Extended ABI reference (`cast` / `ethers.js`); public summary is [contract-query-guide.html](./contract-query-guide.html) |
 | [decisions.md](./decisions.md) | Architecture decision records |
 | [binance-por-data-guide.md](./binance-por-data-guide.md) | Binance data integration |
 | [okx-por-data-guide.md](./okx-por-data-guide.md) | OKX data integration |

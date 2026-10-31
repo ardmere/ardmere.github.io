@@ -52,6 +52,7 @@ Retail users benefit indirectly; exchanges are assessed subjects, not the primar
 | [Binance report](docs/reports/binance/PR01JUN26-transparency-report.html) | Stage 0 blocked |
 | [Bybit report](docs/reports/bybit/2025061709-transparency-report.html) | Stage 0 Merkle inclusion |
 | [Deposit spot-check](verify/deposit/) | Independent deposit sample verification ([spec](docs/deposit-spot-check.md)) |
+| [On-chain query](docs/contract-query-guide.html) | How to query `ArdmerePoRAnchor` for homepage audit / anchor records |
 
 Full doc map: [docs/README.md](docs/README.md).
 
@@ -75,4 +76,4 @@ Copy [`.env.example`](.env.example) to `.env` for local RPC and contract setting
 
 Contributor and operator docs are in-repo but not linked from the public site navigation. See [docs/README.md — Repository-only documentation](docs/README.md#repository-only-documentation).
 
-Product context: [PRODUCT.md](PRODUCT.md) · Architecture: [docs/verifier-architecture.md](docs/verifier-architecture.md) · On-chain query: [docs/anchor-query-api.md](docs/anchor-query-api.md)
+Product context: [PRODUCT.md](PRODUCT.md) · Architecture: [docs/verifier-architecture.md](docs/verifier-architecture.md) · On-chain query: [docs/contract-query-guide.html](docs/contract-query-guide.html) ([ABI reference](docs/anchor-query-api.md))
