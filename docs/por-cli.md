@@ -8,7 +8,7 @@ Unified Proof-of-Reserves command-line tool. Implementation lives in `internal/p
 |---------|---------|
 | `por anchor` | fetch → verify → bundles → anchor calldata |
 | `por verify` | re-verify cached artifacts |
-| `por fetch gateio\|okx` | archive-only download |
+| `por fetch gateio\|okx\|mexc\|…` | archive-only download |
 | `por exchanges [id]` | Official PoR pages + GitHub repos (`config/exchanges/registry.yaml`) |
 | `por probe rpc\|tron\|…` | Binance regression / RPC diagnostics |
 

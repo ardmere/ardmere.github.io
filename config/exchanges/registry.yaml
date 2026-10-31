@@ -9,7 +9,7 @@
 #   sample_artifact_release    — sample period bundles on GitHub Releases only
 
 version: 1
-updated: "2026-07-01"
+updated: "2026-10-31"
 
 exchanges:
   - id: binance
@@ -96,3 +96,17 @@ exchanges:
           current production bundles are dashboard/login gated.
     integrationNotes: >-
       ardmere archives the 2023 sample zk bundle; no public wallet list or current-period permissionless global proof.
+
+  - id: mexc
+    name: MEXC
+    porPage: https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836
+    dataGuide: docs/mexc-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/mexcmerkle/mexc-merkle-proof-of-reserves
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@mexc-1
+        note: Java reference verifier; SHA-256 truncated to 32 hex chars (128 bits); logic ported in internal/exchanges/mexc/merkle.
+    integrationNotes: >-
+      Summary JSON is WAF/login gated from datacenters; import press-release or browser capture.
+      User Merkle proof is login-gated; no public wallet_address_list or global ZK.

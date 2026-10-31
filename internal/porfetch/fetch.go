@@ -14,6 +14,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/bitget/bitgetapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit/bybitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio/gateapi"
+	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
 )
 
 // Main runs fetch subcommands; args[0] is gateio or okx.
@@ -34,6 +35,9 @@ func Main(args []string) int {
 		return 0
 	case "bitget":
 		RunBitget(args[1:])
+		return 0
+	case "mexc":
+		RunMEXC(args[1:])
 		return 0
 	case "okx":
 		RunOKX(args[1:])
@@ -56,6 +60,7 @@ Exchanges:
   htx        fetch or import HTX zk PoR bundle (public-data.zip)
   bybit      fetch or import Bybit PoR summary (+ optional user proof)
   bitget     fetch or import Bitget PoR summary (+ optional merkel_tree_bg.json)
+  mexc       fetch or import MEXC PoR summary (+ optional myProof.json)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -64,6 +69,7 @@ Examples:
   por fetch htx -zk-bundle ./public-data.zip
   por fetch bybit -summary-path ./summary.json -user-proof ./myProof.json
   por fetch bitget -summary-path ./summary.json -user-proof ./merkel_tree_bg.json
+  por fetch mexc -summary-path ./fixtures/mexc/202607-summary.json -user-proof ./fixtures/mexc/merkle_proof.json
   por fetch okx -skip-wallet
 `)
 }
@@ -248,6 +254,55 @@ func RunBitget(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch bitget snapshot: %v\n\nTip: open https://www.bitget.com/proof-of-reserves in a browser, copy API JSON from DevTools, then:\n  por fetch bitget -info-file ./info.json -coins-file ./coins.json", err)
+	}
+	logResult(stored)
+}
+
+// RunMEXC archives MEXC PoR summary (and optional user Merkle proof).
+func RunMEXC(args []string) {
+	fs := flag.NewFlagSet("mexc", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import merged summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser-captured reserve-ratio API response JSON")
+	coinsFile := fs.String("coins-file", "", "browser-captured per-coin reserve list JSON")
+	userProofPath := fs.String("user-proof", "", "import login-gated myProof.json")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+	}
+	if *infoFile != "" {
+		merged, err := mexcapi.BuildSummaryBundle(*infoFile, *coinsFile)
+		if err != nil {
+			log.Fatalf("merge browser capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "mexc-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("mexc")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch mexc snapshot: %v\n\nTip: MEXC PoR JSON is WAF/login gated. Import a press-release or browser capture:\n  por fetch mexc -summary-path ./fixtures/mexc/202607-summary.json\n  por fetch mexc -summary-path ./summary.json -user-proof ./myProof.json", err)
 	}
 	logResult(stored)
 }

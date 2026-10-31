@@ -70,7 +70,8 @@ build_page "docs/reports/snapshot-history.md" "reports"
 build_page "docs/reports/artifact-archive-index.md" "reports"
 for f in docs/reports/okx/*-transparency-report.md docs/reports/binance/*-transparency-report.md \
   docs/reports/bitget/*-transparency-report.md docs/reports/bybit/*-transparency-report.md \
-  docs/reports/gateio/*-transparency-report.md docs/reports/htx/*-transparency-report.md; do
+  docs/reports/gateio/*-transparency-report.md docs/reports/htx/*-transparency-report.md \
+  docs/reports/mexc/*-transparency-report.md; do
   [[ -f "$ROOT/$f" ]] && build_page "$f"
 done
 build_page "docs/insights/index.md" "insights"
