@@ -14,7 +14,7 @@ import (
 
 func runBatch(args []string) int {
 	fs := flag.NewFlagSet("batch", flag.ExitOnError)
-	exchanges := fs.String("exchanges", "okx,binance,gateio,bybit,bitget,htx,mexc,kucoin", "comma-separated exchange ids")
+	exchanges := fs.String("exchanges", "okx,binance,gateio,bybit,bitget,htx,mexc,kucoin,bingx", "comma-separated exchange ids")
 	count := fs.Int("count", 3, "snapshots per exchange (where supported)")
 	artifacts := fs.String("artifacts", "./artifacts", "artifacts root")
 	reports := fs.String("reports", "./docs/reports", "reports output directory")

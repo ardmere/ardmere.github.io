@@ -6,6 +6,7 @@ import (
 
 	"github.com/ardmere/ardmere/internal/exchange"
 	"github.com/ardmere/ardmere/internal/exchanges/binance"
+	"github.com/ardmere/ardmere/internal/exchanges/bingx"
 	"github.com/ardmere/ardmere/internal/exchanges/bitget"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio"
@@ -17,6 +18,7 @@ import (
 
 var adapters = map[string]exchange.Adapter{
 	binance.ID: binance.New(),
+	bingx.ID:   bingx.New(),
 	bitget.ID:  bitget.New(),
 	bybit.ID:   bybit.New(),
 	gateio.ID:  gateio.New(),
