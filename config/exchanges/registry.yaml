@@ -110,3 +110,14 @@ exchanges:
     integrationNotes: >-
       Summary JSON is WAF/login gated from datacenters; import press-release or browser capture.
       User Merkle proof is login-gated; no public wallet_address_list or global ZK.
+
+  - id: kucoin
+    name: KuCoin
+    porPage: https://www.kucoin.com/proof-of-reserves
+    dataGuide: docs/kucoin-por-data-guide.md
+    vcTier: 1
+    upstreamRepos: []
+    integrationNotes: >-
+      Public PoR page SSR (__NEXT_DATA__.initialReserve) exposes latest reserve ratios without login.
+      User Merkle self-check is login-gated; no official OSS verifier repo found — user-merkle stays stubbed.
+      No permissionless wallet_address_list or global ZK.

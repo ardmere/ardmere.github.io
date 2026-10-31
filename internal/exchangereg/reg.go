@@ -10,6 +10,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/bybit"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio"
 	"github.com/ardmere/ardmere/internal/exchanges/htx"
+	"github.com/ardmere/ardmere/internal/exchanges/kucoin"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc"
 	"github.com/ardmere/ardmere/internal/exchanges/okx"
 )
@@ -20,6 +21,7 @@ var adapters = map[string]exchange.Adapter{
 	bybit.ID:   bybit.New(),
 	gateio.ID:  gateio.New(),
 	htx.ID:     htx.New(),
+	kucoin.ID:  kucoin.New(),
 	mexc.ID:    mexc.New(),
 	okx.ID:     okx.New(),
 }

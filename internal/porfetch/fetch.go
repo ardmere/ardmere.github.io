@@ -14,6 +14,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/bitget/bitgetapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit/bybitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio/gateapi"
+	"github.com/ardmere/ardmere/internal/exchanges/kucoin/kucoinapi"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
 )
 
@@ -39,6 +40,9 @@ func Main(args []string) int {
 	case "mexc":
 		RunMEXC(args[1:])
 		return 0
+	case "kucoin":
+		RunKuCoin(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -61,6 +65,7 @@ Exchanges:
   bybit      fetch or import Bybit PoR summary (+ optional user proof)
   bitget     fetch or import Bitget PoR summary (+ optional merkel_tree_bg.json)
   mexc       fetch or import MEXC PoR summary (+ optional myProof.json)
+  kucoin     fetch or import KuCoin PoR summary (public SSR scrape)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -70,6 +75,7 @@ Examples:
   por fetch bybit -summary-path ./summary.json -user-proof ./myProof.json
   por fetch bitget -summary-path ./summary.json -user-proof ./merkel_tree_bg.json
   por fetch mexc -summary-path ./fixtures/mexc/202607-summary.json -user-proof ./fixtures/mexc/merkle_proof.json
+  por fetch kucoin
   por fetch okx -skip-wallet
 `)
 }
@@ -303,6 +309,55 @@ func RunMEXC(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch mexc snapshot: %v\n\nTip: MEXC PoR JSON is WAF/login gated. Import a press-release or browser capture:\n  por fetch mexc -summary-path ./fixtures/mexc/202607-summary.json\n  por fetch mexc -summary-path ./summary.json -user-proof ./myProof.json", err)
+	}
+	logResult(stored)
+}
+
+// RunKuCoin archives KuCoin PoR summary from the public SSR page (or import).
+func RunKuCoin(args []string) {
+	fs := flag.NewFlagSet("kucoin", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import merged summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser-captured initialReserve / reserve API JSON")
+	coinsFile := fs.String("coins-file", "", "optional coin list JSON (defaults to info-file)")
+	userProofPath := fs.String("user-proof", "", "import login-gated user Merkle export (stored only; no OSS verifier)")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+	}
+	if *infoFile != "" {
+		merged, err := kucoinapi.BuildSummaryBundle(*infoFile, *coinsFile)
+		if err != nil {
+			log.Fatalf("merge browser capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "kucoin-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("kucoin")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch kucoin snapshot: %v\n\nTip: open https://www.kucoin.com/proof-of-reserves or import:\n  por fetch kucoin -summary-path ./fixtures/kucoin/20260930-summary.json", err)
 	}
 	logResult(stored)
 }

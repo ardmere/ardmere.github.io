@@ -26,6 +26,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | `bitget` | VC1 | [proof-of-reserves](https://www.bitget.com/proof-of-reserves) | [BitgetLimited/proof-of-reserves](https://github.com/BitgetLimited/proof-of-reserves) | `user-merkle-proof@bitget-1` |
 | `htx` | VC1 | [merkle](https://www.htx.com/zh-cn/finance/merkle/) | [huobiapi/Tool-Go-MerkleVerify](https://github.com/huobiapi/Tool-Go-MerkleVerify) | `global-zk-proof@htx-1` |
 | `mexc` | VC1 | [verify user assets](https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836) | [mexcmerkle/mexc-merkle-proof-of-reserves](https://github.com/mexcmerkle/mexc-merkle-proof-of-reserves) | `user-merkle-proof@mexc-1` |
+| `kucoin` | VC1 | [proof-of-reserves](https://www.kucoin.com/proof-of-reserves) | — (no official OSS verifier found) | `user-merkle-proof@0` (stub) |
 
 ## Data guides
 
@@ -38,6 +39,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | Bitget | [bitget-por-data-guide.md](./bitget-por-data-guide.md) |
 | HTX | [htx-por-data-guide.md](./htx-por-data-guide.md) |
 | MEXC | [mexc-por-data-guide.md](./mexc-por-data-guide.md) |
+| KuCoin | [kucoin-por-data-guide.md](./kucoin-por-data-guide.md) |
 
 ## Maintenance
 
