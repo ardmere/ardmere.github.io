@@ -53,7 +53,7 @@ func usage() {
 Commands:
   anchor   fetch → verify → write bundles → print anchor calldata
   verify   re-verify cached artifact bundle
-  fetch    archive-only download (gateio | htx | bybit | bitget | mexc | okx)
+  fetch    archive-only download (gateio | htx | bybit | bitget | mexc | kucoin | okx)
   batch    fetch+verify last N snapshots per exchange and write reports
   report   generate assessment + transparency report from cached artifacts
   site     regenerate homepage, snapshot history, and exchange comparison

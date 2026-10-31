@@ -1,0 +1,65 @@
+{
+  "fetchedAt": "2026-07-31T19:02:32Z",
+  "source": "por-page-ssr-wayback",
+  "info": {
+    "latestAuditDate": 1782835199000,
+    "auditReportUrl": null,
+    "reserveAsset": [
+      {
+        "currency": "BTC",
+        "userAsset": "8367.77469654",
+        "walletAsset": "9318.40938871",
+        "reserveRate": "111"
+      },
+      {
+        "currency": "ETH",
+        "userAsset": "109757.25714271",
+        "walletAsset": "129971.01144294",
+        "reserveRate": "118"
+      },
+      {
+        "currency": "USDT",
+        "userAsset": "919813443.37473873",
+        "walletAsset": "1097033632.58633373",
+        "reserveRate": "119"
+      },
+      {
+        "currency": "USDC",
+        "userAsset": "85189899.49903987",
+        "walletAsset": "102546542.81263075",
+        "reserveRate": "120"
+      }
+    ],
+    "sourceUrl": "https://web.archive.org/web/20260731190232/https://www.kucoin.com/proof-of-reserves",
+    "note": "Wayback SSR of KuCoin PoR page on 2026-07-31; latestAuditDate is 2026-06-30 23:59:59 UTC+8. No public merkle root."
+  },
+  "coinList": {
+    "latestAuditDate": 1782835199000,
+    "reserveAsset": [
+      {
+        "currency": "BTC",
+        "userAsset": "8367.77469654",
+        "walletAsset": "9318.40938871",
+        "reserveRate": "111"
+      },
+      {
+        "currency": "ETH",
+        "userAsset": "109757.25714271",
+        "walletAsset": "129971.01144294",
+        "reserveRate": "118"
+      },
+      {
+        "currency": "USDT",
+        "userAsset": "919813443.37473873",
+        "walletAsset": "1097033632.58633373",
+        "reserveRate": "119"
+      },
+      {
+        "currency": "USDC",
+        "userAsset": "85189899.49903987",
+        "walletAsset": "102546542.81263075",
+        "reserveRate": "120"
+      }
+    ]
+  }
+}

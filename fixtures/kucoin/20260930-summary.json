@@ -1,0 +1,63 @@
+{
+  "fetchedAt": "2026-10-31T01:40:00Z",
+  "source": "por-page-ssr",
+  "info": {
+    "latestAuditDate": 1790783999000,
+    "auditReportUrl": null,
+    "reserveAsset": [
+      {
+        "currency": "BTC",
+        "userAsset": "7358.6668991",
+        "walletAsset": "7994.36640315",
+        "reserveRate": "109"
+      },
+      {
+        "currency": "ETH",
+        "userAsset": "99131.53844795",
+        "walletAsset": "115905.46471533",
+        "reserveRate": "117"
+      },
+      {
+        "currency": "USDT",
+        "userAsset": "965449021.59044137",
+        "walletAsset": "1057452810.48225594",
+        "reserveRate": "110"
+      },
+      {
+        "currency": "USDC",
+        "userAsset": "79789664.74526991",
+        "walletAsset": "101094761.89559274",
+        "reserveRate": "127"
+      }
+    ]
+  },
+  "coinList": {
+    "latestAuditDate": 1790783999000,
+    "reserveAsset": [
+      {
+        "currency": "BTC",
+        "userAsset": "7358.6668991",
+        "walletAsset": "7994.36640315",
+        "reserveRate": "109"
+      },
+      {
+        "currency": "ETH",
+        "userAsset": "99131.53844795",
+        "walletAsset": "115905.46471533",
+        "reserveRate": "117"
+      },
+      {
+        "currency": "USDT",
+        "userAsset": "965449021.59044137",
+        "walletAsset": "1057452810.48225594",
+        "reserveRate": "110"
+      },
+      {
+        "currency": "USDC",
+        "userAsset": "79789664.74526991",
+        "walletAsset": "101094761.89559274",
+        "reserveRate": "127"
+      }
+    ]
+  }
+}
