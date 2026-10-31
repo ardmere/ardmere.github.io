@@ -1,6 +1,6 @@
 {
   "artifacts": {
-    "artifactBundleRoot": "0x259a72ce6809e43a84ee593488313b892fce13ec32dcd8f66880f19c1a614808",
+    "artifactBundleRoot": "0xa64e61e4c72369dabd856f069f7ff6548e3f71224b0a37e5bfc762b5b0e31875",
     "present": [
       {
         "availability": "public",
@@ -9,7 +9,7 @@
         "url": "https://www.kucoin.com/proof-of-reserves"
       }
     ],
-    "verificationBundleRoot": "0x3f08865530e799dd2d47a5ecf75fe71ef7cef2dcb060677980f187fb6bea1b92"
+    "verificationBundleRoot": "0x8e0d8692535a959baacb0292dcd42092be1a1d994a8d34dded07bcc0b8f88662"
   },
   "checklist": [
     {
@@ -88,7 +88,7 @@
   "evidenceLevel": "E1",
   "exchange": "kucoin",
   "gen": "Gen 1",
-  "generatedAt": "2026-10-31T01:50:19Z",
+  "generatedAt": "2026-10-31T13:40:21Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
   "porStage": "Stage 0",
   "recommendations": [

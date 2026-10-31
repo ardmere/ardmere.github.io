@@ -32,14 +32,14 @@ Public artifacts do not support independently reproducible global solvency verif
 | Field | Value |
 | --- | --- |
 | Latest snapshot (evaluation set) | `2026-09-30T15:59:59Z` |
-| Previous snapshot | `UNVERIFIABLE` |
-| Observed cadence | `UNVERIFIABLE` |
-| History available | `UNVERIFIABLE` |
+| Previous snapshot | `2026-07-31T15:59:59Z` |
+| Observed cadence | `~46 days between snapshots` |
+| History available | `3 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-No sibling assessments found in the ardmere public evaluation set.
+This is the newest snapshot in the ardmere public evaluation set for kucoin.
 
 ## 4. Evidence and Bundles
 
@@ -53,10 +53,10 @@ No sibling assessments found in the ardmere public evaluation set.
 
 | Bundle | Value |
 | --- | --- |
-| Artifact bundle root | `0x259a72ce6809e43a84ee593488313b892fce13ec32dcd8f66880f19c1a614808` |
-| Verification bundle root | `0x3f08865530e799dd2d47a5ecf75fe71ef7cef2dcb060677980f187fb6bea1b92` |
-| Artifact bundle SHA-256 | `d681792b6dd0c52dfcb74903ba589ec9d5159e6ff645200539432aa8300e7c77` |
-| Verification bundle SHA-256 | `879f39b950f8e5d87d1cca5f575fcdcee541d4adceb6d538e4e8eb3c60f85ee9` |
+| Artifact bundle root | `0xa64e61e4c72369dabd856f069f7ff6548e3f71224b0a37e5bfc762b5b0e31875` |
+| Verification bundle root | `0x8e0d8692535a959baacb0292dcd42092be1a1d994a8d34dded07bcc0b8f88662` |
+| Artifact bundle SHA-256 | `74c761f463f6381201bdf965bc214af32ef66aeeae1ea416c51bad99c18312d4` |
+| Verification bundle SHA-256 | `f00ace1fb23c772d5153f1b880767daca7e9422080e2d128f48155ade8d1b3ee` |
 
 Local bundle paths: [20260930.artifact-bundle.json](../../../artifacts/kucoin/20260930/bundles/20260930.artifact-bundle.json), [20260930.verification-bundle.v2.json](../../../artifacts/kucoin/20260930/bundles/20260930.verification-bundle.v2.json)
 
