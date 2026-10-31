@@ -48,6 +48,21 @@ Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only)
 | **Deploy block** | `11179549` |
 | **Source verified** | [Etherscan](https://sepolia.etherscan.io/address/0x6106d883F222DCfA2B797c2231984541BD878873#code) ✓ |
 
+### Homepage assessment roots (`origin/main` @ `c652dd2`, 2026-10-31)
+
+Anchored the six snapshots shown on the public homepage into Sepolia `ArdmerePoRAnchor` (schema v3). Roots taken from `docs/reports/<exchange>/<auditId>-assessment.json` artifact / verification bundle fields. Base mainnet was **not** attempted (`BASE_RPC_URL` missing; contract undeployed).
+
+| Exchange | auditId | periodSeq | Block | `anchorSnapshot` tx |
+| --- | --- | --- | --- | --- |
+| bingx | `20260915` | 0 | `12034438` | [`0x9e5391322f199afb77e9b867a793ac5c85c70f9b91bd8b0ecbd94f544a8afabc`](https://sepolia.etherscan.io/tx/0x9e5391322f199afb77e9b867a793ac5c85c70f9b91bd8b0ecbd94f544a8afabc) |
+| kucoin | `20260930` | 0 | `12034439` | [`0x694595c8bb857d2afb64d74c7f6ed0ec9f96606c30551c86832e14469192804c`](https://sepolia.etherscan.io/tx/0x694595c8bb857d2afb64d74c7f6ed0ec9f96606c30551c86832e14469192804c) |
+| binance | `PR01OCT26` | 47 | `12034444` | [`0xb99fd5b688d39bfda5b0c23923b4ebd2d54319d6f76cace25655c2c7509ff233`](https://sepolia.etherscan.io/tx/0xb99fd5b688d39bfda5b0c23923b4ebd2d54319d6f76cace25655c2c7509ff233) |
+| okx | `502260945` | 3 | `12034445` | [`0x27a239c3f19730718cfe54dbd4d65a93223729a0b7bb5962fccf2d35ac3e9722`](https://sepolia.etherscan.io/tx/0x27a239c3f19730718cfe54dbd4d65a93223729a0b7bb5962fccf2d35ac3e9722) |
+| bingx | `20261015` | 1 | `12034446` | [`0xe75c010b8108f90e28232f734553426e3efe7d565bcb971d8b9a7d247267c3b2`](https://sepolia.etherscan.io/tx/0xe75c010b8108f90e28232f734553426e3efe7d565bcb971d8b9a7d247267c3b2) |
+| mexc | `202610` | 0 | `12034449` | [`0xffc454a681132218060283fa9ef8feff43d8a8cf18eefe08078561000fe24930`](https://sepolia.etherscan.io/tx/0xffc454a681132218060283fa9ef8feff43d8a8cf18eefe08078561000fe24930) |
+
+Post-anchor `getSnapshotCount` (Sepolia): binance `4`, okx `4`, bingx `2`, kucoin `1`, mexc `1`.
+
 ---
 
 ## Base mainnet (chain id `8453`) — pending
@@ -56,9 +71,8 @@ Intended production deployment of the same UUPS `ArdmerePoRAnchor` pattern. **No
 
 ### Blockers for this environment
 
-- Operator `PRIVATE_KEY` / `ANCHOR_SIGNER` not present in Cloud Agent env (must stay in maintainer `~/.zshenv`).
-- No `BASE_RPC_URL` / BaseScan API key configured here.
-- Deploy must be signed by the project maintainer; this refresh only documents the gap.
+- No `BASE_RPC_URL` / BaseScan API key configured here (Sepolia signer is available for testnet only).
+- Base proxy/implementation not deployed; deploy must be signed by the project maintainer.
 
 ### Deploy checklist (maintainer)
 
