@@ -9,7 +9,7 @@
 | Exchange | Snapshot | PoR Stage | Gen / Evidence | Effective PoR | Confidence | Last Verified Snapshot | Upstream verifier | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Binance | `PR01OCT26` | `Stage 0` | `Gen 2 / E2` | `false` | `medium` | `2026-10-01T00:00:00Z` | [binance/zkmerkle-proof-of-solvency](https://github.com/binance/zkmerkle-proof-of-solvency) | [report](./binance/PR01OCT26-transparency-report.md) |
-| OKX | `502260945` | `Stage 0` | `Gen 2 / E2` | `false` | `medium` | `2026-10-02T16:00:00Z` | [okx/proof-of-reserves-v2](https://github.com/okx/proof-of-reserves-v2) (+ [v1 sigs](https://github.com/okx/proof-of-reserves)) | [report](./okx/502260945-transparency-report.md) |
+| OKX | `502260945` | `Stage 1` | `Gen 2 / E2` | `true` | `medium` | `2026-10-02T16:00:00Z` | [okx/proof-of-reserves-v2](https://github.com/okx/proof-of-reserves-v2) (+ [v1 sigs](https://github.com/okx/proof-of-reserves)) | [report](./okx/502260945-transparency-report.md) |
 | Gate.io | `20260618` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-06-18T00:00:00Z` | [gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves) | [report](./gateio/20260618-transparency-report.md) |
 | Bybit | `2026052709` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-05-27T09:00:00Z` | [bybit-exchange/merkle-proof](https://github.com/bybit-exchange/merkle-proof) | [report](./bybit/2026052709-transparency-report.md) |
 | Bitget | `202606` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-06-18T10:00:00Z` | [BitgetLimited/proof-of-reserves](https://github.com/BitgetLimited/proof-of-reserves) | [report](./bitget/202606-transparency-report.md) |
@@ -18,7 +18,7 @@
 ## By exchange
 
 - **Binance (`Stage 0`)** — Latest `PR01OCT26` (Oct 2026, period 47): Binance snapshot PR01OCT26 provides public reserve summary and wallet_address_list where available, but Stage 1 is blocked by missing wallet_ownership_proof, opaque trusted setup, and unavailable public global proof/vk artifacts. [Full report](./binance/PR01OCT26-transparency-report.md) · [history](./snapshot-history.md#binance-monthly-bapi-summary-only-for-current-snapshot)
-- **OKX (`Stage 0`)** — Latest `502260945` (Oct 2026): OKX audit 502260945 does not meet all Stage 1 public artifact thresholds in this pipeline. [Full report](./okx/502260945-transparency-report.md) · [history](./snapshot-history.md#okx-monthly-full-public-artifact-stack)
+- **OKX (`Stage 1`)** — Latest `502260945` (Oct 2026): OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 502260945. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1. [Full report](./okx/502260945-transparency-report.md) · [history](./snapshot-history.md#okx-monthly-full-public-artifact-stack)
 - **Gate.io (`Stage 0`)** — Latest `20260618` (Jun 2026): gateio snapshot 20260618 remains Stage 0 in the ardmere public evaluation set. [Full report](./gateio/20260618-transparency-report.md)
 - **Bybit (`Stage 0`)** — Latest `2026052709` (May 2026): bybit snapshot 2026052709 remains Stage 0 in the ardmere public evaluation set. [Full report](./bybit/2026052709-transparency-report.md)
 - **Bitget (`Stage 0`)** — Latest `202606` (Jun 2026): bitget snapshot 202606 remains Stage 0 in the ardmere public evaluation set. [Full report](./bitget/202606-transparency-report.md)

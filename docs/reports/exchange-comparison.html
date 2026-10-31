@@ -82,9 +82,9 @@ href="https://github.com/binance/zkmerkle-proof-of-solvency">binance/zkmerkle-pr
 <tr>
 <td>OKX</td>
 <td><code>502260945</code></td>
-<td><code>Stage 0</code></td>
+<td><code>Stage 1</code></td>
 <td><code>Gen 2 / E2</code></td>
-<td><code>false</code></td>
+<td><code>true</code></td>
 <td><code>medium</code></td>
 <td><code>2026-10-02T16:00:00Z</code></td>
 <td><a
@@ -151,9 +151,11 @@ but Stage 1 is blocked by missing wallet_ownership_proof, opaque trusted
 setup, and unavailable public global proof/vk artifacts. <a
 href="./binance/PR01OCT26-transparency-report.html">Full report</a> · <a
 href="./snapshot-history.html#binance-monthly-bapi-summary-only-for-current-snapshot">history</a></li>
-<li><strong>OKX (<code>Stage 0</code>)</strong> — Latest
-<code>502260945</code> (Oct 2026): OKX audit 502260945 does not meet all
-Stage 1 public artifact thresholds in this pipeline. <a
+<li><strong>OKX (<code>Stage 1</code>)</strong> — Latest
+<code>502260945</code> (Oct 2026): OKX publishes public summary,
+wallet_address_list, wallet_ownership_proof, and global zk proof bundle
+for audit 502260945. ardmere verifies address ownership and global zk
+binding, so this snapshot reaches Stage 1. <a
 href="./okx/502260945-transparency-report.html">Full report</a> · <a
 href="./snapshot-history.html#okx-monthly-full-public-artifact-stack">history</a></li>
 <li><strong>Gate.io (<code>Stage 0</code>)</strong> — Latest

@@ -11,11 +11,11 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 
 | Exchange | Snapshot | Date | Stage | Report |
 | --- | --- | --- | --- | --- |
-| OKX | `502260945` | 2026-10-02 | Stage 0 | [report](./okx/502260945-transparency-report.md) |
+| OKX | `502260945` | 2026-10-02 | **Stage 1** | [report](./okx/502260945-transparency-report.md) |
 | Binance | `PR01OCT26` | 2026-10-01 | Stage 0 | [report](./binance/PR01OCT26-transparency-report.md) |
-| OKX | `502299735` | 2026-09-07 | Stage 0 | [report](./okx/502299735-transparency-report.md) |
+| OKX | `502299735` | 2026-09-07 | **Stage 1** | [report](./okx/502299735-transparency-report.md) |
 | Binance | `PR01SEP26` | 2026-09-01 | Stage 0 | [report](./binance/PR01SEP26-transparency-report.md) |
-| OKX | `500375535` | 2026-08-10 | Stage 0 | [report](./okx/500375535-transparency-report.md) |
+| OKX | `500375535` | 2026-08-10 | **Stage 1** | [report](./okx/500375535-transparency-report.md) |
 | Binance | `PR01AUG26` | 2026-08-01 | Stage 0 | [report](./binance/PR01AUG26-transparency-report.md) |
 | Binance | `PR01JUL26` | 2026-07-01 | Stage 0 | [report](./binance/PR01JUL26-transparency-report.md) |
 | OKX | `508399035` | 2026-06-18 | **Stage 1** | [report](./okx/508399035-transparency-report.md) |
@@ -38,9 +38,9 @@ Dates are snapshot times from each assessment JSON (`snapshotTime`, UTC date).
 
 | Snapshot | Snapshot time | Stage | Effective PoR | Report |
 | --- | --- | --- | --- | --- |
-| `502260945` | 2026-10-02 | Stage 0 | No | [report](./okx/502260945-transparency-report.md) |
-| `502299735` | 2026-09-07 | Stage 0 | No | [report](./okx/502299735-transparency-report.md) |
-| `500375535` | 2026-08-10 | Stage 0 | No | [report](./okx/500375535-transparency-report.md) |
+| `502260945` | 2026-10-02 | **Stage 1** | Yes | [report](./okx/502260945-transparency-report.md) |
+| `502299735` | 2026-09-07 | **Stage 1** | Yes | [report](./okx/502299735-transparency-report.md) |
+| `500375535` | 2026-08-10 | **Stage 1** | Yes | [report](./okx/500375535-transparency-report.md) |
 | `508399035` | 2026-06-18 | **Stage 1** | Yes | [report](./okx/508399035-transparency-report.md) |
 | `506872725` | 2026-05-06 | **Stage 1** | Yes | [report](./okx/506872725-transparency-report.md) |
 | `507918525` | 2026-04-19 | **Stage 1** | Yes | [report](./okx/507918525-transparency-report.md) |

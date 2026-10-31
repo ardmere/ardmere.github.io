@@ -21,7 +21,7 @@
         "url": "https://static.okx.com/cdn/okx/por/merkel/por_500375535_proof_data.zip"
       }
     ],
-    "verificationBundleRoot": "0xa702d9edd173c41208a96a92efc2e28fa97ba0423bb372af024300c1fcf01355"
+    "verificationBundleRoot": "0xf064d21e940436287a1ae93eed8f14cbe6e08f3f1080ed921087e478fafcd5d5"
   },
   "checklist": [
     {
@@ -47,17 +47,17 @@
     },
     {
       "id": "S1-1",
-      "notes": "Wallet list present; hot-wallet on-chain verifier ran.",
+      "notes": "Wallet list present; on-chain replay skipped or incomplete.",
       "question": "Is wallet_address_list public and on-chain verifiable?",
       "stage": "Stage 1",
       "status": "pass"
     },
     {
       "id": "S1-2",
-      "notes": "address-ownership verifier FAIL.",
+      "notes": "address-ownership verifier PASS.",
       "question": "Is wallet_ownership_proof public and batch-verifiable?",
       "stage": "Stage 1",
-      "status": "fail"
+      "status": "pass"
     },
     {
       "id": "S1-3",
@@ -82,27 +82,27 @@
     },
     {
       "id": "S2-1",
-      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "notes": "No official exchange canonical on-chain/DA anchor established.",
       "question": "Is root/proof/vk canonically anchored outside exchange servers?",
       "stage": "Stage 2",
-      "status": "not_applicable"
+      "status": "fail"
     },
     {
       "id": "S2-2",
-      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "notes": "Monthly or slower cadence; does not meet Stage 2 frequency expectations.",
       "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
       "stage": "Stage 2",
-      "status": "not_applicable"
+      "status": "fail"
     }
   ],
   "confidence": "medium",
-  "effectivePoR": false,
+  "effectivePoR": true,
   "evidenceLevel": "E2",
   "exchange": "okx",
   "gen": "Gen 2",
-  "generatedAt": "2026-10-31T01:17:21Z",
+  "generatedAt": "2026-10-31T13:10:04Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
-  "porStage": "Stage 0",
+  "porStage": "Stage 1",
   "recommendations": [
     {
       "priority": "P1",
@@ -117,26 +117,19 @@
         "HIGH_FREQUENCY_GAP"
       ],
       "text": "Add daily anchoring, weekly full PoR, or event-triggered updates to reduce timing risk."
-    },
-    {
-      "priority": "P2",
-      "relatedRiskFlags": [
-        "IMPLEMENTATION_SEMANTICS_RISK"
-      ],
-      "text": "Review onchain-balance verifier FAIL/WARN outliers in the verification bundle and reconcile CSV vs chain deltas."
     }
   ],
   "riskFlags": [
     {
       "id": "NO_CANONICAL_ANCHOR",
-      "severity": "high",
-      "stageEffect": "max_stage_0",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
       "message": "No official exchange canonical on-chain/DA anchor established."
     },
     {
       "id": "HIGH_FREQUENCY_GAP",
-      "severity": "high",
-      "stageEffect": "max_stage_0",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
       "message": "Monthly cadence does not satisfy Stage 2 frequency expectations."
     }
   ],
@@ -165,8 +158,8 @@
     }
   ],
   "summary": {
-    "headline": "OKX audit 500375535 does not meet all Stage 1 public artifact thresholds in this pipeline.",
-    "rationale": "Missing or failing verifiers block Stage 1 effective PoR for this snapshot.",
+    "headline": "OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 500375535. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1.",
+    "rationale": "Stage 1 is supported by public wallet_address_list, wallet_ownership_proof, global_proof, and parameter/proof artifacts. Stage 2 is not reached because canonical official anchoring, stable DA, low-friction user inclusion proof, stronger publication frequency, and full business-consistent constraints are not established in this report.",
     "scope": "okx snapshot 500375535"
   },
   "verifierResults": [
@@ -204,47 +197,44 @@
       "version": "1.0"
     },
     {
-      "coverage": 0.9983467804609233,
+      "coverage": 1,
       "inputArtifacts": [
         "7db12d643664e0b84ff1e54ffdba339d47298a249afe494c7e770d63dc117462"
       ],
-      "reason": "351/212313 address signatures failed",
-      "verdict": "FAIL",
+      "reason": "verified 212313/212313 address signatures (59 Aptos resource accounts via authentication_key)",
+      "verdict": "PASS",
       "verifierId": "address-ownership",
-      "version": "okx-1"
+      "version": "okx-1.1"
     },
     {
-      "coverage": 0.00016010095778043565,
+      "coverage": 0,
       "inputArtifacts": [
-        "a52bb5a36482ee00ac08ae04d3c73b38234d7fe2907fac418ed91d9c7910e291",
-        "7db12d643664e0b84ff1e54ffdba339d47298a249afe494c7e770d63dc117462"
+        "a52bb5a36482ee00ac08ae04d3c73b38234d7fe2907fac418ed91d9c7910e291"
       ],
-      "reason": "",
-      "verdict": "PARTIAL",
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
       "verifierId": "onchain-balance-hot",
       "version": "2.1"
     },
     {
-      "coverage": 0.0029524500155392107,
+      "coverage": 0,
       "inputArtifacts": [
-        "a52bb5a36482ee00ac08ae04d3c73b38234d7fe2907fac418ed91d9c7910e291",
-        "7db12d643664e0b84ff1e54ffdba339d47298a249afe494c7e770d63dc117462"
+        "a52bb5a36482ee00ac08ae04d3c73b38234d7fe2907fac418ed91d9c7910e291"
       ],
-      "reason": "",
-      "verdict": "FAIL",
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
       "verifierId": "onchain-balance-token",
       "version": "2.0"
     },
     {
-      "coverage": 0.0013043519207406081,
+      "coverage": 0,
       "inputArtifacts": [
-        "a52bb5a36482ee00ac08ae04d3c73b38234d7fe2907fac418ed91d9c7910e291",
-        "7db12d643664e0b84ff1e54ffdba339d47298a249afe494c7e770d63dc117462"
+        "a52bb5a36482ee00ac08ae04d3c73b38234d7fe2907fac418ed91d9c7910e291"
       ],
-      "reason": "",
-      "verdict": "FAIL",
+      "reason": "RPC queries skipped (--skip-rpc)",
+      "verdict": "UNVERIFIABLE",
       "verifierId": "onchain-balance-ledger",
-      "version": "1.4"
+      "version": "1.2"
     },
     {
       "coverage": 1,
