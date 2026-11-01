@@ -66,14 +66,24 @@ footers:
 	}
 	s := string(content)
 	for _, want := range []string{
+		"## All public reports",
 		"508399035",
 		"**Stage 1**",
-		"Page-scrape import (official merkle root)",
 		"HTX June 2026 pending import.",
 		"go run ./cmd/por site",
 	} {
 		if !strings.Contains(s, want) {
 			t.Fatalf("missing %q in:\n%s", want, s)
+		}
+	}
+	for _, refuse := range []string{
+		"## OKX (",
+		"## Binance (",
+		"## Gate.io, Bybit, Bitget, HTX",
+		"Page-scrape import (official merkle root)",
+	} {
+		if strings.Contains(s, refuse) {
+			t.Fatalf("unexpected %q in:\n%s", refuse, s)
 		}
 	}
 }

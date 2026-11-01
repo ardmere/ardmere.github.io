@@ -54,7 +54,7 @@ per exchange)</h2>
 <col style="width: 11%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Exchange</th>
 <th>Snapshot</th>
 <th>PoR Stage</th>
@@ -67,7 +67,7 @@ per exchange)</h2>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Binance</td>
 <td><code>PR31OCT26</code></td>
 <td><code>Stage 0</code></td>
@@ -79,7 +79,7 @@ per exchange)</h2>
 href="https://github.com/binance/zkmerkle-proof-of-solvency">binance/zkmerkle-proof-of-solvency</a></td>
 <td><a href="./binance/PR31OCT26-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>OKX</td>
 <td><code>502260945</code></td>
 <td><code>Stage 1</code></td>
@@ -92,7 +92,7 @@ href="https://github.com/okx/proof-of-reserves-v2">okx/proof-of-reserves-v2</a>
 (+ <a href="https://github.com/okx/proof-of-reserves">v1 sigs</a>)</td>
 <td><a href="./okx/502260945-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Gate.io</td>
 <td><code>20261018</code></td>
 <td><code>Stage 0</code></td>
@@ -104,7 +104,7 @@ href="https://github.com/okx/proof-of-reserves-v2">okx/proof-of-reserves-v2</a>
 href="https://github.com/gateio/proof-of-reserves">gateio/proof-of-reserves</a></td>
 <td><a href="./gateio/20261018-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Bybit</td>
 <td><code>2026102706</code></td>
 <td><code>Stage 0</code></td>
@@ -116,7 +116,7 @@ href="https://github.com/gateio/proof-of-reserves">gateio/proof-of-reserves</a><
 href="https://github.com/bybit-exchange/merkle-proof">bybit-exchange/merkle-proof</a></td>
 <td><a href="./bybit/2026102706-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Bitget</td>
 <td><code>20261021</code></td>
 <td><code>Stage 0</code></td>
@@ -128,7 +128,7 @@ href="https://github.com/bybit-exchange/merkle-proof">bybit-exchange/merkle-proo
 href="https://github.com/BitgetLimited/proof-of-reserves">BitgetLimited/proof-of-reserves</a></td>
 <td><a href="./bitget/20261021-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>HTX</td>
 <td><code>20261001</code></td>
 <td><code>Stage 0</code></td>
@@ -140,7 +140,7 @@ href="https://github.com/BitgetLimited/proof-of-reserves">BitgetLimited/proof-of
 href="https://github.com/huobiapi/Tool-Go-MerkleVerify">huobiapi/Tool-Go-MerkleVerify</a></td>
 <td><a href="./htx/20261001-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>MEXC</td>
 <td><code>202610</code></td>
 <td><code>Stage 0</code></td>
@@ -152,7 +152,7 @@ href="https://github.com/huobiapi/Tool-Go-MerkleVerify">huobiapi/Tool-Go-MerkleV
 href="https://github.com/mexcmerkle/mexc-merkle-proof-of-reserves">mexcmerkle/mexc-merkle-proof-of-reserves</a></td>
 <td><a href="./mexc/202610-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="even">
 <td>KuCoin</td>
 <td><code>20261031</code></td>
 <td><code>Stage 0</code></td>
@@ -163,7 +163,7 @@ href="https://github.com/mexcmerkle/mexc-merkle-proof-of-reserves">mexcmerkle/me
 <td>—</td>
 <td><a href="./kucoin/20261031-transparency-report.html">report</a></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>BingX</td>
 <td><code>20261015</code></td>
 <td><code>Stage 0</code></td>
@@ -185,44 +185,51 @@ provides public reserve summary and wallet_address_list where available,
 but Stage 1 is blocked by missing wallet_ownership_proof, opaque trusted
 setup, and unavailable public global proof/vk artifacts. <a
 href="./binance/PR31OCT26-transparency-report.html">Full report</a> · <a
-href="./snapshot-history.html#binance-monthly-bapi-summary-only-for-current-snapshot">history</a></li>
+href="./snapshot-history.html#all-public-reports">history</a></li>
 <li><strong>OKX (<code>Stage 1</code>)</strong> — Latest
 <code>502260945</code> (Oct 2026): OKX publishes public summary,
 wallet_address_list, wallet_ownership_proof, and global zk proof bundle
 for audit 502260945. ardmere verifies address ownership and global zk
 binding, so this snapshot reaches Stage 1. <a
 href="./okx/502260945-transparency-report.html">Full report</a> · <a
-href="./snapshot-history.html#okx-monthly-full-public-artifact-stack">history</a></li>
+href="./snapshot-history.html#all-public-reports">history</a></li>
 <li><strong>Gate.io (<code>Stage 0</code>)</strong> — Latest
 <code>20261018</code> (Oct 2026): gateio snapshot 20261018 remains Stage
 0 in the ardmere public evaluation set. <a
-href="./gateio/20261018-transparency-report.html">Full report</a></li>
+href="./gateio/20261018-transparency-report.html">Full report</a> · <a
+href="./snapshot-history.html#all-public-reports">history</a></li>
 <li><strong>Bybit (<code>Stage 0</code>)</strong> — Latest
 <code>2026102706</code> (Oct 2026): bybit snapshot 2026102706 remains
 Stage 0 in the ardmere public evaluation set. <a
-href="./bybit/2026102706-transparency-report.html">Full report</a></li>
+href="./bybit/2026102706-transparency-report.html">Full report</a> · <a
+href="./snapshot-history.html#all-public-reports">history</a></li>
 <li><strong>Bitget (<code>Stage 0</code>)</strong> — Latest
 <code>20261021</code> (Oct 2026): bitget snapshot 20261021 remains Stage
 0 in the ardmere public evaluation set. <a
-href="./bitget/20261021-transparency-report.html">Full report</a></li>
+href="./bitget/20261021-transparency-report.html">Full report</a> · <a
+href="./snapshot-history.html#all-public-reports">history</a></li>
 <li><strong>HTX (<code>Stage 0</code>)</strong> — Latest
 <code>20261001</code> (Oct 2026): htx snapshot 20261001 remains Stage 0
 in the ardmere public evaluation set. <a
-href="./htx/20261001-transparency-report.html">Full report</a></li>
+href="./htx/20261001-transparency-report.html">Full report</a> · <a
+href="./snapshot-history.html#all-public-reports">history</a></li>
 <li><strong>MEXC (<code>Stage 0</code>)</strong> — Latest
 <code>202610</code> (Oct 2026): MEXC snapshot 202610 is a weak Stage 0
 (press-release / import summary): self-reported ratios only; no public
 period merkle root in the archived package; user Merkle remains
 login-gated. <a href="./mexc/202610-transparency-report.html">Full
-report</a></li>
+report</a> · <a
+href="./snapshot-history.html#all-public-reports">history</a></li>
 <li><strong>KuCoin (<code>Stage 0</code>)</strong> — Latest
 <code>20261031</code> (Oct 2026): kucoin snapshot 20261031 remains Stage
 0 in the ardmere public evaluation set. <a
-href="./kucoin/20261031-transparency-report.html">Full report</a></li>
+href="./kucoin/20261031-transparency-report.html">Full report</a> · <a
+href="./snapshot-history.html#all-public-reports">history</a></li>
 <li><strong>BingX (<code>Stage 0</code>)</strong> — Latest
 <code>20261015</code> (Oct 2026): bingx snapshot 20261015 remains Stage
 0 in the ardmere public evaluation set. <a
-href="./bingx/20261015-transparency-report.html">Full report</a></li>
+href="./bingx/20261015-transparency-report.html">Full report</a> · <a
+href="./snapshot-history.html#all-public-reports">history</a></li>
 </ul>
 <p>Gap detail, risk flags, and verifier output are in each report.
 Missing data is marked <code>UNVERIFIABLE</code>, not <code>PASS</code>

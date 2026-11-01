@@ -185,33 +185,6 @@ func latestByExchange(rows []Assessment, reg exchangeregistry.Registry) []Assess
 	return out
 }
 
-func filterExchange(rows []Assessment, exchange string) []Assessment {
-	var out []Assessment
-	for _, a := range rows {
-		if a.Exchange == exchange {
-			out = append(out, a)
-		}
-	}
-	sortAssessments(out)
-	return out
-}
-
-func filterExchanges(rows []Assessment, skip ...string) []Assessment {
-	skipSet := map[string]bool{}
-	for _, s := range skip {
-		skipSet[s] = true
-	}
-	var out []Assessment
-	for _, a := range rows {
-		if skipSet[a.Exchange] {
-			continue
-		}
-		out = append(out, a)
-	}
-	sortAssessments(out)
-	return out
-}
-
 func latestGeneratedAt(rows []Assessment) time.Time {
 	var max time.Time
 	for _, a := range rows {
@@ -250,11 +223,3 @@ func containsString(list []string, want string) bool {
 	return false
 }
 
-func hasArtifactKind(a Assessment, kind string) bool {
-	for _, k := range a.ArtifactKinds {
-		if k == kind {
-			return true
-		}
-	}
-	return false
-}
