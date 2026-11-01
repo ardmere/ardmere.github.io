@@ -1,39 +1,7 @@
-# Editorial overrides for snapshot-history.md (auto-generated via por site).
-# Keys are exchange/snapshot-id; values replace heuristic Notes text.
-overrides:
-  gateio/20260618: Page-scrape import (official merkle root)
-  gateio/20260316: Fixture import
-  bybit/2026052709: Press-release scrape; merkle root missing
-  bybit/2025061709: Fixture import
-  bitget/202606: Announcement scrape; merkle root missing
-  bitget/202605: Fixture import
-  htx/20230910: GitHub sample zk bundle (2023-09)
-
-  mexc/202610: Press-release scrape; merkle root missing; WAF-gated dashboard
-  mexc/202609: Press-release scrape; merkle root missing
-  mexc/202608: Press-release scrape; merkle root missing
-  mexc/202607: Press-release scrape; merkle root missing
-
-  kucoin/20261031: Live SSR scrape; no OSS Merkle verifier
-  kucoin/20260930: Live SSR scrape; no OSS Merkle verifier
-  kucoin/20260731: Wayback SSR (Aug 31 crawl); July month-end
-  kucoin/20260630: Wayback SSR (Jul 31 crawl); June month-end
-
-  bingx/20261015: Support-article scrape; merkle root missing
-  bingx/20260915: Support-article scrape; merkle root missing
-  bingx/20260815: Support-article scrape; merkle root missing
-
-
-  gateio/20261018: Browser lastSnapshot API; classic getProofOfReserves* broken (code 7); history list login-gated
-  bitget/20261021: Browser API queryTotalReserveAmount + queryPlatformReserveDetail; user Merkle login-gated
-  bitget/20260929: Browser API (19-asset coverage)
-  bitget/20260820: Browser API (pre-expansion 4-asset coverage in detail)
-  htx/20261001: Browser getPublicSnapshotBalanceData; zk zip login-gated; no official totalReserveRate
-  htx/20260901: Browser public snapshot API
-  htx/20260801: Browser public snapshot API
-  bybit/2026092303: PR/Hacken ratios + browser liabilities; reserve-ratio/latest 404; no merkle on public API
-  bybit/2026102706: Browser liabilities only; exact reserve ratios not published — not invented
-  bybit/2026082604: Browser liabilities + Hacken >100% attestation; exact ratios omitted
+# Editorial footers for snapshot-history.md (auto-generated via por site).
+# Per-snapshot Notes overrides were removed when the page collapsed to a
+# single "All public reports" table; keep overrides empty for compatibility.
+overrides: {}
 
 footers:
   - |-

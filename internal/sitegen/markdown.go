@@ -2,8 +2,6 @@ package sitegen
 
 import (
 	"fmt"
-	"os"
-	"path/filepath"
 	"strings"
 	"time"
 
@@ -15,13 +13,6 @@ func formatStageMD(stage string) string {
 		return "**Stage 1**"
 	}
 	return stage
-}
-
-func formatEffectivePoR(yes bool) string {
-	if yes {
-		return "Yes"
-	}
-	return "No"
 }
 
 func formatGenEvidence(a Assessment) string {
@@ -44,69 +35,12 @@ func formatSnapshotMonthYear(t time.Time) string {
 	return t.Format("Jan 2006")
 }
 
-func formatBinanceListTime(t time.Time) string {
-	return t.Format("02/01/06")
-}
-
 func reportLinkMD(rel string) string {
 	return fmt.Sprintf("[report](%s)", rel)
 }
 
 func fullReportLinkMD(rel string) string {
 	return fmt.Sprintf("[Full report](%s)", rel)
-}
-
-func binanceSnapshotNote(a Assessment) string {
-	hasBAPI := hasArtifactKind(a, "bapiSnapshot")
-	hasWallet := hasArtifactKind(a, "walletZip")
-	switch {
-	case hasBAPI && hasWallet:
-		if a.PeriodSeq > 0 {
-			return fmt.Sprintf("Full BAPI summary + wallet zip (period %d)", a.PeriodSeq)
-		}
-		return "Full BAPI summary + wallet zip"
-	case hasWallet:
-		return "Wallet zip + list metadata; BAPI summary not public for historical period"
-	default:
-		return "Public PoR artifacts archived"
-	}
-}
-
-func secondarySnapshotNote(a Assessment) string {
-	if note := snapshotNoteOverride(a.Exchange, a.SnapshotID); note != "" {
-		return note
-	}
-	if fixtureImportExists(a.Exchange, a.SnapshotID) {
-		return "Fixture import"
-	}
-	if hasArtifactKind(a, "summarySnapshot") && !hasArtifactKind(a, "walletZip") {
-		return "Public summary snapshot (scraped)"
-	}
-	if hasArtifactKind(a, "walletZip") && hasArtifactKind(a, "globalProofBundle") {
-		return "Full public artifact stack"
-	}
-	return "Public PoR artifacts archived"
-}
-
-func snapshotNoteOverride(exchange, snapshotID string) string {
-	notes, err := loadSnapshotNotes()
-	if err != nil || notes == nil {
-		return ""
-	}
-	return notes.Overrides[exchange+"/"+snapshotID]
-}
-
-func fixtureImportExists(exchange, snapshotID string) bool {
-	candidates := []string{
-		filepath.Join("fixtures", exchange, snapshotID),
-		filepath.Join("fixtures", exchange, snapshotID+"-summary.json"),
-	}
-	for _, p := range candidates {
-		if _, err := os.Stat(p); err == nil {
-			return true
-		}
-	}
-	return false
 }
 
 func upstreamVerifierMarkdown(ex exchangeregistry.Exchange) string {
@@ -148,15 +82,8 @@ func shortenRepoURL(u string) string {
 	return u
 }
 
-func exchangeHistoryAnchor(exchange string) string {
-	switch exchange {
-	case "binance":
-		return "./snapshot-history.md#binance-monthly-bapi-summary-only-for-current-snapshot"
-	case "okx":
-		return "./snapshot-history.md#okx-monthly-full-public-artifact-stack"
-	default:
-		return ""
-	}
+func exchangeHistoryAnchor(_ string) string {
+	return "./snapshot-history.md#all-public-reports"
 }
 
 func snapshotLabel(a Assessment) string {
@@ -170,9 +97,7 @@ func snapshotLabel(a Assessment) string {
 func exchangeBullet(a Assessment, multiSnapshot bool) string {
 	history := ""
 	if multiSnapshot {
-		if anchor := exchangeHistoryAnchor(a.Exchange); anchor != "" {
-			history = fmt.Sprintf(" · [history](%s)", anchor)
-		}
+		history = fmt.Sprintf(" · [history](%s)", exchangeHistoryAnchor(a.Exchange))
 	}
 	return fmt.Sprintf("- **%s (`%s`)** — Latest `%s` (%s): %s %s%s",
 		a.ExchangeName,
