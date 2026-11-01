@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BINANCE PR31OCT26 PoR Transparency Report | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="binance-pr31oct26-por-transparency-report">BINANCE PR31OCT26 PoR
+Transparency Report</h1>
+<blockquote>
+<p>Methodology: <a href="../../por-transparency-framework.html">PoR Stage
+Framework</a><br />
+Assessment JSON: <a
+href="./PR31OCT26-assessment.json">PR31OCT26-assessment.json</a></p>
+</blockquote>
+<h2 id="summary">1. Summary</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exchange</td>
+<td><code>binance</code></td>
+</tr>
+<tr class="even">
+<td>Snapshot</td>
+<td><code>PR31OCT26</code></td>
+</tr>
+<tr class="odd">
+<td>Snapshot time</td>
+<td><code>2026-10-31T00:00:00Z</code></td>
+</tr>
+<tr class="even">
+<td>PoR Stage</td>
+<td><code>Stage 0 — Trust the Exchange</code></td>
+</tr>
+<tr class="odd">
+<td>Gen / Evidence</td>
+<td><code>Gen 2 / E2</code></td>
+</tr>
+<tr class="even">
+<td>Confidence</td>
+<td><code>medium</code></td>
+</tr>
+<tr class="odd">
+<td>Effective PoR</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>Binance snapshot PR31OCT26 provides public reserve summary and
+wallet_address_list where available, but Stage 1 is blocked by missing
+wallet_ownership_proof, opaque trusted setup, and unavailable public
+global proof/vk artifacts.</p>
+<p>The available artifacts support Gen 2 / E2 classification and Stage 0
+PoR disclosure. Users still need to trust Binance for wallet control,
+trusted setup honesty, and public availability of the full global proof
+stack.</p>
+<h2 id="stage-decision">2. Stage Decision</h2>
+<h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Missing / Blocked Evidence</th>
+<th>Risk Flag</th>
+<th>Max Stage</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>wallet_ownership_proof</code></td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+<td>Stage 0</td>
+<td>No public batch-verifiable wallet_ownership_proof.</td>
+</tr>
+<tr class="even">
+<td><code>global_proof.csv, verifying_key</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td>Stage 0</td>
+<td>Public global proof/vk not available.</td>
+</tr>
+<tr class="odd">
+<td><code>trusted_setup_transcript</code></td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+<td>Stage 0</td>
+<td>Trusted setup transcript is not public.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Latest snapshot (evaluation set)</td>
+<td><code>2026-10-01T00:00:00Z</code></td>
+</tr>
+<tr class="even">
+<td>Previous snapshot</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="odd">
+<td>Observed cadence</td>
+<td><code>~monthly</code></td>
+</tr>
+<tr class="even">
+<td>History available</td>
+<td><code>7 snapshot(s) in public evaluation set</code></td>
+</tr>
+<tr class="odd">
+<td>Event-triggered updates</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="even">
+<td>Daily root / commitment anchor</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="odd">
+<td>Stage impact</td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bapiSnapshot</code></td>
+<td><code>a89b66d7efdeddbc2ee58eecec1f489a1c68d208e56cf1eef9f3680d605e498b</code></td>
+<td>https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot</td>
+</tr>
+<tr class="even">
+<td><code>walletZip</code></td>
+<td><code>a8c216bce529919a137dce8d52936471c59b14b5ec12377b9a5fb7d3758b0251</code></td>
+<td>https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20261031.zip</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artifact bundle root</td>
+<td><code>0xb7b67ea4153601ff05322208000f6003a56c5e72c188f18b03d543ac39e3100c</code></td>
+</tr>
+<tr class="even">
+<td>Verification bundle root</td>
+<td><code>0x8f008fd012b050ab7e03e9ab4610e7aa3a27b5dff234adb6cac05bfbf57e0466</code></td>
+</tr>
+<tr class="odd">
+<td>Artifact bundle SHA-256</td>
+<td><code>b398554b320660c53fad2465f7f5a1292dffacf8ca1176f7f1ca351baed89a48</code></td>
+</tr>
+<tr class="even">
+<td>Verification bundle SHA-256</td>
+<td><code>07f3f41fa61c99c4ebbc2aa363bd9a7aade6dac9f229e7d62e67613e0fa7ee3e</code></td>
+</tr>
+</tbody>
+</table>
+<p>Local bundle paths: <a
+href="../../../artifacts/binance/PR31OCT26/bundles/PR31OCT26.artifact-bundle.json">PR31OCT26.artifact-bundle.json</a>,
+<a
+href="../../../artifacts/binance/PR31OCT26/bundles/PR31OCT26.verification-bundle.v2.json">PR31OCT26.verification-bundle.v2.json</a></p>
+<h2 id="verifier-evidence">5. Verifier Evidence</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Verifier</th>
+<th>Version</th>
+<th>Verdict</th>
+<th>Coverage</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>artifact-integrity</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>internal-consistency</code></td>
+<td><code>1.1</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>btc-anchor</code></td>
+<td><code>1</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>solvency-claim</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>onchain-balance-hot</code></td>
+<td><code>2.1</code></td>
+<td><code>WARN</code></td>
+<td><code>0.0940</code></td>
+<td>some rows have incomplete staking/deposit attribution below CSV —
+not reserve shortfall</td>
+</tr>
+<tr class="even">
+<td><code>onchain-balance-token</code></td>
+<td><code>2.0</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.6124</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>onchain-balance-ledger</code></td>
+<td><code>1.4</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.2366</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>onchain-balance-deposit</code></td>
+<td><code>1.2</code></td>
+<td><code>PASS</code></td>
+<td><code>0.4254</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>address-ownership</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr class="even">
+<td><code>global-zk-proof</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>Global proof.csv / verifying key not publicly distributed</td>
+</tr>
+<tr class="odd">
+<td><code>third-party-attestation</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr class="even">
+<td><code>cross-chain-wrapped</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verifier-finding-details">6. Verifier Finding Details</h2>
+<p>This section explains <code>FAIL</code>, <code>WARN</code>, and
+<code>UNVERIFIABLE</code> outcomes from the verification bundle.
+Row-level <code>UNVERIFIABLE</code> entries often mean the verifier does
+not yet support that (coin, network) pair, not that the exchange failed
+the check. Full machine-readable output:
+<code>PR31OCT26.verification-bundle.v2.json</code> in the local artifact
+bundle.</p>
+<h3 id="capability-and-artifact-gaps-unverifiable">Capability and
+artifact gaps (<code>UNVERIFIABLE</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Verifier</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>address-ownership</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr class="even">
+<td><code>global-zk-proof</code></td>
+<td>Global proof.csv / verifying key not publicly distributed</td>
+</tr>
+<tr class="odd">
+<td><code>third-party-attestation</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr class="even">
+<td><code>cross-chain-wrapped</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="row-level-findings">Row-level findings</h3>
+<h4 id="onchain-balance-hot-warn"><code>onchain-balance-hot</code>
+(<code>WARN</code>)</h4>
+<p>Summary: some rows have incomplete staking/deposit attribution below
+CSV — not reserve shortfall</p>
+<p>Finding counts: WARN 1, UNVERIFIABLE 1, PASS 1</p>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0xb2a6a72843db0f508204a56448413f3867ea691a</code></td>
+<td><code>BNB@BSC#130757300</code></td>
+<td>35011.51204</td>
+<td>0.737837337885090657</td>
+<td>chain liquid+indexed deposits &lt;&lt; CSV ETH allocation; likely
+omnibus/internal custody label — not single-address reserve; observed
+delta=35010.774202662114909343
+(provider=https://bsc.rpc.sentio.xyz,cache,https://bsc-mainnet.public.blastapi.io)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Unsupported (coin, network) pairs:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pair</th>
+<th>Rows</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>USDC\|ARC</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+</tbody>
+</table>
+<h4 id="onchain-balance-token-fail"><code>onchain-balance-token</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 5, WARN 11, UNVERIFIABLE 1, PASS 1</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>BTC@ETH#26309019</code></td>
+<td>1047.9</td>
+<td>106.362</td>
+<td>on-chain balance != csv claim by 941.538
+(provider=https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY})</td>
+</tr>
+<tr class="even">
+<td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
+<td><code>BTC@ETH#26309019</code></td>
+<td>1106.4841</td>
+<td>400</td>
+<td>on-chain balance != csv claim by 706.4841
+(provider=https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY})</td>
+</tr>
+<tr class="odd">
+<td><code>0x59fbc084aeed2c8e6e9b6ebe8a11d443efcb40d2</code></td>
+<td><code>USD1@AB#16231665</code></td>
+<td>16383889.29</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 16383889.29
+(provider=https://api.mainnet.abs.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>USDT@OPTIMISM#158903011</code></td>
+<td>21176713</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 21176713
+(provider=https://mainnet.optimism.io)</td>
+</tr>
+<tr class="odd">
+<td><code>0xacd03d601e5bb1b275bb94076ff46ed9d753435a</code></td>
+<td><code>USDT@OPTIMISM#158903011</code></td>
+<td>3.587801</td>
+<td>0</td>
+<td>on-chain balance != csv claim by 3.587801
+(provider=https://mainnet.optimism.io)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0x00c1ce9c68f1c4a1b05e8d043b9b05784f41685d68e5009ffe379aa7f7c95ccf</code></td>
+<td><code>ETH@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="even">
+<td><code>0x04164013f90b05d67f026779bf96e9c401c96f3485b645a786166e6935fba116</code></td>
+<td><code>ETH@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="odd">
+<td><code>0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d</code></td>
+<td><code>ETH@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="even">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>ETH@ZKSYNCERA</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): Post “https://mainnet.era.zksync.io”: context
+deadline exceeded (Client.Timeout exceeded while awaiting headers)</td>
+</tr>
+<tr class="odd">
+<td><code>0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d</code></td>
+<td><code>USDC@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="even">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>USDC@ZKSYNCERA</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): no usable provider</td>
+</tr>
+<tr class="odd">
+<td><code>0xa84fd90d8640fa63d194601e0b2d1c9094297083</code></td>
+<td><code>USDC@ZKSYNCERA</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): no usable provider</td>
+</tr>
+<tr class="even">
+<td><code>0x4aec0e98fc1fb55b9cc2faaa7a81acca42cb4e96</code></td>
+<td><code>USDC@ZKSYNCERA</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): no usable provider</td>
+</tr>
+<tr class="odd">
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>USDC@ZKSYNCERA</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): no usable provider</td>
+</tr>
+<tr class="even">
+<td><code>0x7aed074ca56f5050d5a2e512ecc5bf7103937d76</code></td>
+<td><code>USDC@ZKSYNCERA</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): no usable provider</td>
+</tr>
+<tr class="odd">
+<td><code>0x43684d03d81d3a4c70da68febdd61029d426f042</code></td>
+<td><code>USDC@ZKSYNCERA</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): no usable provider</td>
+</tr>
+</tbody>
+</table>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Unsupported (coin, network) pairs:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pair</th>
+<th>Rows</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>USDC\|ARC</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+</tbody>
+</table>
+<h4 id="onchain-balance-ledger-fail"><code>onchain-balance-ledger</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 6, WARN 21, UNVERIFIABLE 1, PASS 1</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bc1q9n7j6a5wwru6tad9xrlncnagresvyjt96pl3en</code></td>
+<td><code>BTC\|BTC#973895</code></td>
+<td>1300.019572</td>
+<td>100.01957174</td>
+<td>on-chain balance != csv claim by 1200.00000026
+(provider=https://blockstream.info/api)</td>
+</tr>
+<tr class="even">
+<td><code>c5f9zfpkKMD9N8uLqJcFeJAAz7v12vDMnup9Y6EeQkk</code></td>
+<td><code>SOL\|SOL#463478911</code></td>
+<td>4211389.625</td>
+<td>1.064970212</td>
+<td>on-chain balance != csv claim by 4211388.560029788
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="odd">
+<td><code>9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM</code></td>
+<td><code>USDC\|SOL#463478911</code></td>
+<td>1108.086785</td>
+<td>1107.086785</td>
+<td>on-chain balance != csv claim by 1
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="even">
+<td><code>5SDrsMNTYdhmApjfqYHDvjoW92f2S42vcc7zNDVcQ9Ej</code></td>
+<td><code>USDC\|SOL#463478911</code></td>
+<td>3.53509</td>
+<td>2.000936</td>
+<td>on-chain balance != csv claim by 1.534154
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="odd">
+<td><code>5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9</code></td>
+<td><code>USDC\|SOL#463478911</code></td>
+<td>1984800.492</td>
+<td>3.000307</td>
+<td>on-chain balance != csv claim by 1984797.491693
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="even">
+<td><code>5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9</code></td>
+<td><code>USDT\|SOL#463478911</code></td>
+<td>19114.68138</td>
+<td>3.000038</td>
+<td>on-chain balance != csv claim by 19111.681342
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0xbe13ea18241ed83ada91e8f5ca37b5507b397cb66ae1e52151cf32a96547600b</code></td>
+<td><code>USDC\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xbe13ea18241ed83ada91e8f5ca37b5507b397cb66ae1e52151cf32a96547600b/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70</code></td>
+<td><code>USDC\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f</code></td>
+<td><code>USDC\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e</code></td>
+<td><code>USDC\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0x5bd7de5c56d5691f32ea86c973c73fec7b1445e59736c97158020018c080bb00</code></td>
+<td><code>USDC\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x5bd7de5c56d5691f32ea86c973c73fec7b1445e59736c97158020018c080bb00/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xaa367ea8e145e3af459d3b8f6d50b96c76d9cf9c7dabedf9fff192f36eda0ee0</code></td>
+<td><code>USDC\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xaa367ea8e145e3af459d3b8f6d50b96c76d9cf9c7dabedf9fff192f36eda0ee0/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a</code></td>
+<td><code>USDC\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0x7ab9a6a7109dcb9cb357a109f32dfcc78a7aa2d6029084eb924d95133fc71cec</code></td>
+<td><code>USDC\|SUI</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error (provider=https://fullnode.mainnet.sui.io:443):
+sui: Method not found. JSON-RPC on public fullnodes has been deprecated.
+Please migrate to gRPC or GraphQL endpoints. See
+https://docs.sui.io/develop/accessing-data/json-rpc-migration for more
+information.</td>
+</tr>
+<tr class="odd">
+<td><code>0x935029ca5219502a47ac9b69f556ccf6e2198b5e7815cf50f68846f723739cbd</code></td>
+<td><code>USDC\|SUI</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error (provider=https://fullnode.mainnet.sui.io:443):
+sui: Method not found. JSON-RPC on public fullnodes has been deprecated.
+Please migrate to gRPC or GraphQL endpoints. See
+https://docs.sui.io/develop/accessing-data/json-rpc-migration for more
+information.</td>
+</tr>
+<tr class="even">
+<td><code>0xac5bceec1b789ff840d7d4e6ce4ce61c90d190a7f8c4f4ddf0bff6ee2413c33c</code></td>
+<td><code>USDC\|SUI</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error (provider=https://fullnode.mainnet.sui.io:443):
+sui: Method not found. JSON-RPC on public fullnodes has been deprecated.
+Please migrate to gRPC or GraphQL endpoints. See
+https://docs.sui.io/develop/accessing-data/json-rpc-migration for more
+information.</td>
+</tr>
+<tr class="odd">
+<td><code>0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h</code></td>
+<td><code>BTC\|BTC</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error (provider=https://blockstream.info/api): esplora tx
+pagination exceeded 400 pages for
+bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h</td>
+</tr>
+<tr class="odd">
+<td><code>t1M1j1rPwUFGz8GDFrgi8rs9R3c7XtCH4Gv</code></td>
+<td><code>ZEC\|ZEC</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://cipherscan.app/api/address/t1M1j1rPwUFGz8GDFrgi8rs9R3c7XtCH4Gv):
+cipherscan HTTP 429</td>
+</tr>
+</tbody>
+</table>
+<p><em>6 additional <code>WARN</code> rows omitted; see verification
+bundle.</em></p>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Unsupported (coin, network) pairs:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pair</th>
+<th>Rows</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>USDC\|ARC</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+</tbody>
+</table>
+<h4
+id="onchain-balance-deposit-pass"><code>onchain-balance-deposit</code>
+(<code>PASS</code>)</h4>
+<p>Finding counts: WARN 11, PASS 2</p>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0x4fbff26f917e6d11dbbee980a8f109c2f5b225df1819a84c93d86c4dd36ba8bd</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x4fbff26f917e6d11dbbee980a8f109c2f5b225df1819a84c93d86c4dd36ba8bd/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xfa15c476424db44f1ce6094740b960dfafb8336d430d2a58ec4ed6a46648bd3e</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xfa15c476424db44f1ce6094740b960dfafb8336d430d2a58ec4ed6a46648bd3e/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0x0feb3f48af880494b4c808225992e865644eb75d1af19928888845a651c16502</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x0feb3f48af880494b4c808225992e865644eb75d1af19928888845a651c16502/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0x92c30e02e202453dd5babfbc1ba587be09a08937d06a2d0d6a2a30d148d3573d</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x92c30e02e202453dd5babfbc1ba587be09a08937d06a2d0d6a2a30d148d3573d/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0x6cd96e07a157d9cb36c2a20aec257be285e87cc23b3d806f47c27d4be40f9d90</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x6cd96e07a157d9cb36c2a20aec257be285e87cc23b3d806f47c27d4be40f9d90/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xf428ce24216a3db0aef70a0ce36627a1affcf128fe7e48100924a3f3287ee838</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xf428ce24216a3db0aef70a0ce36627a1affcf128fe7e48100924a3f3287ee838/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0xc7f299a8705fd0cd04986a58b8beb0d2418d318f106767e539cdd17970731ea3</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xc7f299a8705fd0cd04986a58b8beb0d2418d318f106767e539cdd17970731ea3/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0x13d8aafa64fe3c8748fb4e5e9458579eae5ca0386bdcf2c3a7e84263c1689107</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x13d8aafa64fe3c8748fb4e5e9458579eae5ca0386bdcf2c3a7e84263c1689107/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0xb819e0e24b4fb958cd18314740dce3278653a7f9f9d4d8ff23c744eefade2270</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xb819e0e24b4fb958cd18314740dce3278653a7f9f9d4d8ff23c744eefade2270/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0x88631990bbefd456a9e80fd82b04386debf66a11c15f4b6be1386cfe312fecbe</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x88631990bbefd456a9e80fd82b04386debf66a11c15f4b6be1386cfe312fecbe/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0x06863a01d5aac6ee9b153ffea8393022d4057b8d4fdf582d073ac5ecb2e0f93a</code></td>
+<td><code>USDT\|APT</code></td>
+<td></td>
+<td></td>
+<td>deposit rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x06863a01d5aac6ee9b153ffea8393022d4057b8d4fdf582d073ac5ecb2e0f93a/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+</tbody>
+</table>
+<h2 id="minimal-checklist">7. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Has public PoR been published during the last 12 months? (S0-1)</td>
+<td><code>pass</code></td>
+<td>Snapshot PR31OCT26 is in the public evaluation set.</td>
+</tr>
+<tr class="even">
+<td>Is snapshot time explicit? (S0-2)</td>
+<td><code>pass</code></td>
+<td>2026-10-31T00:00:00Z</td>
+</tr>
+<tr class="odd">
+<td>Is there reserve summary or wallet_address_list? (S0-3)</td>
+<td><code>pass</code></td>
+<td>Summary and wallet_address_list present.</td>
+</tr>
+<tr class="even">
+<td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
+<td><code>pass</code></td>
+<td>Wallet list present; hot-wallet on-chain verifier ran.</td>
+</tr>
+<tr class="odd">
+<td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
+<td><code>unverifiable</code></td>
+<td>address-ownership verifier UNVERIFIABLE.</td>
+</tr>
+<tr class="even">
+<td>Is global_proof public and independently reproducible? (S1-3)</td>
+<td><code>unverifiable</code></td>
+<td>global-zk-proof verifier UNVERIFIABLE.</td>
+</tr>
+<tr class="odd">
+<td>Is independent third-party review available with stated scope?
+(S1-4)</td>
+<td><code>unverifiable</code></td>
+<td>third-party-attestation verifier UNVERIFIABLE.</td>
+</tr>
+<tr class="even">
+<td>If trusted setup is required, is transcript public; otherwise is the
+proof system transparent setup? (S1-5)</td>
+<td><code>unverifiable</code></td>
+<td>No public trusted setup transcript observed for zk-SNARK PoS.</td>
+</tr>
+<tr class="odd">
+<td>Is root/proof/vk canonically anchored outside exchange servers?
+(S2-1)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+<tr class="even">
+<td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
+daily anchor)? (S2-2)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">8. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>P0</code></td>
+<td>Publish batch-verifiable wallet_ownership_proof for
+wallet_address_list.</td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+</tr>
+<tr class="even">
+<td><code>P0</code></td>
+<td>Make global proof.csv, verifying key, and parameter sources publicly
+downloadable.</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="odd">
+<td><code>P0</code></td>
+<td>Publish trusted setup transcript or migrate to a transparent-setup
+proof system.</td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+</tr>
+<tr class="even">
+<td><code>P2</code></td>
+<td>Review onchain-balance verifier FAIL/WARN outliers in the
+verification bundle and reconcile CSV vs chain deltas.</td>
+<td><code>IMPLEMENTATION_SEMANTICS_RISK</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">9. Boundary</h2>
+<p>This report evaluates public PoR artifacts and reproducibility. It
+does not evaluate the exchange’s overall financial health, corporate
+governance, internal controls, off-chain assets, legal compliance, or
+complete off-balance-sheet liabilities.</p>
+<p>Missing data must be marked as <code>UNVERIFIABLE</code>, not treated
+as <code>PASS</code>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/contract-query-guide.html">On-chain</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

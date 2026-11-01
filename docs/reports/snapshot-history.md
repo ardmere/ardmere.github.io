@@ -5,12 +5,13 @@
 
 This index lists every assessed snapshot in the ardmere public evaluation set. The [homepage](../../index.html) shows the six most recent reports (auto-generated via `por site`). This file is also auto-generated; edit `config/site/snapshot-notes.yaml` for per-snapshot note overrides.
 
-**Assessed:** 2026-10-31 · Schema: `ardmere/exchange-assessment@1`
+**Assessed:** 2026-11-01 · Schema: `ardmere/exchange-assessment@1`
 
 ## All public reports
 
 | Exchange | Snapshot | Date | Stage | Report |
 | --- | --- | --- | --- | --- |
+| Binance | `PR31OCT26` | 2026-10-31 | Stage 0 | [report](./binance/PR31OCT26-transparency-report.md) |
 | Bybit | `2026102706` | 2026-10-27 | Stage 0 | [report](./bybit/2026102706-transparency-report.md) |
 | Bitget | `20261021` | 2026-10-21 | Stage 0 | [report](./bitget/20261021-transparency-report.md) |
 | Gate.io | `20261018` | 2026-10-18 | Stage 0 | [report](./gateio/20261018-transparency-report.md) |
@@ -69,6 +70,7 @@ Dates are snapshot times from each assessment JSON (`snapshotTime`, UTC date).
 
 | Snapshot | List time (UTC) | Stage | Effective PoR | Notes | Report |
 | --- | --- | --- | --- | --- | --- |
+| `PR31OCT26` | 31/10/26 | Stage 0 | No | Full BAPI summary + wallet zip (period 48) | [report](./binance/PR31OCT26-transparency-report.md) |
 | `PR01OCT26` | 01/10/26 | Stage 0 | No | Full BAPI summary + wallet zip (period 47) | [report](./binance/PR01OCT26-transparency-report.md) |
 | `PR01SEP26` | 01/09/26 | Stage 0 | No | Full BAPI summary + wallet zip (period 46) | [report](./binance/PR01SEP26-transparency-report.md) |
 | `PR01AUG26` | 01/08/26 | Stage 0 | No | Full BAPI summary + wallet zip (period 45) | [report](./binance/PR01AUG26-transparency-report.md) |
