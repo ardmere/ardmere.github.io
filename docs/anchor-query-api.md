@@ -1,8 +1,8 @@
 # ArdmerePoRAnchor On-Chain Query Guide
 
-**User manual** for third-party integrators, wallets, block explorers, and independent auditors: how to read exchange PoR (Proof of Reserves) anchor data from the `ArdmerePoRAnchor` contract.
+**Extended ABI reference** for third-party integrators, wallets, block explorers, and independent auditors: how to read exchange PoR (Proof of Reserves) anchor data from the `ArdmerePoRAnchor` contract.
 
-Related docs: [verifier-architecture.md §6.5](./verifier-architecture.md#65-on-chain-query-api-schema-v3) (architecture background) · [deployments.md](./deployments.md) (deployment history) · [por-cli.md](./por-cli.md) (`por anchor` operations)
+Public site summary (homepage snapshot examples): [contract-query-guide.md](./contract-query-guide.md) · Related: [verifier-architecture.md §6.5](./verifier-architecture.md#65-on-chain-query-api-schema-v3) (architecture background) · [deployments.md](./deployments.md) (deployment history) · [por-cli.md](./por-cli.md) (`por anchor` operations)
 
 ---
 

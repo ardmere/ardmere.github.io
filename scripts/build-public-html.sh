@@ -12,19 +12,27 @@ fi
 
 fix_links() {
   local file="$1"
-  if [[ "$(uname)" == "Darwin" ]]; then
-    sed -i '' \
-      -e 's/href="\([^"]*\)\.md"/href="\1.html"/g' \
-      -e 's/href="\([^"]*\)\.md#/href="\1.html#/g' \
-      -e 's/(\([^)]*\)\.md)/(\1.html)/g' \
-      "$file"
-  else
-    sed -i \
-      -e 's/href="\([^"]*\)\.md"/href="\1.html"/g' \
-      -e 's/href="\([^"]*\)\.md#/href="\1.html#/g' \
-      -e 's/(\([^)]*\)\.md)/(\1.html)/g' \
-      "$file"
-  fi
+  # Rewrite relative *.md links to *.html for GitHub Pages.
+  # Skip absolute URLs (http:, https:, mailto:, etc.).
+  python3 - "$file" <<'PY'
+import re, sys
+path = sys.argv[1]
+text = open(path, encoding="utf-8").read()
+
+def repl(m: re.Match[str]) -> str:
+    href = m.group(1)
+    if re.match(r"^[a-zA-Z][a-zA-Z0-9+.-]*:", href):
+        return m.group(0)
+    if href.endswith(".md"):
+        return f'href="{href[:-3]}.html"'
+    if ".md#" in href:
+        return f'href="{href.replace(".md#", ".html#", 1)}"'
+    return m.group(0)
+
+text2 = re.sub(r'href="([^"]+)"', repl, text)
+if text2 != text:
+    open(path, "w", encoding="utf-8").write(text2)
+PY
 }
 
 build_page() {
@@ -63,6 +71,7 @@ echo "Building public HTML pages..."
 go run ./cmd/por site
 build_page "docs/por-transparency-framework.md" "methodology"
 build_page "docs/effective-por-standard.md" "standard"
+build_page "docs/contract-query-guide.md"
 build_page "docs/ardmere-service-audience.md"
 build_page "docs/exchange-reserve-transparency-whitepaper.md"
 build_page "docs/reports/exchange-comparison.md" "reports"
