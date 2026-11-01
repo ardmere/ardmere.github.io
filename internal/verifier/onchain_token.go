@@ -201,34 +201,8 @@ func (v OnchainBalanceToken) Run(ctx context.Context) Verification {
 			continue
 		}
 
-		if omnibus, note := stablecoinEthOmnibusMismatch(res.row, res.actual); omnibus {
-			warnCount++
-			spec := loadTokenSupportedFor(v.Exchange)[res.row.Coin+"|"+res.row.Network]
-			components := res.components
-			if components == nil {
-				components = map[string]string{}
-			}
-			if spec.Contract != "" {
-				components["token"] = spec.Contract
-				components["mode"] = "erc20"
-			}
-			if res.boundaryNote != "" {
-				note = res.boundaryNote + "; " + note
-			}
-			out.Findings = append(out.Findings, Finding{
-				Subject:    res.row.Address,
-				Field:      res.row.Coin + "@" + res.row.Network + "#" + fmt.Sprintf("%d", res.matchedHeight),
-				Claim:      claim.String(),
-				Actual:     res.actual.String(),
-				Status:     VerdictWarn,
-				Note:       note + fmt.Sprintf("; delta=%s (provider=%s)", diff.Abs().String(), res.used),
-				Components: components,
-			})
-			continue
-		}
-
 		spec := loadTokenSupportedFor(v.Exchange)[res.row.Coin+"|"+res.row.Network]
-		note := fmt.Sprintf("on-chain balance != csv claim by %s (provider=%s)", diff.Abs().String(), res.used)
+		note := shortfallNote(diff.Abs().String(), res.used)
 		if res.boundaryNote != "" {
 			note = res.boundaryNote + "; " + note
 		}

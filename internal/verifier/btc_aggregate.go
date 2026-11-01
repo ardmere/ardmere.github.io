@@ -102,27 +102,9 @@ func btcEthNativeCustodyUnverifiable(r walletzip.Row, actual decimal.Decimal) (b
 	return true, "no WBTC at snapshot height; BTC likely native/off-chain custody — EVM WBTC balanceOf cannot verify this row"
 }
 
-// stablecoinEthOmnibusMismatch marks mega-stablecoin ETH rows where on-chain ERC20
-// balance is far below CSV — exchange omnibus allocation labels, not address custody.
-func stablecoinEthOmnibusMismatch(r walletzip.Row, actual decimal.Decimal) (bool, string) {
-	if r.Network != "ETH" {
-		return false, ""
-	}
-	switch r.Coin {
-	case "USDT", "USDC", "DAI", "BUSD", "TUSD", "FDUSD", "USDP", "PYUSD":
-	default:
-		return false, ""
-	}
-	if actual.GreaterThan(r.Balance) {
-		return false, ""
-	}
-	if r.Balance.LessThan(decimal.NewFromInt(1_000_000)) {
-		return false, ""
-	}
-	if actual.IsZero() || actual.Div(r.Balance).LessThan(decimal.NewFromFloat(0.001)) {
-		return true, "on-chain ERC20 balance << CSV mega-stablecoin allocation; likely omnibus/internal ledger label — not single-address custody"
-	}
-	return false, ""
+// shortfallNote describes CSV claim exceeding on-chain observation (不足).
+func shortfallNote(delta, provider string) string {
+	return "shortfall / 不足 (CSV exceeds on-chain) by " + delta + " (provider=" + provider + ")"
 }
 
 // classifyBalanceMismatch decides PASS (within tolerance or chain surplus) / FAIL (chain short).

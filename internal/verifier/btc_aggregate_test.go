@@ -37,23 +37,10 @@ func TestBtcEthNativeCustodyUnverifiable(t *testing.T) {
 	}
 }
 
-func TestStablecoinEthOmnibusMismatch(t *testing.T) {
-	row := walletzip.Row{
-		Coin:    "USDC",
-		Network: "ETH",
-		Balance: decimal.RequireFromString("61874569.163224"),
-	}
-	ok, note := stablecoinEthOmnibusMismatch(row, decimal.RequireFromString("1.324019"))
-	if !ok || note == "" {
-		t.Fatal("expected mega USDC omnibus pattern")
-	}
-	row.Balance = decimal.RequireFromString("100000")
-	if ok, _ := stablecoinEthOmnibusMismatch(row, decimal.Zero); ok {
-		t.Fatal("claim below 1M threshold should not trigger")
-	}
-	row.Balance = decimal.RequireFromString("5000000")
-	if ok, _ := stablecoinEthOmnibusMismatch(row, decimal.RequireFromString("6000000")); ok {
-		t.Fatal("surplus should not trigger")
+func TestShortfallNote(t *testing.T) {
+	got := shortfallNote("12.5", "cache")
+	if got != "shortfall / 不足 (CSV exceeds on-chain) by 12.5 (provider=cache)" {
+		t.Fatalf("unexpected shortfall note: %q", got)
 	}
 }
 

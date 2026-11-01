@@ -202,20 +202,7 @@ func (v OnchainBalanceHot) Run(ctx context.Context) Verification {
 			})
 			continue
 		}
-		if ok, note := ethHotInternalCustodyLikely(res.row.Balance, res.accounted.total); ok {
-			warnCount++
-			out.Findings = append(out.Findings, Finding{
-				Subject:    res.row.Address,
-				Field:      res.row.Coin + "@" + res.row.Network + "#" + fmt.Sprintf("%d", matchedHeight),
-				Claim:      res.row.Balance.String(),
-				Actual:     res.accounted.total.String(),
-				Status:     VerdictWarn,
-				Note:       note + fmt.Sprintf("; observed delta=%s (provider=%s)", diff.String(), res.used),
-				Components: res.accounted.components,
-			})
-			continue
-		}
-		note := fmt.Sprintf("accounted on-chain balance != csv claim by %s (provider=%s)", diff.String(), res.used)
+		note := shortfallNote(diff.Abs().String(), res.used)
 		if boundaryNote != "" {
 			note = boundaryNote + "; " + note
 		}
@@ -249,7 +236,7 @@ func (v OnchainBalanceHot) Run(ctx context.Context) Verification {
 		out.Reason = "more than 25% of supported rows failed to query rpc"
 	case warnCount > 0:
 		out.Verdict = VerdictWarn
-		out.Reason = "some rows have incomplete staking/deposit attribution below CSV — not reserve shortfall"
+		out.Reason = "some rows have on-chain balance below CSV claim (shortfall / 不足: CSV exceeds on-chain)"
 	case len(supported) < len(allRows):
 		out.Verdict = VerdictPartial
 	default:
