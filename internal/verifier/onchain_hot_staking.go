@@ -349,7 +349,7 @@ func likelyEthDepositGap(claim, liquid, gap decimal.Decimal) bool {
 	if liquid.LessThan(decimal.NewFromInt(1)) {
 		return true
 	}
-	// Large claim with tiny liquid share (e.g. 1.7k / 312k ETH omnibus label).
+	// Large claim with tiny liquid share (e.g. 1.7k / 312k ETH).
 	if claim.GreaterThan(decimal.NewFromInt(100)) {
 		if liquid.Div(claim).LessThan(decimal.NewFromFloat(0.02)) {
 			return true
@@ -361,22 +361,6 @@ func likelyEthDepositGap(claim, liquid, gap decimal.Decimal) bool {
 	closeToMultiple := remainder.LessThanOrEqual(decimal.NewFromFloat(1e-4)) ||
 		decimal.NewFromInt(32).Sub(remainder).LessThanOrEqual(decimal.NewFromFloat(1e-4))
 	return closeToMultiple || claim.GreaterThan(decimal.NewFromInt(1000))
-}
-
-// ethHotInternalCustodyLikely marks ETH|ETH rows where liquid (+ any indexed deposits)
-// is far below CSV — omnibus / internal ledger, not a reserve shortfall signal.
-func ethHotInternalCustodyLikely(claim, accounted decimal.Decimal) (bool, string) {
-	if claim.LessThanOrEqual(decimal.Zero) || accounted.GreaterThan(claim) {
-		return false, ""
-	}
-	if claim.LessThan(decimal.NewFromInt(100)) {
-		return false, ""
-	}
-	ratio := accounted.Div(claim)
-	if ratio.GreaterThanOrEqual(decimal.NewFromFloat(0.02)) {
-		return false, ""
-	}
-	return true, "chain liquid+indexed deposits << CSV ETH allocation; likely omnibus/internal custody label — not single-address reserve"
 }
 
 func joinProviders(providers ...string) string {

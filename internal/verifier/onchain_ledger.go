@@ -147,20 +147,6 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 			continue
 		}
 
-		if unv, note := btcNativeCustodyUnverifiable(res.row, res.actual); unv {
-			unverifiableCount++
-			out.Findings = append(out.Findings, Finding{
-				Subject:    res.row.Address,
-				Field:      key + "#" + fmt.Sprintf("%d", res.row.Height),
-				Claim:      res.row.Balance.String(),
-				Actual:     res.actual.String(),
-				Status:     VerdictUnverifiable,
-				Note:       note,
-				Components: map[string]string{"mode": res.mode},
-			})
-			continue
-		}
-
 		claim := res.row.Balance
 		diff := res.actual.Sub(claim)
 
@@ -170,7 +156,7 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 				passCount++
 				continue
 			}
-			note := fmt.Sprintf("on-chain balance != csv claim by %s (provider=%s)", diff.Abs().String(), res.used)
+			note := shortfallNote(diff.Abs().String(), res.used)
 			if aptNote != "" {
 				note = aptNote + "; " + note
 			}
@@ -208,7 +194,7 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 			continue
 		}
 
-		note := fmt.Sprintf("on-chain balance != csv claim by %s (provider=%s)", diff.Abs().String(), res.used)
+		note := shortfallNote(diff.Abs().String(), res.used)
 		if snap := ledgerLiveSnapshotNote(spec, res.components); snap != "" {
 			note = snap + "; " + note
 		}

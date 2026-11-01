@@ -137,11 +137,11 @@ stack.</p>
 <tbody>
 <tr class="odd">
 <td>Latest snapshot (evaluation set)</td>
-<td><code>2026-10-01T00:00:00Z</code></td>
+<td><code>2026-10-31T00:00:00Z</code></td>
 </tr>
 <tr class="even">
 <td>Previous snapshot</td>
-<td><code>UNVERIFIABLE</code></td>
+<td><code>2026-10-01T00:00:00Z</code></td>
 </tr>
 <tr class="odd">
 <td>Observed cadence</td>
@@ -149,7 +149,7 @@ stack.</p>
 </tr>
 <tr class="even">
 <td>History available</td>
-<td><code>7 snapshot(s) in public evaluation set</code></td>
+<td><code>8 snapshot(s) in public evaluation set</code></td>
 </tr>
 <tr class="odd">
 <td>Event-triggered updates</td>
@@ -166,6 +166,8 @@ expectations.</td>
 </tr>
 </tbody>
 </table>
+<p>This is the newest snapshot in the ardmere public evaluation set for
+binance.</p>
 <h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
 <h3 id="public-artifacts">Public Artifacts</h3>
 <table>
@@ -189,7 +191,7 @@ expectations.</td>
 </tr>
 <tr class="even">
 <td><code>walletZip</code></td>
-<td><code>a8c216bce529919a137dce8d52936471c59b14b5ec12377b9a5fb7d3758b0251</code></td>
+<td><code>f6a7a4afca132caa689409f4f28eab3a51e57be5bd30a0924f3860636f0348ec</code></td>
 <td>https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20261031.zip</td>
 </tr>
 </tbody>
@@ -209,19 +211,19 @@ expectations.</td>
 <tbody>
 <tr class="odd">
 <td>Artifact bundle root</td>
-<td><code>0xb7b67ea4153601ff05322208000f6003a56c5e72c188f18b03d543ac39e3100c</code></td>
+<td><code>0x0af5c6f1a3a84071d7b150e0df8e80af29edc78e729660223256c760c68b0574</code></td>
 </tr>
 <tr class="even">
 <td>Verification bundle root</td>
-<td><code>0x8f008fd012b050ab7e03e9ab4610e7aa3a27b5dff234adb6cac05bfbf57e0466</code></td>
+<td><code>0xb46df6b42ed1c5af7559b6438b22c95e9fef7315c7fc21979bec87f82ee1d692</code></td>
 </tr>
 <tr class="odd">
 <td>Artifact bundle SHA-256</td>
-<td><code>b398554b320660c53fad2465f7f5a1292dffacf8ca1176f7f1ca351baed89a48</code></td>
+<td><code>a5bdbc7019487b47c89782c3e8be2297e7e3a1f93cf3895ac1088542b875790b</code></td>
 </tr>
 <tr class="even">
 <td>Verification bundle SHA-256</td>
-<td><code>07f3f41fa61c99c4ebbc2aa363bd9a7aade6dac9f229e7d62e67613e0fa7ee3e</code></td>
+<td><code>21978591c450e91c400a64f2d66b0f57893381daae8d90172a2f1a866c98a77a</code></td>
 </tr>
 </tbody>
 </table>
@@ -279,23 +281,22 @@ href="../../../artifacts/binance/PR31OCT26/bundles/PR31OCT26.verification-bundle
 <tr class="odd">
 <td><code>onchain-balance-hot</code></td>
 <td><code>2.1</code></td>
-<td><code>WARN</code></td>
-<td><code>0.0940</code></td>
-<td>some rows have incomplete staking/deposit attribution below CSV —
-not reserve shortfall</td>
+<td><code>FAIL</code></td>
+<td><code>0.0956</code></td>
+<td></td>
 </tr>
 <tr class="even">
 <td><code>onchain-balance-token</code></td>
 <td><code>2.0</code></td>
 <td><code>FAIL</code></td>
-<td><code>0.6124</code></td>
+<td><code>0.6225</code></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><code>onchain-balance-ledger</code></td>
 <td><code>1.4</code></td>
 <td><code>FAIL</code></td>
-<td><code>0.2366</code></td>
+<td><code>0.2349</code></td>
 <td></td>
 </tr>
 <tr class="even">
@@ -382,12 +383,10 @@ mode)</td>
 </tbody>
 </table>
 <h3 id="row-level-findings">Row-level findings</h3>
-<h4 id="onchain-balance-hot-warn"><code>onchain-balance-hot</code>
-(<code>WARN</code>)</h4>
-<p>Summary: some rows have incomplete staking/deposit attribution below
-CSV — not reserve shortfall</p>
-<p>Finding counts: WARN 1, UNVERIFIABLE 1, PASS 1</p>
-<p><strong>WARN</strong></p>
+<h4 id="onchain-balance-hot-fail"><code>onchain-balance-hot</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 1, UNVERIFIABLE 1, PASS 1</p>
+<p><strong>FAIL</strong></p>
 <table>
 <colgroup>
 <col style="width: 20%" />
@@ -411,10 +410,8 @@ CSV — not reserve shortfall</p>
 <td><code>BNB@BSC#130757300</code></td>
 <td>35011.51204</td>
 <td>0.737837337885090657</td>
-<td>chain liquid+indexed deposits &lt;&lt; CSV ETH allocation; likely
-omnibus/internal custody label — not single-address reserve; observed
-delta=35010.774202662114909343
-(provider=https://bsc.rpc.sentio.xyz,cache,https://bsc-mainnet.public.blastapi.io)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 35010.774202662114909343
+(provider=cache)</td>
 </tr>
 </tbody>
 </table>
@@ -443,7 +440,7 @@ delta=35010.774202662114909343
 </table>
 <h4 id="onchain-balance-token-fail"><code>onchain-balance-token</code>
 (<code>FAIL</code>)</h4>
-<p>Finding counts: FAIL 5, WARN 11, UNVERIFIABLE 1, PASS 1</p>
+<p>Finding counts: FAIL 5, WARN 5, UNVERIFIABLE 1, PASS 1</p>
 <p><strong>FAIL</strong></p>
 <table>
 <colgroup>
@@ -468,40 +465,40 @@ delta=35010.774202662114909343
 <td><code>BTC@ETH#26309019</code></td>
 <td>1047.9</td>
 <td>106.362</td>
-<td>on-chain balance != csv claim by 941.538
-(provider=https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY})</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 941.538
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
 <td><code>BTC@ETH#26309019</code></td>
 <td>1106.4841</td>
 <td>400</td>
-<td>on-chain balance != csv claim by 706.4841
-(provider=https://eth-mainnet.g.alchemy.com/v2/${ALCHEMY_KEY})</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 706.4841
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x59fbc084aeed2c8e6e9b6ebe8a11d443efcb40d2</code></td>
 <td><code>USD1@AB#16231665</code></td>
 <td>16383889.29</td>
 <td>0</td>
-<td>on-chain balance != csv claim by 16383889.29
-(provider=https://api.mainnet.abs.xyz)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 16383889.29
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
 <td><code>USDT@OPTIMISM#158903011</code></td>
 <td>21176713</td>
 <td>0</td>
-<td>on-chain balance != csv claim by 21176713
-(provider=https://mainnet.optimism.io)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 21176713
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xacd03d601e5bb1b275bb94076ff46ed9d753435a</code></td>
 <td><code>USDT@OPTIMISM#158903011</code></td>
 <td>3.587801</td>
 <td>0</td>
-<td>on-chain balance != csv claim by 3.587801
-(provider=https://mainnet.optimism.io)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 3.587801
+(provider=cache)</td>
 </tr>
 </tbody>
 </table>
@@ -525,6 +522,24 @@ delta=35010.774202662114909343
 </thead>
 <tbody>
 <tr class="odd">
+<td><code>0x04164013f90b05d67f026779bf96e9c401c96f3485b645a786166e6935fba116</code></td>
+<td><code>ETH@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="even">
+<td><code>0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d</code></td>
+<td><code>USDC@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="odd">
 <td><code>0x00c1ce9c68f1c4a1b05e8d043b9b05784f41685d68e5009ffe379aa7f7c95ccf</code></td>
 <td><code>ETH@STARKNET</code></td>
 <td></td>
@@ -534,15 +549,6 @@ discontinued.”,“message”:“For an up to date list of available endpoints,
 visit https://</td>
 </tr>
 <tr class="even">
-<td><code>0x04164013f90b05d67f026779bf96e9c401c96f3485b645a786166e6935fba116</code></td>
-<td><code>ETH@STARKNET</code></td>
-<td></td>
-<td></td>
-<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
-discontinued.”,“message”:“For an up to date list of available endpoints,
-visit https://</td>
-</tr>
-<tr class="odd">
 <td><code>0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d</code></td>
 <td><code>ETH@STARKNET</code></td>
 <td></td>
@@ -551,64 +557,14 @@ visit https://</td>
 discontinued.”,“message”:“For an up to date list of available endpoints,
 visit https://</td>
 </tr>
-<tr class="even">
-<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
-<td><code>ETH@ZKSYNCERA</code></td>
-<td></td>
-<td></td>
-<td>rpc error (provider=): Post “https://mainnet.era.zksync.io”: context
-deadline exceeded (Client.Timeout exceeded while awaiting headers)</td>
-</tr>
 <tr class="odd">
-<td><code>0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d</code></td>
-<td><code>USDC@STARKNET</code></td>
-<td></td>
-<td></td>
-<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
-discontinued.”,“message”:“For an up to date list of available endpoints,
-visit https://</td>
-</tr>
-<tr class="even">
-<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
-<td><code>USDC@ZKSYNCERA</code></td>
-<td></td>
-<td></td>
-<td>rpc error (provider=): no usable provider</td>
-</tr>
-<tr class="odd">
-<td><code>0xa84fd90d8640fa63d194601e0b2d1c9094297083</code></td>
-<td><code>USDC@ZKSYNCERA</code></td>
-<td></td>
-<td></td>
-<td>rpc error (provider=): no usable provider</td>
-</tr>
-<tr class="even">
-<td><code>0x4aec0e98fc1fb55b9cc2faaa7a81acca42cb4e96</code></td>
-<td><code>USDC@ZKSYNCERA</code></td>
-<td></td>
-<td></td>
-<td>rpc error (provider=): no usable provider</td>
-</tr>
-<tr class="odd">
-<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
-<td><code>USDC@ZKSYNCERA</code></td>
-<td></td>
-<td></td>
-<td>rpc error (provider=): no usable provider</td>
-</tr>
-<tr class="even">
-<td><code>0x7aed074ca56f5050d5a2e512ecc5bf7103937d76</code></td>
-<td><code>USDC@ZKSYNCERA</code></td>
-<td></td>
-<td></td>
-<td>rpc error (provider=): no usable provider</td>
-</tr>
-<tr class="odd">
-<td><code>0x43684d03d81d3a4c70da68febdd61029d426f042</code></td>
-<td><code>USDC@ZKSYNCERA</code></td>
-<td></td>
-<td></td>
-<td>rpc error (provider=): no usable provider</td>
+<td><code>TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb</code></td>
+<td><code>USDT@TRX#87577130</code></td>
+<td>454123480.6</td>
+<td>348533038.278</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 105590442.322 (provider=https://tron-rpc.publicnode.com)</td>
 </tr>
 </tbody>
 </table>
@@ -637,7 +593,7 @@ visit https://</td>
 </table>
 <h4 id="onchain-balance-ledger-fail"><code>onchain-balance-ledger</code>
 (<code>FAIL</code>)</h4>
-<p>Finding counts: FAIL 6, WARN 21, UNVERIFIABLE 1, PASS 1</p>
+<p>Finding counts: FAIL 6, WARN 22, UNVERIFIABLE 1, PASS 1</p>
 <p><strong>FAIL</strong></p>
 <table>
 <colgroup>
@@ -662,48 +618,48 @@ visit https://</td>
 <td><code>BTC\|BTC#973895</code></td>
 <td>1300.019572</td>
 <td>100.01957174</td>
-<td>on-chain balance != csv claim by 1200.00000026
-(provider=https://blockstream.info/api)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1200.00000026
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>c5f9zfpkKMD9N8uLqJcFeJAAz7v12vDMnup9Y6EeQkk</code></td>
 <td><code>SOL\|SOL#463478911</code></td>
 <td>4211389.625</td>
 <td>1.064970212</td>
-<td>on-chain balance != csv claim by 4211388.560029788
-(provider=https://api.helius.xyz/v1/wallet)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 4211388.560029788
+(provider=https://api.helius.xyz)</td>
 </tr>
 <tr class="odd">
 <td><code>9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM</code></td>
 <td><code>USDC\|SOL#463478911</code></td>
 <td>1108.086785</td>
 <td>1107.086785</td>
-<td>on-chain balance != csv claim by 1
-(provider=https://api.helius.xyz/v1/wallet)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1
+(provider=https://api.helius.xyz)</td>
 </tr>
 <tr class="even">
 <td><code>5SDrsMNTYdhmApjfqYHDvjoW92f2S42vcc7zNDVcQ9Ej</code></td>
 <td><code>USDC\|SOL#463478911</code></td>
 <td>3.53509</td>
 <td>2.000936</td>
-<td>on-chain balance != csv claim by 1.534154
-(provider=https://api.helius.xyz/v1/wallet)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1.534154
+(provider=https://api.helius.xyz)</td>
 </tr>
 <tr class="odd">
 <td><code>5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9</code></td>
 <td><code>USDC\|SOL#463478911</code></td>
 <td>1984800.492</td>
 <td>3.000307</td>
-<td>on-chain balance != csv claim by 1984797.491693
-(provider=https://api.helius.xyz/v1/wallet)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1984797.491693
+(provider=https://api.helius.xyz)</td>
 </tr>
 <tr class="even">
 <td><code>5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9</code></td>
 <td><code>USDT\|SOL#463478911</code></td>
 <td>19114.68138</td>
 <td>3.000038</td>
-<td>on-chain balance != csv claim by 19111.681342
-(provider=https://api.helius.xyz/v1/wallet)</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 19111.681342
+(provider=https://api.helius.xyz)</td>
 </tr>
 </tbody>
 </table>
@@ -727,23 +683,23 @@ visit https://</td>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>0xbe13ea18241ed83ada91e8f5ca37b5507b397cb66ae1e52151cf32a96547600b</code></td>
-<td><code>USDC\|APT</code></td>
-<td></td>
-<td></td>
-<td>ledger rpc error
-(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xbe13ea18241ed83ada91e8f5ca37b5507b397cb66ae1e52151cf32a96547600b/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
-HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
-version(1150394966) has been pruned”,“hint”:“The requested data has
-bee</td>
-</tr>
-<tr class="even">
 <td><code>0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70</code></td>
 <td><code>USDC\|APT</code></td>
 <td></td>
 <td></td>
 <td>ledger rpc error
 (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1150394966) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xbe13ea18241ed83ada91e8f5ca37b5507b397cb66ae1e52151cf32a96547600b</code></td>
+<td><code>USDC\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xbe13ea18241ed83ada91e8f5ca37b5507b397cb66ae1e52151cf32a96547600b/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966):
 HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
 version(1150394966) has been pruned”,“hint”:“The requested data has
 bee</td>
@@ -826,17 +782,6 @@ https://docs.sui.io/develop/accessing-data/json-rpc-migration for more
 information.</td>
 </tr>
 <tr class="even">
-<td><code>0xac5bceec1b789ff840d7d4e6ce4ce61c90d190a7f8c4f4ddf0bff6ee2413c33c</code></td>
-<td><code>USDC\|SUI</code></td>
-<td></td>
-<td></td>
-<td>ledger rpc error (provider=https://fullnode.mainnet.sui.io:443):
-sui: Method not found. JSON-RPC on public fullnodes has been deprecated.
-Please migrate to gRPC or GraphQL endpoints. See
-https://docs.sui.io/develop/accessing-data/json-rpc-migration for more
-information.</td>
-</tr>
-<tr class="odd">
 <td><code>0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70</code></td>
 <td><code>USDT\|APT</code></td>
 <td></td>
@@ -846,6 +791,17 @@ information.</td>
 HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
 version(1150394966) has been pruned”,“hint”:“The requested data has
 bee</td>
+</tr>
+<tr class="odd">
+<td><code>0xac5bceec1b789ff840d7d4e6ce4ce61c90d190a7f8c4f4ddf0bff6ee2413c33c</code></td>
+<td><code>USDC\|SUI</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error (provider=https://fullnode.mainnet.sui.io:443):
+sui: Method not found. JSON-RPC on public fullnodes has been deprecated.
+Please migrate to gRPC or GraphQL endpoints. See
+https://docs.sui.io/develop/accessing-data/json-rpc-migration for more
+information.</td>
 </tr>
 <tr class="even">
 <td><code>0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e</code></td>
@@ -859,6 +815,15 @@ version(1150394966) has been pruned”,“hint”:“The requested data has
 bee</td>
 </tr>
 <tr class="odd">
+<td><code>UQD4uGNdB4a3f52mYOZf0x1nCmdd1DAvrLppL0a1cetTYCQx</code></td>
+<td><code>USDT\|TON#102385487</code></td>
+<td>69374690.33</td>
+<td>34206254.5</td>
+<td>TON jetton balance via tonapi (live); no public historical seqno
+API; shortfall / 不足 (CSV exceeds on-chain) by 35168435.83
+(provider=cache)</td>
+</tr>
+<tr class="even">
 <td><code>0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a</code></td>
 <td><code>USDT\|APT</code></td>
 <td></td>
@@ -868,15 +833,6 @@ bee</td>
 HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
 version(1150394966) has been pruned”,“hint”:“The requested data has
 bee</td>
-</tr>
-<tr class="even">
-<td><code>bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h</code></td>
-<td><code>BTC\|BTC</code></td>
-<td></td>
-<td></td>
-<td>ledger rpc error (provider=https://blockstream.info/api): esplora tx
-pagination exceeded 400 pages for
-bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h</td>
 </tr>
 <tr class="odd">
 <td><code>t1M1j1rPwUFGz8GDFrgi8rs9R3c7XtCH4Gv</code></td>
@@ -889,7 +845,7 @@ cipherscan HTTP 429</td>
 </tr>
 </tbody>
 </table>
-<p><em>6 additional <code>WARN</code> rows omitted; see verification
+<p><em>7 additional <code>WARN</code> rows omitted; see verification
 bundle.</em></p>
 <p><strong>UNVERIFIABLE (row-level)</strong></p>
 <p>Unsupported (coin, network) pairs:</p>
@@ -917,7 +873,7 @@ bundle.</em></p>
 <h4
 id="onchain-balance-deposit-pass"><code>onchain-balance-deposit</code>
 (<code>PASS</code>)</h4>
-<p>Finding counts: WARN 11, PASS 2</p>
+<p>Finding counts: WARN 10, PASS 2</p>
 <p><strong>WARN</strong></p>
 <table>
 <colgroup>
@@ -1043,17 +999,6 @@ bee</td>
 <td></td>
 <td>deposit rpc error
 (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x88631990bbefd456a9e80fd82b04386debf66a11c15f4b6be1386cfe312fecbe/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
-HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
-version(1150394966) has been pruned”,“hint”:“The requested data has
-bee</td>
-</tr>
-<tr class="odd">
-<td><code>0x06863a01d5aac6ee9b153ffea8393022d4057b8d4fdf582d073ac5ecb2e0f93a</code></td>
-<td><code>USDT\|APT</code></td>
-<td></td>
-<td></td>
-<td>deposit rpc error
-(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x06863a01d5aac6ee9b153ffea8393022d4057b8d4fdf582d073ac5ecb2e0f93a/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966):
 HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
 version(1150394966) has been pruned”,“hint”:“The requested data has
 bee</td>

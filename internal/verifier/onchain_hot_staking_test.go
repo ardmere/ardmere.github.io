@@ -56,19 +56,9 @@ func TestLikelyEthDepositGap(t *testing.T) {
 	if !likelyEthDepositGap(decimal.RequireFromString("914.9"), decimal.RequireFromString("0.499"), decimal.RequireFromString("914.4")) {
 		t.Fatal("expected 914 ETH / 0.5 liquid to be deposit-likely")
 	}
-	// Large omnibus label with small liquid share
+	// Large claim with tiny liquid share
 	if !likelyEthDepositGap(decimal.RequireFromString("311999"), decimal.RequireFromString("1763"), decimal.RequireFromString("310236")) {
 		t.Fatal("expected 312k ETH / 1.7k liquid to be deposit-likely")
-	}
-}
-
-func TestEthHotInternalCustodyLikely(t *testing.T) {
-	ok, note := ethHotInternalCustodyLikely(decimal.RequireFromString("832"), decimal.RequireFromString("15.12"))
-	if !ok || note == "" {
-		t.Fatal("expected omnibus-like ETH hot row")
-	}
-	if ok, _ := ethHotInternalCustodyLikely(decimal.RequireFromString("50"), decimal.RequireFromString("49")); ok {
-		t.Fatal("small claim should not trigger")
 	}
 }
 

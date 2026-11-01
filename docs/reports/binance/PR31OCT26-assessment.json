@@ -1,6 +1,6 @@
 {
   "artifacts": {
-    "artifactBundleRoot": "0xb7b67ea4153601ff05322208000f6003a56c5e72c188f18b03d543ac39e3100c",
+    "artifactBundleRoot": "0x0af5c6f1a3a84071d7b150e0df8e80af29edc78e729660223256c760c68b0574",
     "present": [
       {
         "availability": "public",
@@ -11,11 +11,11 @@
       {
         "availability": "public",
         "kind": "walletZip",
-        "sha256": "a8c216bce529919a137dce8d52936471c59b14b5ec12377b9a5fb7d3758b0251",
+        "sha256": "f6a7a4afca132caa689409f4f28eab3a51e57be5bd30a0924f3860636f0348ec",
         "url": "https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20261031.zip"
       }
     ],
-    "verificationBundleRoot": "0x8f008fd012b050ab7e03e9ab4610e7aa3a27b5dff234adb6cac05bfbf57e0466"
+    "verificationBundleRoot": "0xb46df6b42ed1c5af7559b6438b22c95e9fef7315c7fc21979bec87f82ee1d692"
   },
   "checklist": [
     {
@@ -94,7 +94,7 @@
   "evidenceLevel": "E2",
   "exchange": "binance",
   "gen": "Gen 2",
-  "generatedAt": "2026-11-01T02:16:20Z",
+  "generatedAt": "2026-11-01T14:32:35Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
   "porStage": "Stage 0",
   "recommendations": [
@@ -188,7 +188,7 @@
       "coverage": 1,
       "inputArtifacts": [
         "a89b66d7efdeddbc2ee58eecec1f489a1c68d208e56cf1eef9f3680d605e498b",
-        "a8c216bce529919a137dce8d52936471c59b14b5ec12377b9a5fb7d3758b0251"
+        "f6a7a4afca132caa689409f4f28eab3a51e57be5bd30a0924f3860636f0348ec"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -199,7 +199,7 @@
       "coverage": 1,
       "inputArtifacts": [
         "a89b66d7efdeddbc2ee58eecec1f489a1c68d208e56cf1eef9f3680d605e498b",
-        "a8c216bce529919a137dce8d52936471c59b14b5ec12377b9a5fb7d3758b0251"
+        "f6a7a4afca132caa689409f4f28eab3a51e57be5bd30a0924f3860636f0348ec"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -227,21 +227,21 @@
       "version": "1.0"
     },
     {
-      "coverage": 0.09395973154362416,
+      "coverage": 0.09563758389261745,
       "inputArtifacts": [
         "a89b66d7efdeddbc2ee58eecec1f489a1c68d208e56cf1eef9f3680d605e498b",
-        "a8c216bce529919a137dce8d52936471c59b14b5ec12377b9a5fb7d3758b0251"
+        "f6a7a4afca132caa689409f4f28eab3a51e57be5bd30a0924f3860636f0348ec"
       ],
-      "reason": "some rows have incomplete staking/deposit attribution below CSV — not reserve shortfall",
-      "verdict": "WARN",
+      "reason": "",
+      "verdict": "FAIL",
       "verifierId": "onchain-balance-hot",
       "version": "2.1"
     },
     {
-      "coverage": 0.6124161073825504,
+      "coverage": 0.62248322147651,
       "inputArtifacts": [
         "a89b66d7efdeddbc2ee58eecec1f489a1c68d208e56cf1eef9f3680d605e498b",
-        "a8c216bce529919a137dce8d52936471c59b14b5ec12377b9a5fb7d3758b0251"
+        "f6a7a4afca132caa689409f4f28eab3a51e57be5bd30a0924f3860636f0348ec"
       ],
       "reason": "",
       "verdict": "FAIL",
@@ -249,10 +249,10 @@
       "version": "2.0"
     },
     {
-      "coverage": 0.23657718120805368,
+      "coverage": 0.2348993288590604,
       "inputArtifacts": [
         "a89b66d7efdeddbc2ee58eecec1f489a1c68d208e56cf1eef9f3680d605e498b",
-        "a8c216bce529919a137dce8d52936471c59b14b5ec12377b9a5fb7d3758b0251"
+        "f6a7a4afca132caa689409f4f28eab3a51e57be5bd30a0924f3860636f0348ec"
       ],
       "reason": "",
       "verdict": "FAIL",
@@ -263,7 +263,7 @@
       "coverage": 0.4254262199111512,
       "inputArtifacts": [
         "a89b66d7efdeddbc2ee58eecec1f489a1c68d208e56cf1eef9f3680d605e498b",
-        "a8c216bce529919a137dce8d52936471c59b14b5ec12377b9a5fb7d3758b0251"
+        "f6a7a4afca132caa689409f4f28eab3a51e57be5bd30a0924f3860636f0348ec"
       ],
       "reason": "",
       "verdict": "PASS",

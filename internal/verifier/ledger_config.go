@@ -3,10 +3,7 @@ package verifier
 import (
 	"sync"
 
-	"github.com/shopspring/decimal"
-
 	"github.com/ardmere/ardmere/internal/verifier/onchainconfig"
-	"github.com/ardmere/ardmere/internal/walletzip"
 )
 
 var (
@@ -48,20 +45,6 @@ func loadLedgerSupportedFor(exchangeID string) map[string]onchainconfig.LedgerSp
 	}
 	ledgerCache[exchangeID] = cfg
 	return cfg
-}
-
-// btcNativeCustodyUnverifiable marks BTC|BTC rows where visible UTXOs are far below CSV.
-func btcNativeCustodyUnverifiable(r walletzip.Row, actual decimal.Decimal) (bool, string) {
-	if r.Coin != "BTC" || r.Network != "BTC" {
-		return false, ""
-	}
-	if actual.IsZero() || r.Balance.IsZero() {
-		return false, ""
-	}
-	if actual.Div(r.Balance).GreaterThan(decimal.NewFromFloat(0.01)) {
-		return false, ""
-	}
-	return true, "on-chain UTXO sum << CSV; likely omnibus/internal BTC custody not visible at this address"
 }
 
 func ledgerSnapshotNote(spec onchainconfig.LedgerSpec) string {
