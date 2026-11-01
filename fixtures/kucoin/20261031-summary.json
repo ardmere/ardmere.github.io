@@ -1,0 +1,72 @@
+{
+  "fetchedAt": "2026-11-01T14:02:52.071223086Z",
+  "source": "por-page-ssr",
+  "info": {
+    "latestAuditDate": 1793462399000,
+    "auditReportUrl": null,
+    "reserveAsset": [
+      {
+        "currency": "BTC",
+        "icon": "https://assets-currency.kucoin.com/60bf8a90db892b0006d73786_BTC.png",
+        "userAsset": "7521.37060809",
+        "walletAsset": "8428.3995495",
+        "reserveRate": "112"
+      },
+      {
+        "currency": "ETH",
+        "icon": "https://assets-currency.kucoin.com/60bf91f78afb0a00068efef7_ETH.png",
+        "userAsset": "101659.83996677",
+        "walletAsset": "116420.87383862",
+        "reserveRate": "115"
+      },
+      {
+        "currency": "USDT",
+        "icon": "https://assets-currency.kucoin.com/6964e33ef1fc79000147d777_USDT.png",
+        "userAsset": "809327271.06303821",
+        "walletAsset": "891906992.31229979",
+        "reserveRate": "110"
+      },
+      {
+        "currency": "USDC",
+        "icon": "https://assets-currency.kucoin.com/65e026143885c100016a83bd_USDC%20logo.png",
+        "userAsset": "71709768.86459469",
+        "walletAsset": "90774628.23904522",
+        "reserveRate": "127"
+      }
+    ]
+  },
+  "coinList": {
+    "latestAuditDate": 1793462399000,
+    "auditReportUrl": null,
+    "reserveAsset": [
+      {
+        "currency": "BTC",
+        "icon": "https://assets-currency.kucoin.com/60bf8a90db892b0006d73786_BTC.png",
+        "userAsset": "7521.37060809",
+        "walletAsset": "8428.3995495",
+        "reserveRate": "112"
+      },
+      {
+        "currency": "ETH",
+        "icon": "https://assets-currency.kucoin.com/60bf91f78afb0a00068efef7_ETH.png",
+        "userAsset": "101659.83996677",
+        "walletAsset": "116420.87383862",
+        "reserveRate": "115"
+      },
+      {
+        "currency": "USDT",
+        "icon": "https://assets-currency.kucoin.com/6964e33ef1fc79000147d777_USDT.png",
+        "userAsset": "809327271.06303821",
+        "walletAsset": "891906992.31229979",
+        "reserveRate": "110"
+      },
+      {
+        "currency": "USDC",
+        "icon": "https://assets-currency.kucoin.com/65e026143885c100016a83bd_USDC%20logo.png",
+        "userAsset": "71709768.86459469",
+        "walletAsset": "90774628.23904522",
+        "reserveRate": "127"
+      }
+    ]
+  }
+}

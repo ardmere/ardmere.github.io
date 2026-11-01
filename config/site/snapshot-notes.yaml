@@ -14,6 +14,7 @@ overrides:
   mexc/202608: Press-release scrape; merkle root missing
   mexc/202607: Press-release scrape; merkle root missing
 
+  kucoin/20261031: Live SSR scrape; no OSS Merkle verifier
   kucoin/20260930: Live SSR scrape; no OSS Merkle verifier
   kucoin/20260731: Wayback SSR (Aug 31 crawl); July month-end
   kucoin/20260630: Wayback SSR (Jul 31 crawl); June month-end

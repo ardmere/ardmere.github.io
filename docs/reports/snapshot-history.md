@@ -11,6 +11,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 
 | Exchange | Snapshot | Date | Stage | Report |
 | --- | --- | --- | --- | --- |
+| KuCoin | `20261031` | 2026-10-31 | Stage 0 | [report](./kucoin/20261031-transparency-report.md) |
 | Binance | `PR31OCT26` | 2026-10-31 | Stage 0 | [report](./binance/PR31OCT26-transparency-report.md) |
 | Bybit | `2026102706` | 2026-10-27 | Stage 0 | [report](./bybit/2026102706-transparency-report.md) |
 | Bitget | `20261021` | 2026-10-21 | Stage 0 | [report](./bitget/20261021-transparency-report.md) |
@@ -85,6 +86,7 @@ Public APIs, WAF, login walls, or fixture-only pipelines often require browser c
 
 | Exchange | Snapshot | Stage | Notes | Report |
 | --- | --- | --- | --- | --- |
+| KuCoin | `20261031` | Stage 0 | Live SSR scrape; no OSS Merkle verifier | [report](./kucoin/20261031-transparency-report.md) |
 | Bybit | `2026102706` | Stage 0 | Browser liabilities only; exact reserve ratios not published — not invented | [report](./bybit/2026102706-transparency-report.md) |
 | Bitget | `20261021` | Stage 0 | Browser API queryTotalReserveAmount + queryPlatformReserveDetail; user Merkle login-gated | [report](./bitget/20261021-transparency-report.md) |
 | Gate.io | `20261018` | Stage 0 | Browser lastSnapshot API; classic getProofOfReserves* broken (code 7); history list login-gated | [report](./gateio/20261018-transparency-report.md) |
