@@ -49,17 +49,17 @@ This is the newest snapshot in the ardmere public evaluation set for binance.
 
 | Artifact | SHA-256 | Source |
 | --- | --- | --- |
-| `bapiSnapshot` | `a89b66d7efdeddbc2ee58eecec1f489a1c68d208e56cf1eef9f3680d605e498b` | https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot |
+| `bapiSnapshot` | `70eb97cc24cdf6ddc64cf4f15145cb46d102ecd4c18eca457b6851164a733035` | https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot |
 | `walletZip` | `f6a7a4afca132caa689409f4f28eab3a51e57be5bd30a0924f3860636f0348ec` | https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20261031.zip |
 
 ### Bundle References
 
 | Bundle | Value |
 | --- | --- |
-| Artifact bundle root | `0x0af5c6f1a3a84071d7b150e0df8e80af29edc78e729660223256c760c68b0574` |
-| Verification bundle root | `0xb46df6b42ed1c5af7559b6438b22c95e9fef7315c7fc21979bec87f82ee1d692` |
-| Artifact bundle SHA-256 | `a5bdbc7019487b47c89782c3e8be2297e7e3a1f93cf3895ac1088542b875790b` |
-| Verification bundle SHA-256 | `21978591c450e91c400a64f2d66b0f57893381daae8d90172a2f1a866c98a77a` |
+| Artifact bundle root | `0x7911ba64473b280143ff8c22a57d9b72b2e82eeb78d4b8d5f1edbb7aca8f063b` |
+| Verification bundle root | `0x395e48016fcadaf02dc3a50689101e67e276fe1f1e2a7c58a62af9f16cc9c2fe` |
+| Artifact bundle SHA-256 | `b1ff4a889f44f5a68e001262a06a962dedf57c2c340dd24869ffe3717f120a49` |
+| Verification bundle SHA-256 | `9ccd45854878a27ca4b5898338031b404e981999c37cf4a11ea7f1ca906bb401` |
 
 Local bundle paths: [PR31OCT26.artifact-bundle.json](../../../artifacts/binance/PR31OCT26/bundles/PR31OCT26.artifact-bundle.json), [PR31OCT26.verification-bundle.v2.json](../../../artifacts/binance/PR31OCT26/bundles/PR31OCT26.verification-bundle.v2.json)
 
@@ -103,7 +103,7 @@ Finding counts: FAIL 1, UNVERIFIABLE 1, PASS 1
 
 | Subject | Field | Claim | Actual | Note |
 | --- | --- | --- | --- | --- |
-| `0xb2a6a72843db0f508204a56448413f3867ea691a` | `BNB@BSC#130757300` | 35011.51204 | 0.737837337885090657 | shortfall / 不足 (CSV exceeds on-chain) by 35010.774202662114909343 (provider=cache) |
+| `0xb2a6a72843db0f508204a56448413f3867ea691a` | `BNB@BSC#130757300` | 35011.51204 | 0.737837337885090657 | shortfall / 不足 (CSV exceeds on-chain) by 35010.774202662114909343 (provider=https://bsc.rpc.sentio.xyz,cache,https://bsc-mainnet.public.blastapi.io) |
 
 **UNVERIFIABLE (row-level)**
 
@@ -120,21 +120,21 @@ Finding counts: FAIL 5, WARN 5, UNVERIFIABLE 1, PASS 1
 
 | Subject | Field | Claim | Actual | Note |
 | --- | --- | --- | --- | --- |
-| `0xf977814e90da44bfa03b6295a0616a897441acec` | `BTC@ETH#26309019` | 1047.9 | 106.362 | shortfall / 不足 (CSV exceeds on-chain) by 941.538 (provider=cache) |
-| `0x5a52e96bacdabb82fd05763e25335261b270efcb` | `BTC@ETH#26309019` | 1106.4841 | 400 | shortfall / 不足 (CSV exceeds on-chain) by 706.4841 (provider=cache) |
-| `0x59fbc084aeed2c8e6e9b6ebe8a11d443efcb40d2` | `USD1@AB#16231665` | 16383889.29 | 0 | shortfall / 不足 (CSV exceeds on-chain) by 16383889.29 (provider=cache) |
-| `0xf977814e90da44bfa03b6295a0616a897441acec` | `USDT@OPTIMISM#158903011` | 21176713 | 0 | shortfall / 不足 (CSV exceeds on-chain) by 21176713 (provider=cache) |
-| `0xacd03d601e5bb1b275bb94076ff46ed9d753435a` | `USDT@OPTIMISM#158903011` | 3.587801 | 0 | shortfall / 不足 (CSV exceeds on-chain) by 3.587801 (provider=cache) |
+| `0x5a52e96bacdabb82fd05763e25335261b270efcb` | `BTC@ETH#26309019` | 1106.4841 | 400 | shortfall / 不足 (CSV exceeds on-chain) by 706.4841 (provider=https://mainnet.infura.io/v3/[REDACTED]) |
+| `0xf977814e90da44bfa03b6295a0616a897441acec` | `BTC@ETH#26309019` | 1047.9 | 106.362 | shortfall / 不足 (CSV exceeds on-chain) by 941.538 (provider=https://mainnet.infura.io/v3/[REDACTED]) |
+| `0x59fbc084aeed2c8e6e9b6ebe8a11d443efcb40d2` | `USD1@AB#16231665` | 16383889.29 | 0 | shortfall / 不足 (CSV exceeds on-chain) by 16383889.29 (provider=https://api.mainnet.abs.xyz) |
+| `0xf977814e90da44bfa03b6295a0616a897441acec` | `USDT@OPTIMISM#158903011` | 21176713 | 0 | shortfall / 不足 (CSV exceeds on-chain) by 21176713 (provider=https://mainnet.optimism.io) |
+| `0xacd03d601e5bb1b275bb94076ff46ed9d753435a` | `USDT@OPTIMISM#158903011` | 3.587801 | 0 | shortfall / 不足 (CSV exceeds on-chain) by 3.587801 (provider=https://mainnet.optimism.io) |
 
 **WARN**
 
 | Subject | Field | Claim | Actual | Note |
 | --- | --- | --- | --- | --- |
 | `0x04164013f90b05d67f026779bf96e9c401c96f3485b645a786166e6935fba116` | `ETH@STARKNET` |  |  | rpc error (provider=): HTTP 410: {"error":"This endpoint has been discontinued.","message":"For an up to date list of available endpoints, visit https:// |
-| `0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d` | `USDC@STARKNET` |  |  | rpc error (provider=): HTTP 410: {"error":"This endpoint has been discontinued.","message":"For an up to date list of available endpoints, visit https:// |
 | `0x00c1ce9c68f1c4a1b05e8d043b9b05784f41685d68e5009ffe379aa7f7c95ccf` | `ETH@STARKNET` |  |  | rpc error (provider=): HTTP 410: {"error":"This endpoint has been discontinued.","message":"For an up to date list of available endpoints, visit https:// |
 | `0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d` | `ETH@STARKNET` |  |  | rpc error (provider=): HTTP 410: {"error":"This endpoint has been discontinued.","message":"For an up to date list of available endpoints, visit https:// |
-| `TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb` | `USDT@TRX#87577130` | 454123480.6 | 348533038.278 | live TRC20 balance vs snapshot CSV; Tron has no historical contract state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain) by 105590442.322 (provider=https://tron-rpc.publicnode.com) |
+| `0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d` | `USDC@STARKNET` |  |  | rpc error (provider=): HTTP 410: {"error":"This endpoint has been discontinued.","message":"For an up to date list of available endpoints, visit https:// |
+| `TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb` | `USDT@TRX#87577130` | 454123480.6 | 0 | live TRC20 balance vs snapshot CSV; Tron has no historical contract state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain) by 454123480.6 (provider=https://tron-rpc.publicnode.com) |
 
 **UNVERIFIABLE (row-level)**
 
@@ -151,32 +151,32 @@ Finding counts: FAIL 6, WARN 22, UNVERIFIABLE 1, PASS 1
 
 | Subject | Field | Claim | Actual | Note |
 | --- | --- | --- | --- | --- |
-| `bc1q9n7j6a5wwru6tad9xrlncnagresvyjt96pl3en` | `BTC\|BTC#973895` | 1300.019572 | 100.01957174 | shortfall / 不足 (CSV exceeds on-chain) by 1200.00000026 (provider=cache) |
-| `c5f9zfpkKMD9N8uLqJcFeJAAz7v12vDMnup9Y6EeQkk` | `SOL\|SOL#463478911` | 4211389.625 | 1.064970212 | shortfall / 不足 (CSV exceeds on-chain) by 4211388.560029788 (provider=https://api.helius.xyz) |
-| `9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM` | `USDC\|SOL#463478911` | 1108.086785 | 1107.086785 | shortfall / 不足 (CSV exceeds on-chain) by 1 (provider=https://api.helius.xyz) |
-| `5SDrsMNTYdhmApjfqYHDvjoW92f2S42vcc7zNDVcQ9Ej` | `USDC\|SOL#463478911` | 3.53509 | 2.000936 | shortfall / 不足 (CSV exceeds on-chain) by 1.534154 (provider=https://api.helius.xyz) |
-| `5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9` | `USDC\|SOL#463478911` | 1984800.492 | 3.000307 | shortfall / 不足 (CSV exceeds on-chain) by 1984797.491693 (provider=https://api.helius.xyz) |
-| `5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9` | `USDT\|SOL#463478911` | 19114.68138 | 3.000038 | shortfall / 不足 (CSV exceeds on-chain) by 19111.681342 (provider=https://api.helius.xyz) |
+| `bc1q9n7j6a5wwru6tad9xrlncnagresvyjt96pl3en` | `BTC\|BTC#973895` | 1300.019572 | 100.01957174 | shortfall / 不足 (CSV exceeds on-chain) by 1200.00000026 (provider=https://blockstream.info/api) |
+| `c5f9zfpkKMD9N8uLqJcFeJAAz7v12vDMnup9Y6EeQkk` | `SOL\|SOL#463478911` | 4211389.625 | 1.064970212 | shortfall / 不足 (CSV exceeds on-chain) by 4211388.560029788 (provider=https://api.helius.xyz/v1/wallet) |
+| `9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM` | `USDC\|SOL#463478911` | 1108.086785 | 1107.086785 | shortfall / 不足 (CSV exceeds on-chain) by 1 (provider=https://api.helius.xyz/v1/wallet) |
+| `5SDrsMNTYdhmApjfqYHDvjoW92f2S42vcc7zNDVcQ9Ej` | `USDC\|SOL#463478911` | 3.53509 | 2.000936 | shortfall / 不足 (CSV exceeds on-chain) by 1.534154 (provider=https://api.helius.xyz/v1/wallet) |
+| `5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9` | `USDC\|SOL#463478911` | 1984800.492 | 3.000307 | shortfall / 不足 (CSV exceeds on-chain) by 1984797.491693 (provider=https://api.helius.xyz/v1/wallet) |
+| `5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9` | `USDT\|SOL#463478911` | 19114.68138 | 3.000038 | shortfall / 不足 (CSV exceeds on-chain) by 19111.681342 (provider=https://api.helius.xyz/v1/wallet) |
 
 **WARN**
 
 | Subject | Field | Claim | Actual | Note |
 | --- | --- | --- | --- | --- |
-| `0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70` | `USDC\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0xbe13ea18241ed83ada91e8f5ca37b5507b397cb66ae1e52151cf32a96547600b` | `USDC\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xbe13ea18241ed83ada91e8f5ca37b5507b397cb66ae1e52151cf32a96547600b/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
-| `0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f` | `USDC\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
+| `0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70` | `USDC\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e` | `USDC\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
+| `0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f` | `USDC\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0x5bd7de5c56d5691f32ea86c973c73fec7b1445e59736c97158020018c080bb00` | `USDC\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x5bd7de5c56d5691f32ea86c973c73fec7b1445e59736c97158020018c080bb00/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0xaa367ea8e145e3af459d3b8f6d50b96c76d9cf9c7dabedf9fff192f36eda0ee0` | `USDC\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xaa367ea8e145e3af459d3b8f6d50b96c76d9cf9c7dabedf9fff192f36eda0ee0/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a` | `USDC\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a/balance/0xbae207659db88bea0cbead6da0ed00aac12edcdda169e591cd41c94180b46f3b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0x7ab9a6a7109dcb9cb357a109f32dfcc78a7aa2d6029084eb924d95133fc71cec` | `USDC\|SUI` |  |  | ledger rpc error (provider=https://fullnode.mainnet.sui.io:443): sui: Method not found. JSON-RPC on public fullnodes has been deprecated. Please migrate to gRPC or GraphQL endpoints. See https://docs.sui.io/develop/accessing-data/json-rpc-migration for more information. |
 | `0x935029ca5219502a47ac9b69f556ccf6e2198b5e7815cf50f68846f723739cbd` | `USDC\|SUI` |  |  | ledger rpc error (provider=https://fullnode.mainnet.sui.io:443): sui: Method not found. JSON-RPC on public fullnodes has been deprecated. Please migrate to gRPC or GraphQL endpoints. See https://docs.sui.io/develop/accessing-data/json-rpc-migration for more information. |
-| `0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70` | `USDT\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0xac5bceec1b789ff840d7d4e6ce4ce61c90d190a7f8c4f4ddf0bff6ee2413c33c` | `USDC\|SUI` |  |  | ledger rpc error (provider=https://fullnode.mainnet.sui.io:443): sui: Method not found. JSON-RPC on public fullnodes has been deprecated. Please migrate to gRPC or GraphQL endpoints. See https://docs.sui.io/develop/accessing-data/json-rpc-migration for more information. |
+| `0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70` | `USDT\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e` | `USDT\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
-| `UQD4uGNdB4a3f52mYOZf0x1nCmdd1DAvrLppL0a1cetTYCQx` | `USDT\|TON#102385487` | 69374690.33 | 34206254.5 | TON jetton balance via tonapi (live); no public historical seqno API; shortfall / 不足 (CSV exceeds on-chain) by 35168435.83 (provider=cache) |
 | `0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a` | `USDT\|APT` |  |  | ledger rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
-| `t1M1j1rPwUFGz8GDFrgi8rs9R3c7XtCH4Gv` | `ZEC\|ZEC` |  |  | ledger rpc error (provider=https://cipherscan.app/api/address/t1M1j1rPwUFGz8GDFrgi8rs9R3c7XtCH4Gv): cipherscan HTTP 429 |
+| `UQD4uGNdB4a3f52mYOZf0x1nCmdd1DAvrLppL0a1cetTYCQx` | `USDT\|TON#102385487` | 69374690.33 | 20000000 | TON jetton balance via tonapi (live); no public historical seqno API; shortfall / 不足 (CSV exceeds on-chain) by 49374690.33 (provider=https://tonapi.io/v2/accounts/UQD4uGNdB4a3f52mYOZf0x1nCmdd1DAvrLppL0a1cetTYCQx/jettons/EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs) |
+| `bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h` | `BTC\|BTC` |  |  | ledger rpc error (provider=): https://mempool.space/api/address/bc1qm34lsc65zpw79lxes69zkqmk6ee3ewf0j77s3h/txs/chain/cd6acb755315b11a29f9d9718f313e17c9e0f604412d233ddb08fc18de393457 -> HTTP 429 |
 
 
 _7 additional `WARN` rows omitted; see verification bundle._
@@ -190,7 +190,7 @@ Unsupported (coin, network) pairs:
 | `USDC\|ARC` | 1 | no native verifier for this (coin,network) pair yet |
 #### `onchain-balance-deposit` (`PASS`)
 
-Finding counts: WARN 10, PASS 2
+Finding counts: WARN 11, PASS 2
 
 **WARN**
 
@@ -206,6 +206,7 @@ Finding counts: WARN 10, PASS 2
 | `0x13d8aafa64fe3c8748fb4e5e9458579eae5ca0386bdcf2c3a7e84263c1689107` | `USDT\|APT` |  |  | deposit rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x13d8aafa64fe3c8748fb4e5e9458579eae5ca0386bdcf2c3a7e84263c1689107/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0xb819e0e24b4fb958cd18314740dce3278653a7f9f9d4d8ff23c744eefade2270` | `USDT\|APT` |  |  | deposit rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xb819e0e24b4fb958cd18314740dce3278653a7f9f9d4d8ff23c744eefade2270/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 | `0x88631990bbefd456a9e80fd82b04386debf66a11c15f4b6be1386cfe312fecbe` | `USDT\|APT` |  |  | deposit rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x88631990bbefd456a9e80fd82b04386debf66a11c15f4b6be1386cfe312fecbe/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
+| `0x06863a01d5aac6ee9b153ffea8393022d4057b8d4fdf582d073ac5ecb2e0f93a` | `USDT\|APT` |  |  | deposit rpc error (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x06863a01d5aac6ee9b153ffea8393022d4057b8d4fdf582d073ac5ecb2e0f93a/balance/0x357b0b74bc833e95a115ad22604854d6b0fca151cecd94111770e5d6ffc9dc2b?ledger_version=1150394966): HTTP 410: {"error_code":"version_pruned","message":"Ledger version(1150394966) has been pruned","hint":"The requested data has bee |
 
 ## 7. Minimal Checklist
 
