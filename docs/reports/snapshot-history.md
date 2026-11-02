@@ -11,6 +11,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 
 | Exchange | Snapshot | Date | Stage | Report |
 | --- | --- | --- | --- | --- |
+| OKX | `508756245` | 2026-10-31 | Stage 0 | [report](./okx/508756245-transparency-report.md) |
 | KuCoin | `20261031` | 2026-10-31 | Stage 0 | [report](./kucoin/20261031-transparency-report.md) |
 | Binance | `PR31OCT26` | 2026-10-31 | Stage 0 | [report](./binance/PR31OCT26-transparency-report.md) |
 | Bybit | `2026102706` | 2026-10-27 | Stage 0 | [report](./bybit/2026102706-transparency-report.md) |
