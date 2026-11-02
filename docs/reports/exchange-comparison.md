@@ -2,14 +2,14 @@
 
 > Methodology: [PoR Stage Framework](../por-transparency-framework.md)  
 > Policy standard: [Effective PoR Standard](../effective-por-standard.md)  
-> **All 42 public reports:** [Snapshot history](./snapshot-history.md)
+> **All 43 public reports:** [Snapshot history](./snapshot-history.md)
 
 ## Summary (latest snapshot per exchange)
 
 | Exchange | Snapshot | PoR Stage | Gen / Evidence | Effective PoR | Confidence | Last Verified Snapshot | Upstream verifier | Report |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Binance | `PR31OCT26` | `Stage 0` | `Gen 2 / E2` | `false` | `medium` | `2026-10-31T00:00:00Z` | [binance/zkmerkle-proof-of-solvency](https://github.com/binance/zkmerkle-proof-of-solvency) | [report](./binance/PR31OCT26-transparency-report.md) |
-| OKX | `502260945` | `Stage 1` | `Gen 2 / E2` | `true` | `medium` | `2026-10-02T16:00:00Z` | [okx/proof-of-reserves-v2](https://github.com/okx/proof-of-reserves-v2) (+ [v1 sigs](https://github.com/okx/proof-of-reserves)) | [report](./okx/502260945-transparency-report.md) |
+| OKX | `508756245` | `Stage 1` | `Gen 2 / E2` | `true` | `medium` | `2026-10-31T16:00:00Z` | [okx/proof-of-reserves-v2](https://github.com/okx/proof-of-reserves-v2) (+ [v1 sigs](https://github.com/okx/proof-of-reserves)) | [report](./okx/508756245-transparency-report.md) |
 | Gate.io | `20261018` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-18T00:00:00Z` | [gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves) | [report](./gateio/20261018-transparency-report.md) |
 | Bybit | `2026102706` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-27T06:00:00Z` | [bybit-exchange/merkle-proof](https://github.com/bybit-exchange/merkle-proof) | [report](./bybit/2026102706-transparency-report.md) |
 | Bitget | `20261021` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-21T04:00:00Z` | [BitgetLimited/proof-of-reserves](https://github.com/BitgetLimited/proof-of-reserves) | [report](./bitget/20261021-transparency-report.md) |
@@ -21,7 +21,7 @@
 ## By exchange
 
 - **Binance (`Stage 0`)** — Latest `PR31OCT26` (Oct 2026, period 48): Binance snapshot PR31OCT26 provides public reserve summary and wallet_address_list where available, but Stage 1 is blocked by missing wallet_ownership_proof, opaque trusted setup, and unavailable public global proof/vk artifacts. [Full report](./binance/PR31OCT26-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
-- **OKX (`Stage 1`)** — Latest `502260945` (Oct 2026): OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 502260945. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1. [Full report](./okx/502260945-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
+- **OKX (`Stage 1`)** — Latest `508756245` (Oct 2026): OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 508756245. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1. [Full report](./okx/508756245-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
 - **Gate.io (`Stage 0`)** — Latest `20261018` (Oct 2026): gateio snapshot 20261018 remains Stage 0 in the ardmere public evaluation set. [Full report](./gateio/20261018-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
 - **Bybit (`Stage 0`)** — Latest `2026102706` (Oct 2026): bybit snapshot 2026102706 remains Stage 0 in the ardmere public evaluation set. [Full report](./bybit/2026102706-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
 - **Bitget (`Stage 0`)** — Latest `20261021` (Oct 2026): bitget snapshot 20261021 remains Stage 0 in the ardmere public evaluation set. [Full report](./bitget/20261021-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
