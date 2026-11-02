@@ -10,18 +10,18 @@
 | Exchange | `okx` |
 | Snapshot | `508756245` |
 | Snapshot time | `2026-10-31T16:00:00Z` |
-| PoR Stage | `Stage 0 — Trust the Exchange` |
+| PoR Stage | `Stage 1 — Verifiable Disclosure` |
 | Gen / Evidence | `Gen 2 / E2` |
 | Confidence | `medium` |
-| Effective PoR | `false` |
+| Effective PoR | `true` |
 
-OKX audit 508756245 does not meet all Stage 1 public artifact thresholds in this pipeline.
+OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 508756245. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1.
 
-Missing or failing verifiers block Stage 1 effective PoR for this snapshot.
+Stage 1 is supported by public wallet_address_list, wallet_ownership_proof, global_proof, and parameter/proof artifacts. Stage 2 is not reached because canonical official anchoring, stable DA, low-friction user inclusion proof, stronger publication frequency, and full business-consistent constraints are not established in this report.
 
 ## 2. Stage Decision
 
-### Stage 0, not effective PoR
+### Stage 1, Effective PoR
 
 | Missing / Blocked Evidence | Risk Flag | Max Stage | Reason |
 | --- | --- | --- | --- |
@@ -32,13 +32,15 @@ Missing or failing verifiers block Stage 1 effective PoR for this snapshot.
 
 | Field | Value |
 | --- | --- |
-| Latest snapshot (evaluation set) | `2026-10-02T16:00:00Z` |
-| Previous snapshot | `UNVERIFIABLE` |
+| Latest snapshot (evaluation set) | `2026-10-31T16:00:00Z` |
+| Previous snapshot | `2026-10-02T16:00:00Z` |
 | Observed cadence | `~monthly` |
-| History available | `6 snapshot(s) in public evaluation set` |
+| History available | `7 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
+
+This is the newest snapshot in the ardmere public evaluation set for okx.
 
 ## 4. Evidence and Bundles
 
@@ -55,9 +57,9 @@ Missing or failing verifiers block Stage 1 effective PoR for this snapshot.
 | Bundle | Value |
 | --- | --- |
 | Artifact bundle root | `0xb92ad031e6f6d317f236c518d126e6e5c1012eda6b2f79a450713a93edd2c7ef` |
-| Verification bundle root | `0xfa84a3ab4e2e704d3f12825149986d461e3322d40327e661207cd690a2516ea1` |
+| Verification bundle root | `0x78585399db9722fb010b7a2c898594714f074af6b728f20b26979772a65af1dd` |
 | Artifact bundle SHA-256 | `39402b5606f6b1712f0c01896ef870bdd90e18784fd7e4a115c50a75d2b546b5` |
-| Verification bundle SHA-256 | `2dc922b99bff48e69856271decf23bdabba41c8f4b4667589ebc8f360769d2da` |
+| Verification bundle SHA-256 | `8a95ba7b4a17f425d9effc2481853827262b80ffc41d87466e18831613518319` |
 
 Local bundle paths: [508756245.artifact-bundle.json](../../../artifacts/okx/508756245/bundles/508756245.artifact-bundle.json), [508756245.verification-bundle.v2.json](../../../artifacts/okx/508756245/bundles/508756245.verification-bundle.v2.json)
 
@@ -72,7 +74,7 @@ Local bundle paths: [508756245.artifact-bundle.json](../../../artifacts/okx/5087
 | `onchain-balance-hot` | `2.1` | `UNVERIFIABLE` | `0.0000` | RPC queries skipped (--skip-rpc) |
 | `onchain-balance-token` | `2.0` | `UNVERIFIABLE` | `0.0000` | RPC queries skipped (--skip-rpc) |
 | `onchain-balance-ledger` | `1.2` | `UNVERIFIABLE` | `0.0000` | RPC queries skipped (--skip-rpc) |
-| `global-zk-proof` | `okx-1` | `FAIL` | `0.0000` | zkSTARKValidator: signal: killed (start to reconstruct the circuit with 3 recursive levels for round 508756245) |
+| `global-zk-proof` | `okx-1` | `PASS` | `1.0000` | zkSTARKValidator verify-global succeeded; summary merkle root bound to zk proof |
 | `btc-anchor` | `0` | `UNVERIFIABLE` | `0.0000` | BTC block time anchor verifier not implemented |
 | `third-party-attestation` | `0` | `UNVERIFIABLE` | `0.0000` | No public third-party attestation report available |
 | `cross-chain-wrapped` | `0` | `UNVERIFIABLE` | `0.0000` | No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode) |
@@ -115,12 +117,6 @@ Finding counts: WARN 12, PASS 21
 | `UNI` | `custodyReserveBalances` | 245834.0634419850014175 |  | custody balances are summary-only; public wallet CSV does not break out third-party addresses |
 | `USDG` | `custodyReserveBalances` | 1863873.30691205 |  | custody balances are summary-only; public wallet CSV does not break out third-party addresses |
 
-#### `global-zk-proof` (`FAIL`)
-
-Summary: zkSTARKValidator: signal: killed (start to reconstruct the circuit with 3 recursive levels for round 508756245)
-
-Finding counts: PASS 6
-
 ## 7. Minimal Checklist
 
 | Requirement | Status | Notes |
@@ -130,11 +126,11 @@ Finding counts: PASS 6
 | Is there reserve summary or wallet_address_list? (S0-3) | `pass` | Summary and wallet_address_list present. |
 | Is wallet_address_list public and on-chain verifiable? (S1-1) | `pass` | Wallet list present; on-chain replay skipped or incomplete. |
 | Is wallet_ownership_proof public and batch-verifiable? (S1-2) | `pass` | address-ownership verifier PASS. |
-| Is global_proof public and independently reproducible? (S1-3) | `fail` | global-zk-proof verifier FAIL. |
+| Is global_proof public and independently reproducible? (S1-3) | `pass` | global-zk-proof verifier PASS. |
 | Is independent third-party review available with stated scope? (S1-4) | `unverifiable` | third-party-attestation verifier UNVERIFIABLE. |
 | If trusted setup is required, is transcript public; otherwise is the proof system transparent setup? (S1-5) | `pass` | Plonky2 / zk-STARK uses transparent setup; no trusted setup ceremony required. |
-| Is root/proof/vk canonically anchored outside exchange servers? (S2-1) | `not_applicable` | Stage 2 is not evaluated until Stage 1 blockers are resolved. |
-| Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)? (S2-2) | `not_applicable` | Stage 2 is not evaluated until Stage 1 blockers are resolved. |
+| Is root/proof/vk canonically anchored outside exchange servers? (S2-1) | `fail` | No official exchange canonical on-chain/DA anchor established. |
+| Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)? (S2-2) | `fail` | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
 ## 8. Recommendations
 

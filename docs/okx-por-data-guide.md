@@ -112,7 +112,7 @@ Message is always `I am an OKX address`.
 
 Public liability zip contains **`sum_proof_data.json` only** (no user inclusion proofs).
 
-Build OKX v2 validator from [`okx/proof-of-reserves-v2`](https://github.com/okx/proof-of-reserves-v2):
+Build OKX v2 validator from [`okx/proof-of-reserves-v2`](https://github.com/okx/proof-of-reserves-v2), or use the official prebuilt `zk_STARK_Validator_V2` from [`okx/proof-of-reserves` releases](https://github.com/okx/proof-of-reserves/releases) (same `verify-global` CLI; e.g. commit `426fe5a`):
 
 ```bash
 cargo build --features zk-por-core/verifier --release \
@@ -120,10 +120,37 @@ cargo build --features zk-por-core/verifier --release \
 export OKX_ZK_STARK_VALIDATOR=/path/to/target/release/zk-por-cli
 ```
 
-ardmere invokes `verify-global --proof-path` (circuit rebuild, secure mode). Without the env var, verdict is `PARTIAL` (structure only).
+ardmere invokes `verify-global --proof-path` (**secure mode**). Without the env var, verdict is `PARTIAL` (structure only).
 
-Detail: `.cursor/skills/okx-por-verifier/SKILL.md`.
+### `verify-global` rebuilds the circuit (prebuilt ≠ skip rebuild)
 
+Official upstream README: `verify-global` **rebuilds** the Plonky2 circuit from proof `circuits_info` instead of trusting the circuit/verifier data embedded in the proof file. The precompiled binary only skips local `cargo build` — it still reconstructs constraints in RAM at verify time (log: `start to reconstruct the circuit with N recursive levels`).
+
+| Path | Behavior | Use for crypto PASS? |
+|------|----------|----------------------|
+| `zk-por-cli verify-global --proof-path …` | Rebuild circuit; slow; high memory | **Yes** (ardmere path) |
+| Drop JSON next to binary, run with **no** subcommand | Trusts proof-embedded circuit/VD; fast | **No** — weak trust; do not claim PASS |
+
+`root_verifier_data_hex` / `root_vd_digest` can change across snapshots when `token_num` (asset types) changes.
+
+### Cloud memory / swap (~15 GiB VMs)
+
+Typical Cloud Agent memcg ≈ **14.6 GiB** with **no swap**. Circuit rebuild peaks ~**14.5 GiB** RSS → `CONSTRAINT_MEMCG` / `signal: killed` before proof check finishes.
+
+**Before** OKX deep-run / `por verify` with validator set:
+
+```bash
+# one-shot ~32 GiB swap (adjust path as needed)
+sudo fallocate -l 32G /swapfile-okx-zk
+sudo chmod 600 /swapfile-okx-zk
+sudo mkswap /swapfile-okx-zk
+sudo swapon /swapfile-okx-zk
+free -h   # Swap must be > 0
+```
+
+Expect ~15 GiB RAM + several GiB swap (working set often ~20–25 GiB); with swap, verify often finishes in a few minutes. If still OOM: larger machine or leave `global-zk-proof` FAIL and document — **never invent PASS**.
+
+Detail: `.cursor/skills/okx-por-verifier/SKILL.md`. Upstream: [proof-of-reserves-v2 README](https://github.com/okx/proof-of-reserves-v2/blob/main/README.md).
 ## References
 
 - [OKX PoR page](https://www.okx.com/proof-of-reserves)

@@ -21,7 +21,7 @@
         "url": "https://static.okx.com/cdn/okx/por/merkel/por_508756245_proof_data.zip"
       }
     ],
-    "verificationBundleRoot": "0xfa84a3ab4e2e704d3f12825149986d461e3322d40327e661207cd690a2516ea1"
+    "verificationBundleRoot": "0x78585399db9722fb010b7a2c898594714f074af6b728f20b26979772a65af1dd"
   },
   "checklist": [
     {
@@ -61,10 +61,10 @@
     },
     {
       "id": "S1-3",
-      "notes": "global-zk-proof verifier FAIL.",
+      "notes": "global-zk-proof verifier PASS.",
       "question": "Is global_proof public and independently reproducible?",
       "stage": "Stage 1",
-      "status": "fail"
+      "status": "pass"
     },
     {
       "id": "S1-4",
@@ -82,27 +82,27 @@
     },
     {
       "id": "S2-1",
-      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "notes": "No official exchange canonical on-chain/DA anchor established.",
       "question": "Is root/proof/vk canonically anchored outside exchange servers?",
       "stage": "Stage 2",
-      "status": "not_applicable"
+      "status": "fail"
     },
     {
       "id": "S2-2",
-      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "notes": "Monthly or slower cadence; does not meet Stage 2 frequency expectations.",
       "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
       "stage": "Stage 2",
-      "status": "not_applicable"
+      "status": "fail"
     }
   ],
   "confidence": "medium",
-  "effectivePoR": false,
+  "effectivePoR": true,
   "evidenceLevel": "E2",
   "exchange": "okx",
   "gen": "Gen 2",
-  "generatedAt": "2026-11-02T14:30:49Z",
+  "generatedAt": "2026-11-02T15:36:12Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
-  "porStage": "Stage 0",
+  "porStage": "Stage 1",
   "recommendations": [
     {
       "priority": "P1",
@@ -122,14 +122,14 @@
   "riskFlags": [
     {
       "id": "NO_CANONICAL_ANCHOR",
-      "severity": "high",
-      "stageEffect": "max_stage_0",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
       "message": "No official exchange canonical on-chain/DA anchor established."
     },
     {
       "id": "HIGH_FREQUENCY_GAP",
-      "severity": "high",
-      "stageEffect": "max_stage_0",
+      "severity": "medium",
+      "stageEffect": "max_stage_1",
       "message": "Monthly cadence does not satisfy Stage 2 frequency expectations."
     }
   ],
@@ -158,8 +158,8 @@
     }
   ],
   "summary": {
-    "headline": "OKX audit 508756245 does not meet all Stage 1 public artifact thresholds in this pipeline.",
-    "rationale": "Missing or failing verifiers block Stage 1 effective PoR for this snapshot.",
+    "headline": "OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 508756245. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1.",
+    "rationale": "Stage 1 is supported by public wallet_address_list, wallet_ownership_proof, global_proof, and parameter/proof artifacts. Stage 2 is not reached because canonical official anchoring, stable DA, low-friction user inclusion proof, stronger publication frequency, and full business-consistent constraints are not established in this report.",
     "scope": "okx snapshot 508756245"
   },
   "verifierResults": [
@@ -237,13 +237,13 @@
       "version": "1.2"
     },
     {
-      "coverage": 0,
+      "coverage": 1,
       "inputArtifacts": [
         "85d69e4f78559a690ce9f3d85328d051bb36c8dbd4b515b3af3094b69a255ff2",
         "d34a675842cb8e9588af848b35b92aa35ea59e6c9d81a0e1b5e34be1db46f85c"
       ],
-      "reason": "zkSTARKValidator: signal: killed (start to reconstruct the circuit with 3 recursive levels for round 508756245)",
-      "verdict": "FAIL",
+      "reason": "zkSTARKValidator verify-global succeeded; summary merkle root bound to zk proof",
+      "verdict": "PASS",
       "verifierId": "global-zk-proof",
       "version": "okx-1"
     },

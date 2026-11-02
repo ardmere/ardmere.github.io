@@ -60,7 +60,7 @@ href="./508756245-assessment.json">508756245-assessment.json</a></p>
 </tr>
 <tr class="even">
 <td>PoR Stage</td>
-<td><code>Stage 0 — Trust the Exchange</code></td>
+<td><code>Stage 1 — Verifiable Disclosure</code></td>
 </tr>
 <tr class="odd">
 <td>Gen / Evidence</td>
@@ -72,16 +72,22 @@ href="./508756245-assessment.json">508756245-assessment.json</a></p>
 </tr>
 <tr class="odd">
 <td>Effective PoR</td>
-<td><code>false</code></td>
+<td><code>true</code></td>
 </tr>
 </tbody>
 </table>
-<p>OKX audit 508756245 does not meet all Stage 1 public artifact
-thresholds in this pipeline.</p>
-<p>Missing or failing verifiers block Stage 1 effective PoR for this
-snapshot.</p>
+<p>OKX publishes public summary, wallet_address_list,
+wallet_ownership_proof, and global zk proof bundle for audit 508756245.
+ardmere verifies address ownership and global zk binding, so this
+snapshot reaches Stage 1.</p>
+<p>Stage 1 is supported by public wallet_address_list,
+wallet_ownership_proof, global_proof, and parameter/proof artifacts.
+Stage 2 is not reached because canonical official anchoring, stable DA,
+low-friction user inclusion proof, stronger publication frequency, and
+full business-consistent constraints are not established in this
+report.</p>
 <h2 id="stage-decision">2. Stage Decision</h2>
-<h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
+<h3 id="stage-1-effective-por">Stage 1, Effective PoR</h3>
 <table>
 <colgroup>
 <col style="width: 25%" />
@@ -128,11 +134,11 @@ expectations.</td>
 <tbody>
 <tr class="odd">
 <td>Latest snapshot (evaluation set)</td>
-<td><code>2026-10-02T16:00:00Z</code></td>
+<td><code>2026-10-31T16:00:00Z</code></td>
 </tr>
 <tr class="even">
 <td>Previous snapshot</td>
-<td><code>UNVERIFIABLE</code></td>
+<td><code>2026-10-02T16:00:00Z</code></td>
 </tr>
 <tr class="odd">
 <td>Observed cadence</td>
@@ -140,7 +146,7 @@ expectations.</td>
 </tr>
 <tr class="even">
 <td>History available</td>
-<td><code>6 snapshot(s) in public evaluation set</code></td>
+<td><code>7 snapshot(s) in public evaluation set</code></td>
 </tr>
 <tr class="odd">
 <td>Event-triggered updates</td>
@@ -157,6 +163,8 @@ expectations.</td>
 </tr>
 </tbody>
 </table>
+<p>This is the newest snapshot in the ardmere public evaluation set for
+okx.</p>
 <h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
 <h3 id="public-artifacts">Public Artifacts</h3>
 <table>
@@ -209,7 +217,7 @@ expectations.</td>
 </tr>
 <tr class="even">
 <td>Verification bundle root</td>
-<td><code>0xfa84a3ab4e2e704d3f12825149986d461e3322d40327e661207cd690a2516ea1</code></td>
+<td><code>0x78585399db9722fb010b7a2c898594714f074af6b728f20b26979772a65af1dd</code></td>
 </tr>
 <tr class="odd">
 <td>Artifact bundle SHA-256</td>
@@ -217,7 +225,7 @@ expectations.</td>
 </tr>
 <tr class="even">
 <td>Verification bundle SHA-256</td>
-<td><code>2dc922b99bff48e69856271decf23bdabba41c8f4b4667589ebc8f360769d2da</code></td>
+<td><code>8a95ba7b4a17f425d9effc2481853827262b80ffc41d87466e18831613518319</code></td>
 </tr>
 </tbody>
 </table>
@@ -297,10 +305,10 @@ accounts via authentication_key)</td>
 <tr class="even">
 <td><code>global-zk-proof</code></td>
 <td><code>okx-1</code></td>
-<td><code>FAIL</code></td>
-<td><code>0.0000</code></td>
-<td>zkSTARKValidator: signal: killed (start to reconstruct the circuit
-with 3 recursive levels for round 508756245)</td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td>zkSTARKValidator verify-global succeeded; summary merkle root bound
+to zk proof</td>
 </tr>
 <tr class="odd">
 <td><code>btc-anchor</code></td>
@@ -498,11 +506,6 @@ out third-party addresses</td>
 </tr>
 </tbody>
 </table>
-<h4 id="global-zk-proof-fail"><code>global-zk-proof</code>
-(<code>FAIL</code>)</h4>
-<p>Summary: zkSTARKValidator: signal: killed (start to reconstruct the
-circuit with 3 recursive levels for round 508756245)</p>
-<p>Finding counts: PASS 6</p>
 <h2 id="minimal-checklist">7. Minimal Checklist</h2>
 <table>
 <colgroup>
@@ -545,8 +548,8 @@ circuit with 3 recursive levels for round 508756245)</p>
 </tr>
 <tr class="even">
 <td>Is global_proof public and independently reproducible? (S1-3)</td>
-<td><code>fail</code></td>
-<td>global-zk-proof verifier FAIL.</td>
+<td><code>pass</code></td>
+<td>global-zk-proof verifier PASS.</td>
 </tr>
 <tr class="odd">
 <td>Is independent third-party review available with stated scope?
@@ -564,14 +567,15 @@ required.</td>
 <tr class="odd">
 <td>Is root/proof/vk canonically anchored outside exchange servers?
 (S2-1)</td>
-<td><code>not_applicable</code></td>
-<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+<td><code>fail</code></td>
+<td>No official exchange canonical on-chain/DA anchor established.</td>
 </tr>
 <tr class="even">
 <td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
 daily anchor)? (S2-2)</td>
-<td><code>not_applicable</code></td>
-<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+<td><code>fail</code></td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
 </tr>
 </tbody>
 </table>
