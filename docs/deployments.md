@@ -63,6 +63,21 @@ Anchored the six snapshots shown on the public homepage into Sepolia `ArdmerePoR
 
 Post-anchor `getSnapshotCount` (Sepolia): binance `4`, okx `4`, bingx `2`, kucoin `1`, mexc `1`.
 
+### Homepage assessment roots (`origin/main` @ `f11109d`, 2026-11-02)
+
+Anchored the six snapshots shown on the public homepage into Sepolia `ArdmerePoRAnchor` (schema v3). Roots taken from `docs/reports/<exchange>/<auditId>-assessment.json` artifact / verification bundle fields. Includes Binance `PR31OCT26` after the refreshed exchange Merkle root (`169dd7e2…740ad0`). Base mainnet was **not** attempted (`BASE_RPC_URL` missing; contract undeployed).
+
+| Exchange | auditId | periodSeq | Block | `anchorSnapshot` tx |
+| --- | --- | --- | --- | --- |
+| kucoin | `20261031` | 1 | `12048458` | [`0xe2bca30654f409efa23732a72d9cd3e8ab6783bfd3b2b226c2abdd2cce413615`](https://sepolia.etherscan.io/tx/0xe2bca30654f409efa23732a72d9cd3e8ab6783bfd3b2b226c2abdd2cce413615) |
+| binance | `PR31OCT26` | 48 | `12048459` | [`0x83801ca5505cf0d282981aa53f093f87f0db18a6c4ab4ab3399ae93786be66a1`](https://sepolia.etherscan.io/tx/0x83801ca5505cf0d282981aa53f093f87f0db18a6c4ab4ab3399ae93786be66a1) |
+| bybit | `2026102706` | 1 | `12048460` | [`0xd541525cce2a622df1a135f889f69d8acafcc14ff600d197a532fa3018e46ebe`](https://sepolia.etherscan.io/tx/0xd541525cce2a622df1a135f889f69d8acafcc14ff600d197a532fa3018e46ebe) |
+| bitget | `20261021` | 1 | `12048461` | [`0xd1e93ea100929b79b9ba845e5ad6736e696cfd48a869e2e38ce7ed3c123e6f54`](https://sepolia.etherscan.io/tx/0xd1e93ea100929b79b9ba845e5ad6736e696cfd48a869e2e38ce7ed3c123e6f54) |
+| gateio | `20261018` | 1 | `12048462` | [`0xdb3ef9a800dba37b283e23ba50700a01046b219de0166c461505065af0e188ca`](https://sepolia.etherscan.io/tx/0xdb3ef9a800dba37b283e23ba50700a01046b219de0166c461505065af0e188ca) |
+| bingx | `20261015` | 1 | `12034446` | [`0xe75c010b8108f90e28232f734553426e3efe7d565bcb971d8b9a7d247267c3b2`](https://sepolia.etherscan.io/tx/0xe75c010b8108f90e28232f734553426e3efe7d565bcb971d8b9a7d247267c3b2) (already anchored 2026-10-31; roots still match) |
+
+Post-anchor `getSnapshotCount` (Sepolia): binance `5`, okx `4`, bingx `2`, kucoin `2`, mexc `1`, bybit `2`, bitget `2`, gateio `2`.
+
 ---
 
 ## Base mainnet (chain id `8453`) — pending
