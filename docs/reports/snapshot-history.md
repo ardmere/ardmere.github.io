@@ -5,7 +5,7 @@
 
 This index lists every assessed snapshot in the ardmere public evaluation set. The [homepage](../../index.html) shows the six most recent reports (auto-generated via `por site`). This file is also auto-generated; edit `config/site/snapshot-notes.yaml` for page footers.
 
-**Assessed:** 2026-11-01 · Schema: `ardmere/exchange-assessment@1`
+**Assessed:** 2026-11-02 · Schema: `ardmere/exchange-assessment@1`
 
 ## All public reports
 
