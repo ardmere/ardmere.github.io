@@ -1,0 +1,1850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BINANCE PR04NOV26 PoR Transparency Report | ardmere</title>
+  <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
+  <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="doc-page">
+  <header class="site-header">
+    <div class="page nav" aria-label="Site navigation">
+      <a class="wordmark" href="/" aria-label="ardmere home">
+        <img class="wordmark-image" src="/assets/brand/ardmere-logo.svg" alt="ardmere" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a href="/docs/effective-por-standard.html">Standard</a>
+        <a href="/docs/insights/index.html">Insights</a>
+        <a href="/docs/por-transparency-framework.html">Methodology</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page doc-main">
+    <p class="registry-label">Public PoR Transparency Registry</p>
+    <article class="doc-content">
+<h1 id="binance-pr04nov26-por-transparency-report">BINANCE PR04NOV26 PoR
+Transparency Report</h1>
+<blockquote>
+<p>Methodology: <a href="../../por-transparency-framework.html">PoR Stage
+Framework</a><br />
+Assessment JSON: <a
+href="./PR04NOV26-assessment.json">PR04NOV26-assessment.json</a></p>
+</blockquote>
+<h2 id="summary">1. Summary</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exchange</td>
+<td><code>binance</code></td>
+</tr>
+<tr class="even">
+<td>Snapshot</td>
+<td><code>PR04NOV26</code></td>
+</tr>
+<tr class="odd">
+<td>Snapshot time</td>
+<td><code>2026-11-04T00:00:00Z</code></td>
+</tr>
+<tr class="even">
+<td>PoR Stage</td>
+<td><code>Stage 0 — Trust the Exchange</code></td>
+</tr>
+<tr class="odd">
+<td>Gen / Evidence</td>
+<td><code>Gen 2 / E2</code></td>
+</tr>
+<tr class="even">
+<td>Confidence</td>
+<td><code>medium</code></td>
+</tr>
+<tr class="odd">
+<td>Effective PoR</td>
+<td><code>false</code></td>
+</tr>
+</tbody>
+</table>
+<p>Binance snapshot PR04NOV26 provides public reserve summary and
+wallet_address_list where available, but Stage 1 is blocked by missing
+wallet_ownership_proof, opaque trusted setup, and unavailable public
+global proof/vk artifacts.</p>
+<p>The available artifacts support Gen 2 / E2 classification and Stage 0
+PoR disclosure. Users still need to trust Binance for wallet control,
+trusted setup honesty, and public availability of the full global proof
+stack.</p>
+<h2 id="stage-decision">2. Stage Decision</h2>
+<h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Missing / Blocked Evidence</th>
+<th>Risk Flag</th>
+<th>Max Stage</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>wallet_ownership_proof</code></td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+<td>Stage 0</td>
+<td>No public batch-verifiable wallet_ownership_proof.</td>
+</tr>
+<tr class="even">
+<td><code>global_proof.csv, verifying_key</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td>Stage 0</td>
+<td>Public global proof/vk not available.</td>
+</tr>
+<tr class="odd">
+<td><code>trusted_setup_transcript</code></td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+<td>Stage 0</td>
+<td>Trusted setup transcript is not public.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Latest snapshot (evaluation set)</td>
+<td><code>2026-10-31T00:00:00Z</code></td>
+</tr>
+<tr class="even">
+<td>Previous snapshot</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="odd">
+<td>Observed cadence</td>
+<td><code>~monthly</code></td>
+</tr>
+<tr class="even">
+<td>History available</td>
+<td><code>8 snapshot(s) in public evaluation set</code></td>
+</tr>
+<tr class="odd">
+<td>Event-triggered updates</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="even">
+<td>Daily root / commitment anchor</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="odd">
+<td>Stage impact</td>
+<td>Monthly or slower cadence; does not meet Stage 2 frequency
+expectations.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
+<h3 id="public-artifacts">Public Artifacts</h3>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Artifact</th>
+<th>SHA-256</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bapiSnapshot</code></td>
+<td><code>9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74</code></td>
+<td>https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot</td>
+</tr>
+<tr class="even">
+<td><code>walletZip</code></td>
+<td><code>d2e048c5427b2c77b70a7e4a2a8bdc3899204c8f2b9426190ede2098a12c90b2</code></td>
+<td>https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20261103.zip</td>
+</tr>
+</tbody>
+</table>
+<h3 id="bundle-references">Bundle References</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Bundle</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Artifact bundle root</td>
+<td><code>0xe2d0a979e7062bc7ee2ffb19b50733d57a2720c4a25f3ea85ee84c1f0c568506</code></td>
+</tr>
+<tr class="even">
+<td>Verification bundle root</td>
+<td><code>0x3154b1fce7d20d13be0f284c971301e107a953c8cd2f92fff0d29a86ed4c3d91</code></td>
+</tr>
+<tr class="odd">
+<td>Artifact bundle SHA-256</td>
+<td><code>30fbccee4eb59952f073a2151b396f478386a3de7adc11774164146994991dae</code></td>
+</tr>
+<tr class="even">
+<td>Verification bundle SHA-256</td>
+<td><code>2f9c519c85932b6db8b76e99c3bd73ffd451053f48817abf6c678b329cae53bf</code></td>
+</tr>
+</tbody>
+</table>
+<p>Local bundle paths: <a
+href="../../../artifacts/binance/PR04NOV26/bundles/PR04NOV26.artifact-bundle.json">PR04NOV26.artifact-bundle.json</a>,
+<a
+href="../../../artifacts/binance/PR04NOV26/bundles/PR04NOV26.verification-bundle.v2.json">PR04NOV26.verification-bundle.v2.json</a></p>
+<h2 id="verifier-evidence">5. Verifier Evidence</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Verifier</th>
+<th>Version</th>
+<th>Verdict</th>
+<th>Coverage</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>artifact-integrity</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>internal-consistency</code></td>
+<td><code>1.1</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>btc-anchor</code></td>
+<td><code>1</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>solvency-claim</code></td>
+<td><code>1.0</code></td>
+<td><code>PASS</code></td>
+<td><code>1.0000</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>onchain-balance-hot</code></td>
+<td><code>2.1</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.0558</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>onchain-balance-token</code></td>
+<td><code>2.0</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.6099</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>onchain-balance-ledger</code></td>
+<td><code>1.4</code></td>
+<td><code>FAIL</code></td>
+<td><code>0.2080</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><code>onchain-balance-deposit</code></td>
+<td><code>1.2</code></td>
+<td><code>PASS</code></td>
+<td><code>0.9904</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>address-ownership</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr class="even">
+<td><code>global-zk-proof</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>Global proof.csv / verifying key not publicly distributed</td>
+</tr>
+<tr class="odd">
+<td><code>third-party-attestation</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr class="even">
+<td><code>cross-chain-wrapped</code></td>
+<td><code>0</code></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="verifier-finding-details">6. Verifier Finding Details</h2>
+<p>This section explains <code>FAIL</code>, <code>WARN</code>, and
+<code>UNVERIFIABLE</code> outcomes from the verification bundle.
+Row-level <code>UNVERIFIABLE</code> entries often mean the verifier does
+not yet support that (coin, network) pair, not that the exchange failed
+the check. Full machine-readable output:
+<code>PR04NOV26.verification-bundle.v2.json</code> in the local artifact
+bundle.</p>
+<h3 id="capability-and-artifact-gaps-unverifiable">Capability and
+artifact gaps (<code>UNVERIFIABLE</code>)</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Verifier</th>
+<th>Explanation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>address-ownership</code></td>
+<td>No public download channel for wallet ownership signatures /
+proofs</td>
+</tr>
+<tr class="even">
+<td><code>global-zk-proof</code></td>
+<td>Global proof.csv / verifying key not publicly distributed</td>
+</tr>
+<tr class="odd">
+<td><code>third-party-attestation</code></td>
+<td>No public third-party attestation report available</td>
+</tr>
+<tr class="even">
+<td><code>cross-chain-wrapped</code></td>
+<td>No per-row wrapped-asset metadata in public PoR artifacts (token
+contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
+mode)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="row-level-findings">Row-level findings</h3>
+<h4 id="onchain-balance-hot-fail"><code>onchain-balance-hot</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 8, UNVERIFIABLE 8, PASS 1</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0x40207fdaa6015a765e5be0a7571823f11173eed5</code></td>
+<td><code>BNB@BSC#131525096</code></td>
+<td>1087.263581</td>
+<td>1085.957904199650239514</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1.305676800349760486
+(provider=cache)</td>
+</tr>
+<tr class="even">
+<td><code>0x52854a35cf896a57b3a861ba7fbd2171f2445ef2</code></td>
+<td><code>BNB@BSC#131525096</code></td>
+<td>50474.13716</td>
+<td>50474.06956648352931349</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 0.06759351647068651
+(provider=cache)</td>
+</tr>
+<tr class="odd">
+<td><code>0x6416c7690528117a633849be2cd06b9b5c55f171</code></td>
+<td><code>BNB@BSC#131525096</code></td>
+<td>1494.871777</td>
+<td>1493.662140958755429666</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1.209636041244570334
+(provider=cache)</td>
+</tr>
+<tr class="even">
+<td><code>0x721093b510870ff0135be8ae2db2c80ff51f0908</code></td>
+<td><code>BNB@BSC#131525096</code></td>
+<td>4123.418755</td>
+<td>3638.201983853059810745</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 485.216771146940189255
+(provider=cache)</td>
+</tr>
+<tr class="odd">
+<td><code>0xa7c0d36c4698981fab42a7d8c783674c6fe2592d</code></td>
+<td><code>BNB@BSC#131525096</code></td>
+<td>203862.3942</td>
+<td>131546.179153457216230754</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 72316.215046542783769246
+(provider=cache)</td>
+</tr>
+<tr class="even">
+<td><code>0xb2a6a72843db0f508204a56448413f3867ea691a</code></td>
+<td><code>BNB@BSC#131525096</code></td>
+<td>35011.51204</td>
+<td>0.737837337885090657</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 35010.774202662114909343
+(provider=cache)</td>
+</tr>
+<tr class="odd">
+<td><code>0xbf83d18a46325acb7d8f40a462d23a92f467ed7a</code></td>
+<td><code>BNB@BSC#131525096</code></td>
+<td>6340754.812</td>
+<td>6340654.273451315373361418</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 100.538548684626638582
+(provider=cache)</td>
+</tr>
+<tr class="even">
+<td><code>0xb772fd70ea293335e5095597083e7da79e22ada7</code></td>
+<td><code>ETH@ETH#26337722</code></td>
+<td>1667.982379</td>
+<td>1667.975792360534102986</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 0.006586639465897014
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+</tbody>
+</table>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Unsupported (coin, network) pairs:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pair</th>
+<th>Rows</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>PUMP\|SOL</code></td>
+<td>11</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="even">
+<td><code>TRX\|BSC</code></td>
+<td>4</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="odd">
+<td><code>TRX\|ETH</code></td>
+<td>4</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="even">
+<td><code>TRX\|TRX</code></td>
+<td>34</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="odd">
+<td><code>USDC\|ARC</code></td>
+<td>2</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="even">
+<td><code>U\|ROBINHOOD</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="odd">
+<td><code>XLM\|BSC</code></td>
+<td>9</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="even">
+<td><code>XLM\|XLM</code></td>
+<td>11</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+</tbody>
+</table>
+<h4 id="onchain-balance-token-fail"><code>onchain-balance-token</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 71, WARN 16, UNVERIFIABLE 6, PASS 1</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0x28e8d4eab37cfbf49edf7ff39c27377b7ae3a2a0</code></td>
+<td><code>ASTER@BSC#131525096</code></td>
+<td>30200045</td>
+<td>35</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 30200010
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
+<td><code>BCH@ETH#26337722</code></td>
+<td>3.012</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 3.012
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x52854a35cf896a57b3a861ba7fbd2171f2445ef2</code></td>
+<td><code>BTC@BSC#131525096</code></td>
+<td>782.28</td>
+<td>782.277981970469216788</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 0.002018029530783212
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>BTC@ETH#26337722</code></td>
+<td>1047.9</td>
+<td>106.362</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 941.538
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>CAKE@ETH#26337722</code></td>
+<td>24593.94636</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 24593.94636
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
+<td><code>BTC@ETH#26337722</code></td>
+<td>1105.5871</td>
+<td>400</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 705.5871
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>CAKE@ETH#26337722</code></td>
+<td>314432.2739</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 314432.2739
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x037741ef196087b26abfb173b64d05df23fadc72</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>9196887.416</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9196887.416
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x18e226459ccf0eec276514a4fd3b226d8961e4d1</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>2815479.927</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 2815479.927
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>2.15510575</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 2.15510575
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x3d5dc8d8ef62348e8e2e1abe4aa6d1153b48f232</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>9882010.636</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9882010.636
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x43684d03d81d3a4c70da68febdd61029d426f042</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>27343446.22</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 27343446.22
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>5679532.089</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 5679532.089
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x4fdfe365436b5273a42f135c6a6244a20404271e</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>6001743.287</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 6001743.287
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x5a1e5b56aa33c056ed7bb93b88b1774a456f6694</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>35915486.42</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 35915486.42
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>510115216</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 510115216
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xc6fe7b7fbc7ef114284896a6631251cf54a8c304</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>9024549.068</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9024549.068
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x690c3eebf6ee237f00fc96f9766282f096c191cc</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>96712658.75</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 96712658.75
+(provider=https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>59634358.05</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 59634358.05
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0xde1c31ef18a36e44125c641063544ed5d44bfe78</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>9523966.98</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9523966.98
+(provider=https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xf3e9fdd1ae54e5ad88ee540855f83cf3918f4385</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>9176572.988</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9176572.988
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0xdfd5293d8e347dfe59e90efd55b2956a1343963d</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>2.05552835</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 2.05552835
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>787759017</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 787759017
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0xde1c31ef18a36e44125c641063544ed5d44bfe78</code></td>
+<td><code>LINK@ETH#26337722</code></td>
+<td>256539.902</td>
+<td>255157.402</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1382.5
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xa64b436964e7415c0e70b9989a53e1fb9a90e726</code></td>
+<td><code>POL@ETH#26337722</code></td>
+<td>134000099.1</td>
+<td>99.066047574468237635</td>
+<td>POL+MATIC ERC20 on ETH still &lt;&lt; CSV; residual may be
+Polygon-native POL or internal ledger; shortfall / 不足 (CSV exceeds
+on-chain) by 134000000.033952425531762365
+(provider=https://mainnet.infura.io/v3/[REDACTED],https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x26bff98f6f37c8d560684eaf2afd1149bf76633e</code></td>
+<td><code>SSV@ETH#26337722</code></td>
+<td>650019</td>
+<td>14</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 650005
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x18e226459ccf0eec276514a4fd3b226d8961e4d1</code></td>
+<td><code>TUSD@BSC#131525096</code></td>
+<td>15000</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 15000
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0x43684d03d81d3a4c70da68febdd61029d426f042</code></td>
+<td><code>TUSD@BSC#131525096</code></td>
+<td>256388.6563</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 256388.6563
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
+<td><code>TUSD@BSC#131525096</code></td>
+<td>396917.499</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 396917.499
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0x037741ef196087b26abfb173b64d05df23fadc72</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>25584</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 25584
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>7262.2</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 7262.2
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>3.00029591</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 3.00029591
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x3d5dc8d8ef62348e8e2e1abe4aa6d1153b48f232</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>25584</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 25584
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>1077.401833</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1077.401833
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x5a1e5b56aa33c056ed7bb93b88b1774a456f6694</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>46838.56089</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 46838.56089
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>TUSD@BSC#131525096</code></td>
+<td>9.9151</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9.9151
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>TUSD@BSC#131525096</code></td>
+<td>1127096.623</td>
+<td>0.01899189</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1127096.60400811
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>529912.638</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 529912.638
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x690c3eebf6ee237f00fc96f9766282f096c191cc</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>172019.41</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 172019.41
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>31703.33056</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 31703.33056
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xc6fe7b7fbc7ef114284896a6631251cf54a8c304</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>25584</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 25584
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0xde1c31ef18a36e44125c641063544ed5d44bfe78</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>25584</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 25584
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xdfd5293d8e347dfe59e90efd55b2956a1343963d</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>8693.109</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 8693.109
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0xf3e9fdd1ae54e5ad88ee540855f83cf3918f4385</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>25584</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 25584
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>5757027.079</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 5757027.079
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x59fbc084aeed2c8e6e9b6ebe8a11d443efcb40d2</code></td>
+<td><code>USD1@AB#16346865</code></td>
+<td>16383889.29</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 16383889.29
+(provider=https://api.mainnet.abs.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0x1d40c7717b8c43f877644ba86ec353bdc35c03dc</code></td>
+<td><code>USDC@BSC#131525096</code></td>
+<td>27707992.54</td>
+<td>27707909.539366158</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 83.000633842
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0x52854a35cf896a57b3a861ba7fbd2171f2445ef2</code></td>
+<td><code>USDC@BSC#131525096</code></td>
+<td>124365415.9</td>
+<td>124365385.868053636577324716</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 30.031946363422675284
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0xf17719d0a31afce4d88d57c83c4b2265f6a6b4cd</code></td>
+<td><code>USDT@ARBITRUM#521018431</code></td>
+<td>68442994.01</td>
+<td>68442919.303954</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 74.706046
+(provider=https://arbitrum.gateway.tenderly.co)</td>
+</tr>
+<tr class="even">
+<td><code>0x1d40c7717b8c43f877644ba86ec353bdc35c03dc</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>3027588.587</td>
+<td>3024495.569715062213806256</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 3093.017284937786193744
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0x40207fdaa6015a765e5be0a7571823f11173eed5</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>2309946.362</td>
+<td>2309699.655537428</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 246.706462572
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0x4540c69b4d42d190c99afce5a0aa4912beb6acb6</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>2712322.99</td>
+<td>2710385.759820706612919423</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1937.230179293387080577
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0x52854a35cf896a57b3a861ba7fbd2171f2445ef2</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>146086864.3</td>
+<td>146085284.450098007634429863</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1579.849901992365570137
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0x554a8dd77c0aa024e701e53d84103f83fa5bd54a</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>5312453.567</td>
+<td>5310865.899557676710628042</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1587.667442323289371958
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0x6416c7690528117a633849be2cd06b9b5c55f171</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>3916489.091</td>
+<td>3914646.10754111</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1842.98345889
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0x721093b510870ff0135be8ae2db2c80ff51f0908</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>4985160.184</td>
+<td>4985014.907615778</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 145.276384222
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0x7508f00e03a5996cf4b680a09f5ad05cc5c83225</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>2609120.795</td>
+<td>2608861.774761943956604745</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 259.020238056043395255
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0x9b594898e9441aabc7f97f02d5bd76b165732ed5</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>5467506.947</td>
+<td>5467455.2867755578</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 51.6602244422
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0xa010ec4e43c6448f2fe13340991bededf8763bf4</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>5608956.634</td>
+<td>5608923.674122973</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 32.959877027
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0xc55644e979f53358ffc7d39452e11f54ccd9b63d</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>2672493.029</td>
+<td>2672418.7892597</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 74.2397403
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0xc924b8347885e731912852933cb2f4cb42fa8170</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>2870632.338</td>
+<td>2870460.239092952427233882</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 172.098907047572766118
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="even">
+<td><code>0xd1d8e218550dd6c9cf3469305910bbc2b276cf4e</code></td>
+<td><code>USDT@BSC#131525096</code></td>
+<td>5634667.302</td>
+<td>5633005.232224217185556053</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1662.069775782814443947
+(provider=https://bsc.rpc.sentio.xyz)</td>
+</tr>
+<tr class="odd">
+<td><code>0x037741ef196087b26abfb173b64d05df23fadc72</code></td>
+<td><code>USDT@ETH#26337722</code></td>
+<td>11806884.16</td>
+<td>11806874.76498</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9.39502
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x690c3eebf6ee237f00fc96f9766282f096c191cc</code></td>
+<td><code>USDT@ETH#26337722</code></td>
+<td>216309467.8</td>
+<td>216309418.4044</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 49.3956
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0x6781b0098e3238caeede00647c9b69dd98a86a83</code></td>
+<td><code>USDT@ETH#26337722</code></td>
+<td>8190663.098</td>
+<td>8190648.697943</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 14.400057
+(provider=https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0x3d5dc8d8ef62348e8e2e1abe4aa6d1153b48f232</code></td>
+<td><code>USDT@ETH#26337722</code></td>
+<td>9839544.562</td>
+<td>9839390.509367</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 154.052633
+(provider=https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xde1c31ef18a36e44125c641063544ed5d44bfe78</code></td>
+<td><code>USDT@ETH#26337722</code></td>
+<td>11541590.69</td>
+<td>11433492.966765</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 108097.723235
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="even">
+<td><code>0xc6fe7b7fbc7ef114284896a6631251cf54a8c304</code></td>
+<td><code>USDT@ETH#26337722</code></td>
+<td>11065059.74</td>
+<td>11064555.837358</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 503.902642
+(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+</tr>
+<tr class="odd">
+<td><code>0xacd03d601e5bb1b275bb94076ff46ed9d753435a</code></td>
+<td><code>USDT@OPTIMISM#159075811</code></td>
+<td>203.587801</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 203.587801
+(provider=https://mainnet.optimism.io)</td>
+</tr>
+<tr class="even">
+<td><code>0xc34db06fd02be471dc4c1d8b0316a63ee37903bd</code></td>
+<td><code>USDT@OPTIMISM#159075811</code></td>
+<td>4652811.084</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 4652811.084
+(provider=https://mainnet.optimism.io)</td>
+</tr>
+<tr class="odd">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>USDT@OPTIMISM#159075811</code></td>
+<td>3000000</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 3000000
+(provider=https://mainnet.optimism.io)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0x00c1ce9c68f1c4a1b05e8d043b9b05784f41685d68e5009ffe379aa7f7c95ccf</code></td>
+<td><code>ETH@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="even">
+<td><code>0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d</code></td>
+<td><code>ETH@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="odd">
+<td><code>0x04164013f90b05d67f026779bf96e9c401c96f3485b645a786166e6935fba116</code></td>
+<td><code>ETH@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="even">
+<td><code>TJCo98saj6WND61g1uuKwJ9GMWMT9WkJFo</code></td>
+<td><code>TUSD@TRX#87692258</code></td>
+<td>2436174.701</td>
+<td>1236174.701</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 1200000 (provider=https://api.trongrid.io)</td>
+</tr>
+<tr class="odd">
+<td><code>0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d</code></td>
+<td><code>USDC@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="even">
+<td><code>0x04164013f90b05d67f026779bf96e9c401c96f3485b645a786166e6935fba116</code></td>
+<td><code>USDC@STARKNET</code></td>
+<td></td>
+<td></td>
+<td>rpc error (provider=): HTTP 410: {“error”:“This endpoint has been
+discontinued.”,“message”:“For an up to date list of available endpoints,
+visit https://</td>
+</tr>
+<tr class="odd">
+<td><code>TADfh7Q4KA9LD6WfjjjcPMNra33gNRrCkb</code></td>
+<td><code>USDT@TRX#87692258</code></td>
+<td>8522644.706</td>
+<td>6430287.109882</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 2092357.596118 (provider=https://api.trongrid.io)</td>
+</tr>
+<tr class="even">
+<td><code>TCQ8X6x9GiK4khydWVKfLJvm8H6WK3RE8B</code></td>
+<td><code>USDT@TRX#87692258</code></td>
+<td>8817651.578</td>
+<td>5994165.551708</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 2823486.026292 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr class="odd">
+<td><code>TDB1RpAHPQdGqfb1qi8J2jLY2oGe2jSy8A</code></td>
+<td><code>USDT@TRX#87692258</code></td>
+<td>8695658.309</td>
+<td>5944237.959599</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 2751420.349401 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr class="even">
+<td><code>TE4mtETxcuHHbprQmQkyVSaCC48Q5yk21i</code></td>
+<td><code>USDT@TRX#87692258</code></td>
+<td>7410996.609</td>
+<td>6296413.724003</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 1114582.884997 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr class="odd">
+<td><code>TGnBDu95RaJEaw7dJpqzHt8Sy7faayBGvj</code></td>
+<td><code>USDT@TRX#87692258</code></td>
+<td>7947369.455</td>
+<td>5860683.437494</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 2086686.017506 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr class="even">
+<td><code>TGpTXS67vXyPERWMC2iQSG27TosfD13HLZ</code></td>
+<td><code>USDT@TRX#87692258</code></td>
+<td>7975215.984</td>
+<td>5215294.257628</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 2759921.726372 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr class="odd">
+<td><code>TJTKCzQpsG19CSMYF9TPtxz6wSHPSyeKfa</code></td>
+<td><code>USDT@TRX#87692258</code></td>
+<td>266590758.2</td>
+<td>137932222.27539</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 128658535.92461 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr class="even">
+<td><code>TNiXZSD38dwRjZ5fXKn1im8crWkfqzskvH</code></td>
+<td><code>USDT@TRX#87692258</code></td>
+<td>8792567.348</td>
+<td>6306741.501255</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 2485825.846745 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+<tr class="odd">
+<td><code>TTU4bhRuPEtaSWPXvvRQ7CVnyHs6cGu24e</code></td>
+<td><code>USDT@TRX#87692258</code></td>
+<td>8629291.574</td>
+<td>6428333.965865</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 2200957.608135 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
+</tbody>
+</table>
+<p><em>1 additional <code>WARN</code> rows omitted; see verification
+bundle.</em></p>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Unsupported (coin, network) pairs:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pair</th>
+<th>Rows</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>USDC\|ARC</code></td>
+<td>2</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="even">
+<td><code>U\|ROBINHOOD</code></td>
+<td>1</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+</tbody>
+</table>
+<p>Other unverifiable rows:</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>Bridging in progress</code></td>
+<td><code>ETH@ARBITRUM</code></td>
+<td></td>
+<td></td>
+<td>placeholder wallet address (bridging in progress) — not a queryable
+on-chain address</td>
+</tr>
+<tr class="even">
+<td><code>Bridging in progress</code></td>
+<td><code>ETH@ARBITRUM</code></td>
+<td></td>
+<td></td>
+<td>placeholder wallet address (bridging in progress) — not a queryable
+on-chain address</td>
+</tr>
+<tr class="odd">
+<td><code>Bridging in progress</code></td>
+<td><code>ETH@BASE</code></td>
+<td></td>
+<td></td>
+<td>placeholder wallet address (bridging in progress) — not a queryable
+on-chain address</td>
+</tr>
+<tr class="even">
+<td><code>Bridging in progress</code></td>
+<td><code>ETH@BASE</code></td>
+<td></td>
+<td></td>
+<td>placeholder wallet address (bridging in progress) — not a queryable
+on-chain address</td>
+</tr>
+</tbody>
+</table>
+<h4 id="onchain-balance-ledger-fail"><code>onchain-balance-ledger</code>
+(<code>FAIL</code>)</h4>
+<p>Finding counts: FAIL 9, WARN 84, UNVERIFIABLE 5, PASS 1</p>
+<p><strong>FAIL</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>bc1q9n7j6a5wwru6tad9xrlncnagresvyjt96pl3en</code></td>
+<td><code>BTC\|BTC#974457</code></td>
+<td>1900.019572</td>
+<td>100.01957174</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1800.00000026
+(provider=https://blockstream.info/api)</td>
+</tr>
+<tr class="even">
+<td><code>DBTrXhmzMbo1bkYAv6ZYodtwvTahhApf7y</code></td>
+<td><code>DOGE\|DOGE#6442914</code></td>
+<td>44296831.24</td>
+<td>44296189.26763205</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 641.97236795
+(provider=https://api.blockcypher.com/v1/doge/main/addrs/DBTrXhmzMbo1bkYAv6ZYodtwvTahhApf7y?before=6442915)</td>
+</tr>
+<tr class="odd">
+<td><code>c5f9zfpkKMD9N8uLqJcFeJAAz7v12vDMnup9Y6EeQkk</code></td>
+<td><code>SOL\|SOL#465092326</code></td>
+<td>4211389.625</td>
+<td>1.064970212</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 4211388.560029788
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="even">
+<td><code>5SDrsMNTYdhmApjfqYHDvjoW92f2S42vcc7zNDVcQ9Ej</code></td>
+<td><code>USDC\|SOL#465092326</code></td>
+<td>3.53509</td>
+<td>2.000936</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1.534154
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="odd">
+<td><code>5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9</code></td>
+<td><code>USDC\|SOL#465092326</code></td>
+<td>1984800.492</td>
+<td>3.000307</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1984797.491693
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="even">
+<td><code>8DfHuYFv7VQ6wgcGtVDN2vtFn5ezF52hHNtPWYcqm8hU</code></td>
+<td><code>USDC\|SOL#465092326</code></td>
+<td>91759235.04</td>
+<td>91757847.552578</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1387.487422
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="odd">
+<td><code>9WzDXwBbmkg8ZTbNMqUxvQRAyrZzDsGYdLVL9zYtAWWM</code></td>
+<td><code>USDC\|SOL#465092326</code></td>
+<td>1108.086885</td>
+<td>1107.086885</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="even">
+<td><code>5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9</code></td>
+<td><code>USDT\|SOL#465092326</code></td>
+<td>21714.38138</td>
+<td>2602.700038</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 19111.681342
+(provider=https://api.helius.xyz/v1/wallet)</td>
+</tr>
+<tr class="odd">
+<td><code>r4ncjTqY4ZmXdg7gXpkK9pfiythmyxeecq</code></td>
+<td><code>XRP\|XRP#108098626</code></td>
+<td>68859.55735</td>
+<td>68844.149357</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 15.407993
+(provider=https://xrplcluster.com/)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>WARN</strong></p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>0x265ca6100138fd7274fa66f043b7b259c44cdc64f75ffd634a4fb523d9d47d8c</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x265ca6100138fd7274fa66f043b7b259c44cdc64f75ffd634a4fb523d9d47d8c/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0x292f853b48a28864755c971299ce8a73a3e32c19a0f7b8dbbf782482396e8ef3</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x292f853b48a28864755c971299ce8a73a3e32c19a0f7b8dbbf782482396e8ef3/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0x1d14ee0c332546658b13965a39faf5ec24ad195b722435d9fe23dc55487e67e3</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x1d14ee0c332546658b13965a39faf5ec24ad195b722435d9fe23dc55487e67e3/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0x5bd7de5c56d5691f32ea86c973c73fec7b1445e59736c97158020018c080bb00</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x5bd7de5c56d5691f32ea86c973c73fec7b1445e59736c97158020018c080bb00/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0x716666e019eb2cd1eea5ae29760e064f14984d8d6db2ff9ee56d0bd994e8c9b3</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x716666e019eb2cd1eea5ae29760e064f14984d8d6db2ff9ee56d0bd994e8c9b3/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0x33f91e694d40ca0a14cb84e1f27a4d03de5cf292b07ed75ed3286e4f243dab34</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x33f91e694d40ca0a14cb84e1f27a4d03de5cf292b07ed75ed3286e4f243dab34/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0x9fbc354d59041b8b1b8368e3e7397ac943a3c7c6da3ffde3aa4f4d221a1d205d</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x9fbc354d59041b8b1b8368e3e7397ac943a3c7c6da3ffde3aa4f4d221a1d205d/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xae1a6f3d3daccaf77b55044cea133379934bba04a11b9d0bbd643eae5e6e9c70/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xbdb53eb583ba02ab0606bdfc71b59a191400f75fb62f9df124494ab877cdfe2a</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xbdb53eb583ba02ab0606bdfc71b59a191400f75fb62f9df124494ab877cdfe2a/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0xc6ea9c27cd6737031631f6d4a4258f7ff87f3642da964a5fad49594847cce386</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xc6ea9c27cd6737031631f6d4a4258f7ff87f3642da964a5fad49594847cce386/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xd91c64b777e51395c6ea9dec562ed79a4afa0cd6dad5a87b187c37198a1f855a/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0xe395e58840235d58dc8471c3351d5b248dbc408adc2c35c1f373f8042aa16619</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xe395e58840235d58dc8471c3351d5b248dbc408adc2c35c1f373f8042aa16619/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xed8c46bec9dbc2b23c60568f822b95b87ea395f7e3fdb5e3adc0a30c55c0a60e/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>14MS72FgWMqQmqGfqEVuh73efqZTzisQx2</code></td>
+<td><code>BCH\|BCH</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/14MS72FgWMqQmqGfqEVuh73efqZTzisQx2):
+blockchair HTTP 430</td>
+</tr>
+</tbody>
+</table>
+<p><em>69 additional <code>WARN</code> rows omitted; see verification
+bundle.</em></p>
+<p><strong>UNVERIFIABLE (row-level)</strong></p>
+<p>Unsupported (coin, network) pairs:</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pair</th>
+<th>Rows</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>TRX\|BSC</code></td>
+<td>4</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="even">
+<td><code>TRX\|ETH</code></td>
+<td>4</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="odd">
+<td><code>TRX\|TRX</code></td>
+<td>34</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+<tr class="even">
+<td><code>USDC\|ARC</code></td>
+<td>2</td>
+<td>no native verifier for this (coin,network) pair yet</td>
+</tr>
+</tbody>
+</table>
+<p>Other unverifiable rows:</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Subject</th>
+<th>Field</th>
+<th>Claim</th>
+<th>Actual</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>LZEjckteAtWrugbsy9zU8VHEZ4iUiXo9Nm</code></td>
+<td><code>LTC\|LTC#3206938</code></td>
+<td>3.00053979</td>
+<td>686.34200343</td>
+<td>address has 1704537 txs; exceeds public API limit 100000 — set
+BLOCKCHAIR_API_KEY or use archive provider</td>
+</tr>
+</tbody>
+</table>
+<h2 id="minimal-checklist">7. Minimal Checklist</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Requirement</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Has public PoR been published during the last 12 months? (S0-1)</td>
+<td><code>pass</code></td>
+<td>Snapshot PR04NOV26 is in the public evaluation set.</td>
+</tr>
+<tr class="even">
+<td>Is snapshot time explicit? (S0-2)</td>
+<td><code>pass</code></td>
+<td>2026-11-04T00:00:00Z</td>
+</tr>
+<tr class="odd">
+<td>Is there reserve summary or wallet_address_list? (S0-3)</td>
+<td><code>pass</code></td>
+<td>Summary and wallet_address_list present.</td>
+</tr>
+<tr class="even">
+<td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
+<td><code>pass</code></td>
+<td>Wallet list present; hot-wallet on-chain verifier ran.</td>
+</tr>
+<tr class="odd">
+<td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
+<td><code>unverifiable</code></td>
+<td>address-ownership verifier UNVERIFIABLE.</td>
+</tr>
+<tr class="even">
+<td>Is global_proof public and independently reproducible? (S1-3)</td>
+<td><code>unverifiable</code></td>
+<td>global-zk-proof verifier UNVERIFIABLE.</td>
+</tr>
+<tr class="odd">
+<td>Is independent third-party review available with stated scope?
+(S1-4)</td>
+<td><code>unverifiable</code></td>
+<td>third-party-attestation verifier UNVERIFIABLE.</td>
+</tr>
+<tr class="even">
+<td>If trusted setup is required, is transcript public; otherwise is the
+proof system transparent setup? (S1-5)</td>
+<td><code>unverifiable</code></td>
+<td>No public trusted setup transcript observed for zk-SNARK PoS.</td>
+</tr>
+<tr class="odd">
+<td>Is root/proof/vk canonically anchored outside exchange servers?
+(S2-1)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+<tr class="even">
+<td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
+daily anchor)? (S2-2)</td>
+<td><code>not_applicable</code></td>
+<td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="recommendations">8. Recommendations</h2>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Priority</th>
+<th>Recommendation</th>
+<th>Related Risk</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>P0</code></td>
+<td>Publish batch-verifiable wallet_ownership_proof for
+wallet_address_list.</td>
+<td><code>NO_WALLET_OWNERSHIP_PROOF</code></td>
+</tr>
+<tr class="even">
+<td><code>P0</code></td>
+<td>Make global proof.csv, verifying key, and parameter sources publicly
+downloadable.</td>
+<td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="odd">
+<td><code>P0</code></td>
+<td>Publish trusted setup transcript or migrate to a transparent-setup
+proof system.</td>
+<td><code>OPAQUE_TRUSTED_SETUP</code></td>
+</tr>
+<tr class="even">
+<td><code>P2</code></td>
+<td>Review onchain-balance verifier FAIL/WARN outliers in the
+verification bundle and reconcile CSV vs chain deltas.</td>
+<td><code>IMPLEMENTATION_SEMANTICS_RISK</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="boundary">9. Boundary</h2>
+<p>This report evaluates public PoR artifacts and reproducibility. It
+does not evaluate the exchange’s overall financial health, corporate
+governance, internal controls, off-chain assets, legal compliance, or
+complete off-balance-sheet liabilities.</p>
+<p>Missing data must be marked as <code>UNVERIFIABLE</code>, not treated
+as <code>PASS</code>.</p>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="page footer-inner">
+      <span>ardmere public PoR transparency registry</span>
+      <div class="footer-links">
+        <a class="footer-link" href="/docs/reports/exchange-comparison.html">Reports</a>
+        <a class="footer-link" href="/docs/effective-por-standard.html">Standard</a>
+        <a class="footer-link" href="/docs/insights/index.html">Insights</a>
+        <a class="footer-link" href="/docs/por-transparency-framework.html">Methodology</a>
+        <a class="footer-link" href="/docs/contract-query-guide.html">On-chain</a>
+        <a class="footer-link" href="/docs/ardmere-service-audience.html">Audience</a>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+  <script src="/assets/doc-mermaid.js" defer></script>
+</body>
+</html>

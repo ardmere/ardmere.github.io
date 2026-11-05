@@ -5,12 +5,13 @@
 
 This index lists every assessed snapshot in the ardmere public evaluation set. The [homepage](../../index.html) shows the six most recent reports (auto-generated via `por site`). This file is also auto-generated; edit `config/site/snapshot-notes.yaml` for page footers.
 
-**Assessed:** 2026-11-02 · Schema: `ardmere/exchange-assessment@1`
+**Assessed:** 2026-11-05 · Schema: `ardmere/exchange-assessment@1`
 
 ## All public reports
 
 | Exchange | Snapshot | Date | Stage | Report |
 | --- | --- | --- | --- | --- |
+| Binance | `PR04NOV26` | 2026-11-04 | Stage 0 | [report](./binance/PR04NOV26-transparency-report.md) |
 | OKX | `508756245` | 2026-10-31 | **Stage 1** | [report](./okx/508756245-transparency-report.md) |
 | KuCoin | `20261031` | 2026-10-31 | Stage 0 | [report](./kucoin/20261031-transparency-report.md) |
 | Binance | `PR31OCT26` | 2026-10-31 | Stage 0 | [report](./binance/PR31OCT26-transparency-report.md) |

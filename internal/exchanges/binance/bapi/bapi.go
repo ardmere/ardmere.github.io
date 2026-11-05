@@ -126,16 +126,28 @@ func LoadSnapshot(path string) (Snapshot, error) {
 	if err != nil {
 		return Snapshot{}, err
 	}
+	snap, err := ParseSnapshotBytes(raw)
+	if err != nil {
+		return Snapshot{}, fmt.Errorf("decode BAPI snapshot %s: %w", path, err)
+	}
+	return snap, nil
+}
+
+// ParseSnapshotBytes decodes a BAPI snapshot response or bare Snapshot JSON.
+func ParseSnapshotBytes(raw []byte) (Snapshot, error) {
 	var sr snapResp
 	if err := json.Unmarshal(raw, &sr); err != nil {
 		var direct Snapshot
 		if err2 := json.Unmarshal(raw, &direct); err2 != nil {
-			return Snapshot{}, fmt.Errorf("decode BAPI snapshot %s: %w", path, err)
+			return Snapshot{}, err
+		}
+		if direct.AuditID == "" {
+			return Snapshot{}, fmt.Errorf("BAPI snapshot has no auditId")
 		}
 		return direct, nil
 	}
 	if sr.Data.AuditID == "" {
-		return Snapshot{}, fmt.Errorf("BAPI snapshot %s has no auditId", path)
+		return Snapshot{}, fmt.Errorf("BAPI snapshot has no auditId")
 	}
 	return sr.Data, nil
 }
