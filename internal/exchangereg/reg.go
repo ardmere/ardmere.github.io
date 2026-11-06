@@ -14,18 +14,20 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/kucoin"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc"
 	"github.com/ardmere/ardmere/internal/exchanges/okx"
+	"github.com/ardmere/ardmere/internal/exchanges/poloniex"
 )
 
 var adapters = map[string]exchange.Adapter{
-	binance.ID: binance.New(),
-	bingx.ID:   bingx.New(),
-	bitget.ID:  bitget.New(),
-	bybit.ID:   bybit.New(),
-	gateio.ID:  gateio.New(),
-	htx.ID:     htx.New(),
-	kucoin.ID:  kucoin.New(),
-	mexc.ID:    mexc.New(),
-	okx.ID:     okx.New(),
+	binance.ID:  binance.New(),
+	bingx.ID:    bingx.New(),
+	bitget.ID:   bitget.New(),
+	bybit.ID:    bybit.New(),
+	gateio.ID:   gateio.New(),
+	htx.ID:      htx.New(),
+	kucoin.ID:   kucoin.New(),
+	mexc.ID:     mexc.New(),
+	okx.ID:      okx.New(),
+	poloniex.ID: poloniex.New(),
 }
 
 // Get returns the adapter for id (e.g. "binance").

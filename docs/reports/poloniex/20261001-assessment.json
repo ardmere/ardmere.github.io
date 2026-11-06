@@ -1,0 +1,255 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0xea14a005b023005c110ea680b6bfb33eb69cf8e40c20f4e74c9ae4f8b877d155",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b",
+        "url": "https://www.poloniex.com/topic/security/proof-of-reserves"
+      }
+    ],
+    "verificationBundleRoot": "0x9820c3c5b0e09af62b083e2912f913862772fe88626785252ee25d41a91d2f36"
+  },
+  "checklist": [
+    {
+      "id": "S0-1",
+      "notes": "Snapshot 20261001 is in the public evaluation set.",
+      "question": "Has public PoR been published during the last 12 months?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-2",
+      "notes": "2026-10-01T00:00:00Z",
+      "question": "Is snapshot time explicit?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-3",
+      "notes": "Summary present; wallet_address_list absent.",
+      "question": "Is there reserve summary or wallet_address_list?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S1-1",
+      "notes": "No public wallet_address_list artifact.",
+      "question": "Is wallet_address_list public and on-chain verifiable?",
+      "stage": "Stage 1",
+      "status": "fail"
+    },
+    {
+      "id": "S1-2",
+      "notes": "address-ownership verifier UNVERIFIABLE.",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-3",
+      "notes": "global-zk-proof verifier UNVERIFIABLE.",
+      "question": "Is global_proof public and independently reproducible?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-4",
+      "notes": "third-party-attestation verifier UNVERIFIABLE.",
+      "question": "Is independent third-party review available with stated scope?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-5",
+      "notes": "No global ZK proof in the assessed public artifact set.",
+      "question": "If trusted setup is required, is transcript public; otherwise is the proof system transparent setup?",
+      "stage": "Stage 1",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-1",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is root/proof/vk canonically anchored outside exchange servers?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-2",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    }
+  ],
+  "confidence": "low",
+  "effectivePoR": false,
+  "evidenceLevel": "E1",
+  "exchange": "poloniex",
+  "gen": "Gen 1",
+  "generatedAt": "2026-11-06T13:00:32Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "recommendations": [
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "UNVERIFIABLE"
+      ],
+      "text": "Publish missing public artifacts required for independent reproduction."
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No public wallet_address_list."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "6980318bc8260fbc0d4ba0e69ff480614d61c8e0617c34e0e63c0305a2e9fb11",
+    "id": "20261001",
+    "periodSeq": 0,
+    "snapshotTime": "2026-10-01T00:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_public_wallet_address_list",
+      "evidence": "wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "No public wallet_address_list.",
+      "riskFlag": "UNVERIFIABLE"
+    }
+  ],
+  "summary": {
+    "headline": "poloniex snapshot 20261001 remains Stage 0 in the ardmere public evaluation set.",
+    "rationale": "Public artifacts do not support independently reproducible global solvency verification for this snapshot.",
+    "scope": "poloniex snapshot 20261001"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "user-merkle-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "Wallet address bundle not available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "internal-consistency",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "BTC block time anchor verifier not implemented",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "Wallet address bundle not available for on-chain audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "Wallet address bundle not available for token audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "Global proof.csv / verifying key not publicly distributed",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "global-zk-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "ac68181a438d6932cf8b2406925eaa1f9bdac9fffa4bd91e4f45a9e47d7bd32b"
+      ],
+      "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

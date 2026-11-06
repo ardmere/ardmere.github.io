@@ -17,6 +17,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/bingx/bingxapi"
 	"github.com/ardmere/ardmere/internal/exchanges/kucoin/kucoinapi"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
+	"github.com/ardmere/ardmere/internal/exchanges/poloniex/poloniexapi"
 )
 
 // Main runs fetch subcommands; args[0] is gateio or okx.
@@ -47,6 +48,9 @@ func Main(args []string) int {
 	case "bingx":
 		RunBingX(args[1:])
 		return 0
+	case "poloniex":
+		RunPoloniex(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -71,6 +75,7 @@ Exchanges:
   mexc       fetch or import MEXC PoR summary (+ optional myProof.json)
   kucoin     fetch or import KuCoin PoR summary (public SSR scrape)
   bingx      fetch or import BingX PoR summary (+ optional user Merkle JSON)
+  poloniex   fetch or import Poloniex PoR summary (public proxy/sapi)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -82,6 +87,8 @@ Examples:
   por fetch mexc -summary-path ./fixtures/mexc/202607-summary.json -user-proof ./fixtures/mexc/merkle_proof.json
   por fetch kucoin
   por fetch bingx -summary-path ./fixtures/bingx/20261015-summary.json
+  por fetch poloniex
+  por fetch poloniex -audit-id 20260901
   por fetch okx -skip-wallet
 `)
 }
@@ -413,6 +420,57 @@ func RunBingX(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch bingx snapshot: %v\n\nTip: BingX reserve APIs are app/security gated. Import a support-article fixture:\n  por fetch bingx -summary-path ./fixtures/bingx/20261015-summary.json", err)
+	}
+	logResult(stored)
+}
+
+// RunPoloniex archives Poloniex PoR summary from public proxy/sapi endpoints (or import).
+func RunPoloniex(args []string) {
+	fs := flag.NewFlagSet("poloniex", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import merged summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser-captured versionInfo / info JSON")
+	coinsFile := fs.String("coins-file", "", "browser-captured snapshotBalance JSON")
+	auditID := fs.String("audit-id", "", "snapshot version id (YYYYMMDD); default currentVersion")
+	userProofPath := fs.String("user-proof", "", "import login-gated merkleProof.json (stored only; no OSS verifier)")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+		AuditID:       *auditID,
+	}
+	if *infoFile != "" {
+		merged, err := poloniexapi.BuildSummaryBundle(*infoFile, *coinsFile, *auditID)
+		if err != nil {
+			log.Fatalf("merge browser capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "poloniex-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("poloniex")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch poloniex snapshot: %v\n\nTip: open https://www.poloniex.com/topic/security/proof-of-reserves or import:\n  por fetch poloniex -summary-path ./fixtures/poloniex/20261001-summary.json", err)
 	}
 	logResult(stored)
 }
