@@ -13,6 +13,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchangereg"
 	"github.com/ardmere/ardmere/internal/exchanges/bingx/bingxapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bitget/bitgetapi"
+	"github.com/ardmere/ardmere/internal/exchanges/bitunix/bitunixapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit/bybitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/coinex/coinexapi"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio/gateapi"
@@ -59,6 +60,9 @@ func Main(args []string) int {
 	case "coinex":
 		RunCoinEx(args[1:])
 		return 0
+	case "bitunix":
+		RunBitunix(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -86,6 +90,7 @@ Exchanges:
   poloniex   fetch or import Poloniex PoR summary (public proxy/sapi)
   ourbit     fetch or import Ourbit PoR summary (public stock_info + wallets)
   coinex     fetch or import CoinEx PoR summary (public merkle/reserve + optional user proof)
+  bitunix    fetch or import Bitunix PoR summary (+ optional merkle_tree_bitunix.json)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -103,6 +108,8 @@ Examples:
   por fetch ourbit -summary-path ./fixtures/ourbit/20261101-summary.json
   por fetch coinex
   por fetch coinex -summary-path ./fixtures/coinex/20260914-summary.json
+  por fetch bitunix
+  por fetch bitunix -summary-path ./fixtures/bitunix/20261103-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -584,6 +591,56 @@ func RunCoinEx(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch coinex snapshot: %v\n\nTip: open https://www.coinex.com/en/reserve-proof or import:\n  por fetch coinex -summary-path ./fixtures/coinex/20260914-summary.json", err)
+	}
+	logResult(stored)
+}
+
+// RunOKX archives OKX public PoR artifacts.
+
+func RunBitunix(args []string) {
+	fs := flag.NewFlagSet("bitunix", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import archived summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser-captured queryAuditInfoByTime JSON")
+	auditTime := fs.String("audit-time", "", "auditTime ISO when using -info-file")
+	userProofPath := fs.String("user-proof", "", "import login-gated merkle_tree_bitunix.json")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+	}
+	if *infoFile != "" {
+		merged, err := bitunixapi.BuildSummaryBundle(*auditTime, *infoFile)
+		if err != nil {
+			log.Fatalf("build audit info capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "bitunix-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("bitunix")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch bitunix snapshot: %v\n\nTip: public API is usually reachable; or import:\n  por fetch bitunix -summary-path ./fixtures/bitunix/20261103-summary.json\n  por fetch bitunix -summary-path ./summary.json -user-proof ./merkle_tree_bitunix.json", err)
 	}
 	logResult(stored)
 }

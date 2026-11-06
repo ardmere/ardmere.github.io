@@ -186,3 +186,22 @@ exchanges:
       wallet_proof_file (XLSX). User /res/account/balance/merkle/proof is login-gated.
       XLSX address dump has no ownership signatures — Stage 1 walletZip stays unwired.
       No global ZK / third-party attestation channel.
+  - id: bitunix
+    name: Bitunix
+    porPage: https://www.bitunix.com/proof-of-reserve
+    dataGuide: docs/bitunix-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/BitunixOfficial/proof-of-reserves
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@bitunix-1
+        note: >-
+          Official Java verifier (full SHA-256 self+path TreeNode with height-descending
+          balance aggregation); logic ported in internal/exchanges/bitunix/merkle. Structurally
+          isomorphic to MEXC's Gen-1 Java path validator, but uses full SHA-256 (not truncated)
+          and a different leaf formula (encryptUid+nonce+balances JSON).
+    integrationNotes: >-
+      Public /asset-hub-api/.../queryAuditTimeList + queryAuditInfoByTime expose period ratios
+      and merkleRootHash without login. User merkle_tree_bitunix.json download and
+      queryUserAuditIdList / verifyUserAsset are login-gated. Recent walletAddress fields are
+      empty — Stage 1 walletZip stays unwired. No global ZK / third-party attestation channel.

@@ -1,0 +1,12 @@
+{
+  "fetchedAt": "2026-11-06T13:37:17Z",
+  "source": "https://api.bitunix.com/asset-hub-api/api/public/v1/reserve/certificate/queryAuditInfoByTime",
+  "auditTime": "2026-11-03T05:42:40.000000Z",
+  "info": {
+    "btcReserveRatio": "161",
+    "ethReserveRatio": "105",
+    "usdtReserveRatio": "106",
+    "merkleRootHash": "d21a6f9c4e47d35f3083086eef4344e3d91cc627c866f9d5ff9228c12d9bd16b",
+    "walletAddress": ""
+  }
+}
