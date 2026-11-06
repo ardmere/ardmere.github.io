@@ -33,6 +33,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | `coinex` | VC1 | [reserve-proof](https://www.coinex.com/en/reserve-proof) | [coinexcom/proof-of-reserves](https://github.com/coinexcom/proof-of-reserves) | `user-merkle-proof@coinex-1` |
 | `bitunix` | VC1 | [proof-of-reserve](https://www.bitunix.com/proof-of-reserve) | [BitunixOfficial/proof-of-reserves](https://github.com/BitunixOfficial/proof-of-reserves) | `user-merkle-proof@bitunix-1` |
 | `woox` | VC1 | [proof-of-reserves](https://woox.io/proof-of-reserves) | [woo-x/merkle-tree](https://github.com/woo-x/merkle-tree) | `user-merkle-proof@0` (stub; tree+login hash) |
+| `toobit` | VC1 | [proof-of-reserves](https://www.toobit.com/proof-of-reserves) | [toobit-docs/por-verifier](https://github.com/toobit-docs/por-verifier) | `user-merkle-proof@toobit-1` |
 
 ## Data guides
 
@@ -52,6 +53,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | CoinEx | [coinex-por-data-guide.md](./coinex-por-data-guide.md) |
 | Bitunix | [bitunix-por-data-guide.md](./bitunix-por-data-guide.md) |
 | WOO X | [woox-por-data-guide.md](./woox-por-data-guide.md) |
+| Toobit | [toobit-por-data-guide.md](./toobit-por-data-guide.md) |
 
 ## Maintenance
 

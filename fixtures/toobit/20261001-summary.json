@@ -1,0 +1,29 @@
+{
+  "fetchedAt": "2026-11-06T14:04:54Z",
+  "source": "https://bapi.toobit.com/uapi/v1/por/latest-audit?auditId=Toobit_POR_202610",
+  "officialAuditId": "Toobit_POR_202610",
+  "info": {
+    "auditId": "Toobit_POR_202610",
+    "snapshotTime": 1790812800000,
+    "merkleRoot": "2a406020be83997ddae3359fea169eb97d51f5524c88f3bf05851a6bcf8ec599",
+    "treeHeight": 23,
+    "reserveInfo": [
+      {
+        "tokenId": "BTC",
+        "reserveRatio": 104
+      },
+      {
+        "tokenId": "ETH",
+        "reserveRatio": 107
+      },
+      {
+        "tokenId": "USDC",
+        "reserveRatio": 108
+      },
+      {
+        "tokenId": "USDT",
+        "reserveRatio": 105
+      }
+    ]
+  }
+}

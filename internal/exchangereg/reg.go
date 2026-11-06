@@ -18,6 +18,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/okx"
 	"github.com/ardmere/ardmere/internal/exchanges/ourbit"
 	"github.com/ardmere/ardmere/internal/exchanges/poloniex"
+	"github.com/ardmere/ardmere/internal/exchanges/toobit"
 	"github.com/ardmere/ardmere/internal/exchanges/woox"
 )
 
@@ -36,6 +37,7 @@ var adapters = map[string]exchange.Adapter{
 	coinex.ID:   coinex.New(),
 	bitunix.ID:  bitunix.New(),
 	woox.ID:     woox.New(),
+	toobit.ID:   toobit.New(),
 }
 
 // Get returns the adapter for id (e.g. "binance").

@@ -43,6 +43,7 @@ These files stay in the public git repository for contributors and operators, bu
 | [coinex-por-data-guide.md](./coinex-por-data-guide.md) | CoinEx data integration |
 | [bitunix-por-data-guide.md](./bitunix-por-data-guide.md) | Bitunix data integration |
 | [woox-por-data-guide.md](./woox-por-data-guide.md) | WOO X data integration |
+| [toobit-por-data-guide.md](./toobit-por-data-guide.md) | Toobit data integration |
 | [exchange-upstream-registry.md](./exchange-upstream-registry.md) | Official PoR pages + GitHub repos (human index) |
 | [../config/exchanges/registry.yaml](../config/exchanges/registry.yaml) | Machine-readable upstream registry (`por exchanges`) |
 | [por-monitor-schedule.md](./por-monitor-schedule.md) | Per-exchange PoR scan windows (replaces daily all-P0+P1) |
