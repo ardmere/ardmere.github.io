@@ -1,0 +1,154 @@
+{
+  "fetchedAt": "2026-11-06T13:51:55Z",
+  "source": "https://api.woox.io/asset/porl/v2/snapshot_overview",
+  "sourceUrls": [
+    "https://api.woox.io/asset/porl/v2/audits",
+    "https://api.woox.io/asset/porl/v2/snapshot_overview",
+    "https://api.woox.io/asset/porl/assets",
+    "https://api.woox.io/asset/porl/liabilities",
+    "https://woox.io/proof-of-reserves",
+    "https://oss.woo.network/merkle/1b80d170-770a-4ed3-b36d-b514e1831271",
+    "https://github.com/woo-x/merkle-tree"
+  ],
+  "audit": {
+    "audit_id": "1b80d170-770a-4ed3-b36d-b514e1831271",
+    "audit_date_ms": 1792022400275,
+    "audit_date": "2026-10-15T00:00:00.275Z",
+    "merkle_tree": "https://oss.woo.network/merkle/1b80d170-770a-4ed3-b36d-b514e1831271",
+    "merkle_tree_bytes": 215883584,
+    "merkle_tree_etag": "c4a392fa032fc942af51d28d7f14f76c",
+    "merkle_tree_md5_b64": "xKOS+gMvyUKvUdKNfxT3bA=="
+  },
+  "overview": {
+    "totalAssetsUSDT": 48046392.98871899,
+    "totalLiabilitiesUSDT": 49455631.19857185,
+    "reserveRatioPercent": 97.2,
+    "assetTokenCount": 311,
+    "liabilityTokenCount": 113,
+    "topAssets": [
+      {
+        "token": "USDT",
+        "usdt_notional": 32125759.88934625,
+        "quantity": 32125759.88934625
+      },
+      {
+        "token": "BTC",
+        "usdt_notional": 3581890.2272730186,
+        "quantity": 43.80659185
+      },
+      {
+        "token": "FICT",
+        "usdt_notional": 3000000.0,
+        "quantity": 1000000.0
+      },
+      {
+        "token": "ETH",
+        "usdt_notional": 2148291.2367873997,
+        "quantity": 885.78736431
+      },
+      {
+        "token": "TRX",
+        "usdt_notional": 1752554.2219485708,
+        "quantity": 5267671.241204
+      },
+      {
+        "token": "WOO",
+        "usdt_notional": 1647227.066406569,
+        "quantity": 140548384.50567994
+      },
+      {
+        "token": "NEAR",
+        "usdt_notional": 979434.1788565374,
+        "quantity": 199680.77040908
+      },
+      {
+        "token": "SOL",
+        "usdt_notional": 348964.5522913121,
+        "quantity": 3342.89254039
+      },
+      {
+        "token": "BNB",
+        "usdt_notional": 248912.004746636,
+        "quantity": 340.55548604
+      },
+      {
+        "token": "HYPE",
+        "usdt_notional": 204834.2361796812,
+        "quantity": 2524.82787915
+      }
+    ],
+    "topLiabilities": [
+      {
+        "token": "USDT",
+        "usdt_notional": 26951889.94635417,
+        "quantity": 26951889.94635417
+      },
+      {
+        "token": "BTC",
+        "usdt_notional": 5034573.261457675,
+        "quantity": 61.57293552
+      },
+      {
+        "token": "TRX",
+        "usdt_notional": 3687643.050760126,
+        "quantity": 11083988.73086903
+      },
+      {
+        "token": "FICT",
+        "usdt_notional": 2970479.0706,
+        "quantity": 990159.6902
+      },
+      {
+        "token": "ETH",
+        "usdt_notional": 2230349.2500264947,
+        "quantity": 919.62167412
+      },
+      {
+        "token": "WOO",
+        "usdt_notional": 2143171.0246079536,
+        "quantity": 182864421.89487657
+      },
+      {
+        "token": "NEAR",
+        "usdt_notional": 1095952.3402530586,
+        "quantity": 223435.74724833
+      },
+      {
+        "token": "BALY",
+        "usdt_notional": 1052195.945673482,
+        "quantity": 9999961.4681
+      },
+      {
+        "token": "USDC",
+        "usdt_notional": 605394.3840010056,
+        "quantity": 604850.01898392
+      },
+      {
+        "token": "SOL",
+        "usdt_notional": 555185.4377245462,
+        "quantity": 5318.37760058
+      }
+    ]
+  },
+  "live": {
+    "excludeWooToken": false,
+    "assetsUpdatedTime": 1793928568255,
+    "liabilitiesUpdatedTime": 1793971800000,
+    "totalAssetsUSDT": 60102884.99746221,
+    "totalLiabilitiesUSDT": 50324295.26594254,
+    "reserveRatioPercent": 119.43,
+    "venues": [
+      {
+        "name": "WOO X cold storage",
+        "type": "Custodian",
+        "usdt_notional": 58461398.28388375
+      },
+      {
+        "name": "WOO Stake",
+        "type": "OnchainStaking",
+        "usdt_notional": 1641486.7135784617
+      }
+    ]
+  },
+  "notes": "Reserve ratio = sum(overview.asset.usdt_notional)/sum(overview.liabilities.usdt_notional)*100 (same formula as woox.io PoR UI). Full Merkle tree is permissionlessly downloadable (~200MB protobuf); user Merkle hash is login-gated. Official validator: woo-x/merkle-tree. Live dashboard fields are ~15-min rolling and not the audit merkle period."
+}
