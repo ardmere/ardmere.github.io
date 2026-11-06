@@ -259,3 +259,19 @@ exchanges:
       reserve ratios + truncated (~16 hex) merkle root. Cadence is monthly ~day-15 (UTC createDate) since
       2025-04-15. No wallet amounts/addresses; leaf validate + history page need login. Stage 0 hard cap.
       No official OSS Merkle verifier found.
+  - id: kraken
+    name: Kraken
+    porPage: https://www.kraken.com/proof-of-reserves
+    dataGuide: docs/kraken-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://widget.pro.ledgerlens.io/api/kraken-platform-spot-futures
+        role: accountant_merkle_summary
+        ardmereUse: summarySnapshot
+        note: >-
+          The Network Firm LedgerLens widget API — combined Merkle root, dataset timestamps,
+          covered liabilities; user inclusion via personalized Merkle Leaf ID.
+    integrationNotes: >-
+      Quarterly accountant Merkle (attestation-model). Permissionless: CMS reserve ratios on
+      kraken.com/proof-of-reserves plus LedgerLens combinedRoot. User leaf/path login-gated;
+      no permissionless wallet ZIP / amounts; CPA report not machine-parsed → Stage 0, no Stage 1.

@@ -36,6 +36,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | `toobit` | VC1 | [proof-of-reserves](https://www.toobit.com/proof-of-reserves) | [toobit-docs/por-verifier](https://github.com/toobit-docs/por-verifier) | `user-merkle-proof@toobit-1` |
 | `phemex` | VC1 | [proof-of-reserves](https://phemex.com/proof-of-reserves) | — (no official OSS verifier found) | `user-merkle-proof@0` (stub) |
 | `btcc` | VC1 | [proof-of-reserves](https://www.btcc.com/en-US/proof-of-reserves) | — (no official OSS verifier found) | `user-merkle-proof@0` (stub) |
+| `kraken` | VC1 | [proof-of-reserves](https://www.kraken.com/proof-of-reserves) | LedgerLens widget API (TNF accountant; no exchange OSS verifier) | `user-merkle-proof@0` (stub) · `third-party-attestation@0` (stub) |
 
 ## Data guides
 
@@ -58,6 +59,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | Toobit | [toobit-por-data-guide.md](./toobit-por-data-guide.md) |
 | Phemex | [phemex-por-data-guide.md](./phemex-por-data-guide.md) |
 | BTCC | [btcc-por-data-guide.md](./btcc-por-data-guide.md) |
+| Kraken | [kraken-por-data-guide.md](./kraken-por-data-guide.md) |
 
 ## Maintenance
 

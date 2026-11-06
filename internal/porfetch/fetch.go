@@ -79,6 +79,9 @@ func Main(args []string) int {
 	case "btcc":
 		RunBTCC(args[1:])
 		return 0
+	case "kraken":
+		RunKraken(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -111,6 +114,7 @@ Exchanges:
   toobit     fetch or import Toobit PoR summary (+ optional SMT proof JSON)
   phemex     fetch or import Phemex PoR summary (porVersions balances)
   btcc       fetch or import BTCC PoR summary (reserveInfo ratios + truncated root)
+  kraken     fetch or import Kraken PoR summary (LedgerLens root + CMS ratios)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -138,6 +142,9 @@ Examples:
   por fetch phemex -summary-path ./fixtures/phemex/20261101-summary.json
   por fetch btcc
   por fetch btcc -summary-path ./fixtures/btcc/20261015-summary.json
+  por fetch kraken
+  por fetch kraken -audit-id 2026-06-30
+  por fetch kraken -summary-path ./fixtures/kraken/20260630-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -851,6 +858,39 @@ func RunBTCC(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch btcc snapshot: %v\n\nTip: por fetch btcc\n  or import:\n  por fetch btcc -summary-path ./fixtures/btcc/20261015-summary.json", err)
+	}
+	logResult(stored)
+}
+
+// RunOKX archives OKX public PoR artifacts.
+
+func RunKraken(args []string) {
+	fs := flag.NewFlagSet("kraken", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import archived summary bundle JSON")
+	auditID := fs.String("audit-id", "", "select period (e.g. 2026-06-30, 20260630, or cms id 30june)")
+	userProofPath := fs.String("user-proof", "", "import login-gated user Merkle leaf/proof JSON if captured")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+		AuditID:       *auditID,
+	}
+	if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("kraken")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch kraken snapshot: %v\n\nTip: por fetch kraken\n  or import:\n  por fetch kraken -summary-path ./fixtures/kraken/20260630-summary.json", err)
 	}
 	logResult(stored)
 }

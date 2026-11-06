@@ -14,6 +14,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/coinex"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio"
 	"github.com/ardmere/ardmere/internal/exchanges/htx"
+	"github.com/ardmere/ardmere/internal/exchanges/kraken"
 	"github.com/ardmere/ardmere/internal/exchanges/kucoin"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc"
 	"github.com/ardmere/ardmere/internal/exchanges/okx"
@@ -42,6 +43,7 @@ var adapters = map[string]exchange.Adapter{
 	toobit.ID:   toobit.New(),
 	phemex.ID:   phemex.New(),
 	btcc.ID:     btcc.New(),
+	kraken.ID:   kraken.New(),
 }
 
 // Get returns the adapter for id (e.g. "binance").

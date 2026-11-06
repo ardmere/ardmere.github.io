@@ -135,6 +135,18 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkle proof JSON not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
 		}
 
+	case "kraken":
+		e.Headline = "Kraken snapshot " + art.SnapshotID + " is Stage 0 attestation-model: quarterly accountant Merkle (LedgerLens / The Network Firm) plus CMS reserve ratios — no permissionless wallet ZIP or machine-verified attestation PDF."
+		e.Rationale = "solvency-claim PASS means self-reported CMS reserve ratios ≥ 100% (capped stables treated as published 105%+ floor). LedgerLens exposes a full combined Merkle root and names The Network Firm LLP, but user leaf/path remains login-gated, wallet ownership evidence stays inside the accountant workflow, and third-party-attestation is not machine-parsed — Stage 1 stays out of reach by disclosure design."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_public_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "Kraken publishes ratios + accountant Merkle root only — no permissionless wallet addresses or reserve/liability amounts.", RiskFlag: "UNVERIFIABLE"},
+			blockedReason{RuleID: "floor_attestation_not_machine_verified", Evidence: "third_party_attestation", MaxStage: "Stage 0", Reason: "Accountant is named (The Network Firm LLP / LedgerLens) but the CPA attestation report is not ingested as a machine-verifiable public artifact.", RiskFlag: "UNVERIFIABLE"},
+			blockedReason{RuleID: "floor_quarterly_cadence", Evidence: "publication_frequency", MaxStage: "Stage 0", Reason: "Quarterly accountant reviews are too infrequent for Stage 2 frequency expectations and are a weak monitor-primary path.", RiskFlag: "HIGH_FREQUENCY_GAP"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User Merkle Leaf ID / path self-check requires Kraken Pro login (or personalized accountant tool input); no public user proof in the evaluation package.", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
+
 	case "btcc":
 		e.Headline = "BTCC snapshot " + art.SnapshotID + " is Stage 0 hard-capped: permissionless reserveInfo exposes per-coin ratios and a truncated (~16 hex) merkle root only — no wallet amounts/addresses, no OSS verifier."
 		e.Rationale = "solvency-claim PASS means self-reported reserve ratios ≥ 100% from https://www.btcc.com/social-api/contract/reserve/reserveInfo only. Cadence is monthly ~day-15. Truncated root cannot bind a full Merkle path offline; leaf validate and history APIs need login; Stage 1 walletZip/ownership/ZK stay unwired by design of the public disclosure."

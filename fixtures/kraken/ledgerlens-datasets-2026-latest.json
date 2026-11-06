@@ -1,0 +1,108 @@
+{
+  "slug": "kraken-platform-spot-futures",
+  "updatedAt": "2026-08-25T01:22:04.167Z",
+  "organization": {
+    "name": "The Network Firm LLP"
+  },
+  "datasets": [
+    {
+      "datasetId": "n2M2zqrYFMWBvlDopvQ8J",
+      "datasetDisplayTimestamp": "06/30/2026   11:59 PM UTC",
+      "datasetTimestamp": "2026-07-01T03:59:59.000Z",
+      "accountant": "The Network Firm LLP",
+      "combinedRoot": "56272172594d525355c22220eda22e1f1f842c37455d49f0588b91ed97362ad1",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "AarhAotySoLZezgwCW2Vy",
+      "datasetDisplayTimestamp": "03/31/2026   11:59 PM UTC",
+      "datasetTimestamp": "2026-04-01T03:59:59.000Z",
+      "accountant": "The Network Firm LLP",
+      "combinedRoot": "371f0737c523d52de3e221c02aa45748ca7fe8e4db42de298abaca581979bca2",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "sSM6zir2cR5O45EW3UjZr",
+      "datasetDisplayTimestamp": "12/31/2025   11:59 PM UTC",
+      "datasetTimestamp": "2026-01-01T04:59:59.000Z",
+      "accountant": "The Network Firm LLP",
+      "combinedRoot": "e25715f3da6185d2cd2b14b3004637eb7f6c8807d0868e0a421a70d33e485d41",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "dn6aOzLMn_pbvPXWeueh_",
+      "datasetDisplayTimestamp": "09/30/2025   11:59 PM UTC",
+      "datasetTimestamp": "2025-10-01T02:59:59.000Z",
+      "accountant": "The Network Firm LLP",
+      "combinedRoot": "73bcda391a2e1b4b31667fff6746adb740f85f07e0c41364747a8b350e234ef8",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "3-CdzEyRGlNePP-QyHvUm",
+      "datasetDisplayTimestamp": "06/30/2025   11:59 PM UTC",
+      "datasetTimestamp": "2025-07-01T03:59:59.000Z",
+      "accountant": "The Network Firm LLP",
+      "combinedRoot": "e9344d510a5bb4753bb5b49949c959c722a27588d809858a1c0ac8315ec5d8b9",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "QKCvZh5LVX3vW7r1aTG3S",
+      "datasetDisplayTimestamp": "03/31/2025   11:59 PM UTC",
+      "datasetTimestamp": "2025-04-01T03:59:59.000Z",
+      "accountant": "The Network Firm LLP",
+      "combinedRoot": "907f2b97262fe9cf096176ff6610a063918db2475c87c7692954e09c3e702109",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "OaZ1_ZQ1UeeMbgEPo6tD4",
+      "datasetDisplayTimestamp": "09/30/2024   11:59 PM UTC",
+      "datasetTimestamp": "2024-10-01T03:59:59.000Z",
+      "accountant": "The Network Firm LLP",
+      "combinedRoot": "9af57ed350a353a7d501596d9ae33463e4347313f96ad922c1535b49a94d3b1c",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "fqCuPhErJpv177T_9m54a",
+      "datasetDisplayTimestamp": "11/30/2023   11:59 PM UTC",
+      "datasetTimestamp": "2023-11-30T23:59:59.476Z",
+      "accountant": "The Network Firm LLP",
+      "combinedRoot": "7307e68dcfbf37ea325d4355300287335ab3b088f7584aec9a7db95eda025faa",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "7Z73_X09GEAqEzPTTFF2b",
+      "datasetDisplayTimestamp": "05/31/2023 11:59 PM UTC",
+      "datasetTimestamp": "2023-05-31T23:59:59.989Z",
+      "accountant": "The Network Firm LLP",
+      "combinedRoot": "ac6a92ec3bbc2101ff21b59e6f7d0b27aca9f1db49fb30563646060cc5da61fe",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "A18ufZGWjOOg_OQT4VWGi",
+      "datasetDisplayTimestamp": "06/30/2022 11:59 PM UTC",
+      "datasetTimestamp": "2022-06-30T23:59:59.380Z",
+      "accountant": "Armanino LLP",
+      "combinedRoot": "c15eddb9e26a27c64a792e512a96e986a5daf83ce46000bfcb0a73a2e4510da9",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    },
+    {
+      "datasetId": "8vMZKbZ37awUj_iC1jns4",
+      "datasetDisplayTimestamp": "12/31/2021 11:59 PM UTC",
+      "datasetTimestamp": "2021-12-31T23:59:59.380Z",
+      "accountant": "Armanino LLP",
+      "combinedRoot": "12f021d4e2b20da9d4e1206b825794e9c410ff71cddb786c7191f08eeead017c",
+      "totalLeaves": 16777216,
+      "hasReport": true
+    }
+  ]
+}
