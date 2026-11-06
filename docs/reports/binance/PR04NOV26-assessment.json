@@ -1,11 +1,11 @@
 {
   "artifacts": {
-    "artifactBundleRoot": "0xe2d0a979e7062bc7ee2ffb19b50733d57a2720c4a25f3ea85ee84c1f0c568506",
+    "artifactBundleRoot": "0xbb073aab9606d14312320245b619c5186fb54a282a2cac2adff9d5408f38213e",
     "present": [
       {
         "availability": "public",
         "kind": "bapiSnapshot",
-        "sha256": "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74",
+        "sha256": "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d",
         "url": "https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot"
       },
       {
@@ -15,7 +15,7 @@
         "url": "https://public.bnbstatic.com/static/proof-of-reserve/wallet_address_20261103.zip"
       }
     ],
-    "verificationBundleRoot": "0x3154b1fce7d20d13be0f284c971301e107a953c8cd2f92fff0d29a86ed4c3d91"
+    "verificationBundleRoot": "0xf476bcf34eb92798da9b7c5292d87ce9b0670922562db127774a58ea6559b780"
   },
   "checklist": [
     {
@@ -94,7 +94,7 @@
   "evidenceLevel": "E2",
   "exchange": "binance",
   "gen": "Gen 2",
-  "generatedAt": "2026-11-05T02:31:55Z",
+  "generatedAt": "2026-11-06T14:27:26Z",
   "methodologyVersion": "por-transparency-framework@2026-07-01",
   "porStage": "Stage 0",
   "recommendations": [
@@ -150,7 +150,7 @@
   "schema": "ardmere/exchange-assessment@1",
   "snapshot": {
     "btcBlockHeight": 974457,
-    "exchangeMerkleRoot": "In Progress",
+    "exchangeMerkleRoot": "12e5018c365c05cbb906372a2b7ae94cc4508cbc8d45031bf932aab46aa98bcd",
     "id": "PR04NOV26",
     "periodSeq": 49,
     "snapshotTime": "2026-11-04T00:00:00Z"
@@ -187,7 +187,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74",
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d",
         "d2e048c5427b2c77b70a7e4a2a8bdc3899204c8f2b9426190ede2098a12c90b2"
       ],
       "reason": "",
@@ -198,7 +198,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74",
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d",
         "d2e048c5427b2c77b70a7e4a2a8bdc3899204c8f2b9426190ede2098a12c90b2"
       ],
       "reason": "",
@@ -209,7 +209,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74"
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -219,7 +219,7 @@
     {
       "coverage": 1,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74"
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d"
       ],
       "reason": "",
       "verdict": "PASS",
@@ -229,7 +229,7 @@
     {
       "coverage": 0.055826936496859735,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74",
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d",
         "d2e048c5427b2c77b70a7e4a2a8bdc3899204c8f2b9426190ede2098a12c90b2"
       ],
       "reason": "",
@@ -238,9 +238,9 @@
       "version": "2.1"
     },
     {
-      "coverage": 0.6099092812281927,
+      "coverage": 0.6085136078157711,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74",
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d",
         "d2e048c5427b2c77b70a7e4a2a8bdc3899204c8f2b9426190ede2098a12c90b2"
       ],
       "reason": "",
@@ -249,9 +249,9 @@
       "version": "2.0"
     },
     {
-      "coverage": 0.20795533845080252,
+      "coverage": 0.2016748080949058,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74",
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d",
         "d2e048c5427b2c77b70a7e4a2a8bdc3899204c8f2b9426190ede2098a12c90b2"
       ],
       "reason": "",
@@ -262,7 +262,7 @@
     {
       "coverage": 0.9904241855008608,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74",
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d",
         "d2e048c5427b2c77b70a7e4a2a8bdc3899204c8f2b9426190ede2098a12c90b2"
       ],
       "reason": "",
@@ -273,7 +273,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74"
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d"
       ],
       "reason": "No public download channel for wallet ownership signatures / proofs",
       "verdict": "UNVERIFIABLE",
@@ -283,7 +283,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74"
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d"
       ],
       "reason": "Global proof.csv / verifying key not publicly distributed",
       "verdict": "UNVERIFIABLE",
@@ -293,7 +293,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74"
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d"
       ],
       "reason": "No public third-party attestation report available",
       "verdict": "UNVERIFIABLE",
@@ -303,7 +303,7 @@
     {
       "coverage": 0,
       "inputArtifacts": [
-        "9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74"
+        "15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d"
       ],
       "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
       "verdict": "UNVERIFIABLE",
