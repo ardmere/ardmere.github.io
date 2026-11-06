@@ -1,0 +1,292 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x66a5f7df5ba3af5195be6e241a5b7e73ed23b0f474e375d6d9a7507eac1d6383",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f",
+        "url": "https://www.ourbit.com/api/assetbussiness/merkle/stock_info"
+      }
+    ],
+    "verificationBundleRoot": "0x0feec92d073d9ea393c35c823d0de26b515487321e66df3796f86068a353e747"
+  },
+  "checklist": [
+    {
+      "id": "S0-1",
+      "notes": "Snapshot 20261101 is in the public evaluation set.",
+      "question": "Has public PoR been published during the last 12 months?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-2",
+      "notes": "2026-10-31T16:00:00Z",
+      "question": "Is snapshot time explicit?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-3",
+      "notes": "Summary present; wallet_address_list absent.",
+      "question": "Is there reserve summary or wallet_address_list?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S1-1",
+      "notes": "No public wallet_address_list artifact.",
+      "question": "Is wallet_address_list public and on-chain verifiable?",
+      "stage": "Stage 1",
+      "status": "fail"
+    },
+    {
+      "id": "S1-2",
+      "notes": "address-ownership verifier UNVERIFIABLE.",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-3",
+      "notes": "global-zk-proof verifier UNVERIFIABLE.",
+      "question": "Is global_proof public and independently reproducible?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-4",
+      "notes": "third-party-attestation verifier UNVERIFIABLE.",
+      "question": "Is independent third-party review available with stated scope?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-5",
+      "notes": "No global ZK proof in the assessed public artifact set.",
+      "question": "If trusted setup is required, is transcript public; otherwise is the proof system transparent setup?",
+      "stage": "Stage 1",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-1",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is root/proof/vk canonically anchored outside exchange servers?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-2",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    }
+  ],
+  "confidence": "low",
+  "effectivePoR": false,
+  "evidenceLevel": "E1",
+  "exchange": "ourbit",
+  "gen": "Gen 1",
+  "generatedAt": "2026-11-06T13:12:09Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "recommendations": [
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "UNVERIFIABLE"
+      ],
+      "text": "Publish missing public artifacts required for independent reproduction."
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Public wallet_detail is live/unsigned — not a snapshot-bound wallet_address_list."
+    },
+    {
+      "id": "NO_PUBLIC_MERKLE_ROOT",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "stock_info has no public period merkle root to bind user proofs."
+    },
+    {
+      "id": "TRUNCATED_HASH",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Ourbit Merkle hashes truncate SHA-256 to 32 hex chars (128-bit)."
+    },
+    {
+      "id": "LOGIN_GATED_USER_PROOF",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "User merkel_tree_ourbit.json not present in the public evaluation package (login-gated)."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "",
+    "id": "20261101",
+    "periodSeq": 0,
+    "snapshotTime": "2026-10-31T16:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_snapshot_wallet_address_list",
+      "evidence": "wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "Public wallet_detail is live/unsigned — not a snapshot-bound wallet_address_list.",
+      "riskFlag": "UNVERIFIABLE"
+    },
+    {
+      "ruleId": "floor_no_public_merkle_root",
+      "evidence": "merkle_root",
+      "maxStage": "Stage 0",
+      "reason": "stock_info has no public period merkle root to bind user proofs.",
+      "riskFlag": "NO_PUBLIC_MERKLE_ROOT"
+    },
+    {
+      "ruleId": "floor_truncated_hash",
+      "evidence": "sha256_truncation_128",
+      "maxStage": "Stage 0",
+      "reason": "Ourbit Merkle hashes truncate SHA-256 to 32 hex chars (128-bit).",
+      "riskFlag": "TRUNCATED_HASH"
+    },
+    {
+      "ruleId": "floor_login_gated_user_proof",
+      "evidence": "userMerkleProof",
+      "maxStage": "Stage 0",
+      "reason": "User merkel_tree_ourbit.json not present in the public evaluation package (login-gated).",
+      "riskFlag": "LOGIN_GATED_USER_PROOF"
+    }
+  ],
+  "summary": {
+    "headline": "Ourbit snapshot 20261101 is Stage 0: public stock_info ratios + live multi-chain wallet table; no snapshot-bound walletZip/ownership; user Merkle login-gated; hash truncated to 128 bits.",
+    "rationale": "solvency-claim PASS means self-reported stock_info reserve ratios ≥ 100% only. wallet_detail is archived for transparency but updates live and lacks ownership signatures, so it is not Stage 1 wallet_address_list.",
+    "scope": "ourbit snapshot 20261101"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": null,
+      "reason": "merkel_tree_ourbit.json not present; download from Ourbit PoR page while logged in and import via -user-proof",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "user-merkle-proof",
+      "version": "ourbit-1"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "Wallet address bundle not available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "internal-consistency",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "BTC block time anchor verifier not implemented",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "Wallet address bundle not available for on-chain audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "Wallet address bundle not available for token audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "Global proof.csv / verifying key not publicly distributed",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "global-zk-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "c2236f19005f50b1874673a1bffc4dc47c685349b753bc57dc56f118867b066f"
+      ],
+      "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

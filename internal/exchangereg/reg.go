@@ -14,6 +14,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/kucoin"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc"
 	"github.com/ardmere/ardmere/internal/exchanges/okx"
+	"github.com/ardmere/ardmere/internal/exchanges/ourbit"
 	"github.com/ardmere/ardmere/internal/exchanges/poloniex"
 )
 
@@ -28,6 +29,7 @@ var adapters = map[string]exchange.Adapter{
 	mexc.ID:     mexc.New(),
 	okx.ID:      okx.New(),
 	poloniex.ID: poloniex.New(),
+	ourbit.ID:   ourbit.New(),
 }
 
 // Get returns the adapter for id (e.g. "binance").

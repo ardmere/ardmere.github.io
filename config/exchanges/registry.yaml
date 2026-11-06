@@ -152,3 +152,19 @@ exchanges:
       Public proxy/sapi endpoints expose versionInfo + snapshotBalance (ratios + full merkleHash) without login.
       User merkleProof.json is login-gated; MerkleVerify is announced as a downloadable binary, not an OSS
       source repo in the poloniex org — user-merkle stays stubbed. No public wallet_address_list or global ZK.
+  - id: ourbit
+    name: Ourbit
+    porPage: https://www.ourbit.com/assets/reserve-proof
+    dataGuide: docs/ourbit-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/OurbitOfficial/merkle_validate
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@ourbit-1
+        note: >-
+          Java reference verifier; SHA-256 truncated to 32 hex chars (128 bits);
+          logic ported in internal/exchanges/ourbit/merkle.
+    integrationNotes: >-
+      Public stock_info + wallet_detail APIs expose ratios and a live multi-chain wallet table without login.
+      User merkel_tree_ourbit.json and merkle list/download are login-gated. stock_info has no period merkle root.
+      Live wallets lack ownership signatures and are not snapshot-bound — Stage 1 walletZip stays unwired.

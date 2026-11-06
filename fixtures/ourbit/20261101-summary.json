@@ -1,0 +1,328 @@
+{
+  "fetchedAt": "2026-11-06T13:05:00Z",
+  "source": "assetbussiness-merkle-public",
+  "info": {
+    "data": {
+      "snapshotDate": 1793462400000,
+      "details": [
+        {
+          "currency": "BTC",
+          "icon": "F20240319110221687EdfVfQWCY6eTIi",
+          "walletTotalAsset": "762.35165266",
+          "userSpotAsset": "688.46263811",
+          "stockRate": "1.1073"
+        },
+        {
+          "currency": "ETH",
+          "icon": "F20240327111623448jGgCWCX1QXFZXH",
+          "walletTotalAsset": "5979.86782117",
+          "userSpotAsset": "5531.89277292",
+          "stockRate": "1.0809"
+        },
+        {
+          "currency": "USDT",
+          "icon": "F20260624124856915clbAx7Ftmu5N1s",
+          "walletTotalAsset": "21328742.85838077",
+          "userSpotAsset": "19544030.94923178",
+          "stockRate": "1.0913"
+        }
+      ]
+    },
+    "code": 0,
+    "msg": "success",
+    "timestamp": 1793970311960
+  },
+  "coinList": [
+    {
+      "currency": "BTC",
+      "icon": "F20240319110221687EdfVfQWCY6eTIi",
+      "walletTotalAsset": "762.35165266",
+      "userSpotAsset": "688.46263811",
+      "stockRate": "1.1073"
+    },
+    {
+      "currency": "ETH",
+      "icon": "F20240327111623448jGgCWCX1QXFZXH",
+      "walletTotalAsset": "5979.86782117",
+      "userSpotAsset": "5531.89277292",
+      "stockRate": "1.0809"
+    },
+    {
+      "currency": "USDT",
+      "icon": "F20260624124856915clbAx7Ftmu5N1s",
+      "walletTotalAsset": "21328742.85838077",
+      "userSpotAsset": "19544030.94923178",
+      "stockRate": "1.0913"
+    }
+  ],
+  "wallets": {
+    "result": [
+      {
+        "currency": "BTC",
+        "chain": "Bitcoin(BTC)",
+        "address": "bc1q2cvpg2c74puqke4py0ufr0aauj4m5vdeaqpjxv",
+        "amount": "625.69169403",
+        "height": 974049,
+        "balanceType": 2
+      },
+      {
+        "currency": "BTC",
+        "chain": "BNB Smart Chain(BEP20)",
+        "address": "0xdbf7122c0b7af893580df087eabac0b3be3e9483",
+        "amount": "8.87603855",
+        "height": 130957239,
+        "balanceType": 1
+      },
+      {
+        "currency": "BTC",
+        "chain": "BNB Smart Chain(BEP20)",
+        "address": "0x6c6EC4beeAa53171a0ce0691D5c9A5FaAF509a8A",
+        "amount": "100.48895059",
+        "height": 130957239,
+        "balanceType": 2
+      },
+      {
+        "currency": "ETH",
+        "chain": "BNB Smart Chain(BEP20)",
+        "address": "0xdbf7122c0b7af893580df087eabac0b3be3e9483",
+        "amount": "181.90777396",
+        "height": 130957239,
+        "balanceType": 1
+      },
+      {
+        "currency": "ETH",
+        "chain": "BNB Smart Chain(BEP20)",
+        "address": "0x6c6EC4beeAa53171a0ce0691D5c9A5FaAF509a8A",
+        "amount": "1756.21623022",
+        "height": 130957239,
+        "balanceType": 2
+      },
+      {
+        "currency": "ETH",
+        "chain": "Optimism(OP)",
+        "address": "0x944d6b4c2bf808f9324ca0675f1d7e0e92a35436",
+        "amount": "83.16045638",
+        "height": 158948011,
+        "balanceType": 1
+      },
+      {
+        "currency": "ETH",
+        "chain": "BASE",
+        "address": "0x4d59bec2b09052c60c6149c623fb3a461fb1fe74",
+        "amount": "348.34771889",
+        "height": 53352726,
+        "balanceType": 1
+      },
+      {
+        "currency": "ETH",
+        "chain": "LINEA",
+        "address": "0xf00fc926a2b27aafb957e296df3aaa42f2ae59f1",
+        "amount": "5.40414038",
+        "height": 32486281,
+        "balanceType": 1
+      },
+      {
+        "currency": "ETH",
+        "chain": "Ethereum(ERC20)",
+        "address": "0xf81b45b1663b7ea8716c74796d99bbe4ea26f488",
+        "amount": "270.3437907",
+        "height": 26316486,
+        "balanceType": 1
+      },
+      {
+        "currency": "ETH",
+        "chain": "Ethereum(ERC20)",
+        "address": "0x18D080B89570e4B996EB17fA1F0206F0CE35d604",
+        "amount": "3154.72784785",
+        "height": 26316486,
+        "balanceType": 2
+      },
+      {
+        "currency": "ETH",
+        "chain": "Arbitrum One(ARB)",
+        "address": "0x040432c11ee833bdcaac2495329b65bee7cca6d9",
+        "amount": "107.42066966",
+        "height": 520140638,
+        "balanceType": 1
+      },
+      {
+        "currency": "ETH",
+        "chain": "ROBINHOOD",
+        "address": "0xd81aeadf4173c389b53e7624db6122ffa71ffc13",
+        "amount": "72.33919309",
+        "height": 102987700,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "Solana(SOL)",
+        "address": "7UhjbynicBP8rqcobwsAJDfRMjwgHSgdxcYNJmLwxfms",
+        "amount": "881324.10485",
+        "height": 463899130,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "Solana(SOL)",
+        "address": "3pjwKq9yuzpVYfD4h5jMZLLfV8oSd8YiwpoAaB5oZS3H",
+        "amount": "2268503.231879",
+        "height": 463899130,
+        "balanceType": 2
+      },
+      {
+        "currency": "USDT",
+        "chain": "Optimism(OP)",
+        "address": "0x944d6b4c2bf808f9324ca0675f1d7e0e92a35436",
+        "amount": "84726.774876",
+        "height": 158948011,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "BNB Smart Chain(BEP20)",
+        "address": "0xdbf7122c0b7af893580df087eabac0b3be3e9483",
+        "amount": "623079.61110622",
+        "height": 130957239,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "BNB Smart Chain(BEP20)",
+        "address": "0x6c6EC4beeAa53171a0ce0691D5c9A5FaAF509a8A",
+        "amount": "3352823.49389612",
+        "height": 130957239,
+        "balanceType": 2
+      },
+      {
+        "currency": "USDT",
+        "chain": "Avalanche C Chain(AVAX CCHAIN)",
+        "address": "0x8fc27c899fb2c1044608516450e385378195639d",
+        "amount": "561365.716166",
+        "height": 99086565,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "Plasma",
+        "address": "0x8665daa079926d610eb51b8f6b92c1e9f729a2ab",
+        "amount": "527803.13226",
+        "height": 36552339,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "Arbitrum One(ARB)",
+        "address": "0x040432c11ee833bdcaac2495329b65bee7cca6d9",
+        "amount": "710500.94514",
+        "height": 520140638,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "Ethereum(ERC20)",
+        "address": "0xf81b45b1663b7ea8716c74796d99bbe4ea26f488",
+        "amount": "1272905.12277",
+        "height": 26316486,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "Ethereum(ERC20)",
+        "address": "0x18D080B89570e4B996EB17fA1F0206F0CE35d604",
+        "amount": "206919.638377",
+        "height": 26316486,
+        "balanceType": 2
+      },
+      {
+        "currency": "USDT",
+        "chain": "OPBNB",
+        "address": "0x48dce90c121187cc3720acd8e17dffce74953d44",
+        "amount": "173461.57367742",
+        "height": 201511473,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "Tron(TRC20)",
+        "address": "TApNqy5BNx11TiNa7oibbBUV63BY5a2sNE",
+        "amount": "899378.522727",
+        "height": 87607102,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "Tron(TRC20)",
+        "address": "TJP6zoGwWwUmANvMdrtqYq9iWA8qMAAY4q",
+        "amount": "7622074.247871",
+        "height": 87607102,
+        "balanceType": 2
+      },
+      {
+        "currency": "USDT",
+        "chain": "Polygon(MATIC)",
+        "address": "0x3926accf5c2212e35b2b35adb6d993fa86295931",
+        "amount": "778041.072936",
+        "height": 96526229,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "Toncoin(TON)",
+        "address": "UQCBdDjlsObrETq3TXP8lffsGSR9vm7iekLD0BZNYUw8oU3R",
+        "amount": "719632.252204",
+        "height": 102602405,
+        "balanceType": 1
+      },
+      {
+        "currency": "USDT",
+        "chain": "APTOS(APT)",
+        "address": "0x319e7566bddfcdc57453f389cb21cd71ad7446209b4dffbd003a6836b8d859c4",
+        "amount": "646203.417645",
+        "height": 7849821083,
+        "balanceType": 1
+      }
+    ],
+    "total": 28
+  },
+  "currencies": [
+    {
+      "currency": "BTC",
+      "icon": "F20240319110221687EdfVfQWCY6eTIi",
+      "chains": [
+        "Bitcoin(BTC)",
+        "BNB Smart Chain(BEP20)"
+      ]
+    },
+    {
+      "currency": "ETH",
+      "icon": "F20240327111623448jGgCWCX1QXFZXH",
+      "chains": [
+        "BNB Smart Chain(BEP20)",
+        "Optimism(OP)",
+        "BASE",
+        "LINEA",
+        "Ethereum(ERC20)",
+        "Arbitrum One(ARB)",
+        "ROBINHOOD"
+      ]
+    },
+    {
+      "currency": "USDT",
+      "icon": "F20260624124856915clbAx7Ftmu5N1s",
+      "chains": [
+        "Solana(SOL)",
+        "Optimism(OP)",
+        "BNB Smart Chain(BEP20)",
+        "Avalanche C Chain(AVAX CCHAIN)",
+        "Plasma",
+        "Arbitrum One(ARB)",
+        "Ethereum(ERC20)",
+        "OPBNB",
+        "Tron(TRC20)",
+        "Polygon(MATIC)",
+        "Toncoin(TON)",
+        "APTOS(APT)"
+      ]
+    }
+  ]
+}

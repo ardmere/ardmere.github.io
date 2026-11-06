@@ -2,7 +2,7 @@
 
 > Methodology: [PoR Stage Framework](../por-transparency-framework.md)  
 > Policy standard: [Effective PoR Standard](../effective-por-standard.md)  
-> **All 47 public reports:** [Snapshot history](./snapshot-history.md)
+> **All 48 public reports:** [Snapshot history](./snapshot-history.md)
 
 ## Summary (latest snapshot per exchange)
 
@@ -18,6 +18,7 @@
 | KuCoin | `20261031` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-31T15:59:59Z` | — | [report](./kucoin/20261031-transparency-report.md) |
 | BingX | `20261015` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-15T00:00:00Z` | [BingX-API/BingX-proof-of-reserves](https://github.com/BingX-API/BingX-proof-of-reserves) | [report](./bingx/20261015-transparency-report.md) |
 | Poloniex | `20261001` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-01T00:00:00Z` | [poloniex/tools-nodejs-address-verify](https://github.com/poloniex/tools-nodejs-address-verify) | [report](./poloniex/20261001-transparency-report.md) |
+| Ourbit | `20261101` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-31T16:00:00Z` | [OurbitOfficial/merkle_validate](https://github.com/OurbitOfficial/merkle_validate) | [report](./ourbit/20261101-transparency-report.md) |
 
 ## By exchange
 
@@ -31,6 +32,7 @@
 - **KuCoin (`Stage 0`)** — Latest `20261031` (Oct 2026): kucoin snapshot 20261031 remains Stage 0 in the ardmere public evaluation set. [Full report](./kucoin/20261031-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
 - **BingX (`Stage 0`)** — Latest `20261015` (Oct 2026): bingx snapshot 20261015 remains Stage 0 in the ardmere public evaluation set. [Full report](./bingx/20261015-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
 - **Poloniex (`Stage 0`)** — Latest `20261001` (Oct 2026): poloniex snapshot 20261001 remains Stage 0 in the ardmere public evaluation set. [Full report](./poloniex/20261001-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
+- **Ourbit (`Stage 0`)** — Latest `20261101` (Oct 2026): Ourbit snapshot 20261101 is Stage 0: public stock_info ratios + live multi-chain wallet table; no snapshot-bound walletZip/ownership; user Merkle login-gated; hash truncated to 128 bits. [Full report](./ourbit/20261101-transparency-report.md)
 
 Gap detail, risk flags, and verifier output are in each report. Missing data is marked `UNVERIFIABLE`, not `PASS` ([methodology §1.3](../por-transparency-framework.md#gap-reporting-discipline)).
 
