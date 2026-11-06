@@ -40,6 +40,9 @@ These files stay in the public git repository for contributors and operators, bu
 | [gate-por-data-guide.md](./gate-por-data-guide.md) | Gate.io data integration |
 | [exchange-upstream-registry.md](./exchange-upstream-registry.md) | Official PoR pages + GitHub repos (human index) |
 | [../config/exchanges/registry.yaml](../config/exchanges/registry.yaml) | Machine-readable upstream registry (`por exchanges`) |
+| [por-monitor-schedule.md](./por-monitor-schedule.md) | Per-exchange PoR scan windows (replaces daily all-P0+P1) |
+| [exchange-onboarding-shortlist.md](./exchange-onboarding-shortlist.md) | Next-10 exchanges to integrate (after current registry) |
+| [../config/por-monitor/schedule.yaml](../config/por-monitor/schedule.yaml) | Machine-readable monitor cadence |
 | [exchange-reserve-transparency-whitepaper.md](./exchange-reserve-transparency-whitepaper.md) | **Whitepaper body (English draft v1.0)** — exchange reserve transparency framework and methodology |
 
 Project-specific Cursor Agent Skills live in `.cursor/skills/` (gitignored; not published to the site).

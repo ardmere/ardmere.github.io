@@ -13,6 +13,8 @@ ardmere is a GitHub Pages site plus a Go PoR verification toolkit.
 ├── config/exchanges/
 │   ├── registry.yaml       # official PoR pages + GitHub upstream repos
 │   └── <exchange>/         # onchain.json, ledger.json, …
+├── config/por-monitor/
+│   └── schedule.yaml       # per-exchange scan windows (not daily all-P0+P1)
 ├── config/rating/          # machine-readable PoR Stage / E Level / risk flag rules
 ├── docs/
 ├── fixtures/
@@ -98,9 +100,12 @@ scripts/_por-env.sh         shared env bootstrap for por wrappers
 scripts/por-run.sh          alias → por
 scripts/por-batch-recent.sh batch verify + reports (via por.sh)
 scripts/por-fetch.sh        alias → por fetch
+scripts/por-monitor-due.sh  list exchanges due for PoR probe today (UTC)
 scripts/gateio/               → por fetch gateio
 scripts/okx/                  → por fetch okx
 ```
+
+Monitor cadence: [por-monitor-schedule.md](./por-monitor-schedule.md). Next integrations: [exchange-onboarding-shortlist.md](./exchange-onboarding-shortlist.md).
 
 ## Adding an exchange
 
