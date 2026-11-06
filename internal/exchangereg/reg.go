@@ -9,6 +9,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/bingx"
 	"github.com/ardmere/ardmere/internal/exchanges/bitget"
 	"github.com/ardmere/ardmere/internal/exchanges/bitunix"
+	"github.com/ardmere/ardmere/internal/exchanges/btcc"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit"
 	"github.com/ardmere/ardmere/internal/exchanges/coinex"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio"
@@ -40,6 +41,7 @@ var adapters = map[string]exchange.Adapter{
 	woox.ID:     woox.New(),
 	toobit.ID:   toobit.New(),
 	phemex.ID:   phemex.New(),
+	btcc.ID:     btcc.New(),
 }
 
 // Get returns the adapter for id (e.g. "binance").

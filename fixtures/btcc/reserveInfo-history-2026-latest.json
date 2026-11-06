@@ -1,0 +1,235 @@
+{
+  "fetchedAt": "2026-11-06T15:23:10Z",
+  "source": "https://www.btcc.com/social-api/contract/reserve/reserveInfo",
+  "note": "Permissionless per-reportDate probes; history list API is login-gated.",
+  "reports": [
+    {
+      "createDate": "2025-04-15",
+      "rootHash": "5d5d1d2867443f56",
+      "rate": {
+        "BTC": "162%",
+        "XRP": "114%",
+        "ETH": "146%",
+        "USDT": "110%",
+        "USDC": "111%",
+        "ADA": "145%"
+      }
+    },
+    {
+      "createDate": "2025-05-15",
+      "rootHash": "13b2a24f6a64946f",
+      "rate": {
+        "BTC": "133%",
+        "XRP": "156%",
+        "ETH": "113%",
+        "USDT": "117%",
+        "USDC": "147%",
+        "ADA": "112%"
+      }
+    },
+    {
+      "createDate": "2025-06-15",
+      "rootHash": "91957f4c4b2796a5",
+      "rate": {
+        "BTC": "151%",
+        "XRP": "110%",
+        "ETH": "133%",
+        "USDT": "136%",
+        "USDC": "120%",
+        "ADA": "120%"
+      }
+    },
+    {
+      "createDate": "2025-07-15",
+      "rootHash": "2c79312b2a7a4d5a",
+      "rate": {
+        "BTC": "135%",
+        "XRP": "149%",
+        "ETH": "170%",
+        "USDT": "154%",
+        "USDC": "151%",
+        "ADA": "165%"
+      }
+    },
+    {
+      "createDate": "2025-08-15",
+      "rootHash": "579a3805544d2577",
+      "rate": {
+        "BTC": "125%",
+        "XRP": "142%",
+        "ETH": "155%",
+        "USDT": "140%",
+        "USDC": "170%",
+        "ADA": "121%"
+      }
+    },
+    {
+      "createDate": "2025-09-15",
+      "rootHash": "cbaef0c09e791525",
+      "rate": {
+        "BTC": "111%",
+        "XRP": "166%",
+        "ETH": "152%",
+        "USDT": "156%",
+        "USDC": "121%",
+        "ADA": "153%"
+      }
+    },
+    {
+      "createDate": "2025-10-15",
+      "rootHash": "f243232376897a36",
+      "rate": {
+        "BTC": "112%",
+        "XRP": "117%",
+        "ETH": "141%",
+        "USDT": "144%",
+        "USDC": "146%",
+        "ADA": "167%"
+      }
+    },
+    {
+      "createDate": "2025-11-15",
+      "rootHash": "6933c46d15753bfc",
+      "rate": {
+        "BTC": "162%",
+        "XRP": "124%",
+        "ETH": "165%",
+        "USDT": "160%",
+        "USDC": "133%",
+        "ADA": "150%"
+      }
+    },
+    {
+      "createDate": "2025-12-15",
+      "rootHash": "c51db9bdf2c919af",
+      "rate": {
+        "BTC": "121%",
+        "XRP": "147%",
+        "ETH": "122%",
+        "USDT": "142%",
+        "USDC": "110%",
+        "ADA": "132%"
+      }
+    },
+    {
+      "createDate": "2026-01-15",
+      "rootHash": "22d02286ef7ccb84",
+      "rate": {
+        "BTC": "122%",
+        "XRP": "162%",
+        "ETH": "158%",
+        "USDT": "139%",
+        "USDC": "113%",
+        "ADA": "137%"
+      }
+    },
+    {
+      "createDate": "2026-02-15",
+      "rootHash": "1f9abdcc278c561d",
+      "rate": {
+        "BTC": "110%",
+        "XRP": "161%",
+        "ETH": "150%",
+        "USDT": "113%",
+        "USDC": "136%",
+        "ADA": "136%"
+      }
+    },
+    {
+      "createDate": "2026-03-15",
+      "rootHash": "2d1bae252df9549c",
+      "rate": {
+        "BTC": "149%",
+        "XRP": "125%",
+        "ETH": "119%",
+        "USDT": "133%",
+        "USDC": "149%",
+        "ADA": "130%"
+      }
+    },
+    {
+      "createDate": "2026-04-15",
+      "rootHash": "457bfe5b3dac9f8a",
+      "rate": {
+        "BTC": "123%",
+        "XRP": "143%",
+        "ETH": "152%",
+        "USDT": "124%",
+        "USDC": "116%",
+        "ADA": "160%"
+      }
+    },
+    {
+      "createDate": "2026-05-15",
+      "rootHash": "5573b724131c7a99",
+      "rate": {
+        "BTC": "126%",
+        "XRP": "111%",
+        "ETH": "155%",
+        "USDT": "127%",
+        "USDC": "123%",
+        "ADA": "167%"
+      }
+    },
+    {
+      "createDate": "2026-06-15",
+      "rootHash": "eaf9c7cd0e2f9de4",
+      "rate": {
+        "BTC": "125%",
+        "XRP": "164%",
+        "ETH": "149%",
+        "USDT": "162%",
+        "USDC": "114%",
+        "ADA": "170%"
+      }
+    },
+    {
+      "createDate": "2026-07-15",
+      "rootHash": "bccf11e183d4d1cc",
+      "rate": {
+        "BTC": "122%",
+        "XRP": "117%",
+        "ETH": "122%",
+        "USDT": "160%",
+        "USDC": "133%",
+        "ADA": "123%"
+      }
+    },
+    {
+      "createDate": "2026-08-15",
+      "rootHash": "c9f948cb6c20c949",
+      "rate": {
+        "BTC": "162%",
+        "XRP": "161%",
+        "ETH": "121%",
+        "USDT": "126%",
+        "USDC": "112%",
+        "ADA": "159%"
+      }
+    },
+    {
+      "createDate": "2026-09-15",
+      "rootHash": "300d12acf2e14191",
+      "rate": {
+        "BTC": "137%",
+        "XRP": "135%",
+        "ETH": "147%",
+        "USDT": "165%",
+        "USDC": "143%",
+        "ADA": "120%"
+      }
+    },
+    {
+      "createDate": "2026-10-15",
+      "rootHash": "182f650c44a74f6d",
+      "rate": {
+        "BTC": "147%",
+        "XRP": "136%",
+        "ETH": "123%",
+        "USDT": "115%",
+        "USDC": "111%",
+        "ADA": "160%"
+      }
+    }
+  ]
+}

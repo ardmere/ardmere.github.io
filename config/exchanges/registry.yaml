@@ -248,3 +248,14 @@ exchanges:
       (ratios computed). Public PoR UI shows monthly Merkle self-check and Part of Our Cold Wallets,
       but api10 merkle-tree/root and wallet-addresses are CloudFront/auth gated from datacenters; user
       inclusion requires login (hashed client ID). No official OSS Merkle verifier found; no wallet zip.
+  - id: btcc
+    name: BTCC
+    porPage: https://www.btcc.com/en-US/proof-of-reserves
+    dataGuide: docs/btcc-por-data-guide.md
+    vcTier: 1
+    upstreamRepos: []
+    integrationNotes: >-
+      Permissionless GET /social-api/contract/reserve/reserveInfo?reportDate=YYYY-MM-DD returns per-coin
+      reserve ratios + truncated (~16 hex) merkle root. Cadence is monthly ~day-15 (UTC createDate) since
+      2025-04-15. No wallet amounts/addresses; leaf validate + history page need login. Stage 0 hard cap.
+      No official OSS Merkle verifier found.
