@@ -30,6 +30,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | `bingx` | VC1 | [balance-reserve](https://bingx.com/en/balance-reserve) | [BingX-API/BingX-proof-of-reserves](https://github.com/BingX-API/BingX-proof-of-reserves) | `user-merkle-proof@bingx-1` |
 | `poloniex` | VC1 | [proof-of-reserves](https://www.poloniex.com/topic/security/proof-of-reserves) | [poloniex/tools-nodejs-address-verify](https://github.com/poloniex/tools-nodejs-address-verify) | `address-ownership@0` (CSV channel blocked) |
 | `ourbit` | VC1 | [reserve-proof](https://www.ourbit.com/assets/reserve-proof) | [OurbitOfficial/merkle_validate](https://github.com/OurbitOfficial/merkle_validate) | `user-merkle-proof@ourbit-1` |
+| `coinex` | VC1 | [reserve-proof](https://www.coinex.com/en/reserve-proof) | [coinexcom/proof-of-reserves](https://github.com/coinexcom/proof-of-reserves) | `user-merkle-proof@coinex-1` |
 
 ## Data guides
 
@@ -46,6 +47,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | BingX | [bingx-por-data-guide.md](./bingx-por-data-guide.md) |
 | Poloniex | [poloniex-por-data-guide.md](./poloniex-por-data-guide.md) |
 | Ourbit | [ourbit-por-data-guide.md](./ourbit-por-data-guide.md) |
+| CoinEx | [coinex-por-data-guide.md](./coinex-por-data-guide.md) |
 
 ## Maintenance
 

@@ -168,3 +168,21 @@ exchanges:
       Public stock_info + wallet_detail APIs expose ratios and a live multi-chain wallet table without login.
       User merkel_tree_ourbit.json and merkle list/download are login-gated. stock_info has no period merkle root.
       Live wallets lack ownership signatures and are not snapshot-bound — Stage 1 walletZip stays unwired.
+  - id: coinex
+    name: CoinEx
+    porPage: https://www.coinex.com/en/reserve-proof
+    dataGuide: docs/coinex-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/coinexcom/proof-of-reserves
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@coinex-1
+        note: >-
+          Official Go verifier (full SHA-256 leaf/path with balance aggregates);
+          logic ported in internal/exchanges/coinex/merkle. Upstream example JSON
+          currently fails self-check — ardmere uses a synthetic fixture for unit tests.
+    integrationNotes: >-
+      Public /res/account/balance/merkle/reserve exposes period ratios, root_hash, and
+      wallet_proof_file (XLSX). User /res/account/balance/merkle/proof is login-gated.
+      XLSX address dump has no ownership signatures — Stage 1 walletZip stays unwired.
+      No global ZK / third-party attestation channel.

@@ -14,6 +14,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/bingx/bingxapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bitget/bitgetapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit/bybitapi"
+	"github.com/ardmere/ardmere/internal/exchanges/coinex/coinexapi"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio/gateapi"
 	"github.com/ardmere/ardmere/internal/exchanges/kucoin/kucoinapi"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
@@ -55,6 +56,9 @@ func Main(args []string) int {
 	case "ourbit":
 		RunOurbit(args[1:])
 		return 0
+	case "coinex":
+		RunCoinEx(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -81,6 +85,7 @@ Exchanges:
   bingx      fetch or import BingX PoR summary (+ optional user Merkle JSON)
   poloniex   fetch or import Poloniex PoR summary (public proxy/sapi)
   ourbit     fetch or import Ourbit PoR summary (public stock_info + wallets)
+  coinex     fetch or import CoinEx PoR summary (public merkle/reserve + optional user proof)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -96,6 +101,8 @@ Examples:
   por fetch poloniex -audit-id 20260901
   por fetch ourbit
   por fetch ourbit -summary-path ./fixtures/ourbit/20261101-summary.json
+  por fetch coinex
+  por fetch coinex -summary-path ./fixtures/coinex/20260914-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -528,6 +535,55 @@ func RunOurbit(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch ourbit snapshot: %v\n\nTip: open https://www.ourbit.com/assets/reserve-proof or import:\n  por fetch ourbit -summary-path ./fixtures/ourbit/20261101-summary.json", err)
+	}
+	logResult(stored)
+}
+
+// RunOKX archives OKX public PoR artifacts.
+
+func RunCoinEx(args []string) {
+	fs := flag.NewFlagSet("coinex", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import archived summary bundle JSON")
+	periodFile := fs.String("period-file", "", "browser-captured period object or full merkle/reserve API JSON")
+	userProofPath := fs.String("user-proof", "", "import login-gated Copy-my-audition JSON")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+	}
+	if *periodFile != "" {
+		merged, err := coinexapi.BuildSummaryBundle(*periodFile)
+		if err != nil {
+			log.Fatalf("build period capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "coinex-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("coinex")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch coinex snapshot: %v\n\nTip: open https://www.coinex.com/en/reserve-proof or import:\n  por fetch coinex -summary-path ./fixtures/coinex/20260914-summary.json", err)
 	}
 	logResult(stored)
 }

@@ -2,7 +2,7 @@
 
 > Methodology: [PoR Stage Framework](../por-transparency-framework.md)  
 > Policy standard: [Effective PoR Standard](../effective-por-standard.md)  
-> **All 48 public reports:** [Snapshot history](./snapshot-history.md)
+> **All 49 public reports:** [Snapshot history](./snapshot-history.md)
 
 ## Summary (latest snapshot per exchange)
 
@@ -19,6 +19,7 @@
 | BingX | `20261015` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-15T00:00:00Z` | [BingX-API/BingX-proof-of-reserves](https://github.com/BingX-API/BingX-proof-of-reserves) | [report](./bingx/20261015-transparency-report.md) |
 | Poloniex | `20261001` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-01T00:00:00Z` | [poloniex/tools-nodejs-address-verify](https://github.com/poloniex/tools-nodejs-address-verify) | [report](./poloniex/20261001-transparency-report.md) |
 | Ourbit | `20261101` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-31T16:00:00Z` | [OurbitOfficial/merkle_validate](https://github.com/OurbitOfficial/merkle_validate) | [report](./ourbit/20261101-transparency-report.md) |
+| CoinEx | `20260914` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-09-14T07:00:00Z` | [coinexcom/proof-of-reserves](https://github.com/coinexcom/proof-of-reserves) | [report](./coinex/20260914-transparency-report.md) |
 
 ## By exchange
 
@@ -33,6 +34,7 @@
 - **BingX (`Stage 0`)** — Latest `20261015` (Oct 2026): bingx snapshot 20261015 remains Stage 0 in the ardmere public evaluation set. [Full report](./bingx/20261015-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
 - **Poloniex (`Stage 0`)** — Latest `20261001` (Oct 2026): poloniex snapshot 20261001 remains Stage 0 in the ardmere public evaluation set. [Full report](./poloniex/20261001-transparency-report.md) · [history](./snapshot-history.md#all-public-reports)
 - **Ourbit (`Stage 0`)** — Latest `20261101` (Oct 2026): Ourbit snapshot 20261101 is Stage 0: public stock_info ratios + live multi-chain wallet table; no snapshot-bound walletZip/ownership; user Merkle login-gated; hash truncated to 128 bits. [Full report](./ourbit/20261101-transparency-report.md)
+- **CoinEx (`Stage 0`)** — Latest `20260914` (Sep 2026): CoinEx snapshot 20260914 is Stage 0: public reserve ratios + period merkle root + XLSX address list; user Merkle login-gated; no ownership proofs or global ZK. [Full report](./coinex/20260914-transparency-report.md)
 
 Gap detail, risk flags, and verifier output are in each report. Missing data is marked `UNVERIFIABLE`, not `PASS` ([methodology §1.3](../por-transparency-framework.md#gap-reporting-discipline)).
 

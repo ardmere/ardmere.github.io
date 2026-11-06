@@ -40,6 +40,7 @@ These files stay in the public git repository for contributors and operators, bu
 | [gate-por-data-guide.md](./gate-por-data-guide.md) | Gate.io data integration |
 | [poloniex-por-data-guide.md](./poloniex-por-data-guide.md) | Poloniex data integration |
 | [ourbit-por-data-guide.md](./ourbit-por-data-guide.md) | Ourbit data integration |
+| [coinex-por-data-guide.md](./coinex-por-data-guide.md) | CoinEx data integration |
 | [exchange-upstream-registry.md](./exchange-upstream-registry.md) | Official PoR pages + GitHub repos (human index) |
 | [../config/exchanges/registry.yaml](../config/exchanges/registry.yaml) | Machine-readable upstream registry (`por exchanges`) |
 | [por-monitor-schedule.md](./por-monitor-schedule.md) | Per-exchange PoR scan windows (replaces daily all-P0+P1) |

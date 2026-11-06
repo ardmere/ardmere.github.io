@@ -26,11 +26,11 @@ type stageEval struct {
 }
 
 type blockedReason struct {
-	RuleID    string `json:"ruleId"`
-	Evidence  string `json:"evidence,omitempty"`
-	MaxStage  string `json:"maxStage"`
-	Reason    string `json:"reason"`
-	RiskFlag  string `json:"riskFlag"`
+	RuleID   string `json:"ruleId"`
+	Evidence string `json:"evidence,omitempty"`
+	MaxStage string `json:"maxStage"`
+	Reason   string `json:"reason"`
+	RiskFlag string `json:"riskFlag"`
 }
 
 type riskFlag struct {
@@ -125,6 +125,16 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
 			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkel_tree_ourbit.json not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
 		}
+	case "coinex":
+		e.Headline = "CoinEx snapshot " + art.SnapshotID + " is Stage 0: public reserve ratios + period merkle root + XLSX address list; user Merkle login-gated; no ownership proofs or global ZK."
+		e.Rationale = "solvency-claim PASS means self-reported reserve_rate ≥ 100% only. Public wallet_proof_file is an XLSX address dump without ownership signatures, so it is not Stage 1 wallet_address_list/walletZip. Official Go OSS (coinexcom/proof-of-reserves) is ported as user-merkle-proof@coinex-1 for imported proofs."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_snapshot_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "Public wallet_proof_file is XLSX without ownership signatures — not Stage 1 walletZip.", RiskFlag: "UNVERIFIABLE"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkle proof JSON not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
+
 	default:
 		e.Headline = exchangeID + " snapshot " + art.SnapshotID + " remains Stage 0 in the ardmere public evaluation set."
 		e.Rationale = "Public artifacts do not support independently reproducible global solvency verification for this snapshot."
