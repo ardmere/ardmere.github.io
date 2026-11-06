@@ -17,6 +17,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/btcc/btccapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit/bybitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/coinex/coinexapi"
+	"github.com/ardmere/ardmere/internal/exchanges/coinw/coinwapi"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio/gateapi"
 	"github.com/ardmere/ardmere/internal/exchanges/kucoin/kucoinapi"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
@@ -82,6 +83,9 @@ func Main(args []string) int {
 	case "kraken":
 		RunKraken(args[1:])
 		return 0
+	case "coinw":
+		RunCoinW(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -115,6 +119,7 @@ Exchanges:
   phemex     fetch or import Phemex PoR summary (porVersions balances)
   btcc       fetch or import BTCC PoR summary (reserveInfo ratios + truncated root)
   kraken     fetch or import Kraken PoR summary (LedgerLens root + CMS ratios)
+  coinw      fetch or import CoinW PoR summary (WAF-gated; prefer -summary-path)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -145,6 +150,7 @@ Examples:
   por fetch kraken
   por fetch kraken -audit-id 2026-06-30
   por fetch kraken -summary-path ./fixtures/kraken/20260630-summary.json
+  por fetch coinw -summary-path ./fixtures/coinw/202609-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -891,6 +897,57 @@ func RunKraken(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch kraken snapshot: %v\n\nTip: por fetch kraken\n  or import:\n  por fetch kraken -summary-path ./fixtures/kraken/20260630-summary.json", err)
+	}
+	logResult(stored)
+}
+
+// RunOKX archives OKX public PoR artifacts.
+
+func RunCoinW(args []string) {
+	fs := flag.NewFlagSet("coinw", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import archived summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser/announcement-captured info JSON (wrapped into a bundle)")
+	auditID := fs.String("audit-id", "", "optional period hint (e.g. 202609)")
+	userProofPath := fs.String("user-proof", "", "import login-gated merkel_tree_cw.json if captured (stored only; no OSS source)")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+		AuditID:       *auditID,
+	}
+	if *infoFile != "" {
+		merged, err := coinwapi.BuildSummaryBundle(*infoFile)
+		if err != nil {
+			log.Fatalf("merge browser capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "coinw-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("coinw")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch coinw snapshot: %v\n\nTip: www.coinw.com is Cloudflare WAF-gated from datacenters. Import:\n  por fetch coinw -summary-path ./fixtures/coinw/202609-summary.json", err)
 	}
 	logResult(stored)
 }

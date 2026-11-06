@@ -1,0 +1,21 @@
+{
+  "fetchedAt": "2026-11-06T16:10:00Z",
+  "source": "announcement-scrape",
+  "sourceUrls": [
+    "https://www.coinw.com/help-center/announcement-center/maintenance-updates/project-upgrades/2026-09-26/proof-of-reserves-update-september-2026/8128",
+    "https://www.coinw.com/proof-of-reserves",
+    "https://github.com/connectCoinw/proof-of-reserves"
+  ],
+  "reportDate": "2026-09",
+  "snapshotId": "202609",
+  "info": {
+    "audit_id": "202609",
+    "audit_time": "2026-09-01 00:00:00",
+    "timezone": "UTC+8 (September 2026 month label; exact snapshot clock not published in the announcement)",
+    "totalReserveRate": 109.65,
+    "merkle_root_hash": "",
+    "sourceUrl": "https://www.coinw.com/help-center/announcement-center/maintenance-updates/project-upgrades/2026-09-26/proof-of-reserves-update-september-2026/8128",
+    "waf": "Datacenter curl to www.coinw.com returns Cloudflare WAF 403 / 'Just a moment...' challenge. Announcement ratio captured via reachable HTML proxy / browser; PoR dashboard SSR is geo-restricted (Service Restricted modal).",
+    "note": "Total reserve ratio from CoinW September 2026 PoR announcement (published 2026-09-26): 109.65%. Announcement does not publish merkle root, per-asset ratios, or wallet addresses. Offline verifier binaries exist at connectCoinw/proof-of-reserves (no source). User merkel_tree_cw.json appears login-gated. A later PoR-page panel observed in-browser on 2026-11-06 showed Snapshot Time 2026-10-24 04:00:01 (UTC+8) but merkle/ratio UI values were animated/conflicting under geo-restriction — not used as the assessed machine root/rate (see fixtures/coinw/browser-por-probe-20261024.json)."
+  }
+}

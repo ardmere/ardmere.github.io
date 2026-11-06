@@ -1,0 +1,294 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x3504f9741d1dc8f64a160fa2e194acfbc111b31ef2274e39abbfd491977a68bd",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d",
+        "url": "https://www.coinw.com/help-center/announcement-center/maintenance-updates/project-upgrades/2026-09-26/proof-of-reserves-update-september-2026/8128"
+      }
+    ],
+    "verificationBundleRoot": "0xb7e52fbe78ecc61d4e62b7b6e62f57255fa589ae24db9934170f3d586c6cc7d4"
+  },
+  "checklist": [
+    {
+      "id": "S0-1",
+      "notes": "Snapshot 202609 is in the public evaluation set.",
+      "question": "Has public PoR been published during the last 12 months?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-2",
+      "notes": "2026-09-01T00:00:00Z",
+      "question": "Is snapshot time explicit?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-3",
+      "notes": "Summary present; wallet_address_list absent.",
+      "question": "Is there reserve summary or wallet_address_list?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S1-1",
+      "notes": "No public wallet_address_list artifact.",
+      "question": "Is wallet_address_list public and on-chain verifiable?",
+      "stage": "Stage 1",
+      "status": "fail"
+    },
+    {
+      "id": "S1-2",
+      "notes": "address-ownership verifier UNVERIFIABLE.",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-3",
+      "notes": "global-zk-proof verifier UNVERIFIABLE.",
+      "question": "Is global_proof public and independently reproducible?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-4",
+      "notes": "third-party-attestation verifier UNVERIFIABLE.",
+      "question": "Is independent third-party review available with stated scope?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-5",
+      "notes": "No global ZK proof in the assessed public artifact set.",
+      "question": "If trusted setup is required, is transcript public; otherwise is the proof system transparent setup?",
+      "stage": "Stage 1",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-1",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is root/proof/vk canonically anchored outside exchange servers?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-2",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    }
+  ],
+  "confidence": "low",
+  "effectivePoR": false,
+  "evidenceLevel": "E1",
+  "exchange": "coinw",
+  "gen": "Gen 1",
+  "generatedAt": "2026-11-06T16:28:51Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "recommendations": [
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "UNVERIFIABLE"
+      ],
+      "text": "Publish missing public artifacts required for independent reproduction."
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "CoinW publishes marketing PoR ratios without a permissionless wallet_address_list."
+    },
+    {
+      "id": "NO_PUBLIC_MERKLE_ROOT",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Assessed announcement summary has no public period merkle root to bind user proofs; dashboard merkle UI was not machine-stable under WAF/geo probe."
+    },
+    {
+      "id": "WAF_GATED",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "www.coinw.com PoR pages return Cloudflare WAF 403 from datacenters; summary imported from announcement / browser probe."
+    },
+    {
+      "id": "LOGIN_GATED_USER_PROOF",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "User merkel_tree_cw.json + automatic verify require login; OSS release ships binaries only (no source to port)."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "",
+    "id": "202609",
+    "periodSeq": 0,
+    "snapshotTime": "2026-09-01T00:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_public_wallet_address_list",
+      "evidence": "wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "CoinW publishes marketing PoR ratios without a permissionless wallet_address_list.",
+      "riskFlag": "UNVERIFIABLE"
+    },
+    {
+      "ruleId": "floor_no_public_merkle_root",
+      "evidence": "merkle_root",
+      "maxStage": "Stage 0",
+      "reason": "Assessed announcement summary has no public period merkle root to bind user proofs; dashboard merkle UI was not machine-stable under WAF/geo probe.",
+      "riskFlag": "NO_PUBLIC_MERKLE_ROOT"
+    },
+    {
+      "ruleId": "floor_waf_gated_dashboard",
+      "evidence": "por_dashboard",
+      "maxStage": "Stage 0",
+      "reason": "www.coinw.com PoR pages return Cloudflare WAF 403 from datacenters; summary imported from announcement / browser probe.",
+      "riskFlag": "WAF_GATED"
+    },
+    {
+      "ruleId": "floor_login_gated_user_proof",
+      "evidence": "userMerkleProof",
+      "maxStage": "Stage 0",
+      "reason": "User merkel_tree_cw.json + automatic verify require login; OSS release ships binaries only (no source to port).",
+      "riskFlag": "LOGIN_GATED_USER_PROOF"
+    }
+  ],
+  "summary": {
+    "headline": "CoinW snapshot 202609 is a weak Stage 0 (announcement / import summary): self-reported total USDT reserve ratio only; Cloudflare WAF blocks stable datacenter fetches of the PoR dashboard; no public wallet list.",
+    "rationale": "solvency-claim PASS means the September 2026 announcement total reserve ratio ≥ 100% only — not independently reproduced reserves or a bound merkle root. Official por-verify binaries exist without published source; user merkel_tree_cw.json remains login-gated. A later Oct-24 SSR panel was observed under geo-restriction with animated/conflicting merkle and ratio UI — left observational, not assessed.",
+    "scope": "coinw snapshot 202609"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "user-merkle-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "Wallet address bundle not available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "internal-consistency",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "BTC block time anchor verifier not implemented",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "Wallet address bundle not available for on-chain audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "Wallet address bundle not available for token audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "Global proof.csv / verifying key not publicly distributed",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "global-zk-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "58c2dc270f8c967a9384e56d803ac87aafcd1a34fdc862a862c6c6525b11889d"
+      ],
+      "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}
