@@ -1,0 +1,95 @@
+{
+  "fetchedAt": "2026-11-06T15:03:06Z",
+  "source": "https://por.phemex.com/porVersions",
+  "sourceUrls": [
+    "https://por.phemex.com/porVersions",
+    "https://phemex.com/proof-of-reserves"
+  ],
+  "officialVersionId": "2026-11-01",
+  "snapshotId": "20261101",
+  "info": {
+    "versionID": "2026-11-01",
+    "versionDescription": "2026-11-01 00:00:00 UTC",
+    "dataVersion": "v3",
+    "blockHeights": [
+      {
+        "chain": "Bitcoin",
+        "height": "974066"
+      },
+      {
+        "chain": "Ethereum",
+        "height": "26316937"
+      },
+      {
+        "chain": "Tron",
+        "height": "87609154"
+      },
+      {
+        "chain": "Smartchain",
+        "height": "130970931"
+      },
+      {
+        "chain": "Solana",
+        "height": "463927987"
+      },
+      {
+        "chain": "Ripple",
+        "height": "108036223"
+      },
+      {
+        "chain": "Sui",
+        "height": "340345665"
+      },
+      {
+        "chain": "Avalanchec",
+        "height": "99092735"
+      },
+      {
+        "chain": "Cardano",
+        "height": "14142235"
+      }
+    ],
+    "totalBalances": [
+      {
+        "symbol": "BTC",
+        "chainBalance": "1302.97644056",
+        "cexBalance": "1261.452220503760"
+      },
+      {
+        "symbol": "ETH",
+        "chainBalance": "7198.7020377",
+        "cexBalance": "6340.018084457849"
+      },
+      {
+        "symbol": "USD*",
+        "chainBalance": "121158779.55281",
+        "cexBalance": "112549970.806332199770"
+      },
+      {
+        "symbol": "SOL",
+        "chainBalance": "58312.057112456",
+        "cexBalance": "43821.860584984172"
+      },
+      {
+        "symbol": "AVAX",
+        "chainBalance": "45698.33170106",
+        "cexBalance": "30893.958458872000"
+      },
+      {
+        "symbol": "TRX",
+        "chainBalance": "12721456.636945",
+        "cexBalance": "10303038.699258150000"
+      },
+      {
+        "symbol": "XRP",
+        "chainBalance": "9916343.997584",
+        "cexBalance": "6589934.176404716341"
+      },
+      {
+        "symbol": "SUI",
+        "chainBalance": "1506367",
+        "cexBalance": "987786.571180707"
+      }
+    ]
+  }
+}
