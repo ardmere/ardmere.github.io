@@ -66,6 +66,17 @@ func (a *Adapter) VerifierProfile() exchange.VerifierProfile {
 }
 
 func (a *Adapter) FetchCurrentSnapshot(ctx context.Context, outDir string, opts exchange.FetchOpts) (exchange.FetchResult, error) {
+	if opts.SummaryPath != "" {
+		bapiBytes, err := os.ReadFile(opts.SummaryPath)
+		if err != nil {
+			return exchange.FetchResult{}, fmt.Errorf("read summary: %w", err)
+		}
+		raw, err := bapi.ParseSnapshotBytes(bapiBytes)
+		if err != nil {
+			return exchange.FetchResult{}, err
+		}
+		return a.storeBAPISnapshot(ctx, outDir, opts, bapiBytes, raw)
+	}
 	if opts.AuditID != "" {
 		return a.fetchByAuditID(ctx, outDir, opts)
 	}
@@ -78,9 +89,21 @@ func (a *Adapter) FetchCurrentSnapshot(ctx context.Context, outDir string, opts 
 }
 
 func (a *Adapter) fetchByAuditID(ctx context.Context, outDir string, opts exchange.FetchOpts) (exchange.FetchResult, error) {
-	bapiBytes, raw, err := bapi.FetchSnapshot(ctx)
-	if err == nil && raw.AuditID == opts.AuditID {
-		return a.storeBAPISnapshot(ctx, outDir, opts, bapiBytes, raw)
+	// During publish, BAPI "current" can oscillate between the new audit and the
+	// previous one. Retry briefly before falling back to wallet-only.
+	var bapiBytes []byte
+	var raw bapi.Snapshot
+	var err error
+	for attempt := 0; attempt < 8; attempt++ {
+		bapiBytes, raw, err = bapi.FetchSnapshot(ctx)
+		if err == nil && raw.AuditID == opts.AuditID && len(raw.SnapshotDataList) > 0 {
+			return a.storeBAPISnapshot(ctx, outDir, opts, bapiBytes, raw)
+		}
+		select {
+		case <-ctx.Done():
+			return exchange.FetchResult{}, ctx.Err()
+		case <-time.After(time.Duration(attempt+1) * 500 * time.Millisecond):
+		}
 	}
 
 	entries, err := bapi.FetchRecentListEntries(ctx, 36)
