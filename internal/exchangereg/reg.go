@@ -8,6 +8,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/binance"
 	"github.com/ardmere/ardmere/internal/exchanges/bingx"
 	"github.com/ardmere/ardmere/internal/exchanges/bitget"
+	"github.com/ardmere/ardmere/internal/exchanges/bitunix"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit"
 	"github.com/ardmere/ardmere/internal/exchanges/coinex"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio"
@@ -32,6 +33,7 @@ var adapters = map[string]exchange.Adapter{
 	poloniex.ID: poloniex.New(),
 	ourbit.ID:   ourbit.New(),
 	coinex.ID:   coinex.New(),
+	bitunix.ID:  bitunix.New(),
 }
 
 // Get returns the adapter for id (e.g. "binance").

@@ -135,6 +135,16 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkle proof JSON not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
 		}
 
+	case "bitunix":
+		e.Headline = "Bitunix snapshot " + art.SnapshotID + " is Stage 0: public BTC/ETH/USDT reserve ratios + period merkle root; user merkle_tree_bitunix.json login-gated; no ownership proofs or global ZK."
+		e.Rationale = "solvency-claim PASS means self-reported reserve ratios ≥ 100% only. Official Java OSS (BitunixOfficial/proof-of-reserves) is ported as user-merkle-proof@bitunix-1 for imported proofs. Recent periods expose empty walletAddress — no Stage 1 walletZip."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_public_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "Public walletAddress field is empty for recent audits; no Stage 1 walletZip.", RiskFlag: "UNVERIFIABLE"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkle_tree_bitunix.json not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
+
 	default:
 		e.Headline = exchangeID + " snapshot " + art.SnapshotID + " remains Stage 0 in the ardmere public evaluation set."
 		e.Rationale = "Public artifacts do not support independently reproducible global solvency verification for this snapshot."
