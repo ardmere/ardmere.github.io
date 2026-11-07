@@ -114,6 +114,17 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
 			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User myProof.json not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
 		}
+	case "ourbit":
+		e.Headline = "Ourbit snapshot " + art.SnapshotID + " is Stage 0: public stock_info ratios + live multi-chain wallet table; no snapshot-bound walletZip/ownership; user Merkle login-gated; hash truncated to 128 bits."
+		e.Rationale = "solvency-claim PASS means self-reported stock_info reserve ratios ≥ 100% only. wallet_detail is archived for transparency but updates live and lacks ownership signatures, so it is not Stage 1 wallet_address_list."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_snapshot_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "Public wallet_detail is live/unsigned — not a snapshot-bound wallet_address_list.", RiskFlag: "UNVERIFIABLE"},
+			blockedReason{RuleID: "floor_no_public_merkle_root", Evidence: "merkle_root", MaxStage: "Stage 0", Reason: "stock_info has no public period merkle root to bind user proofs.", RiskFlag: "NO_PUBLIC_MERKLE_ROOT"},
+			blockedReason{RuleID: "floor_truncated_hash", Evidence: "sha256_truncation_128", MaxStage: "Stage 0", Reason: "Ourbit Merkle hashes truncate SHA-256 to 32 hex chars (128-bit).", RiskFlag: "TRUNCATED_HASH"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkel_tree_ourbit.json not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
 	default:
 		e.Headline = exchangeID + " snapshot " + art.SnapshotID + " remains Stage 0 in the ardmere public evaluation set."
 		e.Rationale = "Public artifacts do not support independently reproducible global solvency verification for this snapshot."

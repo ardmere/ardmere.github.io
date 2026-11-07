@@ -11,12 +11,13 @@ import (
 
 	"github.com/ardmere/ardmere/internal/exchange"
 	"github.com/ardmere/ardmere/internal/exchangereg"
+	"github.com/ardmere/ardmere/internal/exchanges/bingx/bingxapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bitget/bitgetapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit/bybitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio/gateapi"
-	"github.com/ardmere/ardmere/internal/exchanges/bingx/bingxapi"
 	"github.com/ardmere/ardmere/internal/exchanges/kucoin/kucoinapi"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
+	"github.com/ardmere/ardmere/internal/exchanges/ourbit/ourbitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/poloniex/poloniexapi"
 )
 
@@ -51,6 +52,9 @@ func Main(args []string) int {
 	case "poloniex":
 		RunPoloniex(args[1:])
 		return 0
+	case "ourbit":
+		RunOurbit(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -76,6 +80,7 @@ Exchanges:
   kucoin     fetch or import KuCoin PoR summary (public SSR scrape)
   bingx      fetch or import BingX PoR summary (+ optional user Merkle JSON)
   poloniex   fetch or import Poloniex PoR summary (public proxy/sapi)
+  ourbit     fetch or import Ourbit PoR summary (public stock_info + wallets)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -89,6 +94,8 @@ Examples:
   por fetch bingx -summary-path ./fixtures/bingx/20261015-summary.json
   por fetch poloniex
   por fetch poloniex -audit-id 20260901
+  por fetch ourbit
+  por fetch ourbit -summary-path ./fixtures/ourbit/20261101-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -476,6 +483,57 @@ func RunPoloniex(args []string) {
 }
 
 // RunOKX archives OKX public PoR artifacts.
+func RunOurbit(args []string) {
+	fs := flag.NewFlagSet("ourbit", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import merged summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser-captured stock_info JSON")
+	walletsFile := fs.String("wallets-file", "", "browser-captured wallet_detail JSON")
+	currenciesFile := fs.String("currencies-file", "", "browser-captured currencies JSON")
+	userProofPath := fs.String("user-proof", "", "import login-gated merkel_tree_ourbit.json")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+	}
+	if *infoFile != "" {
+		merged, err := ourbitapi.BuildSummaryBundle(*infoFile, *walletsFile, *currenciesFile)
+		if err != nil {
+			log.Fatalf("merge browser capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "ourbit-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("ourbit")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch ourbit snapshot: %v\n\nTip: open https://www.ourbit.com/assets/reserve-proof or import:\n  por fetch ourbit -summary-path ./fixtures/ourbit/20261101-summary.json", err)
+	}
+	logResult(stored)
+}
+
+// RunOKX archives OKX public PoR artifacts.
+
 func RunOKX(args []string) {
 	fs := flag.NewFlagSet("okx", flag.ExitOnError)
 	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")

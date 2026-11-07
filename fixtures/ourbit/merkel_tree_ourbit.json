@@ -1,0 +1,106 @@
+{
+  "self": {
+    "snapshotDate": "2025-03-18",
+    "balances": {
+      "ETH:spot": "5.226372086098455",
+      "ETH:swap": "11.948656559881854",
+      "BTC:swap": "0.8926240301795941",
+      "BTC:spot": "1.9011819612789163",
+      "USDT:swap": "7977.290325012773"
+    },
+    "uid": "65750647",
+    "level": 0,
+    "role": 2,
+    "hash": "076443bd106667e5f91d872e02c0c3c6"
+  },
+  "path": [
+    {
+      "snapshotDate": "2025-03-18",
+      "balances": {
+        "ETH:spot": "10.726875946794577",
+        "ETH:swap": "5.756264710268435",
+        "BTC:swap": "2.7640575728510774",
+        "BTC:spot": "0.2334225290622807",
+        "USDT:swap": "6347.948619109149"
+      },
+      "uid": null,
+      "level": 0,
+      "role": 1,
+      "hash": "01bdbf85a79864354f102bd6448908db"
+    },
+    {
+      "snapshotDate": "2025-03-18",
+      "balances": null,
+      "uid": null,
+      "level": 1,
+      "role": 0,
+      "hash": null
+    },
+    {
+      "snapshotDate": "2025-03-18",
+      "balances": null,
+      "uid": null,
+      "level": 2,
+      "role": 0,
+      "hash": null
+    },
+    {
+      "snapshotDate": "2025-03-18",
+      "balances": null,
+      "uid": null,
+      "level": 3,
+      "role": 0,
+      "hash": null
+    },
+    {
+      "snapshotDate": "2025-03-18",
+      "balances": {
+        "ETH:spot": "164.360450187444173",
+        "ETH:swap": "168.056420319368986",
+        "BTC:swap": "27.84444705368519193",
+        "BTC:spot": "27.10846579341694724",
+        "USDT:spot": "0",
+        "USDT:swap": "129056.0706001438396"
+      },
+      "uid": null,
+      "level": 4,
+      "role": 1,
+      "hash": "7a563faa83d034a786c4e08eed06c399"
+    },
+    {
+      "snapshotDate": "2025-03-18",
+      "balances": {
+        "ETH:spot": "341.5901107223544625",
+        "ETH:swap": "304.67450645259991",
+        "BTC:swap": "54.52309954497256353",
+        "BTC:spot": "51.8722544603005677",
+        "USDT:spot": "0",
+        "USDT:swap": "219360.7419038539005"
+      },
+      "uid": null,
+      "level": 5,
+      "role": 1,
+      "hash": "c1d884b061de03acb2b01e303d8aaa8d"
+    },
+    {
+      "snapshotDate": "2025-03-18",
+      "balances": {
+        "ETH:spot": "521.9038089426916675",
+        "ETH:swap": "490.435848042119185",
+        "BTC:swap": "86.02422820168842696",
+        "BTC:spot": "81.11532474405871194",
+        "USDT:spot": "0",
+        "USDT:swap": "362742.0514481196621"
+      },
+      "uid": null,
+      "level": 6,
+      "role": 3,
+      "hash": "df1d34512abd50712b9f5713b51fad8e"
+    }
+  ],
+  "allCurrencies": [
+    "BTC",
+    "ETH",
+    "USDT"
+  ]
+}
