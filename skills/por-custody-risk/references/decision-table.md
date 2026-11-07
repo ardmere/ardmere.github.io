@@ -50,7 +50,11 @@ Three fields are compared, each only when both sides carry a value: `artifactBun
 | `ANCHOR_UNAVAILABLE` | No RPC endpoint answered | `conclusive: false`, `riskScore: null` |
 | `ANCHOR_MISSING` | The contract answered `SnapshotNotFound` for this snapshotId | One factor, delta **100**, plus `notAReserveJudgement: true` |
 
-`ANCHOR_MISMATCH` means *these bytes are not the bytes that were anchored*. A regenerated assessment produces the same output as a tampered one, so read it as "this file is not the anchored bundle", not as proof of tampering. In this repository it fires on real files: several assessments were regenerated after their anchor transaction, so their verification bundle root no longer matches. Re-run `por verify` and re-anchor to clear it; do not edit the assessment to clear it.
+`ANCHOR_MISMATCH` means *these bytes are not the bytes that were anchored*. Anything that regenerates a bundle produces the same output as tampering does, so read it as "this file is not the anchored bundle", not as proof of misconduct.
+
+It fires on real files. Of the 23 assessments in `docs/reports/` whose snapshotId has a v3 record on Sepolia, 12 disagree with the contract on `verificationBundleRoot` and 4 on `artifactBundleRoot`. Both numbers come from reading the live contract on 2026-11-07, not from a recorded fixture. A plausible explanation is that the verification bundle was rebuilt after the anchor transaction was sent, but **that is a hypothesis, not a finding** — nothing in this table can tell the two apart, and neither can `por verify` on its own. What the score can say is that the file on disk and the contract attest different bytes. Re-run the verifier and re-anchor to clear it; never edit the assessment to match the chain.
+
+That rate is also why the mismatch is a short-circuit rather than one factor among many. A file whose bundle root is not the anchored one has no corroborated verification result, so adding flag points to it would decorate a number rather than measure anything.
 
 `ANCHOR_MISSING` is **not** "reserves are bad". The live contract answering not-found means ardmere has not anchored this snapshot yet. A brand-new assessment reaches this state before its anchor transaction lands. Report it as "not anchored yet" and stop.
 
