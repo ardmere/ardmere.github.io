@@ -14,6 +14,17 @@ Toobit uses a **Summation Merkle Tree (SMT)** with **full SHA-256** and domain s
 | Wallet addresses | Not observed on public API/page | No | — |
 | Global ZK | Not used | — | — |
 
+## Cadence
+
+| | |
+|--|--|
+| Typical publish | 月更，1 日 |
+| Monitor window (UTC) | 每月 1–3 日 |
+
+`latest-audit` 的 `auditHistoryList` 2026-11-07 实探 7 期：202604 为 04-20（补发），202605–202610 全部 1 日。
+
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: toobit`. See [por-monitor-schedule.md](./por-monitor-schedule.md) for the confidence policy.
+
 ## Official references
 
 | Resource | URL |

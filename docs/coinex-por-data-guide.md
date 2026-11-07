@@ -13,6 +13,17 @@ CoinEx publishes Merkle-tree PoR with public reserve ratios, a period merkle roo
 | User Merkle leaf + path | Logged-in PoR → Copy my audition JSON | Login | stored + verified if imported |
 | Ownership / global ZK | — | No | — |
 
+## Cadence
+
+| | |
+|--|--|
+| Typical publish | ~34 天（中位），日分散 |
+| Monitor window (UTC) | `last + 34d ±5`；≥45 天静默强制补检 |
+
+公开 `/res/account/balance/merkle/reserve` 提供完整期次列表：2026-11-07 实探 20 期（2024-11 → 2026-09），间隔中位 34 天、均值 35.3 天、范围 20–69 天，日分布 4–31 分散，**没有**可用的日历窗。注意 `docs/reports/` 只有一份，但 API 历史足够，故 `confidence: high`。
+
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: coinex`. See [por-monitor-schedule.md](./por-monitor-schedule.md) for the confidence policy.
+
 ## Official references
 
 | Resource | URL |

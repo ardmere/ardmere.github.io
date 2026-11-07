@@ -13,6 +13,17 @@ Bitunix uses a **Gen 1** Merkle Tree with **full SHA-256** (64 hex). ardmere tie
 | Wallet addresses | `walletAddress` URL field (often empty for recent audits) | Partial / empty | — |
 | Global ZK | Not used | — | — |
 
+## Cadence
+
+| | |
+|--|--|
+| Typical publish | 月更，月初 1–6 日 |
+| Monitor window (UTC) | 每月 1–6 日 |
+
+`queryAuditTimeList` 2026-11-07 实探 23 期：2026 全部落在 1–6 日（11-03, 10-01, 09-01, 08-02, 07-01, 06-01, 05-01, 04-06, 03-03, 02-03, 01-01）。
+
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: bitunix`. See [por-monitor-schedule.md](./por-monitor-schedule.md) for the confidence policy.
+
 ## Official references
 
 See [registry `bitunix`](../config/exchanges/registry.yaml) for canonical URLs. Integration uses:

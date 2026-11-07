@@ -22,7 +22,11 @@ CoinW publishes **monthly** Merkle-tree PoR with a marketing-page total USDT res
 | Monitor window (suggested) | days around month-end / early next month **+ ~1 week** buffer |
 | Latest assessed | `202609` (September 2026 announcement total **109.65%**) |
 
-`config/por-monitor/schedule.yaml` may still be on an open cadence PR — document cadence here + registry until that lands.
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: coinw` — `month_days` 20–31 with
+−1/+3 buffer (spills into the first days of the next month), `capture: browser`,
+`probe: announcement_browser_capture`, `confidence: low` (only one committed assessment plus one
+unassessed browser observation). The entry carries a `waf:` note; see
+[por-monitor-schedule.md](./por-monitor-schedule.md#coinw-为什么必须-capture-browser).
 
 ## Official references
 

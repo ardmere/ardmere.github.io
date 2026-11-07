@@ -23,7 +23,11 @@ Kraken publishes **quarterly** accountant-led Merkle PoR reviews (The Network Fi
 | Monitor window (suggested) | days around quarter-end **+ ~2–3 weeks** publish lag (LedgerLens `updatedAt` often weeks after snapshot) |
 | Latest assessed | `20260630` (June 30, 2026); as of 2026-11-06 no later quarter published on the public page |
 
-`config/por-monitor/schedule.yaml` may still be on an open cadence PR — document cadence here + registry until that lands.
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: kraken` — `mode: quarter_end`
+with `publish_lag_min_days: 15` / `publish_lag_days: 52`, so the window runs from the quarter end through
+52 days after it instead of stopping at day 5 of the next month. Observed lag from LedgerLens
+`createdAt` was 17–48 days across 7 quarter-end datasets; Q3 2026 (2026-09-30) was still unpublished on
+2026-11-07, i.e. 38 days late but inside the window.
 
 ## Official references
 
