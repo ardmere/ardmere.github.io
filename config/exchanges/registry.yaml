@@ -237,3 +237,14 @@ exchanges:
       Public bapi.toobit.com/uapi/v1/por/latest-audit exposes period ratios, merkle root, and
       audit history without login. User proof JSON download and /proof-of-reserves/{list,verify,result}
       are login-gated. No public wallet address list or global ZK / third-party attestation channel.
+  - id: phemex
+    name: Phemex
+    porPage: https://phemex.com/proof-of-reserves
+    dataGuide: docs/phemex-por-data-guide.md
+    vcTier: 1
+    upstreamRepos: []
+    integrationNotes: >-
+      Permissionless https://por.phemex.com/porVersions exposes monthly versionID + chain/cex balances
+      (ratios computed). Public PoR UI shows monthly Merkle self-check and Part of Our Cold Wallets,
+      but api10 merkle-tree/root and wallet-addresses are CloudFront/auth gated from datacenters; user
+      inclusion requires login (hashed client ID). No official OSS Merkle verifier found; no wallet zip.

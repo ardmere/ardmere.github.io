@@ -20,6 +20,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/kucoin/kucoinapi"
 	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
 	"github.com/ardmere/ardmere/internal/exchanges/ourbit/ourbitapi"
+	"github.com/ardmere/ardmere/internal/exchanges/phemex/phemexapi"
 	"github.com/ardmere/ardmere/internal/exchanges/poloniex/poloniexapi"
 	"github.com/ardmere/ardmere/internal/exchanges/toobit/toobitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/woox/wooxapi"
@@ -71,6 +72,9 @@ func Main(args []string) int {
 	case "toobit":
 		RunToobit(args[1:])
 		return 0
+	case "phemex":
+		RunPhemex(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -101,6 +105,7 @@ Exchanges:
   bitunix    fetch or import Bitunix PoR summary (+ optional merkle_tree_bitunix.json)
   woox       fetch or import WOO X PoR summary (live dashboard + merkle audit)
   toobit     fetch or import Toobit PoR summary (+ optional SMT proof JSON)
+  phemex     fetch or import Phemex PoR summary (porVersions balances)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -124,6 +129,8 @@ Examples:
   por fetch woox -summary-path ./fixtures/woox/20261015-summary.json
   por fetch toobit
   por fetch toobit -summary-path ./fixtures/toobit/20261001-summary.json
+  por fetch phemex
+  por fetch phemex -summary-path ./fixtures/phemex/20261101-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -735,6 +742,57 @@ func RunToobit(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch toobit snapshot: %v\n\nTip: por fetch toobit\n  or import:\n  por fetch toobit -summary-path ./fixtures/toobit/20261001-summary.json", err)
+	}
+	logResult(stored)
+}
+
+// RunOKX archives OKX public PoR artifacts.
+
+func RunPhemex(args []string) {
+	fs := flag.NewFlagSet("phemex", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import archived summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser-captured porVersions entry or full list JSON")
+	auditID := fs.String("audit-id", "", "select versionID (e.g. 2026-11-01 or 20261101)")
+	userProofPath := fs.String("user-proof", "", "import login-gated user Merkle proof JSON if captured")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+		AuditID:       *auditID,
+	}
+	if *infoFile != "" {
+		merged, err := phemexapi.BuildSummaryBundle(*infoFile)
+		if err != nil {
+			log.Fatalf("build porVersions capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "phemex-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("phemex")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch phemex snapshot: %v\n\nTip: por fetch phemex\n  or import:\n  por fetch phemex -summary-path ./fixtures/phemex/20261101-summary.json", err)
 	}
 	logResult(stored)
 }

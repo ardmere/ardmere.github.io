@@ -135,6 +135,18 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkle proof JSON not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
 		}
 
+	case "phemex":
+		e.Headline = "Phemex snapshot " + art.SnapshotID + " is Stage 0: permissionless porVersions balances → computed reserve ratios; monthly Merkle inclusion and cold-wallet addresses appear on the public PoR UI, but merkle root / wallet-addresses APIs are CloudFront-gated and user proofs stay login-gated."
+		e.Rationale = "solvency-claim PASS means chainBalance/cexBalance ratios from https://por.phemex.com/porVersions only. UI shows Part of Our Cold Wallets and a Merkle self-check, but there is no permissionless wallet zip, no public period merkle root in the archived package, and no official OSS verifier — Stage 1 walletZip/ownership/ZK stay unwired."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_machine_readable_wallet_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "Cold-wallet addresses are UI-visible only; api10 wallet-addresses is CloudFront/auth gated and there is no downloadable wallet zip.", RiskFlag: "UNVERIFIABLE"},
+			blockedReason{RuleID: "floor_no_public_merkle_root", Evidence: "merkle_root", MaxStage: "Stage 0", Reason: "Period merkle root is not in public porVersions; api10 merkle-tree/root is CloudFront/auth gated from datacenters.", RiskFlag: "NO_PUBLIC_MERKLE_ROOT"},
+			blockedReason{RuleID: "floor_no_oss_user_merkle_verifier", Evidence: "user_merkle_verifier", MaxStage: "Stage 0", Reason: "No official Phemex OSS Merkle verifier repo found; user-merkle-proof stays stubbed.", RiskFlag: "UNVERIFIABLE"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "Hashed-client-ID Merkle inclusion tool requires login; no public user proof artifact in the evaluation package.", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
+
 	case "toobit":
 		e.Headline = "Toobit snapshot " + art.SnapshotID + " is Stage 0: public BTC/ETH/USDT/USDC reserve ratios + period merkle root via latest-audit; user SMT proof JSON login-gated; no ownership proofs or global ZK."
 		e.Rationale = "solvency-claim PASS means self-reported reserve ratios ≥ 100% only. Official Go OSS (toobit-docs/por-verifier) is ported as user-merkle-proof@toobit-1 for imported proofs. No public wallet address list — Stage 1 walletZip stays unwired."

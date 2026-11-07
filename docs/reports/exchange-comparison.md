@@ -2,7 +2,7 @@
 
 > Methodology: [PoR Stage Framework](../por-transparency-framework.md)  
 > Policy standard: [Effective PoR Standard](../effective-por-standard.md)  
-> **All 52 public reports:** [Snapshot history](./snapshot-history.md)
+> **All 53 public reports:** [Snapshot history](./snapshot-history.md)
 
 ## Summary (latest snapshot per exchange)
 
@@ -23,6 +23,7 @@
 | Bitunix | `20261103` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-11-03T05:42:40Z` | [BitunixOfficial/proof-of-reserves](https://github.com/BitunixOfficial/proof-of-reserves) | [report](./bitunix/20261103-transparency-report.md) |
 | WOO X | `20261015` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-15T00:00:00Z` | [woo-x/merkle-tree](https://github.com/woo-x/merkle-tree) | [report](./woox/20261015-transparency-report.md) |
 | Toobit | `20261001` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-01T00:00:00Z` | [toobit-docs/por-verifier](https://github.com/toobit-docs/por-verifier) | [report](./toobit/20261001-transparency-report.md) |
+| Phemex | `20261101` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-11-01T00:00:00Z` | — | [report](./phemex/20261101-transparency-report.md) |
 
 ## By exchange
 
@@ -41,6 +42,7 @@
 - **Bitunix (`Stage 0`)** — Latest `20261103` (Nov 2026): Bitunix snapshot 20261103 is Stage 0: public BTC/ETH/USDT reserve ratios + period merkle root; user merkle_tree_bitunix.json login-gated; no ownership proofs or global ZK. [Full report](./bitunix/20261103-transparency-report.md)
 - **WOO X (`Stage 0`)** — Latest `20261015` (Oct 2026): WOO X snapshot 20261015 is Stage 0: public live dashboard + monthly merkle audit overview with permissionless full-tree download; user Merkle hash login-gated; assets largely on custody/CEX venues — Stage 1 ownership/on-chain path hard. [Full report](./woox/20261015-transparency-report.md)
 - **Toobit (`Stage 0`)** — Latest `20261001` (Oct 2026): Toobit snapshot 20261001 is Stage 0: public BTC/ETH/USDT/USDC reserve ratios + period merkle root via latest-audit; user SMT proof JSON login-gated; no ownership proofs or global ZK. [Full report](./toobit/20261001-transparency-report.md)
+- **Phemex (`Stage 0`)** — Latest `20261101` (Nov 2026): Phemex snapshot 20261101 is Stage 0: permissionless porVersions balances → computed reserve ratios; monthly Merkle inclusion and cold-wallet addresses appear on the public PoR UI, but merkle root / wallet-addresses APIs are CloudFront-gated and user proofs stay login-gated. [Full report](./phemex/20261101-transparency-report.md)
 
 Gap detail, risk flags, and verifier output are in each report. Missing data is marked `UNVERIFIABLE`, not `PASS` ([methodology §1.3](../por-transparency-framework.md#gap-reporting-discipline)).
 

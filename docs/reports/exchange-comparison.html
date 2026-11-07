@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Exchange PoR Transparency Comparison | ardmere</title>
+  <title>ardmere</title>
   <meta name="description" content="Independent evidence checks for exchange Proof-of-Reserves disclosures, missing artifacts, and effective PoR standards." />
   <link rel="icon" href="/assets/brand/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -36,12 +36,13 @@ Comparison</h1>
 Framework</a><br />
 Policy standard: <a href="../effective-por-standard.html">Effective PoR
 Standard</a><br />
-<strong>All 52 public reports:</strong> <a
-<strong>All 52 public reports:</strong> <a
-<strong>All 52 public reports:</strong> <a
-<strong>All 52 public reports:</strong> <a
-<strong>All 52 public reports:</strong> <a
-<strong>All 52 public reports:</strong> <a
+<strong>All 53 public reports:</strong> <a
+<strong>All 53 public reports:</strong> <a
+<strong>All 53 public reports:</strong> <a
+<strong>All 53 public reports:</strong> <a
+<strong>All 53 public reports:</strong> <a
+<strong>All 53 public reports:</strong> <a
+<strong>All 53 public reports:</strong> <a
 href="./snapshot-history.html">Snapshot history</a></p>
 </blockquote>
 <h2 id="summary-latest-snapshot-per-exchange">Summary (latest snapshot
@@ -195,6 +196,9 @@ href="https://github.com/BingX-API/BingX-proof-of-reserves">BingX-API/BingX-proo
 <tr>
 <td>Toobit</td>
 <td><code>20261001</code></td>
+<tr>
+<td>Phemex</td>
+<td><code>20261101</code></td>
 <td><code>Stage 0</code></td>
 <td><code>Gen 1 / E1</code></td>
 <td><code>false</code></td>
@@ -221,6 +225,9 @@ href="https://github.com/woo-x/merkle-tree">woo-x/merkle-tree</a></td>
 <td><a href="./woox/20261015-transparency-report.html">report</a></td>
 href="https://github.com/toobit-docs/por-verifier">toobit-docs/por-verifier</a></td>
 <td><a href="./toobit/20261001-transparency-report.html">report</a></td>
+<td><code>2026-11-01T00:00:00Z</code></td>
+<td>—</td>
+<td><a href="./phemex/20261101-transparency-report.html">report</a></td>
 </tr>
 </tbody>
 </table>
@@ -310,6 +317,13 @@ public BTC/ETH/USDT/USDC reserve ratios + period merkle root via
 latest-audit; user SMT proof JSON login-gated; no ownership proofs or
 global ZK. <a href="./toobit/20261001-transparency-report.html">Full
 report</a></li>
+<li><strong>Phemex (<code>Stage 0</code>)</strong> — Latest
+<code>20261101</code> (Nov 2026): Phemex snapshot 20261101 is Stage 0:
+permissionless porVersions balances → computed reserve ratios; monthly
+Merkle inclusion and cold-wallet addresses appear on the public PoR UI,
+but merkle root / wallet-addresses APIs are CloudFront-gated and user
+proofs stay login-gated. <a
+href="./phemex/20261101-transparency-report.html">Full report</a></li>
 </ul>
 <p>Gap detail, risk flags, and verifier output are in each report.
 Missing data is marked <code>UNVERIFIABLE</code>, not <code>PASS</code>
