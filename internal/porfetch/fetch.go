@@ -21,6 +21,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
 	"github.com/ardmere/ardmere/internal/exchanges/ourbit/ourbitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/poloniex/poloniexapi"
+	"github.com/ardmere/ardmere/internal/exchanges/woox/wooxapi"
 )
 
 // Main runs fetch subcommands; args[0] is gateio or okx.
@@ -63,6 +64,9 @@ func Main(args []string) int {
 	case "bitunix":
 		RunBitunix(args[1:])
 		return 0
+	case "woox":
+		RunWOOX(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -91,6 +95,7 @@ Exchanges:
   ourbit     fetch or import Ourbit PoR summary (public stock_info + wallets)
   coinex     fetch or import CoinEx PoR summary (public merkle/reserve + optional user proof)
   bitunix    fetch or import Bitunix PoR summary (+ optional merkle_tree_bitunix.json)
+  woox       fetch or import WOO X PoR summary (live dashboard + merkle audit)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -110,6 +115,8 @@ Examples:
   por fetch coinex -summary-path ./fixtures/coinex/20260914-summary.json
   por fetch bitunix
   por fetch bitunix -summary-path ./fixtures/bitunix/20261103-summary.json
+  por fetch woox
+  por fetch woox -summary-path ./fixtures/woox/20261015-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -641,6 +648,37 @@ func RunBitunix(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch bitunix snapshot: %v\n\nTip: public API is usually reachable; or import:\n  por fetch bitunix -summary-path ./fixtures/bitunix/20261103-summary.json\n  por fetch bitunix -summary-path ./summary.json -user-proof ./merkle_tree_bitunix.json", err)
+	}
+	logResult(stored)
+}
+
+// RunOKX archives OKX public PoR artifacts.
+
+func RunWOOX(args []string) {
+	fs := flag.NewFlagSet("woox", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import archived summary bundle JSON")
+	userProofPath := fs.String("user-proof", "", "optional import of login-gated user materials (stored only; verifier stubbed)")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+	}
+	if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("woox")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch woox snapshot: %v\n\nTip: public API is usually reachable; or import:\n  por fetch woox -summary-path ./fixtures/woox/20261015-summary.json\nMerkle tree binaries are ~200MB and are not auto-downloaded; see %s", err, wooxapi.URLOSSVerify)
 	}
 	logResult(stored)
 }

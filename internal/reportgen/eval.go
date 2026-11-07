@@ -135,6 +135,18 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkle proof JSON not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
 		}
 
+	case "woox":
+		e.Headline = "WOO X snapshot " + art.SnapshotID + " is Stage 0: public live dashboard + monthly merkle audit overview with permissionless full-tree download; user Merkle hash login-gated; assets largely on custody/CEX venues — Stage 1 ownership/on-chain path hard."
+		e.Rationale = "solvency-claim reflects self-reported USD-notional assets/liabilities from snapshot_overview (UI formula). Full protobuf Merkle trees are public on oss.woo.network (~200MB) and woo-x/merkle-tree documents validation, but ardmere does not yet port the Java checker and user hashes remain login-gated. No public wallet_address_list / ownership / global ZK."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_public_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "No public wallet_address_list; live assets cite custody/CEX venues via read-only API.", RiskFlag: "UNVERIFIABLE"},
+			blockedReason{RuleID: "floor_no_public_merkle_root_hex", Evidence: "merkle_root", MaxStage: "Stage 0", Reason: "Period merkle root hex is not published separately; only the full protobuf tree URL is public.", RiskFlag: "NO_PUBLIC_MERKLE_ROOT"},
+			blockedReason{RuleID: "floor_assets_on_third_party_venues", Evidence: "asset_venues", MaxStage: "Stage 0", Reason: "Dashboard assets include custodian / third-party venue balances — Stage 1 on-chain ownership is hard.", RiskFlag: "THIRD_PARTY_VENUE_ASSETS"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User Merkle hash is login-gated; woo-x/merkle-tree Java not yet ported against the ~200MB tree.", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
+
 	case "bitunix":
 		e.Headline = "Bitunix snapshot " + art.SnapshotID + " is Stage 0: public BTC/ETH/USDT reserve ratios + period merkle root; user merkle_tree_bitunix.json login-gated; no ownership proofs or global ZK."
 		e.Rationale = "solvency-claim PASS means self-reported reserve ratios ≥ 100% only. Official Java OSS (BitunixOfficial/proof-of-reserves) is ported as user-merkle-proof@bitunix-1 for imported proofs. Recent periods expose empty walletAddress — no Stage 1 walletZip."

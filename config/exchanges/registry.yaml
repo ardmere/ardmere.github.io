@@ -205,3 +205,19 @@ exchanges:
       and merkleRootHash without login. User merkle_tree_bitunix.json download and
       queryUserAuditIdList / verifyUserAsset are login-gated. Recent walletAddress fields are
       empty — Stage 1 walletZip stays unwired. No global ZK / third-party attestation channel.
+  - id: woox
+    name: WOO X
+    porPage: https://woox.io/proof-of-reserves
+    dataGuide: docs/woox-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/woo-x/merkle-tree
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@0
+        note: >-
+          Official Java MerkleCheck against full protobuf tree download + login user hash.
+          Not yet ported (tree binaries are ~70–216MB); user hash remains login-gated.
+    integrationNotes: >-
+      Public /asset/porl/{assets,liabilities} live dashboard (~15 min) and /asset/porl/v2/{audits,snapshot_overview}
+      monthly merkle audits are permissionless. Full trees at oss.woo.network/merkle/{auditId}. User Merkle hash
+      is login-gated; assets cite custody/CEX venues — Stage 1 ownership/on-chain path is hard. No global ZK.
