@@ -5,7 +5,7 @@
 
 This index lists every assessed snapshot in the ardmere public evaluation set. The [homepage](../../index.html) shows the six most recent reports (auto-generated via `por site`). This file is also auto-generated; edit `config/site/snapshot-notes.yaml` for page footers.
 
-**Assessed:** 2026-11-06 · Schema: `ardmere/exchange-assessment@1`
+**Assessed:** 2026-11-07 · Schema: `ardmere/exchange-assessment@1`
 
 ## All public reports
 
@@ -14,6 +14,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | Binance | `PR04NOV26` | 2026-11-04 | Stage 0 | [report](./binance/PR04NOV26-transparency-report.md) |
 | Bitunix | `20261103` | 2026-11-03 | Stage 0 | [report](./bitunix/20261103-transparency-report.md) |
 | Phemex | `20261101` | 2026-11-01 | Stage 0 | [report](./phemex/20261101-transparency-report.md) |
+| HTX | `20261101` | 2026-11-01 | Stage 0 | [report](./htx/20261101-transparency-report.md) |
 | OKX | `508756245` | 2026-10-31 | **Stage 1** | [report](./okx/508756245-transparency-report.md) |
 | Ourbit | `20261101` | 2026-10-31 | Stage 0 | [report](./ourbit/20261101-transparency-report.md) |
 | KuCoin | `20261031` | 2026-10-31 | Stage 0 | [report](./kucoin/20261031-transparency-report.md) |
@@ -27,9 +28,9 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | MEXC | `202610` | 2026-10-15 | Stage 0 | [report](./mexc/202610-transparency-report.md) |
 | OKX | `502260945` | 2026-10-02 | **Stage 1** | [report](./okx/502260945-transparency-report.md) |
 | Binance | `PR01OCT26` | 2026-10-01 | Stage 0 | [report](./binance/PR01OCT26-transparency-report.md) |
-| Toobit | `20261001` | 2026-10-01 | Stage 0 | [report](./toobit/20261001-transparency-report.md) |
-| HTX | `20261001` | 2026-10-01 | Stage 0 | [report](./htx/20261001-transparency-report.md) |
 | Poloniex | `20261001` | 2026-10-01 | Stage 0 | [report](./poloniex/20261001-transparency-report.md) |
+| HTX | `20261001` | 2026-10-01 | Stage 0 | [report](./htx/20261001-transparency-report.md) |
+| Toobit | `20261001` | 2026-10-01 | Stage 0 | [report](./toobit/20261001-transparency-report.md) |
 | KuCoin | `20260930` | 2026-09-30 | Stage 0 | [report](./kucoin/20260930-transparency-report.md) |
 | Bitget | `20260929` | 2026-09-29 | Stage 0 | [report](./bitget/20260929-transparency-report.md) |
 | Bybit | `2026092303` | 2026-09-23 | Stage 0 | [report](./bybit/2026092303-transparency-report.md) |
@@ -47,8 +48,8 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | MEXC | `202608` | 2026-08-14 | Stage 0 | [report](./mexc/202608-transparency-report.md) |
 | OKX | `500375535` | 2026-08-10 | **Stage 1** | [report](./okx/500375535-transparency-report.md) |
 | Binance | `PR01AUG26` | 2026-08-01 | Stage 0 | [report](./binance/PR01AUG26-transparency-report.md) |
-| HTX | `20260801` | 2026-08-01 | Stage 0 | [report](./htx/20260801-transparency-report.md) |
 | Poloniex | `20260801` | 2026-08-01 | Stage 0 | [report](./poloniex/20260801-transparency-report.md) |
+| HTX | `20260801` | 2026-08-01 | Stage 0 | [report](./htx/20260801-transparency-report.md) |
 | KuCoin | `20260731` | 2026-07-31 | Stage 0 | [report](./kucoin/20260731-transparency-report.md) |
 | MEXC | `202607` | 2026-07-15 | Stage 0 | [report](./mexc/202607-transparency-report.md) |
 | Binance | `PR01JUL26` | 2026-07-01 | Stage 0 | [report](./binance/PR01JUL26-transparency-report.md) |
@@ -70,7 +71,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 
 Dates are snapshot times from each assessment JSON (`snapshotTime`, UTC date).
 
-HTX Aug–Oct 2026 summaries imported from public browser API; production `public-data.zip` / proof0.csv remains login-gated (see `artifacts/htx/*/FETCH_NEEDED.md` notes in browser-por-capture).
+HTX Aug–Nov 2026 summaries imported from public browser API; production `public-data.zip` / proof0.csv remains login-gated (see `artifacts/htx/*/FETCH_NEEDED.md` notes in browser-por-capture).
 
 Gate Aug/Sep 2026 historical snapshots not available without login (public API returns latest only). Bybit Oct exact reserve ratios unpublished as of capture.
 
