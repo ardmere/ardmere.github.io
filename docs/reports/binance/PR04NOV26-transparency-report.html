@@ -137,11 +137,11 @@ stack.</p>
 <tbody>
 <tr class="odd">
 <td>Latest snapshot (evaluation set)</td>
-<td><code>2026-10-31T00:00:00Z</code></td>
+<td><code>2026-11-04T00:00:00Z</code></td>
 </tr>
 <tr class="even">
 <td>Previous snapshot</td>
-<td><code>UNVERIFIABLE</code></td>
+<td><code>2026-10-31T00:00:00Z</code></td>
 </tr>
 <tr class="odd">
 <td>Observed cadence</td>
@@ -149,7 +149,7 @@ stack.</p>
 </tr>
 <tr class="even">
 <td>History available</td>
-<td><code>8 snapshot(s) in public evaluation set</code></td>
+<td><code>9 snapshot(s) in public evaluation set</code></td>
 </tr>
 <tr class="odd">
 <td>Event-triggered updates</td>
@@ -166,6 +166,8 @@ expectations.</td>
 </tr>
 </tbody>
 </table>
+<p>This is the newest snapshot in the ardmere public evaluation set for
+binance.</p>
 <h2 id="evidence-and-bundles">4. Evidence and Bundles</h2>
 <h3 id="public-artifacts">Public Artifacts</h3>
 <table>
@@ -184,7 +186,7 @@ expectations.</td>
 <tbody>
 <tr class="odd">
 <td><code>bapiSnapshot</code></td>
-<td><code>9b446306771ad833a9e7e25e98cbe56e223d6f75cdd6869f1ae80b8c85266d74</code></td>
+<td><code>15b7c5eaf40db76b179b58da298c6263dc866b8d0f9a87985c70fd8d2c5ede5d</code></td>
 <td>https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot</td>
 </tr>
 <tr class="even">
@@ -209,19 +211,19 @@ expectations.</td>
 <tbody>
 <tr class="odd">
 <td>Artifact bundle root</td>
-<td><code>0xe2d0a979e7062bc7ee2ffb19b50733d57a2720c4a25f3ea85ee84c1f0c568506</code></td>
+<td><code>0xbb073aab9606d14312320245b619c5186fb54a282a2cac2adff9d5408f38213e</code></td>
 </tr>
 <tr class="even">
 <td>Verification bundle root</td>
-<td><code>0x3154b1fce7d20d13be0f284c971301e107a953c8cd2f92fff0d29a86ed4c3d91</code></td>
+<td><code>0xf476bcf34eb92798da9b7c5292d87ce9b0670922562db127774a58ea6559b780</code></td>
 </tr>
 <tr class="odd">
 <td>Artifact bundle SHA-256</td>
-<td><code>30fbccee4eb59952f073a2151b396f478386a3de7adc11774164146994991dae</code></td>
+<td><code>8f96cdfcdf5ce676a36ebd2b6a648e0ef7b27b9d400e2d6a3274e252454d4efe</code></td>
 </tr>
 <tr class="even">
 <td>Verification bundle SHA-256</td>
-<td><code>2f9c519c85932b6db8b76e99c3bd73ffd451053f48817abf6c678b329cae53bf</code></td>
+<td><code>7e135fddb48d0e973cc52aa50560d20dfca05552790247ff2adf50f898d29f67</code></td>
 </tr>
 </tbody>
 </table>
@@ -287,14 +289,14 @@ href="../../../artifacts/binance/PR04NOV26/bundles/PR04NOV26.verification-bundle
 <td><code>onchain-balance-token</code></td>
 <td><code>2.0</code></td>
 <td><code>FAIL</code></td>
-<td><code>0.6099</code></td>
+<td><code>0.6085</code></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><code>onchain-balance-ledger</code></td>
 <td><code>1.4</code></td>
 <td><code>FAIL</code></td>
-<td><code>0.2080</code></td>
+<td><code>0.2017</code></td>
 <td></td>
 </tr>
 <tr class="even">
@@ -465,7 +467,7 @@ mode)</td>
 <td>1667.982379</td>
 <td>1667.975792360534102986</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 0.006586639465897014
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 </tbody>
 </table>
@@ -529,7 +531,7 @@ mode)</td>
 </table>
 <h4 id="onchain-balance-token-fail"><code>onchain-balance-token</code>
 (<code>FAIL</code>)</h4>
-<p>Finding counts: FAIL 71, WARN 16, UNVERIFIABLE 6, PASS 1</p>
+<p>Finding counts: FAIL 71, WARN 18, UNVERIFIABLE 6, PASS 1</p>
 <p><strong>FAIL</strong></p>
 <table>
 <colgroup>
@@ -555,7 +557,7 @@ mode)</td>
 <td>30200045</td>
 <td>35</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 30200010
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
@@ -563,7 +565,7 @@ mode)</td>
 <td>3.012</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 3.012
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x52854a35cf896a57b3a861ba7fbd2171f2445ef2</code></td>
@@ -571,23 +573,7 @@ mode)</td>
 <td>782.28</td>
 <td>782.277981970469216788</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 0.002018029530783212
-(provider=https://bsc.rpc.sentio.xyz)</td>
-</tr>
-<tr class="even">
-<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
-<td><code>BTC@ETH#26337722</code></td>
-<td>1047.9</td>
-<td>106.362</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 941.538
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="odd">
-<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
-<td><code>CAKE@ETH#26337722</code></td>
-<td>24593.94636</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 24593.94636
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
@@ -595,7 +581,23 @@ mode)</td>
 <td>1105.5871</td>
 <td>400</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 705.5871
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
+</tr>
+<tr class="odd">
+<td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
+<td><code>BTC@ETH#26337722</code></td>
+<td>1047.9</td>
+<td>106.362</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 941.538
+(provider=cache)</td>
+</tr>
+<tr class="even">
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>CAKE@ETH#26337722</code></td>
+<td>24593.94636</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 24593.94636
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
@@ -603,23 +605,7 @@ mode)</td>
 <td>314432.2739</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 314432.2739
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="even">
-<td><code>0x037741ef196087b26abfb173b64d05df23fadc72</code></td>
-<td><code>ENA@ETH#26337722</code></td>
-<td>9196887.416</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 9196887.416
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="odd">
-<td><code>0x18e226459ccf0eec276514a4fd3b226d8961e4d1</code></td>
-<td><code>ENA@ETH#26337722</code></td>
-<td>2815479.927</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 2815479.927
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
@@ -627,39 +613,39 @@ mode)</td>
 <td>2.15510575</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 2.15510575
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
+<td><code>0x18e226459ccf0eec276514a4fd3b226d8961e4d1</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>2815479.927</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 2815479.927
+(provider=cache)</td>
+</tr>
+<tr class="even">
 <td><code>0x3d5dc8d8ef62348e8e2e1abe4aa6d1153b48f232</code></td>
 <td><code>ENA@ETH#26337722</code></td>
 <td>9882010.636</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 9882010.636
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>0x43684d03d81d3a4c70da68febdd61029d426f042</code></td>
 <td><code>ENA@ETH#26337722</code></td>
 <td>27343446.22</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 27343446.22
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
 <td><code>ENA@ETH#26337722</code></td>
 <td>5679532.089</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 5679532.089
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="even">
-<td><code>0x4fdfe365436b5273a42f135c6a6244a20404271e</code></td>
-<td><code>ENA@ETH#26337722</code></td>
-<td>6001743.287</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 6001743.287
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x5a1e5b56aa33c056ed7bb93b88b1774a456f6694</code></td>
@@ -667,7 +653,7 @@ mode)</td>
 <td>35915486.42</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 35915486.42
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
@@ -675,15 +661,15 @@ mode)</td>
 <td>510115216</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 510115216
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
-<td><code>0xc6fe7b7fbc7ef114284896a6631251cf54a8c304</code></td>
+<td><code>0x4fdfe365436b5273a42f135c6a6244a20404271e</code></td>
 <td><code>ENA@ETH#26337722</code></td>
-<td>9024549.068</td>
+<td>6001743.287</td>
 <td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 9024549.068
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 6001743.287
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x690c3eebf6ee237f00fc96f9766282f096c191cc</code></td>
@@ -691,7 +677,7 @@ mode)</td>
 <td>96712658.75</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 96712658.75
-(provider=https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
@@ -699,23 +685,23 @@ mode)</td>
 <td>59634358.05</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 59634358.05
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
+<td><code>0xc6fe7b7fbc7ef114284896a6631251cf54a8c304</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>9024549.068</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9024549.068
+(provider=cache)</td>
+</tr>
+<tr class="odd">
 <td><code>0xde1c31ef18a36e44125c641063544ed5d44bfe78</code></td>
 <td><code>ENA@ETH#26337722</code></td>
 <td>9523966.98</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 9523966.98
-(provider=https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
-</tr>
-<tr class="odd">
-<td><code>0xf3e9fdd1ae54e5ad88ee540855f83cf3918f4385</code></td>
-<td><code>ENA@ETH#26337722</code></td>
-<td>9176572.988</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 9176572.988
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0xdfd5293d8e347dfe59e90efd55b2956a1343963d</code></td>
@@ -723,15 +709,31 @@ mode)</td>
 <td>2.05552835</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 2.05552835
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
+<td><code>0xf3e9fdd1ae54e5ad88ee540855f83cf3918f4385</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>9176572.988</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9176572.988
+(provider=cache)</td>
+</tr>
+<tr class="even">
 <td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
 <td><code>ENA@ETH#26337722</code></td>
 <td>787759017</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 787759017
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
+</tr>
+<tr class="odd">
+<td><code>0x037741ef196087b26abfb173b64d05df23fadc72</code></td>
+<td><code>ENA@ETH#26337722</code></td>
+<td>9196887.416</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 9196887.416
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0xde1c31ef18a36e44125c641063544ed5d44bfe78</code></td>
@@ -739,7 +741,7 @@ mode)</td>
 <td>256539.902</td>
 <td>255157.402</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 1382.5
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xa64b436964e7415c0e70b9989a53e1fb9a90e726</code></td>
@@ -748,8 +750,7 @@ mode)</td>
 <td>99.066047574468237635</td>
 <td>POL+MATIC ERC20 on ETH still &lt;&lt; CSV; residual may be
 Polygon-native POL or internal ledger; shortfall / 不足 (CSV exceeds
-on-chain) by 134000000.033952425531762365
-(provider=https://mainnet.infura.io/v3/[REDACTED],https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
+on-chain) by 134000000.033952425531762365 (provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x26bff98f6f37c8d560684eaf2afd1149bf76633e</code></td>
@@ -757,7 +758,7 @@ on-chain) by 134000000.033952425531762365
 <td>650019</td>
 <td>14</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 650005
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x18e226459ccf0eec276514a4fd3b226d8961e4d1</code></td>
@@ -765,7 +766,7 @@ on-chain) by 134000000.033952425531762365
 <td>15000</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 15000
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x43684d03d81d3a4c70da68febdd61029d426f042</code></td>
@@ -773,7 +774,7 @@ on-chain) by 134000000.033952425531762365
 <td>256388.6563</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 256388.6563
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
@@ -781,55 +782,7 @@ on-chain) by 134000000.033952425531762365
 <td>396917.499</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 396917.499
-(provider=https://bsc.rpc.sentio.xyz)</td>
-</tr>
-<tr class="even">
-<td><code>0x037741ef196087b26abfb173b64d05df23fadc72</code></td>
-<td><code>TUSD@ETH#26337722</code></td>
-<td>25584</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 25584
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="odd">
-<td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
-<td><code>TUSD@ETH#26337722</code></td>
-<td>7262.2</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 7262.2
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="even">
-<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
-<td><code>TUSD@ETH#26337722</code></td>
-<td>3.00029591</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 3.00029591
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="odd">
-<td><code>0x3d5dc8d8ef62348e8e2e1abe4aa6d1153b48f232</code></td>
-<td><code>TUSD@ETH#26337722</code></td>
-<td>25584</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 25584
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="even">
-<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
-<td><code>TUSD@ETH#26337722</code></td>
-<td>1077.401833</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 1077.401833
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="odd">
-<td><code>0x5a1e5b56aa33c056ed7bb93b88b1774a456f6694</code></td>
-<td><code>TUSD@ETH#26337722</code></td>
-<td>46838.56089</td>
-<td>0</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 46838.56089
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
@@ -837,7 +790,7 @@ on-chain) by 134000000.033952425531762365
 <td>9.9151</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 9.9151
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
@@ -845,7 +798,55 @@ on-chain) by 134000000.033952425531762365
 <td>1127096.623</td>
 <td>0.01899189</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 1127096.60400811
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
+</tr>
+<tr class="even">
+<td><code>0x037741ef196087b26abfb173b64d05df23fadc72</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>25584</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 25584
+(provider=cache)</td>
+</tr>
+<tr class="odd">
+<td><code>0x21a31ee1afc51d94c2efccaa2092ad1028285549</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>7262.2</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 7262.2
+(provider=cache)</td>
+</tr>
+<tr class="even">
+<td><code>0x28c6c06298d514db089934071355e5743bf21d60</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>3.00029591</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 3.00029591
+(provider=cache)</td>
+</tr>
+<tr class="odd">
+<td><code>0x3d5dc8d8ef62348e8e2e1abe4aa6d1153b48f232</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>25584</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 25584
+(provider=cache)</td>
+</tr>
+<tr class="even">
+<td><code>0x4ed6cf63bd9c009d247ee51224fc1c7041f517f1</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>1077.401833</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 1077.401833
+(provider=cache)</td>
+</tr>
+<tr class="odd">
+<td><code>0x5a1e5b56aa33c056ed7bb93b88b1774a456f6694</code></td>
+<td><code>TUSD@ETH#26337722</code></td>
+<td>46838.56089</td>
+<td>0</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 46838.56089
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x5a52e96bacdabb82fd05763e25335261b270efcb</code></td>
@@ -853,7 +854,7 @@ on-chain) by 134000000.033952425531762365
 <td>529912.638</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 529912.638
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x690c3eebf6ee237f00fc96f9766282f096c191cc</code></td>
@@ -861,7 +862,7 @@ on-chain) by 134000000.033952425531762365
 <td>172019.41</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 172019.41
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x98adef6f2ac8572ec48965509d69a8dd5e8bba9d</code></td>
@@ -869,7 +870,7 @@ on-chain) by 134000000.033952425531762365
 <td>31703.33056</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 31703.33056
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xc6fe7b7fbc7ef114284896a6631251cf54a8c304</code></td>
@@ -877,7 +878,7 @@ on-chain) by 134000000.033952425531762365
 <td>25584</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 25584
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0xde1c31ef18a36e44125c641063544ed5d44bfe78</code></td>
@@ -885,7 +886,7 @@ on-chain) by 134000000.033952425531762365
 <td>25584</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 25584
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xdfd5293d8e347dfe59e90efd55b2956a1343963d</code></td>
@@ -893,7 +894,7 @@ on-chain) by 134000000.033952425531762365
 <td>8693.109</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 8693.109
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0xf3e9fdd1ae54e5ad88ee540855f83cf3918f4385</code></td>
@@ -901,7 +902,7 @@ on-chain) by 134000000.033952425531762365
 <td>25584</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 25584
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
@@ -909,7 +910,7 @@ on-chain) by 134000000.033952425531762365
 <td>5757027.079</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 5757027.079
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x59fbc084aeed2c8e6e9b6ebe8a11d443efcb40d2</code></td>
@@ -917,7 +918,7 @@ on-chain) by 134000000.033952425531762365
 <td>16383889.29</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 16383889.29
-(provider=https://api.mainnet.abs.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x1d40c7717b8c43f877644ba86ec353bdc35c03dc</code></td>
@@ -925,7 +926,7 @@ on-chain) by 134000000.033952425531762365
 <td>27707992.54</td>
 <td>27707909.539366158</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 83.000633842
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x52854a35cf896a57b3a861ba7fbd2171f2445ef2</code></td>
@@ -933,7 +934,7 @@ on-chain) by 134000000.033952425531762365
 <td>124365415.9</td>
 <td>124365385.868053636577324716</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 30.031946363422675284
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xf17719d0a31afce4d88d57c83c4b2265f6a6b4cd</code></td>
@@ -941,7 +942,7 @@ on-chain) by 134000000.033952425531762365
 <td>68442994.01</td>
 <td>68442919.303954</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 74.706046
-(provider=https://arbitrum.gateway.tenderly.co)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x1d40c7717b8c43f877644ba86ec353bdc35c03dc</code></td>
@@ -949,7 +950,7 @@ on-chain) by 134000000.033952425531762365
 <td>3027588.587</td>
 <td>3024495.569715062213806256</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 3093.017284937786193744
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x40207fdaa6015a765e5be0a7571823f11173eed5</code></td>
@@ -957,7 +958,7 @@ on-chain) by 134000000.033952425531762365
 <td>2309946.362</td>
 <td>2309699.655537428</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 246.706462572
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x4540c69b4d42d190c99afce5a0aa4912beb6acb6</code></td>
@@ -965,7 +966,7 @@ on-chain) by 134000000.033952425531762365
 <td>2712322.99</td>
 <td>2710385.759820706612919423</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 1937.230179293387080577
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x52854a35cf896a57b3a861ba7fbd2171f2445ef2</code></td>
@@ -973,7 +974,7 @@ on-chain) by 134000000.033952425531762365
 <td>146086864.3</td>
 <td>146085284.450098007634429863</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 1579.849901992365570137
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x554a8dd77c0aa024e701e53d84103f83fa5bd54a</code></td>
@@ -981,7 +982,7 @@ on-chain) by 134000000.033952425531762365
 <td>5312453.567</td>
 <td>5310865.899557676710628042</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 1587.667442323289371958
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x6416c7690528117a633849be2cd06b9b5c55f171</code></td>
@@ -989,7 +990,7 @@ on-chain) by 134000000.033952425531762365
 <td>3916489.091</td>
 <td>3914646.10754111</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 1842.98345889
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x721093b510870ff0135be8ae2db2c80ff51f0908</code></td>
@@ -997,7 +998,7 @@ on-chain) by 134000000.033952425531762365
 <td>4985160.184</td>
 <td>4985014.907615778</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 145.276384222
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x7508f00e03a5996cf4b680a09f5ad05cc5c83225</code></td>
@@ -1005,7 +1006,7 @@ on-chain) by 134000000.033952425531762365
 <td>2609120.795</td>
 <td>2608861.774761943956604745</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 259.020238056043395255
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x9b594898e9441aabc7f97f02d5bd76b165732ed5</code></td>
@@ -1013,7 +1014,7 @@ on-chain) by 134000000.033952425531762365
 <td>5467506.947</td>
 <td>5467455.2867755578</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 51.6602244422
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xa010ec4e43c6448f2fe13340991bededf8763bf4</code></td>
@@ -1021,7 +1022,7 @@ on-chain) by 134000000.033952425531762365
 <td>5608956.634</td>
 <td>5608923.674122973</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 32.959877027
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0xc55644e979f53358ffc7d39452e11f54ccd9b63d</code></td>
@@ -1029,7 +1030,7 @@ on-chain) by 134000000.033952425531762365
 <td>2672493.029</td>
 <td>2672418.7892597</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 74.2397403
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xc924b8347885e731912852933cb2f4cb42fa8170</code></td>
@@ -1037,7 +1038,7 @@ on-chain) by 134000000.033952425531762365
 <td>2870632.338</td>
 <td>2870460.239092952427233882</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 172.098907047572766118
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0xd1d8e218550dd6c9cf3469305910bbc2b276cf4e</code></td>
@@ -1045,7 +1046,7 @@ on-chain) by 134000000.033952425531762365
 <td>5634667.302</td>
 <td>5633005.232224217185556053</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 1662.069775782814443947
-(provider=https://bsc.rpc.sentio.xyz)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0x037741ef196087b26abfb173b64d05df23fadc72</code></td>
@@ -1053,23 +1054,7 @@ on-chain) by 134000000.033952425531762365
 <td>11806884.16</td>
 <td>11806874.76498</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 9.39502
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="even">
-<td><code>0x690c3eebf6ee237f00fc96f9766282f096c191cc</code></td>
-<td><code>USDT@ETH#26337722</code></td>
-<td>216309467.8</td>
-<td>216309418.4044</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 49.3956
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
-</tr>
-<tr class="odd">
-<td><code>0x6781b0098e3238caeede00647c9b69dd98a86a83</code></td>
-<td><code>USDT@ETH#26337722</code></td>
-<td>8190663.098</td>
-<td>8190648.697943</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 14.400057
-(provider=https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0x3d5dc8d8ef62348e8e2e1abe4aa6d1153b48f232</code></td>
@@ -1077,23 +1062,39 @@ on-chain) by 134000000.033952425531762365
 <td>9839544.562</td>
 <td>9839390.509367</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 154.052633
-(provider=https://eth-mainnet.g.alchemy.com/v2/[REDACTED])</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
-<td><code>0xde1c31ef18a36e44125c641063544ed5d44bfe78</code></td>
+<td><code>0x6781b0098e3238caeede00647c9b69dd98a86a83</code></td>
 <td><code>USDT@ETH#26337722</code></td>
-<td>11541590.69</td>
-<td>11433492.966765</td>
-<td>shortfall / 不足 (CSV exceeds on-chain) by 108097.723235
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+<td>8190663.098</td>
+<td>8190648.697943</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 14.400057
+(provider=cache)</td>
 </tr>
 <tr class="even">
+<td><code>0x690c3eebf6ee237f00fc96f9766282f096c191cc</code></td>
+<td><code>USDT@ETH#26337722</code></td>
+<td>216309467.8</td>
+<td>216309418.4044</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 49.3956
+(provider=cache)</td>
+</tr>
+<tr class="odd">
 <td><code>0xc6fe7b7fbc7ef114284896a6631251cf54a8c304</code></td>
 <td><code>USDT@ETH#26337722</code></td>
 <td>11065059.74</td>
 <td>11064555.837358</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 503.902642
-(provider=https://mainnet.infura.io/v3/[REDACTED])</td>
+(provider=cache)</td>
+</tr>
+<tr class="even">
+<td><code>0xde1c31ef18a36e44125c641063544ed5d44bfe78</code></td>
+<td><code>USDT@ETH#26337722</code></td>
+<td>11541590.69</td>
+<td>11433492.966765</td>
+<td>shortfall / 不足 (CSV exceeds on-chain) by 108097.723235
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xacd03d601e5bb1b275bb94076ff46ed9d753435a</code></td>
@@ -1101,7 +1102,7 @@ on-chain) by 134000000.033952425531762365
 <td>203.587801</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 203.587801
-(provider=https://mainnet.optimism.io)</td>
+(provider=cache)</td>
 </tr>
 <tr class="even">
 <td><code>0xc34db06fd02be471dc4c1d8b0316a63ee37903bd</code></td>
@@ -1109,7 +1110,7 @@ on-chain) by 134000000.033952425531762365
 <td>4652811.084</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 4652811.084
-(provider=https://mainnet.optimism.io)</td>
+(provider=cache)</td>
 </tr>
 <tr class="odd">
 <td><code>0xf977814e90da44bfa03b6295a0616a897441acec</code></td>
@@ -1117,7 +1118,7 @@ on-chain) by 134000000.033952425531762365
 <td>3000000</td>
 <td>0</td>
 <td>shortfall / 不足 (CSV exceeds on-chain) by 3000000
-(provider=https://mainnet.optimism.io)</td>
+(provider=cache)</td>
 </tr>
 </tbody>
 </table>
@@ -1168,6 +1169,15 @@ discontinued.”,“message”:“For an up to date list of available endpoints,
 visit https://</td>
 </tr>
 <tr class="even">
+<td><code>TJTKCzQpsG19CSMYF9TPtxz6wSHPSyeKfa</code></td>
+<td><code>TUSD@TRX#87692258</code></td>
+<td>1006263.211</td>
+<td>606541.980457840768729417</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 399721.230542159231270583 (provider=https://api.trongrid.io)</td>
+</tr>
+<tr class="odd">
 <td><code>TJCo98saj6WND61g1uuKwJ9GMWMT9WkJFo</code></td>
 <td><code>TUSD@TRX#87692258</code></td>
 <td>2436174.701</td>
@@ -1176,7 +1186,7 @@ visit https://</td>
 state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
 by 1200000 (provider=https://api.trongrid.io)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>0x0213c67ed78bc280887234fe5ed5e77272465317978ae86c25a71531d9332a2d</code></td>
 <td><code>USDC@STARKNET</code></td>
 <td></td>
@@ -1185,7 +1195,7 @@ by 1200000 (provider=https://api.trongrid.io)</td>
 discontinued.”,“message”:“For an up to date list of available endpoints,
 visit https://</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>0x04164013f90b05d67f026779bf96e9c401c96f3485b645a786166e6935fba116</code></td>
 <td><code>USDC@STARKNET</code></td>
 <td></td>
@@ -1194,90 +1204,81 @@ visit https://</td>
 discontinued.”,“message”:“For an up to date list of available endpoints,
 visit https://</td>
 </tr>
+<tr class="even">
+<td><code>TWd4WrZ9wn84f5x1hZhL4DHvk738ns5jwb</code></td>
+<td><code>U@TRX#87692258</code></td>
+<td>36094679</td>
+<td>10000000</td>
+<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
+state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
+by 26094679 (provider=https://tron-rpc.publicnode.com)</td>
+</tr>
 <tr class="odd">
 <td><code>TADfh7Q4KA9LD6WfjjjcPMNra33gNRrCkb</code></td>
 <td><code>USDT@TRX#87692258</code></td>
 <td>8522644.706</td>
-<td>6430287.109882</td>
+<td>4725815.836459</td>
 <td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
 state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
-by 2092357.596118 (provider=https://api.trongrid.io)</td>
+by 3796828.869541 (provider=https://tron-rpc.publicnode.com)</td>
 </tr>
 <tr class="even">
 <td><code>TCQ8X6x9GiK4khydWVKfLJvm8H6WK3RE8B</code></td>
 <td><code>USDT@TRX#87692258</code></td>
 <td>8817651.578</td>
-<td>5994165.551708</td>
+<td>3791429.726805</td>
 <td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
 state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
-by 2823486.026292 (provider=https://tron-rpc.publicnode.com)</td>
+by 5026221.851195 (provider=https://api.trongrid.io)</td>
 </tr>
 <tr class="odd">
 <td><code>TDB1RpAHPQdGqfb1qi8J2jLY2oGe2jSy8A</code></td>
 <td><code>USDT@TRX#87692258</code></td>
 <td>8695658.309</td>
-<td>5944237.959599</td>
+<td>1258910.398794</td>
 <td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
 state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
-by 2751420.349401 (provider=https://tron-rpc.publicnode.com)</td>
+by 7436747.910206 (provider=https://tron-rpc.publicnode.com)</td>
 </tr>
 <tr class="even">
 <td><code>TE4mtETxcuHHbprQmQkyVSaCC48Q5yk21i</code></td>
 <td><code>USDT@TRX#87692258</code></td>
 <td>7410996.609</td>
-<td>6296413.724003</td>
+<td>4907657.042015</td>
 <td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
 state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
-by 1114582.884997 (provider=https://tron-rpc.publicnode.com)</td>
+by 2503339.566985 (provider=https://tron-rpc.publicnode.com)</td>
 </tr>
 <tr class="odd">
 <td><code>TGnBDu95RaJEaw7dJpqzHt8Sy7faayBGvj</code></td>
 <td><code>USDT@TRX#87692258</code></td>
 <td>7947369.455</td>
-<td>5860683.437494</td>
+<td>4696064.414258</td>
 <td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
 state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
-by 2086686.017506 (provider=https://tron-rpc.publicnode.com)</td>
+by 3251305.040742 (provider=https://tron-rpc.publicnode.com)</td>
 </tr>
 <tr class="even">
 <td><code>TGpTXS67vXyPERWMC2iQSG27TosfD13HLZ</code></td>
 <td><code>USDT@TRX#87692258</code></td>
 <td>7975215.984</td>
-<td>5215294.257628</td>
+<td>3865675.527045</td>
 <td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
 state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
-by 2759921.726372 (provider=https://tron-rpc.publicnode.com)</td>
+by 4109540.456955 (provider=https://tron-rpc.publicnode.com)</td>
 </tr>
 <tr class="odd">
 <td><code>TJTKCzQpsG19CSMYF9TPtxz6wSHPSyeKfa</code></td>
 <td><code>USDT@TRX#87692258</code></td>
 <td>266590758.2</td>
-<td>137932222.27539</td>
+<td>23694005.988296</td>
 <td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
 state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
-by 128658535.92461 (provider=https://tron-rpc.publicnode.com)</td>
-</tr>
-<tr class="even">
-<td><code>TNiXZSD38dwRjZ5fXKn1im8crWkfqzskvH</code></td>
-<td><code>USDT@TRX#87692258</code></td>
-<td>8792567.348</td>
-<td>6306741.501255</td>
-<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
-state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
-by 2485825.846745 (provider=https://tron-rpc.publicnode.com)</td>
-</tr>
-<tr class="odd">
-<td><code>TTU4bhRuPEtaSWPXvvRQ7CVnyHs6cGu24e</code></td>
-<td><code>USDT@TRX#87692258</code></td>
-<td>8629291.574</td>
-<td>6428333.965865</td>
-<td>live TRC20 balance vs snapshot CSV; Tron has no historical contract
-state (block_num ineffective); shortfall / 不足 (CSV exceeds on-chain)
-by 2200957.608135 (provider=https://tron-rpc.publicnode.com)</td>
+by 242896752.211704 (provider=https://tron-rpc.publicnode.com)</td>
 </tr>
 </tbody>
 </table>
-<p><em>1 additional <code>WARN</code> rows omitted; see verification
+<p><em>3 additional <code>WARN</code> rows omitted; see verification
 bundle.</em></p>
 <p><strong>UNVERIFIABLE (row-level)</strong></p>
 <p>Unsupported (coin, network) pairs:</p>
@@ -1362,7 +1363,7 @@ on-chain address</td>
 </table>
 <h4 id="onchain-balance-ledger-fail"><code>onchain-balance-ledger</code>
 (<code>FAIL</code>)</h4>
-<p>Finding counts: FAIL 9, WARN 84, UNVERIFIABLE 5, PASS 1</p>
+<p>Finding counts: FAIL 9, WARN 93, UNVERIFIABLE 5, PASS 1</p>
 <p><strong>FAIL</strong></p>
 <table>
 <colgroup>
@@ -1520,17 +1521,6 @@ version(1159661950) has been pruned”,“hint”:“The requested data has
 bee</td>
 </tr>
 <tr class="odd">
-<td><code>0x716666e019eb2cd1eea5ae29760e064f14984d8d6db2ff9ee56d0bd994e8c9b3</code></td>
-<td><code>APT\|APT</code></td>
-<td></td>
-<td></td>
-<td>ledger rpc error
-(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x716666e019eb2cd1eea5ae29760e064f14984d8d6db2ff9ee56d0bd994e8c9b3/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
-HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
-version(1159661950) has been pruned”,“hint”:“The requested data has
-bee</td>
-</tr>
-<tr class="even">
 <td><code>0x33f91e694d40ca0a14cb84e1f27a4d03de5cf292b07ed75ed3286e4f243dab34</code></td>
 <td><code>APT\|APT</code></td>
 <td></td>
@@ -1541,24 +1531,35 @@ HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
 version(1159661950) has been pruned”,“hint”:“The requested data has
 bee</td>
 </tr>
-<tr class="odd">
-<td><code>0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f</code></td>
+<tr class="even">
+<td><code>0x716666e019eb2cd1eea5ae29760e064f14984d8d6db2ff9ee56d0bd994e8c9b3</code></td>
 <td><code>APT\|APT</code></td>
 <td></td>
 <td></td>
 <td>ledger rpc error
-(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x716666e019eb2cd1eea5ae29760e064f14984d8d6db2ff9ee56d0bd994e8c9b3/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
 HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
 version(1159661950) has been pruned”,“hint”:“The requested data has
 bee</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>0x9fbc354d59041b8b1b8368e3e7397ac943a3c7c6da3ffde3aa4f4d221a1d205d</code></td>
 <td><code>APT\|APT</code></td>
 <td></td>
 <td></td>
 <td>ledger rpc error
 (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x9fbc354d59041b8b1b8368e3e7397ac943a3c7c6da3ffde3aa4f4d221a1d205d/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="even">
+<td><code>0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0x80174e0fe8cb2d32b038c6c888dd95c3e1560736f0d4a6e8bed6ae43b5c91f6f/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
 HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
 version(1159661950) has been pruned”,“hint”:“The requested data has
 bee</td>
@@ -1575,23 +1576,23 @@ version(1159661950) has been pruned”,“hint”:“The requested data has
 bee</td>
 </tr>
 <tr class="even">
-<td><code>0xbdb53eb583ba02ab0606bdfc71b59a191400f75fb62f9df124494ab877cdfe2a</code></td>
-<td><code>APT\|APT</code></td>
-<td></td>
-<td></td>
-<td>ledger rpc error
-(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xbdb53eb583ba02ab0606bdfc71b59a191400f75fb62f9df124494ab877cdfe2a/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
-HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
-version(1159661950) has been pruned”,“hint”:“The requested data has
-bee</td>
-</tr>
-<tr class="odd">
 <td><code>0xc6ea9c27cd6737031631f6d4a4258f7ff87f3642da964a5fad49594847cce386</code></td>
 <td><code>APT\|APT</code></td>
 <td></td>
 <td></td>
 <td>ledger rpc error
 (provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xc6ea9c27cd6737031631f6d4a4258f7ff87f3642da964a5fad49594847cce386/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
+HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
+version(1159661950) has been pruned”,“hint”:“The requested data has
+bee</td>
+</tr>
+<tr class="odd">
+<td><code>0xbdb53eb583ba02ab0606bdfc71b59a191400f75fb62f9df124494ab877cdfe2a</code></td>
+<td><code>APT\|APT</code></td>
+<td></td>
+<td></td>
+<td>ledger rpc error
+(provider=https://fullnode.mainnet.aptoslabs.com/v1/accounts/0xbdb53eb583ba02ab0606bdfc71b59a191400f75fb62f9df124494ab877cdfe2a/resource/0x1::coin::CoinStore%3C0x1::aptos_coin::AptosCoin%3E?ledger_version=1159661950):
 HTTP 410: {“error_code”:“version_pruned”,“message”:“Ledger
 version(1159661950) has been pruned”,“hint”:“The requested data has
 bee</td>
@@ -1630,17 +1631,17 @@ version(1159661950) has been pruned”,“hint”:“The requested data has
 bee</td>
 </tr>
 <tr class="odd">
-<td><code>14MS72FgWMqQmqGfqEVuh73efqZTzisQx2</code></td>
+<td><code>13oMyD7rJqSajN1b3hSDcScA5AYg83ANgE</code></td>
 <td><code>BCH\|BCH</code></td>
 <td></td>
 <td></td>
 <td>ledger rpc error
-(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/14MS72FgWMqQmqGfqEVuh73efqZTzisQx2):
+(provider=https://api.blockchair.com/bitcoin-cash/dashboards/address/13oMyD7rJqSajN1b3hSDcScA5AYg83ANgE):
 blockchair HTTP 430</td>
 </tr>
 </tbody>
 </table>
-<p><em>69 additional <code>WARN</code> rows omitted; see verification
+<p><em>78 additional <code>WARN</code> rows omitted; see verification
 bundle.</em></p>
 <p><strong>UNVERIFIABLE (row-level)</strong></p>
 <p>Unsupported (coin, network) pairs:</p>
