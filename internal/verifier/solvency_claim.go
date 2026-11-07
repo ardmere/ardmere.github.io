@@ -55,6 +55,8 @@ func (v SolvencyClaim) Run() Verification {
 		return v.runGate(out)
 	case "phemex":
 		return v.runGate(out)
+	case "btcc":
+		return v.runGate(out)
 	case "htx":
 		return v.runHTX(out)
 	case "okx":

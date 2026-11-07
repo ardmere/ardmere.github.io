@@ -135,6 +135,18 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkle proof JSON not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
 		}
 
+	case "btcc":
+		e.Headline = "BTCC snapshot " + art.SnapshotID + " is Stage 0 hard-capped: permissionless reserveInfo exposes per-coin ratios and a truncated (~16 hex) merkle root only — no wallet amounts/addresses, no OSS verifier."
+		e.Rationale = "solvency-claim PASS means self-reported reserve ratios ≥ 100% from https://www.btcc.com/social-api/contract/reserve/reserveInfo only. Cadence is monthly ~day-15. Truncated root cannot bind a full Merkle path offline; leaf validate and history APIs need login; Stage 1 walletZip/ownership/ZK stay unwired by design of the public disclosure."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_public_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "BTCC publishes ratios only — no wallet addresses or reserve/liability amounts.", RiskFlag: "UNVERIFIABLE"},
+			blockedReason{RuleID: "floor_truncated_merkle_root", Evidence: "merkle_root", MaxStage: "Stage 0", Reason: "Published merkle root is truncated to ~16 hex characters; insufficient to bind a full Merkle proof offline.", RiskFlag: "TRUNCATED_MERKLE_ROOT"},
+			blockedReason{RuleID: "floor_no_oss_user_merkle_verifier", Evidence: "user_merkle_verifier", MaxStage: "Stage 0", Reason: "No official BTCC OSS Merkle verifier repo found; user-merkle-proof stays stubbed.", RiskFlag: "UNVERIFIABLE"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "Leaf hash self-check and /reserve/validate require login; no public user proof artifact in the evaluation package.", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
+
 	case "phemex":
 		e.Headline = "Phemex snapshot " + art.SnapshotID + " is Stage 0: permissionless porVersions balances → computed reserve ratios; monthly Merkle inclusion and cold-wallet addresses appear on the public PoR UI, but merkle root / wallet-addresses APIs are CloudFront-gated and user proofs stay login-gated."
 		e.Rationale = "solvency-claim PASS means chainBalance/cexBalance ratios from https://por.phemex.com/porVersions only. UI shows Part of Our Cold Wallets and a Merkle self-check, but there is no permissionless wallet zip, no public period merkle root in the archived package, and no official OSS verifier — Stage 1 walletZip/ownership/ZK stay unwired."

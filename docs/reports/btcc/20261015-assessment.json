@@ -1,0 +1,294 @@
+{
+  "artifacts": {
+    "artifactBundleRoot": "0x879fca032a641d9b1e5d6896804f099fd2ae5ea30b20e362e0f8f801ff5832d4",
+    "present": [
+      {
+        "availability": "public",
+        "kind": "summarySnapshot",
+        "sha256": "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db",
+        "url": "https://www.btcc.com/social-api/contract/reserve/reserveInfo"
+      }
+    ],
+    "verificationBundleRoot": "0x73d114b21143ec838f4517f6d4b825e86acbb362a1801e1d9b8ad5b2ab6b7e3b"
+  },
+  "checklist": [
+    {
+      "id": "S0-1",
+      "notes": "Snapshot 20261015 is in the public evaluation set.",
+      "question": "Has public PoR been published during the last 12 months?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-2",
+      "notes": "2026-10-15T00:00:00Z",
+      "question": "Is snapshot time explicit?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S0-3",
+      "notes": "Summary present; wallet_address_list absent.",
+      "question": "Is there reserve summary or wallet_address_list?",
+      "stage": "Stage 0",
+      "status": "pass"
+    },
+    {
+      "id": "S1-1",
+      "notes": "No public wallet_address_list artifact.",
+      "question": "Is wallet_address_list public and on-chain verifiable?",
+      "stage": "Stage 1",
+      "status": "fail"
+    },
+    {
+      "id": "S1-2",
+      "notes": "address-ownership verifier UNVERIFIABLE.",
+      "question": "Is wallet_ownership_proof public and batch-verifiable?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-3",
+      "notes": "global-zk-proof verifier UNVERIFIABLE.",
+      "question": "Is global_proof public and independently reproducible?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-4",
+      "notes": "third-party-attestation verifier UNVERIFIABLE.",
+      "question": "Is independent third-party review available with stated scope?",
+      "stage": "Stage 1",
+      "status": "unverifiable"
+    },
+    {
+      "id": "S1-5",
+      "notes": "No global ZK proof in the assessed public artifact set.",
+      "question": "If trusted setup is required, is transcript public; otherwise is the proof system transparent setup?",
+      "stage": "Stage 1",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-1",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is root/proof/vk canonically anchored outside exchange servers?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    },
+    {
+      "id": "S2-2",
+      "notes": "Stage 2 is not evaluated until Stage 1 blockers are resolved.",
+      "question": "Is publication frequency sufficient for Stage 2 (weekly full PoR / daily anchor)?",
+      "stage": "Stage 2",
+      "status": "not_applicable"
+    }
+  ],
+  "confidence": "low",
+  "effectivePoR": false,
+  "evidenceLevel": "E1",
+  "exchange": "btcc",
+  "gen": "Gen 1",
+  "generatedAt": "2026-11-06T15:24:57Z",
+  "methodologyVersion": "por-transparency-framework@2026-07-01",
+  "porStage": "Stage 0",
+  "recommendations": [
+    {
+      "priority": "P0",
+      "relatedRiskFlags": [
+        "UNVERIFIABLE"
+      ],
+      "text": "Publish missing public artifacts required for independent reproduction."
+    }
+  ],
+  "riskFlags": [
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "BTCC publishes ratios only — no wallet addresses or reserve/liability amounts."
+    },
+    {
+      "id": "TRUNCATED_MERKLE_ROOT",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Published merkle root is truncated to ~16 hex characters; insufficient to bind a full Merkle proof offline."
+    },
+    {
+      "id": "UNVERIFIABLE",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "No official BTCC OSS Merkle verifier repo found; user-merkle-proof stays stubbed."
+    },
+    {
+      "id": "LOGIN_GATED_USER_PROOF",
+      "severity": "high",
+      "stageEffect": "max_stage_0",
+      "message": "Leaf hash self-check and /reserve/validate require login; no public user proof artifact in the evaluation package."
+    }
+  ],
+  "schema": "ardmere/exchange-assessment@1",
+  "snapshot": {
+    "btcBlockHeight": 0,
+    "exchangeMerkleRoot": "182f650c44a74f6d",
+    "id": "20261015",
+    "periodSeq": 0,
+    "snapshotTime": "2026-10-15T00:00:00Z"
+  },
+  "stageBlockedReasons": [
+    {
+      "ruleId": "floor_no_public_wallet_address_list",
+      "evidence": "wallet_address_list",
+      "maxStage": "Stage 0",
+      "reason": "BTCC publishes ratios only — no wallet addresses or reserve/liability amounts.",
+      "riskFlag": "UNVERIFIABLE"
+    },
+    {
+      "ruleId": "floor_truncated_merkle_root",
+      "evidence": "merkle_root",
+      "maxStage": "Stage 0",
+      "reason": "Published merkle root is truncated to ~16 hex characters; insufficient to bind a full Merkle proof offline.",
+      "riskFlag": "TRUNCATED_MERKLE_ROOT"
+    },
+    {
+      "ruleId": "floor_no_oss_user_merkle_verifier",
+      "evidence": "user_merkle_verifier",
+      "maxStage": "Stage 0",
+      "reason": "No official BTCC OSS Merkle verifier repo found; user-merkle-proof stays stubbed.",
+      "riskFlag": "UNVERIFIABLE"
+    },
+    {
+      "ruleId": "floor_login_gated_user_proof",
+      "evidence": "userMerkleProof",
+      "maxStage": "Stage 0",
+      "reason": "Leaf hash self-check and /reserve/validate require login; no public user proof artifact in the evaluation package.",
+      "riskFlag": "LOGIN_GATED_USER_PROOF"
+    }
+  ],
+  "summary": {
+    "headline": "BTCC snapshot 20261015 is Stage 0 hard-capped: permissionless reserveInfo exposes per-coin ratios and a truncated (~16 hex) merkle root only — no wallet amounts/addresses, no OSS verifier.",
+    "rationale": "solvency-claim PASS means self-reported reserve ratios ≥ 100% from https://www.btcc.com/social-api/contract/reserve/reserveInfo only. Cadence is monthly ~day-15. Truncated root cannot bind a full Merkle path offline; leaf validate and history APIs need login; Stage 1 walletZip/ownership/ZK stay unwired by design of the public disclosure.",
+    "scope": "btcc snapshot 20261015"
+  },
+  "verifierResults": [
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "artifact-integrity",
+      "version": "1.0"
+    },
+    {
+      "coverage": 1,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "",
+      "verdict": "PASS",
+      "verifierId": "solvency-claim",
+      "version": "1.0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "user-merkle-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "Wallet address bundle not available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "internal-consistency",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "BTC block time anchor verifier not implemented",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "btc-anchor",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "Wallet address bundle not available for on-chain audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-hot",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "Wallet address bundle not available for token audit",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-token",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "Verifier not available for this exchange snapshot",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "onchain-balance-ledger",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "No public download channel for wallet ownership signatures / proofs",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "address-ownership",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "Global proof.csv / verifying key not publicly distributed",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "global-zk-proof",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "No public third-party attestation report available",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "third-party-attestation",
+      "version": "0"
+    },
+    {
+      "coverage": 0,
+      "inputArtifacts": [
+        "24feebb7d353810049d37e7ed5f3bcdc0e79c0d961763ffa8e10644ad46776db"
+      ],
+      "reason": "No per-row wrapped-asset metadata in public PoR artifacts (token contract, representation type e.g. WBTC/cbBTC, canonical asset, custody mode)",
+      "verdict": "UNVERIFIABLE",
+      "verifierId": "cross-chain-wrapped",
+      "version": "0"
+    }
+  ]
+}

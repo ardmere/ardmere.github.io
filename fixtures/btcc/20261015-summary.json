@@ -1,0 +1,22 @@
+{
+  "fetchedAt": "2026-11-06T15:23:10Z",
+  "source": "https://www.btcc.com/social-api/contract/reserve/reserveInfo?reportDate=2026-10-15",
+  "sourceUrls": [
+    "https://www.btcc.com/social-api/contract/reserve/reserveInfo",
+    "https://www.btcc.com/en-US/proof-of-reserves"
+  ],
+  "reportDate": "2026-10-15",
+  "snapshotId": "20261015",
+  "info": {
+    "createDate": "2026-10-15",
+    "rootHash": "182f650c44a74f6d",
+    "rate": {
+      "BTC": "147%",
+      "XRP": "136%",
+      "ETH": "123%",
+      "USDT": "115%",
+      "USDC": "111%",
+      "ADA": "160%"
+    }
+  }
+}

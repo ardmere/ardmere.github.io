@@ -14,6 +14,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/bingx/bingxapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bitget/bitgetapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bitunix/bitunixapi"
+	"github.com/ardmere/ardmere/internal/exchanges/btcc/btccapi"
 	"github.com/ardmere/ardmere/internal/exchanges/bybit/bybitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/coinex/coinexapi"
 	"github.com/ardmere/ardmere/internal/exchanges/gateio/gateapi"
@@ -75,6 +76,9 @@ func Main(args []string) int {
 	case "phemex":
 		RunPhemex(args[1:])
 		return 0
+	case "btcc":
+		RunBTCC(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -106,6 +110,7 @@ Exchanges:
   woox       fetch or import WOO X PoR summary (live dashboard + merkle audit)
   toobit     fetch or import Toobit PoR summary (+ optional SMT proof JSON)
   phemex     fetch or import Phemex PoR summary (porVersions balances)
+  btcc       fetch or import BTCC PoR summary (reserveInfo ratios + truncated root)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -131,6 +136,8 @@ Examples:
   por fetch toobit -summary-path ./fixtures/toobit/20261001-summary.json
   por fetch phemex
   por fetch phemex -summary-path ./fixtures/phemex/20261101-summary.json
+  por fetch btcc
+  por fetch btcc -summary-path ./fixtures/btcc/20261015-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -793,6 +800,57 @@ func RunPhemex(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch phemex snapshot: %v\n\nTip: por fetch phemex\n  or import:\n  por fetch phemex -summary-path ./fixtures/phemex/20261101-summary.json", err)
+	}
+	logResult(stored)
+}
+
+// RunOKX archives OKX public PoR artifacts.
+
+func RunBTCC(args []string) {
+	fs := flag.NewFlagSet("btcc", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import archived summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser-captured reserveInfo data or full API envelope JSON")
+	auditID := fs.String("audit-id", "", "select reportDate (e.g. 2026-10-15 or 20261015)")
+	userProofPath := fs.String("user-proof", "", "import login-gated user Merkle leaf/proof JSON if captured")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+		AuditID:       *auditID,
+	}
+	if *infoFile != "" {
+		merged, err := btccapi.BuildSummaryBundle(*infoFile)
+		if err != nil {
+			log.Fatalf("build reserveInfo capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "btcc-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("btcc")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch btcc snapshot: %v\n\nTip: por fetch btcc\n  or import:\n  por fetch btcc -summary-path ./fixtures/btcc/20261015-summary.json", err)
 	}
 	logResult(stored)
 }

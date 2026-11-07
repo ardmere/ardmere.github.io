@@ -23,6 +23,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | Gate.io | `20261018` | 2026-10-18 | Stage 0 | [report](./gateio/20261018-transparency-report.md) |
 | BingX | `20261015` | 2026-10-15 | Stage 0 | [report](./bingx/20261015-transparency-report.md) |
 | WOO X | `20261015` | 2026-10-15 | Stage 0 | [report](./woox/20261015-transparency-report.md) |
+| BTCC | `20261015` | 2026-10-15 | Stage 0 | [report](./btcc/20261015-transparency-report.md) |
 | MEXC | `202610` | 2026-10-15 | Stage 0 | [report](./mexc/202610-transparency-report.md) |
 | OKX | `502260945` | 2026-10-02 | **Stage 1** | [report](./okx/502260945-transparency-report.md) |
 | Binance | `PR01OCT26` | 2026-10-01 | Stage 0 | [report](./binance/PR01OCT26-transparency-report.md) |
