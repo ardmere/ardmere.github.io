@@ -1,0 +1,60 @@
+{
+  "fetchedAt": "2026-11-06T13:27:04Z",
+  "source": "https://www.coinex.com/res/account/balance/merkle/reserve",
+  "period": {
+    "time": 1789369200,
+    "balances": [
+      {
+        "asset": "CET",
+        "wallet_amount": "648013324.40432325",
+        "wallet_usd": "3016806.59",
+        "user_amount": "603247405.13067595",
+        "reserve_rate": "107.42",
+        "price": "0.00465547"
+      },
+      {
+        "asset": "USDT",
+        "wallet_amount": "219521056.18505381",
+        "wallet_usd": "219449022.54",
+        "user_amount": "201139961.88836881",
+        "reserve_rate": "109.13",
+        "price": "0.99967186"
+      },
+      {
+        "asset": "USDC",
+        "wallet_amount": "9112236.47727478",
+        "wallet_usd": "9111068.19",
+        "user_amount": "8974770.09461934",
+        "reserve_rate": "101.53",
+        "price": "0.99987179"
+      },
+      {
+        "asset": "BTC",
+        "wallet_amount": "1907.56214905",
+        "wallet_usd": "148069782.18",
+        "user_amount": "1806.39889446",
+        "reserve_rate": "105.6",
+        "price": "77622.52058528"
+      },
+      {
+        "asset": "ETH",
+        "wallet_amount": "9725.03744358",
+        "wallet_usd": "24468137.12",
+        "user_amount": "9668.55164516",
+        "reserve_rate": "100.58",
+        "price": "2515.99413068"
+      },
+      {
+        "asset": "DOGE",
+        "wallet_amount": "135701296.31797606",
+        "wallet_usd": "11436135.82",
+        "user_amount": "134462157.28796089",
+        "reserve_rate": "100.92",
+        "price": "0.08427433"
+      }
+    ],
+    "wallet_proof_file": "https://file.coinexstatic.com/CoinEx_Address_2026-9-14.xlsx",
+    "wallet_total_usd": "429893942.29",
+    "root_hash": "4d594138e139554619b1b010116e7e9442d64f86875f057f1387435419928523"
+  }
+}

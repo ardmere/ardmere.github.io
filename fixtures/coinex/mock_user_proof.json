@@ -1,0 +1,26 @@
+{
+  "path": [
+    {},
+    {
+      "balances": {
+        "BTC": "1"
+      },
+      "hash": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "pos": "left"
+    },
+    {}
+  ],
+  "root": {
+    "balances": {
+      "BTC": "1",
+      "USDT": "100"
+    },
+    "hash": "8d44e525e0ae827da3d27f8f27b50d4c5bc8d94b03b7a29bbf7219a8ba9cf05f"
+  },
+  "self": {
+    "balances": {
+      "USDT": "100"
+    },
+    "nonce": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+  }
+}

@@ -29,6 +29,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | Bitget | `20260929` | 2026-09-29 | Stage 0 | [report](./bitget/20260929-transparency-report.md) |
 | Bybit | `2026092303` | 2026-09-23 | Stage 0 | [report](./bybit/2026092303-transparency-report.md) |
 | BingX | `20260915` | 2026-09-15 | Stage 0 | [report](./bingx/20260915-transparency-report.md) |
+| CoinEx | `20260914` | 2026-09-14 | Stage 0 | [report](./coinex/20260914-transparency-report.md) |
 | MEXC | `202609` | 2026-09-10 | Stage 0 | [report](./mexc/202609-transparency-report.md) |
 | OKX | `502299735` | 2026-09-07 | **Stage 1** | [report](./okx/502299735-transparency-report.md) |
 | Binance | `PR01SEP26` | 2026-09-01 | Stage 0 | [report](./binance/PR01SEP26-transparency-report.md) |

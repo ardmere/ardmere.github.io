@@ -81,7 +81,7 @@ for f in docs/reports/okx/*-transparency-report.md docs/reports/binance/*-transp
   docs/reports/bitget/*-transparency-report.md docs/reports/bybit/*-transparency-report.md \
   docs/reports/gateio/*-transparency-report.md docs/reports/htx/*-transparency-report.md \
   docs/reports/mexc/*-transparency-report.md docs/reports/kucoin/*-transparency-report.md \
-  docs/reports/bingx/*-transparency-report.md docs/reports/poloniex/*-transparency-report.md docs/reports/ourbit/*-transparency-report.md; do
+  docs/reports/bingx/*-transparency-report.md docs/reports/poloniex/*-transparency-report.md docs/reports/ourbit/*-transparency-report.md docs/reports/coinex/*-transparency-report.md; do
   [[ -f "$ROOT/$f" ]] && build_page "$f"
 done
 build_page "docs/insights/index.md" "insights"
