@@ -1,0 +1,141 @@
+{
+  "fetchedAt": "2026-11-06T15:34:57Z",
+  "source": "https://widget.pro.ledgerlens.io/api/kraken-platform-spot-futures",
+  "sourceUrls": [
+    "https://www.kraken.com/proof-of-reserves",
+    "https://widget.pro.ledgerlens.io/api/kraken-platform-spot-futures",
+    "https://widget.pro.ledgerlens.io/kraken-platform-spot-futures"
+  ],
+  "reportDate": "2026-06-30",
+  "snapshotId": "20260630",
+  "ledgerlens": {
+    "slug": "kraken-platform-spot-futures",
+    "datasetId": "n2M2zqrYFMWBvlDopvQ8J",
+    "datasetTimestamp": "2026-07-01T03:59:59.000Z",
+    "datasetDisplayTimestamp": "06/30/2026   11:59 PM UTC",
+    "accountant": "The Network Firm LLP",
+    "merkleTreeData": {
+      "combinedRoot": "56272172594d525355c22220eda22e1f1f842c37455d49f0588b91ed97362ad1",
+      "totalLayers": 25,
+      "totalLeaves": 16777216,
+      "hashingStrategy": "standard",
+      "datasetFormat": "2",
+      "sortBalancedEntries": true
+    },
+    "coveredLiabilities": [
+      {
+        "symbol": "BTC"
+      },
+      {
+        "symbol": "ETH"
+      },
+      {
+        "symbol": "SOL"
+      },
+      {
+        "symbol": "USDC"
+      },
+      {
+        "symbol": "USDT"
+      },
+      {
+        "symbol": "XRP"
+      },
+      {
+        "symbol": "ADA"
+      },
+      {
+        "symbol": "USDG"
+      }
+    ],
+    "assetTokens": [
+      {
+        "displayText": "BTC & Staked BTC (Babylon)",
+        "symbol": "BTC"
+      },
+      {
+        "displayText": "ETH & Staked ETH",
+        "symbol": "ETH"
+      },
+      {
+        "displayText": "SOL & Staked SOL",
+        "symbol": "SOL"
+      },
+      {
+        "displayText": "USDT",
+        "symbol": "USDT"
+      },
+      {
+        "displayText": "USDC",
+        "symbol": "USDC"
+      },
+      {
+        "displayText": "ADA & Staked ADA",
+        "symbol": "Cardano (ALT)"
+      },
+      {
+        "displayText": "XRP",
+        "symbol": "XRP"
+      },
+      {
+        "displayText": "USDG",
+        "symbol": "USDG"
+      }
+    ],
+    "hasReport": true
+  },
+  "cms": {
+    "auditPeriodId": "30june",
+    "auditPeriodLabel": "June 30, 2026",
+    "coinRows": [
+      {
+        "coin": "BTC",
+        "reserveRatioValue": 102.9,
+        "capPercentage": false,
+        "hideBalances": true
+      },
+      {
+        "coin": "ETH",
+        "reserveRatioValue": 100.5,
+        "capPercentage": false,
+        "hideBalances": true
+      },
+      {
+        "coin": "SOL",
+        "reserveRatioValue": 100.6,
+        "capPercentage": false,
+        "hideBalances": true
+      },
+      {
+        "coin": "XRP",
+        "reserveRatioValue": 102.3,
+        "capPercentage": false,
+        "hideBalances": true
+      },
+      {
+        "coin": "ADA",
+        "reserveRatioValue": 100.3,
+        "capPercentage": false,
+        "hideBalances": true
+      },
+      {
+        "coin": "USDC",
+        "reserveRatioValue": 0,
+        "capPercentage": true,
+        "hideBalances": true
+      },
+      {
+        "coin": "USDT",
+        "reserveRatioValue": 0,
+        "capPercentage": true,
+        "hideBalances": true
+      },
+      {
+        "coin": "USDG",
+        "reserveRatioValue": 0,
+        "capPercentage": true,
+        "hideBalances": true
+      }
+    ]
+  }
+}

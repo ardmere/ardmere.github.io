@@ -52,6 +52,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | MEXC | `202607` | 2026-07-15 | Stage 0 | [report](./mexc/202607-transparency-report.md) |
 | Binance | `PR01JUL26` | 2026-07-01 | Stage 0 | [report](./binance/PR01JUL26-transparency-report.md) |
 | KuCoin | `20260630` | 2026-06-30 | Stage 0 | [report](./kucoin/20260630-transparency-report.md) |
+| Kraken | `20260630` | 2026-06-30 | Stage 0 | [report](./kraken/20260630-transparency-report.md) |
 | OKX | `508399035` | 2026-06-18 | **Stage 1** | [report](./okx/508399035-transparency-report.md) |
 | Bitget | `202606` | 2026-06-18 | Stage 0 | [report](./bitget/202606-transparency-report.md) |
 | Gate.io | `20260618` | 2026-06-18 | Stage 0 | [report](./gateio/20260618-transparency-report.md) |
