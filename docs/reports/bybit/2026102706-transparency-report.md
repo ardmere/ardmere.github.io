@@ -31,13 +31,15 @@ Public artifacts do not support independently reproducible global solvency verif
 
 | Field | Value |
 | --- | --- |
-| Latest snapshot (evaluation set) | `2026-09-23T03:00:00Z` |
-| Previous snapshot | `UNVERIFIABLE` |
-| Observed cadence | `~231 days between snapshots` |
-| History available | `3 snapshot(s) in public evaluation set` |
+| Latest snapshot (evaluation set) | `2026-10-27T06:00:00Z` |
+| Previous snapshot | `2026-09-23T03:00:00Z` |
+| Observed cadence | `~124 days between snapshots` |
+| History available | `5 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
+
+This is the newest snapshot in the ardmere public evaluation set for bybit.
 
 ## 4. Evidence and Bundles
 

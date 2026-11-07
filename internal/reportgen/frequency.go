@@ -16,14 +16,14 @@ type snapshotRecord struct {
 }
 
 type frequencyInfo struct {
-	LatestSnapshot       string
-	PreviousSnapshot     string
-	ObservedCadence      string
-	HistoryAvailable     string
-	EventTriggered       string
-	DailyAnchor          string
-	StageImpact          string
-	Notes                string
+	LatestSnapshot   string
+	PreviousSnapshot string
+	ObservedCadence  string
+	HistoryAvailable string
+	EventTriggered   string
+	DailyAnchor      string
+	StageImpact      string
+	Notes            string
 }
 
 func collectFrequency(exchangeID, snapshotID, snapshotTimeRFC, reportsDir string) frequencyInfo {
@@ -40,7 +40,7 @@ func collectFrequency(exchangeID, snapshotID, snapshotTimeRFC, reportsDir string
 		}
 	}
 
-	records := loadExchangeSnapshots(exchangeID, reportsDir)
+	records := includeCurrentSnapshot(loadExchangeSnapshots(exchangeID, reportsDir), snapshotID, snapshotTimeRFC)
 	if len(records) == 0 {
 		info.ObservedCadence = "UNVERIFIABLE"
 		info.HistoryAvailable = "UNVERIFIABLE"
@@ -55,7 +55,7 @@ func collectFrequency(exchangeID, snapshotID, snapshotTimeRFC, reportsDir string
 	info.LatestSnapshot = records[0].SnapshotTime.UTC().Format(time.RFC3339)
 	info.HistoryAvailable = fmt.Sprintf("%d snapshot(s) in public evaluation set", len(records))
 
-	var idx = -1
+	idx := -1
 	for i, r := range records {
 		if r.ID == snapshotID {
 			idx = i
@@ -69,6 +69,38 @@ func collectFrequency(exchangeID, snapshotID, snapshotTimeRFC, reportsDir string
 	info.ObservedCadence = describeCadence(records)
 	info.Notes = frequencyNotes(exchangeID, records, idx)
 	return info
+}
+
+// includeCurrentSnapshot injects the snapshot being written into the record set
+// scanned from disk. Write() renders the report before the assessment JSON
+// exists, so without this the Frequency section describes the previous run and
+// omits the page's own snapshot -- the source of the one-run-stale numbers.
+func includeCurrentSnapshot(records []snapshotRecord, snapshotID, snapshotTimeRFC string) []snapshotRecord {
+	if strings.TrimSpace(snapshotID) == "" {
+		return records
+	}
+	t, err := time.Parse(time.RFC3339, snapshotTimeRFC)
+	if err != nil {
+		return records
+	}
+	current := snapshotRecord{ID: snapshotID, SnapshotTime: t.UTC()}
+
+	out := make([]snapshotRecord, 0, len(records)+1)
+	replaced := false
+	for _, r := range records {
+		if r.ID == snapshotID {
+			if !replaced {
+				out = append(out, current)
+				replaced = true
+			}
+			continue
+		}
+		out = append(out, r)
+	}
+	if !replaced {
+		out = append(out, current)
+	}
+	return out
 }
 
 func loadExchangeSnapshots(exchangeID, reportsDir string) []snapshotRecord {
@@ -152,7 +184,7 @@ func frequencyNotes(exchangeID string, records []snapshotRecord, idx int) string
 		return "This is the newest snapshot in the ardmere public evaluation set for " + exchangeID + "."
 	}
 	if idx > 0 {
-		return fmt.Sprintf("Older snapshot %s is also in the public evaluation set.", records[0].ID)
+		return fmt.Sprintf("Newer snapshot %s is also in the public evaluation set.", records[idx-1].ID)
 	}
 	return ""
 }

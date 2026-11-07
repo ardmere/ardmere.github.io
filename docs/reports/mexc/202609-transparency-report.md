@@ -42,7 +42,7 @@ solvency-claim PASS means self-reported reserve ratios ≥ 100% only — not ind
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-Older snapshot 202610 is also in the public evaluation set.
+Newer snapshot 202610 is also in the public evaluation set.
 
 ## 4. Evidence and Bundles
 

@@ -79,3 +79,24 @@ func runReport(args []string) int {
 	refreshSitePages()
 	return 0
 }
+
+func runRefreshFrequency(args []string) int {
+	fs := flag.NewFlagSet("refresh-frequency", flag.ExitOnError)
+	reports := fs.String("reports", "./docs/reports", "reports output directory")
+	_ = fs.Parse(args)
+
+	results, err := reportgen.RefreshFrequency(*reports)
+	if err != nil {
+		log.Fatalf("refresh-frequency: %v", err)
+	}
+
+	var changed int
+	for _, r := range results {
+		if r.Changed {
+			changed++
+			fmt.Printf("updated %s %s\n", r.Exchange, r.SnapshotID)
+		}
+	}
+	fmt.Printf("checked %d report(s), updated %d\n", len(results), changed)
+	return 0
+}
