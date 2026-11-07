@@ -1,0 +1,180 @@
+{
+  "schema": "ardmere/anchor-recorded-reads@1",
+  "network": "ethereum-sepolia",
+  "recordedAt": "2026-11-07T13:40:00Z",
+  "method": "eth_call getSnapshot(keccak256(auditId)) at latest, decoded with skills/lib/por_anchor.py",
+  "source": "recorded against the default proxy and RPC in skills/lib/por_anchor.py",
+  "note": "This is a replay. A run that reads it reports anchor.live=false; it is not chain state.",
+  "records": [
+    {
+      "auditId": "PR01JUN26",
+      "exchange": "binance",
+      "snapshotId": "0x8eebf94be87651156d5d4b7eed3d99daed7fe308ba9ab0771cd5f6efb417c638",
+      "exchangeTag": "0x099e8cf4d817a6e4eec62bff4cdef05faa4a00fcde8d7e99f5090708d23ad9b2",
+      "status": "found",
+      "record": {
+        "snapshotId": "0x8eebf94be87651156d5d4b7eed3d99daed7fe308ba9ab0771cd5f6efb417c638",
+        "exchangeTag": "0x099e8cf4d817a6e4eec62bff4cdef05faa4a00fcde8d7e99f5090708d23ad9b2",
+        "exchange": "binance",
+        "periodSeq": 43,
+        "snapshotTime": 1767657600,
+        "btcBlockHeight": 951913,
+        "exchangeMerkleRoot": "0x250e0c4ab441780d7276bd63a7e2bfb098213dd6bd9de89265923d8e3c11c2d1",
+        "artifactBundleRoot": "0xf452e47dd22ed63dc4a905fe79da6c6f7a6975cc0d775f50d01879e97616671f",
+        "verificationBundleRoot": "0x7be6a4a685aae652c4072a88130f3f21621854a1888175c80300ad040eb2d249",
+        "verdictSummary": 9,
+        "coverageBps": 10000,
+        "schemaVersion": 3,
+        "anchoredAt": 1782919632
+      },
+      "note": null
+    },
+    {
+      "auditId": "506872725",
+      "exchange": "okx",
+      "snapshotId": "0x88875070b19fd65cafbdd4674a55d835e0f24a96091375b001aef45e4248b2f0",
+      "exchangeTag": "0xd6b6d5e0aacce0469a313983d889ed10d0bb7c9545af0285a19b4ff094b4041d",
+      "status": "found",
+      "record": {
+        "snapshotId": "0x88875070b19fd65cafbdd4674a55d835e0f24a96091375b001aef45e4248b2f0",
+        "exchangeTag": "0xd6b6d5e0aacce0469a313983d889ed10d0bb7c9545af0285a19b4ff094b4041d",
+        "exchange": "okx",
+        "periodSeq": 0,
+        "snapshotTime": 1778083200,
+        "btcBlockHeight": 0,
+        "exchangeMerkleRoot": "0xdd32f9c29d1840dc444b0c0780782cd04f6840870b934a0a8f607fc61b3e8d6b",
+        "artifactBundleRoot": "0x3167e8ed73c5dd0ea7edba9b4438a7acad31cf212b976b12064087584065358c",
+        "verificationBundleRoot": "0xa55912eb30e0bcc9fa9d1f0f0fe1e8cd3a081181de4cc3d31b0806da10450674",
+        "verdictSummary": 9,
+        "coverageBps": 10000,
+        "schemaVersion": 3,
+        "anchoredAt": 1782919644
+      },
+      "note": null
+    },
+    {
+      "auditId": "508756245",
+      "exchange": "okx",
+      "snapshotId": "0x5277899a7b502fc55180e8e25065f7383c22fb633711c74f7d0ffab61885e030",
+      "exchangeTag": "0xd6b6d5e0aacce0469a313983d889ed10d0bb7c9545af0285a19b4ff094b4041d",
+      "status": "not_found",
+      "record": null,
+      "note": "the contract answered SnapshotNotFound for this snapshotId"
+    },
+    {
+      "auditId": "20261031",
+      "exchange": "kucoin",
+      "snapshotId": "0xc387ff160194a20f47eb1ccc2dbfd871c3b2ad3d3865255eaa6b7abdc01c5d2d",
+      "exchangeTag": "0x91b41130bb6e6c64c93e6998dd35f1f5a62ec772d9051357998a53e9fc7378eb",
+      "status": "found",
+      "record": {
+        "snapshotId": "0xc387ff160194a20f47eb1ccc2dbfd871c3b2ad3d3865255eaa6b7abdc01c5d2d",
+        "exchangeTag": "0x91b41130bb6e6c64c93e6998dd35f1f5a62ec772d9051357998a53e9fc7378eb",
+        "exchange": "kucoin",
+        "periodSeq": 1,
+        "snapshotTime": 1793462399,
+        "btcBlockHeight": 0,
+        "exchangeMerkleRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "artifactBundleRoot": "0x147043943b236de11ec3b29d0b2e8ee00598655bf9951f4ad113fa66ad5270ec",
+        "verificationBundleRoot": "0xf1354ac9edaeedd914c1062e5db383aedb2a3c1541e048e427650551ab891b0b",
+        "verdictSummary": 4,
+        "coverageBps": 10000,
+        "schemaVersion": 3,
+        "anchoredAt": 1793626260
+      },
+      "note": null
+    },
+    {
+      "auditId": "20261021",
+      "exchange": "bitget",
+      "snapshotId": "0x14be1ea776c943b3a04466e4904e2d65a3ec97f683d781bcfe57535b4d6c3b44",
+      "exchangeTag": "0x111eeb03db80a02c4ac0a8b15bfa19f1747d2582585b05adcb87e3bd7e16de56",
+      "status": "found",
+      "record": {
+        "snapshotId": "0x14be1ea776c943b3a04466e4904e2d65a3ec97f683d781bcfe57535b4d6c3b44",
+        "exchangeTag": "0x111eeb03db80a02c4ac0a8b15bfa19f1747d2582585b05adcb87e3bd7e16de56",
+        "exchange": "bitget",
+        "periodSeq": 1,
+        "snapshotTime": 1792555200,
+        "btcBlockHeight": 0,
+        "exchangeMerkleRoot": "0x0000000000000000000000000000000000000000000000001ef42111598bd71b",
+        "artifactBundleRoot": "0x7adf28382288995b46d94918f4de17a0afcd73aae748ecaac705b81b10809f47",
+        "verificationBundleRoot": "0xc3e6df8346f31ca2ab5b0126fe3340a2f8e95f6e47b46041a37518a88572ab3f",
+        "verdictSummary": 4,
+        "coverageBps": 10000,
+        "schemaVersion": 3,
+        "anchoredAt": 1793626296
+      },
+      "note": null
+    },
+    {
+      "auditId": "2025061709",
+      "exchange": "bybit",
+      "snapshotId": "0x4d7107ac2622ce61facc679678a0160a3c164b1eeea688b85b951b1fa126997b",
+      "exchangeTag": "0x5ae2d7a74a1372650fdee61f8b005b242fab41ead68ffff1a2d8955eeab8f136",
+      "status": "found",
+      "record": {
+        "snapshotId": "0x4d7107ac2622ce61facc679678a0160a3c164b1eeea688b85b951b1fa126997b",
+        "exchangeTag": "0x5ae2d7a74a1372650fdee61f8b005b242fab41ead68ffff1a2d8955eeab8f136",
+        "exchange": "bybit",
+        "periodSeq": 0,
+        "snapshotTime": 1750150800,
+        "btcBlockHeight": 0,
+        "exchangeMerkleRoot": "0xc91d5de0554f97244e4d9f8056fad70fa0cb2cdb23c290ec597a042645dcbc03",
+        "artifactBundleRoot": "0x1fe7bf6ea18a09a33bb05c0f1de1504a0e5e1e02736d74ad1c76015c3bf3783e",
+        "verificationBundleRoot": "0x960bbc45aad666b9143c53d798a7433550c579eadc49bf974e8c1515e64c64ac",
+        "verdictSummary": 4,
+        "coverageBps": 10000,
+        "schemaVersion": 3,
+        "anchoredAt": 1782919572
+      },
+      "note": null
+    },
+    {
+      "auditId": "202605",
+      "exchange": "bitget",
+      "snapshotId": "0x51b4ca5aeddb2ce2524d48884c2f9dbaf8a3c4aaf799289239d69e9fd7cf27f6",
+      "exchangeTag": "0x111eeb03db80a02c4ac0a8b15bfa19f1747d2582585b05adcb87e3bd7e16de56",
+      "status": "found",
+      "record": {
+        "snapshotId": "0x51b4ca5aeddb2ce2524d48884c2f9dbaf8a3c4aaf799289239d69e9fd7cf27f6",
+        "exchangeTag": "0x111eeb03db80a02c4ac0a8b15bfa19f1747d2582585b05adcb87e3bd7e16de56",
+        "exchange": "bitget",
+        "periodSeq": 0,
+        "snapshotTime": 1779876000,
+        "btcBlockHeight": 0,
+        "exchangeMerkleRoot": "0x000000000000000000000000000000000000000000000000ca89456bb711c913",
+        "artifactBundleRoot": "0x482e0a28d40c3f480c1296d4417f8b17ff7d4fca878bbf65641aea1c63d2a05a",
+        "verificationBundleRoot": "0xbc4a687ddb072109da10bc68ebf33bbd2059767dfa49d7407d90f799ca706dcf",
+        "verdictSummary": 4,
+        "coverageBps": 10000,
+        "schemaVersion": 3,
+        "anchoredAt": 1782919584
+      },
+      "note": null
+    },
+    {
+      "auditId": "202610",
+      "exchange": "mexc",
+      "snapshotId": "0xde6d943879fa24f6c45ad35a6dd1f1f4badcdb78acf82b7271ffa4ef94a78b90",
+      "exchangeTag": "0xb1cb159410be5dd191473c9dbe6bc6e6c2afed6ee2d3e9bf7e5e2a688a918a56",
+      "status": "found",
+      "record": {
+        "snapshotId": "0xde6d943879fa24f6c45ad35a6dd1f1f4badcdb78acf82b7271ffa4ef94a78b90",
+        "exchangeTag": "0xb1cb159410be5dd191473c9dbe6bc6e6c2afed6ee2d3e9bf7e5e2a688a918a56",
+        "exchange": "mexc",
+        "periodSeq": 0,
+        "snapshotTime": 1792022400,
+        "btcBlockHeight": 0,
+        "exchangeMerkleRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+        "artifactBundleRoot": "0x2ca407fb5f86ff9628cdd50fdaeccb35069ffe347609532233cee5ce266328c6",
+        "verificationBundleRoot": "0xe0155ff77423ba8d619c7b0d9dfe3cb9e4c720ffbc47ed37291e53e1d0fbc708",
+        "verdictSummary": 4,
+        "coverageBps": 10000,
+        "schemaVersion": 3,
+        "anchoredAt": 1793457084
+      },
+      "note": null
+    }
+  ]
+}

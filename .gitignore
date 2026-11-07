@@ -3,7 +3,12 @@
 !.env.example
 
 .agents/
-.cursor/skills/
+# Skills live in skills/; the .cursor entries are symlinks into it and are tracked.
+.cursor/skills/*
+!.cursor/skills/por-custody-risk
+!.cursor/skills/por-inclusion-proof
+__pycache__/
+*.pyc
 assets/image.png
 
 contracts/cache/
