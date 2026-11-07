@@ -28,6 +28,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | `mexc` | VC1 | [verify user assets](https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836) | [mexcmerkle/mexc-merkle-proof-of-reserves](https://github.com/mexcmerkle/mexc-merkle-proof-of-reserves) | `user-merkle-proof@mexc-1` |
 | `kucoin` | VC1 | [proof-of-reserves](https://www.kucoin.com/proof-of-reserves) | — (no official OSS verifier found) | `user-merkle-proof@0` (stub) |
 | `bingx` | VC1 | [balance-reserve](https://bingx.com/en/balance-reserve) | [BingX-API/BingX-proof-of-reserves](https://github.com/BingX-API/BingX-proof-of-reserves) | `user-merkle-proof@bingx-1` |
+| `poloniex` | VC1 | [proof-of-reserves](https://www.poloniex.com/topic/security/proof-of-reserves) | [poloniex/tools-nodejs-address-verify](https://github.com/poloniex/tools-nodejs-address-verify) | `address-ownership@0` (CSV channel blocked) |
 
 ## Data guides
 
@@ -42,6 +43,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | MEXC | [mexc-por-data-guide.md](./mexc-por-data-guide.md) |
 | KuCoin | [kucoin-por-data-guide.md](./kucoin-por-data-guide.md) |
 | BingX | [bingx-por-data-guide.md](./bingx-por-data-guide.md) |
+| Poloniex | [poloniex-por-data-guide.md](./poloniex-por-data-guide.md) |
 
 ## Maintenance
 

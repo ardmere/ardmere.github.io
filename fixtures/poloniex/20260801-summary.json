@@ -1,0 +1,207 @@
+{
+  "fetchedAt": "2026-11-06T12:00:00Z",
+  "source": "proxy-sapi-public",
+  "version": "20260801",
+  "info": {
+    "snapshot": {
+      "balanceList": [
+        {
+          "currency": "BTC",
+          "reserveRate": "1.0010957873",
+          "userBalance": "12602.81",
+          "walletBalance": "12616.62"
+        },
+        {
+          "currency": "ETH",
+          "currencyGroup": "ETH+stETH+gtWETH+steakETH+ETHARB+ETHOP",
+          "reserveRate": "1.0050098973",
+          "userBalance": "250991.17",
+          "walletBalance": "252248.61"
+        },
+        {
+          "currency": "trx",
+          "reserveRate": "1.0069637622",
+          "userBalance": "107034925.22",
+          "walletBalance": "107780290.99"
+        },
+        {
+          "currency": "USDT",
+          "currencyGroup": "USDT+stUSDT+jUSDT+spUSDT+aEthUSDT+SUSDS",
+          "reserveRate": "1.0987548170",
+          "userBalance": "881068545.86",
+          "walletBalance": "968078308.92"
+        },
+        {
+          "currency": "htx",
+          "reserveRate": "1.0000060814",
+          "userBalance": "1034874891044.03",
+          "walletBalance": "1034881184632.99"
+        },
+        {
+          "currency": "xrp",
+          "reserveRate": "1.0445959589",
+          "userBalance": "51128330.52",
+          "walletBalance": "53408447.45"
+        },
+        {
+          "currency": "xlm",
+          "reserveRate": "1.0198888046",
+          "userBalance": "111303145.31",
+          "walletBalance": "113516831.82"
+        },
+        {
+          "currency": "sol",
+          "reserveRate": "1.0228280287",
+          "userBalance": "60858.08",
+          "walletBalance": "62247.35"
+        },
+        {
+          "currency": "ada",
+          "reserveRate": "1.0420767144",
+          "userBalance": "8551769.90",
+          "walletBalance": "8911600.28"
+        },
+        {
+          "currency": "etc",
+          "reserveRate": "1.0059896395",
+          "userBalance": "564586.56",
+          "walletBalance": "567968.23"
+        },
+        {
+          "currency": "doge",
+          "reserveRate": "1.0015825578",
+          "userBalance": "322699704.46",
+          "walletBalance": "323210395.42"
+        },
+        {
+          "currency": "ltc",
+          "reserveRate": "1.0020922969",
+          "userBalance": "143101.10",
+          "walletBalance": "143400.51"
+        },
+        {
+          "currency": "bch",
+          "reserveRate": "1.0006905154",
+          "userBalance": "19608.54",
+          "walletBalance": "19622.08"
+        },
+        {
+          "currency": "shib",
+          "reserveRate": "1.0015527456",
+          "userBalance": "380641055844.03",
+          "walletBalance": "381232094570.39"
+        }
+      ],
+      "merkleHash": "95baa802881469ca05d1a6af92c004b0f95c64142de25347888729a046ac534f",
+      "totalReserveRate": "1.0044176109"
+    },
+    "version": "20260801",
+    "versionInfo": {
+      "currentVersion": "20261001",
+      "versionList": [
+        "20261001",
+        "20260901",
+        "20260801",
+        "20260701",
+        "20260601",
+        "20260501"
+      ]
+    }
+  },
+  "coinList": {
+    "code": 200,
+    "message": "Success",
+    "data": {
+      "totalReserveRate": "1.0044176109",
+      "merkleHash": "95baa802881469ca05d1a6af92c004b0f95c64142de25347888729a046ac534f",
+      "balanceList": [
+        {
+          "currency": "BTC",
+          "userBalance": "12602.81",
+          "walletBalance": "12616.62",
+          "reserveRate": "1.0010957873"
+        },
+        {
+          "currency": "ETH",
+          "currencyGroup": "ETH+stETH+gtWETH+steakETH+ETHARB+ETHOP",
+          "userBalance": "250991.17",
+          "walletBalance": "252248.61",
+          "reserveRate": "1.0050098973"
+        },
+        {
+          "currency": "trx",
+          "userBalance": "107034925.22",
+          "walletBalance": "107780290.99",
+          "reserveRate": "1.0069637622"
+        },
+        {
+          "currency": "USDT",
+          "currencyGroup": "USDT+stUSDT+jUSDT+spUSDT+aEthUSDT+SUSDS",
+          "userBalance": "881068545.86",
+          "walletBalance": "968078308.92",
+          "reserveRate": "1.0987548170"
+        },
+        {
+          "currency": "htx",
+          "userBalance": "1034874891044.03",
+          "walletBalance": "1034881184632.99",
+          "reserveRate": "1.0000060814"
+        },
+        {
+          "currency": "xrp",
+          "userBalance": "51128330.52",
+          "walletBalance": "53408447.45",
+          "reserveRate": "1.0445959589"
+        },
+        {
+          "currency": "xlm",
+          "userBalance": "111303145.31",
+          "walletBalance": "113516831.82",
+          "reserveRate": "1.0198888046"
+        },
+        {
+          "currency": "sol",
+          "userBalance": "60858.08",
+          "walletBalance": "62247.35",
+          "reserveRate": "1.0228280287"
+        },
+        {
+          "currency": "ada",
+          "userBalance": "8551769.90",
+          "walletBalance": "8911600.28",
+          "reserveRate": "1.0420767144"
+        },
+        {
+          "currency": "etc",
+          "userBalance": "564586.56",
+          "walletBalance": "567968.23",
+          "reserveRate": "1.0059896395"
+        },
+        {
+          "currency": "doge",
+          "userBalance": "322699704.46",
+          "walletBalance": "323210395.42",
+          "reserveRate": "1.0015825578"
+        },
+        {
+          "currency": "ltc",
+          "userBalance": "143101.10",
+          "walletBalance": "143400.51",
+          "reserveRate": "1.0020922969"
+        },
+        {
+          "currency": "bch",
+          "userBalance": "19608.54",
+          "walletBalance": "19622.08",
+          "reserveRate": "1.0006905154"
+        },
+        {
+          "currency": "shib",
+          "userBalance": "380641055844.03",
+          "walletBalance": "381232094570.39",
+          "reserveRate": "1.0015527456"
+        }
+      ]
+    }
+  }
+}

@@ -9,7 +9,7 @@
 #   sample_artifact_release    — sample period bundles on GitHub Releases only
 
 version: 1
-updated: "2026-10-31"
+updated: "2026-11-06"
 
 exchanges:
   - id: binance
@@ -135,3 +135,20 @@ exchanges:
     integrationNotes: >-
       Reserve JSON APIs return app security / device-time errors from datacenters; import support-article
       or browser capture. User Merkle leaf/path is login-gated; no public wallet list or global ZK.
+
+  - id: poloniex
+    name: Poloniex
+    porPage: https://www.poloniex.com/topic/security/proof-of-reserves
+    dataGuide: docs/poloniex-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/poloniex/tools-nodejs-address-verify
+        role: address_ownership_verifier
+        ardmereUse: address-ownership@0
+        note: >-
+          Node VerifyAddress for signed wallet CSV (message "poloniex"). Sample CSV in repo;
+          current-period CSV has no stable permissionless download URL confirmed — ownership stays stubbed.
+    integrationNotes: >-
+      Public proxy/sapi endpoints expose versionInfo + snapshotBalance (ratios + full merkleHash) without login.
+      User merkleProof.json is login-gated; MerkleVerify is announced as a downloadable binary, not an OSS
+      source repo in the poloniex org — user-merkle stays stubbed. No public wallet_address_list or global ZK.
