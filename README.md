@@ -72,6 +72,27 @@ Or: `./scripts/por.sh anchor -exchange okx` (loads `~/.zshenv` and `.env` for RP
 
 Copy [`.env.example`](.env.example) to `.env` for local RPC and contract settings. API keys for verify (`INFURA_KEY`, `BLOCKCHAIR_API_KEY`, …) belong in `~/.zshenv` — see [ledger-rpc-runbook](docs/ledger-rpc-runbook.md). Private keys stay outside the repo.
 
+## Agent skills
+
+Two skills read what this repository already publishes and decide nothing on their own. Both run on a bare `python3` with no web3 library and no Go build, and both read the `ArdmerePoRAnchor` proxy directly over JSON-RPC (`POR_ANCHOR_CONTRACT` / `POR_RPC_URL` override the defaults).
+
+| Skill | Question it answers | Read |
+| --- | --- | --- |
+| [`por-custody-risk`](skills/por-custody-risk/SKILL.md) | How much flagged custody risk does this assessment show, and are these the bytes that were anchored? | [`SKILL.md`](skills/por-custody-risk/SKILL.md) · [`decision-table.md`](skills/por-custody-risk/references/decision-table.md) |
+| [`por-inclusion-proof`](skills/por-inclusion-proof/SKILL.md) | Is this user's own proof leaf in the tree that produced the published root? | [`SKILL.md`](skills/por-inclusion-proof/SKILL.md) · [`schemes.md`](skills/por-inclusion-proof/references/schemes.md) |
+
+```bash
+# Score an assessment against the on-chain record
+skills/por-custody-risk/scripts/por-check.sh docs/reports/kucoin/20261031-assessment.json
+
+# Verify a user's own proof locally, bound to the anchored root
+skills/por-inclusion-proof/scripts/inclusion_check.py --list-schemes
+skills/por-inclusion-proof/scripts/inclusion_check.py --exchange bybit \
+  --onchain 2025061709 ~/Downloads/myProof.json
+```
+
+Neither skill has a `decision` field. `por-custody-risk` returns a 0–100 score with its factors, and returns `conclusive: false` with `riskScore: null` when the chain cannot be read. `por-inclusion-proof` verifies the proof on the user's own machine and prints verdicts only: it never echoes the account id, nonce or balances, and writes no file. Run the checks with `./scripts/check-skills.sh` (add `--live` to also read Sepolia).
+
 ## Developer documentation
 
 Contributor and operator docs are in-repo but not linked from the public site navigation. See [docs/README.md — Repository-only documentation](docs/README.md#repository-only-documentation).
