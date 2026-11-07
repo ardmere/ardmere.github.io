@@ -1,0 +1,137 @@
+# PoR monitor schedule — per-exchange scan windows derived from ardmere snapshot history.
+# Consumed by: scripts/por-monitor-due.sh
+# Operator docs: docs/por-monitor-schedule.md
+#
+# Policy (2026-11-06):
+#   - Do NOT deep-scan every exchange every day (twice-daily all-P0+P1 superseded).
+#   - Scan each exchange around its historical publish window (+buffer).
+#   - SLA unchanged: refresh reports/homepage within ≤1 calendar day of a public PoR update.
+#   - Outside window: skip by default (optional cheap anomaly probes only where justified below).
+
+version: 1
+updated: "2026-11-06"
+timezone: UTC
+sla: "<=1 calendar day after public PoR update"
+
+# Daily timer still fires once (suggested UTC 02:00 ≈ HK 10:00) but only for exchanges due today.
+# Optional evening catch-up (UTC 14:00) only re-probes exchanges already due today with open "new id" signals.
+timers:
+  primary:
+    name: por-scan-due
+    cron_utc: "0 2 * * *"
+    role: due-window light probes; deep-run only on new snapshot id
+  catchup:
+    name: por-scan-due-catchup
+    cron_utc: "0 14 * * *"
+    role: re-probe only exchanges whose window is open today OR flagged pending publish
+
+# Shared defaults when an exchange omits a field.
+defaults:
+  buffer_days_before: 1
+  buffer_days_after: 2
+  deep_scan: on_new_snapshot_only
+  outside_window: skip
+
+exchanges:
+  - id: binance
+    priority: P0
+    mode: month_days
+    # History (docs/reports/binance): 2026-04..10 day-1; also 2026-10-31 and live PR04NOV26 mid-cycle publish.
+    month_days: [1, 2, 3, 30, 31]
+    rationale: "Usually 1st-of-month; occasional late-month / mid-cycle republish (Oct 31, Nov 4)."
+    probe: bapi_list_and_current
+    cheap_anomaly: false # BAPI list is already the due-window probe; no extra daily poll
+
+  - id: okx
+    priority: P0
+    mode: next_expected
+    # Gaps between assessed snaps (days): 17,43,53,28,25,29 → median ~28.5
+    typical_gap_days: 29
+    window_radius_days: 4
+    fallback_month_days: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 28, 29, 30, 31]
+    rationale: "Irregular ~monthly (median gap ~29d). Prefer last_snapshot + gap ± radius; fallback early/late month days."
+    probe: okx_audit_list
+    cheap_anomaly: false
+
+  - id: mexc
+    priority: P0
+    mode: month_days
+    # History: 2026-07-15, 08-14, 09-10, 10-15
+    month_days: [9, 10, 11, 12, 13, 14, 15, 16, 17]
+    rationale: "Mid-month press/summary (~day 10–15)."
+    probe: press_and_howto
+    note: "Datacenter WAF on blog/dashboard — due-window browser capture if HTTP probe empty."
+
+  - id: kucoin
+    priority: P1
+    mode: month_days
+    # History: month-end 30/31 (skipped Aug 2026 in public set)
+    month_days: [29, 30, 31, 1]
+    rationale: "Month-end SSR latestAuditDate (~30/31)."
+    probe: ssr_initialReserve
+
+  - id: bingx
+    priority: P1
+    mode: month_days
+    # History: 08-15, 09-15, 10-15
+    month_days: [14, 15, 16, 17]
+    rationale: "Stable mid-month day-15 support-article cadence."
+    probe: support_article_title
+    note: "Reserve JSON often device-time gated from cloud."
+
+  - id: htx
+    priority: P1
+    mode: month_days
+    # Recent public summaries: 2026-08-01, 09-01, 10-01
+    month_days: [1, 2, 3]
+    rationale: "Recent public auditNo on day-1 of month."
+    probe: getPublicSnapshotBalanceData
+    note: "Production zip/proof still login-gated."
+
+  - id: gateio
+    priority: P1
+    mode: month_days
+    # History: 2026-03-16, 06-18, 10-18 (sparse; ~day 16–18 when published)
+    month_days: [16, 17, 18, 19, 20]
+    rationale: "When public lastSnapshot moves, it clusters around mid-month day ~16–18; Aug/Sep 2026 login-only."
+    probe: lastSnapshot
+    note: "Cloud may 403; browser capture on due days if needed. ZK bundle login-gated."
+
+  - id: bybit
+    priority: P1
+    mode: next_expected
+    # Recent 2026 gaps after long silence: 90, 27, 34 → use ~30d with late-month bias
+    typical_gap_days: 30
+    window_radius_days: 4
+    fallback_month_days: [22, 23, 24, 25, 26, 27, 28, 29]
+    rationale: "Recent snaps cluster late-month (~23–27); WAF common from cloud."
+    probe: queryHisBalancesInfo
+    note: "Self-hosted/browser required when cloud 403."
+    cheap_anomaly: false
+
+  - id: bitget
+    priority: P1
+    mode: next_expected
+    # Gaps: 22,63,39,21 → median ~30.5; day-of-month scattered 18–29
+    typical_gap_days: 31
+    window_radius_days: 5
+    fallback_month_days: [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+    rationale: "Irregular ~3–5 weeks; prefer next_expected from last snap."
+    probe: queryTotalReserveAmount
+
+# Optional windows for onboarding shortlist (no adapter required yet).
+# Used only when --include-shortlist is passed to por-monitor-due.sh.
+shortlist_preview:
+  - id: poloniex
+    mode: month_days
+    month_days: [1, 2, 3]
+    rationale: "Public page showed Snapshot Date 20261001."
+  - id: btcc
+    mode: month_days
+    month_days: [14, 15, 16, 17]
+    rationale: "Observed monthly snapshots dated the 15th."
+  - id: kraken
+    mode: quarter_end
+    quarter_end_months: [3, 6, 9, 12]
+    month_days: [28, 29, 30, 31, 1, 2, 3, 4, 5]
+    rationale: "Quarterly accountant PoR (e.g. 2026-06-30); scan around quarter ends."
