@@ -434,13 +434,16 @@ def resolve_record(audit_id, exchange=None, contract=None, rpc=None, fixture=Non
                 merged = dict(doc)
                 merged.update({k: v for k, v in row.items() if k != "records"})
                 merged["live"] = False
+                # The file's own `source` describes how it was recorded, not where this
+                # run read it from, so name the file that was actually consulted.
+                merged["source"] = str(fixture)
                 merged.setdefault("status", "found" if merged.get("record") else "not_found")
                 return merged
         return {
             "live": False, "status": "not_found", "record": None, "rpc": None,
             "contract": doc.get("contract"), "chainId": doc.get("chainId", CHAIN_ID),
             "auditId": str(audit_id), "snapshotId": snapshot_id(audit_id),
-            "source": f"fixture:{fixture}",
+            "source": str(fixture),
             "note": "the recorded fixture holds no record for this snapshotId",
         }
     doc = read_snapshot(audit_id, exchange=exchange, contract=contract, rpc=rpc, prefer_cast=prefer_cast)

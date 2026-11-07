@@ -12,6 +12,7 @@ Run: python3 -m unittest discover -s tests -v
 """
 
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -20,8 +21,10 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-INCLUSION = ROOT / "skills" / "por-inclusion-proof" / "scripts" / "inclusion_check.py"
-CUSTODY = ROOT / "skills" / "por-custody-risk" / "scripts" / "risk_score.py"
+INCLUSION_DIR = ROOT / "skills" / "por-inclusion-proof"
+CUSTODY_DIR = ROOT / "skills" / "por-custody-risk"
+INCLUSION = INCLUSION_DIR / "scripts" / "inclusion_check.py"
+CUSTODY = CUSTODY_DIR / "scripts" / "risk_score.py"
 FIXTURES = ROOT / "fixtures"
 ANCHOR_FIXTURE = FIXTURES / "anchor" / "sepolia-v3-records.json"
 
@@ -656,6 +659,100 @@ class AnchorReader(unittest.TestCase):
                                      fixture=str(ANCHOR_FIXTURE))
         self.assertEqual(doc["status"], "not_found")
         self.assertFalse(doc["live"])
+
+
+class SkillDocExamples(unittest.TestCase):
+    """The example run quoted in each SKILL.md must be what the script prints.
+
+    The docs are the thing a reader copies, so a stale example is a bug in the
+    skill. Each SKILL.md is parsed for its `$ ` command and the JSON block under
+    it; the command is re-run and its output compared field by field against the
+    quoted keys (the quotes are abridged where they say so).
+    """
+
+    SKILLS = {
+        "por-custody-risk": CUSTODY_DIR / "SKILL.md",
+        "por-inclusion-proof": INCLUSION_DIR / "SKILL.md",
+    }
+
+    def _quoted_example(self, path):
+        """(command, quoted JSON object) from the first fenced block with a `$ ` line.
+
+        The quoted run and its output share one block: the `$ ` lines are the
+        command, a trailing backslash continues it, and the JSON after them is what
+        the script printed. Fences are walked line by line so a closing fence is
+        never mistaken for an opening one.
+        """
+        blocks = []
+        current = None
+        for line in path.read_text().splitlines():
+            if line.startswith("```"):
+                if current is None:
+                    current = []
+                else:
+                    blocks.append(current)
+                    current = None
+                continue
+            if current is not None:
+                current.append(line)
+        for lines in blocks:
+            if not any(line.startswith("$ ") for line in lines):
+                continue
+            command_lines = []
+            rest = []
+            index = 0
+            while index < len(lines):
+                line = lines[index]
+                if line.startswith("$ "):
+                    command_lines.append(line[2:].strip())
+                    while command_lines[-1].endswith("\\") and index + 1 < len(lines):
+                        command_lines[-1] = command_lines[-1][:-1].strip()
+                        index += 1
+                        command_lines.append(lines[index].strip())
+                    rest = lines[index + 1:]
+                index += 1
+            command = " ".join(part for part in command_lines if part)
+            payload = "\n".join(rest).strip()
+            if command and payload.startswith("{"):
+                return command, json.loads(payload)
+        self.fail(f"no quoted example run found in {path}")
+
+    def test_custody_example_matches_the_script(self):
+        command, quoted = self._quoted_example(self.SKILLS["por-custody-risk"])
+        self.assertIn("por-custody-risk", command)
+        # The quoted run uses the recorded fixture, so it is reproducible offline.
+        proc = subprocess.run(command, shell=True, capture_output=True, text=True, cwd=ROOT)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        actual = json.loads(proc.stdout)
+        for key, expected in quoted.items():
+            with self.subTest(key=key):
+                self.assertIn(key, actual)
+                if key == "anchor":
+                    for anchor_key, anchor_value in expected.items():
+                        self.assertEqual(actual["anchor"].get(anchor_key), anchor_value,
+                                         f"anchor.{anchor_key} differs from the SKILL.md quote")
+                else:
+                    self.assertEqual(actual[key], expected, f"{key} differs from the SKILL.md quote")
+        # The quote is a replay, and it must say so rather than look like a live read.
+        self.assertFalse(actual["anchor"]["live"])
+
+    def test_inclusion_example_matches_the_script(self):
+        command, quoted = self._quoted_example(self.SKILLS["por-inclusion-proof"])
+        self.assertIn("por-inclusion-proof", command)
+        proc = subprocess.run(command, shell=True, capture_output=True, text=True, cwd=ROOT)
+        self.assertEqual(proc.returncode, 0, proc.stderr)
+        actual = json.loads(proc.stdout)
+        for key, expected in quoted.items():
+            with self.subTest(key=key):
+                self.assertEqual(actual.get(key), expected, f"{key} differs from the SKILL.md quote")
+
+    def test_listed_schemes_block_matches_the_script(self):
+        text = (INCLUSION_DIR / "SKILL.md").read_text()
+        block = re.search(r"\$ .*--list-schemes\n(.*?)```", text, re.S)
+        self.assertIsNotNone(block, "SKILL.md no longer quotes --list-schemes")
+        quoted = [line.strip() for line in block.group(1).splitlines() if line.strip()]
+        actual = run(INCLUSION, "--list-schemes").stdout.split()
+        self.assertEqual(quoted, actual)
 
 
 class NoGoBuildRequired(unittest.TestCase):
