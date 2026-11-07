@@ -221,3 +221,19 @@ exchanges:
       Public /asset/porl/{assets,liabilities} live dashboard (~15 min) and /asset/porl/v2/{audits,snapshot_overview}
       monthly merkle audits are permissionless. Full trees at oss.woo.network/merkle/{auditId}. User Merkle hash
       is login-gated; assets cite custody/CEX venues — Stage 1 ownership/on-chain path is hard. No global ZK.
+  - id: toobit
+    name: Toobit
+    porPage: https://www.toobit.com/proof-of-reserves
+    dataGuide: docs/toobit-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/toobit-docs/por-verifier
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@toobit-1
+        note: >-
+          Official Go offline verifier for SHA256 Summation Merkle Tree (SMT) with SMT_LEAF /
+          SMT_NODE domain separators; logic ported in internal/exchanges/toobit/merkle.
+    integrationNotes: >-
+      Public bapi.toobit.com/uapi/v1/por/latest-audit exposes period ratios, merkle root, and
+      audit history without login. User proof JSON download and /proof-of-reserves/{list,verify,result}
+      are login-gated. No public wallet address list or global ZK / third-party attestation channel.

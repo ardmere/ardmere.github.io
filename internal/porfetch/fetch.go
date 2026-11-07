@@ -21,6 +21,7 @@ import (
 	"github.com/ardmere/ardmere/internal/exchanges/mexc/mexcapi"
 	"github.com/ardmere/ardmere/internal/exchanges/ourbit/ourbitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/poloniex/poloniexapi"
+	"github.com/ardmere/ardmere/internal/exchanges/toobit/toobitapi"
 	"github.com/ardmere/ardmere/internal/exchanges/woox/wooxapi"
 )
 
@@ -67,6 +68,9 @@ func Main(args []string) int {
 	case "woox":
 		RunWOOX(args[1:])
 		return 0
+	case "toobit":
+		RunToobit(args[1:])
+		return 0
 	case "okx":
 		RunOKX(args[1:])
 		return 0
@@ -96,6 +100,7 @@ Exchanges:
   coinex     fetch or import CoinEx PoR summary (public merkle/reserve + optional user proof)
   bitunix    fetch or import Bitunix PoR summary (+ optional merkle_tree_bitunix.json)
   woox       fetch or import WOO X PoR summary (live dashboard + merkle audit)
+  toobit     fetch or import Toobit PoR summary (+ optional SMT proof JSON)
   okx        fetch or import OKX public PoR artifacts
 
 Examples:
@@ -117,6 +122,8 @@ Examples:
   por fetch bitunix -summary-path ./fixtures/bitunix/20261103-summary.json
   por fetch woox
   por fetch woox -summary-path ./fixtures/woox/20261015-summary.json
+  por fetch toobit
+  por fetch toobit -summary-path ./fixtures/toobit/20261001-summary.json
   por fetch okx -skip-wallet
 `)
 }
@@ -679,6 +686,55 @@ func RunWOOX(args []string) {
 	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
 	if err != nil {
 		log.Fatalf("fetch woox snapshot: %v\n\nTip: public API is usually reachable; or import:\n  por fetch woox -summary-path ./fixtures/woox/20261015-summary.json\nMerkle tree binaries are ~200MB and are not auto-downloaded; see %s", err, wooxapi.URLOSSVerify)
+	}
+	logResult(stored)
+}
+
+// RunOKX archives OKX public PoR artifacts.
+
+func RunToobit(args []string) {
+	fs := flag.NewFlagSet("toobit", flag.ExitOnError)
+	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	summaryPath := fs.String("summary-path", "", "import archived summary bundle JSON")
+	infoFile := fs.String("info-file", "", "browser-captured latest-audit JSON")
+	userProofPath := fs.String("user-proof", "", "import login-gated proof_of_reserve_{auditId}.json")
+	_ = fs.Parse(args)
+
+	opts := exchange.FetchOpts{
+		SummaryPath:   *summaryPath,
+		UserProofPath: *userProofPath,
+	}
+	if *infoFile != "" {
+		merged, err := toobitapi.BuildSummaryBundle(*infoFile)
+		if err != nil {
+			log.Fatalf("build latest-audit capture: %v", err)
+		}
+		tmp, err := os.CreateTemp("", "toobit-summary-*.json")
+		if err != nil {
+			log.Fatalf("temp file: %v", err)
+		}
+		tmpPath := tmp.Name()
+		if _, err := tmp.Write(merged); err != nil {
+			log.Fatalf("write temp: %v", err)
+		}
+		tmp.Close()
+		defer os.Remove(tmpPath)
+		opts.SummaryPath = tmpPath
+		opts.ImportSource = "browser-api"
+	} else if *summaryPath != "" {
+		opts.ImportSource = "import"
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer cancel()
+
+	adapter, err := exchangereg.Get("toobit")
+	if err != nil {
+		log.Fatalf("exchange: %v", err)
+	}
+	stored, err := adapter.FetchAndStore(ctx, *artifactsBase, opts)
+	if err != nil {
+		log.Fatalf("fetch toobit snapshot: %v\n\nTip: por fetch toobit\n  or import:\n  por fetch toobit -summary-path ./fixtures/toobit/20261001-summary.json", err)
 	}
 	logResult(stored)
 }

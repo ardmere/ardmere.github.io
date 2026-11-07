@@ -1,0 +1,64 @@
+{
+  "algorithm": "SHA256-SMT",
+  "audit_id": "test_demo_v1",
+  "download_time": "2026-02-10T04:09:54Z",
+  "path": [
+    {
+      "position": "right",
+      "hash": "11a19d2ceac23d7473fe989d0759e28c4a68cdd9fd2a627e0c5c5af77a52ab5b",
+      "balances": {
+        "BTC": "50000000",
+        "ETH": "5250000000000000000",
+        "USDT": "2500500000"
+      },
+      "level": 1,
+      "type": "leaf"
+    },
+    {
+      "position": "right",
+      "hash": "085893f48385eb57628ae16be23fa48d2c859e41349225054a00b89a419b2149",
+      "balances": {
+        "BTC": "1000100000",
+        "ETH": "100500000000000000000",
+        "USDT": "50100000000"
+      },
+      "level": 2,
+      "type": "mid"
+    },
+    {
+      "position": "right",
+      "hash": "afec1e4fa9748e294d11d42e0f2fe60f617b85a4445cdea2d299cb25c2b05f3e",
+      "balances": {
+        "BTC": "25000000",
+        "ETH": "2000000000000000000",
+        "USDT": "500000000"
+      },
+      "level": 3,
+      "type": "mid"
+    }
+  ],
+  "precisions": {
+    "BTC": 8,
+    "ETH": 18,
+    "USDT": 6
+  },
+  "root": {
+    "hash": "3586fdd20930df70e214ca0157c68bb6226289824f05f92d5e0465eb5297f727",
+    "total_balances": {
+      "BTC": "1225100000",
+      "ETH": "117750000000000000000",
+      "USDT": "54100500000"
+    }
+  },
+  "self": {
+    "balances": {
+      "BTC": "150000000",
+      "ETH": "10000000000000000000",
+      "USDT": "1000000000"
+    },
+    "leaf_hash": "4cdd970f821706d04afac61b54eb6b4dfbef34d850f5c00d0d60e153ea6311e4",
+    "nonce": "451a1dd3efbc27b4bb5d85c0d0ddae73,507lrxdiiyyb9jzixeprxqfodih7rr1tfl51mk7gt6w18zj3xihwt16wr690jqu6,{\"BTC\":\"1.50000000\",\"ETH\":\"10.000000000000000000\",\"USDT\":\"1000.000000\"}"
+  },
+  "tree_height": 3,
+  "version": "1.0"
+}

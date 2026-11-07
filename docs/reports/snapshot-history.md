@@ -25,6 +25,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | MEXC | `202610` | 2026-10-15 | Stage 0 | [report](./mexc/202610-transparency-report.md) |
 | OKX | `502260945` | 2026-10-02 | **Stage 1** | [report](./okx/502260945-transparency-report.md) |
 | Binance | `PR01OCT26` | 2026-10-01 | Stage 0 | [report](./binance/PR01OCT26-transparency-report.md) |
+| Toobit | `20261001` | 2026-10-01 | Stage 0 | [report](./toobit/20261001-transparency-report.md) |
 | HTX | `20261001` | 2026-10-01 | Stage 0 | [report](./htx/20261001-transparency-report.md) |
 | Poloniex | `20261001` | 2026-10-01 | Stage 0 | [report](./poloniex/20261001-transparency-report.md) |
 | KuCoin | `20260930` | 2026-09-30 | Stage 0 | [report](./kucoin/20260930-transparency-report.md) |

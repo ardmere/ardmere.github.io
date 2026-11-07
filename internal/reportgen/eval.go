@@ -135,6 +135,16 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkle proof JSON not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
 		}
 
+	case "toobit":
+		e.Headline = "Toobit snapshot " + art.SnapshotID + " is Stage 0: public BTC/ETH/USDT/USDC reserve ratios + period merkle root via latest-audit; user SMT proof JSON login-gated; no ownership proofs or global ZK."
+		e.Rationale = "solvency-claim PASS means self-reported reserve ratios ≥ 100% only. Official Go OSS (toobit-docs/por-verifier) is ported as user-merkle-proof@toobit-1 for imported proofs. No public wallet address list — Stage 1 walletZip stays unwired."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_public_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "No public wallet address list observed for Toobit PoR.", RiskFlag: "UNVERIFIABLE"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User proof_of_reserve_{auditId}.json not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
+
 	case "woox":
 		e.Headline = "WOO X snapshot " + art.SnapshotID + " is Stage 0: public live dashboard + monthly merkle audit overview with permissionless full-tree download; user Merkle hash login-gated; assets largely on custody/CEX venues — Stage 1 ownership/on-chain path hard."
 		e.Rationale = "solvency-claim reflects self-reported USD-notional assets/liabilities from snapshot_overview (UI formula). Full protobuf Merkle trees are public on oss.woo.network (~200MB) and woo-x/merkle-tree documents validation, but ardmere does not yet port the Java checker and user hashes remain login-gated. No public wallet_address_list / ownership / global ZK."
