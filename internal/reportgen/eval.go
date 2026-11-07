@@ -135,6 +135,18 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkle proof JSON not present in the public evaluation package (login-gated).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
 		}
 
+	case "coinw":
+		e.Headline = "CoinW snapshot " + art.SnapshotID + " is a weak Stage 0 (announcement / import summary): self-reported total USDT reserve ratio only; Cloudflare WAF blocks stable datacenter fetches of the PoR dashboard; no public wallet list."
+		e.Rationale = "solvency-claim PASS means the September 2026 announcement total reserve ratio ≥ 100% only — not independently reproduced reserves or a bound merkle root. Official por-verify binaries exist without published source; user merkel_tree_cw.json remains login-gated. A later Oct-24 SSR panel was observed under geo-restriction with animated/conflicting merkle and ratio UI — left observational, not assessed."
+		e.Blocked = append(e.Blocked,
+			blockedReason{RuleID: "floor_no_public_wallet_address_list", Evidence: "wallet_address_list", MaxStage: "Stage 0", Reason: "CoinW publishes marketing PoR ratios without a permissionless wallet_address_list.", RiskFlag: "UNVERIFIABLE"},
+			blockedReason{RuleID: "floor_no_public_merkle_root", Evidence: "merkle_root", MaxStage: "Stage 0", Reason: "Assessed announcement summary has no public period merkle root to bind user proofs; dashboard merkle UI was not machine-stable under WAF/geo probe.", RiskFlag: "NO_PUBLIC_MERKLE_ROOT"},
+			blockedReason{RuleID: "floor_waf_gated_dashboard", Evidence: "por_dashboard", MaxStage: "Stage 0", Reason: "www.coinw.com PoR pages return Cloudflare WAF 403 from datacenters; summary imported from announcement / browser probe.", RiskFlag: "WAF_GATED"},
+		)
+		if verdict("user-merkle-proof") == "UNVERIFIABLE" {
+			e.Blocked = append(e.Blocked, blockedReason{RuleID: "floor_login_gated_user_proof", Evidence: "userMerkleProof", MaxStage: "Stage 0", Reason: "User merkel_tree_cw.json + automatic verify require login; OSS release ships binaries only (no source to port).", RiskFlag: "LOGIN_GATED_USER_PROOF"})
+		}
+
 	case "kraken":
 		e.Headline = "Kraken snapshot " + art.SnapshotID + " is Stage 0 attestation-model: quarterly accountant Merkle (LedgerLens / The Network Firm) plus CMS reserve ratios — no permissionless wallet ZIP or machine-verified attestation PDF."
 		e.Rationale = "solvency-claim PASS means self-reported CMS reserve ratios ≥ 100% (capped stables treated as published 105%+ floor). LedgerLens exposes a full combined Merkle root and names The Network Firm LLP, but user leaf/path remains login-gated, wallet ownership evidence stays inside the accountant workflow, and third-party-attestation is not machine-parsed — Stage 1 stays out of reach by disclosure design."

@@ -1,0 +1,20 @@
+{
+  "fetchedAt": "2026-11-06T15:50:00Z",
+  "source": "browser-ssr-probe",
+  "status": "observational-only",
+  "notAssessedReason": "Merkle root and total reserve ratio UI values changed during the session (animation / conflicting 64-hex strings). Not machine-stable enough for solvency-claim or merkle binding. Assessed package remains fixtures/coinw/202609-summary.json (announcement 109.65%).",
+  "porPage": "https://www.coinw.com/proof-of-reserves",
+  "probe": {
+    "cloudflare": "bypassed in interactive browser; curl from datacenter still WAF 403",
+    "geoRestrictionModal": "Service Restricted — IP in restricted region",
+    "snapshotTimeLabel": "2026-10-24 04:00:01 (UTC+8)",
+    "merkleRootObserved": [
+      "41e8f792355da0c0a9ad124b2c5c22f15d18d7c7b27560e4017163f58e11a2f4",
+      "41e8f792355da0c0a9ad124b2c5c22f1837059c0722378952441999285038ec3"
+    ],
+    "totalReserveRatioObservedRangePct": "100.35–115.75 (animated; unsettled)",
+    "perAssetRatios": "not captured (modal / scroll)",
+    "walletAddresses": "not visible",
+    "nuxtData": "__NUXT_DATA__ present; full JSON export blocked in probe environment"
+  }
+}

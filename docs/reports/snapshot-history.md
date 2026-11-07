@@ -40,6 +40,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | Binance | `PR01SEP26` | 2026-09-01 | Stage 0 | [report](./binance/PR01SEP26-transparency-report.md) |
 | Poloniex | `20260901` | 2026-09-01 | Stage 0 | [report](./poloniex/20260901-transparency-report.md) |
 | HTX | `20260901` | 2026-09-01 | Stage 0 | [report](./htx/20260901-transparency-report.md) |
+| CoinW | `202609` | 2026-09-01 | Stage 0 | [report](./coinw/202609-transparency-report.md) |
 | Bybit | `2026082604` | 2026-08-26 | Stage 0 | [report](./bybit/2026082604-transparency-report.md) |
 | Bitget | `20260820` | 2026-08-20 | Stage 0 | [report](./bitget/20260820-transparency-report.md) |
 | BingX | `20260815` | 2026-08-15 | Stage 0 | [report](./bingx/20260815-transparency-report.md) |

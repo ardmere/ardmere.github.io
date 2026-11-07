@@ -275,3 +275,19 @@ exchanges:
       Quarterly accountant Merkle (attestation-model). Permissionless: CMS reserve ratios on
       kraken.com/proof-of-reserves plus LedgerLens combinedRoot. User leaf/path login-gated;
       no permissionless wallet ZIP / amounts; CPA report not machine-parsed → Stage 0, no Stage 1.
+  - id: coinw
+    name: CoinW
+    porPage: https://www.coinw.com/proof-of-reserves
+    dataGuide: docs/coinw-por-data-guide.md
+    vcTier: 1
+    upstreamRepos:
+      - url: https://github.com/connectCoinw/proof-of-reserves
+        role: user_merkle_verifier
+        ardmereUse: user-merkle-proof@0 (stub)
+        note: >-
+          Releases ship closed-source por-verify-* binaries only (no Go/source to port).
+          Login-gated merkel_tree_cw.json pairs with the binary offline.
+    integrationNotes: >-
+      Monthly Merkle PoR + total USDT reserve ratio on the marketing page. Datacenter curl hits
+      Cloudflare WAF 403; browser SSR is geo-restricted. Stable permissionless ratio channel is
+      the help-center announcement (e.g. Sep 2026 109.65%). No public wallet ZIP → Stage 0 hard cap.

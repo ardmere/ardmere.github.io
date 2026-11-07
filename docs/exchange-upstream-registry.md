@@ -37,6 +37,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | `phemex` | VC1 | [proof-of-reserves](https://phemex.com/proof-of-reserves) | — (no official OSS verifier found) | `user-merkle-proof@0` (stub) |
 | `btcc` | VC1 | [proof-of-reserves](https://www.btcc.com/en-US/proof-of-reserves) | — (no official OSS verifier found) | `user-merkle-proof@0` (stub) |
 | `kraken` | VC1 | [proof-of-reserves](https://www.kraken.com/proof-of-reserves) | LedgerLens widget API (TNF accountant; no exchange OSS verifier) | `user-merkle-proof@0` (stub) · `third-party-attestation@0` (stub) |
+| `coinw` | VC1 | [proof-of-reserves](https://www.coinw.com/proof-of-reserves) | [connectCoinw/proof-of-reserves](https://github.com/connectCoinw/proof-of-reserves) (binaries only) | `user-merkle-proof@0` (stub) |
 
 ## Data guides
 
@@ -60,6 +61,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | Phemex | [phemex-por-data-guide.md](./phemex-por-data-guide.md) |
 | BTCC | [btcc-por-data-guide.md](./btcc-por-data-guide.md) |
 | Kraken | [kraken-por-data-guide.md](./kraken-por-data-guide.md) |
+| CoinW | [coinw-por-data-guide.md](./coinw-por-data-guide.md) |
 
 ## Maintenance
 
