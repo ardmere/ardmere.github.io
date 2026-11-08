@@ -60,6 +60,10 @@ That rate is also why the mismatch is a short-circuit rather than one factor amo
 
 `ANCHOR_UNAVAILABLE` is **not** a mismatch either. If the RPC is down, the block explorer is rate-limiting, or `POR_RPC_URL` points at a chain without the proxy, nothing can be concluded. The reference skill scored an unavailable view as `critical`; that reads as a risk judgement about the exchange, which the evidence does not support. This skill returns `riskScore: null` instead, and exits non-zero so a caller cannot mistake the run for a score of zero.
 
+## Monotonicity (disclosure depth)
+
+At the same `porStage`, a snapshot with **no public `wallet_address_list`** must score **at least as high** as one that publishes a list but lacks ownership or global proof. The scorer enforces this by **deriving** factors from `stageBlockedReasons`, checklist **S1-1** / **S1-2**, and `verifierResults` when they are missing from `riskFlags` (see `derive_disclosure_factors` in `risk_score.py`).
+
 ## Blocking flags
 
 These ids are the public framework's high flags that block a stage. Each occurrence in `riskFlags` adds **40**.
@@ -80,6 +84,17 @@ If `porStage` is `Stage 0` or `Pre-Stage` (the exact value, or that value follow
 | Id | Delta |
 | --- | --- |
 | `STAGE_BELOW_EFFECTIVE_POR` | 35 |
+
+## Derived disclosure gaps (not only in `riskFlags`)
+
+After blocking flags and the stage factor, the scorer may append these when the assessment JSON already documents the gap:
+
+| Id | Delta | When |
+| --- | --- | --- |
+| `NO_PUBLIC_WALLET_ADDRESS_LIST` | **16** | No `walletZip` in `artifacts.present`, and `stageBlockedReasons` lists a floor wallet-list rule, or checklist **S1-1** is `fail` / `unverifiable`. Not subject to the non-blocking 20 cap. |
+| `NO_WALLET_OWNERSHIP_PROOF` | **8** | Same as the non-blocking table, but derived when `address-ownership` in `verifierResults` is `FAIL` / `UNVERIFIABLE`, or **S1-2** is `fail` / `unverifiable`, and the id is not already in `riskFlags`. |
+
+`NO_PUBLIC_WALLET_ADDRESS_LIST` is intentionally heavier than a single non-blocking flag: hiding the address list is a larger disclosure gap than publishing a list without ownership proof.
 
 ## Non-blocking flags
 
@@ -119,15 +134,16 @@ Computed with `skills/por-custody-risk/scripts/por-check.sh`, not copied from an
 | File | sha256 (prefix) | Anchor | Flags applied | Score | Level |
 | --- | --- | --- | --- | --- | --- |
 | `docs/reports/okx/508756245-assessment.json` | `708b8b8aa6a8178d` | not anchored (`ANCHOR_MISSING` when read against a live RPC; the row below is the file-only score) | `NO_CANONICAL_ANCHOR` +5, `HIGH_FREQUENCY_GAP` +5. Stage 1, `effectivePoR` true | 10 | `low` |
-| `docs/reports/kucoin/20261031-assessment.json` | `53290a7f5021032f` | anchored, 2 of 3 roots compared and agree | `UNVERIFIABLE` +40, `STAGE_BELOW_EFFECTIVE_POR` +35. Stage 0, `effectivePoR` false | 75 | `high` |
-| `docs/reports/bitget/20261021-assessment.json` | `f33c596ad188d7b3` | anchored, 3 of 3 roots agree | `UNVERIFIABLE` +40, `STAGE_BELOW_EFFECTIVE_POR` +35. Stage 0 | 75 | `high` |
+| `docs/reports/kucoin/20261031-assessment.json` | `53290a7f5021032f` | anchored, 2 of 3 roots compared and agree | blocking + stage + list +16 + derived ownership +8 | 99 | `critical` |
+| `docs/reports/bitget/20261021-assessment.json` | `f33c596ad188d7b3` | anchored, 3 of 3 roots agree | blocking + stage + list +16 + ownership +8 | 99 | `critical` |
+| `docs/reports/bybit/2026102706-assessment.json` | (see file) | file-only or anchored per run | `UNVERIFIABLE` +40, stage +35, derived list +16, derived ownership +8 | 99 | `critical` |
 | `docs/reports/mexc/202610-assessment.json` | `a8631544e337795d` | anchored, 2 of 3 roots compared and agree | `UNVERIFIABLE` +40, stage +35, then `NO_PUBLIC_MERKLE_ROOT` +8, `WAF_GATED` +8, `LOGIN_GATED_USER_PROOF` +4 (capped at 20) | 95 | `critical` |
 | `docs/reports/binance/PR01JUN26-assessment.json` | `250a2a76d87e9956` | **mismatch** when read against the live anchor: `verificationBundleRoot` and `artifactBundleRoot` disagree with the contract | `UNVERIFIABLE` +40, stage +35, `NO_WALLET_OWNERSHIP_PROOF` +8, `OPAQUE_TRUSTED_SETUP` +8, so 91 file-only; `ANCHOR_MISMATCH` +100 when the anchor is read | 91 / 100 | `critical` |
 | `docs/reports/okx/506872725-assessment.json` | `8cbf3abbd6c4ae44` | **mismatch** when read against the live anchor: `verificationBundleRoot` disagrees | otherwise 10 (`NO_CANONICAL_ANCHOR` +5, `HIGH_FREQUENCY_GAP` +5); `ANCHOR_MISMATCH` +100 when the anchor is read | 10 / 100 | `low` / `critical` |
 
 The last two rows are the reason the anchor read exists at all. Read file-only they look like ordinary Stage 0 / Stage 1 snapshots. Read against the chain, the bytes on disk are not the bytes that were anchored, and the score says so before any flag arithmetic runs.
 
-Two rows show the same `75` score for different disclosures: KuCoin publishes no wallet list at all, Bitget publishes a Merkle root but keeps the tree behind a login. The score is a summary of the flagged evidence, not a ranking — read `factors[]` before quoting a number.
+After derived list factors, KuCoin/Bitget (no public wallet zip) score higher than Binance (list published, other gaps only). The score is a summary of the flagged evidence, not a ranking — read `factors[]` before quoting a number.
 
 ## What this table does not decide
 

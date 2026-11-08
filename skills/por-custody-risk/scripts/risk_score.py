@@ -47,7 +47,13 @@ SEVERITY_FALLBACK = {
     "info": 1,
 }
 NONBLOCKING_CAP = 20
+DISCLOSURE_GAP = 16  # NO_PUBLIC_WALLET_ADDRESS_LIST; not subject to non-blocking cap
 SCORE_CAP = 100
+LIST_BLOCK_RULE_IDS = frozenset({
+    "floor_no_public_wallet_address_list",
+    "floor_no_snapshot_wallet_address_list",
+    "floor_no_machine_readable_wallet_list",
+})
 RANK = {"low": 0, "medium": 1, "high": 2, "critical": 3}
 ZERO_ROOT = "0" * 64
 
@@ -189,6 +195,77 @@ def load_assessment(path):
         return file_sha, json.loads(path.read_text())
     except json.JSONDecodeError:
         return file_sha, None
+
+
+def _checklist_item(assessment, item_id):
+    for row in assessment.get("checklist") or []:
+        if isinstance(row, dict) and row.get("id") == item_id:
+            return row
+    return None
+
+
+def has_public_wallet_zip(assessment):
+    """True when the assessment's public artifact set includes a wallet zip."""
+    if not isinstance(assessment, dict):
+        return False
+    present = (assessment.get("artifacts") or {}).get("present") or []
+    for art in present:
+        if not isinstance(art, dict):
+            continue
+        kind = str(art.get("kind") or "").lower()
+        if "walletzip" in kind.replace("_", ""):
+            return True
+    return False
+
+
+def derive_disclosure_factors(assessment, flag_ids):
+    """Supplemental factors from stageBlockedReasons, checklist, and verifierResults."""
+    extra = []
+    if not isinstance(assessment, dict):
+        return extra
+
+    if not has_public_wallet_zip(assessment):
+        list_note = None
+        for row in assessment.get("stageBlockedReasons") or []:
+            if not isinstance(row, dict):
+                continue
+            if row.get("ruleId") in LIST_BLOCK_RULE_IDS:
+                list_note = row.get("reason") or "No public wallet_address_list."
+                break
+        if list_note is None:
+            s1_1 = _checklist_item(assessment, "S1-1")
+            if s1_1 and s1_1.get("status") in ("fail", "unverifiable"):
+                list_note = s1_1.get("notes") or "wallet_address_list not public or on-chain verifiable."
+        if list_note is not None:
+            extra.append({
+                "id": "NO_PUBLIC_WALLET_ADDRESS_LIST",
+                "delta": DISCLOSURE_GAP,
+                "note": list_note,
+            })
+
+    if "NO_WALLET_OWNERSHIP_PROOF" not in flag_ids:
+        own_note = None
+        for v in assessment.get("verifierResults") or []:
+            if not isinstance(v, dict):
+                continue
+            vid = str(v.get("verifierId") or "")
+            if not vid.startswith("address-ownership"):
+                continue
+            if v.get("verdict") in ("FAIL", "UNVERIFIABLE"):
+                own_note = v.get("reason") or "address-ownership verifier did not PASS."
+                break
+        if own_note is None:
+            s1_2 = _checklist_item(assessment, "S1-2")
+            if s1_2 and s1_2.get("status") in ("fail", "unverifiable"):
+                own_note = s1_2.get("notes") or "wallet_ownership_proof not batch-verifiable."
+        if own_note is not None:
+            extra.append({
+                "id": "NO_WALLET_OWNERSHIP_PROOF",
+                "delta": NONBLOCKING["NO_WALLET_OWNERSHIP_PROOF"],
+                "note": own_note,
+            })
+
+    return extra
 
 
 def assessment_fields(assessment):
@@ -341,10 +418,16 @@ def score(assessment_path, anchor_doc=None):
             "delta": 35,
             "note": f"porStage is {fields['stage']}, below effective PoR.",
         })
+    derived_ids = set()
+    for item in derive_disclosure_factors(assessment, fields["flag_ids"]):
+        factors.append(item)
+        derived_ids.add(item["id"])
     nonblocking_added = 0
     for flag in fields["flag_rows"]:
         flag_id = flag.get("id")
         if not isinstance(flag_id, str) or flag_id in BLOCKING:
+            continue
+        if flag_id in derived_ids:
             continue
         full = NONBLOCKING.get(flag_id)
         if full is None:
