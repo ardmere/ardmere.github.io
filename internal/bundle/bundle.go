@@ -43,7 +43,12 @@ type VerificationBundle struct {
 	BTCBlockHeight     uint32                  `json:"btcBlockHeight"`
 	ExchangeMerkleRoot string                  `json:"exchangeMerkleRoot,omitempty"`
 	VerdictSummary     uint8                   `json:"verdictSummary"`
-	CoverageBps        uint16                  `json:"coverageBps"`
+	CoverageBps        uint16                  `json:"coverageBps"` // deprecated opaque max(Coverage)×10000
+	WalletCoverageBps  uint16                  `json:"walletCoverageBps"`
+	ReserveCoverageBps uint16                  `json:"reserveCoverageBps"`
+	PorStage           uint8                   `json:"porStage"`
+	EffectivePoR       bool                    `json:"effectivePoR"`
+	CoverageDetail     any                     `json:"coverageDetail,omitempty"`
 	BuiltAt            string                  `json:"builtAt"`
 	Kind               string                  `json:"kind"` // "verification-bundle"
 	Verifications      []verifier.Verification `json:"verifications"`

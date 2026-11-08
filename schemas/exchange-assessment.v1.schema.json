@@ -54,6 +54,23 @@
     "effectivePoR": {
       "type": "boolean"
     },
+    "walletCoverageBps": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10000,
+      "description": "verifiable_addrs / published_addrs × 10000 (schema v4)"
+    },
+    "reserveCoverageBps": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10000,
+      "description": "verifiable_usd / claimed_reserve_usd × 10000 via CoinGecko at snapshotTime (schema v4)"
+    },
+    "coverageDetail": {
+      "type": "object",
+      "description": "Numerator/denominator breakdown for the two coverage ratios",
+      "additionalProperties": true
+    },
     "frequency": {
       "$ref": "#/$defs/frequency"
     },

@@ -70,7 +70,12 @@ func RunVerify(args []string) int {
 		}
 	}
 
-	_, verBundle := pipeline.BuildBundles(snap, loaded.Artifacts, result.Verifications, result.VerdictSummary, result.CoverageBps)
+	cov := pipeline.BundleCoverage{
+		WalletCoverageBps:  result.WalletCoverageBps,
+		ReserveCoverageBps: result.ReserveCoverageBps,
+		Detail:             result.CoverageDetail,
+	}
+	_, verBundle := pipeline.BuildBundles(snap, loaded.Artifacts, result.Verifications, result.VerdictSummary, result.CoverageBps, cov)
 	if doWriteBundle {
 		outMain := filepath.Join(loaded.BundlesDir, snap.ID+".verification-bundle.json")
 		outV2 := filepath.Join(loaded.BundlesDir, snap.ID+".verification-bundle.v2.json")
@@ -80,8 +85,8 @@ func RunVerify(args []string) int {
 	} else {
 		log.Printf("skipped writing verification bundle (--deposit-only; pass --write-bundle to override)")
 	}
-	log.Printf("verificationBundleRoot=%s verdictSummary=0x%02x coverageBps=%d",
-		verBundle.MerkleRoot, result.VerdictSummary, result.CoverageBps)
+	log.Printf("verificationBundleRoot=%s verdictSummary=0x%02x coverageBps=%d walletCoverageBps=%d reserveCoverageBps=%d",
+		verBundle.MerkleRoot, result.VerdictSummary, result.CoverageBps, result.WalletCoverageBps, result.ReserveCoverageBps)
 
 	if *stakeScan {
 		runStakeScan(ctx, rpcClient)

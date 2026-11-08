@@ -115,8 +115,17 @@ func SummarizeVerifications(vs []verifier.Verification) (summary uint8, coverage
 	return summary, uint16(maxCov * 10000)
 }
 
+// BundleCoverage carries schema-v4 coverage fields into the verification bundle.
+type BundleCoverage struct {
+	WalletCoverageBps  uint16
+	ReserveCoverageBps uint16
+	PorStage           uint8
+	EffectivePoR       bool
+	Detail             CoverageDetail
+}
+
 // BuildBundles constructs artifact and verification bundle manifests.
-func BuildBundles(snap por.Snapshot, arts []bundle.Artifact, verifications []verifier.Verification, verdictSummary uint8, coverageBps uint16) (bundle.ArtifactBundle, bundle.VerificationBundle) {
+func BuildBundles(snap por.Snapshot, arts []bundle.Artifact, verifications []verifier.Verification, verdictSummary uint8, coverageBps uint16, cov BundleCoverage) (bundle.ArtifactBundle, bundle.VerificationBundle) {
 	snapshotTimeRFC := snap.SnapshotTime.UTC().Format(time.RFC3339)
 	builtAt := time.Now().UTC().Format(time.RFC3339)
 
@@ -141,6 +150,11 @@ func BuildBundles(snap por.Snapshot, arts []bundle.Artifact, verifications []ver
 		ExchangeMerkleRoot: snap.MerkleRoot,
 		VerdictSummary:     verdictSummary,
 		CoverageBps:        coverageBps,
+		WalletCoverageBps:  cov.WalletCoverageBps,
+		ReserveCoverageBps: cov.ReserveCoverageBps,
+		PorStage:           cov.PorStage,
+		EffectivePoR:       cov.EffectivePoR,
+		CoverageDetail:     cov.Detail,
 		BuiltAt:            builtAt,
 		Kind:               "verification-bundle",
 		Verifications:      verifications,

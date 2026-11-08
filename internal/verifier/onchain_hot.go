@@ -181,12 +181,27 @@ func (v OnchainBalanceHot) Run(ctx context.Context) Verification {
 		if balanceWithinTolerance(res.accounted.total, res.row.Balance) {
 			passCount++
 			if !diff.IsZero() {
-				toleranceNoiseCount++ // tracked but no per-row finding emitted
+				toleranceNoiseCount++ // tracked; still emit PASS for coverage ratios
 			}
+			out.Findings = append(out.Findings, Finding{
+				Subject: res.row.Address,
+				Field:   res.row.Coin + "@" + res.row.Network + "#" + fmt.Sprintf("%d", matchedHeight),
+				Claim:   res.row.Balance.String(),
+				Actual:  res.accounted.total.String(),
+				Status:  VerdictPass,
+			})
 			continue
 		}
 		if _, surplus := classifyBalanceMismatch(res.accounted.total, res.row.Balance); surplus {
 			passCount++
+			out.Findings = append(out.Findings, Finding{
+				Subject: res.row.Address,
+				Field:   res.row.Coin + "@" + res.row.Network + "#" + fmt.Sprintf("%d", matchedHeight),
+				Claim:   res.row.Balance.String(),
+				Actual:  res.accounted.total.String(),
+				Status:  VerdictPass,
+				Note:    "on-chain surplus vs CSV claim (not a shortfall)",
+			})
 			continue
 		}
 		if res.accounted.incomplete {

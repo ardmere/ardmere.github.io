@@ -57,9 +57,9 @@ forge script script/Deploy.s.sol:Deploy \
 
 Set `ANCHOR_CONTRACT` in `.env` to the **proxy** address logged by the script.
 
-## Upgrade existing proxy (v2 → v3)
+## Upgrade existing proxy (v3 → v4)
 
-When a new implementation is released (e.g. on-chain query storage), upgrade the deployed proxy without changing its address:
+When a new implementation is released (e.g. schema v4 stage + dual coverage), upgrade the deployed proxy without changing its address:
 
 ```bash
 # Required: PRIVATE_KEY (upgrade owner), ANCHOR_CONTRACT (proxy)

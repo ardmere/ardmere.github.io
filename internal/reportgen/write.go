@@ -95,11 +95,11 @@ func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.Ve
 			"availability": "public",
 		})
 	}
-	return map[string]any{
-		"schema":               "ardmere/exchange-assessment@1",
-		"generatedAt":          nowRFC3339(),
-		"methodologyVersion":   "por-transparency-framework@2026-07-01",
-		"exchange":             exchangeID,
+	out := map[string]any{
+		"schema":             "ardmere/exchange-assessment@1",
+		"generatedAt":        nowRFC3339(),
+		"methodologyVersion": "por-transparency-framework@2026-07-01",
+		"exchange":           exchangeID,
 		"snapshot": map[string]any{
 			"id":                 art.SnapshotID,
 			"periodSeq":          art.PeriodSeq,
@@ -107,11 +107,11 @@ func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.Ve
 			"btcBlockHeight":     art.BTCBlockHeight,
 			"exchangeMerkleRoot": art.ExchangeMerkleRoot,
 		},
-		"porStage":        eval.Stage,
-		"gen":             eval.Gen,
-		"evidenceLevel":   eval.EvidenceLevel,
-		"confidence":      eval.Confidence,
-		"effectivePoR":    eval.EffectivePoR,
+		"porStage":      eval.Stage,
+		"gen":           eval.Gen,
+		"evidenceLevel": eval.EvidenceLevel,
+		"confidence":    eval.Confidence,
+		"effectivePoR":  eval.EffectivePoR,
 		"summary": map[string]any{
 			"headline":  eval.Headline,
 			"rationale": eval.Rationale,
@@ -120,14 +120,21 @@ func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.Ve
 		"stageBlockedReasons": eval.Blocked,
 		"riskFlags":           eval.RiskFlags,
 		"artifacts": map[string]any{
-			"present":                  present,
-			"artifactBundleRoot":       art.MerkleRoot,
-			"verificationBundleRoot":   ver.MerkleRoot,
+			"present":                present,
+			"artifactBundleRoot":     art.MerkleRoot,
+			"verificationBundleRoot": ver.MerkleRoot,
 		},
 		"verifierResults": vr,
 		"checklist":       checklistToAssessment(checklist),
 		"recommendations": recommendationsToAssessment(recommendations),
 	}
+	// Prefer dual coverage ratios from the verification bundle (schema v4).
+	out["walletCoverageBps"] = ver.WalletCoverageBps
+	out["reserveCoverageBps"] = ver.ReserveCoverageBps
+	if ver.CoverageDetail != nil {
+		out["coverageDetail"] = ver.CoverageDetail
+	}
+	return out
 }
 
 func checklistToAssessment(items []checklistItem) []map[string]any {

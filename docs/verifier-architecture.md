@@ -323,7 +323,7 @@ Rationale:
 ```solidity
 // Deployed on Base mainnet (chain id 8453)
 contract ArdmerePoRAnchor {
-    uint8 public constant SCHEMA_VERSION = 2;
+    uint8 public constant SCHEMA_VERSION = 4;
 
     event SnapshotAnchored(
         bytes32 indexed snapshotId,           // keccak256("PR01APR26")
@@ -336,9 +336,13 @@ contract ArdmerePoRAnchor {
         bytes32 artifactBundleRoot,           // ardmere artifact bundle Merkle root
         bytes32 verificationBundleRoot,       // ardmere verification bundle Merkle root
         uint8 verdictSummary,                 // verifier verdict bitfield
-        uint16 coverageBps,                   // on-chain audit coverage × 10_000
+        uint16 coverageBps,                   // deprecated opaque coverage × 10_000
         uint8 schemaVersion,
-        uint256 anchoredAt
+        uint256 anchoredAt,
+        uint8 porStage,
+        bool effectivePoR,
+        uint16 walletCoverageBps,
+        uint16 reserveCoverageBps
     );
 
     function anchorSnapshot(
@@ -351,12 +355,16 @@ contract ArdmerePoRAnchor {
         bytes32 artifactBundleRoot,
         bytes32 verificationBundleRoot,
         uint8 verdictSummary,
-        uint16 coverageBps
+        uint16 coverageBps,
+        uint8 porStage,
+        bool effectivePoR,
+        uint16 walletCoverageBps,
+        uint16 reserveCoverageBps
     ) external;
 }
 ```
 
-> Minimal trusted kernel — permissioned `signer` plus **immutable per-snapshot storage** (schema v3). Each `anchorSnapshot` writes a `SnapshotRecord` and emits `SnapshotAnchored`. The contract is **UUPS upgradeable** so the anchor schema can evolve without migrating the proxy address. Neither `artifactBundleRoot` nor `verificationBundleRoot` may be zero. See §6.5 for query API.
+> Minimal trusted kernel — permissioned `signer` plus **immutable per-snapshot storage** (schema v4). Each `anchorSnapshot` writes a `SnapshotRecord` and emits `SnapshotAnchored`. The contract is **UUPS upgradeable** so the anchor schema can evolve without migrating the proxy address. Neither `artifactBundleRoot` nor `verificationBundleRoot` may be zero. See §6.5 for query API.
 
 **Deployed instance (Ethereum Sepolia testnet)** — see [`deployments.md`](./deployments.md) for proxy + implementation addresses.
 
@@ -374,9 +382,9 @@ How any third party independently verifies ardmere:
 
 > **Acknowledged trade-off**: If ardmere service goes offline, raw verification data becomes inaccessible; but **on-chain roots + any bundle cached by third parties** still enable post-hoc verification. Stronger guarantees can add independent Arweave mirror service in V2 (anchor roots unchanged).
 
-### 6.5 On-chain query API (schema v3)
+### 6.5 On-chain query API (schema v4)
 
-Schema v2 anchors were **event-only** — history lives in `eth_getLogs`. Schema v3 adds **immutable on-chain storage** per snapshot while keeping the same `SnapshotAnchored` event shape (only `schemaVersion` bumps to `3`).
+Schema v2 anchors were **event-only**. Schema v3 added immutable on-chain storage. Schema v4 appends `porStage`, `effectivePoR`, `walletCoverageBps`, and `reserveCoverageBps` after `anchoredAt` (v3 rows remain readable with those fields zero/false). Deprecated `coverageBps` is retained for one release. Wallet/reserve ratios are priced with CoinGecko historical prices at `snapshotTime` (cached under gitignored `.cache/coingecko/`; HTTP 429 retries with backoff; optional `COINGECKO_API_KEY`). Unmapped asset symbols are excluded from both numerator and denominator and listed in assessment `coverageDetail`.
 
 #### Storage model
 
@@ -405,14 +413,14 @@ All snapshot state lives in an ERC-7201 namespaced slot (`ardmere.storage.Ardmer
 
 `exchangeTag = keccak256(bytes(exchange))` — e.g. `cast keccak "binance"`.
 
-#### Upgrade path (v2 → v3)
+#### Upgrade path (v3 → v4)
 
 1. Deploy new implementation (`forge script script/Upgrade.s.sol:Upgrade`).
 2. Owner calls `upgradeToAndCall` on the existing proxy (see [`contracts/README.md`](../contracts/README.md)).
 3. `signer`, `owner`, and pre-upgrade event history are unchanged.
 4. **Pre-v3 anchors remain log-only** — storage is empty for those `snapshotId`s until re-anchored (not planned). New `anchorSnapshot` calls populate storage + emit events.
 
-`STORAGE_VERSION` (currently `1`) tracks the on-chain layout independently of `SCHEMA_VERSION`.
+`STORAGE_VERSION` (currently `2`) tracks the on-chain layout independently of `SCHEMA_VERSION`.
 
 #### Gas tradeoffs
 
@@ -425,7 +433,7 @@ We keep emitting events so indexers and v2 integrations keep working.
 
 #### Backward compatibility
 
-- Event topic layout and field order are **unchanged**; `schemaVersion` in the event becomes `3` for new anchors.
+- Event topics (indexed `snapshotId`, `exchangeTag`) are unchanged; non-indexed data appends the v4 fields after `anchoredAt`. New anchors set `schemaVersion` to `4`.
 - v2 log queries still return historical anchors.
 - v3 view functions return `SnapshotNotFound` for snapshots anchored before the upgrade.
 

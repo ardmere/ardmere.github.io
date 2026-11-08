@@ -8,9 +8,12 @@ import (
 	"path/filepath"
 	"time"
 
+	"github.com/ardmere/ardmere/internal/bundle"
 	"github.com/ardmere/ardmere/internal/exchange"
 	"github.com/ardmere/ardmere/internal/exchangereg"
 	"github.com/ardmere/ardmere/internal/pipeline"
+	"github.com/ardmere/ardmere/internal/por"
+	"github.com/ardmere/ardmere/internal/reportgen"
 	"github.com/ardmere/ardmere/internal/rpc"
 	"github.com/ardmere/ardmere/internal/verifier"
 )
@@ -106,7 +109,18 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 	}
 
 	log.Printf("[5/5] computing bundle roots...")
-	artBundle, verBundle := pipeline.BuildBundles(snap, fetch.Artifacts, result.Verifications, result.VerdictSummary, result.CoverageBps)
+	// Stage uses the same determination as transparency reports (do not invent a second algorithm).
+	tmpArt := bundleStub(snap, fetch.Artifacts)
+	stageStr, effective := reportgen.EvaluateStage(snap.Exchange, tmpArt, result.Verifications)
+	porStage := pipeline.EncodePorStage(stageStr)
+	cov := pipeline.BundleCoverage{
+		WalletCoverageBps:  result.WalletCoverageBps,
+		ReserveCoverageBps: result.ReserveCoverageBps,
+		PorStage:           porStage,
+		EffectivePoR:       effective,
+		Detail:             result.CoverageDetail,
+	}
+	artBundle, verBundle := pipeline.BuildBundles(snap, fetch.Artifacts, result.Verifications, result.VerdictSummary, result.CoverageBps, cov)
 
 	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".artifact-bundle.json"), artBundle)
 	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".verification-bundle.json"), verBundle)
@@ -122,8 +136,15 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 		"verificationBundleRoot": verBundle.MerkleRoot,
 		"verdictSummary":         result.VerdictSummary,
 		"coverageBps":            result.CoverageBps,
+		"porStage":               porStage,
+		"effectivePoR":           effective,
+		"walletCoverageBps":      result.WalletCoverageBps,
+		"reserveCoverageBps":     result.ReserveCoverageBps,
+		"coverageDetail":         result.CoverageDetail,
 	})
 	log.Printf("      bundles written under %s/", stored.BundlesDir)
+	log.Printf("      coverage wallet=%d reserve=%d stage=%s effective=%v",
+		result.WalletCoverageBps, result.ReserveCoverageBps, stageStr, effective)
 
 	pipeline.PrintAnchorCalldata(pipeline.AnchorParamsFrom(
 		snap,
@@ -132,6 +153,10 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 		verBundle.MerkleRoot,
 		result.VerdictSummary,
 		result.CoverageBps,
+		porStage,
+		effective,
+		result.WalletCoverageBps,
+		result.ReserveCoverageBps,
 	))
 	return AnchorResult{
 		SnapshotID:  snap.ID,
@@ -143,6 +168,15 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 func mustWriteJSON(path string, v any) {
 	if err := pipeline.WriteJSON(path, v); err != nil {
 		log.Fatalf("%v", err)
+	}
+}
+
+func bundleStub(snap por.Snapshot, arts []bundle.Artifact) bundle.ArtifactBundle {
+	return bundle.ArtifactBundle{
+		Exchange:   snap.Exchange,
+		SnapshotID: snap.ID,
+		PeriodSeq:  snap.PeriodSeq,
+		Artifacts:  arts,
 	}
 }
 

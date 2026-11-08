@@ -23,5 +23,5 @@ sepolia = "${SEPOLIA_RPC_URL}"
 base = "${BASE_RPC_URL}"
 
 [etherscan]
-sepolia = { key = "${ETHERSCAN_API_KEY}", chain = 11155111 }
+sepolia = { key = "${ETHERSCAN_API_KEY}", chain = 11155111 }  # pragma: allowlist secret
 base = { key = "${BASESCAN_API_KEY}", url = "https://api.basescan.org/api" }

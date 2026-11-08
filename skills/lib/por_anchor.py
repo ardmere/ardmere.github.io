@@ -6,7 +6,7 @@ python3 with no pip install. When Foundry's `cast` is on PATH the caller can
 use it instead; both paths must produce the same record.
 
 Addresses, field order and error names follow docs/anchor-query-api.md
-(schema v3). This module is a reader: it has no write path.
+(schema v4). This module is a reader: it has no write path.
 """
 
 import json
@@ -24,7 +24,7 @@ FALLBACK_RPC_URLS = (
     "https://1rpc.io/sepolia",
 )
 CHAIN_ID = 11155111  # pragma: allowlist secret
-SCHEMA_VERSION = 3
+SCHEMA_VERSION = 4
 
 # SnapshotRecord, in ABI order (docs/anchor-query-api.md §4).
 RECORD_FIELDS = (
@@ -38,9 +38,13 @@ RECORD_FIELDS = (
     ("artifactBundleRoot", "bytes32"),
     ("verificationBundleRoot", "bytes32"),
     ("verdictSummary", "uint8"),
-    ("coverageBps", "uint16"),
+    ("coverageBps", "uint16"),  # deprecated opaque max coverage; prefer wallet/reserve
     ("schemaVersion", "uint8"),
     ("anchoredAt", "uint256"),
+    ("porStage", "uint8"),
+    ("effectivePoR", "bool"),
+    ("walletCoverageBps", "uint16"),
+    ("reserveCoverageBps", "uint16"),
 )
 RECORD_TUPLE = "(" + ",".join(kind for _name, kind in RECORD_FIELDS) + ")"
 
@@ -152,15 +156,30 @@ def _word(data, index):
 
 
 def decode_record(payload):
-    """Decode a SnapshotRecord tuple from eth_call return data."""
+    """Decode a SnapshotRecord tuple from eth_call return data.
+
+    Accepts both schema-v3 and schema-v4 ABI lengths. When the return is a v3
+    payload (ending at anchoredAt), the v4 fields default to 0 / false.
+    """
     data = bytes.fromhex(payload[2:] if payload.startswith("0x") else payload)
     if len(data) >= 32 and int.from_bytes(data[:32], "big") == 0x20:
         # Dynamic struct return: a head offset word precedes the tuple.
         data = data[32:]
-    if len(data) < 32 * len(RECORD_FIELDS):
+    # Minimum = fields through anchoredAt (schema v3). Indices 0..12 inclusive.
+    min_fields = 13
+    if len(data) < 32 * min_fields:
         raise AnchorError("return data does not hold a full SnapshotRecord")
     record = {}
     for index, (name, kind) in enumerate(RECORD_FIELDS):
+        if index * 32 + 32 > len(data) and kind != "string":
+            # Trailing v4 fields absent from a v3-length return.
+            if kind == "bool":
+                record[name] = False
+            elif kind.startswith("uint") or kind == "uint8" or kind == "uint16":
+                record[name] = 0
+            else:
+                record[name] = 0
+            continue
         if kind in ("bytes32",):
             start = index * 32
             record[name] = "0x" + data[start:start + 32].hex()
@@ -169,8 +188,16 @@ def decode_record(payload):
             length = _word(data, offset // 32)
             raw = data[offset + 32:offset + 32 + length]
             record[name] = raw.decode("utf-8", "replace")
+        elif kind == "bool":
+            if index * 32 + 32 > len(data):
+                record[name] = False
+            else:
+                record[name] = _word(data, index) != 0
         else:
-            record[name] = _word(data, index)
+            if index * 32 + 32 > len(data):
+                record[name] = 0
+            else:
+                record[name] = _word(data, index)
     if record["anchoredAt"] == 0:
         # Zeroed struct means "no record", whatever the RPC returned.
         return None
@@ -301,7 +328,7 @@ def contract_address(explicit=None):
 
 
 def read_snapshot(audit_id, exchange=None, contract=None, rpc=None, prefer_cast=False, timeout=20):
-    """Read the v3 record for one auditId.
+    """Read the v4 record for one auditId.
 
     Returns a dict whose `status` is one of:
       found      — the contract returned a populated SnapshotRecord
@@ -359,7 +386,7 @@ def read_snapshot(audit_id, exchange=None, contract=None, rpc=None, prefer_cast=
 
 
 def read_latest(exchange, contract=None, rpc=None, timeout=20):
-    """Most recent v3 anchor for an exchange tag."""
+    """Most recent v4 anchor for an exchange tag."""
     contract = contract_address(contract)
     tag = exchange_tag(exchange)
     result = {
@@ -382,7 +409,7 @@ def read_latest(exchange, contract=None, rpc=None, timeout=20):
         except _Revert as exc:
             if (exc.decoded or {}).get("name") == "SnapshotNotFound":
                 result.update(live=True, rpc=url, status="not_found",
-                              note="this exchange has no v3 anchor yet")
+                              note="this exchange has no v4 anchor yet")
                 return result
             errors.append(str(exc))
             continue

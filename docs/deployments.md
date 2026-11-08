@@ -7,7 +7,7 @@ On-chain anchor contract deployments and first anchor transactions.
 
 | Network | Chain ID | Role | Status |
 | --- | --- | --- | --- |
-| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy + impl v3) |
+| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy + impl v3; v4 implementation shipped — Sepolia upgrade pending deployer gas) |  # pragma: allowlist secret
 | Base | `8453` | Production primary (ADR-002) | **Pending** — not deployed |
 | Base Sepolia | `84532` | Optional L2 testnet | **Pending** — not deployed |
 
@@ -15,7 +15,7 @@ See [`decisions.md` ADR-002](./decisions.md#adr-002-primary-anchor-chain-base).
 
 ---
 
-## Ethereum Sepolia (testnet, chain id `11155111`)
+## Ethereum Sepolia (testnet, chain id `11155111`)  # pragma: allowlist secret
 
 Primary **testnet** deployment (operable CLI default until Base mainnet ships). Contract is **UUPS upgradeable** — users interact with the **proxy** address; upgrades are authorized by the deployer (owner).
 
@@ -23,21 +23,21 @@ Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only)
 
 | Item | Value |
 |---|---|
-| **Proxy (ANCHOR_CONTRACT)** | [`0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7`](https://sepolia.etherscan.io/address/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7) |
+| **Proxy (ANCHOR_CONTRACT)** | [`0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7`](https://sepolia.etherscan.io/address/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7) |  # pragma: allowlist secret
 | **Implementation (v3, query storage)** | [`0x62050405283f222EFEdF3BF0d6Cb16541cd1327a`](https://sepolia.etherscan.io/address/0x62050405283f222EFEdF3BF0d6Cb16541cd1327a) |
 | **Implementation (v2, superseded)** | [`0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392`](https://sepolia.etherscan.io/address/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392) |
 | **Anchor signer** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
 | **Upgrade owner** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
-| **Schema version** | `3` (on-chain storage + merged single-tx anchor) |
-| **Storage version** | `1` |
+| **Schema version** | `3` live on Sepolia; `4` in this branch (upgrade when funded) |
+| **Storage version** | `1` live on Sepolia; `2` in this branch |
 | **Pattern** | UUPS (`ERC1967Proxy` + `ArdmerePoRAnchor` implementation) |
 | **Impl deploy tx (v3)** | [`0x6aaa54524151d18be495f26fcf60b4f4ed155719b891b2ebeaf36bab9375b96f`](https://sepolia.etherscan.io/tx/0x6aaa54524151d18be495f26fcf60b4f4ed155719b891b2ebeaf36bab9375b96f) |
 | **Upgrade tx (v2→v3)** | [`0x905a68386dc49096208e4f75a060aa2dddb55f1b36c82735f8de73f471e75699`](https://sepolia.etherscan.io/tx/0x905a68386dc49096208e4f75a060aa2dddb55f1b36c82735f8de73f471e75699) |
 | **Impl deploy tx (v2)** | [`0xbf4684b13b133370e71ae946b2972e233d6156aa5c208c2d11b7b3778da3ca39`](https://sepolia.etherscan.io/tx/0xbf4684b13b133370e71ae946b2972e233d6156aa5c208c2d11b7b3778da3ca39) |
 | **Proxy deploy tx** | [`0xbd3b1a874831f37768d08a28bb015bbd39261b3bf32ecad99df652a1cb772e7d`](https://sepolia.etherscan.io/tx/0xbd3b1a874831f37768d08a28bb015bbd39261b3bf32ecad99df652a1cb772e7d) |
 | **Deploy block** | `11182041` |
-| **Source verified (Etherscan)** | [Proxy](https://sepolia.etherscan.io/address/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7#code) ✓ · [Implementation v3](https://sepolia.etherscan.io/address/0x62050405283f222EFEdF3BF0d6Cb16541cd1327a#code) ✓ · [Implementation v2 (superseded)](https://sepolia.etherscan.io/address/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392#code) ✓ |
-| **Source verified (Sourcify)** | [Proxy](https://repo.sourcify.dev/contracts/full_match/11155111/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7/) · [Implementation v3](https://repo.sourcify.dev/contracts/full_match/11155111/0x62050405283f222EFEdF3BF0d6Cb16541cd1327a/) · [Implementation v2 (superseded)](https://repo.sourcify.dev/contracts/full_match/11155111/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392/) |
+| **Source verified (Etherscan)** | [Proxy](https://sepolia.etherscan.io/address/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7#code) ✓ · [Implementation v3](https://sepolia.etherscan.io/address/0x62050405283f222EFEdF3BF0d6Cb16541cd1327a#code) ✓ · [Implementation v2 (superseded)](https://sepolia.etherscan.io/address/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392#code) ✓ |  # pragma: allowlist secret
+| **Source verified (Sourcify)** | [Proxy](https://repo.sourcify.dev/contracts/full_match/11155111/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7/) · [Implementation v3](https://repo.sourcify.dev/contracts/full_match/11155111/0x62050405283f222EFEdF3BF0d6Cb16541cd1327a/) · [Implementation v2 (superseded)](https://repo.sourcify.dev/contracts/full_match/11155111/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392/) |  # pragma: allowlist secret
 
 ### Previous non-upgradeable deployment (superseded)
 
@@ -99,3 +99,26 @@ Intended production deployment of the same UUPS `ArdmerePoRAnchor` pattern. **No
 6. First `anchorSnapshot` tx for a public evaluation-set root; link tx here.
 
 Until then, treat Sepolia anchors as **testnet evidence only**.
+
+
+## Schema v4 upgrade (stage + dual coverage)
+
+UUPS upgrade of the existing Sepolia proxy `0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7` (address unchanged).  # pragma: allowlist secret
+
+```bash
+export PATH="$HOME/.foundry/bin:$PATH"
+cd contracts
+# Required: PRIVATE_KEY (upgrade owner), ANCHOR_CONTRACT (proxy), SEPOLIA_RPC_URL / RPC_URL
+forge script script/Upgrade.s.sol:Upgrade --rpc-url "$RPC_URL" --broadcast -vvvv
+cast call "$ANCHOR_CONTRACT" "SCHEMA_VERSION()(uint8)" --rpc-url "$RPC_URL"   # expect 4
+cast call "$ANCHOR_CONTRACT" "STORAGE_VERSION()(uint8)" --rpc-url "$RPC_URL"  # expect 2
+```
+
+New `SnapshotRecord` fields (appended after `anchoredAt`): `porStage`, `effectivePoR`, `walletCoverageBps`, `reserveCoverageBps`. Deprecated `coverageBps` is retained. Pre-upgrade v3 storage rows remain readable with the new fields as zero/false.
+
+
+### Schema v4 status (2026-11-08)
+
+- Implementation + Foundry tests for schema v4 are in-repo (`SCHEMA_VERSION=4`, `STORAGE_VERSION=2`).
+- Sepolia proxy is **still on v3** until the owner broadcasts `script/Upgrade.s.sol` (a broadcast attempt failed with insufficient Sepolia ETH for ~0.018 ETH gas).
+- New implementation address from the successful local simulation / failed broadcast attempt: `0x71860B086ce8c550cBa2Af00950BDbe8C7a21e78` (re-deploy a fresh impl when upgrading; do not assume this address is the live implementation until the upgrade tx confirms).

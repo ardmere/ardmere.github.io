@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"github.com/ardmere/ardmere/internal/bundle"
+	"github.com/ardmere/ardmere/internal/coingecko"
 	"github.com/ardmere/ardmere/internal/exchange"
 	"github.com/ardmere/ardmere/internal/por"
 	"github.com/ardmere/ardmere/internal/rpc"
@@ -34,10 +35,13 @@ type VerifyOpts struct {
 
 // VerifyResult holds verifier output and optional wallet aggregate.
 type VerifyResult struct {
-	Verifications []verifier.Verification
-	WalletAgg     *walletzip.Aggregate
-	VerdictSummary uint8
-	CoverageBps    uint16
+	Verifications      []verifier.Verification
+	WalletAgg          *walletzip.Aggregate
+	VerdictSummary     uint8
+	CoverageBps        uint16 // deprecated opaque max(Coverage)×10000
+	WalletCoverageBps  uint16
+	ReserveCoverageBps uint16
+	CoverageDetail     CoverageDetail
 }
 
 // AggregateWallet parses the wallet zip when present.
@@ -86,10 +90,30 @@ func RunVerify(ctx context.Context, opts VerifyOpts) (VerifyResult, error) {
 	})
 
 	verdictSummary, coverageBps := SummarizeVerifications(verifications)
+
+	pubCount, balances, pubUnknown, err := LoadPublishedWalletSet(opts.Adapter.ID(), opts.WalletZipPath)
+	if err != nil {
+		log.Printf("published wallet set: %v (coverage ratios will treat denominator as unknown)", err)
+		pubUnknown = true
+		pubCount = 0
+		balances = nil
+	}
+	ratios := ComputeCoverageRatios(ctx, CoverageInput{
+		Snapshot:              opts.Snapshot,
+		Verifications:         verifications,
+		PublishedAddressCount: pubCount,
+		PublishedUnknown:      pubUnknown,
+		AddressBalances:       balances,
+		Prices:                coingecko.New(),
+	})
+
 	return VerifyResult{
-		Verifications:  verifications,
-		WalletAgg:      walletAgg,
-		VerdictSummary: verdictSummary,
-		CoverageBps:    coverageBps,
+		Verifications:      verifications,
+		WalletAgg:          walletAgg,
+		VerdictSummary:     verdictSummary,
+		CoverageBps:        coverageBps,
+		WalletCoverageBps:  ratios.WalletCoverageBps,
+		ReserveCoverageBps: ratios.ReserveCoverageBps,
+		CoverageDetail:     ratios.Detail,
 	}, nil
 }

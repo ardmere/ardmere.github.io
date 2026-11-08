@@ -172,10 +172,25 @@ func (v OnchainBalanceToken) Run(ctx context.Context) Verification {
 		within, surplus := classifyBalanceMismatch(res.actual, claim)
 		if within {
 			passCount++
+			out.Findings = append(out.Findings, Finding{
+				Subject: res.row.Address,
+				Field:   res.row.Coin + "@" + res.row.Network + "#" + fmt.Sprintf("%d", res.matchedHeight),
+				Claim:   claim.String(),
+				Actual:  res.actual.String(),
+				Status:  VerdictPass,
+			})
 			continue
 		}
 		if surplus {
 			passCount++
+			out.Findings = append(out.Findings, Finding{
+				Subject: res.row.Address,
+				Field:   res.row.Coin + "@" + res.row.Network + "#" + fmt.Sprintf("%d", res.matchedHeight),
+				Claim:   claim.String(),
+				Actual:  res.actual.String(),
+				Status:  VerdictPass,
+				Note:    "on-chain surplus vs CSV claim (not a shortfall)",
+			})
 			continue
 		}
 
