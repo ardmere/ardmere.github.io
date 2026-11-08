@@ -31,15 +31,15 @@ Public artifacts do not support independently reproducible global solvency verif
 
 | Field | Value |
 | --- | --- |
-| Latest snapshot (evaluation set) | `2026-10-01T00:00:00Z` |
+| Latest snapshot (evaluation set) | `2026-11-01T00:00:00Z` |
 | Previous snapshot | `2023-09-10T18:10:33Z` |
-| Observed cadence | `~372 days between snapshots` |
-| History available | `4 snapshot(s) in public evaluation set` |
+| Observed cadence | `~monthly` |
+| History available | `5 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-Newer snapshot 20260901 is also in the public evaluation set.
+Newer snapshot 20260901 is also in the public evaluation set. Observed cadence averages 3 of 4 adjacent gaps; excluded as an older span superseded by the current rhythm: `20230910` → `20260801` (1055 days). Retained gaps are each at most 3x the 31-day median gap.
 
 ## 4. Evidence and Bundles
 

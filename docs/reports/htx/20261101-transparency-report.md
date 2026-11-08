@@ -33,13 +33,13 @@ Public artifacts do not support independently reproducible global solvency verif
 | --- | --- |
 | Latest snapshot (evaluation set) | `2026-11-01T00:00:00Z` |
 | Previous snapshot | `2026-10-01T00:00:00Z` |
-| Observed cadence | `~287 days between snapshots` |
+| Observed cadence | `~monthly` |
 | History available | `5 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-This is the newest snapshot in the ardmere public evaluation set for htx.
+This is the newest snapshot in the ardmere public evaluation set for htx. Observed cadence averages 3 of 4 adjacent gaps; excluded as an older span superseded by the current rhythm: `20230910` → `20260801` (1055 days). Retained gaps are each at most 3x the 31-day median gap.
 
 ## 4. Evidence and Bundles
 

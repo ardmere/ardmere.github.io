@@ -135,6 +135,39 @@ evidence-chain step. See <a
 href="#differences-and-complementarity-of-traditional-audit-and-por">§8.3
 Traditional audit and PoR</a> for how PoR complements—but does not
 replace—financial audit.</p>
+<h3 id="how-observed-cadence-is-measured">1.4 How “Observed cadence” is
+measured</h3>
+<p>Every transparency report states an <code>Observed cadence</code> in
+§3. It answers one question: <strong>how often does this venue publish
+now</strong>, because that is what Stage 2 frequency expectations are
+judged against.</p>
+<p>The number is the mean of the adjacent gaps between assessed
+snapshots, with one correction. Some venues keep a legacy snapshot from
+an earlier publishing regime in their archive (HTX’s
+<code>20230910</code> file sits next to a monthly 2026 series). A single
+such snapshot produces a gap orders of magnitude larger than the rest,
+and a plain mean lets that one gap describe the venue instead of the
+current rhythm.</p>
+<p>The correction is a median-trim, applied per gap:</p>
+<ol type="1">
+<li>Compute every adjacent gap in the public history and take their
+<strong>median</strong> as the reference interval (the lower of the two
+middle gaps when the count is even, so an old long gap cannot raise the
+reference).</li>
+<li>A gap longer than <strong>3× the median</strong> is retired from the
+average <strong>only when a newer gap already re-establishes the faster
+rhythm</strong>.</li>
+<li>Every other gap stays in the mean, including long gaps that are
+simply how the venue publishes.</li>
+</ol>
+<p>The report discloses any retired span (both snapshot ids and its
+length) in the sentence following the table, so the arithmetic can be
+checked by hand.</p>
+<p>What this does not do: a venue that is slow throughout has no gap far
+above its own median, so nothing is retired and its coarse cadence is
+reported as before. A venue whose <em>newest</em> observed behaviour is
+a long silence keeps that silence in the mean, so a dormant exchange
+still reads slow or stale rather than healthy.</p>
 <hr />
 <h2 id="stage-overview">2. Stage Overview</h2>
 <table>
