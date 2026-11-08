@@ -1,6 +1,6 @@
 # Ardmere PoR 监控日程（按所窗口）
 
-> **生效**：2026-11-06（2026-11-07 扩展覆盖）
+> **生效**：2026-11-06（2026-11-07 扩展覆盖；2026-11-08 起扫描 PR 自动 merge）
 > **机器配置**：[`config/por-monitor/schedule.yaml`](../config/por-monitor/schedule.yaml)
 > **Due 列表**：[`scripts/por-monitor-due.sh`](../scripts/por-monitor-due.sh)
 > **回归测试**：[`scripts/por-monitor-due_test.sh`](../scripts/por-monitor-due_test.sh)
@@ -15,7 +15,34 @@
 现由 `./scripts/por-monitor-due.sh --check` 守住：扫描 `docs/reports/*/` 中带 `*-assessment.json` 的目录，
 与实际 `exchanges:` 条目比对，发现缺口即 **exit 1**。`scripts/por-monitor-due_test.sh` 在回归测试里调用它。
 
-## 政策变更
+## 政策（2026-11-08 更新：自动 merge）
+
+扫描出的报告 PR 不再等人工确认，由扫描 worker 自己合入。
+
+| | 废止 | 现行 |
+| --- | --- | --- |
+| 合并 | 扫描 PR 留待人工 review 后合入 | **扫描 worker 自己 squash merge**：本地校验四项全过后直接合入 `main` |
+| 阻断 | — | 本地校验失败、且该失败不是 `main` 上的既存失败 → **不合**，留 PR 并报出失败项 |
+
+**PR 检查不是门禁 —— 本仓库没有 PR CI。** 没有 `.github/workflows/`；唯一的 workflow 是 `main` 上的
+`pages-build-deployment`，而 `gh pr checks` 对每个 PR 都回 "no checks reported"。所以「所有检查 terminal 且无失败」
+在这里是**空条件**，不能当自动合并的判据。
+
+自动合并的真实门禁是**本地验证**，以下四项**必须全过**：
+
+```bash
+go build ./...
+go test ./...
+./scripts/check-skills.sh
+./scripts/por-monitor-due_test.sh
+```
+
+只有**已知在 `main` 上同样失败、且已写进 PR 正文**的项可以豁免；其它任何失败都阻断合并，并须报出失败的检查名。
+
+**自动 merge 的边界**：只适用于扫描自身的报告 PR（新快照、首页/对比/历史/归档刷新、frequency 修复）。
+**代码、合约、schema、skills、schedule 结构**改动仍需人工 review；一个 PR 里同时混入这两类改动时，按人工 review 处理。
+
+## 政策变更（2026-11-06）
 
 | | 旧（≤2026-11-05） | 新（2026-11-06） |
 | --- | --- | --- |
@@ -132,8 +159,12 @@
 1. `./scripts/por-monitor-due.sh` → 得到 due 列表（空则退出，写「无窗口」笔记即可）。
 2. **只**对 due 所做公开探针（不要扫全集）；先读第 4 列的 `capture`/`waf`。
 3. 新 id：`fetch` / 浏览器补抓 → `por report` → `por site` → `build-public-html` → PR。
-4. WAF/登录：同日标注缺口；需要时派 self-hosted 浏览器；**空响应 ≠ 无变化**。
-5. **不要**在无新 id 时重跑 OKX `verify-global` 或全量 RPC。
+4. **合并步**：先在本地跑齐四项校验 —— `go build ./...`、`go test ./...`、`./scripts/check-skills.sh`、
+   `scripts/por-monitor-due_test.sh`。**四项全过 → 自己 squash merge 到 `main`**，再向 Project 汇报合入的 commit 与快照 id。
+   **PR 检查不是门禁**（本仓库没有 PR CI，`gh pr checks` 永远 "no checks reported"），别拿它当判据。
+   某项失败但**在 `main` 上同样失败**：写进 PR 正文说明后可合；其它失败 **不合**，留 PR 并报出失败的检查名。
+5. WAF/登录：同日标注缺口；需要时派 self-hosted 浏览器；**空响应 ≠ 无变化**。
+6. **不要**在无新 id 时重跑 OKX `verify-global` 或全量 RPC。
 
 ### 定时（cursor-subscriptions）
 
@@ -145,6 +176,8 @@
 | `por-scan-due-catchup` | `0 14 * * *` | 仅复检 **今日仍在窗内** 或上午已标 pending publish 的所 |
 
 废止：无条件的 `por-scan-am` / `por-scan-pm` 全量 P0+P1。
+
+timer 的 `prompt` 沿用上面「Worker prompt 要点」（含第 4 步的本地校验 + 自行 squash merge），不要退回「等人工 review」。
 
 ## 监控清单（能力，非每日必扫）
 
@@ -172,7 +205,7 @@
 
 ## SLA
 
-**交易所公开更新后 ≤ 1 个自然日**内：更新 transparency + assessment、刷新首页与 comparison/history/archive，并开 PR。抓不到则同日写清 UNVERIFIABLE / WAF / 登录缺口。
+**交易所公开更新后 ≤ 1 个自然日**内：更新 transparency + assessment、刷新首页与 comparison/history/archive、开 PR，并在本地校验通过后**自行 squash merge**（见「政策（2026-11-08 更新：自动 merge）」）。抓不到则同日写清 UNVERIFIABLE / WAF / 登录缺口。
 
 窗口设计已加 1–3 日 buffer，使「更新日落在窗内 → 次日 catch-up 仍能扫到」，以支撑该 SLA；**不是**靠每日全扫。
 
