@@ -20,7 +20,7 @@ Run the script and read the JSON. Use `riskScore`, `riskLevel`, `conclusive`, an
 
 ## Read the record from Sepolia
 
-The score is bound to the on-chain record, not to a recording. The read is a `getSnapshot` `eth_call` against the `ArdmerePoRAnchor` proxy, schema v3:
+The score is bound to the on-chain record, not to a recording. The read is a `getSnapshot` `eth_call` against the `ArdmerePoRAnchor` proxy (schema v5; v3/v4 rows remain readable):
 
 ```bash
 skills/por-custody-risk/scripts/por-check.sh \
@@ -144,7 +144,8 @@ The same file with `--no-anchor` scores identically, but the interpretation says
 | `factors[]` | `id`, `delta`, `note` — the arithmetic, in application order |
 | `notAReserveJudgement` | present and `true` on `ANCHOR_MISSING` only |
 | `porStage`, `effectivePoR`, `riskFlags` | echoed from the assessment |
-| `anchor.porStage`, `anchor.walletCoverageBps`, `anchor.reserveCoverageBps` | schema v4 on-chain fields (v3 rows decode as 0/false); prefer these over deprecated `coverageBps` |
+| `anchor.porStage`, `anchor.walletCoverageBps`, `anchor.reserveCoverageBps` | schema v4+ on-chain fields (v3 rows decode as 0/false); prefer these over deprecated `coverageBps` |
+| `anchor.custodyRiskScore` | schema v5 field (`0–100` or `255`); cross-check via `custodyRiskScoreMatchesComputed` when recomputing |
 | `assessmentSha256` | the file's sha256, so a quoted score can be tied to bytes |
 
 Exit status is `0` when a score was produced and `1` when the run was inconclusive, so a caller cannot silently treat an unreadable chain as a score of zero.
@@ -162,7 +163,7 @@ go build -o por ./cmd/por
 ./por anchor -exchange kucoin           # fetch → verify → bundles → anchor calldata
 ```
 
-`por anchor` does not require a private key and does not broadcast: it prints the `cast send` for the operator, and the transaction is sent from the permissioned anchor signer (`0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` on Sepolia). Nothing in this skill writes to the chain, holds a key, or asks for one. See [`docs/por-cli.md`](../../docs/por-cli.md) for the flags.
+`por anchor` does not require a private key and does not broadcast: it prints the `cast send` for the operator (including `custodyRiskScore` from `risk_score.py --no-anchor`), and the transaction is sent from the permissioned anchor signer (`0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` on Sepolia). Nothing in this skill writes to the chain, holds a key, or asks for one. See [`docs/por-cli.md`](../../docs/por-cli.md) for the flags.
 
 Re-running the verifier and re-anchoring is the fix for `ANCHOR_MISMATCH` — never edit an assessment to match the chain.
 

@@ -144,6 +144,7 @@ def anchor_view(doc):
         "effectivePoR": bool(record.get("effectivePoR")) if record.get("effectivePoR") is not None else None,
         "walletCoverageBps": record.get("walletCoverageBps"),
         "reserveCoverageBps": record.get("reserveCoverageBps"),
+        "custodyRiskScore": record.get("custodyRiskScore"),
         "coverageBps": record.get("coverageBps"),  # deprecated
         "artifactBundleRoot": record.get("artifactBundleRoot"),
         "verificationBundleRoot": record.get("verificationBundleRoot"),
@@ -447,6 +448,28 @@ def score(assessment_path, anchor_doc=None):
         level = at_least(level, "high")
     if stage_below(fields["stage"]):
         level = at_least(level, "medium")
+
+    record = (anchor_doc.get("record") or {}) if anchor_doc else {}
+    chain_score = record.get("custodyRiskScore")
+    schema_v = record.get("schemaVersion") or 0
+    if anchor.get("status") == "found" and schema_v >= 5 and chain_score is not None:
+        import por_anchor
+
+        anchor["custodyRiskScoreOnChain"] = chain_score
+        if chain_score == por_anchor.CUSTODY_RISK_UNAVAILABLE:
+            anchor["custodyRiskScoreMatchesComputed"] = None
+            anchor.setdefault(
+                "note",
+                (anchor.get("note") or "") + " On-chain custodyRiskScore is 255 (unavailable at anchor).",
+            ).strip()
+        else:
+            anchor["custodyRiskScoreMatchesComputed"] = risk_score == chain_score
+            if risk_score != chain_score:
+                anchor["custodyRiskScoreMismatch"] = {
+                    "computed": risk_score,
+                    "onchain": chain_score,
+                    "note": "Recomputed score disagrees with custodyRiskScore stored at anchor time.",
+                }
 
     return {
         "exchange": fields["exchange"],

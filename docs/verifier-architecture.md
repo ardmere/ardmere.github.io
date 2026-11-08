@@ -323,7 +323,7 @@ Rationale:
 ```solidity
 // Deployed on Base mainnet (chain id 8453)
 contract ArdmerePoRAnchor {
-    uint8 public constant SCHEMA_VERSION = 4;
+    uint8 public constant SCHEMA_VERSION = 5;
 
     event SnapshotAnchored(
         bytes32 indexed snapshotId,           // keccak256("PR01APR26")
@@ -342,7 +342,8 @@ contract ArdmerePoRAnchor {
         uint8 porStage,
         bool effectivePoR,
         uint16 walletCoverageBps,
-        uint16 reserveCoverageBps
+        uint16 reserveCoverageBps,
+        uint8 custodyRiskScore
     );
 
     function anchorSnapshot(
@@ -359,12 +360,13 @@ contract ArdmerePoRAnchor {
         uint8 porStage,
         bool effectivePoR,
         uint16 walletCoverageBps,
-        uint16 reserveCoverageBps
+        uint16 reserveCoverageBps,
+        uint8 custodyRiskScore
     ) external;
 }
 ```
 
-> Minimal trusted kernel — permissioned `signer` plus **immutable per-snapshot storage** (schema v4). Each `anchorSnapshot` writes a `SnapshotRecord` and emits `SnapshotAnchored`. The contract is **UUPS upgradeable** so the anchor schema can evolve without migrating the proxy address. Neither `artifactBundleRoot` nor `verificationBundleRoot` may be zero. See §6.5 for query API.
+> Minimal trusted kernel — permissioned `signer` plus **immutable per-snapshot storage** (schema v5). Each `anchorSnapshot` writes a `SnapshotRecord` and emits `SnapshotAnchored`. The contract is **UUPS upgradeable** so the anchor schema can evolve without migrating the proxy address. Neither `artifactBundleRoot` nor `verificationBundleRoot` may be zero. See §6.5 for query API.
 
 **Deployed instance (Ethereum Sepolia testnet)** — see [`deployments.md`](./deployments.md) for proxy + implementation addresses.
 

@@ -8,16 +8,21 @@ import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/Own
 /// @title  ArdmerePoRAnchor — minimal trusted-kernel anchor contract (UUPS upgradeable)
 /// @notice One on-chain anchor per exchange snapshot: both artifact and
 ///         verification bundle roots in a single event / transaction, with
-///         queryable on-chain storage (schema v4).
+///         queryable on-chain storage (schema v5).
 ///         See docs/verifier-architecture.md §6.
 contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable {
-    /// @dev Event/storage schema version (v4 = stage + dual coverage ratios).
-    uint8 public constant SCHEMA_VERSION = 4;
+    /// @dev Event/storage schema version (v5 = custody risk score at anchor time).
+    uint8 public constant SCHEMA_VERSION = 5;
 
     /// @dev On-chain snapshot storage layout version (independent of event schema).
     ///      v2 = SnapshotRecord appends porStage/effectivePoR/walletCoverageBps/reserveCoverageBps
     ///      after anchoredAt (v3 records remain readable; new fields decode as 0/false).
-    uint8 public constant STORAGE_VERSION = 2;
+    ///      v3 = appends custodyRiskScore after reserveCoverageBps (v4 rows decode as 0).
+    uint8 public constant STORAGE_VERSION = 3;
+
+    /// @dev custodyRiskScore sentinel when the anchor pipeline could not produce a score (uint8).
+  ///      Matches NEAR sibling semantics and skills/por-custody-risk (conclusive: false offline).
+    uint8 public constant CUSTODY_RISK_UNAVAILABLE = 255;
 
     address public signer;
 
@@ -46,6 +51,8 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         uint16 walletCoverageBps;
         /// @dev verifiable_usd / claimed_reserve_usd × 10_000 (CoinGecko at snapshotTime)
         uint16 reserveCoverageBps;
+        /// @dev 0–100 inclusive custody risk at anchor time; 255 = unavailable / inconclusive.
+        uint8 custodyRiskScore;
     }
 
     /// @custom:storage-location erc7201:ardmere.storage.ArdmerePoRAnchor
@@ -79,6 +86,7 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
     /// @param  effectivePoR            Same effective-PoR flag as the assessment
     /// @param  walletCoverageBps       Verifiable address count ratio × 10_000
     /// @param  reserveCoverageBps      Verifiable reserve USD ratio × 10_000
+    /// @param  custodyRiskScore        0–100 custody risk at anchor; 255 if unavailable
     event SnapshotAnchored(
         bytes32 indexed snapshotId,
         bytes32 indexed exchangeTag,
@@ -96,7 +104,8 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         uint8 porStage,
         bool effectivePoR,
         uint16 walletCoverageBps,
-        uint16 reserveCoverageBps
+        uint16 reserveCoverageBps,
+        uint8 custodyRiskScore
     );
 
     event SignerUpdated(address indexed previousSigner, address indexed newSigner);
@@ -109,6 +118,7 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
     error SnapshotAlreadyExists(bytes32 snapshotId);
     error PeriodAlreadyAnchored(bytes32 exchangeTag, uint32 periodSeq);
     error SnapshotIndexOutOfBounds(bytes32 exchangeTag, uint256 index);
+    error InvalidCustodyRiskScore(uint8 value);
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
@@ -151,7 +161,8 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         uint8 porStage,
         bool effectivePoR,
         uint16 walletCoverageBps,
-        uint16 reserveCoverageBps
+        uint16 reserveCoverageBps,
+        uint8 custodyRiskScore
     ) external {
         if (msg.sender != signer) revert Unauthorized(msg.sender);
         if (bytes(exchange).length == 0) revert EmptyExchange();
@@ -173,7 +184,8 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
             porStage,
             effectivePoR,
             walletCoverageBps,
-            reserveCoverageBps
+            reserveCoverageBps,
+            custodyRiskScore
         );
         _emitSnapshotAnchored(snapshotId);
     }
@@ -192,8 +204,12 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         uint8 porStage,
         bool effectivePoR,
         uint16 walletCoverageBps,
-        uint16 reserveCoverageBps
+        uint16 reserveCoverageBps,
+        uint8 custodyRiskScore
     ) private {
+        if (custodyRiskScore > 100 && custodyRiskScore != CUSTODY_RISK_UNAVAILABLE) {
+            revert InvalidCustodyRiskScore(custodyRiskScore);
+        }
         ArdmerePoRAnchorStorage storage $ = _getArdmerePoRAnchorStorage();
         if ($.snapshots[snapshotId].anchoredAt != 0) revert SnapshotAlreadyExists(snapshotId);
 
@@ -221,6 +237,7 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         record.effectivePoR = effectivePoR;
         record.walletCoverageBps = walletCoverageBps;
         record.reserveCoverageBps = reserveCoverageBps;
+        record.custodyRiskScore = custodyRiskScore;
 
         $.snapshotIds[exchangeTag].push(snapshotId);
         $.snapshotByPeriod[exchangeTag][periodSeq] = snapshotId;
@@ -247,7 +264,8 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
             record.porStage,
             record.effectivePoR,
             record.walletCoverageBps,
-            record.reserveCoverageBps
+            record.reserveCoverageBps,
+            record.custodyRiskScore
         );
     }
 

@@ -10,10 +10,10 @@ import (
 	"github.com/ardmere/ardmere/internal/por"
 )
 
-// Schema v4 selector for anchorSnapshot(... uint8 porStage, bool effectivePoR, uint16 wallet, uint16 reserve).
-const anchorSelector = "0x699e2c4e"
+// Schema v5 selector for anchorSnapshot(..., uint8 custodyRiskScore).
+const anchorSelector = "0xeacf4d77"
 
-// AnchorParams holds fields for on-chain anchorSnapshot calldata (schema v4).
+// AnchorParams holds fields for on-chain anchorSnapshot calldata (schema v5).
 type AnchorParams struct {
 	Exchange               string
 	SnapshotID             string
@@ -29,6 +29,7 @@ type AnchorParams struct {
 	EffectivePoR           bool
 	WalletCoverageBps      uint16
 	ReserveCoverageBps     uint16
+	CustodyRiskScore       uint8
 }
 
 // AnchorParamsFrom builds anchor params from a completed verify run.
@@ -41,6 +42,7 @@ func AnchorParamsFrom(
 	porStage uint8,
 	effectivePoR bool,
 	walletCoverageBps, reserveCoverageBps uint16,
+	custodyRiskScore uint8,
 ) AnchorParams {
 	return AnchorParams{
 		Exchange:               snap.Exchange,
@@ -57,6 +59,7 @@ func AnchorParamsFrom(
 		EffectivePoR:           effectivePoR,
 		WalletCoverageBps:      walletCoverageBps,
 		ReserveCoverageBps:     reserveCoverageBps,
+		CustodyRiskScore:       custodyRiskScore,
 	}
 }
 
@@ -82,7 +85,7 @@ func PrintAnchorCalldata(p AnchorParams) {
 
 	fmt.Println()
 	fmt.Println("==================================================================")
-	fmt.Printf("ANCHOR PAYLOAD (schema v4) — exchange=%s snapshot=%s period=%d (1 tx)\n",
+	fmt.Printf("ANCHOR PAYLOAD (schema v5) — exchange=%s snapshot=%s period=%d (1 tx)\n",
 		p.Exchange, p.SnapshotID, p.PeriodSeq)
 	fmt.Println("==================================================================")
 	fmt.Printf("exchange              : %s\n", p.Exchange)
@@ -101,14 +104,16 @@ func PrintAnchorCalldata(p AnchorParams) {
 	fmt.Printf("effectivePoR          : %v\n", p.EffectivePoR)
 	fmt.Printf("walletCoverageBps     : %d\n", p.WalletCoverageBps)
 	fmt.Printf("reserveCoverageBps    : %d\n", p.ReserveCoverageBps)
+	fmt.Printf("custodyRiskScore      : %s\n", FormatCustodyRiskScore(p.CustodyRiskScore))
 	fmt.Println()
+	fmt.Println("# custody score: from risk_score.py --no-anchor on the assessment JSON (same bundle roots as this tx).")
 
-	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16)"
+	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)"
 	eff := "false"
 	if p.EffectivePoR {
 		eff = "true"
 	}
-	args := fmt.Sprintf(`"%s" 0x%s %d %d %d 0x%s %s %s 0x%02x %d %d %s %d %d`,
+	args := fmt.Sprintf(`"%s" 0x%s %d %d %d 0x%s %s %s 0x%02x %d %d %s %d %d %d`,
 		p.Exchange,
 		hex.EncodeToString(snapHash[:]),
 		p.PeriodSeq,
@@ -123,6 +128,7 @@ func PrintAnchorCalldata(p AnchorParams) {
 		eff,
 		p.WalletCoverageBps,
 		p.ReserveCoverageBps,
+		p.CustodyRiskScore,
 	)
 
 	if contract == "" || rpcURL == "" || pk == "" {
@@ -139,7 +145,7 @@ func PrintAnchorCalldata(p AnchorParams) {
 
 // ValidateAnchorSelector panics if keccak impl drifts from the deployed contract.
 func ValidateAnchorSelector() {
-	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16)"
+	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)"
 	got := keccak.Sum256([]byte(sig))
 	want, _ := hex.DecodeString(strings.TrimPrefix(anchorSelector, "0x"))
 	for i := 0; i < 4; i++ {

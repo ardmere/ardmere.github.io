@@ -147,7 +147,8 @@ contract ArdmerePoRAnchorTest is Test {
         uint8 porStage,
         bool effectivePoR,
         uint16 walletCoverageBps,
-        uint16 reserveCoverageBps
+        uint16 reserveCoverageBps,
+        uint8 custodyRiskScore
     );
 
     event SignerUpdated(address indexed previousSigner, address indexed newSigner);
@@ -162,8 +163,8 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_initialize_setsSignerSchemaAndOwner() public view {
         assertEq(anchorContract.signer(), SIGNER);
-        assertEq(anchorContract.SCHEMA_VERSION(), 4);
-        assertEq(anchorContract.STORAGE_VERSION(), 2);
+        assertEq(anchorContract.SCHEMA_VERSION(), 5);
+        assertEq(anchorContract.STORAGE_VERSION(), 3);
         assertEq(anchorContract.owner(), owner);
     }
 
@@ -211,12 +212,13 @@ contract ArdmerePoRAnchorTest is Test {
             VERIFICATION_ROOT,
             0x01,
             17,
-            4,
+            5,
             1_767_657_600,
             1, // Stage 0
             false,
             2500,
-            8000
+            8000,
+            42
         );
 
         vm.prank(SIGNER);
@@ -234,7 +236,8 @@ contract ArdmerePoRAnchorTest is Test {
             1,
             false,
             2500,
-            8000
+            8000,
+            42
         );
     }
 
@@ -246,7 +249,8 @@ contract ArdmerePoRAnchorTest is Test {
         uint8 porStage,
         bool effectivePoR,
         uint16 walletCoverageBps,
-        uint16 reserveCoverageBps
+        uint16 reserveCoverageBps,
+        uint8 custodyRiskScore
     ) internal {
         vm.prank(SIGNER);
         anchorContract.anchorSnapshot(
@@ -263,13 +267,14 @@ contract ArdmerePoRAnchorTest is Test {
             porStage,
             effectivePoR,
             walletCoverageBps,
-            reserveCoverageBps
+            reserveCoverageBps,
+            custodyRiskScore
         );
     }
 
     function test_anchorSnapshot_writesStorageAndQueries() public {
         vm.warp(1_767_657_600);
-        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 2, true, 5000, 9000);
+        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 2, true, 5000, 9000, 75);
 
         assertTrue(anchorContract.snapshotExists(SNAPSHOT_PR01JUN26));
 
@@ -285,7 +290,8 @@ contract ArdmerePoRAnchorTest is Test {
         assertEq(record.verificationBundleRoot, VERIFICATION_ROOT);
         assertEq(record.verdictSummary, 0x01);
         assertEq(record.coverageBps, 17);
-        assertEq(record.schemaVersion, 4);
+        assertEq(record.schemaVersion, 5);
+        assertEq(record.custodyRiskScore, 75);
         assertEq(record.anchoredAt, 1_767_657_600);
         assertEq(record.porStage, 2);
         assertTrue(record.effectivePoR);
@@ -305,7 +311,7 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_anchorSnapshot_abiEncodeDecodeRoundTrip() public {
         vm.warp(1_767_657_600);
-        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 3, true, 10000, 7500);
+        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 3, true, 10000, 7500, 10);
 
         bytes memory encoded = abi.encode(anchorContract.getSnapshot(SNAPSHOT_PR01JUN26));
         ArdmerePoRAnchor.SnapshotRecord memory decoded =
@@ -313,7 +319,8 @@ contract ArdmerePoRAnchorTest is Test {
 
         assertEq(decoded.snapshotId, SNAPSHOT_PR01JUN26);
         assertEq(decoded.coverageBps, 17);
-        assertEq(decoded.schemaVersion, 4);
+        assertEq(decoded.schemaVersion, 5);
+        assertEq(decoded.custodyRiskScore, 10);
         assertEq(decoded.porStage, 3);
         assertTrue(decoded.effectivePoR);
         assertEq(decoded.walletCoverageBps, 10000);
@@ -326,10 +333,10 @@ contract ArdmerePoRAnchorTest is Test {
         bytes32 second = keccak256("PR01JUN26");
 
         vm.warp(1_767_657_600);
-        _anchorBinance(first, 42, 1_767_657_600, 951_000, 1, false, 0, 0);
+        _anchorBinance(first, 42, 1_767_657_600, 951_000, 1, false, 0, 0, 255);
 
         vm.warp(1_768_032_000);
-        _anchorBinance(second, 43, 1_768_032_000, 952_000, 2, true, 100, 200);
+        _anchorBinance(second, 43, 1_768_032_000, 952_000, 2, true, 100, 200, 50);
 
         assertEq(anchorContract.getLatestSnapshot(EXCHANGE_TAG).snapshotId, second);
         assertEq(anchorContract.getSnapshotCount(EXCHANGE_TAG), 2);
@@ -339,7 +346,7 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_anchorSnapshot_revertsOnDuplicateSnapshotId() public {
         vm.warp(1_767_657_600);
-        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 1, false, 0, 0);
+        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 1, false, 0, 0, 0);
 
         vm.prank(SIGNER);
         vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.SnapshotAlreadyExists.selector, SNAPSHOT_PR01JUN26));
@@ -356,6 +363,7 @@ contract ArdmerePoRAnchorTest is Test {
             17,
             1,
             false,
+            0,
             0,
             0
         );
@@ -375,13 +383,13 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_uupsUpgrade_preservesSignerAndEnablesStorage() public {
         vm.warp(1_767_657_600);
-        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 2, true, 1111, 2222);
+        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 2, true, 1111, 2222, 88);
 
         ArdmerePoRAnchor newImplementation = new ArdmerePoRAnchor();
         anchorContract.upgradeToAndCall(address(newImplementation), "");
 
         assertEq(anchorContract.signer(), SIGNER);
-        assertEq(anchorContract.SCHEMA_VERSION(), 4);
+        assertEq(anchorContract.SCHEMA_VERSION(), 5);
         assertTrue(anchorContract.snapshotExists(SNAPSHOT_PR01JUN26));
         assertEq(anchorContract.getLatestSnapshot(EXCHANGE_TAG).snapshotId, SNAPSHOT_PR01JUN26);
         assertEq(anchorContract.getSnapshot(SNAPSHOT_PR01JUN26).walletCoverageBps, 1111);
@@ -419,8 +427,8 @@ contract ArdmerePoRAnchorTest is Test {
         seed.upgradeToAndCall(address(v4), "");
 
         ArdmerePoRAnchor upgraded = ArdmerePoRAnchor(address(proxy));
-        assertEq(upgraded.SCHEMA_VERSION(), 4);
-        assertEq(upgraded.STORAGE_VERSION(), 2);
+        assertEq(upgraded.SCHEMA_VERSION(), 5);
+        assertEq(upgraded.STORAGE_VERSION(), 3);
         assertTrue(upgraded.snapshotExists(SNAPSHOT_PR01JUN26));
 
         ArdmerePoRAnchor.SnapshotRecord memory record = upgraded.getSnapshot(SNAPSHOT_PR01JUN26);
@@ -433,6 +441,33 @@ contract ArdmerePoRAnchorTest is Test {
         assertFalse(record.effectivePoR);
         assertEq(record.walletCoverageBps, 0);
         assertEq(record.reserveCoverageBps, 0);
+        assertEq(record.custodyRiskScore, 0);
+    }
+
+    function test_anchorSnapshot_revertsOnInvalidCustodyRiskScore() public {
+        vm.prank(SIGNER);
+        vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.InvalidCustodyRiskScore.selector, 101));
+        anchorContract.anchorSnapshot(
+            "binance",
+            keccak256("BAD_SCORE"),
+            99,
+            0,
+            0,
+            bytes32(0),
+            ARTIFACT_ROOT,
+            VERIFICATION_ROOT,
+            0,
+            0,
+            0,
+            false,
+            0,
+            0,
+            101
+        );
+    }
+
+    function test_custodyRiskUnavailable_constant() public view {
+        assertEq(anchorContract.CUSTODY_RISK_UNAVAILABLE(), 255);
     }
 
     function test_anchorSnapshot_revertsForStranger() public {
@@ -452,7 +487,8 @@ contract ArdmerePoRAnchorTest is Test {
             0,
             false,
             0,
-            0
+            0,
+            255
         );
     }
 
@@ -473,7 +509,8 @@ contract ArdmerePoRAnchorTest is Test {
             0,
             false,
             0,
-            0
+            0,
+            255
         );
     }
 
@@ -494,7 +531,8 @@ contract ArdmerePoRAnchorTest is Test {
             0,
             false,
             0,
-            0
+            0,
+            255
         );
     }
 
@@ -515,7 +553,8 @@ contract ArdmerePoRAnchorTest is Test {
             0,
             false,
             0,
-            0
+            0,
+            255
         );
     }
 }
