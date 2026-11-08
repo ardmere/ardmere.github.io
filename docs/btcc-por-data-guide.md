@@ -25,6 +25,12 @@ BTCC publishes **monthly** Merkle-tree PoR snapshots dated the **15th** (UTC `cr
 
 UI default date rule (from PoR page JS): on/after day 15 of the month → that month’s 15th; otherwise prior month’s 15th.
 
+Confirmed by per-month `reserveInfo` probes on 2026-11-07: `createDate` is the 15th for twelve consecutive
+months (2025-12-15 … 2026-10-15), and 2026-11-15 returns `data: null` (not yet published).
+
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: btcc` — `month_days` 14–17,
+`confidence: high`. See [por-monitor-schedule.md](./por-monitor-schedule.md).
+
 ## Official references
 
 | Resource | URL |

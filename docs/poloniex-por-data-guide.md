@@ -13,6 +13,19 @@ Poloniex publishes monthly Merkle-tree PoR with public reserve ratios and a full
 | Wallet addresses + ownership sigs | Claimed PoR CSV + [`tools-nodejs-address-verify`](https://github.com/poloniex/tools-nodejs-address-verify) | Sample CSV in OSS; **current CSV URL unconfirmed** | — |
 | Global ZK | Marketing copy mentions ZK; no public proof/vk channel | — | — |
 
+## Cadence
+
+| | |
+|--|--|
+| Typical publish | 月更，1 日 |
+| Monitor window (UTC) | 每月 1–3 日 |
+
+`proxy/sapi/merkleProof/public/versionInfo` 2026-11-07 实探 `versionList` 6 期（20260501–20261001）全部 1 日；
+`docs/reports/` 三份报告也都是 1 日。
+
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: poloniex`, `confidence: high`.
+See [por-monitor-schedule.md](./por-monitor-schedule.md).
+
 ## Official references
 
 | Resource | URL |

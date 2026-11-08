@@ -15,6 +15,17 @@ WOO X publishes a **~15-minute live balance-sheet dashboard** plus **monthly Mer
 | User Merkle hash | Logged-in Audit page | Login | — |
 | Wallet ownership / global ZK | Not used | — | — |
 
+## Cadence
+
+| | |
+|--|--|
+| Typical publish | 月更，固定 15 日 |
+| Monitor window (UTC) | 每月 14–17 日 |
+
+`/asset/porl/v2/audits` 2026-11-07 实探 51 期，2023 年以来每月恰好 15 日（…2026-07-15, 08-15, 09-15, 10-15），无例外。
+
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: woox`. See [por-monitor-schedule.md](./por-monitor-schedule.md) for the confidence policy.
+
 ## Official references
 
 See [registry `woox`](../config/exchanges/registry.yaml) for canonical URLs. Integration uses:

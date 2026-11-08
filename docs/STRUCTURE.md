@@ -101,6 +101,7 @@ scripts/por-run.sh          alias → por
 scripts/por-batch-recent.sh batch verify + reports (via por.sh)
 scripts/por-fetch.sh        alias → por fetch
 scripts/por-monitor-due.sh  list exchanges due for PoR probe today (UTC)
+scripts/por-monitor-due_test.sh  regression tests for the monitor schedule
 scripts/gateio/               → por fetch gateio
 scripts/okx/                  → por fetch okx
 ```

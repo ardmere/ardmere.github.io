@@ -14,6 +14,17 @@ Ourbit publishes Merkle-tree PoR with public reserve ratios (`stock_info`) and a
 | Period merkle root | Not in `stock_info` | No stable public field | — |
 | Ownership / global ZK | — | No | — |
 
+## Cadence
+
+| | |
+|--|--|
+| Typical publish | 月锚（**单快照，低置信**） |
+| Monitor window (UTC) | 每月 1–3 日（−1/+2） |
+
+`docs/reports/ourbit/` 仅一份 `20261101`（`snapshotTime` 2026-10-31T16:00Z = UTC+8 月初）。`stock_info` 不提供期次列表，2026-11-07 实探仍返回同一 `snapshotDate`，因此**没有第二个观测**，节奏 `UNVERIFIABLE`。取最宽的「月初」窗，并在 YAML 标 `confidence: low`。
+
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: ourbit`. See [por-monitor-schedule.md](./por-monitor-schedule.md) for the confidence policy.
+
 ## Official references
 
 | Resource | URL |

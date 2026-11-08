@@ -14,6 +14,17 @@ Phemex publishes **monthly** Merkle-tree PoR. The public PoR UI shows per-asset 
 | User Merkle inclusion (hashed client ID) | Logged-in PoR tool | Login | `userMerkleProof` if imported; **not verified** (no OSS) |
 | Global ZK / third-party attestation | Not observed as public artifacts | — | — |
 
+## Cadence
+
+| | |
+|--|--|
+| Typical publish | 月更，1 日 |
+| Monitor window (UTC) | 每月 1–3 日 |
+
+`por.phemex.com/porVersions` 2026-11-07 实探 42 期：2024-06 起连续 30 个月全部 1 日；更早的 2022–2024-04 曾用 24–26 日。
+
+Monitor entry: [`schedule.yaml`](../config/por-monitor/schedule.yaml) `id: phemex`. See [por-monitor-schedule.md](./por-monitor-schedule.md) for the confidence policy.
+
 ## Official references
 
 | Resource | URL |

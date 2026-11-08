@@ -9,6 +9,11 @@
 #   ./scripts/por-monitor-due.sh --date 2026-11-01
 #   ./scripts/por-monitor-due.sh --include-shortlist
 #   ./scripts/por-monitor-due.sh --with-reasons
+#   ./scripts/por-monitor-due.sh --check         # validate config, list coverage gaps
+#
+# --with-reasons emits: id <TAB> priority <TAB> reason <TAB> probe-meta
+# where probe-meta carries probe=<token> capture=<http|browser> confidence=<high|medium|low>
+# and waf=<note> when the venue is upstream-blocked.
 #
 # Deep scans are NOT run here — caller / Cloud Agent should light-probe only the
 # printed ids, then deep-run on new snapshot ids (SLA: ≤1 calendar day).
@@ -21,9 +26,10 @@ DATE_UTC=""
 JSON=0
 WITH_REASONS=0
 INCLUDE_SHORTLIST=0
+CHECK=0
 
 usage() {
-  sed -n '2,16p' "$0" | sed 's/^# \{0,1\}//'
+  sed -n '2,19p' "$0" | sed 's/^# \{0,1\}//'
   exit "${1:-0}"
 }
 
@@ -33,6 +39,7 @@ while [[ $# -gt 0 ]]; do
     --json) JSON=1; shift ;;
     --with-reasons) WITH_REASONS=1; shift ;;
     --include-shortlist) INCLUDE_SHORTLIST=1; shift ;;
+    --check) CHECK=1; shift ;;
     -h|--help) usage 0 ;;
     *) echo "unknown arg: $1" >&2; usage 1 ;;
   esac
@@ -49,11 +56,13 @@ export POR_MONITOR_DATE="${DATE_UTC}"
 export POR_MONITOR_JSON="$JSON"
 export POR_MONITOR_REASONS="$WITH_REASONS"
 export POR_MONITOR_SHORTLIST="$INCLUDE_SHORTLIST"
+export POR_MONITOR_CHECK="$CHECK"
 export POR_MONITOR_REPORTS="$ROOT/docs/reports"
 
 python3 - <<'PY'
 import json, os, re, sys
-from datetime import date, datetime, timedelta
+import calendar
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 config_path = Path(os.environ["POR_MONITOR_CONFIG"])
@@ -115,8 +124,28 @@ def parse_simple_yaml(text: str) -> dict:
         m_rat = re.search(r'rationale:\s*"([^"]*)"', body)
         if m_rat:
             entry["rationale"] = m_rat.group(1)
+        for key, conv in (
+            ("buffer_days_before", int),
+            ("buffer_days_after", int),
+            ("max_silence_days", int),
+            ("publish_lag_days", int),
+            ("publish_lag_min_days", int),
+        ):
+            m = re.search(r"^\s+%s:\s*(\d+)\s*$" % key, body, re.M)
+            if m:
+                entry[key] = conv(m.group(1))
+        for key in ("probe", "capture", "confidence", "probe_endpoint"):
+            m = re.search(r"^\s+%s:\s*(\S+)\s*$" % key, body, re.M)
+            if m:
+                entry[key] = m.group(1)
+        m_waf = re.search(r'^\s+waf:\s*"([^"]*)"', body, re.M)
+        if m_waf:
+            entry["waf"] = m_waf.group(1)
         data[section].append(entry)
     # defaults buffers
+    m_ver = re.search(r"^version:\s*(\d+)\s*$", text, re.M)
+    if m_ver:
+        data["version"] = int(m_ver.group(1))
     m_bb = re.search(r"buffer_days_before:\s*(\d+)", text)
     m_ba = re.search(r"buffer_days_after:\s*(\d+)", text)
     if m_bb:
@@ -134,11 +163,20 @@ else:
 if date_s:
     today = date.fromisoformat(date_s)
 else:
-    today = datetime.utcnow().date()
+    today = datetime.now(timezone.utc).date()
 
 defaults = data.get("defaults") or {}
 buf_before = int(defaults.get("buffer_days_before", 1))
 buf_after = int(defaults.get("buffer_days_after", 2))
+
+def entry_buffers(entry):
+    """Per-entry buffer override, falling back to the shared defaults."""
+    b = entry.get("buffer_days_before")
+    a = entry.get("buffer_days_after")
+    return (
+        buf_before if b is None else int(b),
+        buf_after if a is None else int(a),
+    )
 
 def latest_snapshot_date(ex_id: str):
     d = reports_root / ex_id
@@ -204,6 +242,7 @@ def due_next_expected(entry, d: date):
     last = latest_snapshot_date(entry["id"])
     gap = int(entry.get("typical_gap_days", 30))
     radius = int(entry.get("window_radius_days", 4))
+    max_silence = entry.get("max_silence_days")
     if last is not None:
         expected = last + timedelta(days=gap)
         # Open around the predicted next publish (and a short late-publish tail).
@@ -213,6 +252,19 @@ def due_next_expected(entry, d: date):
         # Same-day / day-after re-probe right after a known publish (merkle-in-progress etc.).
         if 0 <= (d - last).days <= buf_after:
             return True, f"post_publish_buffer last={last.isoformat()} +{buf_after}d"
+        # Long-silence catch-up: a venue that stopped publishing must not go dark forever.
+        if max_silence is not None and (d - last).days >= int(max_silence):
+            return True, f"overdue_catchup last={last.isoformat()} silent={(d - last).days}d >= {int(max_silence)}d"
+        # Roll the expectation forward by whole gaps. Without this, one missed publish
+        # parks the venue outside the window permanently and it never gets probed again.
+        if gap > 0 and d > expected + timedelta(days=radius + buf_after):
+            periods = (d - expected).days // gap
+            rolled = expected + timedelta(days=periods * gap)
+            if -radius <= (d - rolled).days <= radius + buf_after:
+                return True, (
+                    f"overdue_roll={rolled.isoformat()} last={last.isoformat()} "
+                    f"gap={gap}d missed={periods} period(s) without a new snapshot"
+                )
         return False, f"not due (last={last.isoformat()} expected={expected.isoformat()})"
     # No assessed history yet: fall back to calendar days.
     fb = entry.get("fallback_month_days") or []
@@ -223,20 +275,32 @@ def due_next_expected(entry, d: date):
 def due_quarter_end(entry, d: date):
     months = entry.get("quarter_end_months") or [3, 6, 9, 12]
     days = entry.get("month_days") or [28, 29, 30, 31, 1, 2, 3]
-    if d.month in months or (d.month in [1, 4, 7, 10] and d.day <= 5):
-        # quarter-end month or first days of following month
-        if d.month in months and in_month_days(days, d, before=0, after=0):
-            return True, f"quarter_end month={d.month}"
-        if d.month not in months and d.day <= 5:
-            return True, f"quarter_end spillover day={d.day}"
+    lag_max = int(entry.get("publish_lag_days", 0) or 0)
+    lag_min = int(entry.get("publish_lag_min_days", 0) or 0)
+    if d.month in months and in_month_days(days, d, before=0, after=0):
+        return True, f"quarter_end month={d.month}"
+    if lag_max > 0:
+        # Accountant-attested venues publish weeks after the snapshot date, so walk back
+        # over every quarter end that could still be inside its publish window.
+        for qm in months:
+            for qy in (d.year, d.year - 1):
+                last_day = calendar.monthrange(qy, qm)[1]
+                qend = date(qy, qm, last_day)
+                delta = (d - qend).days
+                if lag_min <= delta <= lag_max:
+                    return True, f"publish_lag quarter_end={qend.isoformat()} +{delta}d in {lag_min}-{lag_max}d"
+        return False, f"not quarter window (no quarter end within {lag_min}-{lag_max}d of a publish)"
+    if d.month not in months and d.day <= 5:
+        return True, f"quarter_end spillover day={d.day}"
     return False, "not quarter window"
 
 def is_due(entry):
     mode = entry.get("mode") or "month_days"
+    eb, ea = entry_buffers(entry)
     if mode == "month_days":
         days = entry.get("month_days") or []
-        ok = in_month_days(days, today, before=buf_before, after=buf_after)
-        return ok, f"month_days={days} buffer=-{buf_before}/+{buf_after}"
+        ok = in_month_days(days, today, before=eb, after=ea)
+        return ok, f"month_days={days} buffer=-{eb}/+{ea}"
     if mode == "next_expected":
         return due_next_expected(entry, today)
     if mode == "quarter_end":
@@ -261,8 +325,47 @@ for e in entries:
             "reason": reason,
             "rationale": e.get("rationale") or "",
             "shortlist": bool(e.get("_shortlist")),
+            "probe": e.get("probe") or "",
+            "probe_endpoint": e.get("probe_endpoint") or "",
+            "capture": e.get("capture") or "http",
+            "waf": e.get("waf") or "",
+            "confidence": e.get("confidence") or "unset",
         }
         due.append(item)
+
+def coverage_gaps():
+    """Exchange dirs with adapters + committed reports but no schedule entry."""
+    if not reports_root.is_dir():
+        return []
+    scheduled = {e["id"] for e in (data.get("exchanges") or [])}
+    gaps = []
+    for d in sorted(p for p in reports_root.iterdir() if p.is_dir()):
+        if not any(d.glob("*-assessment.json")):
+            continue
+        if d.name not in scheduled:
+            gaps.append(d.name)
+    return gaps
+
+if os.environ.get("POR_MONITOR_CHECK") == "1":
+    gaps = coverage_gaps()
+    unknown_modes = [
+        e["id"] for e in (data.get("exchanges") or [])
+        if (e.get("mode") or "month_days") not in ("month_days", "next_expected", "quarter_end")
+    ]
+    low = [e["id"] for e in (data.get("exchanges") or []) if e.get("confidence") == "low"]
+    browser = [e["id"] for e in (data.get("exchanges") or []) if e.get("capture") == "browser"]
+    print(json.dumps({
+        "config": str(config_path),
+        "version": data.get("version"),
+        "entries": len(data.get("exchanges") or []),
+        "coverage_gaps": gaps,
+        "unknown_modes": unknown_modes,
+        "low_confidence": low,
+        "browser_capture": browser,
+    }, indent=2))
+    if gaps or unknown_modes:
+        sys.exit(1)
+    sys.exit(0)
 
 if want_json:
     print(json.dumps({
@@ -281,7 +384,10 @@ else:
     for item in due:
         if with_reasons:
             tag = item["priority"] or ("shortlist" if item["shortlist"] else "")
-            print(f"{item['id']}\t{tag}\t{item['reason']}")
+            meta = f"probe={item['probe'] or '-'} capture={item['capture']} confidence={item['confidence']}"
+            if item["waf"]:
+                meta += f" waf={item['waf']}"
+            print(f"{item['id']}\t{tag}\t{item['reason']}\t{meta}")
         else:
             print(item["id"])
 PY
