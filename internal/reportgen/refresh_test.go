@@ -65,7 +65,7 @@ func TestRefreshFrequencyRepairsStaleSection(t *testing.T) {
 	if fields["Previous snapshot"] != "2023-09-10T18:10:33Z" {
 		t.Errorf("previous: %q", fields["Previous snapshot"])
 	}
-	if fields["Observed cadence"] != "~372 days between snapshots" {
+	if fields["Observed cadence"] != "~monthly" {
 		t.Errorf("cadence: %q", fields["Observed cadence"])
 	}
 	if fields["History available"] != "4 snapshot(s) in public evaluation set" {

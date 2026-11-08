@@ -51,6 +51,22 @@ When a dimension cannot be verified from public artifacts, ardmere marks it **`U
 
 This discipline applies to every public rating, verifier output, and evidence-chain step. See [§8.3 Traditional audit and PoR](#differences-and-complementarity-of-traditional-audit-and-por) for how PoR complements—but does not replace—financial audit.
 
+### 1.4 How “Observed cadence” is measured
+
+Every transparency report states an `Observed cadence` in §3. It answers one question: **how often does this venue publish now**, because that is what Stage 2 frequency expectations are judged against.
+
+The number is the mean of the adjacent gaps between assessed snapshots, with one correction. Some venues keep a legacy snapshot from an earlier publishing regime in their archive (HTX's `20230910` file sits next to a monthly 2026 series). A single such snapshot produces a gap orders of magnitude larger than the rest, and a plain mean lets that one gap describe the venue instead of the current rhythm.
+
+The correction is a median-trim, applied per gap:
+
+1. Compute every adjacent gap in the public history and take their **median** as the reference interval (the lower of the two middle gaps when the count is even, so an old long gap cannot raise the reference).
+2. A gap longer than **3× the median** is retired from the average **only when a newer gap already re-establishes the faster rhythm**.
+3. Every other gap stays in the mean, including long gaps that are simply how the venue publishes.
+
+The report discloses any retired span (both snapshot ids and its length) in the sentence following the table, so the arithmetic can be checked by hand.
+
+What this does not do: a venue that is slow throughout has no gap far above its own median, so nothing is retired and its coarse cadence is reported as before. A venue whose *newest* observed behaviour is a long silence keeps that silence in the mean, so a dormant exchange still reads slow or stale rather than healthy.
+
 ---
 
 ## 2. Stage Overview
