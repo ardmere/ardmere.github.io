@@ -8,18 +8,22 @@ import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/Own
 /// @title  ArdmerePoRAnchor — minimal trusted-kernel anchor contract (UUPS upgradeable)
 /// @notice One on-chain anchor per exchange snapshot: both artifact and
 ///         verification bundle roots in a single event / transaction, with
-///         queryable on-chain storage (schema v3).
+///         queryable on-chain storage (schema v4).
 ///         See docs/verifier-architecture.md §6.
 contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable {
-    /// @dev Event schema version (v3 = merged single-tx anchor + on-chain storage).
-    uint8 public constant SCHEMA_VERSION = 3;
+    /// @dev Event/storage schema version (v4 = stage + dual coverage ratios).
+    uint8 public constant SCHEMA_VERSION = 4;
 
     /// @dev On-chain snapshot storage layout version (independent of event schema).
-    uint8 public constant STORAGE_VERSION = 1;
+    ///      v2 = SnapshotRecord appends porStage/effectivePoR/walletCoverageBps/reserveCoverageBps
+    ///      after anchoredAt (v3 records remain readable; new fields decode as 0/false).
+    uint8 public constant STORAGE_VERSION = 2;
 
     address public signer;
 
     /// @notice Immutable on-chain record for one anchored snapshot.
+    /// @dev New v4 fields are appended AFTER `anchoredAt` so v3 ABI/storage readers
+    ///      that stop at `anchoredAt` keep working; trailing slots are zero for old rows.
     struct SnapshotRecord {
         bytes32 snapshotId;
         bytes32 exchangeTag;
@@ -31,9 +35,17 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         bytes32 artifactBundleRoot;
         bytes32 verificationBundleRoot;
         uint8 verdictSummary;
+        /// @dev Deprecated in v4: opaque max(verifier.Coverage)×10000. Prefer wallet/reserve fields.
         uint16 coverageBps;
         uint8 schemaVersion;
         uint256 anchoredAt;
+        /// @dev 0=Pre-Stage, 1=Stage 0, 2=Stage 1, 3=Stage 2 (matches assessment.porStage).
+        uint8 porStage;
+        bool effectivePoR;
+        /// @dev verifiable_addrs / published_addrs × 10_000
+        uint16 walletCoverageBps;
+        /// @dev verifiable_usd / claimed_reserve_usd × 10_000 (CoinGecko at snapshotTime)
+        uint16 reserveCoverageBps;
     }
 
     /// @custom:storage-location erc7201:ardmere.storage.ArdmerePoRAnchor
@@ -60,9 +72,13 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
     /// @param  artifactBundleRoot      Merkle root over fetched raw artifacts
     /// @param  verificationBundleRoot  Merkle root over verifier results
     /// @param  verdictSummary          Compact verifier outcome bitfield
-    /// @param  coverageBps             On-chain audit coverage × 10_000
+    /// @param  coverageBps             Deprecated opaque coverage × 10_000 (kept for readers)
     /// @param  schemaVersion           Event schema version (= SCHEMA_VERSION)
     /// @param  anchoredAt              block.timestamp
+    /// @param  porStage                0=Pre-Stage .. 3=Stage 2
+    /// @param  effectivePoR            Same effective-PoR flag as the assessment
+    /// @param  walletCoverageBps       Verifiable address count ratio × 10_000
+    /// @param  reserveCoverageBps      Verifiable reserve USD ratio × 10_000
     event SnapshotAnchored(
         bytes32 indexed snapshotId,
         bytes32 indexed exchangeTag,
@@ -76,7 +92,11 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         uint8 verdictSummary,
         uint16 coverageBps,
         uint8 schemaVersion,
-        uint256 anchoredAt
+        uint256 anchoredAt,
+        uint8 porStage,
+        bool effectivePoR,
+        uint16 walletCoverageBps,
+        uint16 reserveCoverageBps
     );
 
     event SignerUpdated(address indexed previousSigner, address indexed newSigner);
@@ -127,7 +147,11 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         bytes32 artifactBundleRoot,
         bytes32 verificationBundleRoot,
         uint8 verdictSummary,
-        uint16 coverageBps
+        uint16 coverageBps,
+        uint8 porStage,
+        bool effectivePoR,
+        uint16 walletCoverageBps,
+        uint16 reserveCoverageBps
     ) external {
         if (msg.sender != signer) revert Unauthorized(msg.sender);
         if (bytes(exchange).length == 0) revert EmptyExchange();
@@ -145,7 +169,11 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
             artifactBundleRoot,
             verificationBundleRoot,
             verdictSummary,
-            coverageBps
+            coverageBps,
+            porStage,
+            effectivePoR,
+            walletCoverageBps,
+            reserveCoverageBps
         );
         _emitSnapshotAnchored(snapshotId);
     }
@@ -160,7 +188,11 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         bytes32 artifactBundleRoot,
         bytes32 verificationBundleRoot,
         uint8 verdictSummary,
-        uint16 coverageBps
+        uint16 coverageBps,
+        uint8 porStage,
+        bool effectivePoR,
+        uint16 walletCoverageBps,
+        uint16 reserveCoverageBps
     ) private {
         ArdmerePoRAnchorStorage storage $ = _getArdmerePoRAnchorStorage();
         if ($.snapshots[snapshotId].anchoredAt != 0) revert SnapshotAlreadyExists(snapshotId);
@@ -185,6 +217,10 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         record.coverageBps = coverageBps;
         record.schemaVersion = SCHEMA_VERSION;
         record.anchoredAt = anchoredAt;
+        record.porStage = porStage;
+        record.effectivePoR = effectivePoR;
+        record.walletCoverageBps = walletCoverageBps;
+        record.reserveCoverageBps = reserveCoverageBps;
 
         $.snapshotIds[exchangeTag].push(snapshotId);
         $.snapshotByPeriod[exchangeTag][periodSeq] = snapshotId;
@@ -207,7 +243,11 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
             record.verdictSummary,
             record.coverageBps,
             record.schemaVersion,
-            record.anchoredAt
+            record.anchoredAt,
+            record.porStage,
+            record.effectivePoR,
+            record.walletCoverageBps,
+            record.reserveCoverageBps
         );
     }
 

@@ -40,6 +40,12 @@ type riskFlag struct {
 	Message     string `json:"message"`
 }
 
+// EvaluateStage runs the same stage determination used by transparency reports.
+func EvaluateStage(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Verification) (stage string, effectivePoR bool) {
+	e := evaluate(exchangeID, art, vers)
+	return e.Stage, e.EffectivePoR
+}
+
 func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Verification) stageEval {
 	vmap := map[string]verifier.Verification{}
 	for _, v := range vers {

@@ -135,3 +135,8 @@ Two rows show the same `75` score for different disclosures: KuCoin publishes no
 * Whether reserves are sufficient. That needs the wallet bundle and the full verifier, not this table.
 * Whether a user's own inclusion proof is valid. That is `por-inclusion-proof`, which never adds or removes a `factor` here. A failing proof does not raise `riskScore`; it means the proof the user holds does not match the root it names.
 * Whether an exchange is dishonest when a root disagrees. `ANCHOR_MISMATCH` says the file is not the anchored bundle. Re-run the verifier and re-anchor; investigate before accusing.
+
+
+## On-chain coverage fields (schema v4)
+
+Prefer `walletCoverageBps` and `reserveCoverageBps` from the anchor record when present. Deprecated `coverageBps` is an opaque max(verifier Coverage)×10000 and must not be treated as either ratio. v3 records decode with the new fields as `0` / `false` and `schemaVersion=3`.

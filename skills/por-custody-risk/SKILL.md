@@ -134,6 +134,7 @@ The same file with `--no-anchor` scores identically, but the interpretation says
 | `factors[]` | `id`, `delta`, `note` — the arithmetic, in application order |
 | `notAReserveJudgement` | present and `true` on `ANCHOR_MISSING` only |
 | `porStage`, `effectivePoR`, `riskFlags` | echoed from the assessment |
+| `anchor.porStage`, `anchor.walletCoverageBps`, `anchor.reserveCoverageBps` | schema v4 on-chain fields (v3 rows decode as 0/false); prefer these over deprecated `coverageBps` |
 | `assessmentSha256` | the file's sha256, so a quoted score can be tied to bytes |
 
 Exit status is `0` when a score was produced and `1` when the run was inconclusive, so a caller cannot silently treat an unreadable chain as a score of zero.

@@ -134,6 +134,11 @@ def anchor_view(doc):
         "snapshotTime": record.get("snapshotTime"),
         "anchoredAt": record.get("anchoredAt"),
         "schemaVersion": record.get("schemaVersion"),
+        "porStage": record.get("porStage"),
+        "effectivePoR": bool(record.get("effectivePoR")) if record.get("effectivePoR") is not None else None,
+        "walletCoverageBps": record.get("walletCoverageBps"),
+        "reserveCoverageBps": record.get("reserveCoverageBps"),
+        "coverageBps": record.get("coverageBps"),  # deprecated
         "artifactBundleRoot": record.get("artifactBundleRoot"),
         "verificationBundleRoot": record.get("verificationBundleRoot"),
         "exchangeMerkleRoot": record.get("exchangeMerkleRoot"),

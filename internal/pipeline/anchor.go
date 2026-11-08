@@ -10,9 +10,10 @@ import (
 	"github.com/ardmere/ardmere/internal/por"
 )
 
-const anchorSelector = "0x3ab606f4"
+// Schema v4 selector for anchorSnapshot(... uint8 porStage, bool effectivePoR, uint16 wallet, uint16 reserve).
+const anchorSelector = "0x699e2c4e"
 
-// AnchorParams holds fields for on-chain anchorSnapshot calldata.
+// AnchorParams holds fields for on-chain anchorSnapshot calldata (schema v4).
 type AnchorParams struct {
 	Exchange               string
 	SnapshotID             string
@@ -23,11 +24,24 @@ type AnchorParams struct {
 	ArtifactBundleRoot     string
 	VerificationBundleRoot string
 	VerdictSummary         uint8
-	CoverageBps            uint16
+	CoverageBps            uint16 // deprecated opaque max coverage
+	PorStage               uint8
+	EffectivePoR           bool
+	WalletCoverageBps      uint16
+	ReserveCoverageBps     uint16
 }
 
 // AnchorParamsFrom builds anchor params from a completed verify run.
-func AnchorParamsFrom(snap por.Snapshot, exchangeRoot [32]byte, artRoot, verRoot string, verdictSummary uint8, coverageBps uint16) AnchorParams {
+func AnchorParamsFrom(
+	snap por.Snapshot,
+	exchangeRoot [32]byte,
+	artRoot, verRoot string,
+	verdictSummary uint8,
+	coverageBps uint16,
+	porStage uint8,
+	effectivePoR bool,
+	walletCoverageBps, reserveCoverageBps uint16,
+) AnchorParams {
 	return AnchorParams{
 		Exchange:               snap.Exchange,
 		SnapshotID:             snap.ID,
@@ -39,6 +53,10 @@ func AnchorParamsFrom(snap por.Snapshot, exchangeRoot [32]byte, artRoot, verRoot
 		VerificationBundleRoot: verRoot,
 		VerdictSummary:         verdictSummary,
 		CoverageBps:            coverageBps,
+		PorStage:               porStage,
+		EffectivePoR:           effectivePoR,
+		WalletCoverageBps:      walletCoverageBps,
+		ReserveCoverageBps:     reserveCoverageBps,
 	}
 }
 
@@ -64,7 +82,7 @@ func PrintAnchorCalldata(p AnchorParams) {
 
 	fmt.Println()
 	fmt.Println("==================================================================")
-	fmt.Printf("ANCHOR PAYLOAD — exchange=%s snapshot=%s period=%d (1 tx)\n",
+	fmt.Printf("ANCHOR PAYLOAD (schema v4) — exchange=%s snapshot=%s period=%d (1 tx)\n",
 		p.Exchange, p.SnapshotID, p.PeriodSeq)
 	fmt.Println("==================================================================")
 	fmt.Printf("exchange              : %s\n", p.Exchange)
@@ -78,11 +96,19 @@ func PrintAnchorCalldata(p AnchorParams) {
 	fmt.Printf("artifactBundleRoot    : %s\n", p.ArtifactBundleRoot)
 	fmt.Printf("verificationBundleRoot: %s\n", p.VerificationBundleRoot)
 	fmt.Printf("verdictSummary        : 0x%02x\n", p.VerdictSummary)
-	fmt.Printf("coverageBps           : %d\n", p.CoverageBps)
+	fmt.Printf("coverageBps (deprecated): %d\n", p.CoverageBps)
+	fmt.Printf("porStage              : %d (%s)\n", p.PorStage, DecodePorStage(p.PorStage))
+	fmt.Printf("effectivePoR          : %v\n", p.EffectivePoR)
+	fmt.Printf("walletCoverageBps     : %d\n", p.WalletCoverageBps)
+	fmt.Printf("reserveCoverageBps    : %d\n", p.ReserveCoverageBps)
 	fmt.Println()
 
-	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16)"
-	args := fmt.Sprintf(`"%s" 0x%s %d %d %d 0x%s %s %s 0x%02x %d`,
+	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16)"
+	eff := "false"
+	if p.EffectivePoR {
+		eff = "true"
+	}
+	args := fmt.Sprintf(`"%s" 0x%s %d %d %d 0x%s %s %s 0x%02x %d %d %s %d %d`,
 		p.Exchange,
 		hex.EncodeToString(snapHash[:]),
 		p.PeriodSeq,
@@ -93,6 +119,10 @@ func PrintAnchorCalldata(p AnchorParams) {
 		p.VerificationBundleRoot,
 		p.VerdictSummary,
 		p.CoverageBps,
+		p.PorStage,
+		eff,
+		p.WalletCoverageBps,
+		p.ReserveCoverageBps,
 	)
 
 	if contract == "" || rpcURL == "" || pk == "" {
@@ -109,7 +139,7 @@ func PrintAnchorCalldata(p AnchorParams) {
 
 // ValidateAnchorSelector panics if keccak impl drifts from the deployed contract.
 func ValidateAnchorSelector() {
-	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16)"
+	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16)"
 	got := keccak.Sum256([]byte(sig))
 	want, _ := hex.DecodeString(strings.TrimPrefix(anchorSelector, "0x"))
 	for i := 0; i < 4; i++ {

@@ -33,7 +33,7 @@ Public site summary (homepage snapshot examples): [contract-query-guide.md](./co
 | Exchange name, period, time anchor | ✅ `SnapshotRecord` | assessment JSON |
 | artifact / verification **Merkle root** | ✅ fields + events | recompute bundle and compare |
 | Exchange self-reported Merkle root | ✅ `exchangeMerkleRoot` | exchange original disclosure |
-| Verification verdict summary | ✅ `verdictSummary`, `coverageBps` | full verifier output |
+| Verification verdict summary | ✅ `verdictSummary`, `walletCoverageBps`, `reserveCoverageBps` (and deprecated `coverageBps`) | full verifier output |
 | Raw artifact files, proof data | ❌ | [artifact archive](./reports/artifact-archive-index.md) |
 | Replay verifier logic | ❌ | `por verify` / open-source verifier |
 
@@ -48,11 +48,11 @@ Public site summary (homepage snapshot examples): [contract-query-guide.md](./co
 | Item | Value |
 | --- | --- |
 | **Network** | Ethereum **Sepolia** testnet |
-| **Chain ID** | `11155111` |
-| **Proxy contract (user-facing address)** | [`0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7`](https://sepolia.etherscan.io/address/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7#code) |
+| **Chain ID** | `11155111` |  # pragma: allowlist secret
+| **Proxy contract (user-facing address)** | [`0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7`](https://sepolia.etherscan.io/address/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7#code) |  # pragma: allowlist secret
 | **Implementation v3** | [`0x62050405283f222EFEdF3BF0d6Cb16541cd1327a`](https://sepolia.etherscan.io/address/0x62050405283f222EFEdF3BF0d6Cb16541cd1327a#code) |
 | **Upgrade pattern** | UUPS (`ERC1967Proxy` + upgradeable implementation) |
-| **`SCHEMA_VERSION`** | `3` |
+| **`SCHEMA_VERSION`** | `4` |
 | **`STORAGE_VERSION`** | `1` |
 | **Anchor signer** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
 
@@ -63,9 +63,9 @@ Full deployment timeline, upgrade transactions, and deprecated instances are in 
 ### Environment Variables (example)
 
 ```bash
-export ANCHOR_CONTRACT=0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7
+export ANCHOR_CONTRACT=0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7  # pragma: allowlist secret
 export RPC=sepolia                    # or export RPC_URL=https://...
-export CHAIN_ID=11155111
+export CHAIN_ID=11155111  # pragma: allowlist secret
 ```
 
 ---
@@ -115,9 +115,13 @@ struct SnapshotRecord {
     bytes32 artifactBundleRoot;
     bytes32 verificationBundleRoot;
     uint8   verdictSummary;
-    uint16  coverageBps;
+    uint16  coverageBps;           // deprecated opaque max(Coverage)×10000
     uint8   schemaVersion;
     uint256 anchoredAt;
+    uint8   porStage;              // 0=Pre-Stage, 1=Stage 0, 2=Stage 1, 3=Stage 2
+    bool    effectivePoR;
+    uint16  walletCoverageBps;     // verifiable_addrs / published_addrs × 10000
+    uint16  reserveCoverageBps;    // verifiable_usd / claimed_reserve_usd × 10000
 }
 ```
 
@@ -133,9 +137,13 @@ struct SnapshotRecord {
 | `artifactBundleRoot` | `bytes32` | ardmere **artifact bundle** Merkle root (must be non-zero) |
 | `verificationBundleRoot` | `bytes32` | ardmere **verification bundle** Merkle root (must be non-zero) |
 | `verdictSummary` | `uint8` | Verifier conclusion **bitfield summary** (see table below) |
-| `coverageBps` | `uint16` | On-chain audit coverage × 10,000 (e.g. `8500` ≈ 85.00%) |
-| `schemaVersion` | `uint8` | `SCHEMA_VERSION` at write time (new anchors use `3`) |
+| `coverageBps` | `uint16` | **Deprecated** opaque max(verifier Coverage)×10,000. Prefer `walletCoverageBps` / `reserveCoverageBps`. |
+| `schemaVersion` | `uint8` | `SCHEMA_VERSION` at write time (new anchors use `4`; v3 rows stay `3`) |
 | `anchoredAt` | `uint256` | `block.timestamp` at anchor time (seconds); **`0` means record does not exist** |
+| `porStage` | `uint8` | `0`=Pre-Stage, `1`=Stage 0, `2`=Stage 1, `3`=Stage 2 (same determination as assessment) |
+| `effectivePoR` | `bool` | Same effective-PoR flag as the assessment |
+| `walletCoverageBps` | `uint16` | Verifiable addresses / published addresses × 10,000 |
+| `reserveCoverageBps` | `uint16` | Verifiable reserve USD / claimed reserve USD × 10,000 (CoinGecko at `snapshotTime`) |
 
 ### `verdictSummary` Bitfield (ardmere pipeline)
 
@@ -154,8 +162,8 @@ Full verifier matrix and Stage determination: [verifier-architecture.md](./verif
 
 | Function / variable | Signature | Return value | Revert |
 | --- | --- | --- | --- |
-| `SCHEMA_VERSION` | `SCHEMA_VERSION()(uint8)` | `3` | — |
-| `STORAGE_VERSION` | `STORAGE_VERSION()(uint8)` | `1` | — |
+| `SCHEMA_VERSION` | `SCHEMA_VERSION()(uint8)` | `4` | — |
+| `STORAGE_VERSION` | `STORAGE_VERSION()(uint8)` | `2` | — |
 | `signer` | `signer()(address)` | Current authorized anchor address | — |
 
 ```bash
@@ -303,13 +311,13 @@ After v3, each `anchorSnapshot` writes storage and emits an event; v2 only emitt
 `cast call` return type for `SnapshotRecord` (matches ABI):
 
 ```text
-(bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256)
+(bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256,uint8,bool,uint16,uint16)
 ```
 
 Referred to below as `$RECORD_TUPLE`.
 
 ```bash
-RECORD_TUPLE="(bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256)"
+RECORD_TUPLE="(bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256,uint8,bool,uint16,uint16)"
 ```
 
 ### 7.2 Binance Example (`PR01JUN26`, period 43)
@@ -363,21 +371,21 @@ cast call $ANCHOR_CONTRACT \
 ```javascript
 import { Contract, JsonRpcProvider, id, keccak256, toUtf8Bytes } from "ethers";
 
-const ANCHOR = "0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7";
+const ANCHOR = "0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7";  # pragma: allowlist secret
 const RPC = process.env.RPC_URL ?? "https://rpc.sepolia.org";
 
 const abi = [
   "function SCHEMA_VERSION() view returns (uint8)",
   "function snapshotExists(bytes32 snapshotId) view returns (bool)",
-  "function getSnapshot(bytes32 snapshotId) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt))",
-  "function getLatestSnapshot(bytes32 exchangeTag) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt))",
-  "function getSnapshotByPeriod(bytes32 exchangeTag, uint32 periodSeq) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt))",
+  "function getSnapshot(bytes32 snapshotId) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps))",
+  "function getLatestSnapshot(bytes32 exchangeTag) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps))",
+  "function getSnapshotByPeriod(bytes32 exchangeTag, uint32 periodSeq) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps))",
   "function getSnapshotCount(bytes32 exchangeTag) view returns (uint256)",
   "function getSnapshotIdAt(bytes32 exchangeTag, uint256 index) view returns (bytes32)",
-  "event SnapshotAnchored(bytes32 indexed snapshotId, bytes32 indexed exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt)",
+  "event SnapshotAnchored(bytes32 indexed snapshotId, bytes32 indexed exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps)",
 ];
 
-const provider = new JsonRpcProvider(RPC, 11155111);
+const provider = new JsonRpcProvider(RPC, 11155111);  # pragma: allowlist secret
 const anchor = new Contract(ANCHOR, abi, provider);
 
 // keccak256(bytes("binance")) — matches cast keccak
@@ -423,7 +431,7 @@ cast call $ANCHOR_CONTRACT \
   $(cast keccak "okx") --rpc-url $RPC
 ```
 
-Suggested display fields: `exchange`, `periodSeq`, `snapshotTime`, `verdictSummary`, `coverageBps`, `artifactBundleRoot`, `verificationBundleRoot`.
+Suggested display fields: `exchange`, `periodSeq`, `snapshotTime`, `verdictSummary`, `porStage`, `walletCoverageBps`, `reserveCoverageBps`, `artifactBundleRoot`, `verificationBundleRoot` (keep showing deprecated `coverageBps` only as a footnote).
 
 ### 8.3 Query by Historical Period (no log scan)
 
@@ -474,7 +482,7 @@ cast logs \
   --rpc-url $RPC \
   --address $ANCHOR_CONTRACT \
   --from-block $DEPLOY_BLOCK \
-  "SnapshotAnchored(bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256)" \
+  "SnapshotAnchored(bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256,uint8,bool,uint16,uint16)" \
   --topic2 $EXCHANGE_TAG
 
 # Filter by snapshotId (topic1)
@@ -482,7 +490,7 @@ cast logs \
   --rpc-url $RPC \
   --address $ANCHOR_CONTRACT \
   --from-block $DEPLOY_BLOCK \
-  "SnapshotAnchored(bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256)" \
+  "SnapshotAnchored(bytes32,bytes32,string,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,uint256,uint8,bool,uint16,uint16)" \
   --topic1 $(cast keccak "PR01JUN26")
 ```
 
@@ -553,7 +561,7 @@ Write-path errors (for reference; query callers typically do not encounter these
 | `SnapshotNotFound` but Etherscan shows a transaction | v2 event-only anchor | Use §9 `cast logs` |
 | `getLatestSnapshot` fails | Exchange has no v3 storage record yet | Query events or wait for new anchor |
 | `exchangeTag` mismatch | Used plaintext `"binance"` instead of `cast keccak` | Recompute tag |
-| RPC returns empty | Wrong network / not synced | Confirm Sepolia, `CHAIN_ID=11155111` |
+| RPC returns empty | Wrong network / not synced | Confirm Sepolia, `CHAIN_ID=11155111` |  # pragma: allowlist secret
 
 ---
 
@@ -561,7 +569,7 @@ Write-path errors (for reference; query callers typically do not encounter these
 
 | Resource | Link |
 | --- | --- |
-| Proxy (Sepolia Etherscan) | https://sepolia.etherscan.io/address/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7#code |
+| Proxy (Sepolia Etherscan) | https://sepolia.etherscan.io/address/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7#code |  # pragma: allowlist secret
 | Implementation v3 (verified source) | https://sepolia.etherscan.io/address/0x62050405283f222EFEdF3BF0d6Cb16541cd1327a#code |
 | Deployment and upgrade history | [deployments.md](./deployments.md) |
 | Contract source | [`contracts/src/ArdmerePoRAnchor.sol`](../contracts/src/ArdmerePoRAnchor.sol) |
@@ -573,4 +581,4 @@ Write-path errors (for reference; query callers typically do not encounter these
 
 ---
 
-*This document corresponds to implementation v3 (`SCHEMA_VERSION=3`, `STORAGE_VERSION=1`). After contract upgrades, rely on on-chain `SCHEMA_VERSION` / `STORAGE_VERSION` and the Etherscan verified ABI.*
+*This document corresponds to implementation v4 (`SCHEMA_VERSION=4`, `STORAGE_VERSION=2`). v3 records remain readable with new fields zero/false. After upgrades, rely on on-chain `SCHEMA_VERSION` / `STORAGE_VERSION` and the Etherscan verified ABI.*
