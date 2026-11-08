@@ -17,6 +17,8 @@ func Profile(ctx context.Context, in Input) []verifier.Verification {
 	}
 
 	for _, ref := range shared {
+		id, _ := verifier.ParseVerifierRef(ref)
+		log.Printf("  starting %s (%s)", id, ref)
 		v := runVerifier(ctx, in, ref)
 		logVerification(v)
 		out = append(out, v)

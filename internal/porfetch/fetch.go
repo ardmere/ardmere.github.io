@@ -957,6 +957,7 @@ func RunCoinW(args []string) {
 func RunOKX(args []string) {
 	fs := flag.NewFlagSet("okx", flag.ExitOnError)
 	artifactsBase := fs.String("artifacts", "./artifacts", "artifacts root")
+	auditID := fs.String("audit-id", "", "OKX audit id (default: current published snapshot)")
 	summaryPath := fs.String("summary-path", "", "import local OKX summary bundle JSON")
 	walletZipPath := fs.String("wallet-zip", "", "import local OKX wallet zip")
 	liabilityZipPath := fs.String("liability-zip", "", "import local OKX liability zk-STARK zip")
@@ -965,6 +966,7 @@ func RunOKX(args []string) {
 	_ = fs.Parse(args)
 
 	opts := exchange.FetchOpts{
+		AuditID:          *auditID,
 		SummaryPath:      *summaryPath,
 		WalletZipPath:    *walletZipPath,
 		LiabilityZipPath: *liabilityZipPath,
