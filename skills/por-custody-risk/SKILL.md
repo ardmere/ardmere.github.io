@@ -90,8 +90,8 @@ $ python3 skills/por-custody-risk/scripts/risk_score.py \
 {
   "exchange": "kucoin",
   "snapshot": "20261031",
-  "riskScore": 75,
-  "riskLevel": "high",
+  "riskScore": 99,
+  "riskLevel": "critical",
   "conclusive": true,
   "factors": [
     {
@@ -103,6 +103,16 @@ $ python3 skills/por-custody-risk/scripts/risk_score.py \
       "id": "STAGE_BELOW_EFFECTIVE_POR",
       "delta": 35,
       "note": "porStage is Stage 0, below effective PoR."
+    },
+    {
+      "id": "NO_PUBLIC_WALLET_ADDRESS_LIST",
+      "delta": 16,
+      "note": "No public wallet_address_list."
+    },
+    {
+      "id": "NO_WALLET_OWNERSHIP_PROOF",
+      "delta": 8,
+      "note": "No public download channel for wallet ownership signatures / proofs"
     }
   ],
   "porStage": "Stage 0",

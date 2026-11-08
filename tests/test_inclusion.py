@@ -401,18 +401,31 @@ class DecisionTable(unittest.TestCase):
          "NO_CANONICAL_ANCHOR +5, HIGH_FREQUENCY_GAP +5; not anchored, so file-only",
          10, "low", "--no-anchor"),
         ("docs/reports/kucoin/20261031-assessment.json",
-         "UNVERIFIABLE +40, STAGE_BELOW_EFFECTIVE_POR +35; anchored, roots agree",
-         75, "high", "anchor"),
+         "UNVERIFIABLE +40, stage +35, list +16, ownership +8; anchored",
+         99, "critical", "anchor"),
         ("docs/reports/bitget/20261021-assessment.json",
-         "UNVERIFIABLE +40, STAGE_BELOW_EFFECTIVE_POR +35; anchored, all three roots agree",
-         75, "high", "anchor"),
+         "UNVERIFIABLE +40, stage +35, list +16, ownership +8; anchored",
+         99, "critical", "anchor"),
+        ("docs/reports/bybit/2026102706-assessment.json",
+         "UNVERIFIABLE +40, stage +35, list +16, ownership +8",
+         99, "critical", "--no-anchor"),
+        ("docs/reports/binance/PR04NOV26-assessment.json",
+         "UNVERIFIABLE +40, stage +35, ownership +8, OPAQUE +8; has walletZip",
+         91, "critical", "--no-anchor"),
         ("docs/reports/binance/PR01JUN26-assessment.json",
          "UNVERIFIABLE +40, stage +35, NO_WALLET_OWNERSHIP_PROOF +8, OPAQUE_TRUSTED_SETUP +8",
          91, "critical", "--no-anchor"),
         ("docs/reports/mexc/202610-assessment.json",
-         "UNVERIFIABLE +40, stage +35, three non-blocking flags capped at 20; anchored",
-         95, "critical", "anchor"),
+         "UNVERIFIABLE +40, stage +35, derived list +16, non-blocking capped; anchored",
+         100, "critical", "anchor"),
     ]
+
+    def test_no_wallet_list_scores_at_least_list_without_ownership(self):
+        import risk_score
+
+        bybit = risk_score.score(ROOT / "docs/reports/bybit/2026102706-assessment.json", None)
+        binance = risk_score.score(ROOT / "docs/reports/binance/PR04NOV26-assessment.json", None)
+        self.assertGreaterEqual(bybit["riskScore"], binance["riskScore"])
 
     def test_table_scores(self):
         import risk_score
