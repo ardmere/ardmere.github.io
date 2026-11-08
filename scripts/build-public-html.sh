@@ -1,13 +1,28 @@
 #!/usr/bin/env bash
 # Generate styled HTML pages from public-site markdown sources.
+#
+# Pinned toolchain: pandoc 3.1.3 (linux-amd64 / macOS arm64 release tarball).
+# pandoc changed its table and paragraph wrapping markup between 3.1 and 3.6
+# (`<tr class="odd">` -> `<tr>`, different paragraph line breaks), so building
+# the committed pages with any other version produces a large, meaningless diff.
+# Install 3.1.3, or override with PANDOC=/path/to/pandoc.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 TEMPLATE="$ROOT/scripts/site/doc-template.html"
+PANDOC="${PANDOC:-pandoc}"
+PINNED_PANDOC_VERSION="3.1.3"
 
-if ! command -v pandoc >/dev/null 2>&1; then
-  echo "pandoc is required to build public HTML pages" >&2
+if ! command -v "$PANDOC" >/dev/null 2>&1; then
+  echo "pandoc is required to build public HTML pages (expected $PINNED_PANDOC_VERSION)" >&2
+  echo "install: https://github.com/jgm/pandoc/releases/tag/$PINNED_PANDOC_VERSION" >&2
   exit 1
+fi
+
+pandoc_version="$("$PANDOC" --version | head -1 | awk '{print $2}')"
+if [ "$pandoc_version" != "$PINNED_PANDOC_VERSION" ]; then
+  echo "warning: pandoc $pandoc_version detected; committed pages are built with $PINNED_PANDOC_VERSION." >&2
+  echo "warning: other versions rewrite table/paragraph markup and add unrelated diff noise." >&2
 fi
 
 fix_links() {
@@ -45,7 +60,7 @@ build_page() {
   title="$(grep -m1 '^# ' "$md" | sed 's/^# //')"
 
   if [[ -n "$nav_key" ]]; then
-    pandoc "$md" \
+    "$PANDOC" "$md" \
       --standalone \
       --template="$TEMPLATE" \
       --from markdown \
@@ -54,7 +69,7 @@ build_page() {
       --metadata "nav-$nav_key=true" \
       -o "$html"
   else
-    pandoc "$md" \
+    "$PANDOC" "$md" \
       --standalone \
       --template="$TEMPLATE" \
       --from markdown \

@@ -32,15 +32,15 @@ Stage 1 is supported by public wallet_address_list, wallet_ownership_proof, glob
 
 | Field | Value |
 | --- | --- |
-| Latest snapshot (evaluation set) | `2026-06-18T16:00:00Z` |
+| Latest snapshot (evaluation set) | `2026-10-31T16:00:00Z` |
 | Previous snapshot | `2026-04-19T16:00:00Z` |
 | Observed cadence | `~monthly` |
-| History available | `3 snapshot(s) in public evaluation set` |
+| History available | `7 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-Older snapshot 508399035 is also in the public evaluation set.
+Newer snapshot 508399035 is also in the public evaluation set.
 
 ## 4. Evidence and Bundles
 

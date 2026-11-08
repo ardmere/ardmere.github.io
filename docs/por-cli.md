@@ -10,6 +10,8 @@ Unified Proof-of-Reserves command-line tool. Implementation lives in `internal/p
 | `por verify` | re-verify cached artifacts |
 | `por fetch gateio\|okx\|mexc\|…` | archive-only download |
 | `por exchanges [id]` | Official PoR pages + GitHub repos (`config/exchanges/registry.yaml`) |
+| `por report -exchange <id> -snapshot <id>` | assessment JSON + transparency report from cached artifacts |
+| `por refresh-frequency` | recompute Section 3 of every existing report from assessment JSON |
 | `por probe rpc\|tron\|…` | Binance regression / RPC diagnostics |
 
 ## Build & run
@@ -32,6 +34,27 @@ Legacy `./scripts/por-run.sh` and `./scripts/por-fetch.sh` forward to the same b
 ## Pipeline (anchor)
 
 See [verifier-architecture.md](./verifier-architecture.md) for verifier matrix and verdict semantics.
+
+## Regenerating reports and public HTML
+
+`por report` writes `<snapshot>-assessment.json` and `<snapshot>-transparency-report.md` under `docs/reports/<exchange>/`. The HTML page is derived from the markdown:
+
+```bash
+./scripts/build-public-html.sh
+```
+
+**pandoc is pinned to 3.1.3.** Later versions changed table markup (`<tr class="odd">` → `<tr>`) and paragraph line breaking, so building the committed pages with anything else produces a large diff that has nothing to do with the content change. The script warns when the detected version differs; install 3.1.3 or point `PANDOC` at it:
+
+```bash
+PANDOC=/opt/pandoc-3.1.3/bin/pandoc ./scripts/build-public-html.sh
+```
+
+If only Section 3 (Frequency and Freshness) is stale — for example after fixing the assessment set — recompute it without re-running fetch/verify, then rebuild HTML:
+
+```bash
+go run ./cmd/por refresh-frequency --reports ./docs/reports
+./scripts/build-public-html.sh
+```
 
 ## Trust boundary
 

@@ -31,13 +31,15 @@ Public artifacts do not support independently reproducible global solvency verif
 
 | Field | Value |
 | --- | --- |
-| Latest snapshot (evaluation set) | `2026-06-18T10:00:00Z` |
-| Previous snapshot | `UNVERIFIABLE` |
-| Observed cadence | `~22 days between snapshots` |
-| History available | `2 snapshot(s) in public evaluation set` |
+| Latest snapshot (evaluation set) | `2026-10-21T04:00:00Z` |
+| Previous snapshot | `2026-09-29T09:00:00Z` |
+| Observed cadence | `~37 days between snapshots` |
+| History available | `5 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
+
+This is the newest snapshot in the ardmere public evaluation set for bitget.
 
 ## 4. Evidence and Bundles
 

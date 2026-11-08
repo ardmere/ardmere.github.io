@@ -39,7 +39,7 @@ Public artifacts do not support independently reproducible global solvency verif
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-Older snapshot 20261001 is also in the public evaluation set.
+Newer snapshot 20260901 is also in the public evaluation set.
 
 ## 4. Evidence and Bundles
 

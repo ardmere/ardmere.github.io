@@ -35,6 +35,8 @@ func Main(args []string) int {
 		return runBatch(args[2:])
 	case "report":
 		return runReport(args[2:])
+	case "refresh-frequency":
+		return runRefreshFrequency(args[2:])
 	case "site":
 		return runSite(args[2:])
 	case "help", "-h", "--help":
@@ -56,6 +58,7 @@ Commands:
   fetch    archive-only download (gateio | htx | bybit | bitget | mexc | kucoin | bingx | poloniex | ourbit | coinex | bitunix | woox | toobit | phemex | btcc | kraken | coinw | okx)
   batch    fetch+verify last N snapshots per exchange and write reports
   report   generate assessment + transparency report from cached artifacts
+  refresh-frequency  recompute section 3 of existing reports from assessment JSON
   site     regenerate homepage, snapshot history, and exchange comparison
   probe    chain/RPC diagnostics (rpc | tron | stakehub | sonic-sfc)
   exchanges  list official PoR upstream pages and GitHub repos (registry)

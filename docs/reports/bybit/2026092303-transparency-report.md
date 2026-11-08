@@ -31,13 +31,15 @@ Public artifacts do not support independently reproducible global solvency verif
 
 | Field | Value |
 | --- | --- |
-| Latest snapshot (evaluation set) | `2026-05-27T09:00:00Z` |
-| Previous snapshot | `UNVERIFIABLE` |
-| Observed cadence | `~344 days between snapshots` |
-| History available | `2 snapshot(s) in public evaluation set` |
+| Latest snapshot (evaluation set) | `2026-10-27T06:00:00Z` |
+| Previous snapshot | `2026-08-26T04:00:00Z` |
+| Observed cadence | `~124 days between snapshots` |
+| History available | `5 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
+
+Newer snapshot 2026102706 is also in the public evaluation set.
 
 ## 4. Evidence and Bundles
 

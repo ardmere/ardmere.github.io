@@ -4,7 +4,7 @@
 
 These pages are part of the ardmere public transparency registry. They are linked from [index.html](../index.html) and the site README.
 
-**Site URLs use `.html`** (styled pages for GitHub Pages). Markdown remains the editable source; regenerate with [`scripts/build-public-html.sh`](../scripts/build-public-html.sh).
+**Site URLs use `.html`** (styled pages for GitHub Pages). Markdown remains the editable source; regenerate with [`scripts/build-public-html.sh`](../scripts/build-public-html.sh) using **pandoc 3.1.3** (see [`por-cli.md`](./por-cli.md#regenerating-reports-and-public-html) — other versions change table markup and add unrelated diff noise).
 
 | Document | Purpose |
 | --- | --- |

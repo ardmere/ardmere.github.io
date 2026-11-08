@@ -37,12 +37,12 @@ solvency-claim PASS means self-reported CMS reserve ratios ≥ 100% (capped stab
 | Latest snapshot (evaluation set) | `2026-06-30T00:00:00Z` |
 | Previous snapshot | `UNVERIFIABLE` |
 | Observed cadence | `UNVERIFIABLE` |
-| History available | `UNVERIFIABLE` |
+| History available | `1 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-No sibling assessments found in the ardmere public evaluation set.
+Only one kraken snapshot is in the ardmere public evaluation set.
 
 ## 4. Evidence and Bundles
 

@@ -31,15 +31,15 @@ Public artifacts do not support independently reproducible global solvency verif
 
 | Field | Value |
 | --- | --- |
-| Latest snapshot (evaluation set) | `2026-03-16T00:00:00Z` |
+| Latest snapshot (evaluation set) | `2026-10-18T00:00:00Z` |
 | Previous snapshot | `UNVERIFIABLE` |
-| Observed cadence | `UNVERIFIABLE` |
-| History available | `1 snapshot(s) in public evaluation set` |
+| Observed cadence | `~108 days between snapshots` |
+| History available | `3 snapshot(s) in public evaluation set` |
 | Event-triggered updates | `UNVERIFIABLE` |
 | Daily root / commitment anchor | `UNVERIFIABLE` |
 | Stage impact | Monthly or slower cadence; does not meet Stage 2 frequency expectations. |
 
-Only one gateio snapshot is in the ardmere public evaluation set.
+Newer snapshot 20260618 is also in the public evaluation set.
 
 ## 4. Evidence and Bundles
 
