@@ -5,6 +5,6 @@ overrides: {}
 
 footers:
   - |-
-    HTX Aug–Oct 2026 summaries imported from public browser API; production `public-data.zip` / proof0.csv remains login-gated (see `artifacts/htx/*/FETCH_NEEDED.md` notes in browser-por-capture).
+    HTX Aug–Nov 2026 summaries imported from public browser API; production `public-data.zip` / proof0.csv remains login-gated (see `artifacts/htx/*/FETCH_NEEDED.md` notes in browser-por-capture).
   - |-
     Gate Aug/Sep 2026 historical snapshots not available without login (public API returns latest only). Bybit Oct exact reserve ratios unpublished as of capture.
