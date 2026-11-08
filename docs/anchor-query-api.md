@@ -521,6 +521,20 @@ Example (Binance PR01JUN26, from public assessment / archive):
 
 Matching on-chain roots proves only that **ardmere's anchored digests have not been tampered with**; a full PoR conclusion still requires downloading artifacts and replaying the verifier. If ardmere services are offline, **on-chain roots + any third-party cached bundle** still enable retrospective verification.
 
+### 10.1 With the agent skills
+
+Two skills in this repository do steps 2 and 4 for you, reading the proxy directly over JSON-RPC with no web3 library and no Go build:
+
+```bash
+# Step 2 + 4: score an assessment and compare its roots with the on-chain record
+skills/por-custody-risk/scripts/por-check.sh docs/reports/kucoin/20261031-assessment.json
+
+# Step 2 only: bind a user's own inclusion proof to the anchored exchangeMerkleRoot
+skills/por-inclusion-proof/scripts/inclusion_check.py --exchange bybit --onchain 2025061709 ~/Downloads/myProof.json
+```
+
+Both honour `POR_ANCHOR_CONTRACT` and `POR_RPC_URL`, and both report `not_found` as "not anchored yet" rather than as a verdict about reserves. See [por-custody-risk](../skills/por-custody-risk/SKILL.md) and [por-inclusion-proof](../skills/por-inclusion-proof/SKILL.md).
+
 ---
 
 ## 11. Error Codes and Troubleshooting
@@ -554,6 +568,8 @@ Write-path errors (for reference; query callers typically do not encounter these
 | CLI anchor workflow | [por-cli.md](./por-cli.md) |
 | Evidence archive | [artifact-archive-index.md](./reports/artifact-archive-index.md) |
 | Architecture and trust boundaries | [verifier-architecture.md](./verifier-architecture.md) |
+| Agent skill: custody risk score + anchor comparison | [skills/por-custody-risk/SKILL.md](../skills/por-custody-risk/SKILL.md) |
+| Agent skill: user inclusion proof verification | [skills/por-inclusion-proof/SKILL.md](../skills/por-inclusion-proof/SKILL.md) |
 
 ---
 

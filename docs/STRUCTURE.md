@@ -17,9 +17,16 @@ ardmere is a GitHub Pages site plus a Go PoR verification toolkit.
 │   └── schedule.yaml       # per-exchange scan windows (not daily all-P0+P1)
 ├── config/rating/          # machine-readable PoR Stage / E Level / risk flag rules
 ├── docs/
-├── fixtures/
+├── fixtures/               # exchange artifacts, user proofs, and anchor reads
 ├── schemas/                # JSON schemas for reports, assessments, manifests
-├── scripts/por.sh
+├── scripts/
+│   ├── por.sh              # anchor / verify / fetch wrapper
+│   └── check-skills.sh     # tests for skills/ (add --live for a Sepolia read)
+├── skills/                 # python3 agent skills, no web3 library needed
+│   ├── lib/por_anchor.py   # Keccak-256 + SnapshotRecord ABI decode + eth_call
+│   ├── por-custody-risk/   # score an assessment against its anchor record
+│   └── por-inclusion-proof/# verify a user's own inclusion proof locally
+├── tests/                  # skill tests (python3 -m unittest discover -s tests)
 └── artifacts/              # gitignored local snapshots
 ```
 

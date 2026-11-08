@@ -55,7 +55,14 @@ These files stay in the public git repository for contributors and operators, bu
 | [../config/por-monitor/schedule.yaml](../config/por-monitor/schedule.yaml) | Machine-readable monitor cadence |
 | [exchange-reserve-transparency-whitepaper.md](./exchange-reserve-transparency-whitepaper.md) | **Whitepaper body (English draft v1.0)** — exchange reserve transparency framework and methodology |
 
-Project-specific Cursor Agent Skills live in `.cursor/skills/` (gitignored; not published to the site).
+Project-specific Cursor Agent Skills live in `skills/` and are symlinked from `.cursor/skills/`:
+
+| Skill | Purpose |
+| --- | --- |
+| [../skills/por-custody-risk/SKILL.md](../skills/por-custody-risk/SKILL.md) | Score an assessment against its `ArdmerePoRAnchor` record; no `decision` field |
+| [../skills/por-inclusion-proof/SKILL.md](../skills/por-inclusion-proof/SKILL.md) | Verify a user's own inclusion proof locally and bind it to the published root |
+
+Run `./scripts/check-skills.sh` after changing either one; `--live` also reads Sepolia.
 
 ## Internal / non-product
 
