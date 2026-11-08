@@ -47,10 +47,16 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 	if csvFile == 0 {
 		csvFile = walletzip.WalletFileForExchange(v.Exchange)
 	}
+	csvProg := NewProgress(out.VerifierID, "load-csv", 0)
+	csvProg.Start(fmt.Sprintf("file=%s path=%s", csvFile, v.WalletZipPath))
+	stopCSV := csvProg.Heartbeat(ctx)
 	_, err := walletzip.ForEachRow(v.WalletZipPath, csvFile, func(r walletzip.Row) error {
 		allRows = append(allRows, r)
+		csvProg.Tick(r.Coin, r.Network)
 		return nil
 	})
+	stopCSV()
+	csvProg.Finish()
 	if err != nil {
 		out.Verdict = VerdictFail
 		out.Reason = fmt.Sprintf("read HotCold csv: %v", err)
@@ -99,6 +105,9 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 		unv        bool
 		unvNote    string
 	}
+	rpcProg := NewProgress(out.VerifierID, "rpc", len(rows))
+	rpcProg.Start(fmt.Sprintf("concurrency=%d supported=%d/%d", v.Concurrency, len(rows), len(allRows)))
+	stopRPC := rpcProg.Heartbeat(ctx)
 	jobs := make(chan walletzip.Row, len(rows))
 	results := make(chan result, len(rows))
 	var wg sync.WaitGroup
@@ -121,6 +130,7 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 
 	var passCount, warnCount, failCount, unverifiableCount, errCount int
 	for res := range results {
+		rpcProg.Tick(res.row.Coin, res.row.Network)
 		key := res.row.Coin + "|" + res.row.Network
 		spec := supported[key]
 		if res.err != nil {
@@ -240,6 +250,8 @@ func (v OnchainBalanceLedger) Run(ctx context.Context) Verification {
 		})
 	}
 
+	stopRPC()
+	rpcProg.Finish()
 	out.Coverage = float64(passCount+failCount) / float64(len(allRows))
 	out.Findings = append(out.Findings, unsupportedFindings(unsupportedPairs)...)
 	out.Findings = append(out.Findings, Finding{

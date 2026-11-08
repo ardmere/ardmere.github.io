@@ -71,10 +71,16 @@ func (v OnchainBalanceDeposit) Run(ctx context.Context) Verification {
 		InputArtifacts: []string{v.BapiSha256, v.WalletZipSha256},
 	}
 
+	sampleProg := NewProgress(out.VerifierID, "sample-csv", 0)
+	opts := v.sampleOpts()
+	sampleProg.Start(fmt.Sprintf("path=%s topK=%d maxTotal=%d", v.WalletZipPath, opts.TopKPerCoin, opts.MaxTotal))
+	stopSample := sampleProg.Heartbeat(ctx)
 	sample, err := walletzip.SampleDepositRows(v.WalletZipPath, func(r walletzip.Row) bool {
 		_, ok := routeOnchainRow(v.Exchange, r.Coin, r.Network)
 		return ok
-	}, v.sampleOpts())
+	}, opts)
+	stopSample()
+	sampleProg.Finish()
 	if err != nil {
 		out.Verdict = VerdictFail
 		out.Reason = fmt.Sprintf("sample Deposit.csv: %v", err)
@@ -116,6 +122,9 @@ func (v OnchainBalanceDeposit) Run(ctx context.Context) Verification {
 		unv        bool
 		unvNote    string
 	}
+	rpcProg := NewProgress(out.VerifierID, "rpc", len(sample.Rows))
+	rpcProg.Start(fmt.Sprintf("concurrency=%d sampled=%d", v.Concurrency, len(sample.Rows)))
+	stopRPC := rpcProg.Heartbeat(ctx)
 	jobs := make(chan walletzip.Row, len(sample.Rows))
 	results := make(chan result, len(sample.Rows))
 	var wg sync.WaitGroup
@@ -135,6 +144,8 @@ func (v OnchainBalanceDeposit) Run(ctx context.Context) Verification {
 					actual, used, err = acc.total, acc.used, e
 				case routeToken:
 					actual, used, _, err = tokenV.tokenBalanceAtHeight(ctx, r, decCache, sonicCache)
+					results <- result{row: r, actual: actual, used: used, route: string(route), err: err, unv: unv, unvNote: unvNote}
+					continue
 				case routeLedger:
 					spec := loadLedgerSupportedFor(v.Exchange)[r.Coin+"|"+r.Network]
 					var mode string
@@ -156,6 +167,7 @@ func (v OnchainBalanceDeposit) Run(ctx context.Context) Verification {
 
 	var passCount, warnCount, failCount, unverifiableCount, errCount int
 	for res := range results {
+		rpcProg.Tick(res.row.Coin, res.row.Network)
 		if res.err != nil {
 			errCount++
 			out.Findings = append(out.Findings, Finding{
@@ -229,6 +241,8 @@ func (v OnchainBalanceDeposit) Run(ctx context.Context) Verification {
 		})
 	}
 
+	stopRPC()
+	rpcProg.Finish()
 	out.Findings = append(out.Findings, Finding{
 		Subject: "summary",
 		Field:   "sampled_deposit_rows",
