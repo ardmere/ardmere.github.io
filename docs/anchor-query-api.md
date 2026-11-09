@@ -78,15 +78,19 @@ The contract does **not** accept plaintext exchange names or audit ids as mappin
 | --- | --- | --- | --- |
 | **`exchangeTag`** | `keccak256(bytes(exchange))` | `"binance"` | `0x099e8cf4d817a6e4eec62bff4cdef05faa4a00fcde8d7e99f5090708d23ad9b2` |
 | **`exchangeTag`** | same | `"okx"` | `0xd6b6d5e0aacce0469a313983d889ed10d0bb7c9545af0285a19b4ff094b4041d` |
-| **`snapshotId`** | `keccak256(bytes(auditId))` | `"PR01JUN26"` | `0x8eebf94be87651156d5d4b7eed3d99daed7fe308ba9ab0771cd5f6efb417c638` |
-| **`snapshotId`** | same | `"506872725"` | `0x88875070b19fd65cafbdd4674a55d835e0f24a96091375b001aef45e4248b2f0` |
+| **`snapshotId` (v6+)** | `keccak256(abi.encodePacked(normalizeExchange(exchange), bytes1(0), bytes(auditId)))` | `exchange="htx"`, `"20261101"` | `0xbdbd096d9043bf0b55246ef612e4db87ac27eb5718e8debd15fdd77db30e6f20` |
+| **`snapshotId` (legacy v3–v5)** | `keccak256(bytes(auditId))` | `"PR01JUN26"` | `0x8eebf94be87651156d5d4b7eed3d99daed7fe308ba9ab0771cd5f6efb417c638` |
+| **`snapshotId` (legacy)** | same | `"506872725"` | `0x88875070b19fd65cafbdd4674a55d835e0f24a96091375b001aef45e4248b2f0` |
+
+`normalizeExchange` is the lowercase ASCII slug stored in assessments (e.g. `phemex`, `htx`, `ourbit`). **New anchors (schema v6)** must pass the composite id; the contract exposes `expectedSnapshotId(exchange, auditId)` and `legacySnapshotId(auditId)`. Readers try composite first when the exchange is known, then legacy.
 
 ```bash
 # Foundry cast
 export EXCHANGE_TAG=$(cast keccak "binance")
 export OKX_TAG=$(cast keccak "okx")
-export SNAPSHOT_ID=$(cast keccak "PR01JUN26")
-export OKX_SNAPSHOT_ID=$(cast keccak "506872725")
+export LEGACY_SNAPSHOT_ID=$(cast keccak "PR01JUN26")
+export OKX_LEGACY_SNAPSHOT_ID=$(cast keccak "506872725")
+# v6 composite (after upgrade): cast call "$ANCHOR_CONTRACT" "expectedSnapshotId(string,string)(bytes32)" "htx" "20261101"
 
 # Verify
 cast keccak "binance"
@@ -128,7 +132,7 @@ struct SnapshotRecord {
 
 | Field | Solidity type | Meaning |
 | --- | --- | --- |
-| `snapshotId` | `bytes32` | `keccak256(bytes(auditId))`, e.g. `keccak256("PR01JUN26")` |
+| `snapshotId` | `bytes32` | v6 composite or legacy `keccak256(bytes(auditId))` — see [§3](#3-identifiers-exchangetag-and-snapshotid) |
 | `exchangeTag` | `bytes32` | `keccak256(bytes(exchange))` |
 | `exchange` | `string` | Plaintext exchange id, e.g. `"binance"`, `"okx"` |
 | `periodSeq` | `uint32` | Anchor sequence for this exchange; **1 = earliest period** |

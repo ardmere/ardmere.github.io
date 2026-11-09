@@ -157,3 +157,37 @@ cast send "$ANCHOR_CONTRACT" \
 ```
 
 Signer on Sepolia: `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F`.
+
+## Schema v6 upgrade (composite snapshotId)
+
+UUPS upgrade of the Sepolia proxy (address unchanged). **`snapshotId` for new anchors** is `keccak256(abi.encodePacked(normalizeExchange(exchange), 0x00, auditId))`; `anchorSnapshot` calldata gains `string auditId` and reverts `InvalidSnapshotId` when the bytes32 id does not match `expectedSnapshotId`. Event layout unchanged; `SCHEMA_VERSION` becomes **6**. Legacy v3–v5 keys remain readable via `legacySnapshotId` / client fallback.
+
+```bash
+export PATH="$HOME/.foundry/bin:$PATH"
+cd contracts
+forge script script/Upgrade.s.sol:Upgrade --rpc-url "$RPC_URL" --broadcast -vvvv
+cast call "$ANCHOR_CONTRACT" "SCHEMA_VERSION()(uint8)" --rpc-url "$RPC_URL"   # expect 6
+```
+
+**Operator cast signature (v6):**
+
+```bash
+cast send "$ANCHOR_CONTRACT" \
+  'anchorSnapshot(string,string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)' \
+  "<exchange>" "<auditId>" <snapshotId_b32> <periodSeq> <snapshotTimeUnix> <btcBlockHeight> \
+  <exchangeMerkleRoot> <artifactBundleRoot> <verificationBundleRoot> \
+  <verdictSummary> <coverageBps> <porStage> <effectivePoR> <walletCoverageBps> <reserveCoverageBps> <custodyRiskScore> \
+  --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
+```
+
+Derive `snapshotId_b32` with `cast call "$ANCHOR_CONTRACT" "expectedSnapshotId(string,string)(bytes32)" "<exchange>" "<auditId>" --rpc-url "$RPC_URL"` or `./por anchor -exchange <id> -audit <auditId>` (prints schema v6 calldata). **Do not broadcast** without signer keys.
+
+**Colliding audit ids (re-anchor after v6, composite keys):**
+
+| Exchange | auditId | `expectedSnapshotId` (composite) |
+| --- | --- | --- |
+| phemex | `20261101` | `0x12abd55db2e6d9b44edf24364ab8735226d612d54b228074210cb4933ec39f80` |
+| htx | `20261101` | `0xbdbd096d9043bf0b55246ef612e4db87ac27eb5718e8debd15fdd77db30e6f20` |
+| ourbit | `20261101` | `0xcf880c45c95eb72602f327c669c070e2cf047bb236b57614ed774c1fca9e6412` |
+
+Legacy `keccak256(bytes("20261101"))` = `0x9565ad3fb66b361d5dcf03c74124363797d48a3b2688f8bccfa728c066d061a5` — do **not** use for new anchors.

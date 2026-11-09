@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Print human-operated steps to upgrade ArdmerePoRAnchor to schema v5 and anchor
+# Print human-operated steps to upgrade ArdmerePoRAnchor to schema v6 and anchor
 # the current homepage report set with custodyRiskScore.
 #
 # Does not broadcast: requires PRIVATE_KEY for the permissioned signer on Sepolia.
@@ -8,7 +8,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-ANCHOR_SIG='anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)'
+ANCHOR_SIG='anchorSnapshot(string,string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)'
 
 echo "== 1) UUPS upgrade (proxy address unchanged)"
 echo "export PATH=\"\$HOME/.foundry/bin:\$PATH\""
@@ -16,14 +16,14 @@ echo "export ANCHOR_CONTRACT=\${ANCHOR_CONTRACT:-<proxy from docs/deployments.md
 echo "export RPC_URL=\${RPC_URL:-<Sepolia RPC>}"
 echo "export PRIVATE_KEY=\${PRIVATE_KEY:-<upgrade owner key>}"
 echo "cd contracts && forge script script/Upgrade.s.sol:Upgrade --rpc-url \"\$RPC_URL\" --broadcast -vvvv"
-echo "cast call \"\$ANCHOR_CONTRACT\" \"SCHEMA_VERSION()(uint8)\" --rpc-url \"\$RPC_URL\"   # expect 5"
+echo "cast call \"\$ANCHOR_CONTRACT\" \"SCHEMA_VERSION()(uint8)\" --rpc-url \"\$RPC_URL\"   # expect 6"
 echo "cast call \"\$ANCHOR_CONTRACT\" \"STORAGE_VERSION()(uint8)\" --rpc-url \"\$RPC_URL\"  # expect 3"
 echo
 
 echo "== 2) Homepage snapshots (current index.html HOMEPAGE_REPORT_SET)"
 echo "# Immutable records cannot be updated; anchor only snapshotIds not yet on-chain."
 echo "# Prefer: go build -o por ./cmd/por && ./por anchor -exchange <id> -audit <auditId>"
-echo "# That prints schema v5 cast send including custodyRiskScore (--no-anchor scoring)."
+echo "# That prints schema v6 cast send (composite snapshotId + auditId string)."
 echo
 
 HOMEPAGE=(

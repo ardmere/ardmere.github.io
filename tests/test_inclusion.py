@@ -632,10 +632,22 @@ class AnchorReader(unittest.TestCase):
                          "0xd6b6d5e0aacce0469a313983d889ed10d0bb7c9545af0285a19b4ff094b4041d")
 
     def test_snapshot_ids_match_the_documented_values(self):
-        self.assertEqual(self.pa.snapshot_id("PR01JUN26"),
+        self.assertEqual(self.pa.legacy_snapshot_id("PR01JUN26"),
                          "0x8eebf94be87651156d5d4b7eed3d99daed7fe308ba9ab0771cd5f6efb417c638")
-        self.assertEqual(self.pa.snapshot_id("506872725"),
+        self.assertEqual(self.pa.legacy_snapshot_id("506872725"),
                          "0x88875070b19fd65cafbdd4674a55d835e0f24a96091375b001aef45e4248b2f0")
+
+    def test_composite_snapshot_ids_avoid_audit_id_collisions(self):
+        audit = "20261101"
+        phemex = self.pa.composite_snapshot_id(audit, "phemex")
+        htx = self.pa.composite_snapshot_id(audit, "htx")
+        ourbit = self.pa.composite_snapshot_id(audit, "ourbit")
+        legacy = self.pa.legacy_snapshot_id(audit)
+        self.assertEqual(len({phemex, htx, ourbit, legacy}), 4)
+        self.assertEqual(
+            phemex,
+            "0x12abd55db2e6d9b44edf24364ab8735226d612d54b228074210cb4933ec39f80",
+        )
 
     def test_keccak_empty_string(self):
         self.assertEqual(self.pa.keccak_hex(b""),
@@ -648,7 +660,7 @@ class AnchorReader(unittest.TestCase):
         self.assertEqual(record["exchange"], "binance")
         self.assertEqual(record["periodSeq"], 43)
         self.assertEqual(record["schemaVersion"], 3)
-        self.assertEqual(record["snapshotId"], self.pa.snapshot_id("PR01JUN26"))
+        self.assertEqual(record["snapshotId"], self.pa.legacy_snapshot_id("PR01JUN26"))
         self.assertEqual(record["exchangeTag"], self.pa.exchange_tag("binance"))
 
     def test_empty_record_decodes_to_none(self):

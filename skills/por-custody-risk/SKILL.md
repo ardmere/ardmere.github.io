@@ -27,7 +27,7 @@ skills/por-custody-risk/scripts/por-check.sh \
   docs/reports/kucoin/20261031-assessment.json
 ```
 
-The script takes the audit id and exchange name from the file, computes `snapshotId = keccak256(bytes(auditId))`, and calls the proxy at the address in `skills/lib/por_anchor.py` (`DEFAULT_CONTRACT`), on Sepolia (the chain id is in `docs/deployments.md`).
+The script takes the audit id and exchange name from the file, computes the v6 composite `snapshotId = keccak256(abi.encodePacked(exchange, 0x00, auditId))` (and falls back to legacy `keccak256(bytes(auditId))` for v3–v5 rows), and calls the proxy at the address in `skills/lib/por_anchor.py` (`DEFAULT_CONTRACT`), on Sepolia (the chain id is in `docs/deployments.md`).
 Both are the values in [`docs/deployments.md`](../../docs/deployments.md); override them with the environment variables below rather than editing the module. See [`docs/anchor-query-api.md`](../../docs/anchor-query-api.md) for the ABI, the `exchangeTag`, and the error codes.
 
 | Environment variable | Meaning |
