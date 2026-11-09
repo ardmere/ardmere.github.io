@@ -10,10 +10,10 @@ import (
 	"github.com/ardmere/ardmere/internal/por"
 )
 
-// Schema v5 selector for anchorSnapshot(..., uint8 custodyRiskScore).
-const anchorSelector = "0xeacf4d77"
+// Schema v6 selector for anchorSnapshot(..., auditId string, ..., uint8 custodyRiskScore).
+const anchorSelector = "0x498d1f9d"
 
-// AnchorParams holds fields for on-chain anchorSnapshot calldata (schema v5).
+// AnchorParams holds fields for on-chain anchorSnapshot calldata (schema v6).
 type AnchorParams struct {
 	Exchange               string
 	SnapshotID             string
@@ -77,7 +77,8 @@ func ParseHex32(s string) [32]byte {
 
 // PrintAnchorCalldata prints cast send instructions for anchorSnapshot().
 func PrintAnchorCalldata(p AnchorParams) {
-	snapHash := keccak.Sum256([]byte(p.SnapshotID))
+	snapHash := CompositeSnapshotID(p.Exchange, p.SnapshotID)
+	legacyHash := LegacySnapshotID(p.SnapshotID)
 	exchangeTag := keccak.Sum256([]byte(p.Exchange))
 	contract := os.Getenv("ANCHOR_CONTRACT")
 	rpcURL := os.Getenv("RPC_URL")
@@ -85,13 +86,14 @@ func PrintAnchorCalldata(p AnchorParams) {
 
 	fmt.Println()
 	fmt.Println("==================================================================")
-	fmt.Printf("ANCHOR PAYLOAD (schema v5) — exchange=%s snapshot=%s period=%d (1 tx)\n",
+	fmt.Printf("ANCHOR PAYLOAD (schema v6) — exchange=%s audit=%s period=%d (1 tx)\n",
 		p.Exchange, p.SnapshotID, p.PeriodSeq)
 	fmt.Println("==================================================================")
 	fmt.Printf("exchange              : %s\n", p.Exchange)
 	fmt.Printf("exchangeTag   (b32)   : 0x%s\n", hex.EncodeToString(exchangeTag[:]))
-	fmt.Printf("snapshotId    (utf8)  : %s\n", p.SnapshotID)
-	fmt.Printf("snapshotId    (b32)   : 0x%s\n", hex.EncodeToString(snapHash[:]))
+	fmt.Printf("auditId       (utf8)  : %s\n", p.SnapshotID)
+	fmt.Printf("snapshotId    (b32)   : 0x%s  (v6 composite)\n", hex.EncodeToString(snapHash[:]))
+	fmt.Printf("legacyId      (b32)   : 0x%s  (v3–v5 lookup only)\n", hex.EncodeToString(legacyHash[:]))
 	fmt.Printf("periodSeq             : %d\n", p.PeriodSeq)
 	fmt.Printf("snapshotTime (unix)   : %d\n", p.SnapshotTimeUnix)
 	fmt.Printf("btcBlockHeight        : %d\n", p.BTCBlockHeight)
@@ -108,13 +110,14 @@ func PrintAnchorCalldata(p AnchorParams) {
 	fmt.Println()
 	fmt.Println("# custody score: from risk_score.py --no-anchor on the assessment JSON (same bundle roots as this tx).")
 
-	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)"
+	sig := "anchorSnapshot(string,string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)"
 	eff := "false"
 	if p.EffectivePoR {
 		eff = "true"
 	}
-	args := fmt.Sprintf(`"%s" 0x%s %d %d %d 0x%s %s %s 0x%02x %d %d %s %d %d %d`,
+	args := fmt.Sprintf(`"%s" "%s" 0x%s %d %d %d 0x%s %s %s 0x%02x %d %d %s %d %d %d`,
 		p.Exchange,
+		p.SnapshotID,
 		hex.EncodeToString(snapHash[:]),
 		p.PeriodSeq,
 		p.SnapshotTimeUnix,
@@ -145,7 +148,7 @@ func PrintAnchorCalldata(p AnchorParams) {
 
 // ValidateAnchorSelector panics if keccak impl drifts from the deployed contract.
 func ValidateAnchorSelector() {
-	sig := "anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)"
+	sig := "anchorSnapshot(string,string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)"
 	got := keccak.Sum256([]byte(sig))
 	want, _ := hex.DecodeString(strings.TrimPrefix(anchorSelector, "0x"))
 	for i := 0; i < 4; i++ {

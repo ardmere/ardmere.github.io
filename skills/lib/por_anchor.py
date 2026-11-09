@@ -24,7 +24,7 @@ FALLBACK_RPC_URLS = (
     "https://1rpc.io/sepolia",
 )
 CHAIN_ID = 11155111  # pragma: allowlist secret
-SCHEMA_VERSION = 5
+SCHEMA_VERSION = 6
 CUSTODY_RISK_UNAVAILABLE = 255
 
 # SnapshotRecord, in ABI order (docs/anchor-query-api.md §4).
@@ -58,6 +58,8 @@ VIEW_SIGNATURES = {
     "count": "getSnapshotCount(bytes32)(uint256)",
     "idAt": "getSnapshotIdAt(bytes32,uint256)(bytes32)",
     "schemaVersion": "SCHEMA_VERSION()(uint8)",
+    "expectedSnapshotId": "expectedSnapshotId(string,string)(bytes32)",
+    "legacySnapshotId": "legacySnapshotId(string)(bytes32)",
 }
 
 
@@ -137,9 +139,34 @@ def exchange_tag(exchange):
     return keccak_hex(exchange.encode())
 
 
-def snapshot_id(audit_id):
-    """keccak256(bytes(auditId)) — the bytes32 key getSnapshot takes."""
+def normalize_exchange(exchange):
+    """Lowercase ASCII exchange slug as stored in assessments."""
+    return str(exchange).lower()
+
+
+def legacy_snapshot_id(audit_id):
+    """keccak256(bytes(auditId)) — v3–v5 on-chain keys."""
     return keccak_hex(str(audit_id).encode())
+
+
+def composite_snapshot_id(audit_id, exchange):
+    """keccak256(abi.encodePacked(normalizeExchange, bytes1(0), bytes(auditId)))."""
+    packed = normalize_exchange(exchange).encode() + b"\x00" + str(audit_id).encode()
+    return keccak_hex(packed)
+
+
+def snapshot_id(audit_id, exchange=None):
+    """Composite key when exchange is known (v6); otherwise legacy keccak(bytes(auditId))."""
+    if exchange is not None:
+        return composite_snapshot_id(audit_id, exchange)
+    return legacy_snapshot_id(audit_id)
+
+
+def snapshot_id_candidates(audit_id, exchange=None):
+    """Lookup order: composite first when exchange is set, then legacy."""
+    if exchange is not None:
+        return [composite_snapshot_id(audit_id, exchange), legacy_snapshot_id(audit_id)]
+    return [legacy_snapshot_id(audit_id)]
 
 
 def selector(signature):
@@ -230,6 +257,7 @@ def decode_error(payload):
         ("EmptyExchange", []),
         ("SnapshotAlreadyExists", ["bytes32"]),
         ("PeriodAlreadyAnchored", ["bytes32", "uint32"]),
+        ("InvalidSnapshotId", ["bytes32", "bytes32"]),
     ):
         signature = error + "(" + ",".join(args) + ")"
         if selector(signature) == head:
@@ -329,6 +357,16 @@ def contract_address(explicit=None):
     return explicit or os.environ.get("POR_ANCHOR_CONTRACT") or DEFAULT_CONTRACT
 
 
+def _fetch_snapshot_at_id(url, contract, sid, prefer_cast, timeout):
+    if prefer_cast and cast_available():
+        payload = cast_call(url, contract, VIEW_SIGNATURES["getSnapshot"], sid)
+        if payload in ("", "0x"):
+            return None
+        return decode_record(payload)
+    payload = rpc_call(url, contract, selector("getSnapshot(bytes32)") + sid[2:], timeout)
+    return decode_record(payload)
+
+
 def read_snapshot(audit_id, exchange=None, contract=None, rpc=None, prefer_cast=False, timeout=20):
     """Read the v4 record for one auditId.
 
@@ -338,15 +376,17 @@ def read_snapshot(audit_id, exchange=None, contract=None, rpc=None, prefer_cast=
       unavailable— no RPC answered; nothing can be concluded
 
     `live` is true only when an RPC answered in this process.
+  When exchange is set, tries the v6 composite snapshotId first, then legacy.
     """
     contract = contract_address(contract)
-    sid = snapshot_id(audit_id)
+    candidates = snapshot_id_candidates(audit_id, exchange)
+    primary_sid = candidates[0]
     result = {
         "contract": contract,
         "chainId": CHAIN_ID,
         "network": "ethereum-sepolia",
         "auditId": str(audit_id),
-        "snapshotId": sid,
+        "snapshotId": primary_sid,
         "exchangeTag": exchange_tag(exchange) if exchange else None,
         "live": False,
         "rpc": None,
@@ -357,30 +397,35 @@ def read_snapshot(audit_id, exchange=None, contract=None, rpc=None, prefer_cast=
     }
     errors = []
     for url in rpc_urls(rpc):
-        try:
-            if prefer_cast and cast_available():
-                payload = cast_call(url, contract, VIEW_SIGNATURES["getSnapshot"], sid)
-                if payload in ("", "0x"):
-                    record = None
-                else:
-                    record = decode_record(payload)
+        rpc_ok = False
+        rpc_errors = []
+        for sid in candidates:
+            try:
+                record = _fetch_snapshot_at_id(url, contract, sid, prefer_cast, timeout)
+                rpc_ok = True
+            except _Revert as exc:
+                if (exc.decoded or {}).get("name") == "SnapshotNotFound":
+                    rpc_ok = True
+                    continue
+                rpc_errors.append(str(exc))
+                break
+            except AnchorError as exc:
+                rpc_errors.append(str(exc))
+                break
             else:
-                payload = rpc_call(url, contract, selector("getSnapshot(bytes32)") + sid[2:], timeout)
-                record = decode_record(payload)
-        except _Revert as exc:
-            if (exc.decoded or {}).get("name") == "SnapshotNotFound":
-                result.update(live=True, rpc=url, status="not_found", record=None,
-                              note="the contract answered SnapshotNotFound for this snapshotId")
-                return result
-            errors.append(str(exc))
-            continue
-        except AnchorError as exc:
-            errors.append(str(exc))
-            continue
-        result.update(live=True, rpc=url, status="found" if record else "not_found", record=record)
-        if record is None:
-            result["note"] = "the contract returned an empty SnapshotRecord (anchoredAt = 0)"
-        return result
+                if record is not None:
+                    result.update(live=True, rpc=url, status="found", record=record, snapshotId=sid)
+                    return result
+        if rpc_ok:
+            result.update(
+                live=True,
+                rpc=url,
+                status="not_found",
+                record=None,
+                note="the contract answered SnapshotNotFound for this snapshotId",
+            )
+            return result
+        errors.extend(rpc_errors)
     result["error"] = "; ".join(errors[:3]) or "no RPC endpoint answered"
     result["note"] = "every RPC endpoint failed; this is not evidence about the snapshot"
     result["rpc"] = None
@@ -424,16 +469,19 @@ def read_latest(exchange, contract=None, rpc=None, timeout=20):
     return result
 
 
-def read_exists(audit_id, contract=None, rpc=None, timeout=20):
+def read_exists(audit_id, exchange=None, contract=None, rpc=None, timeout=20):
     contract = contract_address(contract)
-    sid = snapshot_id(audit_id)
+    candidates = snapshot_id_candidates(audit_id, exchange)
+    primary_sid = candidates[0]
     for url in rpc_urls(rpc):
-        try:
-            payload = rpc_call(url, contract, selector("snapshotExists(bytes32)") + sid[2:], timeout)
-        except AnchorError:
-            continue
-        return {"live": True, "rpc": url, "snapshotId": sid, "exists": decode_bool(payload)}
-    return {"live": False, "rpc": None, "snapshotId": sid, "exists": None}
+        for sid in candidates:
+            try:
+                payload = rpc_call(url, contract, selector("snapshotExists(bytes32)") + sid[2:], timeout)
+            except AnchorError:
+                continue
+            if decode_bool(payload):
+                return {"live": True, "rpc": url, "snapshotId": sid, "exists": True}
+    return {"live": False, "rpc": None, "snapshotId": primary_sid, "exists": None}
 
 
 def load_fixture(path):
@@ -458,8 +506,9 @@ def resolve_record(audit_id, exchange=None, contract=None, rpc=None, fixture=Non
     if fixture:
         doc = load_fixture(fixture)
         rows = doc.get("records") or [doc]
+        wanted = set(snapshot_id_candidates(audit_id, exchange))
         for row in rows:
-            if str(row.get("auditId")) == str(audit_id) or row.get("snapshotId") == snapshot_id(audit_id):
+            if str(row.get("auditId")) == str(audit_id) or row.get("snapshotId") in wanted:
                 merged = dict(doc)
                 merged.update({k: v for k, v in row.items() if k != "records"})
                 merged["live"] = False
@@ -471,7 +520,7 @@ def resolve_record(audit_id, exchange=None, contract=None, rpc=None, fixture=Non
         return {
             "live": False, "status": "not_found", "record": None, "rpc": None,
             "contract": doc.get("contract"), "chainId": doc.get("chainId", CHAIN_ID),
-            "auditId": str(audit_id), "snapshotId": snapshot_id(audit_id),
+            "auditId": str(audit_id), "snapshotId": snapshot_id(audit_id, exchange),
             "source": str(fixture),
             "note": "the recorded fixture holds no record for this snapshotId",
         }

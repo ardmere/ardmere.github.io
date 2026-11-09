@@ -163,7 +163,7 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_initialize_setsSignerSchemaAndOwner() public view {
         assertEq(anchorContract.signer(), SIGNER);
-        assertEq(anchorContract.SCHEMA_VERSION(), 5);
+        assertEq(anchorContract.SCHEMA_VERSION(), 6);
         assertEq(anchorContract.STORAGE_VERSION(), 3);
         assertEq(anchorContract.owner(), owner);
     }
@@ -198,10 +198,11 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_anchorSnapshot_signerCanPublish() public {
         vm.warp(1_767_657_600);
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
 
         vm.expectEmit(true, true, false, true, address(anchorContract));
         emit SnapshotAnchored(
-            SNAPSHOT_PR01JUN26,
+            composite,
             EXCHANGE_TAG,
             "binance",
             43,
@@ -212,7 +213,7 @@ contract ArdmerePoRAnchorTest is Test {
             VERIFICATION_ROOT,
             0x01,
             17,
-            5,
+            6,
             1_767_657_600,
             1, // Stage 0
             false,
@@ -224,7 +225,8 @@ contract ArdmerePoRAnchorTest is Test {
         vm.prank(SIGNER);
         anchorContract.anchorSnapshot(
             "binance",
-            SNAPSHOT_PR01JUN26,
+            "PR01JUN26",
+            composite,
             43,
             1_767_657_600,
             951_913,
@@ -242,7 +244,7 @@ contract ArdmerePoRAnchorTest is Test {
     }
 
     function _anchorBinance(
-        bytes32 snapshotId,
+        string memory auditId,
         uint32 periodSeq,
         uint64 snapshotTime,
         uint32 btcBlockHeight,
@@ -252,9 +254,11 @@ contract ArdmerePoRAnchorTest is Test {
         uint16 reserveCoverageBps,
         uint8 custodyRiskScore
     ) internal {
+        bytes32 snapshotId = anchorContract.expectedSnapshotId("binance", auditId);
         vm.prank(SIGNER);
         anchorContract.anchorSnapshot(
             "binance",
+            auditId,
             snapshotId,
             periodSeq,
             snapshotTime,
@@ -274,12 +278,13 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_anchorSnapshot_writesStorageAndQueries() public {
         vm.warp(1_767_657_600);
-        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 2, true, 5000, 9000, 75);
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
+        _anchorBinance("PR01JUN26", 43, 1_767_657_600, 951_913, 2, true, 5000, 9000, 75);
 
-        assertTrue(anchorContract.snapshotExists(SNAPSHOT_PR01JUN26));
+        assertTrue(anchorContract.snapshotExists(composite));
 
-        ArdmerePoRAnchor.SnapshotRecord memory record = anchorContract.getSnapshot(SNAPSHOT_PR01JUN26);
-        assertEq(record.snapshotId, SNAPSHOT_PR01JUN26);
+        ArdmerePoRAnchor.SnapshotRecord memory record = anchorContract.getSnapshot(composite);
+        assertEq(record.snapshotId, composite);
         assertEq(record.exchangeTag, EXCHANGE_TAG);
         assertEq(record.exchange, "binance");
         assertEq(record.periodSeq, 43);
@@ -290,7 +295,7 @@ contract ArdmerePoRAnchorTest is Test {
         assertEq(record.verificationBundleRoot, VERIFICATION_ROOT);
         assertEq(record.verdictSummary, 0x01);
         assertEq(record.coverageBps, 17);
-        assertEq(record.schemaVersion, 5);
+        assertEq(record.schemaVersion, 6);
         assertEq(record.custodyRiskScore, 75);
         assertEq(record.anchoredAt, 1_767_657_600);
         assertEq(record.porStage, 2);
@@ -299,27 +304,28 @@ contract ArdmerePoRAnchorTest is Test {
         assertEq(record.reserveCoverageBps, 9000);
 
         ArdmerePoRAnchor.SnapshotRecord memory latest = anchorContract.getLatestSnapshot(EXCHANGE_TAG);
-        assertEq(latest.snapshotId, SNAPSHOT_PR01JUN26);
+        assertEq(latest.snapshotId, composite);
 
         ArdmerePoRAnchor.SnapshotRecord memory byPeriod =
             anchorContract.getSnapshotByPeriod(EXCHANGE_TAG, 43);
-        assertEq(byPeriod.snapshotId, SNAPSHOT_PR01JUN26);
+        assertEq(byPeriod.snapshotId, composite);
 
         assertEq(anchorContract.getSnapshotCount(EXCHANGE_TAG), 1);
-        assertEq(anchorContract.getSnapshotIdAt(EXCHANGE_TAG, 0), SNAPSHOT_PR01JUN26);
+        assertEq(anchorContract.getSnapshotIdAt(EXCHANGE_TAG, 0), composite);
     }
 
     function test_anchorSnapshot_abiEncodeDecodeRoundTrip() public {
         vm.warp(1_767_657_600);
-        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 3, true, 10000, 7500, 10);
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
+        _anchorBinance("PR01JUN26", 43, 1_767_657_600, 951_913, 3, true, 10000, 7500, 10);
 
-        bytes memory encoded = abi.encode(anchorContract.getSnapshot(SNAPSHOT_PR01JUN26));
+        bytes memory encoded = abi.encode(anchorContract.getSnapshot(composite));
         ArdmerePoRAnchor.SnapshotRecord memory decoded =
             abi.decode(encoded, (ArdmerePoRAnchor.SnapshotRecord));
 
-        assertEq(decoded.snapshotId, SNAPSHOT_PR01JUN26);
+        assertEq(decoded.snapshotId, composite);
         assertEq(decoded.coverageBps, 17);
-        assertEq(decoded.schemaVersion, 5);
+        assertEq(decoded.schemaVersion, 6);
         assertEq(decoded.custodyRiskScore, 10);
         assertEq(decoded.porStage, 3);
         assertTrue(decoded.effectivePoR);
@@ -329,14 +335,14 @@ contract ArdmerePoRAnchorTest is Test {
     }
 
     function test_anchorSnapshot_latestSnapshotUpdates() public {
-        bytes32 first = keccak256("PR01MAY26");
-        bytes32 second = keccak256("PR01JUN26");
+        bytes32 first = anchorContract.expectedSnapshotId("binance", "PR01MAY26");
+        bytes32 second = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
 
         vm.warp(1_767_657_600);
-        _anchorBinance(first, 42, 1_767_657_600, 951_000, 1, false, 0, 0, 255);
+        _anchorBinance("PR01MAY26", 42, 1_767_657_600, 951_000, 1, false, 0, 0, 255);
 
         vm.warp(1_768_032_000);
-        _anchorBinance(second, 43, 1_768_032_000, 952_000, 2, true, 100, 200, 50);
+        _anchorBinance("PR01JUN26", 43, 1_768_032_000, 952_000, 2, true, 100, 200, 50);
 
         assertEq(anchorContract.getLatestSnapshot(EXCHANGE_TAG).snapshotId, second);
         assertEq(anchorContract.getSnapshotCount(EXCHANGE_TAG), 2);
@@ -346,13 +352,15 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_anchorSnapshot_revertsOnDuplicateSnapshotId() public {
         vm.warp(1_767_657_600);
-        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 1, false, 0, 0, 0);
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
+        _anchorBinance("PR01JUN26", 43, 1_767_657_600, 951_913, 1, false, 0, 0, 0);
 
         vm.prank(SIGNER);
-        vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.SnapshotAlreadyExists.selector, SNAPSHOT_PR01JUN26));
+        vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.SnapshotAlreadyExists.selector, composite));
         anchorContract.anchorSnapshot(
             "binance",
-            SNAPSHOT_PR01JUN26,
+            "PR01JUN26",
+            composite,
             44,
             1_768_032_000,
             952_000,
@@ -383,16 +391,17 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_uupsUpgrade_preservesSignerAndEnablesStorage() public {
         vm.warp(1_767_657_600);
-        _anchorBinance(SNAPSHOT_PR01JUN26, 43, 1_767_657_600, 951_913, 2, true, 1111, 2222, 88);
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
+        _anchorBinance("PR01JUN26", 43, 1_767_657_600, 951_913, 2, true, 1111, 2222, 88);
 
         ArdmerePoRAnchor newImplementation = new ArdmerePoRAnchor();
         anchorContract.upgradeToAndCall(address(newImplementation), "");
 
         assertEq(anchorContract.signer(), SIGNER);
-        assertEq(anchorContract.SCHEMA_VERSION(), 5);
-        assertTrue(anchorContract.snapshotExists(SNAPSHOT_PR01JUN26));
-        assertEq(anchorContract.getLatestSnapshot(EXCHANGE_TAG).snapshotId, SNAPSHOT_PR01JUN26);
-        assertEq(anchorContract.getSnapshot(SNAPSHOT_PR01JUN26).walletCoverageBps, 1111);
+        assertEq(anchorContract.SCHEMA_VERSION(), 6);
+        assertTrue(anchorContract.snapshotExists(composite));
+        assertEq(anchorContract.getLatestSnapshot(EXCHANGE_TAG).snapshotId, composite);
+        assertEq(anchorContract.getSnapshot(composite).walletCoverageBps, 1111);
     }
 
     function test_upgradeFromV3Storage_oldRecordReadableWithZeroNewFields() public {
@@ -427,7 +436,7 @@ contract ArdmerePoRAnchorTest is Test {
         seed.upgradeToAndCall(address(v4), "");
 
         ArdmerePoRAnchor upgraded = ArdmerePoRAnchor(address(proxy));
-        assertEq(upgraded.SCHEMA_VERSION(), 5);
+        assertEq(upgraded.SCHEMA_VERSION(), 6);
         assertEq(upgraded.STORAGE_VERSION(), 3);
         assertTrue(upgraded.snapshotExists(SNAPSHOT_PR01JUN26));
 
@@ -445,11 +454,13 @@ contract ArdmerePoRAnchorTest is Test {
     }
 
     function test_anchorSnapshot_revertsOnInvalidCustodyRiskScore() public {
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "BAD_SCORE");
         vm.prank(SIGNER);
         vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.InvalidCustodyRiskScore.selector, 101));
         anchorContract.anchorSnapshot(
             "binance",
-            keccak256("BAD_SCORE"),
+            "BAD_SCORE",
+            composite,
             99,
             0,
             0,
@@ -471,11 +482,13 @@ contract ArdmerePoRAnchorTest is Test {
     }
 
     function test_anchorSnapshot_revertsForStranger() public {
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
         vm.prank(STRANGER);
         vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.Unauthorized.selector, STRANGER));
         anchorContract.anchorSnapshot(
             "binance",
-            SNAPSHOT_PR01JUN26,
+            "PR01JUN26",
+            composite,
             1,
             0,
             0,
@@ -493,11 +506,13 @@ contract ArdmerePoRAnchorTest is Test {
     }
 
     function test_anchorSnapshot_revertsOnZeroArtifactRoot() public {
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
         vm.prank(SIGNER);
         vm.expectRevert(ArdmerePoRAnchor.InvalidRoot.selector);
         anchorContract.anchorSnapshot(
             "binance",
-            SNAPSHOT_PR01JUN26,
+            "PR01JUN26",
+            composite,
             1,
             0,
             0,
@@ -515,11 +530,13 @@ contract ArdmerePoRAnchorTest is Test {
     }
 
     function test_anchorSnapshot_revertsOnZeroVerificationRoot() public {
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
         vm.prank(SIGNER);
         vm.expectRevert(ArdmerePoRAnchor.InvalidRoot.selector);
         anchorContract.anchorSnapshot(
             "binance",
-            SNAPSHOT_PR01JUN26,
+            "PR01JUN26",
+            composite,
             1,
             0,
             0,
@@ -537,10 +554,50 @@ contract ArdmerePoRAnchorTest is Test {
     }
 
     function test_anchorSnapshot_revertsOnEmptyExchange() public {
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
         vm.prank(SIGNER);
         vm.expectRevert(ArdmerePoRAnchor.EmptyExchange.selector);
         anchorContract.anchorSnapshot(
             "",
+            "PR01JUN26",
+            composite,
+            1,
+            0,
+            0,
+            bytes32(0),
+            ARTIFACT_ROOT,
+            VERIFICATION_ROOT,
+            0,
+            0,
+            0,
+            false,
+            0,
+            0,
+            255
+        );
+    }
+
+    function test_expectedSnapshotId_distinctForSharedAuditId() public view {
+        bytes32 phemex = anchorContract.expectedSnapshotId("phemex", "20261101");
+        bytes32 htx = anchorContract.expectedSnapshotId("htx", "20261101");
+        bytes32 ourbit = anchorContract.expectedSnapshotId("ourbit", "20261101");
+        assertTrue(phemex != htx);
+        assertTrue(htx != ourbit);
+        assertTrue(phemex != ourbit);
+        assertTrue(phemex != keccak256("20261101"));
+    }
+
+    function test_legacySnapshotId_matchesKeccakBytes() public view {
+        assertEq(anchorContract.legacySnapshotId("PR01JUN26"), SNAPSHOT_PR01JUN26);
+    }
+
+    function test_anchorSnapshot_revertsOnInvalidSnapshotId() public {
+        bytes32 expected = anchorContract.expectedSnapshotId("binance", "PR01JUN26");
+        vm.prank(SIGNER);
+        vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.InvalidSnapshotId.selector, expected, SNAPSHOT_PR01JUN26));
+        anchorContract.anchorSnapshot(
+            "binance",
+            "PR01JUN26",
             SNAPSHOT_PR01JUN26,
             1,
             0,

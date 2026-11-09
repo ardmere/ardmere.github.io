@@ -8,11 +8,11 @@ import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/Own
 /// @title  ArdmerePoRAnchor — minimal trusted-kernel anchor contract (UUPS upgradeable)
 /// @notice One on-chain anchor per exchange snapshot: both artifact and
 ///         verification bundle roots in a single event / transaction, with
-///         queryable on-chain storage (schema v5).
+///         queryable on-chain storage (schema v6).
 ///         See docs/verifier-architecture.md §6.
 contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable {
-    /// @dev Event/storage schema version (v5 = custody risk score at anchor time).
-    uint8 public constant SCHEMA_VERSION = 5;
+    /// @dev Event/storage schema version (v6 = composite snapshotId enforcement).
+    uint8 public constant SCHEMA_VERSION = 6;
 
     /// @dev On-chain snapshot storage layout version (independent of event schema).
     ///      v2 = SnapshotRecord appends porStage/effectivePoR/walletCoverageBps/reserveCoverageBps
@@ -71,7 +71,7 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
     /// @notice Emitted once per exchange snapshot period.
     /// @param  exchangeTag             keccak256(bytes(exchange)) — indexed for filtering
     /// @param  exchange                Plain exchange name, e.g. "binance"
-    /// @param  snapshotId              keccak256(native audit id), e.g. keccak256("PR01JUN26")
+    /// @param  snapshotId              v6+: keccak256(abi.encodePacked(exchange,0,auditId)); legacy rows use keccak256(bytes(auditId))
     /// @param  periodSeq               1-based sequence number for this exchange
     /// @param  snapshotTime            Exchange snapshot UTC unix timestamp
     /// @param  btcBlockHeight          BTC block height time anchor (0 if N/A)
@@ -119,6 +119,7 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
     error PeriodAlreadyAnchored(bytes32 exchangeTag, uint32 periodSeq);
     error SnapshotIndexOutOfBounds(bytes32 exchangeTag, uint256 index);
     error InvalidCustodyRiskScore(uint8 value);
+    error InvalidSnapshotId(bytes32 expected, bytes32 provided);
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
@@ -146,9 +147,31 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         emit SignerUpdated(previous, _signer);
     }
 
+    /// @notice keccak256(abi.encodePacked(normalizedExchange, bytes1(0), bytes(auditId))) — v6 storage key.
+    function expectedSnapshotId(string calldata exchange, string calldata auditId) public pure returns (bytes32) {
+        return keccak256(abi.encodePacked(_normalizedExchange(exchange), bytes1(0), bytes(auditId)));
+    }
+
+    /// @notice keccak256(bytes(auditId)) — v3–v5 legacy key; remains readable forever.
+    function legacySnapshotId(string calldata auditId) public pure returns (bytes32) {
+        return keccak256(bytes(auditId));
+    }
+
+    function _normalizedExchange(string memory exchange) private pure returns (bytes memory) {
+        bytes memory out = bytes(exchange);
+        for (uint256 i = 0; i < out.length; ++i) {
+            uint8 c = uint8(out[i]);
+            if (c >= 0x41 && c <= 0x5A) {
+                out[i] = bytes1(c + 32);
+            }
+        }
+        return out;
+    }
+
     /// @notice Anchor one complete PoR snapshot (artifact + verification roots).
     function anchorSnapshot(
         string calldata exchange,
+        string calldata auditId,
         bytes32 snapshotId,
         uint32 periodSeq,
         uint64 snapshotTime,
@@ -169,6 +192,8 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
         if (artifactBundleRoot == bytes32(0) || verificationBundleRoot == bytes32(0)) {
             revert InvalidRoot();
         }
+        bytes32 expected = expectedSnapshotId(exchange, auditId);
+        if (snapshotId != expected) revert InvalidSnapshotId(expected, snapshotId);
 
         _writeSnapshot(
             exchange,

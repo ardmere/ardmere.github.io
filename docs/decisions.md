@@ -129,3 +129,25 @@ After Binance MVP, prioritize **OKX** (full public artifact stack → Stage 1 re
 
 - Registry + CLI `por exchanges` is the canonical upstream map.
 - Scrape-only Stage 0 publications are allowed; gaps stay `UNVERIFIABLE`.
+
+---
+
+## ADR-006 Composite `snapshotId` (schema v6)
+
+**Date:** 2026-11-09 · **Status:** Accepted
+
+### Context
+
+Global `snapshots[keccak256(bytes(auditId))]` collides when unrelated exchanges share the same native audit string (e.g. Phemex, HTX, and Ourbit all use `20261101`). That made `getSnapshot` ambiguous and blocked safe re-anchoring.
+
+### Decision
+
+- **v6 storage key:** `snapshotId = keccak256(abi.encodePacked(normalizeExchange(exchange), bytes1(0), bytes(auditId)))` with lowercase ASCII exchange slugs.
+- **Legacy v3–v5 rows** keep `keccak256(bytes(auditId))` forever; clients try composite lookup first when exchange is known, then legacy.
+- **On-chain enforcement:** `anchorSnapshot` (v6 ABI) takes `string auditId` calldata and reverts `InvalidSnapshotId` unless `snapshotId == expectedSnapshotId(exchange, auditId)`.
+
+### Consequences
+
+- Breaking `anchorSnapshot` ABI (new selector); UUPS upgrade required before broadcast.
+- `por anchor`, skills, and custody scoring use composite ids for new anchors; existing Sepolia v3–v5 records remain readable via legacy keys.
+- Colliding homepage rows (`htx` / `phemex` / `ourbit` `20261101`) must be anchored with distinct composite ids after upgrade (see `docs/deployments.md`).
