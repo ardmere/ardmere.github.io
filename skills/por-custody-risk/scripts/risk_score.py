@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Score exchange reserve risk from a public assessment plus its on-chain anchor record.
+"""Score PoR transparency risk from a public assessment plus its on-chain anchor record.
 
 Reads one assessment JSON and the ArdmerePoRAnchor record for the same audit id,
 then applies the scoring table in references/decision-table.md.
@@ -49,6 +49,18 @@ SEVERITY_FALLBACK = {
 NONBLOCKING_CAP = 20
 DISCLOSURE_GAP = 16  # NO_PUBLIC_WALLET_ADDRESS_LIST; not subject to non-blocking cap
 SCORE_CAP = 100
+
+# Shown on every JSON payload so agents and UIs do not invert the scale.
+SCORE_SEMANTICS = {
+    "kind": "transparency_risk",
+    "label": "PoR transparency risk",
+    "interpretation": (
+        "Higher riskScore means worse public disclosure and verification posture "
+        "(missing artifacts, anchor gaps, unverifiable dimensions). "
+        "It is not reserve adequacy, solvency, or a trading recommendation."
+    ),
+    "scale": "0=lowest transparency risk in this table, 100=highest",
+}
 LIST_BLOCK_RULE_IDS = frozenset({
     "floor_no_public_wallet_address_list",
     "floor_no_snapshot_wallet_address_list",
@@ -285,6 +297,11 @@ def assessment_fields(assessment):
     }
 
 
+def attach_score_semantics(doc):
+    doc["scoreSemantics"] = SCORE_SEMANTICS
+    return doc
+
+
 def refuse(factor_id, note, fields, anchor, file_sha, extra=None):
     """A file we cannot score at all. One factor, 100, critical."""
     doc = {
@@ -302,7 +319,7 @@ def refuse(factor_id, note, fields, anchor, file_sha, extra=None):
     }
     if extra:
         doc.update(extra)
-    return doc
+    return attach_score_semantics(doc)
 
 
 def inconclusive(factor_id, note, fields, anchor, file_sha, extra=None):
@@ -322,7 +339,7 @@ def inconclusive(factor_id, note, fields, anchor, file_sha, extra=None):
     }
     if extra:
         doc.update(extra)
-    return doc
+    return attach_score_semantics(doc)
 
 
 def score(assessment_path, anchor_doc=None):
@@ -471,7 +488,7 @@ def score(assessment_path, anchor_doc=None):
                     "note": "Recomputed score disagrees with custodyRiskScore stored at anchor time.",
                 }
 
-    return {
+    return attach_score_semantics({
         "exchange": fields["exchange"],
         "snapshot": fields["snapshot"],
         "riskScore": risk_score,
@@ -483,7 +500,7 @@ def score(assessment_path, anchor_doc=None):
         "riskFlags": fields["flag_ids"],
         "assessmentSha256": file_sha,
         "anchor": anchor,
-    }
+    })
 
 
 def main(argv):

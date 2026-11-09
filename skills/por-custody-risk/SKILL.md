@@ -1,13 +1,13 @@
 ---
 name: por-custody-risk
-description: Score exchange reserve risk from a public Proof-of-Reserves assessment JSON and its ArdmerePoRAnchor record on Ethereum Sepolia. Use when an agent needs a 0-100 custody risk score, or needs to know whether the assessment on disk is the bundle that was anchored, before a person decides whether a CEX venue is acceptable. Does not place orders, hold keys, or decide the trade.
+description: Score PoR transparency risk (0–100, higher = worse disclosure posture) from a public assessment JSON and its ArdmerePoRAnchor record on Ethereum Sepolia. Use when an agent needs custody/transparency risk integers, or whether the assessment on disk matches the anchored bundle. Not reserve adequacy, solvency, or trading advice.
 ---
 
-# PoR custody risk
+# PoR custody risk (transparency risk score)
 
-This skill scores custody risk from evidence that is already public, and checks that evidence against a chain. It does not decide whether to trade. The final trade decision stays with the user or their agent.
+This skill scores **PoR transparency risk** from evidence that is already public, and checks that evidence against a chain. **`riskScore` is not “how safe the exchange is.”** It measures **missing or unverifiable disclosure** (artifacts, proofs, anchors, verifier gaps). **Higher score = higher transparency risk** (worse posture in this table). Lower is better. It does not decide whether to trade.
 
-Run the script and read the JSON. Use `riskScore`, `riskLevel`, `conclusive`, and `factors`. There is no `decision` field. Do not invent allow, reduce, or block. The points live in [`references/decision-table.md`](references/decision-table.md); a second run has to land on the same integers.
+Run the script and read the JSON. Use `scoreSemantics`, `riskScore`, `riskLevel`, `conclusive`, and `factors`. There is no `decision` field. Do not invent allow, reduce, or block. When presenting results to humans, always label the number as **transparency risk (higher = worse)**. The points live in [`references/decision-table.md`](references/decision-table.md); a second run has to land on the same integers.
 
 ## What this does NOT decide
 
@@ -138,7 +138,8 @@ The same file with `--no-anchor` scores identically, but the interpretation says
 
 | Field | Meaning |
 | --- | --- |
-| `riskScore` | 0–100 integer, or `null` when inconclusive |
+| `scoreSemantics` | Always present: `kind: transparency_risk`, `scale` explains higher = worse |
+| `riskScore` | 0–100 **transparency risk** (higher = worse), or `null` when inconclusive |
 | `riskLevel` | `low`, `medium`, `high`, `critical`, or `null` when inconclusive |
 | `conclusive` | `false` only when the anchor could not be read |
 | `factors[]` | `id`, `delta`, `note` — the arithmetic, in application order |
