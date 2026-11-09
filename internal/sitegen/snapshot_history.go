@@ -29,7 +29,7 @@ func WriteSnapshotHistory(path string, rows []Assessment, _ exchangeregistry.Reg
 	}
 
 	b.WriteString("## All public reports\n\n")
-	b.WriteString("| Exchange | Snapshot | Date | Stage | Custody risk | Report |\n")
+	b.WriteString("| Exchange | Snapshot | Date | Stage | Transparency risk | Report |\n")
 	b.WriteString("| --- | --- | --- | --- | --- | --- |\n")
 	for _, a := range rows {
 		custodyCell := "—"

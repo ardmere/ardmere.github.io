@@ -79,7 +79,7 @@ func renderHomepageReportSet(rows []ReportRow) (string, error) {
                 <span>Snapshot</span>
                 <span>Date</span>
                 <span>Stage</span>
-                <span>Custody risk</span>
+                <span>Transparency risk</span>
                 <span class="report-list-action">Report</span>
               </div>
 {{range .}}              <div class="report-row">
@@ -87,7 +87,7 @@ func renderHomepageReportSet(rows []ReportRow) (string, error) {
                 <time class="report-snapshot" datetime="{{.SnapshotISO}}">{{.SnapshotID}}</time>
                 <span class="report-date"><time datetime="{{.SnapshotISO}}">{{.SnapshotDate}}</time></span>
                 <span class="{{.StageClass}}">{{.Stage}}</span>
-                <span class="{{.CustodyClass}}" title="File-only custody risk (por-custody-risk)">{{.CustodyRisk}}</span>
+                <span class="{{.CustodyClass}}" title="PoR transparency risk from por-custody-risk; higher score = worse disclosure posture">{{.CustodyRisk}}</span>
                 <a class="report-link" href="{{.ReportHref}}">View report</a>
               </div>
 {{end}}`
