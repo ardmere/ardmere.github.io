@@ -24,7 +24,8 @@ FALLBACK_RPC_URLS = (
     "https://1rpc.io/sepolia",
 )
 CHAIN_ID = 11155111  # pragma: allowlist secret
-SCHEMA_VERSION = 4
+SCHEMA_VERSION = 5
+CUSTODY_RISK_UNAVAILABLE = 255
 
 # SnapshotRecord, in ABI order (docs/anchor-query-api.md §4).
 RECORD_FIELDS = (
@@ -45,6 +46,7 @@ RECORD_FIELDS = (
     ("effectivePoR", "bool"),
     ("walletCoverageBps", "uint16"),
     ("reserveCoverageBps", "uint16"),
+    ("custodyRiskScore", "uint8"),
 )
 RECORD_TUPLE = "(" + ",".join(kind for _name, kind in RECORD_FIELDS) + ")"
 

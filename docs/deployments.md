@@ -7,7 +7,7 @@ On-chain anchor contract deployments and first anchor transactions.
 
 | Network | Chain ID | Role | Status |
 | --- | --- | --- | --- |
-| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy + impl v4) |  # pragma: allowlist secret
+| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy; v5 upgrade + re-anchor pending) |  # pragma: allowlist secret
 | Base | `8453` | Production primary (ADR-002) | **Pending** — not deployed |
 | Base Sepolia | `84532` | Optional L2 testnet | **Pending** — not deployed |
 
@@ -29,8 +29,8 @@ Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only)
 | **Implementation (v2, superseded)** | [`0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392`](https://sepolia.etherscan.io/address/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392) |
 | **Anchor signer** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
 | **Upgrade owner** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
-| **Schema version** | `4` (stage + dual coverage; v3 rows remain readable) |
-| **Storage version** | `2` (v1/v3 records still readable; new fields zero/false) |
+| **Schema version** | `5` after v5 upgrade (`4` on-chain until upgraded; v3 rows remain readable) |
+| **Storage version** | `3` after v5 upgrade (`2` until upgraded) |
 | **Pattern** | UUPS (`ERC1967Proxy` + `ArdmerePoRAnchor` implementation) |
 | **Impl deploy tx (v4)** | [`0xb746e715c68a5fd3a5e603b4f9f48e4f0158a45fc4f5225420c2b94a6c12a0f9`](https://sepolia.etherscan.io/tx/0xb746e715c68a5fd3a5e603b4f9f48e4f0158a45fc4f5225420c2b94a6c12a0f9) |
 | **Upgrade tx (v3→v4)** | [`0xf4bdf0a43969ff31f344389d40bf7bd8032fd7bfc4f018843a9cb388032cf3b6`](https://sepolia.etherscan.io/tx/0xf4bdf0a43969ff31f344389d40bf7bd8032fd7bfc4f018843a9cb388032cf3b6) |
@@ -127,3 +127,33 @@ New `SnapshotRecord` fields (appended after `anchoredAt`): `porStage`, `effectiv
 - **Impl deploy tx:** [`0xb746e715c68a5fd3a5e603b4f9f48e4f0158a45fc4f5225420c2b94a6c12a0f9`](https://sepolia.etherscan.io/tx/0xb746e715c68a5fd3a5e603b4f9f48e4f0158a45fc4f5225420c2b94a6c12a0f9)
 - **Upgrade tx (v3→v4):** [`0xf4bdf0a43969ff31f344389d40bf7bd8032fd7bfc4f018843a9cb388032cf3b6`](https://sepolia.etherscan.io/tx/0xf4bdf0a43969ff31f344389d40bf7bd8032fd7bfc4f018843a9cb388032cf3b6)
 - Verified live: `SCHEMA_VERSION()=4`, `STORAGE_VERSION()=2`; existing v3 snapshots (e.g. `PR01JUN26`, `506872725`) still readable via `getSnapshot` with `porStage=0`, `effectivePoR=false`, `walletCoverageBps=0`, `reserveCoverageBps=0`.
+
+## Schema v5 upgrade (custody risk on-chain)
+
+UUPS upgrade of the Sepolia proxy (address unchanged). Adds `custodyRiskScore` (`uint8`, **0–100** or **`255`** = unavailable/inconclusive) to `SnapshotRecord` and `anchorSnapshot` calldata. Aligns with NEAR sibling semantics.
+
+```bash
+export PATH="$HOME/.foundry/bin:$PATH"
+cd contracts
+# Required: PRIVATE_KEY (upgrade owner), ANCHOR_CONTRACT (proxy), RPC_URL
+forge script script/Upgrade.s.sol:Upgrade --rpc-url "$RPC_URL" --broadcast -vvvv
+cast call "$ANCHOR_CONTRACT" "SCHEMA_VERSION()(uint8)" --rpc-url "$RPC_URL"   # expect 5
+cast call "$ANCHOR_CONTRACT" "STORAGE_VERSION()(uint8)" --rpc-url "$RPC_URL"  # expect 3
+```
+
+**Anchor-time score:** `por anchor` / `internal/pipeline` invoke `skills/por-custody-risk/scripts/risk_score.py --no-anchor` on `docs/reports/<exchange>/<auditId>-assessment.json` so the score uses the **same bundle roots** being anchored (no live anchor read; avoids `ANCHOR_MISMATCH` chicken-and-egg). If scoring is inconclusive, calldata uses `255`.
+
+**Homepage re-anchor (human-operated):** `./scripts/reanchor-homepage-v5.sh` lists the current `HOMEPAGE_REPORT_SET` and suggested `cast send` workflow. Immutable `snapshotId` rows cannot be updated on-chain; only not-yet-anchored homepage snapshots receive v5 fields at first anchor.
+
+**Operator cast signature (v5):**
+
+```bash
+cast send "$ANCHOR_CONTRACT" \
+  'anchorSnapshot(string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)' \
+  "<exchange>" <snapshotId_b32> <periodSeq> <snapshotTimeUnix> <btcBlockHeight> \
+  <exchangeMerkleRoot> <artifactBundleRoot> <verificationBundleRoot> \
+  <verdictSummary> <coverageBps> <porStage> <effectivePoR> <walletCoverageBps> <reserveCoverageBps> <custodyRiskScore> \
+  --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
+```
+
+Signer on Sepolia: `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F`.

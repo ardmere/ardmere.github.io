@@ -122,6 +122,18 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 	}
 	artBundle, verBundle := pipeline.BuildBundles(snap, fetch.Artifacts, result.Verifications, result.VerdictSummary, result.CoverageBps, cov)
 
+	repoRoot := pipeline.FindRepoRoot()
+	assessmentPath := pipeline.AssessmentPath(repoRoot, snap.Exchange, snap.ID)
+	custodyScore, custodyErr := pipeline.CustodyRiskScoreAtAnchor(assessmentPath)
+	if custodyErr != nil {
+		log.Printf("      custody risk score: unavailable (%v)", custodyErr)
+		custodyScore = pipeline.CustodyRiskUnavailable
+	} else if custodyScore == pipeline.CustodyRiskUnavailable {
+		log.Printf("      custody risk score: %d (no assessment at %s or inconclusive)", custodyScore, assessmentPath)
+	} else {
+		log.Printf("      custody risk score: %d (--no-anchor on %s)", custodyScore, assessmentPath)
+	}
+
 	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".artifact-bundle.json"), artBundle)
 	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".verification-bundle.json"), verBundle)
 	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".verification-bundle.v2.json"), verBundle)
@@ -140,6 +152,7 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 		"effectivePoR":           effective,
 		"walletCoverageBps":      result.WalletCoverageBps,
 		"reserveCoverageBps":     result.ReserveCoverageBps,
+		"custodyRiskScore":       custodyScore,
 		"coverageDetail":         result.CoverageDetail,
 	})
 	log.Printf("      bundles written under %s/", stored.BundlesDir)
@@ -157,6 +170,7 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 		effective,
 		result.WalletCoverageBps,
 		result.ReserveCoverageBps,
+		custodyScore,
 	))
 	return AnchorResult{
 		SnapshotID:  snap.ID,
