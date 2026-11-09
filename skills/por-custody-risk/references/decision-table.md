@@ -137,7 +137,7 @@ Computed with `skills/por-custody-risk/scripts/por-check.sh`, not copied from an
 | `docs/reports/kucoin/20261031-assessment.json` | `53290a7f5021032f` | anchored, 2 of 3 roots compared and agree | blocking + stage + list +16 + derived ownership +8 | 99 | `critical` |
 | `docs/reports/bitget/20261021-assessment.json` | `f33c596ad188d7b3` | anchored, 3 of 3 roots agree | blocking + stage + list +16 + ownership +8 | 99 | `critical` |
 | `docs/reports/bybit/2026102706-assessment.json` | (see file) | file-only or anchored per run | `UNVERIFIABLE` +40, stage +35, derived list +16, derived ownership +8 | 99 | `critical` |
-| `docs/reports/mexc/202610-assessment.json` | `a8631544e337795d` | anchored, 2 of 3 roots compared and agree | `UNVERIFIABLE` +40, stage +35, then `NO_PUBLIC_MERKLE_ROOT` +8, `WAF_GATED` +8, `LOGIN_GATED_USER_PROOF` +4 (capped at 20) | 95 | `critical` |
+| `docs/reports/mexc/202610-assessment.json` | `a8631544e337795d` | anchored, 2 of 3 roots compared and agree | `UNVERIFIABLE` +40, stage +35, derived list +16, non-blocking capped | 100 | `critical` |
 | `docs/reports/binance/PR01JUN26-assessment.json` | `250a2a76d87e9956` | **mismatch** when read against the live anchor: `verificationBundleRoot` and `artifactBundleRoot` disagree with the contract | `UNVERIFIABLE` +40, stage +35, `NO_WALLET_OWNERSHIP_PROOF` +8, `OPAQUE_TRUSTED_SETUP` +8, so 91 file-only; `ANCHOR_MISMATCH` +100 when the anchor is read | 91 / 100 | `critical` |
 | `docs/reports/okx/506872725-assessment.json` | `8cbf3abbd6c4ae44` | **mismatch** when read against the live anchor: `verificationBundleRoot` disagrees | otherwise 10 (`NO_CANONICAL_ANCHOR` +5, `HIGH_FREQUENCY_GAP` +5); `ANCHOR_MISMATCH` +100 when the anchor is read | 10 / 100 | `low` / `critical` |
 

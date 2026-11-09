@@ -30,6 +30,8 @@ type ReportRow struct {
 	SnapshotID   string
 	SnapshotTime time.Time
 	Stage        string
+	CustodyRisk  string
+	CustodyLevel string
 	ReportHref   string
 }
 
@@ -77,6 +79,7 @@ func renderHomepageReportSet(rows []ReportRow) (string, error) {
                 <span>Snapshot</span>
                 <span>Date</span>
                 <span>Stage</span>
+                <span>Custody risk</span>
                 <span class="report-list-action">Report</span>
               </div>
 {{range .}}              <div class="report-row">
@@ -84,6 +87,7 @@ func renderHomepageReportSet(rows []ReportRow) (string, error) {
                 <time class="report-snapshot" datetime="{{.SnapshotISO}}">{{.SnapshotID}}</time>
                 <span class="report-date"><time datetime="{{.SnapshotISO}}">{{.SnapshotDate}}</time></span>
                 <span class="{{.StageClass}}">{{.Stage}}</span>
+                <span class="{{.CustodyClass}}" title="File-only custody risk (por-custody-risk)">{{.CustodyRisk}}</span>
                 <a class="report-link" href="{{.ReportHref}}">View report</a>
               </div>
 {{end}}`
@@ -94,6 +98,8 @@ func renderHomepageReportSet(rows []ReportRow) (string, error) {
 		SnapshotDate string
 		Stage        string
 		StageClass   string
+		CustodyRisk  string
+		CustodyClass string
 		ReportHref   string
 	}
 	views := make([]view, 0, len(rows))
@@ -102,6 +108,11 @@ func renderHomepageReportSet(rows []ReportRow) (string, error) {
 		if r.Stage == "Stage 1" {
 			stageClass = "stage stage-1"
 		}
+		custodyRisk := r.CustodyRisk
+		if custodyRisk == "" {
+			custodyRisk = "—"
+		}
+		custodyClass := custodyRiskClass(r.CustodyLevel)
 		views = append(views, view{
 			ExchangeName: r.ExchangeName,
 			SnapshotID:   r.SnapshotID,
@@ -109,6 +120,8 @@ func renderHomepageReportSet(rows []ReportRow) (string, error) {
 			SnapshotDate: r.SnapshotTime.Format("2006-01-02"),
 			Stage:        r.Stage,
 			StageClass:   stageClass,
+			CustodyRisk:  custodyRisk,
+			CustodyClass: custodyClass,
 			ReportHref:   r.ReportHref,
 		})
 	}

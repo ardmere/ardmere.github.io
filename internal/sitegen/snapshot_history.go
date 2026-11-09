@@ -2,6 +2,7 @@ package sitegen
 
 import (
 	"fmt"
+	"path/filepath"
 	"strings"
 
 	"github.com/ardmere/ardmere/internal/exchangeregistry"
@@ -9,6 +10,10 @@ import (
 
 // WriteSnapshotHistory generates docs/reports/snapshot-history.md from assessments.
 func WriteSnapshotHistory(path string, rows []Assessment, _ exchangeregistry.Registry) error {
+	custody, err := LoadCustodyRiskScores(filepath.Dir(path))
+	if err != nil {
+		return err
+	}
 	assessed := latestGeneratedAt(rows)
 	var b strings.Builder
 	b.WriteString("# PoR Snapshot History (Public Evaluation Set)\n\n")
@@ -24,11 +29,15 @@ func WriteSnapshotHistory(path string, rows []Assessment, _ exchangeregistry.Reg
 	}
 
 	b.WriteString("## All public reports\n\n")
-	b.WriteString("| Exchange | Snapshot | Date | Stage | Report |\n")
-	b.WriteString("| --- | --- | --- | --- | --- |\n")
+	b.WriteString("| Exchange | Snapshot | Date | Stage | Custody risk | Report |\n")
+	b.WriteString("| --- | --- | --- | --- | --- | --- |\n")
 	for _, a := range rows {
-		b.WriteString(fmt.Sprintf("| %s | `%s` | %s | %s | %s |\n",
-			a.ExchangeName, a.SnapshotID, formatSnapshotDate(a.SnapshotTime), formatStageMD(a.Stage), reportLinkMD(a.ReportRel)))
+		custodyCell := "—"
+		if score, _, ok := custody.Lookup(a.Exchange, a.SnapshotID); ok {
+			custodyCell = fmt.Sprintf("`%s`", score)
+		}
+		b.WriteString(fmt.Sprintf("| %s | `%s` | %s | %s | %s | %s |\n",
+			a.ExchangeName, a.SnapshotID, formatSnapshotDate(a.SnapshotTime), formatStageMD(a.Stage), custodyCell, reportLinkMD(a.ReportRel)))
 	}
 	b.WriteString("\nDates are snapshot times from each assessment JSON (`snapshotTime`, UTC date).\n\n")
 

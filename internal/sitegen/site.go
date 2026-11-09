@@ -53,7 +53,12 @@ func mergeSiteOptions(opt SiteOptions) SiteOptions {
 }
 
 func updateHomepageFromAssessments(opt SiteOptions, reg exchangeregistry.Registry, rows []Assessment) error {
+	custody, err := LoadCustodyRiskScores(opt.ReportsDir)
+	if err != nil {
+		return err
+	}
 	reportRows := assessmentsToReportRows(rows)
+	applyCustodyRisk(reportRows, rows, custody)
 	if len(reportRows) > opt.HomepageLimit {
 		reportRows = reportRows[:opt.HomepageLimit]
 	}
