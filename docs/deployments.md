@@ -7,7 +7,7 @@ On-chain anchor contract deployments and first anchor transactions.
 
 | Network | Chain ID | Role | Status |
 | --- | --- | --- | --- |
-| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy; v5 upgrade + re-anchor pending) |  # pragma: allowlist secret
+| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy schema v5; homepage v5 anchors 2026-11-09) |  # pragma: allowlist secret
 | Base | `8453` | Production primary (ADR-002) | **Pending** — not deployed |
 | Base Sepolia | `84532` | Optional L2 testnet | **Pending** — not deployed |
 
@@ -29,8 +29,11 @@ Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only)
 | **Implementation (v2, superseded)** | [`0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392`](https://sepolia.etherscan.io/address/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392) |
 | **Anchor signer** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
 | **Upgrade owner** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
-| **Schema version** | `5` after v5 upgrade (`4` on-chain until upgraded; v3 rows remain readable) |
-| **Storage version** | `3` after v5 upgrade (`2` until upgraded) |
+| **Schema version** | `5` (v3/v4 rows remain readable) |
+| **Storage version** | `3` |
+| **Implementation (v5, custody risk)** | [`0x8A0E063Ad547adBA8fC5B7D0d0F9Cf55dF671Baf`](https://sepolia.etherscan.io/address/0x8A0E063Ad547adBA8fC5B7D0d0F9Cf55dF671Baf) |
+| **Impl deploy tx (v5)** | [`0x88afa3f6482d5207fd652e7ce1c8df466021372f1989444b8885fa4d78631a9e`](https://sepolia.etherscan.io/tx/0x88afa3f6482d5207fd652e7ce1c8df466021372f1989444b8885fa4d78631a9e) |
+| **Upgrade tx (v4→v5)** | [`0x6d41d2bc5af19a583e028a24ff324f32807008c27bc56cf817bc0b51f9ede682`](https://sepolia.etherscan.io/tx/0x6d41d2bc5af19a583e028a24ff324f32807008c27bc56cf817bc0b51f9ede682) |
 | **Pattern** | UUPS (`ERC1967Proxy` + `ArdmerePoRAnchor` implementation) |
 | **Impl deploy tx (v4)** | [`0xb746e715c68a5fd3a5e603b4f9f48e4f0158a45fc4f5225420c2b94a6c12a0f9`](https://sepolia.etherscan.io/tx/0xb746e715c68a5fd3a5e603b4f9f48e4f0158a45fc4f5225420c2b94a6c12a0f9) |
 | **Upgrade tx (v3→v4)** | [`0xf4bdf0a43969ff31f344389d40bf7bd8032fd7bfc4f018843a9cb388032cf3b6`](https://sepolia.etherscan.io/tx/0xf4bdf0a43969ff31f344389d40bf7bd8032fd7bfc4f018843a9cb388032cf3b6) |
@@ -143,7 +146,18 @@ cast call "$ANCHOR_CONTRACT" "STORAGE_VERSION()(uint8)" --rpc-url "$RPC_URL"  # 
 
 **Anchor-time score:** `por anchor` / `internal/pipeline` invoke `skills/por-custody-risk/scripts/risk_score.py --no-anchor` on `docs/reports/<exchange>/<auditId>-assessment.json` so the score uses the **same bundle roots** being anchored (no live anchor read; avoids `ANCHOR_MISMATCH` chicken-and-egg). If scoring is inconclusive, calldata uses `255`.
 
-**Homepage re-anchor (human-operated):** `./scripts/reanchor-homepage-v5.sh` lists the current `HOMEPAGE_REPORT_SET` and suggested `cast send` workflow. Immutable `snapshotId` rows cannot be updated on-chain; only not-yet-anchored homepage snapshots receive v5 fields at first anchor.
+**Homepage re-anchor (human-operated):** `./scripts/reanchor-homepage-v5.sh` lists the current `HOMEPAGE_REPORT_SET`; `scripts/anchor-assessment-v5.py` broadcasts from assessment JSON + `risk_score.py --no-anchor` custody score. Immutable `snapshotId` rows cannot be updated on-chain.
+
+### Homepage v5 anchors (2026-11-09)
+
+| Exchange | auditId | custodyRiskScore (at anchor) | `anchorSnapshot` tx |
+| --- | --- | --- | --- |
+| binance | `PR04NOV26` | 91 | [`0xd582cd5893d60d7f3f46dc623fac4dbc280e45c3ff1a7f02222dd15c7e4c4ea8`](https://sepolia.etherscan.io/tx/0xd582cd5893d60d7f3f46dc623fac4dbc280e45c3ff1a7f02222dd15c7e4c4ea8) |
+| bitunix | `20261103` | 100 | [`0xfd2cdca7e98895de5a0bf5fa4259149862728571ea6c895fb10589b06e5841bb`](https://sepolia.etherscan.io/tx/0xfd2cdca7e98895de5a0bf5fa4259149862728571ea6c895fb10589b06e5841bb) |
+| phemex | `20261101` | 100 | [`0x262cc925d88fff16f3ab3f134e0d18e88ab97bc42cb93a9b332ec336264d7cc7`](https://sepolia.etherscan.io/tx/0x262cc925d88fff16f3ab3f134e0d18e88ab97bc42cb93a3c332ec336264d7cc7) |
+| okx | `508756245` | 10 (periodSeq **4** — assessment `0` was taken) | see Etherscan `anchorSnapshot` for snapshotId `keccak256("508756245")` |
+
+**Not separately anchorable on Sepolia:** `htx` / `ourbit` homepage rows use audit id `20261101`, which shares `snapshotId = keccak256(auditId)` with the phemex anchor above (contract keys snapshots by audit id only). On-chain reads for those files hit the phemex record → `ANCHOR_MISMATCH` until audit ids differ.
 
 **Operator cast signature (v5):**
 
