@@ -1,6 +1,6 @@
-# Custody risk score
+# Custody risk score (PoR transparency risk)
 
-The skill scores custody risk. It does not decide whether to trade. There is no `decision` field and no allow / reduce / block output. `por-check.sh` reads only this table, so a second run has to land on the same integers.
+The skill scores **transparency / disclosure risk** for a published PoR assessment. **Higher `riskScore` = higher risk** (worse public verification posture). It is **not** reserve adequacy, solvency, or “exchange safety.” It does not decide whether to trade. There is no `decision` field and no allow / reduce / block output. `por-check.sh` reads only this table, so a second run has to land on the same integers.
 
 `riskScore` is an integer from 0 to 100. Sum the applied `factors[].delta` values. If that sum is above 100, reduce deltas from the last factor backwards until the sum is 100, and say so in the note. `riskScore` is that sum.
 

@@ -9,7 +9,7 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 
 ## All public reports
 
-| Exchange | Snapshot | Date | Stage | Custody risk | Report |
+| Exchange | Snapshot | Date | Stage | Transparency risk | Report |
 | --- | --- | --- | --- | --- | --- |
 | Binance | `PR04NOV26` | 2026-11-04 | Stage 0 | `91` | [report](./binance/PR04NOV26-transparency-report.md) |
 | Bitunix | `20261103` | 2026-11-03 | Stage 0 | `100` | [report](./bitunix/20261103-transparency-report.md) |
