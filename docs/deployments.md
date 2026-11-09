@@ -154,7 +154,7 @@ cast call "$ANCHOR_CONTRACT" "STORAGE_VERSION()(uint8)" --rpc-url "$RPC_URL"  # 
 | --- | --- | --- | --- |
 | binance | `PR04NOV26` | 91 | [`0xd582cd5893d60d7f3f46dc623fac4dbc280e45c3ff1a7f02222dd15c7e4c4ea8`](https://sepolia.etherscan.io/tx/0xd582cd5893d60d7f3f46dc623fac4dbc280e45c3ff1a7f02222dd15c7e4c4ea8) |
 | bitunix | `20261103` | 100 | [`0xfd2cdca7e98895de5a0bf5fa4259149862728571ea6c895fb10589b06e5841bb`](https://sepolia.etherscan.io/tx/0xfd2cdca7e98895de5a0bf5fa4259149862728571ea6c895fb10589b06e5841bb) |
-| phemex | `20261101` | 100 | [`0x262cc925d88fff16f3ab3f134e0d18e88ab97bc42cb93a9b332ec336264d7cc7`](https://sepolia.etherscan.io/tx/0x262cc925d88fff16f3ab3f134e0d18e88ab97bc42cb93a3c332ec336264d7cc7) |
+| phemex | `20261101` | 100 | [`0x262cc925d88fff16f3ab3f134e0d18e88ab97bc42cb93a9b332ec336264d7cc7`](https://sepolia.etherscan.io/tx/0x262cc925d88fff16f3ab3f134e0d18e88ab97bc42cb93a9b332ec336264d7cc7) |
 | okx | `508756245` | 10 (periodSeq **4** — assessment `0` was taken) | [`0x1924fa2c126f6c0bf5d10781eeceea7a754caa94ad07a4b1e16b5f83c95124cc`](https://sepolia.etherscan.io/tx/0x1924fa2c126f6c0bf5d10781eeceea7a754caa94ad07a4b1e16b5f83c95124cc) |
 
 **Not separately anchorable on Sepolia:** `htx` / `ourbit` homepage rows use audit id `20261101`, which shares `snapshotId = keccak256(auditId)` with the phemex anchor above (contract keys snapshots by audit id only). On-chain reads for those files hit the phemex record → `ANCHOR_MISMATCH` until audit ids differ.
