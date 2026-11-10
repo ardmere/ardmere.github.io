@@ -1,6 +1,6 @@
 {
   "schema": "ardmere/custody-risk-scores@1",
-  "generatedAt": "2026-11-09T14:01:05Z",
+  "generatedAt": "2026-11-10T00:28:33Z",
   "scoringMode": "file-only (--no-anchor)",
   "decisionTable": "skills/por-custody-risk/references/decision-table.md",
   "scores": [

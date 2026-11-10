@@ -7,7 +7,7 @@ On-chain anchor contract deployments and first anchor transactions.
 
 | Network | Chain ID | Role | Status |
 | --- | --- | --- | --- |
-| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy schema v5; homepage v5 anchors 2026-11-09) |  # pragma: allowlist secret
+| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy schema **v6**; composite homepage anchors 2026-11-09) |  # pragma: allowlist secret
 | Base | `8453` | Production primary (ADR-002) | **Pending** — not deployed |
 | Base Sepolia | `84532` | Optional L2 testnet | **Pending** — not deployed |
 
@@ -29,9 +29,12 @@ Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only)
 | **Implementation (v2, superseded)** | [`0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392`](https://sepolia.etherscan.io/address/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392) |
 | **Anchor signer** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
 | **Upgrade owner** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
-| **Schema version** | `5` (v3/v4 rows remain readable) |
+| **Schema version** | `6` (v3–v5 rows remain readable) |
 | **Storage version** | `3` |
-| **Implementation (v5, custody risk)** | [`0x8A0E063Ad547adBA8fC5B7D0d0F9Cf55dF671Baf`](https://sepolia.etherscan.io/address/0x8A0E063Ad547adBA8fC5B7D0d0F9Cf55dF671Baf) |
+| **Implementation (v6, composite snapshotId)** | [`0xB0A204285e6Cc7Eaf9fA21E327668Fc808032DEe`](https://sepolia.etherscan.io/address/0xB0A204285e6Cc7Eaf9fA21E327668Fc808032DEe) |
+| **Impl deploy tx (v6)** | [`0xe6b5687974f34214a94c60651cc47085ced433ba8d0447c7af28a77b96b2b898`](https://sepolia.etherscan.io/tx/0xe6b5687974f34214a94c60651cc47085ced433ba8d0447c7af28a77b96b2b898) |
+| **Upgrade tx (v5→v6)** | [`0x43ac3aa0d85bb826aedb70cac2cdd4860e0f42639f12013d3f0c607a26d25dc3`](https://sepolia.etherscan.io/tx/0x43ac3aa0d85bb826aedb70cac2cdd4860e0f42639f12013d3f0c607a26d25dc3) |
+| **Implementation (v5, custody risk, superseded)** | [`0x8A0E063Ad547adBA8fC5B7D0d0F9Cf55dF671Baf`](https://sepolia.etherscan.io/address/0x8A0E063Ad547adBA8fC5B7D0d0F9Cf55dF671Baf) |
 | **Impl deploy tx (v5)** | [`0x88afa3f6482d5207fd652e7ce1c8df466021372f1989444b8885fa4d78631a9e`](https://sepolia.etherscan.io/tx/0x88afa3f6482d5207fd652e7ce1c8df466021372f1989444b8885fa4d78631a9e) |
 | **Upgrade tx (v4→v5)** | [`0x6d41d2bc5af19a583e028a24ff324f32807008c27bc56cf817bc0b51f9ede682`](https://sepolia.etherscan.io/tx/0x6d41d2bc5af19a583e028a24ff324f32807008c27bc56cf817bc0b51f9ede682) |
 | **Pattern** | UUPS (`ERC1967Proxy` + `ArdmerePoRAnchor` implementation) |
@@ -157,7 +160,7 @@ cast call "$ANCHOR_CONTRACT" "STORAGE_VERSION()(uint8)" --rpc-url "$RPC_URL"  # 
 | phemex | `20261101` | 100 | [`0x262cc925d88fff16f3ab3f134e0d18e88ab97bc42cb93a9b332ec336264d7cc7`](https://sepolia.etherscan.io/tx/0x262cc925d88fff16f3ab3f134e0d18e88ab97bc42cb93a9b332ec336264d7cc7) |
 | okx | `508756245` | 10 (periodSeq **4** — assessment `0` was taken) | [`0x1924fa2c126f6c0bf5d10781eeceea7a754caa94ad07a4b1e16b5f83c95124cc`](https://sepolia.etherscan.io/tx/0x1924fa2c126f6c0bf5d10781eeceea7a754caa94ad07a4b1e16b5f83c95124cc) |
 
-**Not separately anchorable on Sepolia:** `htx` / `ourbit` homepage rows use audit id `20261101`, which shares `snapshotId = keccak256(auditId)` with the phemex anchor above (contract keys snapshots by audit id only). On-chain reads for those files hit the phemex record → `ANCHOR_MISMATCH` until audit ids differ.
+Legacy v5 rows keyed by `keccak256(bytes(auditId))` only; schema v6 composite keys disambiguate colliding audit ids (see homepage v6 table below).
 
 **Operator cast signature (v5):**
 
@@ -196,7 +199,20 @@ cast send "$ANCHOR_CONTRACT" \
 
 Derive `snapshotId_b32` with `cast call "$ANCHOR_CONTRACT" "expectedSnapshotId(string,string)(bytes32)" "<exchange>" "<auditId>" --rpc-url "$RPC_URL"` or `./por anchor -exchange <id> -audit <auditId>` (prints schema v6 calldata). **Do not broadcast** without signer keys.
 
-**Colliding audit ids (re-anchor after v6, composite keys):**
+### Homepage v6 composite anchors (2026-11-09)
+
+After the v5→v6 UUPS upgrade, homepage rows were re-anchored under composite `snapshotId` keys (`expectedSnapshotId(exchange, auditId)`). `periodSeq` values below are the on-chain index used at anchor time (`getSnapshotCount` when the prior period was already consumed).
+
+| Exchange | auditId | custodyRiskScore | periodSeq | `anchorSnapshot` tx |
+| --- | --- | ---: | ---: | --- |
+| ourbit | `20261101` | 100 | 0 | [`0x2afe397dc58654957d013fefc4736cf2fea713086c847a47d2d4d8930861f9ef`](https://sepolia.etherscan.io/tx/0x2afe397dc58654957d013fefc4736cf2fea713086c847a47d2d4d8930861f9ef) |
+| htx | `20261101` | 99 | 1 | [`0x80960fdd7339ef5dc6ebe291b60080723281b7c0aa75d6d598e08151a1f7fcd0`](https://sepolia.etherscan.io/tx/0x80960fdd7339ef5dc6ebe291b60080723281b7c0aa75d6d598e08151a1f7fcd0) |
+| binance | `PR04NOV26` | 91 | 6 | [`0x390bbf0a0eaae3d1cc94604496e9ff18ceb22fbe18565b71079977f1f471bdf8`](https://sepolia.etherscan.io/tx/0x390bbf0a0eaae3d1cc94604496e9ff18ceb22fbe18565b71079977f1f471bdf8) |
+| bitunix | `20261103` | 100 | 1 | [`0x63068fcb8e6a9951ed2995a008d014bfbf0b7d41b9e924cac3b575dca29472f8`](https://sepolia.etherscan.io/tx/0x63068fcb8e6a9951ed2995a008d014bfbf0b7d41b9e924cac3b575dca29472f8) |
+| phemex | `20261101` | 100 | 1 | [`0xadb39d62b65ea7d229b7ee561971ec6774a593fe9a4facd85b6d702ff9bf1aa4`](https://sepolia.etherscan.io/tx/0xadb39d62b65ea7d229b7ee561971ec6774a593fe9a4facd85b6d702ff9bf1aa4) |
+| okx | `508756245` | 10 | 5 | [`0xe274ec7808eb4eda9918f4267fdf14679e342c8534d5aa8d18f92d73ed92ceab`](https://sepolia.etherscan.io/tx/0xe274ec7808eb4eda9918f4267fdf14679e342c8534d5aa8d18f92d73ed92ceab) |
+
+**Colliding audit ids (composite keys, v6+):**
 
 | Exchange | auditId | `expectedSnapshotId` (composite) |
 | --- | --- | --- |
@@ -204,4 +220,44 @@ Derive `snapshotId_b32` with `cast call "$ANCHOR_CONTRACT" "expectedSnapshotId(s
 | htx | `20261101` | `0xbdbd096d9043bf0b55246ef612e4db87ac27eb5718e8debd15fdd77db30e6f20` |
 | ourbit | `20261101` | `0xcf880c45c95eb72602f327c669c070e2cf047bb236b57614ed774c1fca9e6412` |
 
-Legacy `keccak256(bytes("20261101"))` = `0x9565ad3fb66b361d5dcf03c74124363797d48a3b2688f8bccfa728c066d061a5` — do **not** use for new anchors.
+Legacy `keccak256(bytes("20261101"))` = `0x9565ad3fb66b361d5dcf03c74124363797d48a3b2688f8bccfa728c066d061a5` — historical v3–v5 rows only; do **not** use for new anchors.
+
+### Full manifest v6 anchors
+
+Every file under `docs/reports/*/*-assessment.json` should have a composite v6 row with a live custody score that matches `skills/por-custody-risk/scripts/risk_score.py` (see `custodyRiskScoreMatchesComputed`).
+
+```bash
+# Dry-run: list missing/mismatched rows and print cast send calldata
+./scripts/batch-anchor-v6-composite.py
+
+# Broadcast (maintainer key; Sepolia only)
+export ANCHOR_CONTRACT=<proxy from table above>
+export RPC_URL=<Sepolia RPC>
+export PRIVATE_KEY=<anchor signer key>
+./scripts/batch-anchor-v6-composite.py --apply
+```
+
+Single-file helper: `scripts/anchor-assessment-v6.py [--dry-run] [--period-seq N] docs/reports/<ex>/<audit>-assessment.json`.
+
+---
+
+## NEAR testnet (composite parity) — pending on-chain
+
+Sibling deployment in [`ardmere/ardmere-near-demo`](https://github.com/ardmere/ardmere-near-demo) (schema v5 custody field + composite `snapshot_id` semantics). **On-chain NEAR backfill is pending** until the testnet contract WASM is upgraded and the owner key is available.
+
+| Item | Status |
+| --- | --- |
+| WASM schema v5/v6 fields | **Pending** — redeploy `por_digest_anchor.wasm` |
+| `backfill-custody --apply` | **Pending** |
+| `reconcile --apply` (htx / ourbit composite ids) | **Pending** |
+
+**Operator checklist** (human; requires `NEAR_TESTNET_OWNER_KEY` / keychain — not on cloud agents):
+
+1. `cd ardmere-near-demo && cargo build --manifest-path contracts/por_digest_anchor/Cargo.toml --target wasm32-unknown-unknown --release`
+2. Deploy WASM to `NEAR_CONTRACT_ID` on testnet (`near contract deploy … use-file …/por_digest_anchor.wasm`)
+3. `cast call`-equivalent: `near contract call-function as-read-only "$NEAR_CONTRACT_ID" schema_version json-args '{}' network-config testnet now` → expect v5+
+4. `python3 scripts/near_digest.py --network testnet --contract "$NEAR_CONTRACT_ID" backfill-custody` (dry-run)
+5. `python3 scripts/near_digest.py --network testnet --contract "$NEAR_CONTRACT_ID" backfill-custody --apply`
+6. `python3 scripts/near_digest.py --network testnet --contract "$NEAR_CONTRACT_ID" reconcile --apply` for composite collisions
+
+See `ardmere-near-demo` README and `.github/workflows/anchor-testnet.yml` for exact `near-cli-rs` flags.
