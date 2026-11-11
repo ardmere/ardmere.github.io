@@ -30,6 +30,27 @@ solvency-claim PASS means self-reported CMS reserve ratios ≥ 100% (capped stab
 | `publication_frequency` | `HIGH_FREQUENCY_GAP` | Stage 0 | Quarterly accountant reviews are too infrequent for Stage 2 frequency expectations and are a weak monitor-primary path. |
 | `userMerkleProof` | `LOGIN_GATED_USER_PROOF` | Stage 0 | User Merkle Leaf ID / path self-check requires Kraken Pro login (or personalized accountant tool input); no public user proof in the evaluation package. |
 
+## Self-reported liabilities, reserves, and major-coin ratios
+
+Label: **self-reported**. These rows repeat the exchange snapshot. USD totals sum per-coin customer liability and exchange reserve (self-custody + third-party custody) using CoinGecko prices at `snapshotTime`, the same price path as `reserveCoverageBps`. A coin with no price is left out of the USD total and listed as unpriced. `walletCoverageBps` and `reserveCoverageBps` are the separate **checked** coverage ratios. This section is not solvency advice.
+
+| Figure | Value | Label |
+| --- | --- | --- |
+| Total liabilities (USD) | `null` (snapshot did not publish amounts) | self-reported |
+| Total reserves (USD) | `null` (snapshot did not publish amounts) | self-reported |
+| Unpriced coins | — | — |
+
+The snapshot did not publish amounts, so USD totals are null. Major-coin rows below use the exchange-reported reserve rate when that coin is in the snapshot.
+
+| Coin | Reserve ratio | Basis | Label |
+| --- | --- | --- | --- |
+| `BTC` | `1.029` | `reported` | self-reported |
+| `ETH` | `1.005` | `reported` | self-reported |
+| `USDT` | `1.05` | `reported` | self-reported |
+| `USDC` | `1.05` | `reported` | self-reported |
+
+Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it. On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).
+
 ## 3. Frequency and Freshness
 
 | Field | Value |

@@ -85,6 +85,35 @@
   ],
   "confidence": "low",
   "effectivePoR": false,
+  "totalLiabilityUsd": 5419997352.19,
+  "totalReserveUsd": 5588649227.58,
+  "unpricedCoins": ["HTX","U","USDD","USDS"],
+  "majorCoinReserveRates": [
+    {
+      "coin": "BTC",
+      "reserveRate": 1.02698847,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "ETH",
+      "reserveRate": 1.00450024,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "USDT",
+      "reserveRate": 0.76623562,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "USDC",
+      "reserveRate": 5.2952166,
+      "basis": "amounts",
+      "selfReported": true
+    }
+  ],
   "evidenceLevel": "E1",
   "exchange": "htx",
   "gen": "Gen 1",

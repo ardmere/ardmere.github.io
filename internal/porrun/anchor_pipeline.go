@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/ardmere/ardmere/internal/bundle"
+	"github.com/ardmere/ardmere/internal/coingecko"
 	"github.com/ardmere/ardmere/internal/exchange"
 	"github.com/ardmere/ardmere/internal/exchangereg"
 	"github.com/ardmere/ardmere/internal/pipeline"
@@ -137,7 +138,9 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".artifact-bundle.json"), artBundle)
 	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".verification-bundle.json"), verBundle)
 	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".verification-bundle.v2.json"), verBundle)
-	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".anchor.json"), map[string]any{
+	figures := pipeline.ComputeReserveFigures(ctx, snap, coingecko.New())
+	btcBps, ethBps, usdtBps, usdcBps := figures.RatioSlots()
+	anchorDoc := map[string]any{
 		"exchange":               snap.Exchange,
 		"snapshotId":             snap.ID,
 		"periodSeq":              snap.PeriodSeq,
@@ -154,7 +157,16 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 		"reserveCoverageBps":     result.ReserveCoverageBps,
 		"custodyRiskScore":       custodyScore,
 		"coverageDetail":         result.CoverageDetail,
-	})
+		"totalLiabilityUsd":      figures.AssessmentMap()["totalLiabilityUsd"],
+		"totalReserveUsd":        figures.AssessmentMap()["totalReserveUsd"],
+		"unpricedCoins":          figures.UnpricedCoins,
+		"majorCoinReserveRates":  figures.MajorCoinReserveRates,
+		"btcReserveRatioBps":     btcBps,
+		"ethReserveRatioBps":     ethBps,
+		"usdtReserveRatioBps":    usdtBps,
+		"usdcReserveRatioBps":    usdcBps,
+	}
+	mustWriteJSON(filepath.Join(stored.BundlesDir, snap.ID+".anchor.json"), anchorDoc)
 	log.Printf("      bundles written under %s/", stored.BundlesDir)
 	log.Printf("      coverage wallet=%d reserve=%d stage=%s effective=%v",
 		result.WalletCoverageBps, result.ReserveCoverageBps, stageStr, effective)
@@ -171,6 +183,7 @@ func RunAnchorPipeline(ctx context.Context, opt AnchorOpts) (AnchorResult, error
 		result.WalletCoverageBps,
 		result.ReserveCoverageBps,
 		custodyScore,
+		figures,
 	))
 	return AnchorResult{
 		SnapshotID:  snap.ID,

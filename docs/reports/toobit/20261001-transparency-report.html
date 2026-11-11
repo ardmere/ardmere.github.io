@@ -40,37 +40,37 @@ href="./20261001-assessment.json">20261001-assessment.json</a></p>
 <h2 id="summary">1. Summary</h2>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>Field</th>
 <th>Value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Exchange</td>
 <td><code>toobit</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Snapshot</td>
 <td><code>20261001</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Snapshot time</td>
 <td><code>2026-10-01T00:00:00Z</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>PoR Stage</td>
 <td><code>Stage 0 — Trust the Exchange</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Gen / Evidence</td>
 <td><code>Gen 1 / E1</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Confidence</td>
 <td><code>low</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Effective PoR</td>
 <td><code>false</code></td>
 </tr>
@@ -93,7 +93,7 @@ list — Stage 1 walletZip stays unwired.</p>
 <col style="width: 25%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Missing / Blocked Evidence</th>
 <th>Risk Flag</th>
 <th>Max Stage</th>
@@ -101,13 +101,13 @@ list — Stage 1 walletZip stays unwired.</p>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>wallet_address_list</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td>Stage 0</td>
 <td>No public wallet address list observed for Toobit PoR.</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>userMerkleProof</code></td>
 <td><code>LOGIN_GATED_USER_PROOF</code></td>
 <td>Stage 0</td>
@@ -116,6 +116,97 @@ evaluation package (login-gated).</td>
 </tr>
 </tbody>
 </table>
+<h2
+id="self-reported-liabilities-reserves-and-major-coin-ratios">Self-reported
+liabilities, reserves, and major-coin ratios</h2>
+<p>Label: <strong>self-reported</strong>. These rows repeat the exchange
+snapshot. USD totals sum per-coin customer liability and exchange
+reserve (self-custody + third-party custody) using CoinGecko prices at
+<code>snapshotTime</code>, the same price path as
+<code>reserveCoverageBps</code>. A coin with no price is left out of the
+USD total and listed as unpriced. <code>walletCoverageBps</code> and
+<code>reserveCoverageBps</code> are the separate
+<strong>checked</strong> coverage ratios. This section is not solvency
+advice.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Figure</th>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total liabilities (USD)</td>
+<td><code>null</code> (snapshot did not publish amounts)</td>
+<td>self-reported</td>
+</tr>
+<tr class="even">
+<td>Total reserves (USD)</td>
+<td><code>null</code> (snapshot did not publish amounts)</td>
+<td>self-reported</td>
+</tr>
+<tr class="odd">
+<td>Unpriced coins</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>The snapshot did not publish amounts, so USD totals are null.
+Major-coin rows below use the exchange-reported reserve rate when that
+coin is in the snapshot.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Coin</th>
+<th>Reserve ratio</th>
+<th>Basis</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>BTC</code></td>
+<td><code>1.04</code></td>
+<td><code>reported</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="even">
+<td><code>ETH</code></td>
+<td><code>1.07</code></td>
+<td><code>reported</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="odd">
+<td><code>USDT</code></td>
+<td><code>1.05</code></td>
+<td><code>reported</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="even">
+<td><code>USDC</code></td>
+<td><code>1.08</code></td>
+<td><code>reported</code></td>
+<td>self-reported</td>
+</tr>
+</tbody>
+</table>
+<p>Reserve ratio is exchange reserve ÷ customer liability when both
+amounts exist (<code>basis=amounts</code>); otherwise it is the
+exchange-reported rate already parsed into the coin summary
+(<code>basis=reported</code>, percentage ÷ 100 so 1 = 100%). Major coins
+are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no
+row for it. On-chain schema v7 stores the same USD totals as uint128
+whole dollars (<code>0</code> = unavailable) and the four ratios as
+uint16 basis points (<code>10000</code> = 100%, <code>65535</code> =
+unavailable).</p>
 <h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
 <table>
 <colgroup>
@@ -123,37 +214,37 @@ evaluation package (login-gated).</td>
 <col style="width: 50%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Field</th>
 <th>Value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Latest snapshot (evaluation set)</td>
 <td><code>2026-10-01T00:00:00Z</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Previous snapshot</td>
 <td><code>UNVERIFIABLE</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Observed cadence</td>
 <td><code>UNVERIFIABLE</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>History available</td>
 <td><code>1 snapshot(s) in public evaluation set</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Event-triggered updates</td>
 <td><code>UNVERIFIABLE</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Daily root / commitment anchor</td>
 <td><code>UNVERIFIABLE</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Stage impact</td>
 <td>Monthly or slower cadence; does not meet Stage 2 frequency
 expectations.</td>
@@ -170,14 +261,14 @@ expectations.</td>
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Artifact</th>
 <th>SHA-256</th>
 <th>Source</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>summarySnapshot</code></td>
 <td><code>8ebd0158a34f5e9c2cc3e61655625e082ba940265e66038ad54fea48a0b04657</code></td>
 <td>https://bapi.toobit.com/uapi/v1/por/latest-audit</td>
@@ -191,25 +282,25 @@ expectations.</td>
 <col style="width: 50%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Bundle</th>
 <th>Value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Artifact bundle root</td>
 <td><code>0x2880ad5bef811eef7ecf046904dd7dfc814981d98439b20ec96543eadf01bcaf</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Verification bundle root</td>
 <td><code>0x41123f1a3fbaeec69dfd143af80df97cf04200049b56f6477a3029a13f17c63a</code></td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Artifact bundle SHA-256</td>
 <td><code>6bca7785ec2af223ecc806ce3619ecad8ba5605f120a226f1b7a4099009b3ef4</code></td>
 </tr>
-<tr>
+<tr class="even">
 <td>Verification bundle SHA-256</td>
 <td><code>b113d681f64e6812baae5f2d9516d2dbfd439e74a769798e56519666bb25d969</code></td>
 </tr>
@@ -229,7 +320,7 @@ href="../../../artifacts/toobit/20261001/bundles/20261001.verification-bundle.v2
 <col style="width: 20%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Verifier</th>
 <th>Version</th>
 <th>Verdict</th>
@@ -238,21 +329,21 @@ href="../../../artifacts/toobit/20261001/bundles/20261001.verification-bundle.v2
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>artifact-integrity</code></td>
 <td><code>1.0</code></td>
 <td><code>PASS</code></td>
 <td><code>1.0000</code></td>
 <td></td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>solvency-claim</code></td>
 <td><code>1.0</code></td>
 <td><code>PASS</code></td>
 <td><code>1.0000</code></td>
 <td></td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>user-merkle-proof</code></td>
 <td><code>toobit-1</code></td>
 <td><code>UNVERIFIABLE</code></td>
@@ -261,42 +352,42 @@ href="../../../artifacts/toobit/20261001/bundles/20261001.verification-bundle.v2
 proof_of_reserve_{auditId}.json while logged in and import via
 -user-proof</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>internal-consistency</code></td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
 <td>Wallet address bundle not available</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>btc-anchor</code></td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
 <td>BTC block time anchor verifier not implemented</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>onchain-balance-hot</code></td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
 <td>Wallet address bundle not available for on-chain audit</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>onchain-balance-token</code></td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
 <td>Wallet address bundle not available for token audit</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>onchain-balance-ledger</code></td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
 <td>Verifier not available for this exchange snapshot</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>address-ownership</code></td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
@@ -304,21 +395,21 @@ proof_of_reserve_{auditId}.json while logged in and import via
 <td>No public download channel for wallet ownership signatures /
 proofs</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>global-zk-proof</code></td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
 <td>Global proof.csv / verifying key not publicly distributed</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>third-party-attestation</code></td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
 <td><code>0.0000</code></td>
 <td>No public third-party attestation report available</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>cross-chain-wrapped</code></td>
 <td><code>0</code></td>
 <td><code>UNVERIFIABLE</code></td>
@@ -345,52 +436,52 @@ artifact gaps (<code>UNVERIFIABLE</code>)</h3>
 <col style="width: 50%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Verifier</th>
 <th>Explanation</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>user-merkle-proof</code></td>
 <td>Toobit proof JSON not present; download
 proof_of_reserve_{auditId}.json while logged in and import via
 -user-proof</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>internal-consistency</code></td>
 <td>Wallet address bundle not available</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>btc-anchor</code></td>
 <td>BTC block time anchor verifier not implemented</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>onchain-balance-hot</code></td>
 <td>Wallet address bundle not available for on-chain audit</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>onchain-balance-token</code></td>
 <td>Wallet address bundle not available for token audit</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>onchain-balance-ledger</code></td>
 <td>Verifier not available for this exchange snapshot</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>address-ownership</code></td>
 <td>No public download channel for wallet ownership signatures /
 proofs</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>global-zk-proof</code></td>
 <td>Global proof.csv / verifying key not publicly distributed</td>
 </tr>
-<tr>
+<tr class="odd">
 <td><code>third-party-attestation</code></td>
 <td>No public third-party attestation report available</td>
 </tr>
-<tr>
+<tr class="even">
 <td><code>cross-chain-wrapped</code></td>
 <td>No per-row wrapped-asset metadata in public PoR artifacts (token
 contract, representation type e.g. WBTC/cbBTC, canonical asset, custody
@@ -408,62 +499,62 @@ findings beyond the summary table in §5.</p>
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Requirement</th>
 <th>Status</th>
 <th>Notes</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>Has public PoR been published during the last 12 months? (S0-1)</td>
 <td><code>pass</code></td>
 <td>Snapshot 20261001 is in the public evaluation set.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Is snapshot time explicit? (S0-2)</td>
 <td><code>pass</code></td>
 <td>2026-10-01T00:00:00Z</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Is there reserve summary or wallet_address_list? (S0-3)</td>
 <td><code>pass</code></td>
 <td>Summary present; wallet_address_list absent.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Is wallet_address_list public and on-chain verifiable? (S1-1)</td>
 <td><code>fail</code></td>
 <td>No public wallet_address_list artifact.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Is wallet_ownership_proof public and batch-verifiable? (S1-2)</td>
 <td><code>unverifiable</code></td>
 <td>address-ownership verifier UNVERIFIABLE.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Is global_proof public and independently reproducible? (S1-3)</td>
 <td><code>unverifiable</code></td>
 <td>global-zk-proof verifier UNVERIFIABLE.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Is independent third-party review available with stated scope?
 (S1-4)</td>
 <td><code>unverifiable</code></td>
 <td>third-party-attestation verifier UNVERIFIABLE.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>If trusted setup is required, is transcript public; otherwise is the
 proof system transparent setup? (S1-5)</td>
 <td><code>not_applicable</code></td>
 <td>No global ZK proof in the assessed public artifact set.</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>Is root/proof/vk canonically anchored outside exchange servers?
 (S2-1)</td>
 <td><code>not_applicable</code></td>
 <td>Stage 2 is not evaluated until Stage 1 blockers are resolved.</td>
 </tr>
-<tr>
+<tr class="even">
 <td>Is publication frequency sufficient for Stage 2 (weekly full PoR /
 daily anchor)? (S2-2)</td>
 <td><code>not_applicable</code></td>
@@ -479,14 +570,14 @@ daily anchor)? (S2-2)</td>
 <col style="width: 33%" />
 </colgroup>
 <thead>
-<tr>
+<tr class="header">
 <th>Priority</th>
 <th>Recommendation</th>
 <th>Related Risk</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td><code>P0</code></td>
 <td>Publish missing public artifacts required for independent
 reproduction.</td>

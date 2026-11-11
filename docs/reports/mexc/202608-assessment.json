@@ -85,6 +85,35 @@
   ],
   "confidence": "low",
   "effectivePoR": false,
+  "totalLiabilityUsd": 2243159241.17,
+  "totalReserveUsd": 3045617172.47,
+  "unpricedCoins": [],
+  "majorCoinReserveRates": [
+    {
+      "coin": "BTC",
+      "reserveRate": 2.88,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "ETH",
+      "reserveRate": 1.13,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "USDT",
+      "reserveRate": 1.15,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "USDC",
+      "reserveRate": 1.14,
+      "basis": "amounts",
+      "selfReported": true
+    }
+  ],
   "evidenceLevel": "E1",
   "exchange": "mexc",
   "gen": "Gen 1",

@@ -85,6 +85,29 @@
   ],
   "confidence": "low",
   "effectivePoR": false,
+  "totalLiabilityUsd": 2617766820.22,
+  "totalReserveUsd": 2702078043.79,
+  "unpricedCoins": ["htx"],
+  "majorCoinReserveRates": [
+    {
+      "coin": "BTC",
+      "reserveRate": 1.00700354,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "ETH",
+      "reserveRate": 1.01092113,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "USDT",
+      "reserveRate": 1.07839277,
+      "basis": "amounts",
+      "selfReported": true
+    }
+  ],
   "evidenceLevel": "E1",
   "exchange": "poloniex",
   "gen": "Gen 1",

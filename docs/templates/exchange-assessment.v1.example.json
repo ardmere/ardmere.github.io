@@ -15,6 +15,10 @@
   "evidenceLevel": "E2",
   "confidence": "medium",
   "effectivePoR": false,
+  "totalLiabilityUsd": null,
+  "totalReserveUsd": null,
+  "unpricedCoins": [],
+  "majorCoinReserveRates": [],
   "summary": {
     "headline": "Binance has public wallet and ZK-style artifacts, but Stage 1 is blocked by missing wallet_ownership_proof and opaque trusted setup evidence.",
     "rationale": "The snapshot has public reserve-side and liability-side evidence, but users must still trust that Binance controls the listed wallets and that the proof parameters were generated without toxic waste.",

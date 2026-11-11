@@ -85,6 +85,29 @@
   ],
   "confidence": "low",
   "effectivePoR": false,
+  "totalLiabilityUsd": null,
+  "totalReserveUsd": null,
+  "unpricedCoins": [],
+  "majorCoinReserveRates": [
+    {
+      "coin": "BTC",
+      "reserveRate": 1.61,
+      "basis": "reported",
+      "selfReported": true
+    },
+    {
+      "coin": "ETH",
+      "reserveRate": 1.05,
+      "basis": "reported",
+      "selfReported": true
+    },
+    {
+      "coin": "USDT",
+      "reserveRate": 1.06,
+      "basis": "reported",
+      "selfReported": true
+    }
+  ],
   "evidenceLevel": "E1",
   "exchange": "bitunix",
   "gen": "Gen 1",

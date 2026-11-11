@@ -85,6 +85,35 @@
   ],
   "confidence": "low",
   "effectivePoR": false,
+  "totalLiabilityUsd": 1692239284.02,
+  "totalReserveUsd": 1897345013.11,
+  "unpricedCoins": [],
+  "majorCoinReserveRates": [
+    {
+      "coin": "BTC",
+      "reserveRate": 1.12059357,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "ETH",
+      "reserveRate": 1.14520025,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "USDT",
+      "reserveRate": 1.10203502,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "USDC",
+      "reserveRate": 1.2658614,
+      "basis": "amounts",
+      "selfReported": true
+    }
+  ],
   "evidenceLevel": "E1",
   "exchange": "kucoin",
   "gen": "Gen 1",

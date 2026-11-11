@@ -106,6 +106,237 @@ solvency verification for this snapshot.</p>
 </tr>
 </tbody>
 </table>
+<h2
+id="self-reported-liabilities-reserves-and-major-coin-ratios">Self-reported
+liabilities, reserves, and major-coin ratios</h2>
+<p>Label: <strong>self-reported</strong>. These rows repeat the exchange
+snapshot. USD totals sum per-coin customer liability and exchange
+reserve (self-custody + third-party custody) using CoinGecko prices at
+<code>snapshotTime</code>, the same price path as
+<code>reserveCoverageBps</code>. A coin with no price is left out of the
+USD total and listed as unpriced. <code>walletCoverageBps</code> and
+<code>reserveCoverageBps</code> are the separate
+<strong>checked</strong> coverage ratios. This section is not solvency
+advice.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Figure</th>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total liabilities (USD)</td>
+<td><code>4245923695.97</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="even">
+<td>Total reserves (USD)</td>
+<td><code>5023237868.34</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="odd">
+<td>Unpriced coins</td>
+<td><code>0G</code>, <code>1INCH</code>, <code>A</code>,
+<code>ABT</code>, <code>ACH</code>, <code>ACP</code>, <code>ACU</code>,
+<code>ACX</code>, <code>AEON</code>, <code>AERO</code>,
+<code>AGI</code>, <code>AIA</code>, <code>AIC</code>, <code>AIN</code>,
+<code>AIO</code>, <code>AIOT</code>, <code>AIOZ</code>,
+<code>AIR</code>, <code>AIXBT</code>, <code>AKE</code>,
+<code>AKT</code>, <code>ALCH</code>, <code>ALEO</code>,
+<code>ALEX</code>, <code>ALGO</code>, <code>ALIGN</code>,
+<code>ALLO</code>, <code>ALPH</code>, <code>ALT</code>,
+<code>ALU</code>, <code>AO</code>, <code>APE</code>, <code>APEPE</code>,
+<code>AR</code>, <code>ARC</code>, <code>ARIA</code>, <code>ARKM</code>,
+<code>ASTER</code>, <code>ASTR</code>, <code>AT</code>,
+<code>ATH</code>, <code>ATS</code>, <code>AURORA</code>,
+<code>AVAAI</code>, <code>AVNT</code>, <code>AXS</code>,
+<code>AZTEC</code>, <code>B</code>, <code>B2</code>, <code>BABY</code>,
+<code>BABYDOGE</code>, <code>BAN</code>, <code>BANANAS31</code>,
+<code>BANK</code>, <code>BAS</code>, <code>BAT</code>, <code>BB</code>,
+<code>BBT</code>, <code>BEAMX</code>, <code>BEAT</code>,
+<code>BELIEVE</code>, <code>BERA</code>, <code>BGSC</code>,
+<code>BIO</code>, <code>BLESS</code>, <code>BLKGRWON</code>,
+<code>BLKHION</code>, <code>BLUE</code>, <code>BNKR</code>,
+<code>BOME</code>, <code>BONE</code>, <code>BONK</code>,
+<code>BOX</code>, <code>BR</code>, <code>BRETT</code>,
+<code>BROCCOLI</code>, <code>BSV</code>, <code>BTR</code>,
+<code>BTS</code>, <code>BTT</code>, <code>BTW</code>, <code>CAKE</code>,
+<code>CASHCAT</code>, <code>CC</code>, <code>CCD</code>,
+<code>CELL</code>, <code>CETUS</code>, <code>CFG</code>,
+<code>CFX</code>, <code>CGPT</code>, <code>CHILLGUY</code>,
+<code>CHIP</code>, <code>CHZ</code>, <code>CKB</code>,
+<code>CLANKER</code>, <code>CNPY</code>, <code>COAI</code>,
+<code>COINON</code>, <code>COINX</code>, <code>COMP</code>,
+<code>CORE</code>, <code>COTI</code>, <code>COW</code>,
+<code>CPOOL</code>, <code>CRCLG</code>, <code>CRCLON</code>,
+<code>CRCLX</code>, <code>CRO</code>, <code>CSPR</code>,
+<code>CT</code>, <code>CTC</code>, <code>CTR</code>, <code>CYS</code>,
+<code>DATA</code>, <code>DCR</code>, <code>DEEP</code>,
+<code>DENT</code>, <code>DESO</code>, <code>DEXE</code>,
+<code>DGAI</code>, <code>DKA</code>, <code>DNA</code>, <code>DOG</code>,
+<code>DOGELONMARS</code>, <code>DOGS</code>, <code>DOOD</code>,
+<code>DOS</code>, <code>DRIFT</code>, <code>DRV</code>,
+<code>DYDX</code>, <code>EDGEX</code>, <code>EIGEN</code>,
+<code>ELIZAOS</code>, <code>ENA</code>, <code>ENJ</code>,
+<code>ENS</code>, <code>ENSO</code>, <code>EPIC</code>,
+<code>ERG</code>, <code>ESP</code>, <code>ETHFI</code>,
+<code>ETHW</code>, <code>EVAA</code>, <code>FARTCOIN</code>,
+<code>FB</code>, <code>FET</code>, <code>FF</code>, <code>FHE</code>,
+<code>FLIP</code>, <code>FLOCK</code>, <code>FLOKI</code>,
+<code>FLOW</code>, <code>FLR</code>, <code>FLUID</code>,
+<code>FLUX</code>, <code>FORM</code>, <code>FTT</code>,
+<code>FUN</code>, <code>FUNTOKEN</code>, <code>FXNW</code>,
+<code>GALA</code>, <code>GENIUS</code>, <code>GEOD</code>,
+<code>GF</code>, <code>GHO</code>, <code>GO4</code>,
+<code>GOMINING</code>, <code>GOOGLON</code>, <code>GOOGLX</code>,
+<code>GPS</code>, <code>GRAM</code>, <code>GRASS</code>,
+<code>GRIFFAIN</code>, <code>GRIN</code>, <code>GROK</code>,
+<code>GRT</code>, <code>GT</code>, <code>GUSD</code>, <code>GWEI</code>,
+<code>H</code>, <code>HANA</code>, <code>HNT</code>, <code>HOT</code>,
+<code>HSK</code>, <code>HT</code>, <code>HTX</code>, <code>HUMA</code>,
+<code>HYPE</code>, <code>IAG</code>, <code>IDOL</code>,
+<code>IMX</code>, <code>INJ</code>, <code>INTCG</code>,
+<code>INX</code>, <code>IO</code>, <code>IOTA</code>, <code>IOTX</code>,
+<code>IRON</code>, <code>ITA</code>, <code>JASMY</code>,
+<code>JELLYJELLY</code>, <code>JST</code>, <code>JTO</code>,
+<code>JUP</code>, <code>KAIA</code>, <code>KAS</code>,
+<code>KAVA</code>, <code>KCT</code>, <code>KDA</code>,
+<code>KEKIUS</code>, <code>KGEN</code>, <code>KITE</code>,
+<code>KMNO</code>, <code>KOMA</code>, <code>KSM</code>,
+<code>LAB</code>, <code>LAPTOP</code>, <code>LEO</code>,
+<code>LIGHT</code>, <code>LINEA</code>, <code>LIT</code>,
+<code>LPT</code>, <code>LSK</code>, <code>LUNA</code>,
+<code>LUNC</code>, <code>M</code>, <code>MAG7XON</code>,
+<code>MAGIC</code>, <code>MAGMA</code>, <code>MANA</code>,
+<code>MANTA</code>, <code>MARSCOIN</code>, <code>MAVIA</code>,
+<code>MBG</code>, <code>MCAT</code>, <code>MEGA</code>,
+<code>MELANIA</code>, <code>MEME</code>, <code>MERL</code>,
+<code>MET</code>, <code>METIS</code>, <code>MINA</code>,
+<code>MNT</code>, <code>MOG</code>, <code>MON</code>,
+<code>MOODENG</code>, <code>MORPHO</code>, <code>MSFTON</code>,
+<code>MSTRG</code>, <code>MSTRON</code>, <code>MSTRX</code>,
+<code>MUBARAK</code>, <code>MUG</code>, <code>MYX</code>,
+<code>NAKA</code>, <code>NAORIS</code>, <code>NEIRO</code>,
+<code>NEO</code>, <code>NFT</code>, <code>NIGHT</code>,
+<code>NIL</code>, <code>NMR</code>, <code>NOS</code>, <code>NOT</code>,
+<code>NPC</code>, <code>NUMI</code>, <code>NVDAON</code>,
+<code>NVDAX</code>, <code>O</code>, <code>OMI</code>, <code>ON</code>,
+<code>ONDO</code>, <code>ONE</code>, <code>ONT</code>,
+<code>OORT</code>, <code>OPEN</code>, <code>OPENAI</code>,
+<code>ORAI</code>, <code>ORCA</code>, <code>ORDER</code>,
+<code>ORDI</code>, <code>PAAL</code>, <code>PACT</code>,
+<code>PAXG</code>, <code>PEAQ</code>, <code>PENDLE</code>,
+<code>PENGU</code>, <code>PEOPLE</code>, <code>PHA</code>,
+<code>PI</code>, <code>PIEVERSE</code>, <code>PIPPIN</code>,
+<code>PLUME</code>, <code>PNUT</code>, <code>POKT</code>,
+<code>PONS</code>, <code>POPCAT</code>, <code>PROM</code>,
+<code>PROVE</code>, <code>PTB</code>, <code>PUFFER</code>,
+<code>PUMP</code>, <code>PYTH</code>, <code>Q</code>, <code>QANX</code>,
+<code>QKC</code>, <code>QNT</code>, <code>QQQON</code>,
+<code>QQQX</code>, <code>QTUM</code>, <code>QUBIC</code>,
+<code>RACA</code>, <code>RATS</code>, <code>RAY</code>,
+<code>RBNT</code>, <code>REKTCOIN</code>, <code>RENDER</code>,
+<code>REZ</code>, <code>RHEA</code>, <code>RLC</code>,
+<code>RLUSD</code>, <code>ROSE</code>, <code>RSC</code>,
+<code>RSR</code>, <code>RUNE</code>, <code>RVN</code>, <code>S</code>,
+<code>SAFE</code>, <code>SAND</code>, <code>SAPIEN</code>,
+<code>SATS</code>, <code>SC</code>, <code>SCARCITY</code>,
+<code>SCR</code>, <code>SEI</code>, <code>SENT</code>, <code>SHX</code>,
+<code>SIREN</code>, <code>SKHYNIXG</code>, <code>SKR</code>,
+<code>SKY</code>, <code>SKYAI</code>, <code>SLC</code>,
+<code>SLVON</code>, <code>SNDKG</code>, <code>SNEK</code>,
+<code>SNT</code>, <code>SNX</code>, <code>SOON</code>,
+<code>SOXLG</code>, <code>SPCX</code>, <code>SPCXG</code>,
+<code>SPCXX</code>, <code>SPK</code>, <code>SPX</code>,
+<code>SPYON</code>, <code>SPYX</code>, <code>SQD</code>,
+<code>SSV</code>, <code>STABLE</code>, <code>STBL</code>,
+<code>STOC</code>, <code>STONK</code>, <code>STORJ</code>,
+<code>STRK</code>, <code>STX</code>, <code>SUN</code>,
+<code>SUPER</code>, <code>SUSHI</code>, <code>SUT</code>,
+<code>SWARMS</code>, <code>SWFTC</code>, <code>SYN</code>,
+<code>SYRUP</code>, <code>TA</code>, <code>TAG</code>,
+<code>TAIKO</code>, <code>TAKE</code>, <code>TAO</code>,
+<code>TBC</code>, <code>TBK</code>, <code>THETA</code>,
+<code>TIA</code>, <code>TOKEN</code>, <code>TOSHI</code>,
+<code>TRAC</code>, <code>TRADOOR</code>, <code>TRB</code>,
+<code>TRUMP</code>, <code>TSLAON</code>, <code>TSLAX</code>,
+<code>TURBO</code>, <code>TUT</code>, <code>TWT</code>, <code>TX</code>,
+<code>UAI</code>, <code>UB</code>, <code>ULTIMA</code>, <code>UP</code>,
+<code>US</code>, <code>USAT</code>, <code>USD</code>, <code>USD1</code>,
+<code>USDD</code>, <code>USDG</code>, <code>USDPT</code>,
+<code>USDY</code>, <code>USELESS</code>, <code>USTC</code>,
+<code>VATRENI</code>, <code>VELO</code>, <code>VELVET</code>,
+<code>VIRTUAL</code>, <code>VTHO</code>, <code>VVV</code>,
+<code>VXT</code>, <code>W</code>, <code>WAL</code>, <code>WAVES</code>,
+<code>WEMIX</code>, <code>WET</code>, <code>WIF</code>,
+<code>WIN</code>, <code>WKC</code>, <code>WLD</code>, <code>WLFI</code>,
+<code>WOJAK</code>, <code>WPAY</code>, <code>WRX</code>,
+<code>XAUT</code>, <code>XCH</code>, <code>XCN</code>, <code>XDC</code>,
+<code>XEM</code>, <code>XNY</code>, <code>XPIN</code>, <code>XPL</code>,
+<code>XPR</code>, <code>XT</code>, <code>XTZ</code>, <code>XYM</code>,
+<code>YFII</code>, <code>YGG</code>, <code>ZAMA</code>,
+<code>ZBCN</code>, <code>ZEREBRO</code>, <code>ZEST</code>,
+<code>ZETA</code>, <code>ZEUS</code>, <code>ZIG</code>,
+<code>ZIL</code>, <code>ZK</code>, <code>ZRO</code>, <code>ZULU</code>,
+<code>哈基米</code>, <code>我踏马来了</code>, <code>牛来</code>,
+<code>龙虾</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Coin</th>
+<th>Reserve ratio</th>
+<th>Basis</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>BTC</code></td>
+<td><code>1.21600553</code></td>
+<td><code>amounts</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="even">
+<td><code>ETH</code></td>
+<td><code>1.23776293</code></td>
+<td><code>amounts</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="odd">
+<td><code>USDT</code></td>
+<td><code>1.11681806</code></td>
+<td><code>amounts</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="even">
+<td><code>USDC</code></td>
+<td><code>1.05608423</code></td>
+<td><code>amounts</code></td>
+<td>self-reported</td>
+</tr>
+</tbody>
+</table>
+<p>Reserve ratio is exchange reserve ÷ customer liability when both
+amounts exist (<code>basis=amounts</code>); otherwise it is the
+exchange-reported rate already parsed into the coin summary
+(<code>basis=reported</code>, percentage ÷ 100 so 1 = 100%). Major coins
+are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no
+row for it. On-chain schema v7 stores the same USD totals as uint128
+whole dollars (<code>0</code> = unavailable) and the four ratios as
+uint16 basis points (<code>10000</code> = 100%, <code>65535</code> =
+unavailable).</p>
 <h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
 <table>
 <colgroup>

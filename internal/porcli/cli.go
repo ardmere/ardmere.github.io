@@ -37,6 +37,8 @@ func Main(args []string) int {
 		return runReport(args[2:])
 	case "refresh-frequency":
 		return runRefreshFrequency(args[2:])
+	case "patch-reserve-figures":
+		return runPatchReserveFigures(args[2:])
 	case "site":
 		return runSite(args[2:])
 	case "help", "-h", "--help":
@@ -59,6 +61,7 @@ Commands:
   batch    fetch+verify last N snapshots per exchange and write reports
   report   generate assessment + transparency report from cached artifacts
   refresh-frequency  recompute section 3 of existing reports from assessment JSON
+  patch-reserve-figures  splice self-reported USD totals and major-coin ratios into assessments and reports
   site     regenerate homepage, snapshot history, and exchange comparison
   probe    chain/RPC diagnostics (rpc | tron | stakehub | sonic-sfc)
   exchanges  list official PoR upstream pages and GitHub repos (registry)

@@ -241,6 +241,43 @@ Single-file helper: `scripts/anchor-assessment-v6.py [--dry-run] [--period-seq N
 
 ---
 
+## Schema v7 (self-reported totals and major-coin ratios) — code-ready, not upgraded
+
+The Solidity in this repo sets `SCHEMA_VERSION` to **7** and `STORAGE_VERSION` to **4**. The Sepolia proxy is still schema **v6**. Do not broadcast v7 `anchorSnapshot` calldata until a maintainer upgrades the proxy. This change does not send a transaction.
+
+New `SnapshotRecord` slots, appended after `custodyRiskScore`:
+
+| Field | Type | Sentinel |
+| --- | --- | --- |
+| `totalLiabilityUsd` | `uint128` | `0` = unavailable (no published amounts, or no priced coins). Whole USD, nearest dollar. |
+| `totalReserveUsd` | `uint128` | `0` = unavailable. Self-custody + third-party, same CoinGecko-at-`snapshotTime` path as `reserveCoverageBps`. |
+| `btcReserveRatioBps` | `uint16` | `10000` = 100%. `65535` = no BTC row or no ratio. |
+| `ethReserveRatioBps` | `uint16` | same |
+| `usdtReserveRatioBps` | `uint16` | same |
+| `usdcReserveRatioBps` | `uint16` | same |
+
+Ratios above 655.34% saturate at `65534` so they cannot collide with `65535`. Pre-v7 storage rows still decode the new slots as **0**. Readers must treat both USD totals and the four ratios as unavailable unless `schemaVersion >= 7` (a 0 bps reading on an old row is not a 0% reserve ratio). These figures are self-reported snapshot amounts, not a solvency opinion.
+
+```bash
+# After a future UUPS upgrade (do not run this until the implementation is deployed):
+cast call "$ANCHOR_CONTRACT" "SCHEMA_VERSION()(uint8)" --rpc-url "$RPC_URL"   # expect 7
+cast call "$ANCHOR_CONTRACT" "STORAGE_VERSION()(uint8)" --rpc-url "$RPC_URL"  # expect 4
+```
+
+**Operator cast signature (v7, code only):**
+
+```bash
+cast send "$ANCHOR_CONTRACT" \
+  'anchorSnapshot(string,string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8,uint128,uint128,uint16,uint16,uint16,uint16)' \
+  "<exchange>" "<auditId>" <snapshotId_b32> <periodSeq> <snapshotTimeUnix> <btcBlockHeight> \
+  <exchangeMerkleRoot> <artifactBundleRoot> <verificationBundleRoot> \
+  <verdictSummary> <coverageBps> <porStage> <effectivePoR> <walletCoverageBps> <reserveCoverageBps> <custodyRiskScore> \
+  <totalLiabilityUsd> <totalReserveUsd> <btcReserveRatioBps> <ethReserveRatioBps> <usdtReserveRatioBps> <usdcReserveRatioBps> \
+  --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
+```
+
+`./por anchor` prints this v7 payload and does not broadcast. `scripts/anchor-assessment-v6.py` still targets the **live v6** proxy and must not be pointed at v7 calldata.
+
 ## NEAR testnet (composite parity) — pending on-chain
 
 Sibling deployment in [`ardmere/ardmere-near-demo`](https://github.com/ardmere/ardmere-near-demo) (schema v5 custody field + composite `snapshot_id` semantics). **On-chain NEAR backfill is pending** until the testnet contract WASM is upgraded and the owner key is available.

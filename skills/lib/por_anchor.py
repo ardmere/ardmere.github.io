@@ -24,8 +24,10 @@ FALLBACK_RPC_URLS = (
     "https://1rpc.io/sepolia",
 )
 CHAIN_ID = 11155111  # pragma: allowlist secret
-SCHEMA_VERSION = 6
+SCHEMA_VERSION = 7
 CUSTODY_RISK_UNAVAILABLE = 255
+USD_UNAVAILABLE = 0
+RESERVE_RATIO_UNAVAILABLE = 65535
 
 # SnapshotRecord, in ABI order (docs/anchor-query-api.md §4).
 RECORD_FIELDS = (
@@ -47,6 +49,12 @@ RECORD_FIELDS = (
     ("walletCoverageBps", "uint16"),
     ("reserveCoverageBps", "uint16"),
     ("custodyRiskScore", "uint8"),
+    ("totalLiabilityUsd", "uint128"),
+    ("totalReserveUsd", "uint128"),
+    ("btcReserveRatioBps", "uint16"),
+    ("ethReserveRatioBps", "uint16"),
+    ("usdtReserveRatioBps", "uint16"),
+    ("usdcReserveRatioBps", "uint16"),
 )
 RECORD_TUPLE = "(" + ",".join(kind for _name, kind in RECORD_FIELDS) + ")"
 
@@ -187,8 +195,10 @@ def _word(data, index):
 def decode_record(payload):
     """Decode a SnapshotRecord tuple from eth_call return data.
 
-    Accepts both schema-v3 and schema-v4 ABI lengths. When the return is a v3
-    payload (ending at anchoredAt), the v4 fields default to 0 / false.
+    Head length is the string field's offset (one dynamic field, `exchange`).
+    Trailing schema-v7 words that are not in that head are absent: USD totals
+    stay 0 and major-coin ratios become 65535. Rows with schemaVersion < 7
+    are treated the same way even when an upgraded contract returns explicit zeros.
     """
     data = bytes.fromhex(payload[2:] if payload.startswith("0x") else payload)
     if len(data) >= 32 and int.from_bytes(data[:32], "big") == 0x20:
@@ -198,16 +208,14 @@ def decode_record(payload):
     min_fields = 13
     if len(data) < 32 * min_fields:
         raise AnchorError("return data does not hold a full SnapshotRecord")
+    # exchange is head slot 2. Its offset is the byte length of the static head.
+    head_words = _word(data, 2) // 32
+    if head_words < min_fields:
+        head_words = min_fields
     record = {}
     for index, (name, kind) in enumerate(RECORD_FIELDS):
-        if index * 32 + 32 > len(data) and kind != "string":
-            # Trailing v4 fields absent from a v3-length return.
-            if kind == "bool":
-                record[name] = False
-            elif kind.startswith("uint") or kind == "uint8" or kind == "uint16":
-                record[name] = 0
-            else:
-                record[name] = 0
+        if index >= head_words or (index * 32 + 32 > len(data) and kind != "string"):
+            record[name] = _absent_field(kind)
             continue
         if kind in ("bytes32",):
             start = index * 32
@@ -230,7 +238,32 @@ def decode_record(payload):
     if record["anchoredAt"] == 0:
         # Zeroed struct means "no record", whatever the RPC returned.
         return None
+    # Pre-v7 storage reads 0 for the appended slots. 0 bps would look like a
+    # 0% ratio, so expose the v7 unavailable sentinel unless the row is v7.
+    if int(record.get("schemaVersion") or 0) < SCHEMA_VERSION:
+        record["totalLiabilityUsd"] = USD_UNAVAILABLE
+        record["totalReserveUsd"] = USD_UNAVAILABLE
+        for name in (
+            "btcReserveRatioBps",
+            "ethReserveRatioBps",
+            "usdtReserveRatioBps",
+            "usdcReserveRatioBps",
+        ):
+            record[name] = RESERVE_RATIO_UNAVAILABLE
+        record["reserveTotalsMeaningful"] = False
+    else:
+        record["reserveTotalsMeaningful"] = True
     return record
+
+
+def _absent_field(kind):
+    if kind == "bool":
+        return False
+    if kind == "string":
+        return ""
+    if kind == "bytes32":
+        return "0x" + "00" * 32
+    return 0
 
 
 def decode_bool(payload):
