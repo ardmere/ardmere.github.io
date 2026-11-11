@@ -3,6 +3,7 @@ package pipeline
 import (
 	"encoding/hex"
 	"fmt"
+	"math/big"
 	"os"
 	"strings"
 
@@ -10,10 +11,13 @@ import (
 	"github.com/ardmere/ardmere/internal/por"
 )
 
-// Schema v6 selector for anchorSnapshot(..., auditId string, ..., uint8 custodyRiskScore).
-const anchorSelector = "0x498d1f9d"
+// anchorSnapshot schema v7: v6 args plus uint128 totals and four uint16 major-coin ratio bps.
+const anchorSelectorSig = "anchorSnapshot(string,string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8,uint128,uint128,uint16,uint16,uint16,uint16)"
 
-// AnchorParams holds fields for on-chain anchorSnapshot calldata (schema v6).
+// anchorSelector is the first 4 bytes of keccak256(anchorSelectorSig). Set in init via ValidateAnchorSelector tests.
+var anchorSelector = ""
+
+// AnchorParams holds fields for on-chain anchorSnapshot calldata (schema v7).
 type AnchorParams struct {
 	Exchange               string
 	SnapshotID             string
@@ -30,6 +34,14 @@ type AnchorParams struct {
 	WalletCoverageBps      uint16
 	ReserveCoverageBps     uint16
 	CustodyRiskScore       uint8
+	// TotalLiabilityUsd / TotalReserveUsd are whole USD. 0 = unavailable.
+	TotalLiabilityUsd *big.Int
+	TotalReserveUsd   *big.Int
+	// Major-coin reserve ratio bps. 10000 = 100%. 65535 = unavailable.
+	BtcReserveRatioBps  uint16
+	EthReserveRatioBps  uint16
+	UsdtReserveRatioBps uint16
+	UsdcReserveRatioBps uint16
 }
 
 // AnchorParamsFrom builds anchor params from a completed verify run.
@@ -43,7 +55,9 @@ func AnchorParamsFrom(
 	effectivePoR bool,
 	walletCoverageBps, reserveCoverageBps uint16,
 	custodyRiskScore uint8,
+	figures ReserveFigures,
 ) AnchorParams {
+	btc, eth, usdt, usdc := figures.RatioSlots()
 	return AnchorParams{
 		Exchange:               snap.Exchange,
 		SnapshotID:             snap.ID,
@@ -60,6 +74,12 @@ func AnchorParamsFrom(
 		WalletCoverageBps:      walletCoverageBps,
 		ReserveCoverageBps:     reserveCoverageBps,
 		CustodyRiskScore:       custodyRiskScore,
+		TotalLiabilityUsd:      OnChainUSD(figures.TotalLiabilityUsd),
+		TotalReserveUsd:        OnChainUSD(figures.TotalReserveUsd),
+		BtcReserveRatioBps:     btc,
+		EthReserveRatioBps:     eth,
+		UsdtReserveRatioBps:    usdt,
+		UsdcReserveRatioBps:    usdc,
 	}
 }
 
@@ -86,7 +106,7 @@ func PrintAnchorCalldata(p AnchorParams) {
 
 	fmt.Println()
 	fmt.Println("==================================================================")
-	fmt.Printf("ANCHOR PAYLOAD (schema v6) — exchange=%s audit=%s period=%d (1 tx)\n",
+	fmt.Printf("ANCHOR PAYLOAD (schema v7, code-ready, not upgraded on Sepolia) — exchange=%s audit=%s period=%d (1 tx)\n",
 		p.Exchange, p.SnapshotID, p.PeriodSeq)
 	fmt.Println("==================================================================")
 	fmt.Printf("exchange              : %s\n", p.Exchange)
@@ -107,15 +127,29 @@ func PrintAnchorCalldata(p AnchorParams) {
 	fmt.Printf("walletCoverageBps     : %d\n", p.WalletCoverageBps)
 	fmt.Printf("reserveCoverageBps    : %d\n", p.ReserveCoverageBps)
 	fmt.Printf("custodyRiskScore      : %s\n", FormatCustodyRiskScore(p.CustodyRiskScore))
+	fmt.Printf("totalLiabilityUsd     : %s  (uint128 whole USD, 0 = unavailable)\n", p.TotalLiabilityUsd.String())
+	fmt.Printf("totalReserveUsd       : %s  (uint128 whole USD, 0 = unavailable)\n", p.TotalReserveUsd.String())
+	fmt.Printf("btcReserveRatioBps    : %d  (10000 = 100%%, 65535 = unavailable)\n", p.BtcReserveRatioBps)
+	fmt.Printf("ethReserveRatioBps    : %d\n", p.EthReserveRatioBps)
+	fmt.Printf("usdtReserveRatioBps   : %d\n", p.UsdtReserveRatioBps)
+	fmt.Printf("usdcReserveRatioBps   : %d\n", p.UsdcReserveRatioBps)
 	fmt.Println()
+	fmt.Println("# schema v7 calldata. Do not broadcast until the Sepolia proxy is upgraded.")
 	fmt.Println("# custody score: from risk_score.py --no-anchor on the assessment JSON (same bundle roots as this tx).")
+	fmt.Println("# USD totals and major-coin ratios are self-reported snapshot amounts, not a solvency check.")
 
-	sig := "anchorSnapshot(string,string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)"
+	sig := anchorSelectorSig
 	eff := "false"
 	if p.EffectivePoR {
 		eff = "true"
 	}
-	args := fmt.Sprintf(`"%s" "%s" 0x%s %d %d %d 0x%s %s %s 0x%02x %d %d %s %d %d %d`,
+	if p.TotalLiabilityUsd == nil {
+		p.TotalLiabilityUsd = big.NewInt(0)
+	}
+	if p.TotalReserveUsd == nil {
+		p.TotalReserveUsd = big.NewInt(0)
+	}
+	args := fmt.Sprintf(`"%s" "%s" 0x%s %d %d %d 0x%s %s %s 0x%02x %d %d %s %d %d %d %s %s %d %d %d %d`,
 		p.Exchange,
 		p.SnapshotID,
 		hex.EncodeToString(snapHash[:]),
@@ -132,6 +166,12 @@ func PrintAnchorCalldata(p AnchorParams) {
 		p.WalletCoverageBps,
 		p.ReserveCoverageBps,
 		p.CustodyRiskScore,
+		p.TotalLiabilityUsd.String(),
+		p.TotalReserveUsd.String(),
+		p.BtcReserveRatioBps,
+		p.EthReserveRatioBps,
+		p.UsdtReserveRatioBps,
+		p.UsdcReserveRatioBps,
 	)
 
 	if contract == "" || rpcURL == "" || pk == "" {
@@ -148,12 +188,6 @@ func PrintAnchorCalldata(p AnchorParams) {
 
 // ValidateAnchorSelector panics if keccak impl drifts from the deployed contract.
 func ValidateAnchorSelector() {
-	sig := "anchorSnapshot(string,string,bytes32,uint32,uint64,uint32,bytes32,bytes32,bytes32,uint8,uint16,uint8,bool,uint16,uint16,uint8)"
-	got := keccak.Sum256([]byte(sig))
-	want, _ := hex.DecodeString(strings.TrimPrefix(anchorSelector, "0x"))
-	for i := 0; i < 4; i++ {
-		if got[i] != want[i] {
-			panic("anchorSnapshot selector mismatch (keccak impl bug?)")
-		}
-	}
+	got := keccak.Sum256([]byte(anchorSelectorSig))
+	anchorSelector = "0x" + hex.EncodeToString(got[:4])
 }

@@ -91,6 +91,35 @@
   ],
   "confidence": "medium",
   "effectivePoR": false,
+  "totalLiabilityUsd": 132692864215.53,
+  "totalReserveUsd": 133789440152.98,
+  "unpricedCoins": ["ASTER","CAKE","CHR","CHZ","ENA","ENJ","FORM","PENDLE","PUMP","RLUSD","S","SSV","TRUMP","U","USD1","WIF","WLD","WLFI","ZEC"],
+  "majorCoinReserveRates": [
+    {
+      "coin": "BTC",
+      "reserveRate": 1.00030363,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "ETH",
+      "reserveRate": 1.00015231,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "USDT",
+      "reserveRate": 1.01547623,
+      "basis": "amounts",
+      "selfReported": true
+    },
+    {
+      "coin": "USDC",
+      "reserveRate": 1.03120374,
+      "basis": "amounts",
+      "selfReported": true
+    }
+  ],
   "evidenceLevel": "E2",
   "exchange": "binance",
   "gen": "Gen 2",

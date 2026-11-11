@@ -147,6 +147,8 @@ The same file with `--no-anchor` scores identically, but the interpretation says
 | `porStage`, `effectivePoR`, `riskFlags` | echoed from the assessment |
 | `anchor.porStage`, `anchor.walletCoverageBps`, `anchor.reserveCoverageBps` | schema v4+ on-chain fields (v3 rows decode as 0/false); prefer these over deprecated `coverageBps` |
 | `anchor.custodyRiskScore` | schema v5 field (`0–100` or `255`); cross-check via `custodyRiskScoreMatchesComputed` when recomputing |
+| `anchor.totalLiabilityUsd`, `anchor.totalReserveUsd` | schema v7 whole-USD totals (`0` = unavailable). Meaningful only when `reserveTotalsMeaningful` is true (`schemaVersion >= 7`) |
+| `anchor.btcReserveRatioBps` (and `eth` / `usdt` / `usdc`) | schema v7 self-reported reserve ratio in bps (`10000` = 100%, `65535` = unavailable). Pre-v7 rows are reported as `65535` |
 | `assessmentSha256` | the file's sha256, so a quoted score can be tied to bytes |
 
 Exit status is `0` when a score was produced and `1` when the run was inconclusive, so a caller cannot silently treat an unreadable chain as a score of zero.

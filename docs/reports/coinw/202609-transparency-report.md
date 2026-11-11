@@ -30,6 +30,24 @@ solvency-claim PASS means the September 2026 announcement total reserve ratio �
 | `por_dashboard` | `WAF_GATED` | Stage 0 | www.coinw.com PoR pages return Cloudflare WAF 403 from datacenters; summary imported from announcement / browser probe. |
 | `userMerkleProof` | `LOGIN_GATED_USER_PROOF` | Stage 0 | User merkel_tree_cw.json + automatic verify require login; OSS release ships binaries only (no source to port). |
 
+## Self-reported liabilities, reserves, and major-coin ratios
+
+Label: **self-reported**. These rows repeat the exchange snapshot. USD totals sum per-coin customer liability and exchange reserve (self-custody + third-party custody) using CoinGecko prices at `snapshotTime`, the same price path as `reserveCoverageBps`. A coin with no price is left out of the USD total and listed as unpriced. `walletCoverageBps` and `reserveCoverageBps` are the separate **checked** coverage ratios. This section is not solvency advice.
+
+| Figure | Value | Label |
+| --- | --- | --- |
+| Total liabilities (USD) | `null` (snapshot did not publish amounts) | self-reported |
+| Total reserves (USD) | `null` (snapshot did not publish amounts) | self-reported |
+| Unpriced coins | — | — |
+
+The snapshot did not publish amounts, so USD totals are null. Major-coin rows below use the exchange-reported reserve rate when that coin is in the snapshot.
+
+| Coin | Reserve ratio | Basis | Label |
+| --- | --- | --- | --- |
+| — | — | — | — |
+
+Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it. On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).
+
 ## 3. Frequency and Freshness
 
 | Field | Value |

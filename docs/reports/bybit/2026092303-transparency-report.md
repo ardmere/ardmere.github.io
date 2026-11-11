@@ -27,6 +27,25 @@ Public artifacts do not support independently reproducible global solvency verif
 | --- | --- | --- | --- |
 | `wallet_address_list` | `UNVERIFIABLE` | Stage 0 | No public wallet_address_list. |
 
+## Self-reported liabilities, reserves, and major-coin ratios
+
+Label: **self-reported**. These rows repeat the exchange snapshot. USD totals sum per-coin customer liability and exchange reserve (self-custody + third-party custody) using CoinGecko prices at `snapshotTime`, the same price path as `reserveCoverageBps`. A coin with no price is left out of the USD total and listed as unpriced. `walletCoverageBps` and `reserveCoverageBps` are the separate **checked** coverage ratios. This section is not solvency advice.
+
+| Figure | Value | Label |
+| --- | --- | --- |
+| Total liabilities (USD) | `10307542427.08` | self-reported |
+| Total reserves (USD) | `11362570326.71` | self-reported |
+| Unpriced coins | — | — |
+
+| Coin | Reserve ratio | Basis | Label |
+| --- | --- | --- | --- |
+| `BTC` | `1.04612787` | `amounts` | self-reported |
+| `ETH` | `1.03288702` | `amounts` | self-reported |
+| `USDT` | `1.10228824` | `amounts` | self-reported |
+| `USDC` | `2.23518086` | `amounts` | self-reported |
+
+Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it. On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).
+
 ## 3. Frequency and Freshness
 
 | Field | Value |

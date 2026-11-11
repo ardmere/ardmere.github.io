@@ -148,7 +148,13 @@ contract ArdmerePoRAnchorTest is Test {
         bool effectivePoR,
         uint16 walletCoverageBps,
         uint16 reserveCoverageBps,
-        uint8 custodyRiskScore
+        uint8 custodyRiskScore,
+        uint128 totalLiabilityUsd,
+        uint128 totalReserveUsd,
+        uint16 btcReserveRatioBps,
+        uint16 ethReserveRatioBps,
+        uint16 usdtReserveRatioBps,
+        uint16 usdcReserveRatioBps
     );
 
     event SignerUpdated(address indexed previousSigner, address indexed newSigner);
@@ -163,8 +169,10 @@ contract ArdmerePoRAnchorTest is Test {
 
     function test_initialize_setsSignerSchemaAndOwner() public view {
         assertEq(anchorContract.signer(), SIGNER);
-        assertEq(anchorContract.SCHEMA_VERSION(), 6);
-        assertEq(anchorContract.STORAGE_VERSION(), 3);
+        assertEq(anchorContract.SCHEMA_VERSION(), 7);
+        assertEq(anchorContract.STORAGE_VERSION(), 4);
+        assertEq(anchorContract.USD_UNAVAILABLE(), 0);
+        assertEq(anchorContract.RESERVE_RATIO_UNAVAILABLE(), 65535);
         assertEq(anchorContract.owner(), owner);
     }
 
@@ -213,13 +221,19 @@ contract ArdmerePoRAnchorTest is Test {
             VERIFICATION_ROOT,
             0x01,
             17,
-            6,
+            7,
             1_767_657_600,
             1, // Stage 0
             false,
             2500,
             8000,
-            42
+            42,
+            1_000_000,
+            1_100_000,
+            10000,
+            11000,
+            65535,
+            10150
         );
 
         vm.prank(SIGNER);
@@ -239,7 +253,13 @@ contract ArdmerePoRAnchorTest is Test {
             false,
             2500,
             8000,
-            42
+            42,
+            1_000_000,
+            1_100_000,
+            10000,
+            11000,
+            65535,
+            10150
         );
     }
 
@@ -272,7 +292,13 @@ contract ArdmerePoRAnchorTest is Test {
             effectivePoR,
             walletCoverageBps,
             reserveCoverageBps,
-            custodyRiskScore
+            custodyRiskScore,
+            0,
+            0,
+            65535,
+            65535,
+            65535,
+            65535
         );
     }
 
@@ -295,7 +321,10 @@ contract ArdmerePoRAnchorTest is Test {
         assertEq(record.verificationBundleRoot, VERIFICATION_ROOT);
         assertEq(record.verdictSummary, 0x01);
         assertEq(record.coverageBps, 17);
-        assertEq(record.schemaVersion, 6);
+        assertEq(record.schemaVersion, 7);
+        assertEq(record.totalLiabilityUsd, 0);
+        assertEq(record.totalReserveUsd, 0);
+        assertEq(record.btcReserveRatioBps, 65535);
         assertEq(record.custodyRiskScore, 75);
         assertEq(record.anchoredAt, 1_767_657_600);
         assertEq(record.porStage, 2);
@@ -325,7 +354,8 @@ contract ArdmerePoRAnchorTest is Test {
 
         assertEq(decoded.snapshotId, composite);
         assertEq(decoded.coverageBps, 17);
-        assertEq(decoded.schemaVersion, 6);
+        assertEq(decoded.schemaVersion, 7);
+        assertEq(decoded.btcReserveRatioBps, 65535);
         assertEq(decoded.custodyRiskScore, 10);
         assertEq(decoded.porStage, 3);
         assertTrue(decoded.effectivePoR);
@@ -373,7 +403,13 @@ contract ArdmerePoRAnchorTest is Test {
             false,
             0,
             0,
-            0
+            0,
+            0,
+            0,
+            65535,
+            65535,
+            65535,
+            65535
         );
     }
 
@@ -398,7 +434,7 @@ contract ArdmerePoRAnchorTest is Test {
         anchorContract.upgradeToAndCall(address(newImplementation), "");
 
         assertEq(anchorContract.signer(), SIGNER);
-        assertEq(anchorContract.SCHEMA_VERSION(), 6);
+        assertEq(anchorContract.SCHEMA_VERSION(), 7);
         assertTrue(anchorContract.snapshotExists(composite));
         assertEq(anchorContract.getLatestSnapshot(EXCHANGE_TAG).snapshotId, composite);
         assertEq(anchorContract.getSnapshot(composite).walletCoverageBps, 1111);
@@ -436,8 +472,8 @@ contract ArdmerePoRAnchorTest is Test {
         seed.upgradeToAndCall(address(v4), "");
 
         ArdmerePoRAnchor upgraded = ArdmerePoRAnchor(address(proxy));
-        assertEq(upgraded.SCHEMA_VERSION(), 6);
-        assertEq(upgraded.STORAGE_VERSION(), 3);
+        assertEq(upgraded.SCHEMA_VERSION(), 7);
+        assertEq(upgraded.STORAGE_VERSION(), 4);
         assertTrue(upgraded.snapshotExists(SNAPSHOT_PR01JUN26));
 
         ArdmerePoRAnchor.SnapshotRecord memory record = upgraded.getSnapshot(SNAPSHOT_PR01JUN26);
@@ -451,6 +487,48 @@ contract ArdmerePoRAnchorTest is Test {
         assertEq(record.walletCoverageBps, 0);
         assertEq(record.reserveCoverageBps, 0);
         assertEq(record.custodyRiskScore, 0);
+        assertEq(record.totalLiabilityUsd, 0);
+        assertEq(record.totalReserveUsd, 0);
+        assertEq(record.btcReserveRatioBps, 0);
+        assertEq(record.usdcReserveRatioBps, 0);
+    }
+
+    function test_anchorSnapshot_storesReserveTotalsAndRatioSentinel() public {
+        vm.warp(1_767_657_600);
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "TOTALS");
+        vm.prank(SIGNER);
+        anchorContract.anchorSnapshot(
+            "binance",
+            "TOTALS",
+            composite,
+            7,
+            1_767_657_600,
+            1,
+            EXCHANGE_ROOT,
+            ARTIFACT_ROOT,
+            VERIFICATION_ROOT,
+            0x01,
+            1,
+            1,
+            false,
+            0,
+            0,
+            10,
+            250_000_000_000,
+            260_000_000_000,
+            10200,
+            65535,
+            10000,
+            65534
+        );
+        ArdmerePoRAnchor.SnapshotRecord memory record = anchorContract.getSnapshot(composite);
+        assertEq(record.schemaVersion, 7);
+        assertEq(record.totalLiabilityUsd, 250_000_000_000);
+        assertEq(record.totalReserveUsd, 260_000_000_000);
+        assertEq(record.btcReserveRatioBps, 10200);
+        assertEq(record.ethReserveRatioBps, 65535);
+        assertEq(record.usdtReserveRatioBps, 10000);
+        assertEq(record.usdcReserveRatioBps, 65534);
     }
 
     function test_anchorSnapshot_revertsOnInvalidCustodyRiskScore() public {
@@ -473,7 +551,13 @@ contract ArdmerePoRAnchorTest is Test {
             false,
             0,
             0,
-            101
+            101,
+            0,
+            0,
+            65535,
+            65535,
+            65535,
+            65535
         );
     }
 
@@ -501,7 +585,13 @@ contract ArdmerePoRAnchorTest is Test {
             false,
             0,
             0,
-            255
+            255,
+            0,
+            0,
+            65535,
+            65535,
+            65535,
+            65535
         );
     }
 
@@ -525,7 +615,13 @@ contract ArdmerePoRAnchorTest is Test {
             false,
             0,
             0,
-            255
+            255,
+            0,
+            0,
+            65535,
+            65535,
+            65535,
+            65535
         );
     }
 
@@ -549,7 +645,13 @@ contract ArdmerePoRAnchorTest is Test {
             false,
             0,
             0,
-            255
+            255,
+            0,
+            0,
+            65535,
+            65535,
+            65535,
+            65535
         );
     }
 
@@ -573,7 +675,13 @@ contract ArdmerePoRAnchorTest is Test {
             false,
             0,
             0,
-            255
+            255,
+            0,
+            0,
+            65535,
+            65535,
+            65535,
+            65535
         );
     }
 
@@ -611,7 +719,13 @@ contract ArdmerePoRAnchorTest is Test {
             false,
             0,
             0,
-            255
+            255,
+            0,
+            0,
+            65535,
+            65535,
+            65535,
+            65535
         );
     }
 }

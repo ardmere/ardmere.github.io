@@ -130,6 +130,89 @@ imported from press materials.</td>
 </tr>
 </tbody>
 </table>
+<h2
+id="self-reported-liabilities-reserves-and-major-coin-ratios">Self-reported
+liabilities, reserves, and major-coin ratios</h2>
+<p>Label: <strong>self-reported</strong>. These rows repeat the exchange
+snapshot. USD totals sum per-coin customer liability and exchange
+reserve (self-custody + third-party custody) using CoinGecko prices at
+<code>snapshotTime</code>, the same price path as
+<code>reserveCoverageBps</code>. A coin with no price is left out of the
+USD total and listed as unpriced. <code>walletCoverageBps</code> and
+<code>reserveCoverageBps</code> are the separate
+<strong>checked</strong> coverage ratios. This section is not solvency
+advice.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Figure</th>
+<th>Value</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total liabilities (USD)</td>
+<td><code>2284842982.13</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="even">
+<td>Total reserves (USD)</td>
+<td><code>3177627746.18</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="odd">
+<td>Unpriced coins</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>Coin</th>
+<th>Reserve ratio</th>
+<th>Basis</th>
+<th>Label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>BTC</code></td>
+<td><code>2.80977475</code></td>
+<td><code>amounts</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="even">
+<td><code>ETH</code></td>
+<td><code>1.14</code></td>
+<td><code>amounts</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="odd">
+<td><code>USDT</code></td>
+<td><code>1.19</code></td>
+<td><code>amounts</code></td>
+<td>self-reported</td>
+</tr>
+<tr class="even">
+<td><code>USDC</code></td>
+<td><code>1.15</code></td>
+<td><code>amounts</code></td>
+<td>self-reported</td>
+</tr>
+</tbody>
+</table>
+<p>Reserve ratio is exchange reserve ÷ customer liability when both
+amounts exist (<code>basis=amounts</code>); otherwise it is the
+exchange-reported rate already parsed into the coin summary
+(<code>basis=reported</code>, percentage ÷ 100 so 1 = 100%). Major coins
+are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no
+row for it. On-chain schema v7 stores the same USD totals as uint128
+whole dollars (<code>0</code> = unavailable) and the four ratios as
+uint16 basis points (<code>10000</code> = 100%, <code>65535</code> =
+unavailable).</p>
 <h2 id="frequency-and-freshness">3. Frequency and Freshness</h2>
 <table>
 <colgroup>

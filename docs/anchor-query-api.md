@@ -52,8 +52,8 @@ Public site summary (homepage snapshot examples): [contract-query-guide.md](./co
 | **Proxy contract (user-facing address)** | [`0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7`](https://sepolia.etherscan.io/address/0x0A5eB9f6c173429DBb418826EDFDf7fFe11433f7#code) |  # pragma: allowlist secret
 | **Implementation v3** | [`0x62050405283f222EFEdF3BF0d6Cb16541cd1327a`](https://sepolia.etherscan.io/address/0x62050405283f222EFEdF3BF0d6Cb16541cd1327a#code) |
 | **Upgrade pattern** | UUPS (`ERC1967Proxy` + upgradeable implementation) |
-| **`SCHEMA_VERSION`** | `5` |
-| **`STORAGE_VERSION`** | `3` |
+| **`SCHEMA_VERSION` (code)** | `7` (self-reported USD totals + BTC/ETH/USDT/USDC ratio bps). **Deployed Sepolia proxy is still v6** until the upgrade in [deployments.md](./deployments.md). Do not send v7 calldata yet. |
+| **`STORAGE_VERSION` (code)** | `4` |
 | **Anchor signer** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
 
 > Always issue `eth_call` and read events against the **proxy address**, not the implementation address directly.
@@ -127,6 +127,12 @@ struct SnapshotRecord {
     uint16  walletCoverageBps;     // verifiable_addrs / published_addrs × 10000
     uint16  reserveCoverageBps;    // verifiable_usd / claimed_reserve_usd × 10000
     uint8   custodyRiskScore;      // 0–100 at anchor; 255 = unavailable (pre-v5 rows: 0)
+    uint128 totalLiabilityUsd;     // whole USD; 0 = unavailable (schema v7; pre-v7 reads 0)
+    uint128 totalReserveUsd;       // whole USD; 0 = unavailable
+    uint16  btcReserveRatioBps;    // 10000 = 100%; 65535 = unavailable
+    uint16  ethReserveRatioBps;
+    uint16  usdtReserveRatioBps;
+    uint16  usdcReserveRatioBps;
 }
 ```
 
@@ -143,13 +149,19 @@ struct SnapshotRecord {
 | `verificationBundleRoot` | `bytes32` | ardmere **verification bundle** Merkle root (must be non-zero) |
 | `verdictSummary` | `uint8` | Verifier conclusion **bitfield summary** (see table below) |
 | `coverageBps` | `uint16` | **Deprecated** opaque max(verifier Coverage)×10,000. Prefer `walletCoverageBps` / `reserveCoverageBps`. |
-| `schemaVersion` | `uint8` | `SCHEMA_VERSION` at write time (new anchors use `5`; older rows keep their write-time version) |
+| `schemaVersion` | `uint8` | `SCHEMA_VERSION` at write time. Code now writes `7`. The deployed proxy still writes `6` until upgraded. Older rows keep their write-time version. |
 | `anchoredAt` | `uint256` | `block.timestamp` at anchor time (seconds); **`0` means record does not exist** |
 | `porStage` | `uint8` | `0`=Pre-Stage, `1`=Stage 0, `2`=Stage 1, `3`=Stage 2 (same determination as assessment) |
 | `effectivePoR` | `bool` | Same effective-PoR flag as the assessment |
 | `walletCoverageBps` | `uint16` | Verifiable addresses / published addresses × 10,000 |
 | `reserveCoverageBps` | `uint16` | Verifiable reserve USD / claimed reserve USD × 10,000 (CoinGecko at `snapshotTime`) |
 | `custodyRiskScore` | `uint8` | `por-custody-risk` score at anchor (`0–100`); `255` = unavailable. Meaningful when `schemaVersion >= 5`. |
+| `totalLiabilityUsd` | `uint128` | Self-reported customer liabilities in **whole USD** (nearest dollar). `0` = unavailable. Meaningful when `schemaVersion >= 7`. |
+| `totalReserveUsd` | `uint128` | Self-reported reserves (self-custody + third-party) in whole USD, CoinGecko at `snapshotTime`. `0` = unavailable. Meaningful when `schemaVersion >= 7`. |
+| `btcReserveRatioBps` | `uint16` | BTC exchange reserve / customer liability × 10,000, or the exchange-reported rate. `10000` = 100%. `65535` = no row or no ratio. Pre-v7 rows must be treated as unavailable (storage reads `0`, which is not a 0% ratio). |
+| `ethReserveRatioBps` | `uint16` | Same for ETH. |
+| `usdtReserveRatioBps` | `uint16` | Same for USDT. |
+| `usdcReserveRatioBps` | `uint16` | Same for USDC. Ratios above 655.34% saturate at `65534`. |
 
 ### `verdictSummary` Bitfield (ardmere pipeline)
 
@@ -168,8 +180,8 @@ Full verifier matrix and Stage determination: [verifier-architecture.md](./verif
 
 | Function / variable | Signature | Return value | Revert |
 | --- | --- | --- | --- |
-| `SCHEMA_VERSION` | `SCHEMA_VERSION()(uint8)` | `5` | — |
-| `STORAGE_VERSION` | `STORAGE_VERSION()(uint8)` | `3` | — |
+| `SCHEMA_VERSION` | `SCHEMA_VERSION()(uint8)` | code `7`; live proxy still `6` until upgrade | — |
+| `STORAGE_VERSION` | `STORAGE_VERSION()(uint8)` | code `4`; live proxy still `3` until upgrade | — |
 | `CUSTODY_RISK_UNAVAILABLE` | `CUSTODY_RISK_UNAVAILABLE()(uint8)` | `255` | — |
 | `signer` | `signer()(address)` | Current authorized anchor address | — |
 
@@ -384,12 +396,12 @@ const RPC = process.env.RPC_URL ?? "https://rpc.sepolia.org";
 const abi = [
   "function SCHEMA_VERSION() view returns (uint8)",
   "function snapshotExists(bytes32 snapshotId) view returns (bool)",
-  "function getSnapshot(bytes32 snapshotId) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps, uint8 custodyRiskScore))",
-  "function getLatestSnapshot(bytes32 exchangeTag) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps, uint8 custodyRiskScore))",
-  "function getSnapshotByPeriod(bytes32 exchangeTag, uint32 periodSeq) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps, uint8 custodyRiskScore))",
+  "function getSnapshot(bytes32 snapshotId) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps, uint8 custodyRiskScore, uint128 totalLiabilityUsd, uint128 totalReserveUsd, uint16 btcReserveRatioBps, uint16 ethReserveRatioBps, uint16 usdtReserveRatioBps, uint16 usdcReserveRatioBps))",
+  "function getLatestSnapshot(bytes32 exchangeTag) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps, uint8 custodyRiskScore, uint128 totalLiabilityUsd, uint128 totalReserveUsd, uint16 btcReserveRatioBps, uint16 ethReserveRatioBps, uint16 usdtReserveRatioBps, uint16 usdcReserveRatioBps))",
+  "function getSnapshotByPeriod(bytes32 exchangeTag, uint32 periodSeq) view returns (tuple(bytes32 snapshotId, bytes32 exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps, uint8 custodyRiskScore, uint128 totalLiabilityUsd, uint128 totalReserveUsd, uint16 btcReserveRatioBps, uint16 ethReserveRatioBps, uint16 usdtReserveRatioBps, uint16 usdcReserveRatioBps))",
   "function getSnapshotCount(bytes32 exchangeTag) view returns (uint256)",
   "function getSnapshotIdAt(bytes32 exchangeTag, uint256 index) view returns (bytes32)",
-  "event SnapshotAnchored(bytes32 indexed snapshotId, bytes32 indexed exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps, uint8 custodyRiskScore)",
+  "event SnapshotAnchored(bytes32 indexed snapshotId, bytes32 indexed exchangeTag, string exchange, uint32 periodSeq, uint64 snapshotTime, uint32 btcBlockHeight, bytes32 exchangeMerkleRoot, bytes32 artifactBundleRoot, bytes32 verificationBundleRoot, uint8 verdictSummary, uint16 coverageBps, uint8 schemaVersion, uint256 anchoredAt, uint8 porStage, bool effectivePoR, uint16 walletCoverageBps, uint16 reserveCoverageBps, uint8 custodyRiskScore, uint128 totalLiabilityUsd, uint128 totalReserveUsd, uint16 btcReserveRatioBps, uint16 ethReserveRatioBps, uint16 usdtReserveRatioBps, uint16 usdcReserveRatioBps)",
 ];
 
 const provider = new JsonRpcProvider(RPC, 11155111);  # pragma: allowlist secret

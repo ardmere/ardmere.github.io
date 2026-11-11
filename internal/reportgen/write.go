@@ -10,7 +10,9 @@ import (
 	"time"
 
 	"github.com/ardmere/ardmere/internal/bundle"
+	"github.com/ardmere/ardmere/internal/coingecko"
 	"github.com/ardmere/ardmere/internal/exchanges/binance/bapi"
+	"github.com/ardmere/ardmere/internal/pipeline"
 	"github.com/ardmere/ardmere/internal/por"
 	"github.com/ardmere/ardmere/internal/verifier"
 )
@@ -50,8 +52,9 @@ func Write(ctx context.Context, opt Options) error {
 	rctx := newReportContext(opt.Exchange, art, ver, eval, freq)
 	checklist := collectChecklist(rctx)
 	recommendations := collectRecommendations(rctx)
-	assessment := buildAssessment(opt.Exchange, art, ver, eval, checklist, recommendations)
-	reportMD := buildReportMarkdown(opt.Exchange, opt.SnapshotID, dir, art, ver, eval, freq, checklist, recommendations)
+	figures := figuresFromArtifacts(ctx, dir, opt.Exchange, opt.SnapshotID)
+	assessment := buildAssessment(opt.Exchange, art, ver, eval, checklist, recommendations, figures)
+	reportMD := buildReportMarkdown(opt.Exchange, opt.SnapshotID, dir, art, ver, eval, freq, checklist, recommendations, figures)
 
 	outDir := filepath.Join(opt.ReportsDir, opt.Exchange)
 	if err := os.MkdirAll(outDir, 0o755); err != nil {
@@ -74,7 +77,15 @@ func Write(ctx context.Context, opt Options) error {
 	return nil
 }
 
-func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, checklist []checklistItem, recommendations []recommendationItem) map[string]any {
+func figuresFromArtifacts(ctx context.Context, dir, exchangeID, snapshotID string) pipeline.ReserveFigures {
+	loaded, err := pipeline.LoadFromBundle(dir, snapshotID, exchangeID)
+	if err != nil {
+		return pipeline.ReserveFiguresSourceMissing()
+	}
+	return pipeline.ComputeReserveFigures(ctx, loaded.Snapshot, coingecko.New())
+}
+
+func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, checklist []checklistItem, recommendations []recommendationItem, figures pipeline.ReserveFigures) map[string]any {
 	vr := make([]map[string]any, 0, len(ver.Verifications))
 	for _, v := range ver.Verifications {
 		vr = append(vr, map[string]any{
@@ -131,6 +142,9 @@ func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.Ve
 	// Prefer dual coverage ratios from the verification bundle (schema v4).
 	out["walletCoverageBps"] = ver.WalletCoverageBps
 	out["reserveCoverageBps"] = ver.ReserveCoverageBps
+	for k, v := range figures.AssessmentMap() {
+		out[k] = v
+	}
 	if ver.CoverageDetail != nil {
 		out["coverageDetail"] = ver.CoverageDetail
 	}
@@ -163,7 +177,7 @@ func recommendationsToAssessment(recs []recommendationItem) []map[string]any {
 	return out
 }
 
-func buildReportMarkdown(exchangeID, snapshotID, snapshotDir string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, freq frequencyInfo, checklist []checklistItem, recommendations []recommendationItem) string {
+func buildReportMarkdown(exchangeID, snapshotID, snapshotDir string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, freq frequencyInfo, checklist []checklistItem, recommendations []recommendationItem, figures pipeline.ReserveFigures) string {
 	var b strings.Builder
 	fmt.Fprintf(&b, "# %s %s PoR Transparency Report\n\n", strings.ToUpper(exchangeID), art.SnapshotID)
 	b.WriteString("> Methodology: [PoR Stage Framework](../../por-transparency-framework.md)  \n")
@@ -198,6 +212,7 @@ func buildReportMarkdown(exchangeID, snapshotID, snapshotDir string, art bundle.
 		b.WriteString("\n")
 	}
 
+	writeReserveSection(&b, figures)
 	writeSection3Frequency(&b, freq)
 	writeSection4Evidence(&b, exchangeID, snapshotID, snapshotDir, art, ver)
 

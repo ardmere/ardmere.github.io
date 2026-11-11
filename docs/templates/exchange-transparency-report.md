@@ -37,6 +37,20 @@ Under the ardmere framework, this snapshot should **not** be described as `{{for
 
 {{stage2_note}}
 
+## Self-reported liabilities, reserves, and major-coin ratios
+
+Label: **self-reported**. USD totals are null when the snapshot did not publish amounts. Major coins are BTC, ETH, USDT, and USDC; omit a coin with no snapshot row. Reserve ratio is exchange reserve ÷ customer liability (`basis=amounts`) or the exchange-reported rate (`basis=reported`). These figures are not solvency advice. Checked coverage stays in `walletCoverageBps` / `reserveCoverageBps`.
+
+| Figure | Value | Label |
+| --- | --- | --- |
+| Total liabilities (USD) | `{{total_liability_usd}}` | self-reported |
+| Total reserves (USD) | `{{total_reserve_usd}}` | self-reported |
+| Unpriced coins | `{{unpriced_coins}}` | — |
+
+| Coin | Reserve ratio | Basis | Label |
+| --- | --- | --- | --- |
+| `{{major_coin}}` | `{{reserve_ratio}}` | `{{basis}}` | self-reported |
+
 ## 3. Frequency and Freshness
 
 | Field | Value |

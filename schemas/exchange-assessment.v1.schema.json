@@ -66,6 +66,34 @@
       "maximum": 10000,
       "description": "verifiable_usd / claimed_reserve_usd × 10000 via CoinGecko at snapshotTime (schema v4)"
     },
+    "totalLiabilityUsd": {
+      "type": ["number", "null"],
+      "description": "Self-reported sum of per-coin customer liability × CoinGecko USD at snapshotTime. Null when the snapshot did not publish amounts or every amount-bearing coin was unpriced. Not a solvency opinion."
+    },
+    "totalReserveUsd": {
+      "type": ["number", "null"],
+      "description": "Self-reported sum of per-coin exchange reserve (self-custody + third-party) × CoinGecko USD at snapshotTime. Null when amounts were not published or every amount-bearing coin was unpriced."
+    },
+    "unpricedCoins": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Coins excluded from the USD totals because they have no CoinGecko id or the price lookup failed."
+    },
+    "majorCoinReserveRates": {
+      "type": "array",
+      "description": "BTC, ETH, USDT, USDC only, and only when the snapshot has a row. reserveRate is reserve/liability (1 = 100%). basis amounts uses published amounts; reported uses the exchange rate (percentage ÷ 100). selfReported is always true. Omitted coins are not in the array.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["coin", "reserveRate", "basis", "selfReported"],
+        "properties": {
+          "coin": { "type": "string", "enum": ["BTC", "ETH", "USDT", "USDC"] },
+          "reserveRate": { "type": "number" },
+          "basis": { "enum": ["amounts", "reported"] },
+          "selfReported": { "const": true }
+        }
+      }
+    },
     "coverageDetail": {
       "type": "object",
       "description": "Numerator/denominator breakdown for the two coverage ratios",
