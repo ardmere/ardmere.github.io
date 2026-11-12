@@ -14,7 +14,7 @@ Every scheme below is a port of the Go implementation this repository ships, and
 The proof file is the one the exchange gives a logged-in user. It contains the account id, the nonce, and the balances. Treat it as the user's data, not as a report:
 
 * **Read it from the user's own machine.** Never ask them to paste it into chat, commit it to a repository, attach it to an issue, or upload it anywhere.
-* **The script prints verdicts only.** It never echoes the account id, the nonce, or any balance. `tests/test_inclusion.py` asserts this.
+* **The script prints verdicts only.** It never echoes the account id, the nonce, or any balance. `tests/test_inclusion.py` asserts this. When an on-chain anchor record is bound and carries schema v7 reserve fields, `binding.anchor.reserveDisplay` (and stderr lines) shows those totals/ratios in human form (`$1,234 USD`, `100.03%`) as **self-reported**, not a solvency opinion; raw bps/ints stay in the JSON.
 * **It writes no output file.** There is no `--out`, no cache, and nothing is created next to the proof. Redirect the stdout yourself if you need to keep it, on the user's machine only.
 * **It reads nothing else on disk** except the proof you name and, if you ask, the assessment JSON you name.
 

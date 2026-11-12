@@ -118,7 +118,7 @@ $ python3 skills/por-custody-risk/scripts/risk_score.py \
   "porStage": "Stage 0",
   "effectivePoR": false,
   "riskFlags": ["UNVERIFIABLE"],
-  "assessmentSha256": "53290a7f5021032f580e538ebe1c3fa1ced0d2503a65984da93c6b53a0b0ef79",
+  "assessmentSha256": "f17dc2503ed09e43ee2b449cc3bd3368def10903b999dd2cd1dcad98c4bec07f",
   "anchor": {
     "status": "found",
     "live": false,
@@ -147,8 +147,9 @@ The same file with `--no-anchor` scores identically, but the interpretation says
 | `porStage`, `effectivePoR`, `riskFlags` | echoed from the assessment |
 | `anchor.porStage`, `anchor.walletCoverageBps`, `anchor.reserveCoverageBps` | schema v4+ on-chain fields (v3 rows decode as 0/false); prefer these over deprecated `coverageBps` |
 | `anchor.custodyRiskScore` | schema v5 field (`0–100` or `255`); cross-check via `custodyRiskScoreMatchesComputed` when recomputing |
-| `anchor.totalLiabilityUsd`, `anchor.totalReserveUsd` | schema v7 whole-USD totals (`0` = unavailable). Meaningful only when `reserveTotalsMeaningful` is true (`schemaVersion >= 7`) |
-| `anchor.btcReserveRatioBps` (and `eth` / `usdt` / `usdc`) | schema v7 self-reported reserve ratio in bps (`10000` = 100%, `65535` = unavailable). Pre-v7 rows are reported as `65535` |
+| `anchor.totalLiabilityUsd`, `anchor.totalReserveUsd` | schema v7 whole-USD totals (`0` = unavailable). Meaningful only when `reserveTotalsMeaningful` is true (`schemaVersion >= 7`). Raw ints stay for machines |
+| `anchor.btcReserveRatioBps` (and `eth` / `usdt` / `usdc`) | schema v7 self-reported reserve ratio in bps (`10000` = 100%, `65535` = unavailable, `65534` = ≥655.34%). Pre-v7 rows are reported as `65535` |
+| `reserveDisplay` / `anchor.reserveDisplay` | **Primary human-facing form**: USD with `$` and thousands separators, ratios as `100.03%` / `unavailable` / `≥655.34%`, labeled self-reported (not a solvency opinion). Prefer these lines when quoting to people; raw fields stay alongside |
 | `assessmentSha256` | the file's sha256, so a quoted score can be tied to bytes |
 
 Exit status is `0` when a score was produced and `1` when the run was inconclusive, so a caller cannot silently treat an unreadable chain as a score of zero.

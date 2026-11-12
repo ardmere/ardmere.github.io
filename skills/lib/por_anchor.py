@@ -28,6 +28,7 @@ SCHEMA_VERSION = 7
 CUSTODY_RISK_UNAVAILABLE = 255
 USD_UNAVAILABLE = 0
 RESERVE_RATIO_UNAVAILABLE = 65535
+# Display helpers (friendly USD / percent lines) live in por_display.py.
 
 # SnapshotRecord, in ABI order (docs/anchor-query-api.md §4).
 RECORD_FIELDS = (
@@ -560,3 +561,10 @@ def resolve_record(audit_id, exchange=None, contract=None, rpc=None, fixture=Non
     doc = read_snapshot(audit_id, exchange=exchange, contract=contract, rpc=rpc, prefer_cast=prefer_cast)
     doc["source"] = "rpc"
     return doc
+
+
+def reserve_display_for_record(record, assessment=None):
+    """Friendly USD / percent lines for a SnapshotRecord (see por_display)."""
+    import por_display
+
+    return por_display.build_reserve_display(record, assessment)

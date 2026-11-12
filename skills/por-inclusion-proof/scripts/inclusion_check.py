@@ -917,11 +917,13 @@ def load_published_roots(assessment_path, exchange, onchain_doc=None):
         "snapshotId": None,
     }
     path = Path(assessment_path) if assessment_path else None
+    assessment = None
     if path is not None and path.is_file():
         try:
             assessment = json.loads(path.read_text())
         except (OSError, json.JSONDecodeError):
             binding["note"] = "the assessment file is unreadable; the proof was verified but not bound"
+            assessment = None
         else:
             if assessment.get("exchange") != exchange:
                 binding["note"] = (f"the assessment is for {assessment.get('exchange')!r}, not {exchange!r}; "
@@ -947,6 +949,20 @@ def load_published_roots(assessment_path, exchange, onchain_doc=None):
             "snapshotId": onchain_doc.get("snapshotId"),
             "rpc": onchain_doc.get("rpc"),
         }
+        # Surface v7 reserve totals / ratios in human form when the record carries them.
+        if onchain_doc.get("status") == "found" and record:
+            import por_display
+
+            anchor_state["totalLiabilityUsd"] = record.get("totalLiabilityUsd")
+            anchor_state["totalReserveUsd"] = record.get("totalReserveUsd")
+            anchor_state["btcReserveRatioBps"] = record.get("btcReserveRatioBps")
+            anchor_state["ethReserveRatioBps"] = record.get("ethReserveRatioBps")
+            anchor_state["usdtReserveRatioBps"] = record.get("usdtReserveRatioBps")
+            anchor_state["usdcReserveRatioBps"] = record.get("usdcReserveRatioBps")
+            anchor_state["reserveTotalsMeaningful"] = record.get("reserveTotalsMeaningful")
+            anchor_state["reserveDisplay"] = por_display.build_reserve_display(
+                record, assessment if isinstance(assessment, dict) else None,
+            )
         if onchain_doc.get("status") == "found" and root and root != "0" * 64:
             binding["publishedRoots"]["anchor"] = root
             binding["source"].append("on-chain anchor")
@@ -1114,6 +1130,12 @@ def main(argv):
     )
     json.dump(doc, sys.stdout, indent=2)
     sys.stdout.write("\n")
+    display = ((doc.get("binding") or {}).get("anchor") or {}).get("reserveDisplay")
+    if display:
+        import por_display
+
+        sys.stderr.write("\n# Self-reported reserve figures (not a solvency opinion)\n")
+        por_display.print_reserve_lines(display, file=sys.stderr)
     return 0 if doc["verdict"] == "PASS" else 1
 
 
