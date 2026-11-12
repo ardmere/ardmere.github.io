@@ -40,15 +40,24 @@ func Normalize(raw ourbitapi.ParsedSummary, meta Meta) por.Snapshot {
 			"walletChannel":    "live_wallet_detail_api",
 		},
 	}
+	anyAmounts := false
 	for _, c := range raw.CoinRows {
-		out.CoinSummaries = append(out.CoinSummaries, por.CoinSummary{
-			Coin:              c.Coin,
-			ExchangeReserve:   decimal.NewFromFloat(c.ReserveAmount),
-			CustomerLiability: decimal.NewFromFloat(c.LiabilityAmount),
-			Extra: map[string]string{
-				"reserveRate": decimal.NewFromFloat(c.ReserveRate).String(),
-			},
-		})
+		extra := map[string]string{
+			por.ExtraReserveRate: decimal.NewFromFloat(c.ReserveRate).String(),
+		}
+		cs := por.CoinSummary{Coin: c.Coin}
+		if c.ReserveAmount == 0 && c.LiabilityAmount == 0 {
+			extra = por.MarkAmountsUnpublished(extra)
+		} else {
+			anyAmounts = true
+			cs.ExchangeReserve = decimal.NewFromFloat(c.ReserveAmount)
+			cs.CustomerLiability = decimal.NewFromFloat(c.LiabilityAmount)
+		}
+		cs.Extra = extra
+		out.CoinSummaries = append(out.CoinSummaries, cs)
+	}
+	if !anyAmounts {
+		out.Extra = por.SnapshotAmountsNotPublished(out.Extra)
 	}
 	return out
 }

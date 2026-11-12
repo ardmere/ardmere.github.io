@@ -134,7 +134,7 @@ advice.</p>
 </tr>
 <tr class="even">
 <td>Total reserves (USD)</td>
-<td><code>0.00</code></td>
+<td>Unavailable</td>
 <td>self-reported</td>
 </tr>
 <tr class="odd">
@@ -144,6 +144,9 @@ advice.</p>
 </tr>
 </tbody>
 </table>
+<p>Customer liabilities were priced from published amounts. Reserve
+amounts were not published for this snapshot, so total reserves and
+missing major-coin ratios are Unavailable (not $0 / 0%).</p>
 <table>
 <thead>
 <tr class="header">
@@ -155,28 +158,10 @@ advice.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>BTC</code></td>
-<td><code>0</code></td>
-<td><code>amounts</code></td>
-<td>self-reported</td>
-</tr>
-<tr class="even">
-<td><code>ETH</code></td>
-<td><code>0</code></td>
-<td><code>amounts</code></td>
-<td>self-reported</td>
-</tr>
-<tr class="odd">
-<td><code>USDT</code></td>
-<td><code>0</code></td>
-<td><code>amounts</code></td>
-<td>self-reported</td>
-</tr>
-<tr class="even">
-<td><code>USDC</code></td>
-<td><code>0</code></td>
-<td><code>amounts</code></td>
-<td>self-reported</td>
+<td>—</td>
+<td>Unavailable</td>
+<td>—</td>
+<td>—</td>
 </tr>
 </tbody>
 </table>
@@ -185,7 +170,8 @@ amounts exist (<code>basis=amounts</code>); otherwise it is the
 exchange-reported rate already parsed into the coin summary
 (<code>basis=reported</code>, percentage ÷ 100 so 1 = 100%). Major coins
 are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no
-row for it. On-chain schema v7 stores the same USD totals as uint128
+row for it, or when neither amounts nor a reported rate were published
+(Unavailable). On-chain schema v7 stores the same USD totals as uint128
 whole dollars (<code>0</code> = unavailable) and the four ratios as
 uint16 basis points (<code>10000</code> = 100%, <code>65535</code> =
 unavailable).</p>
@@ -325,9 +311,9 @@ href="../../../artifacts/bybit/2026082604/bundles/2026082604.verification-bundle
 <tr class="even">
 <td><code>solvency-claim</code></td>
 <td><code>1.0</code></td>
-<td><code>FAIL</code></td>
-<td><code>1.0000</code></td>
-<td></td>
+<td><code>UNVERIFIABLE</code></td>
+<td><code>0.0000</code></td>
+<td>no published solvency reserve-rate fields (Unavailable; not 0%)</td>
 </tr>
 <tr class="odd">
 <td><code>user-merkle-proof</code></td>
@@ -480,70 +466,10 @@ mode)</td>
 </tbody>
 </table>
 <h3 id="row-level-findings">Row-level findings</h3>
-<h4 id="solvency-claim-fail"><code>solvency-claim</code>
-(<code>FAIL</code>)</h4>
-<p>Finding counts: FAIL 5</p>
-<p><strong>FAIL</strong></p>
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-<col style="width: 20%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Subject</th>
-<th>Field</th>
-<th>Claim</th>
-<th>Actual</th>
-<th>Note</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>total</code></td>
-<td><code>totalReserveRate</code></td>
-<td>0</td>
-<td>0.00</td>
-<td>self-reported exchange summary only; does not prove reserve
-authenticity</td>
-</tr>
-<tr class="even">
-<td><code>BTC</code></td>
-<td><code>reserveRate</code></td>
-<td>0</td>
-<td>0.00</td>
-<td>self-reported exchange summary only; does not prove reserve
-authenticity</td>
-</tr>
-<tr class="odd">
-<td><code>ETH</code></td>
-<td><code>reserveRate</code></td>
-<td>0</td>
-<td>0.00</td>
-<td>self-reported exchange summary only; does not prove reserve
-authenticity</td>
-</tr>
-<tr class="even">
-<td><code>USDT</code></td>
-<td><code>reserveRate</code></td>
-<td>0</td>
-<td>0.00</td>
-<td>self-reported exchange summary only; does not prove reserve
-authenticity</td>
-</tr>
-<tr class="odd">
-<td><code>USDC</code></td>
-<td><code>reserveRate</code></td>
-<td>0</td>
-<td>0.00</td>
-<td>self-reported exchange summary only; does not prove reserve
-authenticity</td>
-</tr>
-</tbody>
-</table>
+<h4 id="solvency-claim-unverifiable"><code>solvency-claim</code>
+(<code>UNVERIFIABLE</code>)</h4>
+<p>Summary: no published solvency reserve-rate fields (Unavailable; not
+0%)</p>
 <h2 id="minimal-checklist">7. Minimal Checklist</h2>
 <table>
 <colgroup>
@@ -652,7 +578,9 @@ as <code>PASS</code>.</p>
 <strong>&gt;100%</strong> but does not publish exact per-coin
 percentages in extractable tables.</li>
 <li>Exact Aug ratios intentionally omitted (not invented). Browser API
-provides liability amounts only. <code>solvency-claim</code> FAIL.</li>
+provides liability amounts only. <code>solvency-claim</code> is
+UNVERIFIABLE because reserve ratios were unpublished (Unavailable; not
+invented as 0%).</li>
 </ul>
     </article>
   </main>

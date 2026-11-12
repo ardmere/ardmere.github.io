@@ -117,6 +117,77 @@ func TestComputeReserveFigures_noPriceOracleLeavesTotalsNull(t *testing.T) {
 	}
 }
 
+func TestComputeReserveFigures_missingReservesUnavailable(t *testing.T) {
+	snap := por.Snapshot{
+		SnapshotTime: time.Date(2026, 10, 27, 6, 0, 0, 0, time.UTC),
+		CoinSummaries: []por.CoinSummary{
+			{
+				Coin:              "BTC",
+				CustomerLiability: decimal.NewFromInt(2),
+				Extra:             map[string]string{"reserveAmount": "unpublished", "reserveRate": "unpublished"},
+			},
+			{
+				Coin:              "ETH",
+				CustomerLiability: decimal.NewFromInt(10),
+				Extra:             map[string]string{"reserveAmount": "unpublished", "reserveRate": "unpublished"},
+			},
+			{
+				Coin:              "USDT",
+				CustomerLiability: decimal.NewFromInt(100),
+				Extra:             map[string]string{"reserveAmount": "unpublished", "reserveRate": "unpublished"},
+			},
+			{
+				Coin:              "USDC",
+				CustomerLiability: decimal.NewFromInt(50),
+				Extra:             map[string]string{"reserveAmount": "unpublished", "reserveRate": "unpublished"},
+			},
+		},
+	}
+	prices := stubPrices{"bitcoin": 100, "ethereum": 10, "tether": 1, "usd-coin": 1}
+	got := ComputeReserveFigures(context.Background(), snap, prices)
+	if !got.AmountsPublished {
+		t.Fatalf("liabilities were published: %+v", got)
+	}
+	if got.TotalLiabilityUsd == nil || *got.TotalLiabilityUsd != 450 {
+		// 2*100 + 10*10 + 100*1 + 50*1 = 450
+		t.Fatalf("liab=%v want 450", got.TotalLiabilityUsd)
+	}
+	if got.TotalReserveUsd != nil {
+		t.Fatalf("missing reserves must stay nil, got %v", *got.TotalReserveUsd)
+	}
+	if len(got.MajorCoinReserveRates) != 0 {
+		t.Fatalf("major rates must be omitted when unpublished, got %#v", got.MajorCoinReserveRates)
+	}
+	btc, eth, usdt, usdc := got.RatioSlots()
+	if btc != ReserveRatioUnavailable || eth != ReserveRatioUnavailable || usdt != ReserveRatioUnavailable || usdc != ReserveRatioUnavailable {
+		t.Fatalf("on-chain slots want 65535, got %d %d %d %d", btc, eth, usdt, usdc)
+	}
+	if OnChainUSD(got.TotalReserveUsd).Sign() != 0 {
+		t.Fatal("unavailable reserve must encode on-chain as 0 USD")
+	}
+}
+
+func TestComputeReserveFigures_publishedZeroReserveDistinctFromMissing(t *testing.T) {
+	snap := por.Snapshot{
+		SnapshotTime: time.Date(2026, 10, 27, 6, 0, 0, 0, time.UTC),
+		CoinSummaries: []por.CoinSummary{{
+			Coin:              "BTC",
+			CustomerLiability: decimal.NewFromInt(1),
+			ExchangeReserve:   decimal.Zero, // published zero
+		}},
+	}
+	got := ComputeReserveFigures(context.Background(), snap, stubPrices{"bitcoin": 50})
+	if got.TotalLiabilityUsd == nil || *got.TotalLiabilityUsd != 50 {
+		t.Fatalf("liab=%v", got.TotalLiabilityUsd)
+	}
+	if got.TotalReserveUsd == nil || *got.TotalReserveUsd != 0 {
+		t.Fatalf("published zero reserve must be 0, not nil: %+v", got.TotalReserveUsd)
+	}
+	if len(got.MajorCoinReserveRates) != 1 || got.MajorCoinReserveRates[0].ReserveRate.String() != "0" {
+		t.Fatalf("published zero rate: %#v", got.MajorCoinReserveRates)
+	}
+}
+
 func TestOnChainRatioBps_saturatesBelowSentinel(t *testing.T) {
 	rates := []MajorCoinReserveRate{{Coin: "BTC", ReserveRate: "10", Basis: "amounts", SelfReported: true}}
 	if OnChainRatioBps(rates, "BTC") != ReserveRatioBpsMax {

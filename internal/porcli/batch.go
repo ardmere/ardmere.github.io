@@ -128,6 +128,26 @@ func runPatchReserveFigures(args []string) int {
 	return 0
 }
 
+func runRefreshReserveDisplay(args []string) int {
+	fs := flag.NewFlagSet("refresh-reserve-display", flag.ExitOnError)
+	reports := fs.String("reports", "./docs/reports", "reports output directory")
+	_ = fs.Parse(args)
+
+	results, err := reportgen.RefreshReserveDisplay(*reports)
+	if err != nil {
+		log.Fatalf("refresh-reserve-display: %v", err)
+	}
+	var n int
+	for _, r := range results {
+		if r.Changed {
+			n++
+			fmt.Printf("updated %s %s\n", r.Exchange, r.SnapshotID)
+		}
+	}
+	fmt.Printf("refresh-reserve-display: %d changed of %d\n", n, len(results))
+	return 0
+}
+
 func runRefreshFrequency(args []string) int {
 	fs := flag.NewFlagSet("refresh-frequency", flag.ExitOnError)
 	reports := fs.String("reports", "./docs/reports", "reports output directory")

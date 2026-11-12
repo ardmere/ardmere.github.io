@@ -33,17 +33,17 @@ Label: **self-reported**. These rows repeat the exchange snapshot. USD totals su
 
 | Figure | Value | Label |
 | --- | --- | --- |
-| Total liabilities (USD) | `null` (summary artifact not loaded) | self-reported |
-| Total reserves (USD) | `null` (summary artifact not loaded) | self-reported |
+| Total liabilities (USD) | Unavailable (summary artifact not loaded) | self-reported |
+| Total reserves (USD) | Unavailable (summary artifact not loaded) | self-reported |
 | Unpriced coins | — | — |
 
-The summary artifact was not available when this report was generated, so USD totals were not computed.
+The summary artifact was not available when this report was generated, so USD totals are Unavailable.
 
 | Coin | Reserve ratio | Basis | Label |
 | --- | --- | --- | --- |
-| — | — | — | — |
+| — | Unavailable | — | — |
 
-Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it. On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).
+Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it, or when neither amounts nor a reported rate were published (Unavailable). On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).
 
 ## 3. Frequency and Freshness
 

@@ -30,7 +30,8 @@ func Normalize(raw wooxapi.ParsedSummary, meta Meta) por.Snapshot {
 		// Period merkle root hex is not published separately; full protobuf tree is public.
 		MerkleRoot: "",
 		PeriodSeq:  meta.PeriodSeq,
-		Extra: map[string]string{
+		// Dashboard publishes USDT notionals + ratio, not per-coin major amounts for USD pricing.
+		Extra: por.SnapshotAmountsNotPublished(map[string]string{
 			"totalReserveRate":      decimal.NewFromFloat(raw.TotalReserveRate).String(),
 			"totalReserveRateBasis": "sum_asset_usdt_notional / sum_liability_usdt_notional * 100",
 			"totalAssetsUSDT":       decimal.NewFromFloat(raw.TotalAssetsUSDT).String(),
@@ -46,7 +47,7 @@ func Normalize(raw wooxapi.ParsedSummary, meta Meta) por.Snapshot {
 			"auditor":               "self-attested live dashboard + monthly merkle audit (no named third-party in public summary)",
 			"liveReserveRate":       decimal.NewFromFloat(raw.LiveReserveRate).String(),
 			"assetVenues":           raw.VenuesNote,
-		},
+		}),
 	}
 	return out
 }

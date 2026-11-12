@@ -26,16 +26,18 @@ func writeReserveSection(b *strings.Builder, fig pipeline.ReserveFigures) {
 	fmt.Fprintf(b, "| Unpriced coins | %s | — |\n\n", unpricedCell(fig))
 
 	if fig.SourceMissing {
-		b.WriteString("The summary artifact was not available when this report was generated, so USD totals were not computed.\n\n")
+		b.WriteString("The summary artifact was not available when this report was generated, so USD totals are Unavailable.\n\n")
 	} else if !fig.AmountsPublished {
-		b.WriteString("The snapshot did not publish amounts, so USD totals are null. Major-coin rows below use the exchange-reported reserve rate when that coin is in the snapshot.\n\n")
+		b.WriteString("The snapshot did not publish amounts, so USD totals are Unavailable. Major-coin rows below use the exchange-reported reserve rate when that coin is in the snapshot.\n\n")
+	} else if fig.TotalLiabilityUsd != nil && fig.TotalReserveUsd == nil {
+		b.WriteString("Customer liabilities were priced from published amounts. Reserve amounts were not published for this snapshot, so total reserves and missing major-coin ratios are Unavailable (not $0 / 0%).\n\n")
 	} else if fig.TotalLiabilityUsd == nil || fig.TotalReserveUsd == nil {
-		b.WriteString("Amount-bearing coins were all unpriced, so USD totals are null.\n\n")
+		b.WriteString("Amount-bearing coins were all unpriced, so USD totals are Unavailable.\n\n")
 	}
 
 	b.WriteString("| Coin | Reserve ratio | Basis | Label |\n| --- | --- | --- | --- |\n")
 	if len(fig.MajorCoinReserveRates) == 0 {
-		b.WriteString("| — | — | — | — |\n")
+		b.WriteString("| — | Unavailable | — | — |\n")
 	}
 	for _, row := range fig.MajorCoinReserveRates {
 		label := "self-reported"
@@ -43,19 +45,19 @@ func writeReserveSection(b *strings.Builder, fig pipeline.ReserveFigures) {
 	}
 	b.WriteString("\n")
 	b.WriteString("Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). ")
-	b.WriteString("Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it. ")
+	b.WriteString("Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it, or when neither amounts nor a reported rate were published (Unavailable). ")
 	b.WriteString("On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).\n\n")
 }
 
 func usdCell(fig pipeline.ReserveFigures, v *float64) string {
 	if v == nil {
 		if fig.SourceMissing {
-			return "`null` (summary artifact not loaded)"
+			return "Unavailable (summary artifact not loaded)"
 		}
 		if !fig.AmountsPublished {
-			return "`null` (snapshot did not publish amounts)"
+			return "Unavailable (snapshot did not publish amounts)"
 		}
-		return "`null`"
+		return "Unavailable"
 	}
 	return fmt.Sprintf("`%.2f`", *v)
 }

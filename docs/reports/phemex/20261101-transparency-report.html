@@ -201,7 +201,8 @@ amounts exist (<code>basis=amounts</code>); otherwise it is the
 exchange-reported rate already parsed into the coin summary
 (<code>basis=reported</code>, percentage ÷ 100 so 1 = 100%). Major coins
 are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no
-row for it. On-chain schema v7 stores the same USD totals as uint128
+row for it, or when neither amounts nor a reported rate were published
+(Unavailable). On-chain schema v7 stores the same USD totals as uint128
 whole dollars (<code>0</code> = unavailable) and the four ratios as
 uint16 basis points (<code>10000</code> = 100%, <code>65535</code> =
 unavailable).</p>

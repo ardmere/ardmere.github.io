@@ -51,15 +51,24 @@ func Normalize(raw htxapi.ParsedSummary, meta Meta) por.Snapshot {
 		Auditor:         "HTX zkPoR (Groth16)",
 	}
 
+	anyAmounts := false
 	for _, c := range raw.CoinRows {
-		out.CoinSummaries = append(out.CoinSummaries, por.CoinSummary{
-			Coin:              c.Coin,
-			CustomerLiability: decimal.NewFromFloat(c.LiabilityAmount),
-			ExchangeReserve:   decimal.NewFromFloat(c.ReserveAmount),
-			Extra: map[string]string{
-				"reserveRate": fmtDecimal(c.ReserveRate),
-			},
-		})
+		extra := map[string]string{
+			por.ExtraReserveRate: fmtDecimal(c.ReserveRate),
+		}
+		cs := por.CoinSummary{Coin: c.Coin}
+		if c.ReserveAmount == 0 && c.LiabilityAmount == 0 {
+			extra = por.MarkAmountsUnpublished(extra)
+		} else {
+			anyAmounts = true
+			cs.CustomerLiability = decimal.NewFromFloat(c.LiabilityAmount)
+			cs.ExchangeReserve = decimal.NewFromFloat(c.ReserveAmount)
+		}
+		cs.Extra = extra
+		out.CoinSummaries = append(out.CoinSummaries, cs)
+	}
+	if !anyAmounts {
+		out.Extra = por.SnapshotAmountsNotPublished(out.Extra)
 	}
 	return out
 }

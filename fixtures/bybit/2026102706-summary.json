@@ -5,7 +5,7 @@
     "https://www.bybit.com/x-api/cht/asset/page/por/queryHisBalancesInfo",
     "https://www.bybit.com/en/app/user/proof-of-reserve"
   ],
-  "notes": "Public UI/API no longer exposes reserve ratios (reserve-ratio/latest 404). queryHisBalancesInfo provides liability/audit-scope amounts only. Exact Oct reserve ratios not published in press as of capture; not invented. Hacken Oct PDF not located.",
+  "notes": "Public UI/API no longer exposes reserve ratios (reserve-ratio/latest 404). queryHisBalancesInfo provides liability/audit-scope amounts only. Exact Oct reserve ratios not published in press as of capture; not invented. Hacken Oct PDF not located. reserve_amount/reserve_rate are null (unpublished), not 0.",
   "info": {
     "code": 0,
     "data": {
@@ -21,26 +21,26 @@
         {
           "coin": "BTC",
           "customer_liability": 57373.99224782,
-          "reserve_rate": 0,
-          "reserve_amount": 0
+          "reserve_rate": null,
+          "reserve_amount": null
         },
         {
           "coin": "ETH",
           "customer_liability": 558637.12859043,
-          "reserve_rate": 0,
-          "reserve_amount": 0
+          "reserve_rate": null,
+          "reserve_amount": null
         },
         {
           "coin": "USDT",
           "customer_liability": 3309755957.892343,
-          "reserve_rate": 0,
-          "reserve_amount": 0
+          "reserve_rate": null,
+          "reserve_amount": null
         },
         {
           "coin": "USDC",
           "customer_liability": 140934805.0366651,
-          "reserve_rate": 0,
-          "reserve_amount": 0
+          "reserve_rate": null,
+          "reserve_amount": null
         }
       ]
     }

@@ -18,6 +18,8 @@ type Meta struct {
 }
 
 // Normalize maps Bybit public summary into por.Snapshot.
+// Missing reserve or liability amounts stay unpublished (Extra marker + zero
+// decimal) so pipeline totals can distinguish "not published" from a true zero.
 func Normalize(raw bybitapi.ParsedSummary, meta Meta) por.Snapshot {
 	if meta.Exchange == "" {
 		meta.Exchange = ID
@@ -29,6 +31,14 @@ func Normalize(raw bybitapi.ParsedSummary, meta Meta) por.Snapshot {
 		}
 	}
 
+	extra := map[string]string{
+		"algorithm": "merkle_tree+sha256",
+		"auditor":   "Hacken",
+	}
+	if raw.TotalReserveRate != nil {
+		extra["totalReserveRate"] = fmtDecimal(*raw.TotalReserveRate)
+	}
+
 	out := por.Snapshot{
 		Exchange:        meta.Exchange,
 		ID:              raw.AuditID,
@@ -36,22 +46,35 @@ func Normalize(raw bybitapi.ParsedSummary, meta Meta) por.Snapshot {
 		SnapshotTimeRaw: raw.AuditTimeRaw,
 		MerkleRoot:      raw.MerkleRoot,
 		PeriodSeq:       meta.PeriodSeq,
-		Extra: map[string]string{
-			"totalReserveRate": fmtDecimal(raw.TotalReserveRate),
-			"algorithm":        "merkle_tree+sha256",
-			"auditor":          "Hacken",
-		},
+		Extra:           extra,
 	}
 
+	anyAmounts := false
 	for _, c := range raw.CoinRows {
-		out.CoinSummaries = append(out.CoinSummaries, por.CoinSummary{
-			Coin:              c.Coin,
-			CustomerLiability: decimal.NewFromFloat(c.LiabilityAmount),
-			ExchangeReserve:   decimal.NewFromFloat(c.ReserveAmount),
-			Extra: map[string]string{
-				"reserveRate": fmtDecimal(c.ReserveRate),
-			},
-		})
+		coinExtra := map[string]string{}
+		cs := por.CoinSummary{Coin: c.Coin}
+		if c.LiabilityAmount != nil {
+			anyAmounts = true
+			cs.CustomerLiability = decimal.NewFromFloat(*c.LiabilityAmount)
+		} else {
+			coinExtra[por.ExtraLiabilityAmount] = por.ExtraUnpublished
+		}
+		if c.ReserveAmount != nil {
+			anyAmounts = true
+			cs.ExchangeReserve = decimal.NewFromFloat(*c.ReserveAmount)
+		} else {
+			coinExtra[por.ExtraReserveAmount] = por.ExtraUnpublished
+		}
+		if c.ReserveRate != nil {
+			coinExtra[por.ExtraReserveRate] = fmtDecimal(*c.ReserveRate)
+		} else {
+			coinExtra[por.ExtraReserveRate] = por.ExtraUnpublished
+		}
+		cs.Extra = coinExtra
+		out.CoinSummaries = append(out.CoinSummaries, cs)
+	}
+	if !anyAmounts {
+		out.Extra = por.SnapshotAmountsNotPublished(out.Extra)
 	}
 	return out
 }

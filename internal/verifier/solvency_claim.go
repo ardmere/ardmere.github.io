@@ -75,7 +75,7 @@ func (v SolvencyClaim) runGate(out Verification) Verification {
 	allPass := true
 	checked := 0
 
-	if rateStr, ok := v.Snapshot.Extra["totalReserveRate"]; ok && rateStr != "" {
+	if rateStr, ok := v.Snapshot.Extra["totalReserveRate"]; ok && rateStr != "" && rateStr != "unpublished" {
 		rate, err := strconv.ParseFloat(rateStr, 64)
 		if err != nil {
 			out.Findings = append(out.Findings, Finding{
@@ -102,15 +102,11 @@ func (v SolvencyClaim) runGate(out Verification) Verification {
 				Note:    solvencySelfReportedNote,
 			})
 		}
-	} else {
-		out.Verdict = VerdictFail
-		out.Reason = "gate summary missing totalReserveRate"
-		return out
 	}
 
 	for _, c := range v.Snapshot.CoinSummaries {
 		rateStr := c.Extra["reserveRate"]
-		if rateStr == "" {
+		if rateStr == "" || rateStr == "unpublished" {
 			continue
 		}
 		rate, err := strconv.ParseFloat(rateStr, 64)
@@ -142,8 +138,10 @@ func (v SolvencyClaim) runGate(out Verification) Verification {
 	}
 
 	if checked == 0 {
-		out.Verdict = VerdictFail
-		out.Reason = "no solvency fields to check"
+		// Missing rates are Unavailable — do not invent 0% FAIL rows.
+		out.Verdict = VerdictUnverifiable
+		out.Reason = "no published solvency reserve-rate fields (Unavailable; not 0%)"
+		out.Coverage = 0
 		return out
 	}
 	if len(v.Snapshot.CoinSummaries) > 0 {

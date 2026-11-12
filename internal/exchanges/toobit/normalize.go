@@ -19,6 +19,7 @@ type Meta struct {
 }
 
 // Normalize maps Toobit public summary into por.Snapshot.
+// Public summary publishes ratios only — amounts are unpublished.
 func Normalize(raw toobitapi.ParsedSummary, meta Meta) por.Snapshot {
 	if meta.Exchange == "" {
 		meta.Exchange = ID
@@ -30,7 +31,7 @@ func Normalize(raw toobitapi.ParsedSummary, meta Meta) por.Snapshot {
 		SnapshotTimeRaw: raw.AuditTimeRaw,
 		MerkleRoot:      normalizeRoot(raw.MerkleRoot),
 		PeriodSeq:       meta.PeriodSeq,
-		Extra: map[string]string{
+		Extra: por.SnapshotAmountsNotPublished(map[string]string{
 			"totalReserveRate":      decimal.NewFromFloat(raw.TotalReserveRate).String(),
 			"totalReserveRateBasis": "min_per_coin_reserve_rate",
 			"algorithm":             "SHA256-SMT",
@@ -38,14 +39,14 @@ func Normalize(raw toobitapi.ParsedSummary, meta Meta) por.Snapshot {
 			"auditor":               "self-attested (no named third-party in public summary)",
 			"officialAuditId":       raw.OfficialAuditID,
 			"treeHeight":            strconv.Itoa(raw.TreeHeight),
-		},
+		}),
 	}
 	for _, c := range raw.CoinRows {
 		out.CoinSummaries = append(out.CoinSummaries, por.CoinSummary{
 			Coin: c.Coin,
-			Extra: map[string]string{
-				"reserveRate": decimal.NewFromFloat(c.ReserveRate).String(),
-			},
+			Extra: por.MarkAmountsUnpublished(map[string]string{
+				por.ExtraReserveRate: decimal.NewFromFloat(c.ReserveRate).String(),
+			}),
 		})
 	}
 	return out
