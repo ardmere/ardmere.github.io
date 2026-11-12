@@ -23,9 +23,11 @@ PY
 echo "== syntax"
 "$PY" -m py_compile \
   skills/lib/por_anchor.py \
+  skills/lib/por_display.py \
   skills/por-custody-risk/scripts/risk_score.py \
   skills/por-inclusion-proof/scripts/inclusion_check.py \
-  tests/test_inclusion.py
+  tests/test_inclusion.py \
+  tests/test_por_display.py
 for script in skills/por-custody-risk/scripts/por-check.sh scripts/check-skills.sh; do
   bash -n "$script" || fail "$script has a syntax error"
 done

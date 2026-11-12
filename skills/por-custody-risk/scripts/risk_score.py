@@ -121,7 +121,7 @@ def cap_sum(factors, limit):
             item["note"] = (item["note"] + " Score capped at 100.").strip()
 
 
-def anchor_view(doc):
+def anchor_view(doc, assessment=None):
     """Summarise an anchor read without copying its record wholesale.
 
     `None` means no read was attempted at all (the file-only mode); that is
@@ -139,7 +139,7 @@ def anchor_view(doc):
             "note": "no anchor read was attempted; the score describes the file alone",
         }
     record = doc.get("record") or {}
-    return {
+    view = {
         "status": doc.get("status"),
         "live": doc.get("live"),
         "source": doc.get("source"),
@@ -164,13 +164,6 @@ def anchor_view(doc):
         "usdtReserveRatioBps": record.get("usdtReserveRatioBps"),
         "usdcReserveRatioBps": record.get("usdcReserveRatioBps"),
         "reserveTotalsMeaningful": record.get("reserveTotalsMeaningful"),
-        "totalLiabilityUsd": record.get("totalLiabilityUsd"),
-        "totalReserveUsd": record.get("totalReserveUsd"),
-        "btcReserveRatioBps": record.get("btcReserveRatioBps"),
-        "ethReserveRatioBps": record.get("ethReserveRatioBps"),
-        "usdtReserveRatioBps": record.get("usdtReserveRatioBps"),
-        "usdcReserveRatioBps": record.get("usdcReserveRatioBps"),
-        "reserveTotalsMeaningful": record.get("reserveTotalsMeaningful"),
         "coverageBps": record.get("coverageBps"),  # deprecated
         "artifactBundleRoot": record.get("artifactBundleRoot"),
         "verificationBundleRoot": record.get("verificationBundleRoot"),
@@ -178,6 +171,11 @@ def anchor_view(doc):
         "note": doc.get("note"),
         "error": doc.get("error"),
     }
+    if record or isinstance(assessment, dict):
+        import por_display
+
+        view["reserveDisplay"] = por_display.build_reserve_display(record, assessment)
+    return view
 
 
 def compare_roots(assessment, record):
@@ -356,10 +354,23 @@ def inconclusive(factor_id, note, fields, anchor, file_sha, extra=None):
     return attach_score_semantics(doc)
 
 
+def attach_reserve_display(doc, assessment=None, record=None):
+    """Add top-level reserveDisplay (friendly lines) while keeping raw ints elsewhere."""
+    import por_display
+
+    display = por_display.build_reserve_display(record, assessment)
+    doc["reserveDisplay"] = display
+    anchor = doc.get("anchor")
+    if isinstance(anchor, dict) and "reserveDisplay" not in anchor:
+        # File-only / skipped reads still get the assessment figures for humans.
+        if assessment is not None or record:
+            anchor["reserveDisplay"] = display
+    return doc
+
+
 def score(assessment_path, anchor_doc=None):
     """Apply the decision table. `anchor_doc` is a por_anchor read result."""
     path = Path(assessment_path)
-    anchor = anchor_view(anchor_doc)
     file_sha = None
     assessment = None
     fields = {"exchange": None, "snapshot": None, "stage": None, "effective": None,
@@ -370,23 +381,31 @@ def score(assessment_path, anchor_doc=None):
         if isinstance(assessment, dict):
             fields = assessment_fields(assessment)
 
+    anchor = anchor_view(anchor_doc, assessment if isinstance(assessment, dict) else None)
+    record = (anchor_doc.get("record") or {}) if anchor_doc else {}
+
+    def finish(doc):
+        return attach_reserve_display(doc, assessment if isinstance(assessment, dict) else None, record)
+
     # 1. The file itself.
     if not path.is_file():
         note = "The assessment file does not exist."
         if anchor.get("status") == "found":
             note += (" The contract does hold an anchored record for this snapshotId, so the anchor "
                      "exists but there are no local bytes to compare it against.")
-        return refuse("FILE_MISSING", note, fields, anchor, file_sha)
+        return finish(refuse("FILE_MISSING", note, fields, anchor, file_sha))
     if assessment is None:
-        return refuse("FILE_UNREADABLE",
-                      "The assessment file is not valid JSON, so its stage and flags cannot be read.",
-                      fields, anchor, file_sha)
+        return finish(refuse(
+            "FILE_UNREADABLE",
+            "The assessment file is not valid JSON, so its stage and flags cannot be read.",
+            fields, anchor, file_sha,
+        ))
 
     # 2. The anchor decides whether these bytes are the ones that were anchored. Only a
     #    positive contradiction stops the table; absence and unreadability are separate.
     roots, disagreements = [], []
     if anchor.get("status") == "found":
-        roots, disagreements = compare_roots(assessment, anchor_doc.get("record") or {})
+        roots, disagreements = compare_roots(assessment, record)
         anchor["roots"] = roots
 
     if disagreements:
@@ -394,7 +413,7 @@ def score(assessment_path, anchor_doc=None):
             "the anchored record and the local file disagree, so the bytes scored here are not "
             "byte-identical to what the contract attested"
         )
-        return refuse(
+        return finish(refuse(
             "ANCHOR_MISMATCH",
             "The anchored record disagrees with this assessment on: "
             + ", ".join(disagreements)
@@ -402,27 +421,27 @@ def score(assessment_path, anchor_doc=None):
               "does this too, so read it as 'these bytes are not the anchored bytes', not as proof "
               "of tampering.",
             fields, anchor, file_sha,
-        )
+        ))
     if anchor.get("status") == "unavailable":
         anchor["interpretation"] = "no anchor read, so nothing about this snapshot is corroborated"
         note = anchor.get("error") or "No RPC endpoint answered."
-        return inconclusive(
+        return finish(inconclusive(
             "ANCHOR_UNAVAILABLE",
             f"The anchor record could not be read, so the file cannot be corroborated either way: {note}",
             fields, anchor, file_sha,
-        )
+        ))
     if anchor.get("status") == "not_found":
         anchor["interpretation"] = (
             "not anchored yet: the live contract answered not-found for this snapshotId. "
             "That is a statement about ardmere's anchor, not about the exchange's reserves."
         )
-        return refuse(
+        return finish(refuse(
             "ANCHOR_MISSING",
             "The live contract holds no record for this snapshotId, so nothing in this file is "
             "anchored yet. This is 'not anchored', not 'reserves are bad'.",
             fields, anchor, file_sha,
             extra={"notAReserveJudgement": True},
-        )
+        ))
     if anchor.get("status") == "skipped":
         anchor["interpretation"] = "no anchor was read; the score below describes the file's own disclosure only"
     elif anchor.get("status") == "found":
@@ -480,7 +499,6 @@ def score(assessment_path, anchor_doc=None):
     if stage_below(fields["stage"]):
         level = at_least(level, "medium")
 
-    record = (anchor_doc.get("record") or {}) if anchor_doc else {}
     chain_score = record.get("custodyRiskScore")
     schema_v = record.get("schemaVersion") or 0
     if anchor.get("status") == "found" and schema_v >= 5 and chain_score is not None:
@@ -502,7 +520,7 @@ def score(assessment_path, anchor_doc=None):
                     "note": "Recomputed score disagrees with custodyRiskScore stored at anchor time.",
                 }
 
-    return attach_score_semantics({
+    return finish(attach_score_semantics({
         "exchange": fields["exchange"],
         "snapshot": fields["snapshot"],
         "riskScore": risk_score,
@@ -514,7 +532,7 @@ def score(assessment_path, anchor_doc=None):
         "riskFlags": fields["flag_ids"],
         "assessmentSha256": file_sha,
         "anchor": anchor,
-    })
+    }))
 
 
 def main(argv):
@@ -563,6 +581,13 @@ def main(argv):
         raise SystemExit("refusing to print a decision field")
     json.dump(doc, sys.stdout, indent=2)
     sys.stdout.write("\n")
+    # Human-facing reserve lines go to stderr so stdout stays JSON for machines.
+    display = doc.get("reserveDisplay") or (doc.get("anchor") or {}).get("reserveDisplay")
+    if display:
+        import por_display
+
+        sys.stderr.write("\n# Self-reported reserve figures (not a solvency opinion)\n")
+        por_display.print_reserve_lines(display, file=sys.stderr)
     return 0 if doc.get("conclusive") else 1
 
 
