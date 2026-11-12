@@ -7,7 +7,7 @@ On-chain anchor contract deployments and first anchor transactions.
 
 | Network | Chain ID | Role | Status |
 | --- | --- | --- | --- |
-| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy schema **v7**; homepage rows still schema v6 with zero totals) |  # pragma: allowlist secret
+| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy schema **v7**; homepage six backfilled) |  # pragma: allowlist secret
 | Base | `8453` | Production primary (ADR-002) | **Pending** — not deployed |
 | Base Sepolia | `84532` | Optional L2 testnet | **Pending** — not deployed |
 
@@ -29,9 +29,12 @@ Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only)
 | **Implementation (v2, superseded)** | [`0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392`](https://sepolia.etherscan.io/address/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392) |
 | **Anchor signer** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
 | **Upgrade owner** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
-| **Schema version** | `7` (stored rows keep the `schemaVersion` written at anchor time) |
+| **Schema version** | `7` (backfilled rows store `schemaVersion` 7; untouched rows keep their write-time value) |
 | **Storage version** | `4` |
-| **Implementation (v7, USD totals + ratio bps)** | [`0x08B0d5d421578f76862dB4B8A2B8969502638929`](https://sepolia.etherscan.io/address/0x08B0d5d421578f76862dB4B8A2B8969502638929) |
+| **Implementation (v7 + reserve backfill)** | [`0xe8DB40AA87138d79437ED0DceA42D3A7A2AB95EB`](https://sepolia.etherscan.io/address/0xe8DB40AA87138d79437ED0DceA42D3A7A2AB95EB) |
+| **Impl deploy tx (v7 backfill)** | [`0x288973f92b5287a4f571fb82c5590ac79862005eba5716cb076696e2dd795c0d`](https://sepolia.etherscan.io/tx/0x288973f92b5287a4f571fb82c5590ac79862005eba5716cb076696e2dd795c0d) (block `12119163`) |
+| **Upgrade tx (backfill impl)** | [`0x0b56907e4f925ab9ccd80cae23659e2ce124e90b9376b41ff2175015b3a62b70`](https://sepolia.etherscan.io/tx/0x0b56907e4f925ab9ccd80cae23659e2ce124e90b9376b41ff2175015b3a62b70) (block `12119253`) |
+| **Implementation (v7, no backfill, superseded)** | [`0x08B0d5d421578f76862dB4B8A2B8969502638929`](https://sepolia.etherscan.io/address/0x08B0d5d421578f76862dB4B8A2B8969502638929) |
 | **Impl deploy tx (v7)** | [`0x7ecd31a796094c0eeabc2f9bff5841f77c56f813ed2b99b83928e93d5da246d9`](https://sepolia.etherscan.io/tx/0x7ecd31a796094c0eeabc2f9bff5841f77c56f813ed2b99b83928e93d5da246d9) (block `12115204`) |
 | **Upgrade tx (v6→v7)** | [`0x64e2a1d69cd22a9fb04800c6afde98d5b949f7a43a40aa389226631078f09f81`](https://sepolia.etherscan.io/tx/0x64e2a1d69cd22a9fb04800c6afde98d5b949f7a43a40aa389226631078f09f81) (block `12115207`) |
 | **Implementation (v6, composite snapshotId, superseded)** | [`0xB0A204285e6Cc7Eaf9fA21E327668Fc808032DEe`](https://sepolia.etherscan.io/address/0xB0A204285e6Cc7Eaf9fA21E327668Fc808032DEe) |
@@ -256,7 +259,28 @@ UUPS upgrade of the Sepolia proxy (address unchanged), broadcast 2026-11-12. `SC
 
 Two earlier creates ran out of gas and have no code (`0x53D6eE03E77c4030c91e88744D7B54bdF9931A70`, `0x5525d28ec38ff3ad879e9b5b7fae022ab303a80f`, `0x258a3e4a363b5be842eca60c6add7d95a34459cc`). They are not the implementation. The successful create used gas limit `17000000`.
 
-`snapshotId` stays `expectedSnapshotId(exchange, auditId)`. A free `periodSeq` (`getSnapshotCount`) does not allocate a second record. `eth_call` of v7 `anchorSnapshot` for Binance `PR04NOV26` at `periodSeq` **10** reverts `SnapshotAlreadyExists(bytes32)` selector `0xb296876b`. No anchor transaction was broadcast. The other homepage composite ids are already stored, so they were not sent. Pre-v7 rows are unchanged: `schemaVersion` 6 and the new uint128/uint16 slots read as 0.
+`snapshotId` stays `expectedSnapshotId(exchange, auditId)`. A new `periodSeq` does not create a second record (`SnapshotAlreadyExists`, selector `0xb296876b`). `backfillReserveFigures` is owner-only: the row must already exist, and a second call reverts `ReserveBackfillAlreadyApplied` once `schemaVersion` is 7. It writes only the two USD totals, the four ratio bps, and `schemaVersion`. Score, time, roots, `periodSeq`, and `snapshotId` stay as they were.
+
+### Homepage reserve backfill (2026-11-12)
+
+Figures are whole USD from the assessment JSON (`round`; null encodes as `0`) and ratio bps (`round(reserveRate × 10000)`; missing coin `65535`; saturate at `65534`). Read-back: `schemaVersion` 7, custody score unchanged.
+
+| Exchange | auditId | Custody | Liability USD | Reserve USD | BTC | ETH | USDT | USDC | `backfillReserveFigures` tx |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| binance | `PR04NOV26` | 91 | 132692864216 | 133789440153 | 10003 | 10002 | 10155 | 10312 | [`0xbba18f7ee15dc08e67eadcb8f04c58a13161b0aaadc2196fa45ffe84e301ccbc`](https://sepolia.etherscan.io/tx/0xbba18f7ee15dc08e67eadcb8f04c58a13161b0aaadc2196fa45ffe84e301ccbc) |
+| bitunix | `20261103` | 100 | 0 | 0 | 16100 | 10500 | 10600 | 65535 | [`0x47ed420f459ed8653921978167284bdcc69cf2319366afb4ba52ec17061befae`](https://sepolia.etherscan.io/tx/0x47ed420f459ed8653921978167284bdcc69cf2319366afb4ba52ec17061befae) |
+| phemex | `20261101` | 100 | 128774624 | 140796757 | 10329 | 11354 | 65535 | 65535 | [`0x806d7453a60237728b19a4d7a5ff752ff6d62852b643ad755a178964f039cbb5`](https://sepolia.etherscan.io/tx/0x806d7453a60237728b19a4d7a5ff752ff6d62852b643ad755a178964f039cbb5) |
+| htx | `20261101` | 99 | 5182100387 | 5305874609 | 10219 | 10145 | 3502 | 65534 | [`0xa12e73b7ee366b0ef963d032f2f548a0ab19c4b1e3265d28a741fb95ec3bd128`](https://sepolia.etherscan.io/tx/0xa12e73b7ee366b0ef963d032f2f548a0ab19c4b1e3265d28a741fb95ec3bd128) |
+| okx | `508756245` | 10 | 30967089361 | 32618136617 | 10839 | 10051 | 10643 | 10002 | [`0x2c8f05ac44d33f0793c38c64976d9dd47259ccdb742840aef068692c9ea37da0`](https://sepolia.etherscan.io/tx/0x2c8f05ac44d33f0793c38c64976d9dd47259ccdb742840aef068692c9ea37da0) |
+| ourbit | `20261101` | 100 | 85351838 | 93871851 | 11073 | 10810 | 10913 | 65535 | [`0x80dae8a901aefaa2ca7d7ccacdd2773987ea801718012adfa630614628c77013`](https://sepolia.etherscan.io/tx/0x80dae8a901aefaa2ca7d7ccacdd2773987ea801718012adfa630614628c77013) |
+
+```bash
+cast send "$ANCHOR_CONTRACT" \
+  'backfillReserveFigures(string,string,uint128,uint128,uint16,uint16,uint16,uint16)' \
+  "<exchange>" "<auditId>" <totalLiabilityUsd> <totalReserveUsd> \
+  <btcReserveRatioBps> <ethReserveRatioBps> <usdtReserveRatioBps> <usdcReserveRatioBps> \
+  --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
+```
 
 New `SnapshotRecord` slots, appended after `custodyRiskScore`:
 
@@ -288,18 +312,7 @@ cast send "$ANCHOR_CONTRACT" \
   --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
 ```
 
-`./por anchor` prints this v7 payload and does not broadcast. `scripts/anchor-assessment-v6.py` still targets the v6 selector and must not be pointed at v7 calldata.
-
-Assessment figures prepared for the homepage rows (whole USD via `round`; a positive total that rounds to 0 encodes as 1; ratio bps = `round(reserveRate × 10000)`, `65535` unavailable, saturate at `65534`). They are not stored, because the composite `snapshotId` already exists:
-
-| Exchange | auditId | Next `periodSeq` | Liability USD | Reserve USD | BTC | ETH | USDT | USDC |
-| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| binance | `PR04NOV26` | 10 | 132692864216 | 133789440153 | 10003 | 10002 | 10155 | 10312 |
-| bitunix | `20261103` | 2 | 0 (null in JSON) | 0 (null in JSON) | 16100 | 10500 | 10600 | 65535 |
-| phemex | `20261101` | 2 | 128774624 | 140796757 | 10329 | 11354 | 65535 | 65535 |
-| htx | `20261101` | 2 | 5182100387 | 5305874609 | 10219 | 10145 | 3502 | 65534 |
-| okx | `508756245` | 6 | 30967089361 | 32618136617 | 10839 | 10051 | 10643 | 10002 |
-| ourbit | `20261101` | 1 | 85351838 | 93871851 | 11073 | 10810 | 10913 | 65535 |
+`./por anchor` prints this v7 payload and does not broadcast. `scripts/anchor-assessment-v6.py` still targets the v6 selector and must not be pointed at v7 calldata. Homepage totals are the `backfillReserveFigures` rows above, not a second `anchorSnapshot`.
 
 ## NEAR testnet (composite parity) — pending on-chain
 

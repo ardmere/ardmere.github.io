@@ -114,6 +114,111 @@ contract ArdmerePoRAnchorV3Seed {
     }
 }
 
+/// @dev Schema v6 row (composite snapshotId, custody score, no USD totals) for backfill tests.
+contract ArdmerePoRAnchorV6Seed {
+    uint8 public constant SCHEMA_VERSION = 6;
+
+    address public signer;
+
+    struct SnapshotRecord {
+        bytes32 snapshotId;
+        bytes32 exchangeTag;
+        string exchange;
+        uint32 periodSeq;
+        uint64 snapshotTime;
+        uint32 btcBlockHeight;
+        bytes32 exchangeMerkleRoot;
+        bytes32 artifactBundleRoot;
+        bytes32 verificationBundleRoot;
+        uint8 verdictSummary;
+        uint16 coverageBps;
+        uint8 schemaVersion;
+        uint256 anchoredAt;
+        uint8 porStage;
+        bool effectivePoR;
+        uint16 walletCoverageBps;
+        uint16 reserveCoverageBps;
+        uint8 custodyRiskScore;
+    }
+
+    /// @custom:storage-location erc7201:ardmere.storage.ArdmerePoRAnchor
+    struct ArdmerePoRAnchorStorage {
+        mapping(bytes32 snapshotId => SnapshotRecord) snapshots;
+        mapping(bytes32 exchangeTag => bytes32[]) snapshotIds;
+        mapping(bytes32 exchangeTag => mapping(uint32 periodSeq => bytes32)) snapshotByPeriod;
+        mapping(bytes32 exchangeTag => bytes32) latestSnapshotId;
+        mapping(bytes32 exchangeTag => uint256) snapshotCount;
+    }
+
+    bytes32 private constant ArdmerePoRAnchorStorageLocation =
+        0x168b5695e07d5cc77c8fba711207364d2cbe159a40632dd678b45ab21ab90100;
+
+    function _getStorage() private pure returns (ArdmerePoRAnchorStorage storage $) {
+        assembly {
+            $.slot := ArdmerePoRAnchorStorageLocation
+        }
+    }
+
+    function initialize(address _signer) external {
+        signer = _signer;
+    }
+
+    function anchorSnapshot(
+        string calldata exchange,
+        bytes32 snapshotId,
+        uint32 periodSeq,
+        uint64 snapshotTime,
+        uint32 btcBlockHeight,
+        bytes32 exchangeMerkleRoot,
+        bytes32 artifactBundleRoot,
+        bytes32 verificationBundleRoot,
+        uint8 verdictSummary,
+        uint16 coverageBps,
+        uint8 porStage,
+        bool effectivePoR,
+        uint16 walletCoverageBps,
+        uint16 reserveCoverageBps,
+        uint8 custodyRiskScore
+    ) external {
+        ArdmerePoRAnchorStorage storage $ = _getStorage();
+        bytes32 exchangeTag = keccak256(bytes(exchange));
+        SnapshotRecord storage record = $.snapshots[snapshotId];
+        record.snapshotId = snapshotId;
+        record.exchangeTag = exchangeTag;
+        record.exchange = exchange;
+        record.periodSeq = periodSeq;
+        record.snapshotTime = snapshotTime;
+        record.btcBlockHeight = btcBlockHeight;
+        record.exchangeMerkleRoot = exchangeMerkleRoot;
+        record.artifactBundleRoot = artifactBundleRoot;
+        record.verificationBundleRoot = verificationBundleRoot;
+        record.verdictSummary = verdictSummary;
+        record.coverageBps = coverageBps;
+        record.schemaVersion = SCHEMA_VERSION;
+        record.anchoredAt = block.timestamp;
+        record.porStage = porStage;
+        record.effectivePoR = effectivePoR;
+        record.walletCoverageBps = walletCoverageBps;
+        record.reserveCoverageBps = reserveCoverageBps;
+        record.custodyRiskScore = custodyRiskScore;
+        $.snapshotIds[exchangeTag].push(snapshotId);
+        $.snapshotByPeriod[exchangeTag][periodSeq] = snapshotId;
+        $.latestSnapshotId[exchangeTag] = snapshotId;
+        $.snapshotCount[exchangeTag] += 1;
+    }
+
+    function upgradeToAndCall(address newImplementation, bytes memory data) external {
+        bytes32 slot = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;
+        assembly {
+            sstore(slot, newImplementation)
+        }
+        if (data.length > 0) {
+            (bool ok,) = newImplementation.delegatecall(data);
+            require(ok);
+        }
+    }
+}
+
 contract ArdmerePoRAnchorTest is Test {
     ArdmerePoRAnchor internal anchorContract;
     ArdmerePoRAnchor internal implementation;
@@ -683,6 +788,114 @@ contract ArdmerePoRAnchorTest is Test {
             65535,
             65535
         );
+    }
+
+    function test_backfillReserveFigures_keepsOldFieldsAndRejectsSecond() public {
+        ArdmerePoRAnchorV6Seed seedImpl = new ArdmerePoRAnchorV6Seed();
+        bytes memory initData = abi.encodeCall(ArdmerePoRAnchorV6Seed.initialize, (SIGNER));
+        ERC1967Proxy proxy = new ERC1967Proxy(address(seedImpl), initData);
+        ArdmerePoRAnchorV6Seed seed = ArdmerePoRAnchorV6Seed(address(proxy));
+
+        bytes32 composite = keccak256(abi.encodePacked(bytes("binance"), bytes1(0), bytes("PR04NOV26")));
+        vm.warp(1_793_750_400);
+        seed.anchorSnapshot(
+            "binance",
+            composite,
+            6,
+            1_793_750_400,
+            974_457,
+            EXCHANGE_ROOT,
+            ARTIFACT_ROOT,
+            VERIFICATION_ROOT,
+            0x0d,
+            10000,
+            1,
+            false,
+            0,
+            0,
+            91
+        );
+
+        ArdmerePoRAnchor upgradedImpl = new ArdmerePoRAnchor();
+        seed.upgradeToAndCall(address(upgradedImpl), "");
+        // Seed did not initialize Ownable; the backfill owner is this test contract.
+        vm.store(
+            address(proxy),
+            0x9016d09d72d40fdae2fd8ceac6b6234c7706214fd39c1cd1e609a0528c199300,
+            bytes32(uint256(uint160(address(this))))
+        );
+
+        ArdmerePoRAnchor upgraded = ArdmerePoRAnchor(address(proxy));
+        assertEq(upgraded.expectedSnapshotId("binance", "PR04NOV26"), composite);
+
+        upgraded.backfillReserveFigures("binance", "PR04NOV26", 132_692_864_216, 133_789_440_153, 10003, 10002, 10155, 10312);
+
+        ArdmerePoRAnchor.SnapshotRecord memory record = upgraded.getSnapshot(composite);
+        assertEq(record.snapshotId, composite);
+        assertEq(record.periodSeq, 6);
+        assertEq(record.snapshotTime, 1_793_750_400);
+        assertEq(record.btcBlockHeight, 974_457);
+        assertEq(record.exchangeMerkleRoot, EXCHANGE_ROOT);
+        assertEq(record.artifactBundleRoot, ARTIFACT_ROOT);
+        assertEq(record.verificationBundleRoot, VERIFICATION_ROOT);
+        assertEq(record.coverageBps, 10000);
+        assertEq(record.custodyRiskScore, 91);
+        assertEq(record.porStage, 1);
+        assertFalse(record.effectivePoR);
+        assertEq(record.schemaVersion, 7);
+        assertEq(record.totalLiabilityUsd, 132_692_864_216);
+        assertEq(record.totalReserveUsd, 133_789_440_153);
+        assertEq(record.btcReserveRatioBps, 10003);
+        assertEq(record.ethReserveRatioBps, 10002);
+        assertEq(record.usdtReserveRatioBps, 10155);
+        assertEq(record.usdcReserveRatioBps, 10312);
+        assertEq(upgraded.getSnapshotCount(keccak256("binance")), 1);
+
+        vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.ReserveBackfillAlreadyApplied.selector, composite));
+        upgraded.backfillReserveFigures("binance", "PR04NOV26", 1, 1, 1, 1, 1, 1);
+        assertEq(upgraded.getSnapshot(composite).totalLiabilityUsd, 132_692_864_216);
+        assertEq(upgraded.getSnapshot(composite).custodyRiskScore, 91);
+    }
+
+    function test_backfillReserveFigures_revertsWhenMissingAlreadyV7OrNotOwner() public {
+        bytes32 missing = anchorContract.expectedSnapshotId("binance", "PR04NOV26");
+        vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.SnapshotNotFound.selector, missing));
+        anchorContract.backfillReserveFigures("binance", "PR04NOV26", 1, 1, 1, 1, 1, 1);
+
+        bytes32 composite = anchorContract.expectedSnapshotId("binance", "TOTALS");
+        vm.prank(SIGNER);
+        anchorContract.anchorSnapshot(
+            "binance",
+            "TOTALS",
+            composite,
+            7,
+            1,
+            1,
+            EXCHANGE_ROOT,
+            ARTIFACT_ROOT,
+            VERIFICATION_ROOT,
+            1,
+            1,
+            1,
+            false,
+            0,
+            0,
+            10,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+        );
+        vm.expectRevert(abi.encodeWithSelector(ArdmerePoRAnchor.ReserveBackfillAlreadyApplied.selector, composite));
+        anchorContract.backfillReserveFigures("binance", "TOTALS", 9, 9, 9, 9, 9, 9);
+        assertEq(anchorContract.getSnapshot(composite).totalLiabilityUsd, 5);
+        assertEq(anchorContract.getSnapshot(composite).custodyRiskScore, 10);
+
+        vm.prank(STRANGER);
+        vm.expectRevert(abi.encodeWithSignature("OwnableUnauthorizedAccount(address)", STRANGER));
+        anchorContract.backfillReserveFigures("binance", "TOTALS", 1, 1, 1, 1, 1, 1);
     }
 
     function test_expectedSnapshotId_distinctForSharedAuditId() public view {
