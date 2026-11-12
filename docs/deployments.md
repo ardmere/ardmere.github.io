@@ -274,7 +274,31 @@ Figures are whole USD from the assessment JSON (`round`; null encodes as `0`) an
 | okx | `508756245` | 10 | 30967089361 | 32618136617 | 10839 | 10051 | 10643 | 10002 | [`0x2c8f05ac44d33f0793c38c64976d9dd47259ccdb742840aef068692c9ea37da0`](https://sepolia.etherscan.io/tx/0x2c8f05ac44d33f0793c38c64976d9dd47259ccdb742840aef068692c9ea37da0) |
 | ourbit | `20261101` | 100 | 85351838 | 93871851 | 11073 | 10810 | 10913 | 65535 | [`0x80dae8a901aefaa2ca7d7ccacdd2773987ea801718012adfa630614628c77013`](https://sepolia.etherscan.io/tx/0x80dae8a901aefaa2ca7d7ccacdd2773987ea801718012adfa630614628c77013) |
 
+### Remaining assessment reserve backfill (2026-11-12)
+
+Batch sweep of all `docs/reports/*/*-assessment.json` (57 files) via `scripts/batch-backfill-reserve-v7.py`. Only **composite** `expectedSnapshotId(exchange, auditId)` rows are eligible; missing composite anchors are listed and skipped (no new `anchorSnapshot` in this pass). Full per-row status + tx appendix: [`docs/v7-reserve-backfill-log.json`](./v7-reserve-backfill-log.json).
+
+| Outcome | Count |
+| --- | ---: |
+| Already schema ≥ 7 (homepage six) | 6 |
+| Backfilled this pass | 3 |
+| Missing composite anchor (skipped) | 48 |
+| Null USD figures but written (`0`/`65535`) | 3 |
+| Failed | 0 |
+
+The three remaining composite rows (all binance, schema 6 → 7; assessment totals null → on-chain `0` USD and `65535` bps):
+
+| Exchange | auditId | Liability USD | Reserve USD | BTC | ETH | USDT | USDC | `backfillReserveFigures` tx |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| binance | `PR01APR26` | 0 | 0 | 65535 | 65535 | 65535 | 65535 | [`0x0da58a544b8ff50ddc21f714502c2b89048c0e5fa0400ff6d4a116c5c1779be0`](https://sepolia.etherscan.io/tx/0x0da58a544b8ff50ddc21f714502c2b89048c0e5fa0400ff6d4a116c5c1779be0) |
+| binance | `PR01AUG26` | 0 | 0 | 65535 | 65535 | 65535 | 65535 | [`0xf84d0c57c5771f47402cb06f08a5d9675310f750c3a4bb456aff4ebf5f30416a`](https://sepolia.etherscan.io/tx/0xf84d0c57c5771f47402cb06f08a5d9675310f750c3a4bb456aff4ebf5f30416a) |
+| binance | `PR01JUL26` | 0 | 0 | 65535 | 65535 | 65535 | 65535 | [`0x404eb801784fc37e7b4442e1aa768e39298bcc2d29f922b9ba29deb77025046d`](https://sepolia.etherscan.io/tx/0x404eb801784fc37e7b4442e1aa768e39298bcc2d29f922b9ba29deb77025046d) |
+
 ```bash
+# dry-run then apply (owner key; skips schemaVersion >= 7)
+python3 scripts/batch-backfill-reserve-v7.py
+python3 scripts/batch-backfill-reserve-v7.py --apply
+
 cast send "$ANCHOR_CONTRACT" \
   'backfillReserveFigures(string,string,uint128,uint128,uint16,uint16,uint16,uint16)' \
   "<exchange>" "<auditId>" <totalLiabilityUsd> <totalReserveUsd> \
