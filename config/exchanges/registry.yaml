@@ -49,7 +49,7 @@ exchanges:
     dataGuide: docs/gate-por-data-guide.md
     vcTier: 1
     upstreamRepos:
-      - url: https://github.com/gateio/proof-of-reserves
+      - url: https://github.com/gate/proof-of-reverses
         role: verifier_toolchain
         ardmereUse: global-zk-proof@gateio-1 (planned)
         note: zk-SNARK verifier CLI; production zk bundle is login-gated on gate.com.

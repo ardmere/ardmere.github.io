@@ -186,7 +186,7 @@ exchanges:
     name: Gate.io
     porPage: https://example.com/gateio
     upstreamRepos:
-      - url: https://github.com/gateio/proof-of-reserves
+      - url: https://github.com/gate/proof-of-reverses
         role: verifier_toolchain
 `
 	if err := os.WriteFile(regPath, []byte(yaml), 0o644); err != nil {

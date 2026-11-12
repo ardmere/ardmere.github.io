@@ -15,7 +15,7 @@
 
 Gate PoR page: [https://www.gate.com/zh/proof-of-reserves](https://www.gate.com/zh/proof-of-reserves)
 
-Open-source verifier: [gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves) (see registry for `ardmereUse` / role).
+Open-source verifier: [gate/proof-of-reverses](https://github.com/gate/proof-of-reverses) (see registry for `ardmereUse` / role).
 
 ## Data planes
 
@@ -80,7 +80,7 @@ Users download from [My Audit](https://www.gate.com/myaccount/myavailableproof):
 - **Download Merkle Tree** → `zkmerkle_cex_xxx.tar.gz`
 - **Download User Config** → `user_config.json` (place in `config/`)
 
-Extracted structure (from [Gate official docs](https://github.com/gateio/proof-of-reserves)):
+Extracted structure (from [Gate official docs](https://github.com/gate/proof-of-reverses)):
 
 ```text
 config/
@@ -138,10 +138,10 @@ solvency-claim@1 (total reserve ratio ≥ 100%, labeled self-reported)
 stub verifiers (honestly labeled UNVERIFIABLE + reason)
 ```
 
-Future activation of `global-zk-proof@gateio-1`: parse `cex_config.json` + `proof.csv` + vk; reuse Go verifier from [gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves) or exec `./main verify cex`.
+Future activation of `global-zk-proof@gateio-1`: parse `cex_config.json` + `proof.csv` + vk; reuse Go verifier from [gate/proof-of-reverses](https://github.com/gate/proof-of-reverses) or exec `./main verify cex`.
 
 ## References
 
 - [Gate PoR site](https://www.gate.com/zh/proof-of-reserves)
 - [Gate Learn — how to verify](https://www.gate.com/learn/articles/how-to-use-gate-io-proof-of-reserves-to-verify-your-assets-security/1017)
-- [gateio/proof-of-reserves README](https://github.com/gateio/proof-of-reserves)
+- [gate/proof-of-reverses README](https://github.com/gate/proof-of-reverses)

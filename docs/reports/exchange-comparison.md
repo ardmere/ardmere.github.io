@@ -10,7 +10,7 @@
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | Binance | `PR04NOV26` | `Stage 0` | `Gen 2 / E2` | `false` | `medium` | `2026-11-04T00:00:00Z` | [binance/zkmerkle-proof-of-solvency](https://github.com/binance/zkmerkle-proof-of-solvency) | [report](./binance/PR04NOV26-transparency-report.md) |
 | OKX | `508756245` | `Stage 1` | `Gen 2 / E2` | `true` | `medium` | `2026-10-31T16:00:00Z` | [okx/proof-of-reserves-v2](https://github.com/okx/proof-of-reserves-v2) (+ [v1 sigs](https://github.com/okx/proof-of-reserves)) | [report](./okx/508756245-transparency-report.md) |
-| Gate.io | `20261018` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-18T00:00:00Z` | [gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves) | [report](./gateio/20261018-transparency-report.md) |
+| Gate.io | `20261018` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-18T00:00:00Z` | [gate/proof-of-reverses](https://github.com/gate/proof-of-reverses) | [report](./gateio/20261018-transparency-report.md) |
 | Bybit | `2026102706` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-27T06:00:00Z` | [bybit-exchange/merkle-proof](https://github.com/bybit-exchange/merkle-proof) | [report](./bybit/2026102706-transparency-report.md) |
 | Bitget | `20261021` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-10-21T04:00:00Z` | [BitgetLimited/proof-of-reserves](https://github.com/BitgetLimited/proof-of-reserves) | [report](./bitget/20261021-transparency-report.md) |
 | HTX | `20261101` | `Stage 0` | `Gen 1 / E1` | `false` | `low` | `2026-11-01T00:00:00Z` | [huobiapi/Tool-Go-MerkleVerify](https://github.com/huobiapi/Tool-Go-MerkleVerify) | [report](./htx/20261101-transparency-report.md) |
