@@ -338,6 +338,34 @@ cast send "$ANCHOR_CONTRACT" \
 
 `./por anchor` prints this v7 payload and does not broadcast. `scripts/anchor-assessment-v6.py` still targets the v6 selector and must not be pointed at v7 calldata. Homepage totals are the `backfillReserveFigures` rows above, not a second `anchorSnapshot`.
 
+### Missing-composite v7 anchor batch (2026-11-12)
+
+Anchored the 48 assessment rows that still lacked a composite `expectedSnapshotId` via `scripts/batch-anchor-v7.py` (full v7 `anchorSnapshot` in one shot: roots, custody score from `risk_score.py --no-anchor`, USD totals, four ratio bps). The nine rows already at schema ≥ 7 were skipped. Full per-row tx appendix: [`docs/v7-anchor-missing-log.json`](./v7-anchor-missing-log.json).
+
+| Outcome | Count |
+| --- | ---: |
+| Anchored (new composite schema 7) | 48 |
+| Skipped already exists | 9 |
+| Failed | 0 |
+
+Sample txs (read-back confirmed `schemaVersion=7` and encoded figures):
+
+| Exchange | auditId | Custody | Liability USD | Reserve USD | BTC | ETH | USDT | USDC | `anchorSnapshot` tx |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| binance | `PR01JUN26` | 91 | 0 | 0 | 65535 | 65535 | 65535 | 65535 | [`0xb9dffe6a9c0be9315cdb702d1df061536f85866723434347c66af5f97384e43c`](https://sepolia.etherscan.io/tx/0xb9dffe6a9c0be9315cdb702d1df061536f85866723434347c66af5f97384e43c) |
+| poloniex | `20261001` | 99 | 2312405057 | 2323214460 | 10010 | 10059 | 10033 | 65535 | [`0xb90a4e28ed8ab909f8b714aae7cde3a4f9992f04bcc819b9e753a5e5c6122fc1`](https://sepolia.etherscan.io/tx/0xb90a4e28ed8ab909f8b714aae7cde3a4f9992f04bcc819b9e753a5e5c6122fc1) |
+| toobit | `20261001` | 100 | 0 | 0 | 10400 | 10700 | 10500 | 10800 | [`0xe3941cf5ffd67d42f3c29188afef72af2badd3c6e302b96bf6d04db41fb6645c`](https://sepolia.etherscan.io/tx/0xe3941cf5ffd67d42f3c29188afef72af2badd3c6e302b96bf6d04db41fb6645c) |
+| okx | `506872725` | 10 | 22998236121 | 24652491059 | 10607 | 10245 | 10989 | 65535 | [`0xbd1fbdd67aa20e46c62c7820f34090fd8b7cd88658fd86de3ea3eae54a49784f`](https://sepolia.etherscan.io/tx/0xbd1fbdd67aa20e46c62c7820f34090fd8b7cd88658fd86de3ea3eae54a49784f) |
+| gateio | `20261018` | 99 | 4245923696 | 5023237868 | 12160 | 12378 | 11168 | 10561 | [`0x33bddc0de453c40593b24dd4b53c0ae71f96ec953fa6032231ba72b33db5276c`](https://sepolia.etherscan.io/tx/0x33bddc0de453c40593b24dd4b53c0ae71f96ec953fa6032231ba72b33db5276c) |
+| woox | `20261015` | 100 | 0 | 0 | 65535 | 65535 | 65535 | 65535 | [`0x7590057a16110861df19619eeb44b9f1aa76a83d43a079275069825327fa932b`](https://sepolia.etherscan.io/tx/0x7590057a16110861df19619eeb44b9f1aa76a83d43a079275069825327fa932b) |
+
+```bash
+python3 scripts/batch-anchor-v7.py          # dry-run
+python3 scripts/batch-anchor-v7.py --apply  # signer key; skips existing composites
+```
+
+All 57 `docs/reports/*/*-assessment.json` files now have a composite Sepolia row with `schemaVersion` 7.
+
 ## NEAR testnet (composite parity) — pending on-chain
 
 Sibling deployment in [`ardmere/ardmere-near-demo`](https://github.com/ardmere/ardmere-near-demo) (schema v5 custody field + composite `snapshot_id` semantics). **On-chain NEAR backfill is pending** until the testnet contract WASM is upgraded and the owner key is available.
