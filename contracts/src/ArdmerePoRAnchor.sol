@@ -140,6 +140,17 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
 
     event SignerUpdated(address indexed previousSigner, address indexed newSigner);
 
+    /// @notice Owner wrote schema v7 reserve figures onto an existing pre-v7 row.
+    event ReserveFiguresBackfilled(
+        bytes32 indexed snapshotId,
+        uint128 totalLiabilityUsd,
+        uint128 totalReserveUsd,
+        uint16 btcReserveRatioBps,
+        uint16 ethReserveRatioBps,
+        uint16 usdtReserveRatioBps,
+        uint16 usdcReserveRatioBps
+    );
+
     error Unauthorized(address caller);
     error InvalidRoot();
     error EmptyExchange();
@@ -150,6 +161,7 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
     error SnapshotIndexOutOfBounds(bytes32 exchangeTag, uint256 index);
     error InvalidCustodyRiskScore(uint8 value);
     error InvalidSnapshotId(bytes32 expected, bytes32 provided);
+    error ReserveBackfillAlreadyApplied(bytes32 snapshotId);
 
     /// @custom:oz-upgrades-unsafe-allow constructor
     constructor() {
@@ -255,6 +267,46 @@ contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable 
             usdcReserveRatioBps
         );
         _emitSnapshotAnchored(snapshotId);
+    }
+
+    /// @notice Write schema v7 USD totals and major-coin ratio bps onto an existing row.
+    /// @dev Owner only. `snapshotId` must already be `expectedSnapshotId(exchange, auditId)`.
+    ///      Leaves score, time, roots, periodSeq, and snapshotId unchanged.
+    ///      Reverts if the row is missing or `schemaVersion` is already 7.
+    ///      Null assessments encode as `0` USD or `65535` bps; the caller passes those sentinels.
+    function backfillReserveFigures(
+        string calldata exchange,
+        string calldata auditId,
+        uint128 totalLiabilityUsd,
+        uint128 totalReserveUsd,
+        uint16 btcReserveRatioBps,
+        uint16 ethReserveRatioBps,
+        uint16 usdtReserveRatioBps,
+        uint16 usdcReserveRatioBps
+    ) external onlyOwner {
+        bytes32 snapshotId = expectedSnapshotId(exchange, auditId);
+        ArdmerePoRAnchorStorage storage $ = _getArdmerePoRAnchorStorage();
+        SnapshotRecord storage record = $.snapshots[snapshotId];
+        if (record.anchoredAt == 0) revert SnapshotNotFound(snapshotId);
+        if (record.schemaVersion >= SCHEMA_VERSION) revert ReserveBackfillAlreadyApplied(snapshotId);
+
+        record.totalLiabilityUsd = totalLiabilityUsd;
+        record.totalReserveUsd = totalReserveUsd;
+        record.btcReserveRatioBps = btcReserveRatioBps;
+        record.ethReserveRatioBps = ethReserveRatioBps;
+        record.usdtReserveRatioBps = usdtReserveRatioBps;
+        record.usdcReserveRatioBps = usdcReserveRatioBps;
+        record.schemaVersion = SCHEMA_VERSION;
+
+        emit ReserveFiguresBackfilled(
+            snapshotId,
+            totalLiabilityUsd,
+            totalReserveUsd,
+            btcReserveRatioBps,
+            ethReserveRatioBps,
+            usdtReserveRatioBps,
+            usdcReserveRatioBps
+        );
     }
 
     function _writeSnapshot(
