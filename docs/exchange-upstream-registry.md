@@ -21,7 +21,7 @@ Human-readable index of official PoR landing pages and GitHub repositories for e
 | --- | --- | --- | --- | --- |
 | `binance` | VC3 | [proof-of-reserves](https://www.binance.com/en/proof-of-reserves) | [binance/zkmerkle-proof-of-solvency](https://github.com/binance/zkmerkle-proof-of-solvency) | `global-zk-proof@0` (stub) |
 | `okx` | VC2 | [proof-of-reserves](https://www.okx.com/proof-of-reserves) | [okx/proof-of-reserves](https://github.com/okx/proof-of-reserves) · [okx/proof-of-reserves-v2](https://github.com/okx/proof-of-reserves-v2) | `address-ownership@okx-1` · `global-zk-proof@okx-1` |
-| `gateio` | VC1 | [proof-of-reserves](https://www.gate.com/proof-of-reserves) | [gateio/proof-of-reserves](https://github.com/gateio/proof-of-reserves) | `global-zk-proof@gateio-1` (planned) |
+| `gateio` | VC1 | [proof-of-reserves](https://www.gate.com/proof-of-reserves) | [gate/proof-of-reverses](https://github.com/gate/proof-of-reverses) | `global-zk-proof@gateio-1` (planned) |
 | `bybit` | VC1 | [proof-of-reserves](https://www.bybit.com/en/proof-of-reserves) | [bybit-exchange/merkle-proof](https://github.com/bybit-exchange/merkle-proof) | `user-merkle-proof@bybit-1` |
 | `bitget` | VC1 | [proof-of-reserves](https://www.bitget.com/proof-of-reserves) | [BitgetLimited/proof-of-reserves](https://github.com/BitgetLimited/proof-of-reserves) | `user-merkle-proof@bitget-1` |
 | `htx` | VC1 | [merkle](https://www.htx.com/zh-cn/finance/merkle/) | [huobiapi/Tool-Go-MerkleVerify](https://github.com/huobiapi/Tool-Go-MerkleVerify) | `global-zk-proof@htx-1` |

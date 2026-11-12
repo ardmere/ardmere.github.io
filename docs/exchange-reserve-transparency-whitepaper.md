@@ -855,7 +855,7 @@ Historical records must remain addressable after exchanges change landing pagesâ
 | --- | --- |
 | OKX | https://github.com/okx/proof-of-reserves Â· https://github.com/okx/proof-of-reserves-v2 |
 | Binance | https://github.com/binance/zkmerkle-proof-of-solvency |
-| Gate.io | https://github.com/gateio/proof-of-reserves |
+| Gate.io | https://github.com/gate/proof-of-reverses |
 | Bybit | https://github.com/bybit-exchange/merkle-proof |
 | Bitget | https://github.com/BitgetLimited/proof-of-reserves |
 | HTX | https://github.com/huobiapi/Tool-Go-MerkleVerify |
