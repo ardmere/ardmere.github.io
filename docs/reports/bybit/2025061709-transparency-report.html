@@ -128,24 +128,25 @@ advice.</p>
 <tbody>
 <tr class="odd">
 <td>Total liabilities (USD)</td>
-<td><code>null</code></td>
+<td>Unavailable</td>
 <td>self-reported</td>
 </tr>
 <tr class="even">
 <td>Total reserves (USD)</td>
-<td><code>null</code></td>
+<td>Unavailable</td>
 <td>self-reported</td>
 </tr>
 <tr class="odd">
 <td>Unpriced coins</td>
-<td><code>BTC (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-11T15:58:03.147+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)</code>,
-<code>ETH (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-11T15:58:03.291+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)</code>,
-<code>USDT (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-11T16:00:08.768+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)</code></td>
+<td><code>BTC (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-12T15:23:50.655+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)</code>,
+<code>ETH (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-12T15:23:50.798+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)</code>,
+<code>USDT (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-12T15:24:51.005+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)</code></td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
-<p>Amount-bearing coins were all unpriced, so USD totals are null.</p>
+<p>Amount-bearing coins were all unpriced, so USD totals are
+Unavailable.</p>
 <table>
 <thead>
 <tr class="header">
@@ -181,7 +182,8 @@ amounts exist (<code>basis=amounts</code>); otherwise it is the
 exchange-reported rate already parsed into the coin summary
 (<code>basis=reported</code>, percentage ÷ 100 so 1 = 100%). Major coins
 are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no
-row for it. On-chain schema v7 stores the same USD totals as uint128
+row for it, or when neither amounts nor a reported rate were published
+(Unavailable). On-chain schema v7 stores the same USD totals as uint128
 whole dollars (<code>0</code> = unavailable) and the four ratios as
 uint16 basis points (<code>10000</code> = 100%, <code>65535</code> =
 unavailable).</p>

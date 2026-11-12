@@ -33,11 +33,11 @@ Label: **self-reported**. These rows repeat the exchange snapshot. USD totals su
 
 | Figure | Value | Label |
 | --- | --- | --- |
-| Total liabilities (USD) | `null` | self-reported |
-| Total reserves (USD) | `null` | self-reported |
-| Unpriced coins | `BTC (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-11T15:58:03.147+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)`, `ETH (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-11T15:58:03.291+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)`, `USDT (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-11T16:00:08.768+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)` | — |
+| Total liabilities (USD) | Unavailable | self-reported |
+| Total reserves (USD) | Unavailable | self-reported |
+| Unpriced coins | `BTC (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-12T15:23:50.655+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)`, `ETH (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-12T15:23:50.798+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)`, `USDT (price error: coingecko HTTP 401: {"error":{"status":{"timestamp":"2026-11-12T15:24:51.005+00:00","error_code":10012,"error_message":"Your request exceeds the allowed time range. Public API users are limited to querying historical dat…)` | — |
 
-Amount-bearing coins were all unpriced, so USD totals are null.
+Amount-bearing coins were all unpriced, so USD totals are Unavailable.
 
 | Coin | Reserve ratio | Basis | Label |
 | --- | --- | --- | --- |
@@ -45,7 +45,7 @@ Amount-bearing coins were all unpriced, so USD totals are null.
 | `ETH` | `1.01010101` | `amounts` | self-reported |
 | `USDT` | `1.00502513` | `amounts` | self-reported |
 
-Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it. On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).
+Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it, or when neither amounts nor a reported rate were published (Unavailable). On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).
 
 ## 3. Frequency and Freshness
 

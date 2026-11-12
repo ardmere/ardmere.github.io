@@ -5,7 +5,7 @@
     "https://www.bybit.com/x-api/cht/asset/page/por/queryHisBalancesInfo",
     "https://www.bybit.com/common-static/cht-static/por/Bybit_PoR_Audit_2026_Aug_26.pdf"
   ],
-  "notes": "Hacken Aug 26 PDF attests all in-scope collateral ratios >100% but does not publish exact per-coin percentages. Exact Aug ratios intentionally omitted (not invented). Liability amounts from browser API. reserve_rate fields left at 0 to signal missing precise published ratios.",
+  "notes": "Hacken Aug 26 PDF attests all in-scope collateral ratios >100% but does not publish exact per-coin percentages. Exact Aug ratios intentionally omitted (not invented). Liability amounts from browser API. reserve_amount/reserve_rate are null (unpublished), not 0.",
   "info": {
     "code": 0,
     "data": {
@@ -21,26 +21,26 @@
         {
           "coin": "BTC",
           "customer_liability": 55997.896004,
-          "reserve_rate": 0,
-          "reserve_amount": 0
+          "reserve_rate": null,
+          "reserve_amount": null
         },
         {
           "coin": "ETH",
           "customer_liability": 536016.68499504,
-          "reserve_rate": 0,
-          "reserve_amount": 0
+          "reserve_rate": null,
+          "reserve_amount": null
         },
         {
           "coin": "USDT",
           "customer_liability": 4057366026.542167,
-          "reserve_rate": 0,
-          "reserve_amount": 0
+          "reserve_rate": null,
+          "reserve_amount": null
         },
         {
           "coin": "USDC",
           "customer_liability": 605576772.388167,
-          "reserve_rate": 0,
-          "reserve_amount": 0
+          "reserve_rate": null,
+          "reserve_amount": null
         }
       ]
     }

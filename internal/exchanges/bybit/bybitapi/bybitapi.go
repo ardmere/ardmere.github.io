@@ -30,52 +30,54 @@ type SummaryBundle struct {
 }
 
 // ParsedSummary is normalized fields extracted from Bybit summary JSON.
+// Reserve pointers are nil when the source did not publish that figure
+// (absent or JSON null). An explicit 0 is a published zero, not "missing".
 type ParsedSummary struct {
 	AuditID          string
 	AuditTime        time.Time
 	AuditTimeRaw     string
 	MerkleRoot       string
-	TotalReserveRate float64
+	TotalReserveRate *float64
 	CoinRows         []CoinRow
 }
 
 type CoinRow struct {
 	Coin            string
-	ReserveRate     float64
-	ReserveAmount   float64
-	LiabilityAmount float64
+	ReserveRate     *float64
+	ReserveAmount   *float64
+	LiabilityAmount *float64
 }
 
 type infoData struct {
-	AuditID          string  `json:"audit_id"`
-	AuditIDCamel     string  `json:"auditId"`
-	AuditTime        string  `json:"audit_time"`
-	AuditTimeCamel   string  `json:"auditTime"`
-	SnapshotTime     string  `json:"snapshotTime"`
-	MerkleRoot       string  `json:"merkle_root_hash"`
-	MerkleRootAlt    string  `json:"merkleRoot"`
-	MerkleRootHash   string  `json:"merkleRootHash"`
-	TotalReserveRate float64 `json:"total_reserve_rate"`
-	TotalReserveAlt  float64 `json:"totalReserveRate"`
-	ReserveRate      float64 `json:"reserveRate"`
+	AuditID          string   `json:"audit_id"`
+	AuditIDCamel     string   `json:"auditId"`
+	AuditTime        string   `json:"audit_time"`
+	AuditTimeCamel   string   `json:"auditTime"`
+	SnapshotTime     string   `json:"snapshotTime"`
+	MerkleRoot       string   `json:"merkle_root_hash"`
+	MerkleRootAlt    string   `json:"merkleRoot"`
+	MerkleRootHash   string   `json:"merkleRootHash"`
+	TotalReserveRate *float64 `json:"total_reserve_rate"`
+	TotalReserveAlt  *float64 `json:"totalReserveRate"`
+	ReserveRate      *float64 `json:"reserveRate"`
 }
 
 type coinListData struct {
 	List []struct {
-		Coin              string  `json:"coin"`
-		Asset             string  `json:"asset"`
-		ReserveRate       float64 `json:"reserve_rate"`
-		ReserveRateCamel  float64 `json:"reserveRate"`
-		ReserveAmount     float64 `json:"reserve_amount"`
-		ReserveAmountAlt  float64 `json:"reserveAmount"`
-		CustomerLiability float64 `json:"customer_liability"`
-		LiabilityAmount   float64 `json:"liabilityAmount"`
+		Coin              string   `json:"coin"`
+		Asset             string   `json:"asset"`
+		ReserveRate       *float64 `json:"reserve_rate"`
+		ReserveRateCamel  *float64 `json:"reserveRate"`
+		ReserveAmount     *float64 `json:"reserve_amount"`
+		ReserveAmountAlt  *float64 `json:"reserveAmount"`
+		CustomerLiability *float64 `json:"customer_liability"`
+		LiabilityAmount   *float64 `json:"liabilityAmount"`
 	} `json:"list"`
 	Coins []struct {
-		Coin            string  `json:"coin"`
-		ReserveRate     float64 `json:"reserveRate"`
-		ReserveAmount   float64 `json:"reserveAmount"`
-		LiabilityAmount float64 `json:"liabilityAmount"`
+		Coin            string   `json:"coin"`
+		ReserveRate     *float64 `json:"reserveRate"`
+		ReserveAmount   *float64 `json:"reserveAmount"`
+		LiabilityAmount *float64 `json:"liabilityAmount"`
 	} `json:"coins"`
 }
 
@@ -146,13 +148,7 @@ func ParseSummaryBundle(infoRaw, coinsRaw []byte) (ParsedSummary, error) {
 	auditID := firstNonEmpty(info.AuditID, info.AuditIDCamel)
 	auditTimeRaw := firstNonEmpty(info.AuditTime, info.AuditTimeCamel, info.SnapshotTime)
 	merkleRoot := firstNonEmpty(info.MerkleRoot, info.MerkleRootAlt, info.MerkleRootHash)
-	totalRate := info.TotalReserveRate
-	if totalRate == 0 {
-		totalRate = info.TotalReserveAlt
-	}
-	if totalRate == 0 {
-		totalRate = info.ReserveRate
-	}
+	totalRate := firstFloat(info.TotalReserveRate, info.TotalReserveAlt, info.ReserveRate)
 
 	out := ParsedSummary{
 		AuditID:          auditID,
@@ -174,7 +170,7 @@ func ParseSummaryBundle(infoRaw, coinsRaw []byte) (ParsedSummary, error) {
 	if out.AuditID == "" && !out.AuditTime.IsZero() {
 		out.AuditID = out.AuditTime.Format("20060102")
 	}
-	if out.MerkleRoot == "" && out.TotalReserveRate == 0 && len(out.CoinRows) == 0 {
+	if out.MerkleRoot == "" && out.TotalReserveRate == nil && len(out.CoinRows) == 0 {
 		return ParsedSummary{}, fmt.Errorf("bybit summary missing merkle root and reserve fields")
 	}
 	return out, nil
@@ -187,23 +183,11 @@ func appendCoinRows(out *ParsedSummary, payload []byte) {
 	}
 	for _, c := range coins.List {
 		coin := firstNonEmpty(c.Coin, c.Asset)
-		rate := c.ReserveRate
-		if rate == 0 {
-			rate = c.ReserveRateCamel
-		}
-		amt := c.ReserveAmount
-		if amt == 0 {
-			amt = c.ReserveAmountAlt
-		}
-		liab := c.CustomerLiability
-		if liab == 0 {
-			liab = c.LiabilityAmount
-		}
 		out.CoinRows = append(out.CoinRows, CoinRow{
 			Coin:            coin,
-			ReserveRate:     rate,
-			ReserveAmount:   amt,
-			LiabilityAmount: liab,
+			ReserveRate:     firstFloat(c.ReserveRate, c.ReserveRateCamel),
+			ReserveAmount:   firstFloat(c.ReserveAmount, c.ReserveAmountAlt),
+			LiabilityAmount: firstFloat(c.CustomerLiability, c.LiabilityAmount),
 		})
 	}
 	for _, c := range coins.Coins {
@@ -249,6 +233,15 @@ func firstNonEmpty(vals ...string) string {
 		}
 	}
 	return ""
+}
+
+func firstFloat(vals ...*float64) *float64 {
+	for _, v := range vals {
+		if v != nil {
+			return v
+		}
+	}
+	return nil
 }
 
 func parseAuditTime(s string) (time.Time, error) {

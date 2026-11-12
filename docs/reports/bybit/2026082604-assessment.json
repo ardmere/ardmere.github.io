@@ -86,34 +86,9 @@
   "confidence": "low",
   "effectivePoR": false,
   "totalLiabilityUsd": 10411295931.08,
-  "totalReserveUsd": 0.00,
+  "totalReserveUsd": null,
   "unpricedCoins": [],
-  "majorCoinReserveRates": [
-    {
-      "coin": "BTC",
-      "reserveRate": 0,
-      "basis": "amounts",
-      "selfReported": true
-    },
-    {
-      "coin": "ETH",
-      "reserveRate": 0,
-      "basis": "amounts",
-      "selfReported": true
-    },
-    {
-      "coin": "USDT",
-      "reserveRate": 0,
-      "basis": "amounts",
-      "selfReported": true
-    },
-    {
-      "coin": "USDC",
-      "reserveRate": 0,
-      "basis": "amounts",
-      "selfReported": true
-    }
-  ],
+  "majorCoinReserveRates": [],
   "evidenceLevel": "E1",
   "exchange": "bybit",
   "gen": "Gen 1",
@@ -171,12 +146,12 @@
       "version": "1.0"
     },
     {
-      "coverage": 1,
+      "coverage": 0,
       "inputArtifacts": [
         "79eea46737d100a0fec38316e2d38e746a1d03c8a341769c187f6d1eaf1e2771"
       ],
-      "reason": "",
-      "verdict": "FAIL",
+      "reason": "no published solvency reserve-rate fields (Unavailable; not 0%)",
+      "verdict": "UNVERIFIABLE",
       "verifierId": "solvency-claim",
       "version": "1.0"
     },

@@ -34,17 +34,16 @@ Label: **self-reported**. These rows repeat the exchange snapshot. USD totals su
 | Figure | Value | Label |
 | --- | --- | --- |
 | Total liabilities (USD) | `9320688857.25` | self-reported |
-| Total reserves (USD) | `0.00` | self-reported |
+| Total reserves (USD) | Unavailable | self-reported |
 | Unpriced coins | — | — |
+
+Customer liabilities were priced from published amounts. Reserve amounts were not published for this snapshot, so total reserves and missing major-coin ratios are Unavailable (not $0 / 0%).
 
 | Coin | Reserve ratio | Basis | Label |
 | --- | --- | --- | --- |
-| `BTC` | `0` | `amounts` | self-reported |
-| `ETH` | `0` | `amounts` | self-reported |
-| `USDT` | `0` | `amounts` | self-reported |
-| `USDC` | `0` | `amounts` | self-reported |
+| — | Unavailable | — | — |
 
-Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it. On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).
+Reserve ratio is exchange reserve ÷ customer liability when both amounts exist (`basis=amounts`); otherwise it is the exchange-reported rate already parsed into the coin summary (`basis=reported`, percentage ÷ 100 so 1 = 100%). Major coins are BTC, ETH, USDT, and USDC. A coin is omitted when the snapshot has no row for it, or when neither amounts nor a reported rate were published (Unavailable). On-chain schema v7 stores the same USD totals as uint128 whole dollars (`0` = unavailable) and the four ratios as uint16 basis points (`10000` = 100%, `65535` = unavailable).
 
 ## 3. Frequency and Freshness
 
@@ -84,7 +83,7 @@ Local bundle paths: [2026102706.artifact-bundle.json](../../../artifacts/bybit/2
 | Verifier | Version | Verdict | Coverage | Summary |
 | --- | --- | --- | --- | --- |
 | `artifact-integrity` | `1.0` | `PASS` | `1.0000` |  |
-| `solvency-claim` | `1.0` | `FAIL` | `1.0000` |  |
+| `solvency-claim` | `1.0` | `UNVERIFIABLE` | `0.0000` | no published solvency reserve-rate fields (Unavailable; not 0%) |
 | `user-merkle-proof` | `bybit-1` | `UNVERIFIABLE` | `0.0000` | myProof.json not present; download from Bybit PoR page while logged in and import via -user-proof |
 | `internal-consistency` | `0` | `UNVERIFIABLE` | `0.0000` | No public wallet address CSV; cannot reconcile summary vs address aggregates |
 | `btc-anchor` | `0` | `UNVERIFIABLE` | `0.0000` | Summary does not declare a BTC block height time anchor |
@@ -117,19 +116,10 @@ This section explains `FAIL`, `WARN`, and `UNVERIFIABLE` outcomes from the verif
 
 ### Row-level findings
 
-#### `solvency-claim` (`FAIL`)
+#### `solvency-claim` (`UNVERIFIABLE`)
 
-Finding counts: FAIL 5
+Summary: no published solvency reserve-rate fields (Unavailable; not 0%)
 
-**FAIL**
-
-| Subject | Field | Claim | Actual | Note |
-| --- | --- | --- | --- | --- |
-| `total` | `totalReserveRate` | 0 | 0.00 | self-reported exchange summary only; does not prove reserve authenticity |
-| `BTC` | `reserveRate` | 0 | 0.00 | self-reported exchange summary only; does not prove reserve authenticity |
-| `ETH` | `reserveRate` | 0 | 0.00 | self-reported exchange summary only; does not prove reserve authenticity |
-| `USDT` | `reserveRate` | 0 | 0.00 | self-reported exchange summary only; does not prove reserve authenticity |
-| `USDC` | `reserveRate` | 0 | 0.00 | self-reported exchange summary only; does not prove reserve authenticity |
 
 ## 7. Minimal Checklist
 
@@ -161,5 +151,5 @@ Missing data must be marked as `UNVERIFIABLE`, not treated as `PASS`.
 ## Capture notes / gaps (2026-10-31)
 
 - `x-api/por/public/v1/reserve-ratio/latest` returns **404**; public page uses `queryHisBalancesInfo` / `queryHisChainInfo` (liability/audit-scope amounts only).
-- Exact October reserve ratios were **not published** in press/Hacken PDF located at capture time — **not invented**. `solvency-claim` FAIL reflects missing ratios (rates stored as 0).
+- Exact October reserve ratios were **not published** in press/Hacken PDF located at capture time — **not invented**. `solvency-claim` is UNVERIFIABLE because reserve ratios were unpublished (Unavailable; not invented as 0%).
 - Merkle root not present on public APIs. User `myProof.json` login-gated — `user-merkle-proof` UNVERIFIABLE.

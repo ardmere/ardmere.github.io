@@ -47,8 +47,8 @@ type ReserveFigures struct {
 	// SourceMissing is true when the summary artifact could not be read.
 	// Totals stay nil; the report must not claim the exchange published no amounts.
 	SourceMissing bool `json:"-"`
-	// AmountsPublished is true when at least one coin row has a customer
-	// liability or an exchange reserve (self-custody + third-party).
+	// AmountsPublished is true when at least one coin row has a published
+	// customer liability or an exchange reserve (self-custody + third-party).
 	AmountsPublished bool   `json:"-"`
 	PriceSource      string `json:"-"`
 }
@@ -66,6 +66,8 @@ func ReserveFiguresSourceMissing() ReserveFigures {
 // ComputeReserveFigures prices self-reported per-coin amounts at snapshotTime.
 // Major-coin ratios use exchange reserve / customer liability when both amounts
 // exist; otherwise the exchange-reported rate already parsed into CoinSummary.Extra.
+// Unpublished reserves are omitted from TotalReserveUsd (nil when none published);
+// a published zero still contributes 0 to the sum.
 func ComputeReserveFigures(ctx context.Context, snap por.Snapshot, prices PriceOracle) ReserveFigures {
 	out := ReserveFigures{
 		UnpricedCoins:         []string{},
@@ -77,21 +79,43 @@ func ComputeReserveFigures(ctx context.Context, snap por.Snapshot, prices PriceO
 	}
 
 	type row struct {
-		coin      string
-		liability decimal.Decimal
-		reserve   decimal.Decimal
+		coin            string
+		liability       decimal.Decimal
+		reserve         decimal.Decimal
+		liabPublished   bool
+		reservePublished bool
 	}
 	var rows []row
 	for _, c := range snap.CoinSummaries {
-		if coinHidesAmounts(c) {
+		liabPub := !liabilityUnpublished(c)
+		resPub := !reserveUnpublished(c)
+		if !liabPub && !resPub {
 			continue
 		}
-		liab := c.CustomerLiability
-		res := c.ExchangeReserve.Add(c.ThirdPartyReserve)
-		if liab.IsZero() && res.IsZero() {
+		liab := decimal.Zero
+		res := decimal.Zero
+		if liabPub {
+			liab = c.CustomerLiability
+		}
+		if resPub {
+			res = c.ExchangeReserve.Add(c.ThirdPartyReserve)
+		}
+		if liabPub && liab.IsZero() && resPub && res.IsZero() {
+			// Published zeros on both sides: still counts as amounts published,
+			// but contributes nothing to USD sums; keep for major-rate path only
+			// when both sides are present (handled in majorRates).
 			continue
 		}
-		rows = append(rows, row{coin: c.Coin, liability: liab, reserve: res})
+		if (!liabPub || liab.IsZero()) && (!resPub || res.IsZero()) {
+			continue
+		}
+		rows = append(rows, row{
+			coin:             c.Coin,
+			liability:        liab,
+			reserve:          res,
+			liabPublished:    liabPub && !liab.IsZero(),
+			reservePublished: resPub, // include published zero in reserve total when any priced
+		})
 	}
 	if len(rows) == 0 {
 		return out
@@ -107,8 +131,12 @@ func ComputeReserveFigures(ctx context.Context, snap por.Snapshot, prices PriceO
 
 	at := snap.SnapshotTime.UTC()
 	var liabUSD, resUSD float64
-	priced := 0
+	pricedLiab, pricedRes := 0, 0
+	anyReservePublished := false
 	for _, r := range rows {
+		if r.reservePublished {
+			anyReservePublished = true
+		}
 		id := coingecko.ResolveID(r.coin)
 		if id == "" {
 			out.UnpricedCoins = append(out.UnpricedCoins, r.coin)
@@ -123,18 +151,27 @@ func ComputeReserveFigures(ctx context.Context, snap por.Snapshot, prices PriceO
 			out.UnpricedCoins = append(out.UnpricedCoins, note)
 			continue
 		}
-		lf, _ := r.liability.Float64()
-		rf, _ := r.reserve.Float64()
-		liabUSD += lf * price
-		resUSD += rf * price
-		priced++
+		if r.liabPublished {
+			lf, _ := r.liability.Float64()
+			liabUSD += lf * price
+			pricedLiab++
+		}
+		if r.reservePublished {
+			rf, _ := r.reserve.Float64()
+			resUSD += rf * price
+			pricedRes++
+		}
 	}
 	out.UnpricedCoins = uniqueSorted(out.UnpricedCoins)
-	if priced == 0 {
-		return out
+	if pricedLiab > 0 {
+		out.TotalLiabilityUsd = &liabUSD
 	}
-	out.TotalLiabilityUsd = &liabUSD
-	out.TotalReserveUsd = &resUSD
+	// Only emit a reserve total when the snapshot published at least one reserve
+	// amount and we priced at least one of those rows. Missing reserves stay nil
+	// (Unavailable), never a fabricated 0.00.
+	if anyReservePublished && pricedRes > 0 {
+		out.TotalReserveUsd = &resUSD
+	}
 	return out
 }
 
@@ -171,7 +208,7 @@ func majorRates(snap por.Snapshot) []MajorCoinReserveRate {
 }
 
 func coinReserveRatio(c por.CoinSummary) (rate float64, basis string, ok bool) {
-	if !coinHidesAmounts(c) {
+	if !liabilityUnpublished(c) && !reserveUnpublished(c) {
 		liab := c.CustomerLiability
 		res := c.ExchangeReserve.Add(c.ThirdPartyReserve)
 		if liab.IsPositive() && !res.IsNegative() {
@@ -186,17 +223,21 @@ func coinReserveRatio(c por.CoinSummary) (rate float64, basis string, ok bool) {
 }
 
 func snapshotHidesAmounts(snap por.Snapshot) bool {
-	return snap.Extra != nil && snap.Extra["amountsPublished"] == "false"
+	return snap.Extra != nil && snap.Extra[por.ExtraAmountsPublished] == por.ExtraAmountsFalse
 }
 
+func liabilityUnpublished(c por.CoinSummary) bool {
+	return c.Extra != nil && c.Extra[por.ExtraLiabilityAmount] == por.ExtraUnpublished
+}
+
+func reserveUnpublished(c por.CoinSummary) bool {
+	return c.Extra != nil && c.Extra[por.ExtraReserveAmount] == por.ExtraUnpublished
+}
+
+// coinHidesAmounts is true when neither liability nor reserve amounts are usable
+// for USD pricing (both sides unpublished).
 func coinHidesAmounts(c por.CoinSummary) bool {
-	if c.Extra == nil {
-		return false
-	}
-	if c.Extra["reserveAmount"] == "unpublished" || c.Extra["liabilityAmount"] == "unpublished" {
-		return true
-	}
-	return false
+	return liabilityUnpublished(c) && reserveUnpublished(c)
 }
 
 // reportedRatio reads CoinSummary.Extra reserveRate or capitalRatio.
@@ -205,9 +246,9 @@ func reportedRatio(c por.CoinSummary) (float64, bool) {
 	if c.Extra == nil {
 		return 0, false
 	}
-	for _, key := range []string{"reserveRate", "capitalRatio"} {
+	for _, key := range []string{por.ExtraReserveRate, "capitalRatio"} {
 		raw := strings.TrimSpace(c.Extra[key])
-		if raw == "" || raw == "unpublished" {
+		if raw == "" || raw == por.ExtraUnpublished {
 			continue
 		}
 		raw = strings.TrimSuffix(raw, "%")

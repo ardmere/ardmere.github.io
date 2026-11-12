@@ -14,6 +14,9 @@ type Meta struct {
 	PeriodSeq uint32
 }
 
+// Normalize maps KuCoin public summary into por.Snapshot.
+// When a coin row has neither reserve nor liability amount, mark both
+// unpublished so missing data is not priced as $0.
 func Normalize(raw kucoinapi.ParsedSummary, meta Meta) por.Snapshot {
 	if meta.Exchange == "" {
 		meta.Exchange = ID
@@ -31,15 +34,24 @@ func Normalize(raw kucoinapi.ParsedSummary, meta Meta) por.Snapshot {
 			"auditor":          "third-party (page unnamed for latest; Hacken historically)",
 		},
 	}
+	anyAmounts := false
 	for _, c := range raw.CoinRows {
-		out.CoinSummaries = append(out.CoinSummaries, por.CoinSummary{
-			Coin:              c.Coin,
-			ExchangeReserve:   decimal.NewFromFloat(c.ReserveAmount),
-			CustomerLiability: decimal.NewFromFloat(c.LiabilityAmount),
-			Extra: map[string]string{
-				"reserveRate": decimal.NewFromFloat(c.ReserveRate).String(),
-			},
-		})
+		extra := map[string]string{
+			por.ExtraReserveRate: decimal.NewFromFloat(c.ReserveRate).String(),
+		}
+		cs := por.CoinSummary{Coin: c.Coin}
+		if c.ReserveAmount == 0 && c.LiabilityAmount == 0 {
+			extra = por.MarkAmountsUnpublished(extra)
+		} else {
+			anyAmounts = true
+			cs.ExchangeReserve = decimal.NewFromFloat(c.ReserveAmount)
+			cs.CustomerLiability = decimal.NewFromFloat(c.LiabilityAmount)
+		}
+		cs.Extra = extra
+		out.CoinSummaries = append(out.CoinSummaries, cs)
+	}
+	if !anyAmounts {
+		out.Extra = por.SnapshotAmountsNotPublished(out.Extra)
 	}
 	return out
 }

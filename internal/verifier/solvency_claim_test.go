@@ -51,6 +51,31 @@ func TestSolvencyClaimGateFailTotal(t *testing.T) {
 	}
 }
 
+func TestSolvencyClaimGateUnpublishedRatesUnverifiable(t *testing.T) {
+	v := SolvencyClaim{
+		SummarySha256: "abc",
+		Snapshot: por.Snapshot{
+			Exchange: "bybit",
+			ID:       "2026102706",
+			CoinSummaries: []por.CoinSummary{{
+				Coin:              "BTC",
+				CustomerLiability: decimal.NewFromInt(1),
+				Extra: map[string]string{
+					"reserveRate":     "unpublished",
+					"reserveAmount":   "unpublished",
+					"liabilityAmount": "published-elsewhere",
+				},
+			}},
+		},
+	}.Run()
+	if v.Verdict != VerdictUnverifiable {
+		t.Fatalf("verdict=%s findings=%+v", v.Verdict, v.Findings)
+	}
+	if len(v.Findings) != 0 {
+		t.Fatalf("must not invent 0%% findings: %+v", v.Findings)
+	}
+}
+
 func TestSolvencyClaimBinancePass(t *testing.T) {
 	v := SolvencyClaim{
 		SummarySha256: "abc",

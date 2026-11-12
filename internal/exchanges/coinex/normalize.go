@@ -39,9 +39,10 @@ func Normalize(raw coinexapi.ParsedSummary, meta Meta) por.Snapshot {
 			"walletChannel":         "public_xlsx_address_list",
 		},
 	}
+	anyAmounts := false
 	for _, c := range raw.CoinRows {
 		extra := map[string]string{
-			"reserveRate": decimal.NewFromFloat(c.ReserveRate).String(),
+			por.ExtraReserveRate: decimal.NewFromFloat(c.ReserveRate).String(),
 		}
 		if c.WalletUSD != "" {
 			extra["walletUSD"] = c.WalletUSD
@@ -49,12 +50,19 @@ func Normalize(raw coinexapi.ParsedSummary, meta Meta) por.Snapshot {
 		if c.Price != "" {
 			extra["price"] = c.Price
 		}
-		out.CoinSummaries = append(out.CoinSummaries, por.CoinSummary{
-			Coin:              c.Coin,
-			ExchangeReserve:   decimal.NewFromFloat(c.ReserveAmount),
-			CustomerLiability: decimal.NewFromFloat(c.LiabilityAmount),
-			Extra:             extra,
-		})
+		cs := por.CoinSummary{Coin: c.Coin}
+		if c.ReserveAmount == 0 && c.LiabilityAmount == 0 {
+			extra = por.MarkAmountsUnpublished(extra)
+		} else {
+			anyAmounts = true
+			cs.ExchangeReserve = decimal.NewFromFloat(c.ReserveAmount)
+			cs.CustomerLiability = decimal.NewFromFloat(c.LiabilityAmount)
+		}
+		cs.Extra = extra
+		out.CoinSummaries = append(out.CoinSummaries, cs)
+	}
+	if !anyAmounts {
+		out.Extra = por.SnapshotAmountsNotPublished(out.Extra)
 	}
 	return out
 }

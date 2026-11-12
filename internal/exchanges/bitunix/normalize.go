@@ -18,6 +18,7 @@ type Meta struct {
 }
 
 // Normalize maps Bitunix public summary into por.Snapshot.
+// Public summary publishes ratios only — amounts are unpublished.
 func Normalize(raw bitunixapi.ParsedSummary, meta Meta) por.Snapshot {
 	if meta.Exchange == "" {
 		meta.Exchange = ID
@@ -29,21 +30,21 @@ func Normalize(raw bitunixapi.ParsedSummary, meta Meta) por.Snapshot {
 		SnapshotTimeRaw: raw.AuditTimeRaw,
 		MerkleRoot:      normalizeRoot(raw.MerkleRoot),
 		PeriodSeq:       meta.PeriodSeq,
-		Extra: map[string]string{
+		Extra: por.SnapshotAmountsNotPublished(map[string]string{
 			"totalReserveRate":      decimal.NewFromFloat(raw.TotalReserveRate).String(),
 			"totalReserveRateBasis": "min_per_coin_reserve_rate",
 			"algorithm":             "merkle_tree+sha256",
 			"hashSecurity":          "full-sha256",
 			"auditor":               "self-attested (no named third-party in public summary)",
 			"walletAddress":         raw.WalletAddress,
-		},
+		}),
 	}
 	for _, c := range raw.CoinRows {
 		out.CoinSummaries = append(out.CoinSummaries, por.CoinSummary{
 			Coin: c.Coin,
-			Extra: map[string]string{
-				"reserveRate": decimal.NewFromFloat(c.ReserveRate).String(),
-			},
+			Extra: por.MarkAmountsUnpublished(map[string]string{
+				por.ExtraReserveRate: decimal.NewFromFloat(c.ReserveRate).String(),
+			}),
 		})
 	}
 	return out
