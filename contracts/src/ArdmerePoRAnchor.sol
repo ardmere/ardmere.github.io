@@ -8,11 +8,11 @@ import {OwnableUpgradeable} from "@openzeppelin/contracts-upgradeable/access/Own
 /// @title  ArdmerePoRAnchor — minimal trusted-kernel anchor contract (UUPS upgradeable)
 /// @notice One on-chain anchor per exchange snapshot: both artifact and
 ///         verification bundle roots in a single event / transaction, with
-///         queryable on-chain storage (schema v7; code-ready, proxy not yet upgraded).
+///         queryable on-chain storage (schema v7 on the Sepolia proxy).
 ///         See docs/verifier-architecture.md §6.
 contract ArdmerePoRAnchor is Initializable, OwnableUpgradeable, UUPSUpgradeable {
     /// @dev Event/storage schema version (v7 = self-reported USD totals + major-coin reserve ratios).
-    ///      v6 = composite snapshotId enforcement. Live Sepolia proxy stays on v6 until upgraded.
+    ///      v6 = composite snapshotId enforcement. Sepolia proxy upgraded v6→v7 in docs/deployments.md.
     uint8 public constant SCHEMA_VERSION = 7;
 
     /// @dev On-chain snapshot storage layout version (independent of event schema).

@@ -7,7 +7,7 @@ On-chain anchor contract deployments and first anchor transactions.
 
 | Network | Chain ID | Role | Status |
 | --- | --- | --- | --- |
-| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy schema **v6**; composite homepage anchors 2026-11-09) |  # pragma: allowlist secret
+| Ethereum Sepolia | `11155111` | Active testnet / CLI default | **Live** (proxy schema **v7**; homepage rows still schema v6 with zero totals) |  # pragma: allowlist secret
 | Base | `8453` | Production primary (ADR-002) | **Pending** — not deployed |
 | Base Sepolia | `84532` | Optional L2 testnet | **Pending** — not deployed |
 
@@ -29,9 +29,12 @@ Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only)
 | **Implementation (v2, superseded)** | [`0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392`](https://sepolia.etherscan.io/address/0x0c13bdD72e0a8439b0BEC29eB9e7bCb745BE9392) |
 | **Anchor signer** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
 | **Upgrade owner** | `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F` |
-| **Schema version** | `6` (v3–v5 rows remain readable) |
-| **Storage version** | `3` |
-| **Implementation (v6, composite snapshotId)** | [`0xB0A204285e6Cc7Eaf9fA21E327668Fc808032DEe`](https://sepolia.etherscan.io/address/0xB0A204285e6Cc7Eaf9fA21E327668Fc808032DEe) |
+| **Schema version** | `7` (stored rows keep the `schemaVersion` written at anchor time) |
+| **Storage version** | `4` |
+| **Implementation (v7, USD totals + ratio bps)** | [`0x08B0d5d421578f76862dB4B8A2B8969502638929`](https://sepolia.etherscan.io/address/0x08B0d5d421578f76862dB4B8A2B8969502638929) |
+| **Impl deploy tx (v7)** | [`0x7ecd31a796094c0eeabc2f9bff5841f77c56f813ed2b99b83928e93d5da246d9`](https://sepolia.etherscan.io/tx/0x7ecd31a796094c0eeabc2f9bff5841f77c56f813ed2b99b83928e93d5da246d9) (block `12115204`) |
+| **Upgrade tx (v6→v7)** | [`0x64e2a1d69cd22a9fb04800c6afde98d5b949f7a43a40aa389226631078f09f81`](https://sepolia.etherscan.io/tx/0x64e2a1d69cd22a9fb04800c6afde98d5b949f7a43a40aa389226631078f09f81) (block `12115207`) |
+| **Implementation (v6, composite snapshotId, superseded)** | [`0xB0A204285e6Cc7Eaf9fA21E327668Fc808032DEe`](https://sepolia.etherscan.io/address/0xB0A204285e6Cc7Eaf9fA21E327668Fc808032DEe) |
 | **Impl deploy tx (v6)** | [`0xe6b5687974f34214a94c60651cc47085ced433ba8d0447c7af28a77b96b2b898`](https://sepolia.etherscan.io/tx/0xe6b5687974f34214a94c60651cc47085ced433ba8d0447c7af28a77b96b2b898) |
 | **Upgrade tx (v5→v6)** | [`0x43ac3aa0d85bb826aedb70cac2cdd4860e0f42639f12013d3f0c607a26d25dc3`](https://sepolia.etherscan.io/tx/0x43ac3aa0d85bb826aedb70cac2cdd4860e0f42639f12013d3f0c607a26d25dc3) |
 | **Implementation (v5, custody risk, superseded)** | [`0x8A0E063Ad547adBA8fC5B7D0d0F9Cf55dF671Baf`](https://sepolia.etherscan.io/address/0x8A0E063Ad547adBA8fC5B7D0d0F9Cf55dF671Baf) |
@@ -241,9 +244,19 @@ Single-file helper: `scripts/anchor-assessment-v6.py [--dry-run] [--period-seq N
 
 ---
 
-## Schema v7 (self-reported totals and major-coin ratios) — code-ready, not upgraded
+## Schema v7 upgrade (self-reported totals and major-coin ratios)
 
-The Solidity in this repo sets `SCHEMA_VERSION` to **7** and `STORAGE_VERSION` to **4**. The Sepolia proxy is still schema **v6**. Do not broadcast v7 `anchorSnapshot` calldata until a maintainer upgrades the proxy. This change does not send a transaction.
+UUPS upgrade of the Sepolia proxy (address unchanged), broadcast 2026-11-12. `SCHEMA_VERSION()` is **7** and `STORAGE_VERSION()` is **4**. Implementation runtime matches the current `ArdmerePoRAnchor` build aside from the deploy-time `address(this)` immutables.
+
+| Item | Value |
+| --- | --- |
+| Implementation | [`0x08B0d5d421578f76862dB4B8A2B8969502638929`](https://sepolia.etherscan.io/address/0x08B0d5d421578f76862dB4B8A2B8969502638929) |
+| Impl deploy tx | [`0x7ecd31a796094c0eeabc2f9bff5841f77c56f813ed2b99b83928e93d5da246d9`](https://sepolia.etherscan.io/tx/0x7ecd31a796094c0eeabc2f9bff5841f77c56f813ed2b99b83928e93d5da246d9) (block `12115204`, gas used `16863696`) |
+| Upgrade tx (v6→v7) | [`0x64e2a1d69cd22a9fb04800c6afde98d5b949f7a43a40aa389226631078f09f81`](https://sepolia.etherscan.io/tx/0x64e2a1d69cd22a9fb04800c6afde98d5b949f7a43a40aa389226631078f09f81) (block `12115207`) |
+
+Two earlier creates ran out of gas and have no code (`0x53D6eE03E77c4030c91e88744D7B54bdF9931A70`, `0x5525d28ec38ff3ad879e9b5b7fae022ab303a80f`, `0x258a3e4a363b5be842eca60c6add7d95a34459cc`). They are not the implementation. The successful create used gas limit `17000000`.
+
+`snapshotId` stays `expectedSnapshotId(exchange, auditId)`. A free `periodSeq` (`getSnapshotCount`) does not allocate a second record. `eth_call` of v7 `anchorSnapshot` for Binance `PR04NOV26` at `periodSeq` **10** reverts `SnapshotAlreadyExists(bytes32)` selector `0xb296876b`. No anchor transaction was broadcast. The other homepage composite ids are already stored, so they were not sent. Pre-v7 rows are unchanged: `schemaVersion` 6 and the new uint128/uint16 slots read as 0.
 
 New `SnapshotRecord` slots, appended after `custodyRiskScore`:
 
@@ -259,12 +272,11 @@ New `SnapshotRecord` slots, appended after `custodyRiskScore`:
 Ratios above 655.34% saturate at `65534` so they cannot collide with `65535`. Pre-v7 storage rows still decode the new slots as **0**. Readers must treat both USD totals and the four ratios as unavailable unless `schemaVersion >= 7` (a 0 bps reading on an old row is not a 0% reserve ratio). These figures are self-reported snapshot amounts, not a solvency opinion.
 
 ```bash
-# After a future UUPS upgrade (do not run this until the implementation is deployed):
-cast call "$ANCHOR_CONTRACT" "SCHEMA_VERSION()(uint8)" --rpc-url "$RPC_URL"   # expect 7
-cast call "$ANCHOR_CONTRACT" "STORAGE_VERSION()(uint8)" --rpc-url "$RPC_URL"  # expect 4
+cast call "$ANCHOR_CONTRACT" "SCHEMA_VERSION()(uint8)" --rpc-url "$RPC_URL"   # 7
+cast call "$ANCHOR_CONTRACT" "STORAGE_VERSION()(uint8)" --rpc-url "$RPC_URL"  # 4
 ```
 
-**Operator cast signature (v7, code only):**
+**Operator cast signature (v7):**
 
 ```bash
 cast send "$ANCHOR_CONTRACT" \
@@ -276,7 +288,18 @@ cast send "$ANCHOR_CONTRACT" \
   --rpc-url "$RPC_URL" --private-key "$PRIVATE_KEY"
 ```
 
-`./por anchor` prints this v7 payload and does not broadcast. `scripts/anchor-assessment-v6.py` still targets the **live v6** proxy and must not be pointed at v7 calldata.
+`./por anchor` prints this v7 payload and does not broadcast. `scripts/anchor-assessment-v6.py` still targets the v6 selector and must not be pointed at v7 calldata.
+
+Assessment figures prepared for the homepage rows (whole USD via `round`; a positive total that rounds to 0 encodes as 1; ratio bps = `round(reserveRate × 10000)`, `65535` unavailable, saturate at `65534`). They are not stored, because the composite `snapshotId` already exists:
+
+| Exchange | auditId | Next `periodSeq` | Liability USD | Reserve USD | BTC | ETH | USDT | USDC |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| binance | `PR04NOV26` | 10 | 132692864216 | 133789440153 | 10003 | 10002 | 10155 | 10312 |
+| bitunix | `20261103` | 2 | 0 (null in JSON) | 0 (null in JSON) | 16100 | 10500 | 10600 | 65535 |
+| phemex | `20261101` | 2 | 128774624 | 140796757 | 10329 | 11354 | 65535 | 65535 |
+| htx | `20261101` | 2 | 5182100387 | 5305874609 | 10219 | 10145 | 3502 | 65534 |
+| okx | `508756245` | 6 | 30967089361 | 32618136617 | 10839 | 10051 | 10643 | 10002 |
+| ourbit | `20261101` | 1 | 85351838 | 93871851 | 11073 | 10810 | 10913 | 65535 |
 
 ## NEAR testnet (composite parity) — pending on-chain
 
