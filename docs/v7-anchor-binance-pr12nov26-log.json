@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-11-14T01:36:00Z",
+  "mode": "already_on_chain",
+  "note": "Composite schema-v7 row already present; no duplicate broadcast. Confirmed from cloud env via cast logs + getSnapshot read-back. Proxy and signer addresses: docs/deployments.md (Ethereum Sepolia).",
+  "implementation": "0xe8DB40AA87138d79437ED0DceA42D3A7A2AB95EB",
+  "schemaVersion": 7,
+  "storageVersion": 4,
+  "chain": "ethereum-sepolia",
+  "rows": [
+    {
+      "path": "docs/reports/binance/PR12NOV26-assessment.json",
+      "exchange": "binance",
+      "auditId": "PR12NOV26",
+      "snapshotId": "0xe0cbbc36668618dced5cc703e0b7d1c16eefe2d4e1d9432ce04364cd357fcb77",
+      "periodSeq": 15,
+      "custodyRiskScore": 91,
+      "totalLiabilityUsd": 128582258733,
+      "totalReserveUsd": 130015809492,
+      "btcReserveRatioBps": 10005,
+      "ethReserveRatioBps": 10002,
+      "usdtReserveRatioBps": 10434,
+      "usdcReserveRatioBps": 10007,
+      "porStage": 1,
+      "effectivePoR": false,
+      "schemaVersion": 7,
+      "anchoredAt": 1794620016,
+      "blockNumber": 12129857,
+      "status": "already_on_chain",
+      "tx": "0xaf3cdd6dfce7e044f25af2ff5e8c0ade4c88de621701084b6877bea090730bae"
+    }
+  ]
+}
