@@ -113,6 +113,7 @@ Each remaining `riskFlags` entry adds the delta below. The sum of these deltas i
 | `NO_CANONICAL_ANCHOR` | 5 |
 | `CONFLICT_OF_INTEREST_UNDISCLOSED` | 5 |
 | `HIGH_FREQUENCY_GAP` | 5 |
+| `NO_PUBLIC_POR_API` | 5 |
 
 Fallback when the id is not listed above and is not blocking:
 

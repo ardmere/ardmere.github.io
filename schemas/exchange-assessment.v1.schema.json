@@ -102,6 +102,19 @@
     "frequency": {
       "$ref": "#/$defs/frequency"
     },
+    "publicPoRApi": {
+      "description": "Documented permissionless PoR HTTP API endpoint URL, or null when none is documented. Trading/market APIs do not count. Optional on legacy assessments; new and regenerated reports should include it.",
+      "oneOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "format": "uri"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
     "summary": {
       "type": "object",
       "required": ["headline", "rationale"],

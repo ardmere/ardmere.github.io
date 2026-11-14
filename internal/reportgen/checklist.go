@@ -254,6 +254,8 @@ func recommendationForRiskFlag(id, message string) (riskRecommendation, bool) {
 		return riskRecommendation{"P0", "Publish the current production proof bundle and bind it to the snapshot summary."}, true
 	case "BLACK_BOX_INCLUSION_PROOF":
 		return riskRecommendation{"P0", "Provide exportable user inclusion proof and a local/open verifier."}, true
+	case "NO_PUBLIC_POR_API":
+		return riskRecommendation{"P1", "Publish a documented, permissionless PoR HTTP API so third parties need not scrape marketing pages or SPA shells."}, true
 	default:
 		return riskRecommendation{}, false
 	}

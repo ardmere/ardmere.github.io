@@ -4,11 +4,17 @@
 
 MEXC uses a **Gen 1** Merkle Tree with SHA-256 truncated to 32 hex characters (128 bits). ardmere tier: **1** (summary + optional user inclusion proof).
 
+## Public PoR API
+
+**`publicPoRApi: null`** (registry — no documented PoR HTTP API endpoint). Official Spot / Futures / Broker developer docs and the MEXC V3 Postman collection document trading and market APIs only — not PoR snapshot, merkle root, or inclusion-proof HTTP endpoints. PoR is exposed via the logged-in web UI, the marketing `/proof-of-reserve` SPA, monthly press releases, and an offline Java merkle jar.
+
+Page-only / press-only capture is fragile: resource path migration or a client-rendered SPA HTML shell without usable totals can make automated scrapes unreadable even when the marketing URL still returns HTTP 200.
+
 ## Public data planes
 
 | Plane | Source | Public? | ardmere artifact |
 |-------|--------|---------|------------------|
-| Reserve ratio summary | PoR dashboard / monthly Hacken press release | Browser / press scrape | `summarySnapshot` |
+| Reserve ratio summary | PoR dashboard / monthly Hacken press release | Browser / press scrape (no public PoR API) | `summarySnapshot` |
 | User Merkle path | Logged-in user downloads `myProof.json` | Login | `userMerkleProof` |
 | Wallet addresses | Historical disclosures; no stable permissionless ZIP | Not integrated | — |
 | Global ZK | Not used | — | — |

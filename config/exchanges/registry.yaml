@@ -1,6 +1,10 @@
 # Exchange upstream registry — canonical list of official PoR pages and GitHub repos.
 # Consumed by: por exchanges, data guides, assessment references, exchange-comparison.
 #
+# publicPoRApi: documented permissionless PoR HTTP API endpoint URL, or null when none.
+#   Trading/market APIs do not count. Do not invent URLs — only fill when documented/known.
+# publicPoRApiNote: optional factual note (especially when null: page/press/SPA fragility).
+#
 # Role vocabulary:
 #   verifier_toolchain         — open-source verifier / circuit / CLI
 #   global_zk_verifier_spec    — global ZK proof spec + implementation
@@ -9,7 +13,7 @@
 #   sample_artifact_release    — sample period bundles on GitHub Releases only
 
 version: 1
-updated: "2026-11-06"
+updated: "2026-11-14"
 
 exchanges:
   - id: binance
@@ -17,6 +21,7 @@ exchanges:
     porPage: https://www.binance.com/en/proof-of-reserves
     dataGuide: docs/binance-por-data-guide.md
     vcTier: 3
+    publicPoRApi: "https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot"
     upstreamRepos:
       - url: https://github.com/binance/zkmerkle-proof-of-solvency
         role: verifier_toolchain
@@ -31,6 +36,9 @@ exchanges:
     porPage: https://www.okx.com/proof-of-reserves
     dataGuide: docs/okx-por-data-guide.md
     vcTier: 2
+    publicPoRApi: null
+    publicPoRApiNote: >-
+      Permissionless CDN/HTML PoR artifacts exist; no single documented PoR HTTP API endpoint recorded here.
     upstreamRepos:
       - url: https://github.com/okx/proof-of-reserves
         role: address_ownership_verifier
@@ -48,6 +56,7 @@ exchanges:
     porPage: https://www.gate.com/proof-of-reserves
     dataGuide: docs/gate-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://www.gate.com/api/web/v1/proof-of-reserves/getProofOfReservesInfo"
     upstreamRepos:
       - url: https://github.com/gate/proof-of-reverses
         role: verifier_toolchain
@@ -61,6 +70,9 @@ exchanges:
     porPage: https://www.bybit.com/en/proof-of-reserves
     dataGuide: docs/bybit-por-data-guide.md
     vcTier: 1
+    publicPoRApi: null
+    publicPoRApiNote: >-
+      No documented permissionless PoR HTTP API endpoint recorded; summary capture is browser/WAF-gated.
     upstreamRepos:
       - url: https://github.com/bybit-exchange/merkle-proof
         role: user_merkle_verifier
@@ -74,6 +86,9 @@ exchanges:
     porPage: https://www.bitget.com/proof-of-reserves
     dataGuide: docs/bitget-por-data-guide.md
     vcTier: 1
+    publicPoRApi: null
+    publicPoRApiNote: >-
+      Browser-facing PoR bill/proof calls are used for capture; no stable documented public API URL recorded.
     upstreamRepos:
       - url: https://github.com/BitgetLimited/proof-of-reserves
         role: user_merkle_verifier
@@ -87,6 +102,9 @@ exchanges:
     porPage: https://www.htx.com/zh-cn/finance/merkle/
     dataGuide: docs/htx-por-data-guide.md
     vcTier: 1
+    publicPoRApi: null
+    publicPoRApiNote: >-
+      Data guide: PoR page has no stable public API; production bundles are dashboard/login gated.
     upstreamRepos:
       - url: https://github.com/huobiapi/Tool-Go-MerkleVerify
         role: sample_artifact_release
@@ -102,20 +120,27 @@ exchanges:
     porPage: https://www.mexc.com/support/article/how-to-verify-user-assets-on-mexc-17827791528836
     dataGuide: docs/mexc-por-data-guide.md
     vcTier: 1
+    publicPoRApi: null
+    publicPoRApiNote: >-
+      Official Spot/Futures/Broker API docs and Postman have no PoR endpoints; PoR is web UI + press + offline jar. Page/SPA scrape is fragile.
     upstreamRepos:
       - url: https://github.com/mexcmerkle/mexc-merkle-proof-of-reserves
         role: user_merkle_verifier
         ardmereUse: user-merkle-proof@mexc-1
         note: Java reference verifier; SHA-256 truncated to 32 hex chars (128 bits); logic ported in internal/exchanges/mexc/merkle.
     integrationNotes: >-
-      Summary JSON is WAF/login gated from datacenters; import press-release or browser capture.
-      User Merkle proof is login-gated; no public wallet_address_list or global ZK.
+      No documented public PoR API (trading APIs only). Summary JSON is WAF/login gated from
+      datacenters; import press-release or browser capture. User Merkle proof is login-gated;
+      no public wallet_address_list or global ZK. Page/SPA scrape can become unreadable.
 
   - id: kucoin
     name: KuCoin
     porPage: https://www.kucoin.com/proof-of-reserves
     dataGuide: docs/kucoin-por-data-guide.md
     vcTier: 1
+    publicPoRApi: null
+    publicPoRApiNote: >-
+      Public ratios come from PoR page SSR (__NEXT_DATA__); no documented permissionless PoR HTTP API.
     upstreamRepos: []
     integrationNotes: >-
       Public PoR page SSR (__NEXT_DATA__.initialReserve) exposes latest reserve ratios without login.
@@ -127,6 +152,9 @@ exchanges:
     porPage: https://bingx.com/en/balance-reserve
     dataGuide: docs/bingx-por-data-guide.md
     vcTier: 1
+    publicPoRApi: null
+    publicPoRApiNote: >-
+      No documented permissionless PoR HTTP API endpoint recorded; reserve JSON requires browser/device capture.
     upstreamRepos:
       - url: https://github.com/BingX-API/BingX-proof-of-reserves
         role: user_merkle_verifier
@@ -141,6 +169,7 @@ exchanges:
     porPage: https://www.poloniex.com/topic/security/proof-of-reserves
     dataGuide: docs/poloniex-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://www.poloniex.com/proxy/sapi/merkleProof/public/versionInfo"
     upstreamRepos:
       - url: https://github.com/poloniex/tools-nodejs-address-verify
         role: address_ownership_verifier
@@ -157,6 +186,7 @@ exchanges:
     porPage: https://www.ourbit.com/assets/reserve-proof
     dataGuide: docs/ourbit-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://www.ourbit.com/api/assetbussiness/merkle/stock_info"
     upstreamRepos:
       - url: https://github.com/OurbitOfficial/merkle_validate
         role: user_merkle_verifier
@@ -173,6 +203,7 @@ exchanges:
     porPage: https://www.coinex.com/en/reserve-proof
     dataGuide: docs/coinex-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://www.coinex.com/res/account/balance/merkle/reserve"
     upstreamRepos:
       - url: https://github.com/coinexcom/proof-of-reserves
         role: user_merkle_verifier
@@ -191,6 +222,7 @@ exchanges:
     porPage: https://www.bitunix.com/proof-of-reserve
     dataGuide: docs/bitunix-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://api.bitunix.com/asset-hub-api/api/public/v1/reserve/certificate/queryAuditInfoByTime"
     upstreamRepos:
       - url: https://github.com/BitunixOfficial/proof-of-reserves
         role: user_merkle_verifier
@@ -210,6 +242,7 @@ exchanges:
     porPage: https://woox.io/proof-of-reserves
     dataGuide: docs/woox-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://api.woox.io/asset/porl/v2/snapshot_overview"
     upstreamRepos:
       - url: https://github.com/woo-x/merkle-tree
         role: user_merkle_verifier
@@ -226,6 +259,7 @@ exchanges:
     porPage: https://www.toobit.com/proof-of-reserves
     dataGuide: docs/toobit-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://bapi.toobit.com/uapi/v1/por/latest-audit"
     upstreamRepos:
       - url: https://github.com/toobit-docs/por-verifier
         role: user_merkle_verifier
@@ -242,6 +276,7 @@ exchanges:
     porPage: https://phemex.com/proof-of-reserves
     dataGuide: docs/phemex-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://por.phemex.com/porVersions"
     upstreamRepos: []
     integrationNotes: >-
       Permissionless https://por.phemex.com/porVersions exposes monthly versionID + chain/cex balances
@@ -253,6 +288,7 @@ exchanges:
     porPage: https://www.btcc.com/en-US/proof-of-reserves
     dataGuide: docs/btcc-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://www.btcc.com/social-api/contract/reserve/reserveInfo"
     upstreamRepos: []
     integrationNotes: >-
       Permissionless GET /social-api/contract/reserve/reserveInfo?reportDate=YYYY-MM-DD returns per-coin
@@ -264,6 +300,7 @@ exchanges:
     porPage: https://www.kraken.com/proof-of-reserves
     dataGuide: docs/kraken-por-data-guide.md
     vcTier: 1
+    publicPoRApi: "https://widget.pro.ledgerlens.io/api/kraken-platform-spot-futures"
     upstreamRepos:
       - url: https://widget.pro.ledgerlens.io/api/kraken-platform-spot-futures
         role: accountant_merkle_summary
@@ -280,6 +317,9 @@ exchanges:
     porPage: https://www.coinw.com/proof-of-reserves
     dataGuide: docs/coinw-por-data-guide.md
     vcTier: 1
+    publicPoRApi: null
+    publicPoRApiNote: >-
+      Stable channel is help-center announcement / marketing page; datacenter WAF blocks dashboard.
     upstreamRepos:
       - url: https://github.com/connectCoinw/proof-of-reserves
         role: user_merkle_verifier
