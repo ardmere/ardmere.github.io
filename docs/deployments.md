@@ -19,7 +19,7 @@ See [`decisions.md` ADR-002](./decisions.md#adr-002-primary-anchor-chain-base).
 
 Primary **testnet** deployment (operable CLI default until Base mainnet ships). Contract is **UUPS upgradeable** — users interact with the **proxy** address; upgrades are authorized by the deployer (owner).
 
-Deployment using `PRIVATE_KEY` / `ANCHOR_SIGNER` from `~/.zshenv` (testnet only).
+Deployment uses `PRIVATE_KEY` (upgrade/owner key used to broadcast) and `ANCHOR_SIGNER` (permissioned signer address). Supply them via `~/.zshenv` for local operators, or via the same env vars injected into a cloud Cursor agent environment (testnet only).
 
 | Item | Value |
 |---|---|
