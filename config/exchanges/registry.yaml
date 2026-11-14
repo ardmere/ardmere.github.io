@@ -1,8 +1,7 @@
 # Exchange upstream registry — canonical list of official PoR pages and GitHub repos.
 # Consumed by: por exchanges, data guides, assessment references, exchange-comparison.
 #
-# publicPoRApi: documented permissionless PoR HTTP endpoint URL, or null when none.
-#   Includes fixed CDN/download endpoints that serve PoR artifacts (not only JSON REST).
+# publicPoRApi: documented permissionless PoR HTTP API endpoint URL, or null when none.
 #   Trading/market APIs do not count. Do not invent URLs — only fill when documented/known.
 # publicPoRApiNote: optional factual note (especially when null: page/press/SPA fragility).
 #
@@ -37,10 +36,9 @@ exchanges:
     porPage: https://www.okx.com/proof-of-reserves
     dataGuide: docs/okx-por-data-guide.md
     vcTier: 2
-    publicPoRApi: "https://www.okx.com/proof-of-reserves/download"
+    publicPoRApi: null
     publicPoRApiNote: >-
-      Download page embeds auditList with permissionless fixed CDN URLs for wallet and liability PoR zips
-      (docs/okx-por-data-guide.md). Counts as publicPoRApi (not only JSON REST).
+      Permissionless CDN/HTML PoR artifacts exist; no single documented PoR HTTP API endpoint recorded here.
     upstreamRepos:
       - url: https://github.com/okx/proof-of-reserves
         role: address_ownership_verifier

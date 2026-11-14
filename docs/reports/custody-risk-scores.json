@@ -1,6 +1,6 @@
 {
   "schema": "ardmere/custody-risk-scores@1",
-  "generatedAt": "2026-11-14T03:15:19Z",
+  "generatedAt": "2026-11-14T02:57:57Z",
   "scoringMode": "file-only (--no-anchor)",
   "decisionTable": "skills/por-custody-risk/references/decision-table.md",
   "scores": [
@@ -412,65 +412,65 @@
     {
       "exchange": "okx",
       "snapshot": "500375535",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/500375535-assessment.json",
-      "assessmentSha256": "2c2f66e516a199b6d27bdf5c35bcc4afcdae794acf251c84993288e04874b5a0"
+      "assessmentSha256": "31166629da0ce3e119939b2bd44f0a023ceabb168df266671fc44826a9649858"
     },
     {
       "exchange": "okx",
       "snapshot": "502260945",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/502260945-assessment.json",
-      "assessmentSha256": "3e406c278081cfa5c3c310ae67e1ab4dee3b3d86c3d54b4baee4ac0cf7065536"
+      "assessmentSha256": "951b704b430bfea5b3619cd2472b4e7124425436a1cbbb29cbb2c5122c470719"
     },
     {
       "exchange": "okx",
       "snapshot": "502299735",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/502299735-assessment.json",
-      "assessmentSha256": "691d4543e24179678901ac7891e93af47ba84ed44c70148b3cf762ee0a6f543b"
+      "assessmentSha256": "f95f0cdf3d5bd56ca983843beb1492a3820b6345451cbb876eac4b9ec4b53a42"
     },
     {
       "exchange": "okx",
       "snapshot": "506872725",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/506872725-assessment.json",
-      "assessmentSha256": "f6bf1ccfd4500fcfa7fb7626f86fe5c7bd3ac80db1843b362ce602452b8fb40e"
+      "assessmentSha256": "fdecb12e31e481d848d8364461ceec777ed218f45d0407dfd166916861edbe95"
     },
     {
       "exchange": "okx",
       "snapshot": "507918525",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/507918525-assessment.json",
-      "assessmentSha256": "9f93b522f29641bbfd8f07c7eb5e850af83976476f889d9db94a9fff69bd8468"
+      "assessmentSha256": "fe6d14189550ba1d09daf1e4edeebc9e13388b94ca2012e25acb59c5f388d813"
     },
     {
       "exchange": "okx",
       "snapshot": "508399035",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/508399035-assessment.json",
-      "assessmentSha256": "2aba8170fd185da961d27f3afd5c1cb94b8d77a8329418e154159a31a57e4cdf"
+      "assessmentSha256": "49de0d7b3d7ed524deda66224c193da0f8c13ce526d0993c2990720b3e56d38e"
     },
     {
       "exchange": "okx",
       "snapshot": "508756245",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/508756245-assessment.json",
-      "assessmentSha256": "3b24e0dc127c78d871dd0bbdd07a15ded54deb14ab0ceddd1c4065e321528d20"
+      "assessmentSha256": "1867c97cbbf2a34841acbe0da20e381f7c46c042cce1dd65f2dc21a2f5d96bae"
     },
     {
       "exchange": "ourbit",

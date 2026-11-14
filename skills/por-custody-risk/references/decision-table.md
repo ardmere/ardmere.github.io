@@ -134,13 +134,13 @@ Computed with `skills/por-custody-risk/scripts/por-check.sh`, not copied from an
 
 | File | sha256 (prefix) | Anchor | Flags applied | Score | Level |
 | --- | --- | --- | --- | --- | --- |
-| `docs/reports/okx/508756245-assessment.json` | `3b24e0dc127c78d8` | not anchored (`ANCHOR_MISSING` when read against a live RPC; the row below is the file-only score) | `NO_CANONICAL_ANCHOR` +5, `HIGH_FREQUENCY_GAP` +5. Stage 1, `effectivePoR` true | 10 | `low` |
+| `docs/reports/okx/508756245-assessment.json` | `1867c97cbbf2a348` | not anchored (`ANCHOR_MISSING` when read against a live RPC; the row below is the file-only score) | `NO_CANONICAL_ANCHOR` +5, `HIGH_FREQUENCY_GAP` +5, `NO_PUBLIC_POR_API` +5. Stage 1, `effectivePoR` true | 15 | `low` |
 | `docs/reports/kucoin/20261031-assessment.json` | `6d4a49c03d2824f5` | anchored, 2 of 3 roots compared and agree | blocking + stage + list +16 + ownership +8 + `NO_PUBLIC_POR_API` (cap) | 100 | `critical` |
 | `docs/reports/bitget/20261021-assessment.json` | `854bfa3c4ec9d367` | anchored, 3 of 3 roots agree | blocking + stage + list +16 + ownership +8 + `NO_PUBLIC_POR_API` (cap) | 100 | `critical` |
 | `docs/reports/bybit/2026102706-assessment.json` | (see file) | file-only or anchored per run | `UNVERIFIABLE` +40, stage +35, derived list +16, derived ownership +8 + `NO_PUBLIC_POR_API` (cap) | 100 | `critical` |
 | `docs/reports/mexc/202610-assessment.json` | `8557bc25ef5dbe4d` | anchored, 2 of 3 roots compared and agree | `UNVERIFIABLE` +40, stage +35, derived list +16, non-blocking capped | 100 | `critical` |
 | `docs/reports/binance/PR01JUN26-assessment.json` | `185cebfcbe8468ca` | **mismatch** when read against the live anchor: `verificationBundleRoot` and `artifactBundleRoot` disagree with the contract | `UNVERIFIABLE` +40, stage +35, `NO_WALLET_OWNERSHIP_PROOF` +8, `OPAQUE_TRUSTED_SETUP` +8, so 91 file-only; `ANCHOR_MISMATCH` +100 when the anchor is read | 91 / 100 | `critical` |
-| `docs/reports/okx/506872725-assessment.json` | `f6bf1ccfd4500fcf` | **mismatch** when read against the live anchor: `verificationBundleRoot` disagrees | otherwise 10 (`NO_CANONICAL_ANCHOR` +5, `HIGH_FREQUENCY_GAP` +5); `ANCHOR_MISMATCH` +100 when the anchor is read | 10 / 100 | `low` / `critical` |
+| `docs/reports/okx/506872725-assessment.json` | `fdecb12e31e481d8` | **mismatch** when read against the live anchor: `verificationBundleRoot` disagrees | otherwise 15 (`NO_CANONICAL_ANCHOR` +5, `HIGH_FREQUENCY_GAP` +5, `NO_PUBLIC_POR_API` +5); `ANCHOR_MISMATCH` +100 when the anchor is read | 15 / 100 | `low` / `critical` |
 
 The last two rows are the reason the anchor read exists at all. Read file-only they look like ordinary Stage 0 / Stage 1 snapshots. Read against the chain, the bytes on disk are not the bytes that were anchored, and the score says so before any flag arithmetic runs.
 
