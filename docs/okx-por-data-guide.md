@@ -4,12 +4,14 @@
 
 OKX publishes PoR artifacts without login. ardmere fetches them via page-embedded JSON and static CDN downloads.
 
+**`publicPoRApi`:** `https://www.okx.com/proof-of-reserves/download` (registry). The download page embeds `auditList` with permissionless fixed CDN URLs for wallet and liability zips — same function as a documented HTTP PoR API for fetching PoR data (not only JSON REST).
+
 ## Public sources
 
 | Source | URL | Content |
 |--------|-----|---------|
 | Detail page | `https://www.okx.com/proof-of-reserves/detail` | `appState` JSON → `auditRootInfo` (ratios, balances, merkle hash) |
-| Download page | `https://www.okx.com/proof-of-reserves/download` | `auditList` with CDN URLs per audit |
+| Download page | `https://www.okx.com/proof-of-reserves/download` | `auditList` with CDN URLs per audit (`publicPoRApi` entrypoint) |
 | Wallet zip | `https://static.okx.com/cdn/okx/por/chain/por_csv_*_V2.zip` | Signed address CSV + ETH staking CSV |
 | Liability zip | `https://static.okx.com/cdn/okx/por/merkel/por_<auditId>_proof_data.zip` | `sum_proof_data.json` (global zk-STARK) |
 
