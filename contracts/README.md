@@ -35,14 +35,16 @@ forge test -vv    # unit tests
 
 ```bash
 # 1) Configure
-#    - Secrets: export PRIVATE_KEY and ANCHOR_SIGNER in ~/.zshenv (testnet only)
+#    - Secrets (testnet only): PRIVATE_KEY (upgrade/owner broadcast key) and
+#      ANCHOR_SIGNER (signer address) via ~/.zshenv, or the same vars injected
+#      into a cloud Cursor agent environment
 #    - Project: cp ../.env.example ../.env for RPC / contract addresses
 cp ../.env.example ../.env
 ln -sf ../.env .env   # Foundry loads .env from this directory
 
 set -a && source .env && set +a
-source ~/.zshenv
-# Required in shell: PRIVATE_KEY, ANCHOR_SIGNER
+# Optional local: source ~/.zshenv
+# Required in env: PRIVATE_KEY, ANCHOR_SIGNER
 # Required in .env: SEPOLIA_RPC_URL
 
 # 2) Fund the deployer address with Sepolia ETH from a faucet
@@ -63,7 +65,7 @@ When a new implementation is released (e.g. schema v4 stage + dual coverage), up
 
 ```bash
 # Required: PRIVATE_KEY (upgrade owner), ANCHOR_CONTRACT (proxy)
-source ~/.zshenv
+# Optional local: source ~/.zshenv  (or use cloud Cursor agent-injected PRIVATE_KEY)
 set -a && source .env && set +a
 
 forge script script/Upgrade.s.sol:Upgrade \
