@@ -53,8 +53,9 @@ func Write(ctx context.Context, opt Options) error {
 	checklist := collectChecklist(rctx)
 	recommendations := collectRecommendations(rctx)
 	figures := figuresFromArtifacts(ctx, dir, opt.Exchange, opt.SnapshotID)
-	assessment := buildAssessment(opt.Exchange, art, ver, eval, checklist, recommendations, figures)
-	reportMD := buildReportMarkdown(opt.Exchange, opt.SnapshotID, dir, art, ver, eval, freq, checklist, recommendations, figures)
+	apiInfo := lookupPublicPoRApi(opt.Exchange)
+	assessment := buildAssessment(opt.Exchange, art, ver, eval, checklist, recommendations, figures, apiInfo)
+	reportMD := buildReportMarkdown(opt.Exchange, opt.SnapshotID, dir, art, ver, eval, freq, checklist, recommendations, figures, apiInfo)
 
 	outDir := filepath.Join(opt.ReportsDir, opt.Exchange)
 	if err := os.MkdirAll(outDir, 0o755); err != nil {
@@ -85,7 +86,7 @@ func figuresFromArtifacts(ctx context.Context, dir, exchangeID, snapshotID strin
 	return pipeline.ComputeReserveFigures(ctx, loaded.Snapshot, coingecko.New())
 }
 
-func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, checklist []checklistItem, recommendations []recommendationItem, figures pipeline.ReserveFigures) map[string]any {
+func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, checklist []checklistItem, recommendations []recommendationItem, figures pipeline.ReserveFigures, apiInfo publicPoRApiInfo) map[string]any {
 	vr := make([]map[string]any, 0, len(ver.Verifications))
 	for _, v := range ver.Verifications {
 		vr = append(vr, map[string]any{
@@ -106,6 +107,14 @@ func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.Ve
 			"availability": "public",
 		})
 	}
+	summary := map[string]any{
+		"headline":  eval.Headline,
+		"rationale": eval.Rationale,
+		"scope":     fmt.Sprintf("%s snapshot %s", exchangeID, art.SnapshotID),
+	}
+	if apiInfo.Provided == "no" {
+		summary["limitations"] = []string{PageOnlyPoRSourceMessage}
+	}
 	out := map[string]any{
 		"schema":             "ardmere/exchange-assessment@1",
 		"generatedAt":        nowRFC3339(),
@@ -123,11 +132,8 @@ func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.Ve
 		"evidenceLevel": eval.EvidenceLevel,
 		"confidence":    eval.Confidence,
 		"effectivePoR":  eval.EffectivePoR,
-		"summary": map[string]any{
-			"headline":  eval.Headline,
-			"rationale": eval.Rationale,
-			"scope":     fmt.Sprintf("%s snapshot %s", exchangeID, art.SnapshotID),
-		},
+		"publicPoRApi":  publicPoRApiAssessmentMap(apiInfo),
+		"summary":       summary,
 		"stageBlockedReasons": eval.Blocked,
 		"riskFlags":           eval.RiskFlags,
 		"artifacts": map[string]any{
@@ -177,7 +183,7 @@ func recommendationsToAssessment(recs []recommendationItem) []map[string]any {
 	return out
 }
 
-func buildReportMarkdown(exchangeID, snapshotID, snapshotDir string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, freq frequencyInfo, checklist []checklistItem, recommendations []recommendationItem, figures pipeline.ReserveFigures) string {
+func buildReportMarkdown(exchangeID, snapshotID, snapshotDir string, art bundle.ArtifactBundle, ver bundle.VerificationBundle, eval stageEval, freq frequencyInfo, checklist []checklistItem, recommendations []recommendationItem, figures pipeline.ReserveFigures, apiInfo publicPoRApiInfo) string {
 	var b strings.Builder
 	fmt.Fprintf(&b, "# %s %s PoR Transparency Report\n\n", strings.ToUpper(exchangeID), art.SnapshotID)
 	b.WriteString("> Methodology: [PoR Stage Framework](../../por-transparency-framework.md)  \n")
@@ -190,9 +196,17 @@ func buildReportMarkdown(exchangeID, snapshotID, snapshotDir string, art bundle.
 	fmt.Fprintf(&b, "| PoR Stage | `%s — %s` |\n", eval.Stage, eval.StageName)
 	fmt.Fprintf(&b, "| Gen / Evidence | `%s / %s` |\n", eval.Gen, eval.EvidenceLevel)
 	fmt.Fprintf(&b, "| Confidence | `%s` |\n", eval.Confidence)
-	fmt.Fprintf(&b, "| Effective PoR | `%v` |\n\n", eval.EffectivePoR)
+	fmt.Fprintf(&b, "| Effective PoR | `%v` |\n", eval.EffectivePoR)
+	fmt.Fprintf(&b, "| Public PoR API | `%s` |\n\n", apiInfo.Provided)
 	b.WriteString(eval.Headline + "\n\n")
 	b.WriteString(eval.Rationale + "\n\n")
+	if apiInfo.Provided == "no" {
+		note := apiInfo.Notes
+		if note == "" {
+			note = PageOnlyPoRSourceMessage
+		}
+		b.WriteString(note + "\n\n")
+	}
 
 	b.WriteString("## 2. Stage Decision\n\n")
 	if eval.EffectivePoR {

@@ -102,6 +102,9 @@
     "frequency": {
       "$ref": "#/$defs/frequency"
     },
+    "publicPoRApi": {
+      "$ref": "#/$defs/publicPoRApi"
+    },
     "summary": {
       "type": "object",
       "required": ["headline", "rationale"],
@@ -255,6 +258,20 @@
         },
         "stageImpact": {
           "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
+    },
+    "publicPoRApi": {
+      "type": "object",
+      "required": ["provided"],
+      "additionalProperties": false,
+      "description": "Whether the exchange documents a permissionless PoR HTTP API that third parties can call without login. Trading/market APIs do not count. Optional on legacy assessments; new and regenerated reports should include it.",
+      "properties": {
+        "provided": {
+          "enum": ["yes", "no", "unknown"]
         },
         "notes": {
           "type": "string"

@@ -245,6 +245,9 @@ func evaluate(exchangeID string, art bundle.ArtifactBundle, vers []verifier.Veri
 			}
 		}
 	}
+	if rf, ok := noPublicPoRApiRiskFlag(lookupPublicPoRApi(exchangeID)); ok {
+		e.RiskFlags = append(e.RiskFlags, rf)
+	}
 	return e
 }
 

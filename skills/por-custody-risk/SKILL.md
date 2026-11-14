@@ -144,7 +144,7 @@ The same file with `--no-anchor` scores identically, but the interpretation says
 | `conclusive` | `false` only when the anchor could not be read |
 | `factors[]` | `id`, `delta`, `note` — the arithmetic, in application order |
 | `notAReserveJudgement` | present and `true` on `ANCHOR_MISSING` only |
-| `porStage`, `effectivePoR`, `riskFlags` | echoed from the assessment |
+| `porStage`, `effectivePoR`, `riskFlags` | echoed from the assessment (including `NO_PUBLIC_POR_API` when `publicPoRApi.provided` is `no`) |
 | `anchor.porStage`, `anchor.walletCoverageBps`, `anchor.reserveCoverageBps` | schema v4+ on-chain fields (v3 rows decode as 0/false); prefer these over deprecated `coverageBps` |
 | `anchor.custodyRiskScore` | schema v5 field (`0–100` or `255`); cross-check via `custodyRiskScoreMatchesComputed` when recomputing |
 | `anchor.totalLiabilityUsd`, `anchor.totalReserveUsd` | schema v7 whole-USD totals (`0` = unavailable). Meaningful only when `reserveTotalsMeaningful` is true (`schemaVersion >= 7`). Raw ints stay for machines |
