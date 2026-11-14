@@ -15,8 +15,8 @@ import (
 const PageOnlyPoRSourceMessage = "No documented public PoR API. Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals."
 
 type publicPoRApiInfo struct {
-	// URL is the documented permissionless PoR HTTP endpoint (including fixed
-	// CDN/download URLs that serve PoR artifacts), or empty for null.
+	// URL is the documented permissionless PoR HTTP API endpoint, or empty for null.
+	// Fixed CDN/download pages do not count.
 	URL   string
 	Notes string
 }

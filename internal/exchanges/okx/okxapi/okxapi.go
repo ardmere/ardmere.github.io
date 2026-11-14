@@ -1,6 +1,5 @@
 // Package okxapi fetches OKX Proof-of-Reserves page data and CDN artifacts.
-// OKX embeds structured JSON in HTML (id="appState") rather than a JSON REST API;
-// the download page and fixed CDN artifact URLs still count as publicPoRApi.
+// OKX embeds structured JSON in HTML (id="appState"); there is no public REST API.
 package okxapi
 
 import (

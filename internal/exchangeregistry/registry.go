@@ -27,9 +27,9 @@ type Exchange struct {
 	PorPage          string         `yaml:"porPage"`
 	DataGuide        string         `yaml:"dataGuide"`
 	VCTier           int            `yaml:"vcTier,omitempty"`
-	// PublicPoRApi is a documented permissionless PoR HTTP endpoint URL,
+	// PublicPoRApi is a documented permissionless PoR HTTP API endpoint URL,
 	// or empty/null when none is documented (not trading APIs). Fixed CDN/download
-	// endpoints that serve PoR artifacts also qualify. Do not invent URLs.
+	// pages do not count. Do not invent URLs.
 	PublicPoRApi     string         `yaml:"publicPoRApi,omitempty"`
 	PublicPoRApiNote string         `yaml:"publicPoRApiNote,omitempty"`
 	UpstreamRepos    []UpstreamRepo `yaml:"upstreamRepos"`
