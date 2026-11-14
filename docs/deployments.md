@@ -364,7 +364,21 @@ python3 scripts/batch-anchor-v7.py          # dry-run
 python3 scripts/batch-anchor-v7.py --apply  # signer key; skips existing composites
 ```
 
-All 57 `docs/reports/*/*-assessment.json` files now have a composite Sepolia row with `schemaVersion` 7.
+After that batch, every assessment JSON then on `main` had a composite Sepolia row with `schemaVersion` 7.
+
+### Binance `PR12NOV26` (2026-11-14)
+
+Post-batch assessment from the merged scan report ([PR #57](https://github.com/ardmere/ardmere.github.io/pull/57)). Composite `expectedSnapshotId(binance, PR12NOV26)` was already on Sepolia schema **7** when the cloud env checked (no duplicate `anchorSnapshot`). Read-back + `SnapshotAnchored` log appendix: [`docs/v7-anchor-binance-pr12nov26-log.json`](./v7-anchor-binance-pr12nov26-log.json).
+
+| Exchange | auditId | periodSeq | Custody | Liability USD | Reserve USD | BTC | ETH | USDT | USDC | Block | `anchorSnapshot` tx |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| binance | `PR12NOV26` | 15 | 91 | 128582258733 | 130015809492 | 10005 | 10002 | 10434 | 10007 | `12129857` | [`0xaf3cdd6dfce7e044f25af2ff5e8c0ade4c88de621701084b6877bea090730bae`](https://sepolia.etherscan.io/tx/0xaf3cdd6dfce7e044f25af2ff5e8c0ade4c88de621701084b6877bea090730bae) |
+
+- **snapshotId:** `0xe0cbbc36668618dced5cc703e0b7d1c16eefe2d4e1d9432ce04364cd357fcb77`
+- **Proxy / impl / schema:** unchanged (`SCHEMA_VERSION()=7`, live impl `0xe8DB40AA87138d79437ED0DceA42D3A7A2AB95EB`)
+- **Signer:** `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F`
+
+All **58** `docs/reports/*/*-assessment.json` files now have a composite Sepolia row with `schemaVersion` 7.
 
 ## NEAR testnet (composite parity) — pending on-chain
 
