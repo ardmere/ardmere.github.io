@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://www.ourbit.com/api/assetbussiness/merkle/stock_info` |
 
 Ourbit snapshot 20261101 is Stage 0: public stock_info ratios + live multi-chain wallet table; no snapshot-bound walletZip/ownership; user Merkle login-gated; hash truncated to 128 bits.
 

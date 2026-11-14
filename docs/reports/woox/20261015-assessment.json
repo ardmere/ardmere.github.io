@@ -294,5 +294,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://api.woox.io/asset/porl/v2/snapshot_overview"
 }

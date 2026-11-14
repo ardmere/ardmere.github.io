@@ -127,6 +127,13 @@
         "UNVERIFIABLE"
       ],
       "text": "Publish missing public artifacts required for independent reproduction."
+    },
+    {
+      "priority": "P1",
+      "relatedRiskFlags": [
+        "NO_PUBLIC_POR_API"
+      ],
+      "text": "Publish a documented, permissionless PoR HTTP API so third parties need not scrape marketing pages or SPA shells."
     }
   ],
   "riskFlags": [
@@ -135,6 +142,12 @@
       "severity": "high",
       "stageEffect": "max_stage_0",
       "message": "No public wallet_address_list."
+    },
+    {
+      "id": "NO_PUBLIC_POR_API",
+      "severity": "medium",
+      "stageEffect": "none",
+      "message": "Browser-facing PoR bill/proof calls are used for capture; no stable documented public API URL recorded."
     }
   ],
   "schema": "ardmere/exchange-assessment@1",
@@ -157,7 +170,10 @@
   "summary": {
     "headline": "bitget snapshot 20260820 remains Stage 0 in the ardmere public evaluation set.",
     "rationale": "Public artifacts do not support independently reproducible global solvency verification for this snapshot.",
-    "scope": "bitget snapshot 20260820"
+    "scope": "bitget snapshot 20260820",
+    "limitations": [
+      "No documented public PoR API. Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals."
+    ]
   },
   "verifierResults": [
     {
@@ -278,5 +294,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": null
 }

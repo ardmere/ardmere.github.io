@@ -87,7 +87,9 @@
   "effectivePoR": false,
   "totalLiabilityUsd": 3692588418.69,
   "totalReserveUsd": 4507945922.18,
-  "unpricedCoins": ["GUSD"],
+  "unpricedCoins": [
+    "GUSD"
+  ],
   "majorCoinReserveRates": [
     {
       "coin": "BTC",
@@ -266,5 +268,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://www.gate.com/api/web/v1/proof-of-reserves/getProofOfReservesInfo"
 }

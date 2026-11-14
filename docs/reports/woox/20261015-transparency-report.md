@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://api.woox.io/asset/porl/v2/snapshot_overview` |
 
 WOO X snapshot 20261015 is Stage 0: public live dashboard + monthly merkle audit overview with permissionless full-tree download; user Merkle hash login-gated; assets largely on custody/CEX venues — Stage 1 ownership/on-chain path hard.
 

@@ -87,7 +87,12 @@
   "effectivePoR": false,
   "totalLiabilityUsd": 5818206516.48,
   "totalReserveUsd": 6042366192.71,
-  "unpricedCoins": ["HTX","U","USDD","USDS"],
+  "unpricedCoins": [
+    "HTX",
+    "U",
+    "USDD",
+    "USDS"
+  ],
   "majorCoinReserveRates": [
     {
       "coin": "BTC",
@@ -134,6 +139,13 @@
         "OPAQUE_TRUSTED_SETUP"
       ],
       "text": "Publish trusted setup transcript or migrate to a transparent-setup proof system."
+    },
+    {
+      "priority": "P1",
+      "relatedRiskFlags": [
+        "NO_PUBLIC_POR_API"
+      ],
+      "text": "Publish a documented, permissionless PoR HTTP API so third parties need not scrape marketing pages or SPA shells."
     }
   ],
   "riskFlags": [
@@ -142,6 +154,12 @@
       "severity": "high",
       "stageEffect": "max_stage_0",
       "message": "No public wallet_address_list."
+    },
+    {
+      "id": "NO_PUBLIC_POR_API",
+      "severity": "medium",
+      "stageEffect": "none",
+      "message": "Data guide: PoR page has no stable public API; production bundles are dashboard/login gated."
     }
   ],
   "schema": "ardmere/exchange-assessment@1",
@@ -164,7 +182,10 @@
   "summary": {
     "headline": "htx snapshot 20261001 remains Stage 0 in the ardmere public evaluation set.",
     "rationale": "Public artifacts do not support independently reproducible global solvency verification for this snapshot.",
-    "scope": "htx snapshot 20261001"
+    "scope": "htx snapshot 20261001",
+    "limitations": [
+      "No documented public PoR API. Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals."
+    ]
   },
   "verifierResults": [
     {
@@ -277,5 +298,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": null
 }

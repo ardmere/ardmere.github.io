@@ -87,7 +87,9 @@
   "effectivePoR": false,
   "totalLiabilityUsd": 385773957.62,
   "totalReserveUsd": 412378221.82,
-  "unpricedCoins": ["CET"],
+  "unpricedCoins": [
+    "CET"
+  ],
   "majorCoinReserveRates": [
     {
       "coin": "BTC",
@@ -291,5 +293,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://www.coinex.com/res/account/balance/merkle/reserve"
 }

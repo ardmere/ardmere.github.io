@@ -128,6 +128,13 @@
         "IMPLEMENTATION_SEMANTICS_RISK"
       ],
       "text": "Review onchain-balance verifier FAIL/WARN outliers in the verification bundle and reconcile CSV vs chain deltas."
+    },
+    {
+      "priority": "P1",
+      "relatedRiskFlags": [
+        "NO_PUBLIC_POR_API"
+      ],
+      "text": "Publish a documented, permissionless PoR HTTP API so third parties need not scrape marketing pages or SPA shells."
     }
   ],
   "riskFlags": [
@@ -142,6 +149,12 @@
       "severity": "medium",
       "stageEffect": "max_stage_1",
       "message": "Monthly cadence does not satisfy Stage 2 frequency expectations."
+    },
+    {
+      "id": "NO_PUBLIC_POR_API",
+      "severity": "medium",
+      "stageEffect": "none",
+      "message": "Permissionless CDN/HTML PoR artifacts exist; no single documented PoR HTTP API endpoint recorded here."
     }
   ],
   "schema": "ardmere/exchange-assessment@1",
@@ -171,7 +184,10 @@
   "summary": {
     "headline": "OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 508399035. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1.",
     "rationale": "Stage 1 is supported by public wallet_address_list, wallet_ownership_proof, global_proof, and parameter/proof artifacts. Stage 2 is not reached because canonical official anchoring, stable DA, low-friction user inclusion proof, stronger publication frequency, and full business-consistent constraints are not established in this report.",
-    "scope": "okx snapshot 508399035"
+    "scope": "okx snapshot 508399035",
+    "limitations": [
+      "No documented public PoR API. Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals."
+    ]
   },
   "verifierResults": [
     {
@@ -291,5 +307,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": null
 }

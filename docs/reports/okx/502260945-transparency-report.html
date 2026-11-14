@@ -74,6 +74,10 @@ href="./502260945-assessment.json">502260945-assessment.json</a></p>
 <td>Effective PoR</td>
 <td><code>true</code></td>
 </tr>
+<tr class="even">
+<td>Public PoR API</td>
+<td><code>null</code></td>
+</tr>
 </tbody>
 </table>
 <p>OKX publishes public summary, wallet_address_list,
@@ -86,6 +90,10 @@ Stage 2 is not reached because canonical official anchoring, stable DA,
 low-friction user inclusion proof, stronger publication frequency, and
 full business-consistent constraints are not established in this
 report.</p>
+<p>No documented public PoR API. Snapshot data depends on web pages
+and/or press materials; page scraping can break when resource paths
+migrate or the front end is a SPA that ships an HTML shell without
+usable totals.</p>
 <h2 id="stage-decision">2. Stage Decision</h2>
 <h3 id="stage-1-effective-por">Stage 1, Effective PoR</h3>
 <table>
@@ -677,6 +685,12 @@ DA/archive records.</td>
 <td>Add daily anchoring, weekly full PoR, or event-triggered updates to
 reduce timing risk.</td>
 <td><code>HIGH_FREQUENCY_GAP</code></td>
+</tr>
+<tr class="odd">
+<td><code>P1</code></td>
+<td>Publish a documented, permissionless PoR HTTP API so third parties
+need not scrape marketing pages or SPA shells.</td>
+<td><code>NO_PUBLIC_POR_API</code></td>
 </tr>
 </tbody>
 </table>

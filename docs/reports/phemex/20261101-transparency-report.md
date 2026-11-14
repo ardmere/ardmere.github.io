@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://por.phemex.com/porVersions` |
 
 Phemex snapshot 20261101 is Stage 0: permissionless porVersions balances → computed reserve ratios; monthly Merkle inclusion and cold-wallet addresses appear on the public PoR UI, but merkle root / wallet-addresses APIs are CloudFront-gated and user proofs stay login-gated.
 

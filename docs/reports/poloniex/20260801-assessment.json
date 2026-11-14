@@ -87,7 +87,9 @@
   "effectivePoR": false,
   "totalLiabilityUsd": 2291501595.11,
   "totalReserveUsd": 2384921806.27,
-  "unpricedCoins": ["htx"],
+  "unpricedCoins": [
+    "htx"
+  ],
   "majorCoinReserveRates": [
     {
       "coin": "BTC",
@@ -274,5 +276,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://www.poloniex.com/proxy/sapi/merkleProof/public/versionInfo"
 }

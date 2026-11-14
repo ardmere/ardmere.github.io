@@ -74,6 +74,10 @@ href="./202609-assessment.json">202609-assessment.json</a></p>
 <td>Effective PoR</td>
 <td><code>false</code></td>
 </tr>
+<tr class="even">
+<td>Public PoR API</td>
+<td><code>null</code></td>
+</tr>
 </tbody>
 </table>
 <p>MEXC snapshot 202609 is a weak Stage 0 (press-release / import
@@ -83,6 +87,10 @@ archived package; user Merkle remains login-gated.</p>
 not independently reproduced reserves. Datacenter fetches of
 www.mexc.com are WAF-blocked; Hacken PDF attestation is not
 machine-parsed here.</p>
+<p>No documented public PoR API. Snapshot data depends on web pages
+and/or press materials; page scraping can break when resource paths
+migrate or the front end is a SPA that ships an HTML shell without
+usable totals.</p>
 <h2 id="stage-decision">2. Stage Decision</h2>
 <h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
 <table>
@@ -587,6 +595,12 @@ daily anchor)? (S2-2)</td>
 <td>Publish missing public artifacts required for independent
 reproduction.</td>
 <td><code>UNVERIFIABLE</code></td>
+</tr>
+<tr class="even">
+<td><code>P1</code></td>
+<td>Publish a documented, permissionless PoR HTTP API so third parties
+need not scrape marketing pages or SPA shells.</td>
+<td><code>NO_PUBLIC_POR_API</code></td>
 </tr>
 </tbody>
 </table>

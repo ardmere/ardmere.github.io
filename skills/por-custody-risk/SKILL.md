@@ -90,7 +90,7 @@ $ python3 skills/por-custody-risk/scripts/risk_score.py \
 {
   "exchange": "kucoin",
   "snapshot": "20261031",
-  "riskScore": 99,
+  "riskScore": 100,
   "riskLevel": "critical",
   "conclusive": true,
   "factors": [
@@ -113,12 +113,17 @@ $ python3 skills/por-custody-risk/scripts/risk_score.py \
       "id": "NO_WALLET_OWNERSHIP_PROOF",
       "delta": 8,
       "note": "No public download channel for wallet ownership signatures / proofs"
+    },
+    {
+      "id": "NO_PUBLIC_POR_API",
+      "delta": 1,
+      "note": "Public ratios come from PoR page SSR (__NEXT_DATA__); no documented permissionless PoR HTTP API. Score capped at 100."
     }
   ],
   "porStage": "Stage 0",
   "effectivePoR": false,
-  "riskFlags": ["UNVERIFIABLE"],
-  "assessmentSha256": "f17dc2503ed09e43ee2b449cc3bd3368def10903b999dd2cd1dcad98c4bec07f",
+  "riskFlags": ["UNVERIFIABLE", "NO_PUBLIC_POR_API"],
+  "assessmentSha256": "6d4a49c03d2824f55182a83fddf58801dc470627f59b251296306f2456bfe287",
   "anchor": {
     "status": "found",
     "live": false,

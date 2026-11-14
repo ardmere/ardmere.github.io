@@ -291,5 +291,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://bapi.toobit.com/uapi/v1/por/latest-audit"
 }

@@ -1,6 +1,6 @@
 {
   "schema": "ardmere/custody-risk-scores@1",
-  "generatedAt": "2026-11-10T00:28:33Z",
+  "generatedAt": "2026-11-14T02:57:57Z",
   "scoringMode": "file-only (--no-anchor)",
   "decisionTable": "skills/por-custody-risk/references/decision-table.md",
   "scores": [
@@ -11,7 +11,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/binance/PR01APR26-assessment.json",
-      "assessmentSha256": "e4f274cab313ea3194aaf5df94838ee429cdad0d1b352cc2d5153814218f488c"
+      "assessmentSha256": "53701e8517290a6aa5343903ab0fcd9ff59949c8e18e794f042726730beb2d5d"
     },
     {
       "exchange": "binance",
@@ -20,7 +20,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/binance/PR01AUG26-assessment.json",
-      "assessmentSha256": "66b67bd17fca89802c63e8f24023db2793c423ff160a728ee2cc83f7ab9c5d8e"
+      "assessmentSha256": "0e89aa83d72f2bbcecbf852f1925d9e2723e41f8cbd0997125cfdcbd8f488e36"
     },
     {
       "exchange": "binance",
@@ -29,7 +29,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/binance/PR01JUL26-assessment.json",
-      "assessmentSha256": "0b738477e685ee061241a098c252787318e5b7be0dc3ef8564fb434f770ddc1c"
+      "assessmentSha256": "87c1c29e7975cf0d3f5d7954035e6082d8fcf107d3a3c59ad2b89636339a32c3"
     },
     {
       "exchange": "binance",
@@ -38,7 +38,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/binance/PR01JUN26-assessment.json",
-      "assessmentSha256": "250a2a76d87e99564e1fb961077692eed17a4806f9da01c318291d6a87563925"
+      "assessmentSha256": "185cebfcbe8468cab14a7d0cbba4d975c2f7a9f4becffced51c64c2f86fb1bc7"
     },
     {
       "exchange": "binance",
@@ -47,7 +47,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/binance/PR01MAY26-assessment.json",
-      "assessmentSha256": "237f01ccb635fe1cfbb167cf5212ff0a251b93ab9cba8e871ee91b76e44e1c3f"
+      "assessmentSha256": "2076582dacea3cce69a988844b863619743090713ae2eab5774ea03898ec2d62"
     },
     {
       "exchange": "binance",
@@ -56,7 +56,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/binance/PR01OCT26-assessment.json",
-      "assessmentSha256": "d4aa51f04735322cd1576f610989a48db3affaec5d25caf8462707c4d4dca440"
+      "assessmentSha256": "045379d20259513e588db919d6879f9d21092d295e682b11d32be78eee0afc06"
     },
     {
       "exchange": "binance",
@@ -65,7 +65,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/binance/PR01SEP26-assessment.json",
-      "assessmentSha256": "6832571a7ca6004cd93153015ac451d5cde582b5f36ef2934359c6a5a8b9b90d"
+      "assessmentSha256": "8d16397539ec6fec273c5dd114ff80cf5a825395ef1ee1548d37c776079495a5"
     },
     {
       "exchange": "binance",
@@ -74,7 +74,16 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/binance/PR04NOV26-assessment.json",
-      "assessmentSha256": "f58a913a3069690c1a73b88e3c6496a0eb53c4537bfb9e99b03d4fe3a822d083"
+      "assessmentSha256": "5a2b14d873a9accb5d3b7b5821749493220689eb31e6c90be99f85aaac15248b"
+    },
+    {
+      "exchange": "binance",
+      "snapshot": "PR12NOV26",
+      "riskScore": 91,
+      "riskLevel": "critical",
+      "conclusive": true,
+      "assessmentPath": "docs/reports/binance/PR12NOV26-assessment.json",
+      "assessmentSha256": "2479a58dc6db168d7ea440b999aad60e2a5f04b599b17ed9f0aa257af995dce3"
     },
     {
       "exchange": "binance",
@@ -83,79 +92,79 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/binance/PR31OCT26-assessment.json",
-      "assessmentSha256": "739c6e86e04aa9da1784000b499348861b8f9b7e9d793196bf8146f44b74b883"
+      "assessmentSha256": "760c3db0b9de8fe59c9603005896e1601852b18100853ebfe31079138da198b6"
     },
     {
       "exchange": "bingx",
       "snapshot": "20260815",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bingx/20260815-assessment.json",
-      "assessmentSha256": "22405ca3820e92d5e3a621864a0c2cbc1723f4aeac73c4ddd3e4cac7f6c0109b"
+      "assessmentSha256": "de02b9aae8184216ce47335bee840e44c46f1de5994875b35a7b00ecda55206e"
     },
     {
       "exchange": "bingx",
       "snapshot": "20260915",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bingx/20260915-assessment.json",
-      "assessmentSha256": "8b3532953fa212d0bec493b69636265cf0ced17fc79a181a5c28dee1ac461ab5"
+      "assessmentSha256": "3f9ea3f3a606841df9f522e671be3b2e336b5a8d6d7aaf3950e207b89ab887e9"
     },
     {
       "exchange": "bingx",
       "snapshot": "20261015",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bingx/20261015-assessment.json",
-      "assessmentSha256": "50c4a05e466f7c2d1b1a3fd8d94c444b5293492101dbee03e3898c9fdb9da061"
+      "assessmentSha256": "3a51337302348400e8e1aaf8554e1b70c8516c5a0ab6fcc030694556ff659435"
     },
     {
       "exchange": "bitget",
       "snapshot": "202605",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bitget/202605-assessment.json",
-      "assessmentSha256": "499ff88e2a0c11c75821e158252c1aeece0f755081f005318e5602b60f1a9775"
+      "assessmentSha256": "78fa77ca6f8029ee490759c170129537138e205419f342dea17277ce3fc2f5bb"
     },
     {
       "exchange": "bitget",
       "snapshot": "202606",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bitget/202606-assessment.json",
-      "assessmentSha256": "ccc8f8ad3b263004d7d8d8fe5b0f61a58fa5d73133b44aa0e83feaa6aa16ea37"
+      "assessmentSha256": "dd5a360b0f50adec30ecb64729b5d534fcefc3f4c933fd058fc9acad3b474464"
     },
     {
       "exchange": "bitget",
       "snapshot": "20260820",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bitget/20260820-assessment.json",
-      "assessmentSha256": "2ab5a3e1574a47496cfe7495a398f37c327b01e0fb78fb41feb6770a492c2de3"
+      "assessmentSha256": "311e05726eea0f02281bc8cd3ba8b0c996071f4834900469af252104bcf9b266"
     },
     {
       "exchange": "bitget",
       "snapshot": "20260929",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bitget/20260929-assessment.json",
-      "assessmentSha256": "89b5dae2733dbd550b1d7cf9af3d50afb18bcf2406fda6b248f41bc2043dca9b"
+      "assessmentSha256": "a4279291f61236b836f1eac39af13fe079f7e626c800faf38cd14982a74b65d5"
     },
     {
       "exchange": "bitget",
       "snapshot": "20261021",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bitget/20261021-assessment.json",
-      "assessmentSha256": "f33c596ad188d7b36107d24c9450411a9bec14f0ac65e41df2e4e747bf7a5c71"
+      "assessmentSha256": "854bfa3c4ec9d3670982b2b44c3318d3eefe48c050f1885fb0661bcc18acd52f"
     },
     {
       "exchange": "bitunix",
@@ -164,7 +173,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bitunix/20261103-assessment.json",
-      "assessmentSha256": "efd62751bef17bf5d26dc237cbce66679e8c25271cf43bdab6803432528800da"
+      "assessmentSha256": "bef35a0dd2a130e95e8b6668a121fa4b1c2bf1686f49bddbe541af74514dd235"
     },
     {
       "exchange": "btcc",
@@ -173,52 +182,52 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/btcc/20261015-assessment.json",
-      "assessmentSha256": "d15a53d1e910cf6a43740e2cdc308bc836c1598ee5b76103c0f63a9690e65523"
+      "assessmentSha256": "873bc55ba2b22ff2818826d40a6ce3d4edf0f97802789140cb68908c471cc284"
     },
     {
       "exchange": "bybit",
       "snapshot": "2025061709",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bybit/2025061709-assessment.json",
-      "assessmentSha256": "f70d4e7dff44c7bdb8a59508498fe811d3113d2c7ab266a3863c5c5675ef85f0"
+      "assessmentSha256": "91a0407e305c4b3e8395ca429457f8659e458715612720fc2b5fb5d6f4efce57"
     },
     {
       "exchange": "bybit",
       "snapshot": "2026052709",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bybit/2026052709-assessment.json",
-      "assessmentSha256": "25227e081c6920c8d5906d86fcac14331e750b8b2227f33369076f42f80fac39"
+      "assessmentSha256": "1e431259ca8bd0ed0511dbe88221dc6aba8af1de87fee1a6c5879752c27358b9"
     },
     {
       "exchange": "bybit",
       "snapshot": "2026082604",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bybit/2026082604-assessment.json",
-      "assessmentSha256": "4f03a141ca5d957e920a79dd81d6743be504004181fd6b97bb4f97148d3be1e8"
+      "assessmentSha256": "14bc95fb40e7ef68cf24c91c3adb10eb4f6564ccc47206106a99371ab61c6f83"
     },
     {
       "exchange": "bybit",
       "snapshot": "2026092303",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bybit/2026092303-assessment.json",
-      "assessmentSha256": "057747c2a1965d39e2be9aa3c8b410ccd8bfc06f9d953360e3c03c5712c58aa3"
+      "assessmentSha256": "6cd050d19a0a3c3baef26eb12f30056a45c5224c23239717ff8824ba0f0e8cdb"
     },
     {
       "exchange": "bybit",
       "snapshot": "2026102706",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/bybit/2026102706-assessment.json",
-      "assessmentSha256": "b1acefe9c655d54bec262cc17d7acb57fe11b412ab500516c56dd0fbba63b872"
+      "assessmentSha256": "c105cb506cf37d159af788385dbad6e5b18992c51ad79cde04d5e6ae641e815c"
     },
     {
       "exchange": "coinex",
@@ -227,7 +236,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/coinex/20260914-assessment.json",
-      "assessmentSha256": "5f9dc5d5711e111388c03456a7cd30d087f9c23e6d98eab11e76abda5c19b93b"
+      "assessmentSha256": "64655742788fc3ffd51707da9b795c8b1c0e9df679e6ca6b17c4d9c32bbbb41f"
     },
     {
       "exchange": "coinw",
@@ -236,7 +245,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/coinw/202609-assessment.json",
-      "assessmentSha256": "1ea4ef276a1a4fc0fd5139ccfbf12fe1bb1008a12cdc0efe738e491abf8fe4a8"
+      "assessmentSha256": "384825de27880f621203b9b3e15ea767d1f2f2827cfb520f4292ed6163645ec2"
     },
     {
       "exchange": "gateio",
@@ -245,7 +254,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/gateio/20260316-assessment.json",
-      "assessmentSha256": "70e90c468e91eb4f1c538c8fc9f3798955c570a9c9ed821e9faa1368983914c1"
+      "assessmentSha256": "a614bab029d289dc5027dbef252f21b5ec34d4d80467449410b45f9715f4f249"
     },
     {
       "exchange": "gateio",
@@ -254,7 +263,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/gateio/20260618-assessment.json",
-      "assessmentSha256": "f5df27957b356e37bbdedac5d2193b25dd6ab0a506d032910f2687912ca6e7d5"
+      "assessmentSha256": "b6f9567417acfdf3b5c31428dba8c1cd69db5fcc577f6d1617106e16d0df759e"
     },
     {
       "exchange": "gateio",
@@ -263,52 +272,52 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/gateio/20261018-assessment.json",
-      "assessmentSha256": "68c2edb6417aa3e181b0cf2eada1145e0aabf5f34fa15485766decdffcb57ac0"
+      "assessmentSha256": "8656b466571f9d7a1998d1d6e326ae700a27730ce284b503d211252995fa2e54"
     },
     {
       "exchange": "htx",
       "snapshot": "20230910",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/htx/20230910-assessment.json",
-      "assessmentSha256": "a94ee42b2d3dbe2a13fca00aadd7245eda24d1e31a77d658097f01a1d2298d8a"
+      "assessmentSha256": "6b01b7c9b389eba96f6388c7219f91406c073177389f65d637d1ad693020f498"
     },
     {
       "exchange": "htx",
       "snapshot": "20260801",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/htx/20260801-assessment.json",
-      "assessmentSha256": "a4088f41844c5517e48c6e9c8baded83f96cab6c9f434387e62aea58b1e57121"
+      "assessmentSha256": "cb343f5a2a03123539a1cd668630151cbf60a49d5ddde20b5c3a19826dc2a92c"
     },
     {
       "exchange": "htx",
       "snapshot": "20260901",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/htx/20260901-assessment.json",
-      "assessmentSha256": "a0f04174932ffe41748a653f46a28f2ac82f78dc76c6e2c1c1348dd723851f06"
+      "assessmentSha256": "4604568ea204098f417e2be2ac91627b05e7417397cc81e27a8400a8f4310861"
     },
     {
       "exchange": "htx",
       "snapshot": "20261001",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/htx/20261001-assessment.json",
-      "assessmentSha256": "c3c5582c305e894c59bfb1a62798894b94310b8456dd80679b9f0d09631e3ae2"
+      "assessmentSha256": "b0bdb07fadaf2fe1639f661115c59bfca7ba698b9c38bf464d856a5a6a47ad37"
     },
     {
       "exchange": "htx",
       "snapshot": "20261101",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/htx/20261101-assessment.json",
-      "assessmentSha256": "509001a2aed28f179265a16246ef6ed7e3cce9809efd88c7b2b1bea6e6663918"
+      "assessmentSha256": "f86d46c12a0b14245f8d8b4bae331ad663510a14771965a91b66936027c405e4"
     },
     {
       "exchange": "kraken",
@@ -317,43 +326,52 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/kraken/20260630-assessment.json",
-      "assessmentSha256": "0a3a1ea2b3954e9dfe74f87161e61ed55a224abbfb6d7293241803dbed6462e2"
+      "assessmentSha256": "6d1f6d115cfe0e2ba1ae722b81d9d3d9be02e897eafa5bde13fb88abb8985b0d"
+    },
+    {
+      "exchange": "kraken",
+      "snapshot": "20260930",
+      "riskScore": 100,
+      "riskLevel": "critical",
+      "conclusive": true,
+      "assessmentPath": "docs/reports/kraken/20260930-assessment.json",
+      "assessmentSha256": "f956a696379d950bea8d02b6f0fac5fdb3962c661cdce9b131d056178a758f6c"
     },
     {
       "exchange": "kucoin",
       "snapshot": "20260630",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/kucoin/20260630-assessment.json",
-      "assessmentSha256": "18aba8a325a3280be3b2fdf359451b27df1d8cb5d2ee93a530c3ae06c0864d9f"
+      "assessmentSha256": "fc38fc382256a77a283b40d48ad019bd6bc0dd3bf3c4eb584372405a666b209d"
     },
     {
       "exchange": "kucoin",
       "snapshot": "20260731",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/kucoin/20260731-assessment.json",
-      "assessmentSha256": "1c6b10ba6ad0e7151e98e1201d9119cf91890c7580db230009df494c89f67e9d"
+      "assessmentSha256": "cee5716c338fe00fa6ca89632645e4206aac62a4d6def73840f880bbf8935d54"
     },
     {
       "exchange": "kucoin",
       "snapshot": "20260930",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/kucoin/20260930-assessment.json",
-      "assessmentSha256": "6e1fe6749fff7f40f2dd260b4a9c5bc8efa99c0ef0475f666e81433975d8cf3e"
+      "assessmentSha256": "693f304ba2bf862bdf57456ede8f1629fc15cfe202553a9c8df25e32f47323c3"
     },
     {
       "exchange": "kucoin",
       "snapshot": "20261031",
-      "riskScore": 99,
+      "riskScore": 100,
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/kucoin/20261031-assessment.json",
-      "assessmentSha256": "53290a7f5021032f580e538ebe1c3fa1ced0d2503a65984da93c6b53a0b0ef79"
+      "assessmentSha256": "6d4a49c03d2824f55182a83fddf58801dc470627f59b251296306f2456bfe287"
     },
     {
       "exchange": "mexc",
@@ -362,7 +380,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/mexc/202607-assessment.json",
-      "assessmentSha256": "4715a77b1d80f6dbf0e610dfebff188cae7aea95a0e093d9dd78c129e02b12a9"
+      "assessmentSha256": "a9fa7333e245e468c439e9d40e511a0aa3222e6083eae137181d72d3301915a2"
     },
     {
       "exchange": "mexc",
@@ -371,7 +389,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/mexc/202608-assessment.json",
-      "assessmentSha256": "773b048e6938de9c702234636bcc01e96758d20b5b520e3614b2ce5d39d46491"
+      "assessmentSha256": "8d918a97d3943e64728aba1641731733d590f5763096b561aebb9d5aa517cb84"
     },
     {
       "exchange": "mexc",
@@ -380,7 +398,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/mexc/202609-assessment.json",
-      "assessmentSha256": "95d28e67aabe9290c39032790c14b8ee891e41734b972a2048e552c8c37dc1c6"
+      "assessmentSha256": "8c6831ace706f1e3350fc5abcb5e075ed99882431b344b407a7cd019308aa0ec"
     },
     {
       "exchange": "mexc",
@@ -389,70 +407,70 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/mexc/202610-assessment.json",
-      "assessmentSha256": "a8631544e337795de636de8ffc77e4013b7563a01ac032a7961ea3eb06080766"
+      "assessmentSha256": "8557bc25ef5dbe4dacc203dcc4fdaf14f8816675e1c46221e564c8232a155f1f"
     },
     {
       "exchange": "okx",
       "snapshot": "500375535",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/500375535-assessment.json",
-      "assessmentSha256": "60957179bb3113022a13b976e8c46ba9f25a1a32bd3b9b1b03d01062d00f6fd8"
+      "assessmentSha256": "31166629da0ce3e119939b2bd44f0a023ceabb168df266671fc44826a9649858"
     },
     {
       "exchange": "okx",
       "snapshot": "502260945",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/502260945-assessment.json",
-      "assessmentSha256": "f8e06d5b67503e8157a6fdc6e97838a3105536d05adb9ac81af87f09b15ece26"
+      "assessmentSha256": "951b704b430bfea5b3619cd2472b4e7124425436a1cbbb29cbb2c5122c470719"
     },
     {
       "exchange": "okx",
       "snapshot": "502299735",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/502299735-assessment.json",
-      "assessmentSha256": "3477ea54256b148afa43a592ed3c5e21c228ebebdfc77cec4f1931dc714e2eb0"
+      "assessmentSha256": "f95f0cdf3d5bd56ca983843beb1492a3820b6345451cbb876eac4b9ec4b53a42"
     },
     {
       "exchange": "okx",
       "snapshot": "506872725",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/506872725-assessment.json",
-      "assessmentSha256": "8cbf3abbd6c4ae4403d3c246ab9cdcb1cbf7d46da873546b4614423a7023acfb"
+      "assessmentSha256": "fdecb12e31e481d848d8364461ceec777ed218f45d0407dfd166916861edbe95"
     },
     {
       "exchange": "okx",
       "snapshot": "507918525",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/507918525-assessment.json",
-      "assessmentSha256": "51c1478d0e300e503fdfa31afe37a32e5375d370dd68ddc976f04ce3b5ac384a"
+      "assessmentSha256": "fe6d14189550ba1d09daf1e4edeebc9e13388b94ca2012e25acb59c5f388d813"
     },
     {
       "exchange": "okx",
       "snapshot": "508399035",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/508399035-assessment.json",
-      "assessmentSha256": "f8d6e306ae7c3a7f300819ab47268ef5d17fad55a750e9ae9c4f393fd09b748d"
+      "assessmentSha256": "49de0d7b3d7ed524deda66224c193da0f8c13ce526d0993c2990720b3e56d38e"
     },
     {
       "exchange": "okx",
       "snapshot": "508756245",
-      "riskScore": 10,
+      "riskScore": 15,
       "riskLevel": "low",
       "conclusive": true,
       "assessmentPath": "docs/reports/okx/508756245-assessment.json",
-      "assessmentSha256": "708b8b8aa6a8178df04bcbc2714d0ff8323e37f274f309edc8bc670c377ef9a0"
+      "assessmentSha256": "1867c97cbbf2a34841acbe0da20e381f7c46c042cce1dd65f2dc21a2f5d96bae"
     },
     {
       "exchange": "ourbit",
@@ -461,7 +479,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/ourbit/20261101-assessment.json",
-      "assessmentSha256": "646e288bee85098f6175ccbf810c6715c187386b44eeaf45a3937b83634010c0"
+      "assessmentSha256": "7ed3d93ac0d41429cbc3943195fda6b4b47989b3f58073b1685e13fe4748b01f"
     },
     {
       "exchange": "phemex",
@@ -470,7 +488,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/phemex/20261101-assessment.json",
-      "assessmentSha256": "4fdf6859eada702dd6d72bf4eee793cf631ba0af8d99be243da3e2481668d91b"
+      "assessmentSha256": "5d5efbfd0fb506501bf617ba0a566399bbe5a1f4e237fe2e2027f57113b01ccc"
     },
     {
       "exchange": "poloniex",
@@ -479,7 +497,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/poloniex/20260801-assessment.json",
-      "assessmentSha256": "4c77b70ad895c5e70da4894fc9e77a8dfd5644845ee8a081af7ce1e9800852f8"
+      "assessmentSha256": "72ba4d669c8a7b43dd4068107fc0eb0ec9a932a0820f32f1772b56f6a45202e4"
     },
     {
       "exchange": "poloniex",
@@ -488,7 +506,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/poloniex/20260901-assessment.json",
-      "assessmentSha256": "1c6a4a29f24f7ba24b9b1ef6ece4fb1d04ad3013d3679819419c216eddc13bd4"
+      "assessmentSha256": "36d473ce8e35b7f13a1413985fcf2a4c78fc3cf7e5a4ddbc6d8cf4eee72f74a2"
     },
     {
       "exchange": "poloniex",
@@ -497,7 +515,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/poloniex/20261001-assessment.json",
-      "assessmentSha256": "f46368efdbad70db40a8c6e4b3026615acbe812aeca3f4e9b7538a0afe59a37d"
+      "assessmentSha256": "c6b8da99927ba8f1b04f95882cba622005664e299bc72ddc3cacb01c907ea514"
     },
     {
       "exchange": "toobit",
@@ -506,7 +524,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/toobit/20261001-assessment.json",
-      "assessmentSha256": "c0664a3d9bcb4675854d35804e525f7fcc4a06d901ea3f203a0fd99b8e33b537"
+      "assessmentSha256": "4e7f77a2255a794178dda34ed16a1329bc3dcd6a471541e3ae0f40dd33b0cf6e"
     },
     {
       "exchange": "woox",
@@ -515,7 +533,7 @@
       "riskLevel": "critical",
       "conclusive": true,
       "assessmentPath": "docs/reports/woox/20261015-assessment.json",
-      "assessmentSha256": "055afd11ad04d75b44d53d3b420639efa25634c28246b0662140893eddbca363"
+      "assessmentSha256": "c8fcf4fb5871ce64764c160b5f7e1ec3934adf15f1b615af1f7ff5b5ac5cf8b9"
     }
   ]
 }

@@ -93,7 +93,27 @@
   "effectivePoR": false,
   "totalLiabilityUsd": 132692864215.53,
   "totalReserveUsd": 133789440152.98,
-  "unpricedCoins": ["ASTER","CAKE","CHR","CHZ","ENA","ENJ","FORM","PENDLE","PUMP","RLUSD","S","SSV","TRUMP","U","USD1","WIF","WLD","WLFI","ZEC"],
+  "unpricedCoins": [
+    "ASTER",
+    "CAKE",
+    "CHR",
+    "CHZ",
+    "ENA",
+    "ENJ",
+    "FORM",
+    "PENDLE",
+    "PUMP",
+    "RLUSD",
+    "S",
+    "SSV",
+    "TRUMP",
+    "U",
+    "USD1",
+    "WIF",
+    "WLD",
+    "WLFI",
+    "ZEC"
+  ],
   "majorCoinReserveRates": [
     {
       "coin": "BTC",
@@ -339,5 +359,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot"
 }

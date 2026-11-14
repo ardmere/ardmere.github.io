@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://www.coinex.com/res/account/balance/merkle/reserve` |
 
 CoinEx snapshot 20260914 is Stage 0: public reserve ratios + period merkle root + XLSX address list; user Merkle login-gated; no ownership proofs or global ZK.
 
