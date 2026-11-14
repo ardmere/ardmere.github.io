@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://widget.pro.ledgerlens.io/api/kraken-platform-spot-futures` |
 
 Kraken snapshot 20260630 is Stage 0 attestation-model: quarterly accountant Merkle (LedgerLens / The Network Firm) plus CMS reserve ratios — no permissionless wallet ZIP or machine-verified attestation PDF.
 

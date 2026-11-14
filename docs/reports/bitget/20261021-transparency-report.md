@@ -14,10 +14,13 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `null` |
 
 bitget snapshot 20261021 remains Stage 0 in the ardmere public evaluation set.
 
 Public artifacts do not support independently reproducible global solvency verification for this snapshot.
+
+No documented public PoR API. Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals.
 
 ## 2. Stage Decision
 
@@ -137,6 +140,7 @@ No additional row-level `FAIL` or `WARN` findings beyond the summary table in §
 | Priority | Recommendation | Related Risk |
 | --- | --- | --- |
 | `P0` | Publish missing public artifacts required for independent reproduction. | `UNVERIFIABLE` |
+| `P1` | Publish a documented, permissionless PoR HTTP API so third parties need not scrape marketing pages or SPA shells. | `NO_PUBLIC_POR_API` |
 
 ## 9. Boundary
 

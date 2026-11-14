@@ -398,17 +398,17 @@ class DecisionTable(unittest.TestCase):
     # file are scored file-only and say why.
     TABLE = [
         ("docs/reports/okx/508756245-assessment.json",
-         "NO_CANONICAL_ANCHOR +5, HIGH_FREQUENCY_GAP +5; not anchored, so file-only",
-         10, "low", "--no-anchor"),
+         "NO_CANONICAL_ANCHOR +5, HIGH_FREQUENCY_GAP +5, NO_PUBLIC_POR_API +5; not anchored, so file-only",
+         15, "low", "--no-anchor"),
         ("docs/reports/kucoin/20261031-assessment.json",
-         "UNVERIFIABLE +40, stage +35, list +16, ownership +8; anchored",
-         99, "critical", "anchor"),
+         "UNVERIFIABLE +40, stage +35, list +16, ownership +8, NO_PUBLIC_POR_API (cap); anchored",
+         100, "critical", "anchor"),
         ("docs/reports/bitget/20261021-assessment.json",
-         "UNVERIFIABLE +40, stage +35, list +16, ownership +8; anchored",
-         99, "critical", "anchor"),
+         "UNVERIFIABLE +40, stage +35, list +16, ownership +8, NO_PUBLIC_POR_API (cap); anchored",
+         100, "critical", "anchor"),
         ("docs/reports/bybit/2026102706-assessment.json",
-         "UNVERIFIABLE +40, stage +35, list +16, ownership +8",
-         99, "critical", "--no-anchor"),
+         "UNVERIFIABLE +40, stage +35, list +16, ownership +8, NO_PUBLIC_POR_API (cap)",
+         100, "critical", "--no-anchor"),
         ("docs/reports/binance/PR04NOV26-assessment.json",
          "UNVERIFIABLE +40, stage +35, ownership +8, OPAQUE +8; has walletZip",
          91, "critical", "--no-anchor"),
@@ -613,7 +613,7 @@ class AnchorShortCircuits(unittest.TestCase):
     def test_skipped_anchor_still_scores_the_file(self):
         doc = self.risk_score.score(ROOT / "docs/reports/okx/508756245-assessment.json",
                                     {"status": "skipped", "live": False})
-        self.assertEqual(doc["riskScore"], 10)
+        self.assertEqual(doc["riskScore"], 15)
         self.assertIn("file's own disclosure", doc["anchor"]["interpretation"])
 
 

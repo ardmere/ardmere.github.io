@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://www.gate.com/api/web/v1/proof-of-reserves/getProofOfReservesInfo` |
 
 gateio snapshot 20260316 remains Stage 0 in the ardmere public evaluation set.
 

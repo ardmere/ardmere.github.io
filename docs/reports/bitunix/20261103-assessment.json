@@ -285,5 +285,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://api.bitunix.com/asset-hub-api/api/public/v1/reserve/certificate/queryAuditInfoByTime"
 }

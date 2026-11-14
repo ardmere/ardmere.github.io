@@ -87,7 +87,9 @@
   "effectivePoR": false,
   "totalLiabilityUsd": 128774624.19,
   "totalReserveUsd": 140796756.65,
-  "unpricedCoins": ["USD*"],
+  "unpricedCoins": [
+    "USD*"
+  ],
   "majorCoinReserveRates": [
     {
       "coin": "BTC",
@@ -307,5 +309,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://por.phemex.com/porVersions"
 }

@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://www.poloniex.com/proxy/sapi/merkleProof/public/versionInfo` |
 
 poloniex snapshot 20261001 remains Stage 0 in the ardmere public evaluation set.
 

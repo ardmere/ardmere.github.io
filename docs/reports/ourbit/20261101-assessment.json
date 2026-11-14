@@ -311,5 +311,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://www.ourbit.com/api/assetbussiness/merkle/stock_info"
 }

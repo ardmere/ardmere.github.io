@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://www.btcc.com/social-api/contract/reserve/reserveInfo` |
 
 BTCC snapshot 20261015 is Stage 0 hard-capped: permissionless reserveInfo exposes per-coin ratios and a truncated (~16 hex) merkle root only — no wallet amounts/addresses, no OSS verifier.
 

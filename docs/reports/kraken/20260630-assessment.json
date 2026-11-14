@@ -326,5 +326,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://widget.pro.ledgerlens.io/api/kraken-platform-spot-futures"
 }

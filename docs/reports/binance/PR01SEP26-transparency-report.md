@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 2 / E2` |
 | Confidence | `medium` |
 | Effective PoR | `false` |
+| Public PoR API | `https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot` |
 
 Binance snapshot PR01SEP26 provides public reserve summary and wallet_address_list where available, but Stage 1 is blocked by missing wallet_ownership_proof, opaque trusted setup, and unavailable public global proof/vk artifacts.
 

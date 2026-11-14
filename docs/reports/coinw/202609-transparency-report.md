@@ -14,10 +14,13 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `null` |
 
 CoinW snapshot 202609 is a weak Stage 0 (announcement / import summary): self-reported total USDT reserve ratio only; Cloudflare WAF blocks stable datacenter fetches of the PoR dashboard; no public wallet list.
 
 solvency-claim PASS means the September 2026 announcement total reserve ratio ≥ 100% only — not independently reproduced reserves or a bound merkle root. Official por-verify binaries exist without published source; user merkel_tree_cw.json remains login-gated. A later Oct-24 SSR panel was observed under geo-restriction with animated/conflicting merkle and ratio UI — left observational, not assessed.
+
+No documented public PoR API. Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals.
 
 ## 2. Stage Decision
 
@@ -139,6 +142,7 @@ No additional row-level `FAIL` or `WARN` findings beyond the summary table in §
 | Priority | Recommendation | Related Risk |
 | --- | --- | --- |
 | `P0` | Publish missing public artifacts required for independent reproduction. | `UNVERIFIABLE` |
+| `P1` | Publish a documented, permissionless PoR HTTP API so third parties need not scrape marketing pages or SPA shells. | `NO_PUBLIC_POR_API` |
 
 ## 9. Boundary
 

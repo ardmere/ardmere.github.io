@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://bapi.toobit.com/uapi/v1/por/latest-audit` |
 
 Toobit snapshot 20261001 is Stage 0: public BTC/ETH/USDT/USDC reserve ratios + period merkle root via latest-audit; user SMT proof JSON login-gated; no ownership proofs or global ZK.
 

@@ -300,5 +300,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": "https://www.binance.com/bapi/apex/v1/public/apex/market/query/userReserveAuditProofSnapshot"
 }

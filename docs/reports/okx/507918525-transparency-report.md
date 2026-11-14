@@ -14,10 +14,13 @@
 | Gen / Evidence | `Gen 2 / E2` |
 | Confidence | `medium` |
 | Effective PoR | `true` |
+| Public PoR API | `null` |
 
 OKX publishes public summary, wallet_address_list, wallet_ownership_proof, and global zk proof bundle for audit 507918525. ardmere verifies address ownership and global zk binding, so this snapshot reaches Stage 1.
 
 Stage 1 is supported by public wallet_address_list, wallet_ownership_proof, global_proof, and parameter/proof artifacts. Stage 2 is not reached because canonical official anchoring, stable DA, low-friction user inclusion proof, stronger publication frequency, and full business-consistent constraints are not established in this report.
+
+No documented public PoR API. Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals.
 
 ## 2. Stage Decision
 
@@ -145,6 +148,7 @@ Finding counts: PASS 6
 | --- | --- | --- |
 | `P1` | Anchor root/proof/commitment on-chain or publish immutable DA/archive records. | `NO_CANONICAL_ANCHOR` |
 | `P1` | Add daily anchoring, weekly full PoR, or event-triggered updates to reduce timing risk. | `HIGH_FREQUENCY_GAP` |
+| `P1` | Publish a documented, permissionless PoR HTTP API so third parties need not scrape marketing pages or SPA shells. | `NO_PUBLIC_POR_API` |
 
 ## 9. Boundary
 

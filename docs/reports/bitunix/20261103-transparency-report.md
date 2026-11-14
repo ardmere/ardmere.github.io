@@ -14,6 +14,7 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
+| Public PoR API | `https://api.bitunix.com/asset-hub-api/api/public/v1/reserve/certificate/queryAuditInfoByTime` |
 
 Bitunix snapshot 20261103 is Stage 0: public BTC/ETH/USDT reserve ratios + period merkle root; user merkle_tree_bitunix.json login-gated; no ownership proofs or global ZK.
 

@@ -102,6 +102,13 @@
         "UNVERIFIABLE"
       ],
       "text": "Publish missing public artifacts required for independent reproduction."
+    },
+    {
+      "priority": "P1",
+      "relatedRiskFlags": [
+        "NO_PUBLIC_POR_API"
+      ],
+      "text": "Publish a documented, permissionless PoR HTTP API so third parties need not scrape marketing pages or SPA shells."
     }
   ],
   "riskFlags": [
@@ -128,6 +135,12 @@
       "severity": "high",
       "stageEffect": "max_stage_0",
       "message": "User merkel_tree_cw.json + automatic verify require login; OSS release ships binaries only (no source to port)."
+    },
+    {
+      "id": "NO_PUBLIC_POR_API",
+      "severity": "medium",
+      "stageEffect": "none",
+      "message": "Stable channel is help-center announcement / marketing page; datacenter WAF blocks dashboard."
     }
   ],
   "schema": "ardmere/exchange-assessment@1",
@@ -171,7 +184,10 @@
   "summary": {
     "headline": "CoinW snapshot 202609 is a weak Stage 0 (announcement / import summary): self-reported total USDT reserve ratio only; Cloudflare WAF blocks stable datacenter fetches of the PoR dashboard; no public wallet list.",
     "rationale": "solvency-claim PASS means the September 2026 announcement total reserve ratio ≥ 100% only — not independently reproduced reserves or a bound merkle root. Official por-verify binaries exist without published source; user merkel_tree_cw.json remains login-gated. A later Oct-24 SSR panel was observed under geo-restriction with animated/conflicting merkle and ratio UI — left observational, not assessed.",
-    "scope": "coinw snapshot 202609"
+    "scope": "coinw snapshot 202609",
+    "limitations": [
+      "No documented public PoR API. Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals."
+    ]
   },
   "verifierResults": [
     {
@@ -294,5 +310,6 @@
       "verifierId": "cross-chain-wrapped",
       "version": "0"
     }
-  ]
+  ],
+  "publicPoRApi": null
 }
