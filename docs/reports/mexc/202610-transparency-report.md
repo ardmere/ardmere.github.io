@@ -14,13 +14,13 @@
 | Gen / Evidence | `Gen 1 / E1` |
 | Confidence | `low` |
 | Effective PoR | `false` |
-| Public PoR API | `no` |
+| Public PoR API | `null` |
 
 MEXC snapshot 202610 is a weak Stage 0 (press-release / import summary): self-reported ratios only; no public period merkle root in the archived package; user Merkle remains login-gated.
 
 solvency-claim PASS means self-reported reserve ratios ≥ 100% only — not independently reproduced reserves. Datacenter fetches of www.mexc.com are WAF-blocked; Hacken PDF attestation is not machine-parsed here.
 
-No documented public PoR API (official Spot/Futures/Broker docs and Postman list trading APIs only). Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals.
+`publicPoRApi` is `null` (official Spot/Futures/Broker docs and Postman list trading APIs only). Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals.
 
 ## 2. Stage Decision
 

@@ -1,6 +1,7 @@
 package reportgen
 
 import (
+	"net/url"
 	"os"
 	"path/filepath"
 	"strings"
@@ -10,12 +11,17 @@ import (
 )
 
 // PageOnlyPoRSourceMessage explains why page/press-only PoR data is fragile.
-// Used in risk flags, limitations, and report notes when publicPoRApi.provided is "no".
+// Used in risk flags, limitations, and report notes when publicPoRApi is null.
 const PageOnlyPoRSourceMessage = "No documented public PoR API. Snapshot data depends on web pages and/or press materials; page scraping can break when resource paths migrate or the front end is a SPA that ships an HTML shell without usable totals."
 
 type publicPoRApiInfo struct {
-	Provided string
-	Notes    string
+	// URL is the documented permissionless PoR HTTP API endpoint, or empty for null.
+	URL   string
+	Notes string
+}
+
+func (i publicPoRApiInfo) HasAPI() bool {
+	return i.URL != ""
 }
 
 var (
@@ -67,10 +73,10 @@ func candidateRegistryPaths() []string {
 	return out
 }
 
-// lookupPublicPoRApi returns yes/no/unknown from the exchange registry.
-// Missing or invalid registry values default to unknown (do not invent "yes").
+// lookupPublicPoRApi returns a documented PoR API URL from the exchange registry,
+// or empty URL (assessment null) when none is documented. Does not invent endpoints.
 func lookupPublicPoRApi(exchangeID string) publicPoRApiInfo {
-	info := publicPoRApiInfo{Provided: "unknown"}
+	info := publicPoRApiInfo{}
 	reg, err := loadExchangeRegistry()
 	if err != nil {
 		return info
@@ -79,36 +85,48 @@ func lookupPublicPoRApi(exchangeID string) publicPoRApiInfo {
 	if ex == nil {
 		return info
 	}
-	switch strings.ToLower(strings.TrimSpace(ex.PublicPoRApi)) {
-	case "yes", "true":
-		// "true" only if a YAML bool was stringified; prefer quoted yes/no/unknown in registry.
-		info.Provided = "yes"
-	case "no", "false":
-		info.Provided = "no"
-	case "unknown":
-		info.Provided = "unknown"
-	default:
-		info.Provided = "unknown"
-	}
 	info.Notes = strings.TrimSpace(ex.PublicPoRApiNote)
-	if info.Provided == "no" && info.Notes == "" {
+	info.URL = normalizePublicPoRApiURL(ex.PublicPoRApi)
+	if !info.HasAPI() && info.Notes == "" {
 		info.Notes = PageOnlyPoRSourceMessage
 	}
 	return info
 }
 
-func publicPoRApiAssessmentMap(info publicPoRApiInfo) map[string]any {
-	out := map[string]any{"provided": info.Provided}
-	if info.Notes != "" {
-		out["notes"] = info.Notes
-	} else if info.Provided == "no" {
-		out["notes"] = PageOnlyPoRSourceMessage
+func normalizePublicPoRApiURL(raw string) string {
+	s := strings.TrimSpace(raw)
+	if s == "" {
+		return ""
 	}
-	return out
+	lower := strings.ToLower(s)
+	switch lower {
+	case "null", "none", "no", "false", "unknown", "n/a", "-":
+		return ""
+	}
+	u, err := url.Parse(s)
+	if err != nil || (u.Scheme != "http" && u.Scheme != "https") || u.Host == "" {
+		return ""
+	}
+	return s
+}
+
+// publicPoRApiAssessmentValue is the assessment JSON value: URL string or null.
+func publicPoRApiAssessmentValue(info publicPoRApiInfo) any {
+	if !info.HasAPI() {
+		return nil
+	}
+	return info.URL
+}
+
+func publicPoRApiDisplay(info publicPoRApiInfo) string {
+	if !info.HasAPI() {
+		return "null"
+	}
+	return info.URL
 }
 
 func noPublicPoRApiRiskFlag(info publicPoRApiInfo) (riskFlag, bool) {
-	if info.Provided != "no" {
+	if info.HasAPI() {
 		return riskFlag{}, false
 	}
 	msg := info.Notes

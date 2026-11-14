@@ -6,7 +6,7 @@ MEXC uses a **Gen 1** Merkle Tree with SHA-256 truncated to 32 hex characters (1
 
 ## Public PoR API
 
-**`publicPoRApi: no`** (registry). Official Spot / Futures / Broker developer docs and the MEXC V3 Postman collection document trading and market APIs only — not PoR snapshot, merkle root, or inclusion-proof HTTP endpoints. PoR is exposed via the logged-in web UI, the marketing `/proof-of-reserve` SPA, monthly press releases, and an offline Java merkle jar.
+**`publicPoRApi: null`** (registry — no documented PoR HTTP API endpoint). Official Spot / Futures / Broker developer docs and the MEXC V3 Postman collection document trading and market APIs only — not PoR snapshot, merkle root, or inclusion-proof HTTP endpoints. PoR is exposed via the logged-in web UI, the marketing `/proof-of-reserve` SPA, monthly press releases, and an offline Java merkle jar.
 
 Page-only / press-only capture is fragile: resource path migration or a client-rendered SPA HTML shell without usable totals can make automated scrapes unreadable even when the marketing URL still returns HTTP 200.
 

@@ -8,10 +8,10 @@ import (
 	"github.com/ardmere/ardmere/internal/verifier"
 )
 
-func TestLookupPublicPoRApi_MEXCNo(t *testing.T) {
+func TestLookupPublicPoRApi_MEXCNull(t *testing.T) {
 	info := lookupPublicPoRApi("mexc")
-	if info.Provided != "no" {
-		t.Fatalf("mexc publicPoRApi.provided=%q want no", info.Provided)
+	if info.HasAPI() {
+		t.Fatalf("mexc publicPoRApi=%q want null/empty", info.URL)
 	}
 	if info.Notes == "" {
 		t.Fatal("expected registry note for mexc")
@@ -20,26 +20,45 @@ func TestLookupPublicPoRApi_MEXCNo(t *testing.T) {
 	if !ok || rf.ID != "NO_PUBLIC_POR_API" {
 		t.Fatalf("risk flag: ok=%v id=%q", ok, rf.ID)
 	}
-	if !strings.Contains(strings.ToLower(rf.Message), "spa") &&
-		!strings.Contains(strings.ToLower(PageOnlyPoRSourceMessage), "spa") {
-		t.Fatal("page-only messaging should mention SPA risk")
+	if publicPoRApiAssessmentValue(info) != nil {
+		t.Fatalf("assessment value=%v want null", publicPoRApiAssessmentValue(info))
+	}
+	if publicPoRApiDisplay(info) != "null" {
+		t.Fatalf("display=%q", publicPoRApiDisplay(info))
 	}
 }
 
-func TestLookupPublicPoRApi_GateYes(t *testing.T) {
+func TestLookupPublicPoRApi_GateURL(t *testing.T) {
 	info := lookupPublicPoRApi("gateio")
-	if info.Provided != "yes" {
-		t.Fatalf("gateio publicPoRApi.provided=%q want yes", info.Provided)
+	if !info.HasAPI() {
+		t.Fatal("gateio expected documented PoR API URL")
+	}
+	if !strings.Contains(info.URL, "getProofOfReservesInfo") {
+		t.Fatalf("gateio URL=%q", info.URL)
 	}
 	if _, ok := noPublicPoRApiRiskFlag(info); ok {
-		t.Fatal("yes should not emit NO_PUBLIC_POR_API")
+		t.Fatal("URL should not emit NO_PUBLIC_POR_API")
+	}
+	if publicPoRApiAssessmentValue(info) != info.URL {
+		t.Fatalf("assessment value=%v", publicPoRApiAssessmentValue(info))
 	}
 }
 
-func TestLookupPublicPoRApi_UnknownDefault(t *testing.T) {
+func TestLookupPublicPoRApi_MissingIsNull(t *testing.T) {
 	info := lookupPublicPoRApi("does-not-exist-exchange")
-	if info.Provided != "unknown" {
-		t.Fatalf("missing exchange provided=%q want unknown", info.Provided)
+	if info.HasAPI() {
+		t.Fatalf("missing exchange URL=%q want empty", info.URL)
+	}
+}
+
+func TestNormalizePublicPoRApiURL(t *testing.T) {
+	if got := normalizePublicPoRApiURL("https://example.com/por"); got != "https://example.com/por" {
+		t.Fatalf("got %q", got)
+	}
+	for _, bad := range []string{"", "no", "null", "unknown", "not-a-url", "ftp://x"} {
+		if got := normalizePublicPoRApiURL(bad); got != "" {
+			t.Fatalf("%q -> %q want empty", bad, got)
+		}
 	}
 }
 
@@ -63,16 +82,5 @@ func TestEvaluateMEXCIncludesNoPublicPoRApiFlag(t *testing.T) {
 	}
 	if !found {
 		t.Fatal("expected NO_PUBLIC_POR_API on mexc evaluation")
-	}
-}
-
-func TestPublicPoRApiAssessmentMap(t *testing.T) {
-	m := publicPoRApiAssessmentMap(publicPoRApiInfo{Provided: "no"})
-	if m["provided"] != "no" {
-		t.Fatalf("%v", m)
-	}
-	notes, _ := m["notes"].(string)
-	if !strings.Contains(notes, "SPA") {
-		t.Fatalf("notes=%q", notes)
 	}
 }

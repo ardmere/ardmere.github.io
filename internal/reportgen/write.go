@@ -112,7 +112,7 @@ func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.Ve
 		"rationale": eval.Rationale,
 		"scope":     fmt.Sprintf("%s snapshot %s", exchangeID, art.SnapshotID),
 	}
-	if apiInfo.Provided == "no" {
+	if !apiInfo.HasAPI() {
 		summary["limitations"] = []string{PageOnlyPoRSourceMessage}
 	}
 	out := map[string]any{
@@ -132,7 +132,7 @@ func buildAssessment(exchangeID string, art bundle.ArtifactBundle, ver bundle.Ve
 		"evidenceLevel": eval.EvidenceLevel,
 		"confidence":    eval.Confidence,
 		"effectivePoR":  eval.EffectivePoR,
-		"publicPoRApi":  publicPoRApiAssessmentMap(apiInfo),
+		"publicPoRApi":  publicPoRApiAssessmentValue(apiInfo),
 		"summary":       summary,
 		"stageBlockedReasons": eval.Blocked,
 		"riskFlags":           eval.RiskFlags,
@@ -197,10 +197,10 @@ func buildReportMarkdown(exchangeID, snapshotID, snapshotDir string, art bundle.
 	fmt.Fprintf(&b, "| Gen / Evidence | `%s / %s` |\n", eval.Gen, eval.EvidenceLevel)
 	fmt.Fprintf(&b, "| Confidence | `%s` |\n", eval.Confidence)
 	fmt.Fprintf(&b, "| Effective PoR | `%v` |\n", eval.EffectivePoR)
-	fmt.Fprintf(&b, "| Public PoR API | `%s` |\n\n", apiInfo.Provided)
+	fmt.Fprintf(&b, "| Public PoR API | `%s` |\n\n", publicPoRApiDisplay(apiInfo))
 	b.WriteString(eval.Headline + "\n\n")
 	b.WriteString(eval.Rationale + "\n\n")
-	if apiInfo.Provided == "no" {
+	if !apiInfo.HasAPI() {
 		note := apiInfo.Notes
 		if note == "" {
 			note = PageOnlyPoRSourceMessage

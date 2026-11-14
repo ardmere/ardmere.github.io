@@ -76,7 +76,7 @@ href="./202610-assessment.json">202610-assessment.json</a></p>
 </tr>
 <tr class="even">
 <td>Public PoR API</td>
-<td><code>no</code></td>
+<td><code>null</code></td>
 </tr>
 </tbody>
 </table>
@@ -87,11 +87,11 @@ archived package; user Merkle remains login-gated.</p>
 not independently reproduced reserves. Datacenter fetches of
 www.mexc.com are WAF-blocked; Hacken PDF attestation is not
 machine-parsed here.</p>
-<p>No documented public PoR API (official Spot/Futures/Broker docs and
-Postman list trading APIs only). Snapshot data depends on web pages
-and/or press materials; page scraping can break when resource paths
-migrate or the front end is a SPA that ships an HTML shell without
-usable totals.</p>
+<p><code>publicPoRApi</code> is <code>null</code> (official
+Spot/Futures/Broker docs and Postman list trading APIs only). Snapshot
+data depends on web pages and/or press materials; page scraping can
+break when resource paths migrate or the front end is a SPA that ships
+an HTML shell without usable totals.</p>
 <h2 id="stage-decision">2. Stage Decision</h2>
 <h3 id="stage-0-not-effective-por">Stage 0, not effective PoR</h3>
 <table>

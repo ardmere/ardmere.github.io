@@ -27,8 +27,8 @@ type Exchange struct {
 	PorPage          string         `yaml:"porPage"`
 	DataGuide        string         `yaml:"dataGuide"`
 	VCTier           int            `yaml:"vcTier,omitempty"`
-	// PublicPoRApi is yes / no / unknown: documented permissionless PoR HTTP API
-	// (not trading APIs). Empty means unknown.
+	// PublicPoRApi is a documented permissionless PoR HTTP API endpoint URL,
+	// or empty/null when none is documented (not trading APIs). Do not invent URLs.
 	PublicPoRApi     string         `yaml:"publicPoRApi,omitempty"`
 	PublicPoRApiNote string         `yaml:"publicPoRApiNote,omitempty"`
 	UpstreamRepos    []UpstreamRepo `yaml:"upstreamRepos"`
@@ -99,7 +99,7 @@ func PrintDetail(ex Exchange) {
 	}
 	api := strings.TrimSpace(ex.PublicPoRApi)
 	if api == "" {
-		api = "unknown"
+		api = "null"
 	}
 	fmt.Printf("  Public PoR API: %s\n", api)
 	if ex.PublicPoRApiNote != "" {

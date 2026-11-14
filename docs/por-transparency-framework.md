@@ -109,7 +109,7 @@ What this does not do: a venue that is slow throughout has no gap far above its 
 | Business-consistent constraints | PoR proof constraints must align with the exchange’s actual business; risks such as fake users with negative net worth, negative balance offsetting, lending, margin, and collateral haircuts cannot rely on prose alone |
 | User-verification usability | inclusion proof verification should be low-barrier, explainable, and exportable; ordinary users must not be required to run complex commands or understand underlying circuits |
 | Machine-readable first | Machine-readable artifacts such as JSON/CSV/ZIP/schema/API take priority over unparseable PDFs or marketing pages |
-| Public PoR API explicit | Assessments record whether a documented, permissionless PoR HTTP API exists (`publicPoRApi.provided`: yes / no / unknown). Trading APIs do not count. When data is page- or press-only, reports state that scraping can break on resource-path migration or SPA shells without usable totals |
+| Public PoR API explicit | Assessments record `publicPoRApi` as the documented permissionless PoR HTTP API endpoint URL, or `null` when none is documented. Trading APIs do not count; do not invent URLs. When `null`, reports state that page/press scraping can break on resource-path migration or SPA shells without usable totals |
 | Audit taxonomy | Must distinguish technical verification, AUP/agreed-upon procedures, limited assurance, reasonable assurance/full financial audit |
 | Frequency-aware | Transparency considers not only single-period snapshots but also publication frequency, event-triggered disclosure, historical version archivability, and anti-timing capability |
 

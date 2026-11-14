@@ -334,8 +334,5 @@
       "version": "0"
     }
   ],
-  "publicPoRApi": {
-    "provided": "no",
-    "notes": "Official Spot/Futures/Broker API docs and Postman have no PoR endpoints; PoR is web UI + press + offline jar. Page/SPA scrape is fragile."
-  }
+  "publicPoRApi": null
 }
