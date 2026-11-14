@@ -5,7 +5,7 @@
 
 This index lists every assessed snapshot in the ardmere public evaluation set. The [homepage](../../index.html) shows the six most recent reports (auto-generated via `por site`). This file is also auto-generated; edit `config/site/snapshot-notes.yaml` for page footers.
 
-**Assessed:** 2026-11-13 · Schema: `ardmere/exchange-assessment@1`
+**Assessed:** 2026-11-14 · Schema: `ardmere/exchange-assessment@1`
 
 ## All public reports
 
@@ -23,16 +23,17 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | Bybit | `2026102706` | 2026-10-27 | Stage 0 | `99` | [report](./bybit/2026102706-transparency-report.md) |
 | Bitget | `20261021` | 2026-10-21 | Stage 0 | `99` | [report](./bitget/20261021-transparency-report.md) |
 | Gate.io | `20261018` | 2026-10-18 | Stage 0 | `99` | [report](./gateio/20261018-transparency-report.md) |
-| WOO X | `20261015` | 2026-10-15 | Stage 0 | `100` | [report](./woox/20261015-transparency-report.md) |
 | BingX | `20261015` | 2026-10-15 | Stage 0 | `99` | [report](./bingx/20261015-transparency-report.md) |
+| WOO X | `20261015` | 2026-10-15 | Stage 0 | `100` | [report](./woox/20261015-transparency-report.md) |
 | BTCC | `20261015` | 2026-10-15 | Stage 0 | `100` | [report](./btcc/20261015-transparency-report.md) |
 | MEXC | `202610` | 2026-10-15 | Stage 0 | `100` | [report](./mexc/202610-transparency-report.md) |
 | OKX | `502260945` | 2026-10-02 | **Stage 1** | `10` | [report](./okx/502260945-transparency-report.md) |
 | Binance | `PR01OCT26` | 2026-10-01 | Stage 0 | `91` | [report](./binance/PR01OCT26-transparency-report.md) |
 | Poloniex | `20261001` | 2026-10-01 | Stage 0 | `99` | [report](./poloniex/20261001-transparency-report.md) |
-| HTX | `20261001` | 2026-10-01 | Stage 0 | `99` | [report](./htx/20261001-transparency-report.md) |
 | Toobit | `20261001` | 2026-10-01 | Stage 0 | `100` | [report](./toobit/20261001-transparency-report.md) |
+| HTX | `20261001` | 2026-10-01 | Stage 0 | `99` | [report](./htx/20261001-transparency-report.md) |
 | KuCoin | `20260930` | 2026-09-30 | Stage 0 | `99` | [report](./kucoin/20260930-transparency-report.md) |
+| Kraken | `20260930` | 2026-09-30 | Stage 0 | — | [report](./kraken/20260930-transparency-report.md) |
 | Bitget | `20260929` | 2026-09-29 | Stage 0 | `99` | [report](./bitget/20260929-transparency-report.md) |
 | Bybit | `2026092303` | 2026-09-23 | Stage 0 | `99` | [report](./bybit/2026092303-transparency-report.md) |
 | BingX | `20260915` | 2026-09-15 | Stage 0 | `99` | [report](./bingx/20260915-transparency-report.md) |
@@ -40,8 +41,8 @@ This index lists every assessed snapshot in the ardmere public evaluation set. T
 | MEXC | `202609` | 2026-09-10 | Stage 0 | `100` | [report](./mexc/202609-transparency-report.md) |
 | OKX | `502299735` | 2026-09-07 | **Stage 1** | `10` | [report](./okx/502299735-transparency-report.md) |
 | Binance | `PR01SEP26` | 2026-09-01 | Stage 0 | `91` | [report](./binance/PR01SEP26-transparency-report.md) |
-| Poloniex | `20260901` | 2026-09-01 | Stage 0 | `99` | [report](./poloniex/20260901-transparency-report.md) |
 | HTX | `20260901` | 2026-09-01 | Stage 0 | `99` | [report](./htx/20260901-transparency-report.md) |
+| Poloniex | `20260901` | 2026-09-01 | Stage 0 | `99` | [report](./poloniex/20260901-transparency-report.md) |
 | CoinW | `202609` | 2026-09-01 | Stage 0 | `100` | [report](./coinw/202609-transparency-report.md) |
 | Bybit | `2026082604` | 2026-08-26 | Stage 0 | `99` | [report](./bybit/2026082604-transparency-report.md) |
 | Bitget | `20260820` | 2026-08-20 | Stage 0 | `99` | [report](./bitget/20260820-transparency-report.md) |
