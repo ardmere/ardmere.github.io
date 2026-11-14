@@ -16,6 +16,7 @@ const PageOnlyPoRSourceMessage = "No documented public PoR API. Snapshot data de
 
 type publicPoRApiInfo struct {
 	// URL is the documented permissionless PoR HTTP API endpoint, or empty for null.
+	// Fixed CDN/download pages do not count.
 	URL   string
 	Notes string
 }

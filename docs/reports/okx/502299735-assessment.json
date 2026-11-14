@@ -147,7 +147,7 @@
       "id": "NO_PUBLIC_POR_API",
       "severity": "medium",
       "stageEffect": "none",
-      "message": "Permissionless CDN/HTML PoR artifacts exist; no single documented PoR HTTP API endpoint recorded here."
+      "message": "Permissionless CDN/download artifacts exist (download page + static zips), but those are not a documented PoR HTTP API; publicPoRApi remains null."
     }
   ],
   "schema": "ardmere/exchange-assessment@1",

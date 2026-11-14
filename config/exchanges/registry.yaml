@@ -2,7 +2,8 @@
 # Consumed by: por exchanges, data guides, assessment references, exchange-comparison.
 #
 # publicPoRApi: documented permissionless PoR HTTP API endpoint URL, or null when none.
-#   Trading/market APIs do not count. Do not invent URLs — only fill when documented/known.
+#   Fixed CDN/download pages do NOT count — only a documented HTTP API. Trading/market
+#   APIs do not count. Do not invent URLs — only fill when documented/known.
 # publicPoRApiNote: optional factual note (especially when null: page/press/SPA fragility).
 #
 # Role vocabulary:
@@ -38,7 +39,8 @@ exchanges:
     vcTier: 2
     publicPoRApi: null
     publicPoRApiNote: >-
-      Permissionless CDN/HTML PoR artifacts exist; no single documented PoR HTTP API endpoint recorded here.
+      Permissionless CDN/download artifacts exist (download page + static zips), but those
+      are not a documented PoR HTTP API; publicPoRApi remains null.
     upstreamRepos:
       - url: https://github.com/okx/proof-of-reserves
         role: address_ownership_verifier
