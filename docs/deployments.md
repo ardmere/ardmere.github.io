@@ -378,7 +378,19 @@ Post-batch assessment from the merged scan report ([PR #57](https://github.com/a
 - **Proxy / impl / schema:** unchanged (`SCHEMA_VERSION()=7`, live impl `0xe8DB40AA87138d79437ED0DceA42D3A7A2AB95EB`)
 - **Signer:** `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F`
 
-All **58** `docs/reports/*/*-assessment.json` files now have a composite Sepolia row with `schemaVersion` 7.
+### Kraken `20260930` (2026-11-14)
+
+Post-batch assessment from the merged due-window scan ([PR #60](https://github.com/ardmere/ardmere.github.io/pull/60), merge `3ae0c42`). Composite `expectedSnapshotId(kraken, 20260930)` was absent on Sepolia; cloud env broadcast full schema-v7 `anchorSnapshot` (no duplicate). Read-back + `SnapshotAnchored` log appendix: [`docs/v7-anchor-kraken-20260930-log.json`](./v7-anchor-kraken-20260930-log.json). Assessment USD totals are null → on-chain `0`; major-coin ratio bps from `majorCoinReserveRates`.
+
+| Exchange | auditId | periodSeq | Custody | Liability USD | Reserve USD | BTC | ETH | USDT | USDC | Block | `anchorSnapshot` tx |
+| --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| kraken | `20260930` | 1 | 100 | 0 | 0 | 10320 | 10070 | 10500 | 10500 | `12130025` | [`0x4b50c68daeaccfc87ce9813ddc6e5ca114bb2a398c7e38a4e95fc965b58b8916`](https://sepolia.etherscan.io/tx/0x4b50c68daeaccfc87ce9813ddc6e5ca114bb2a398c7e38a4e95fc965b58b8916) |
+
+- **snapshotId:** `0x672aa038323558c61a4c7acf6df1f0cb8915bc4cf5897e14221be68670a04a7d`
+- **Proxy / impl / schema:** unchanged (`SCHEMA_VERSION()=7`, live impl `0xe8DB40AA87138d79437ED0DceA42D3A7A2AB95EB`)
+- **Signer:** `0xf11AcEcBB54bf72Db69f6BaC4f16FC6491cC670F`
+
+All **59** `docs/reports/*/*-assessment.json` files now have a composite Sepolia row with `schemaVersion` 7.
 
 ## NEAR testnet (composite parity) — pending on-chain
 

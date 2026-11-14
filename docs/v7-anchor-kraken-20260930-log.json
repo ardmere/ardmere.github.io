@@ -1,0 +1,32 @@
+{
+  "generatedAt": "2026-11-14T02:07:39Z",
+  "mode": "apply",
+  "note": "Composite schema-v7 row was missing; cloud env broadcast anchorSnapshot via scripts/batch-anchor-v7.py --apply filtered to kraken/20260930. Confirmed snapshotExists + SnapshotAnchored log + receipt. Proxy and signer addresses: docs/deployments.md (Ethereum Sepolia).",
+  "implementation": "0xe8DB40AA87138d79437ED0DceA42D3A7A2AB95EB",
+  "schemaVersion": 7,
+  "storageVersion": 4,
+  "chain": "ethereum-sepolia",
+  "rows": [
+    {
+      "path": "docs/reports/kraken/20260930-assessment.json",
+      "exchange": "kraken",
+      "auditId": "20260930",
+      "snapshotId": "0x672aa038323558c61a4c7acf6df1f0cb8915bc4cf5897e14221be68670a04a7d",
+      "periodSeq": 1,
+      "custodyRiskScore": 100,
+      "totalLiabilityUsd": 0,
+      "totalReserveUsd": 0,
+      "btcReserveRatioBps": 10320,
+      "ethReserveRatioBps": 10070,
+      "usdtReserveRatioBps": 10500,
+      "usdcReserveRatioBps": 10500,
+      "porStage": 1,
+      "effectivePoR": false,
+      "schemaVersion": 7,
+      "anchoredAt": 1794622056,
+      "blockNumber": 12130025,
+      "status": "anchored",
+      "tx": "0x4b50c68daeaccfc87ce9813ddc6e5ca114bb2a398c7e38a4e95fc965b58b8916"
+    }
+  ]
+}
