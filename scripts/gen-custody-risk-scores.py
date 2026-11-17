@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
-"""Batch-compute custody risk scores for all public *-assessment.json files."""
+"""Batch-compute custody risk scores for all public *-assessment.json files.
+
+After writing docs/reports/custody-risk-scores.json this script runs
+``go run ./cmd/por site`` so index.html, snapshot-history.md, and
+exchange-comparison.md pick up transparency-risk columns. Run
+``./scripts/build-public-html.sh`` afterward when you need the matching
+*.html pages (pandoc 3.1.3).
+"""
 import json
 import subprocess
 import sys
@@ -46,6 +53,14 @@ def main() -> int:
     }
     OUT.write_text(json.dumps(doc, indent=2) + "\n")
     print(f"wrote {len(rows)} scores to {OUT.relative_to(ROOT)}")
+    print("refreshing site pages (go run ./cmd/por site)...")
+    site = subprocess.run(
+        ["go", "run", "./cmd/por", "site"],
+        cwd=ROOT,
+        check=False,
+    )
+    if site.returncode != 0:
+        raise RuntimeError(f"go run ./cmd/por site failed (exit {site.returncode})")
     return 0
 
 
